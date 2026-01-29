@@ -8,7 +8,9 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Plus, Tag, ArrowUpCircle, ArrowDownCircle, Trash2, Settings2 } from "lucide-react"
 import { createCashCategory, deleteCashCategory } from "@/app/caisse/actions"
-import { CashTransactionType } from "@prisma/client"
+import { toast } from "sonner"
+// import type { CashTransactionType } from "@prisma/client"
+type CashTransactionType = 'IN' | 'OUT'
 
 interface CategoryManagerProps {
     initialCategories: any[]
@@ -89,7 +91,19 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
                                 <Badge key={cat.id} variant="secondary" className="px-3 py-1.5 gap-2 group hover:bg-rose-50 dark:hover:bg-rose-900/10">
                                     <Tag className="h-3 w-3 text-rose-500" />
                                     {cat.name}
-                                    <button className="hidden group-hover:block ml-1 text-muted-foreground hover:text-rose-600">
+                                    <button
+                                        onClick={async () => {
+                                            if (confirm(`Supprimer la catégorie "${cat.name}" ?`)) {
+                                                try {
+                                                    await deleteCashCategory(cat.id)
+                                                    toast.success("Catégorie supprimée")
+                                                } catch (e) {
+                                                    toast.error("Impossible de supprimer cette catégorie car des transactions y sont liées.")
+                                                }
+                                            }
+                                        }}
+                                        className="hidden group-hover:block ml-1 text-muted-foreground hover:text-rose-600"
+                                    >
                                         <Trash2 className="h-3.5 w-3.5" />
                                     </button>
                                 </Badge>
@@ -106,7 +120,19 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
                                 <Badge key={cat.id} variant="secondary" className="px-3 py-1.5 gap-2 group hover:bg-emerald-50 dark:hover:bg-emerald-900/10">
                                     <Tag className="h-3 w-3 text-emerald-500" />
                                     {cat.name}
-                                    <button className="hidden group-hover:block ml-1 text-muted-foreground hover:text-emerald-600">
+                                    <button
+                                        onClick={async () => {
+                                            if (confirm(`Supprimer la catégorie "${cat.name}" ?`)) {
+                                                try {
+                                                    await deleteCashCategory(cat.id)
+                                                    toast.success("Catégorie supprimée")
+                                                } catch (e) {
+                                                    toast.error("Impossible de supprimer cette catégorie car des transactions y sont liées.")
+                                                }
+                                            }
+                                        }}
+                                        className="hidden group-hover:block ml-1 text-muted-foreground hover:text-emerald-600"
+                                    >
                                         <Trash2 className="h-3.5 w-3.5" />
                                     </button>
                                 </Badge>
