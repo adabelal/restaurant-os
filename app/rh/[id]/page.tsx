@@ -19,6 +19,7 @@ import {
 import Link from "next/link"
 import { EditShiftDialog } from "@/components/rh/EditShiftDialog"
 import { HistoryChart } from "@/components/rh/HistoryChart"
+import { ExportShiftsPDF } from "@/components/rh/ExportShiftsPDF"
 
 export default async function EmployeeDetailPage({
     params,
@@ -27,13 +28,13 @@ export default async function EmployeeDetailPage({
     params: { id: string },
     searchParams: { month?: string, year?: string, tab?: string }
 }) {
-    const employee = await prisma.user.findUnique({
+    const employee = (await (prisma.user as any).findUnique({
         where: { id: params.id },
         include: {
             documents: { orderBy: { createdAt: 'desc' } },
             shifts: { orderBy: { startTime: 'desc' } }
         }
-    })
+    })) as any
 
     if (!employee) return notFound()
 
@@ -154,14 +155,23 @@ export default async function EmployeeDetailPage({
                             <CardHeader className="border-b bg-white">
                                 <CardTitle className="text-lg flex items-center justify-between">
                                     <span>Activité du mois</span>
-                                    <div className="flex items-center gap-2">
-                                        <Link href={`/rh/${employee.id}?month=${prevMonth}&year=${prevYear}`}>
-                                            <Button variant="ghost" size="icon" className="h-8 w-8"><ChevronLeft className="h-4 w-4" /></Button>
-                                        </Link>
-                                        <span className="text-sm font-medium min-w-[120px] text-center capitalize">{monthLabel}</span>
-                                        <Link href={`/rh/${employee.id}?month=${nextMonth}&year=${nextYear}`}>
-                                            <Button variant="ghost" size="icon" className="h-8 w-8"><ChevronRight className="h-4 w-4" /></Button>
-                                        </Link>
+                                    <div className="flex items-center gap-4">
+                                        <ExportShiftsPDF
+                                            employee={employee}
+                                            shifts={filteredShifts}
+                                            monthLabel={monthLabel}
+                                            totalHours={totalHours}
+                                            totalGross={totalGrossPay}
+                                        />
+                                        <div className="flex items-center gap-2">
+                                            <Link href={`/rh/${employee.id}?month=${prevMonth}&year=${prevYear}`}>
+                                                <Button variant="ghost" size="icon" className="h-8 w-8"><ChevronLeft className="h-4 w-4" /></Button>
+                                            </Link>
+                                            <span className="text-sm font-medium min-w-[120px] text-center capitalize">{monthLabel}</span>
+                                            <Link href={`/rh/${employee.id}?month=${nextMonth}&year=${nextYear}`}>
+                                                <Button variant="ghost" size="icon" className="h-8 w-8"><ChevronRight className="h-4 w-4" /></Button>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </CardTitle>
                             </CardHeader>

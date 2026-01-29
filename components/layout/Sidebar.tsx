@@ -4,7 +4,7 @@ import { ModeToggle } from "@/components/ModeToggle"
 
 export function Sidebar() {
     return (
-        <div className="hidden border-r bg-card lg:block w-64 min-h-screen fixed left-0 top-0 bottom-0 transition-colors duration-300">
+        <div className="hidden border-r bg-card md:block w-64 min-h-screen fixed left-0 top-0 bottom-0 transition-colors duration-300">
             <div className="flex h-full max-h-screen flex-col gap-2">
                 <div className="flex h-[80px] items-center justify-between border-b px-6">
                     <Link className="flex items-center gap-2 font-bold" href="/">
