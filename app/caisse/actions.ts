@@ -320,3 +320,71 @@ export async function importCaisseFromExcel(formData: FormData) {
         return { success: false, error: String(error) }
     }
 }
+
+export async function importPopinaExcel(formData: FormData) {
+    try {
+        const file = formData.get('file') as File
+        if (!file) throw new Error("Aucun fichier fourni")
+
+        const buffer = await file.arrayBuffer()
+        const workbook = XLSX.read(buffer, { cellDates: true })
+        const sheetName = workbook.SheetNames[0]
+        const worksheet = workbook.Sheets[sheetName]
+        const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as any[][]
+
+        // Col I is index 8 (Espèces)
+        // Col D is index 3 (Date fin / Journée) - or look for headers
+        // Headers are on the first row
+        const headers = data[0]
+        const dateIdx = headers.findIndex(h => String(h).includes("Fin"))
+        const cashIdx = 8 // Hardcoded for col I as requested
+
+        // Create Recettes (Espèces) category if not exists
+        const category = await prisma.cashCategory.upsert({
+            where: { name_type: { name: "Recettes (Popina)", type: 'IN' } },
+            update: {},
+            create: { name: "Recettes (Popina)", type: 'IN', color: "#10b981" }
+        })
+
+        let count = 0
+        // Skip header row
+        for (let i = 1; i < data.length; i++) {
+            const row = data[i]
+            const rawDate = row[dateIdx]
+            const cashAmount = parseFloat(row[cashIdx])
+
+            if (!rawDate || isNaN(cashAmount) || cashAmount <= 0) continue
+
+            // Parse date (Handles string or Date object)
+            let date = rawDate instanceof Date ? rawDate : new Date(rawDate)
+
+            // Check for potential duplicate (same date and amount for Popina category)
+            const existing = await prisma.cashTransaction.findFirst({
+                where: {
+                    date: date,
+                    amount: cashAmount,
+                    categoryId: category.id
+                }
+            })
+
+            if (!existing) {
+                await prisma.cashTransaction.create({
+                    data: {
+                        date,
+                        amount: cashAmount,
+                        type: 'IN',
+                        description: `Recette Espèces Popina (Clôture)`,
+                        categoryId: category.id
+                    }
+                })
+                count++
+            }
+        }
+
+        revalidatePath('/caisse')
+        return { success: true, count }
+    } catch (error) {
+        console.error("Popina import failed:", error)
+        return { success: false, error: String(error) }
+    }
+}

@@ -1,13 +1,14 @@
 import { prisma } from "@/lib/prisma"
 export const dynamic = 'force-dynamic'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Wallet, ArrowUpCircle, ArrowDownCircle, Settings, Calculator, TrendingUp, Download } from "lucide-react"
+import { Wallet, ArrowUpCircle, ArrowDownCircle, Settings, Calculator, TrendingUp } from "lucide-react"
 import { AddTransactionDialog } from "@/components/caisse/AddTransactionDialog"
 import { CaisseStats } from "@/components/caisse/CaisseStats"
 import { MonthlyTransactionList } from "@/components/caisse/MonthlyTransactionList"
 import { ExportDialog } from "@/components/caisse/ExportDialog"
 import { CaisseConfig } from "@/components/caisse/CaisseConfig"
 import { getAppSettings } from "@/app/caisse/actions"
+import { ImportPopinaButton } from "@/components/caisse/ImportPopinaButton"
 
 export default async function CaissePage() {
     // Fetch initial data
@@ -28,7 +29,7 @@ export default async function CaissePage() {
     const entrees = transactions.filter((t: any) => t.type === 'IN')
     const sorties = transactions.filter((t: any) => t.type === 'OUT')
 
-    // Calculate quick stats with explicit types to fix lints
+    // Calculate quick stats
     const totalIn = entrees.reduce((acc: number, t: any) => acc + Number(t.amount), 0)
     const totalOut = sorties.reduce((acc: number, t: any) => acc + Number(t.amount), 0)
     const balance = totalIn - totalOut
@@ -48,6 +49,7 @@ export default async function CaissePage() {
                     </div>
 
                     <div className="flex gap-3">
+                        <ImportPopinaButton />
                         <ExportDialog transactions={transactions} accountantEmail={settings?.accountantEmail} />
                         <AddTransactionDialog categories={categories} />
                     </div>
