@@ -1,0 +1,271 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  // AJOUT CRUCIAL POUR DOCKER (ALPINE)
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- UTILISATEURS & AUTH ---
+enum Role {
+  ADMIN     // Gérant
+  MANAGER   // Chef de cuisine / Maître d'hôtel
+  STAFF     // Serveur / Cuisinier / Extra
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(STAFF)
+  
+  // NOUVEAU : Taux horaire de base
+  hourlyRate Decimal @default(11.52) @db.Decimal(10, 2)
+  
+  // Infos Personnelles étendues
+  phone      String?
+  address    String?
+  isActive   Boolean @default(true) // Pour gérer les anciens salariés (archivés)
+  
+  // Nouveau : Type de contrat
+  contractType     String? @default("CDI") // CDI, CDD
+  contractDuration String? @default("FULL_TIME") // FULL_TIME, PART_TIME
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  shifts           Shift[]
+  haccpLogs        HaccpLog[]
+  stockLogs        StockMovement[]
+  documents        EmployeeDocument[]
+  cashTransactions CashTransaction[]
+}
+
+model EmployeeDocument {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  
+  name      String   // Ex: "Contrat CDD", "Fiche Paie Janvier"
+  type      String   // "CONTRACT", "PAYSLIP", "ID_CARD", "OTHER"
+  category  String   @default("OTHER") // "JURIDIQUE", "PAIE", "RH"
+  url       String   // Lien Google Drive ou autre
+  
+  // Pour les fiches de paie notamment
+  month     Int?
+  year      Int?
+  
+  createdAt DateTime @default(now())
+}
+
+// --- RH & PLANNING ---
+model Shift {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  startTime   DateTime
+  endTime     DateTime?
+  breakMinutes Int     @default(0) // Pause en minutes
+  
+  // Variables de paie (snapshot au moment du shift)
+  isSunday    Boolean  @default(false)
+  isNight     Boolean  @default(false)
+  hourlyRate  Decimal  @db.Decimal(10, 2)
+  
+  status      String   @default("COMPLETED") // SCHEDULED, COMPLETED, ABSENT
+  notes       String?
+}
+
+// --- ECONOMAT & STOCK ---
+model Supplier {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  phone     String?
+  address   String?
+  
+  // Relations
+  ingredients Ingredient[]
+  purchases   PurchaseOrder[]
+}
+
+enum Unit {
+  KG
+  G
+  L
+  CL
+  ML
+  PIECE
+}
+
+model Ingredient {
+  id          String   @id @default(cuid())
+  name        String
+  category    String   // Viande, Légume, Sec...
+  
+  // Stock
+  currentStock Decimal @default(0) // En unité de base (ex: grammes)
+  unit         Unit    @default(KG)
+  minStock     Decimal @default(0) // Seuil d'alerte
+  
+  // Prix & Fournisseur
+  pricePerUnit Decimal @db.Decimal(10, 4) // Prix au KG/L
+  supplierId   String?
+  supplier     Supplier? @relation(fields: [supplierId], references: [id])
+  
+  // Allergènes & Traceability
+  allergens    String[] // ["Gluten", "Lactose"]
+  lastBatchNo  String?  // Dernier numéro de lot reçu
+  lastDLC      DateTime?
+  
+  updatedAt    DateTime @updatedAt
+  
+  // Relations
+  inRecipes    RecipeIngredient[]
+  movements    StockMovement[]
+}
+
+// --- FICHES TECHNIQUES (RECIPES) ---
+model Recipe {
+  id          String   @id @default(cuid())
+  name        String
+  category    String   // Entrée, Plat, Dessert, Cocktail
+  salePrice   Decimal  @db.Decimal(10, 2) // Prix carte TTC
+  vatRate     Decimal  @default(10.0)     // TVA
+  
+  instructions String?  @db.Text
+  
+  // Calculs auto
+  foodCost    Decimal? @db.Decimal(10, 2) // Coût matière calculé
+  margin      Decimal? @db.Decimal(10, 2) // Marge brute
+  
+  isActive    Boolean  @default(true)
+  
+  // Relations
+  ingredients RecipeIngredient[]
+}
+
+model RecipeIngredient {
+  id           String     @id @default(cuid())
+  recipeId     String
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
+  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  
+  quantity     Decimal    @db.Decimal(10, 3) // Quantité nécessiare
+  unit         Unit
+}
+
+// --- STOCK MOVEMENTS (Historique) ---
+enum MovementType {
+  PURCHASE     // Achat fournisseur
+  USAGE        // Vente / Utilisation
+  WASTE        // Perte / Casse
+  ADJUSTMENT   // Inventaire
+}
+
+model StockMovement {
+  id           String       @id @default(cuid())
+  ingredientId String
+  ingredient   Ingredient   @relation(fields: [ingredientId], references: [id])
+  userId       String
+  user         User         @relation(fields: [userId], references: [id])
+  
+  type         MovementType
+  quantity     Decimal
+  reason       String?      // Ex: "Tombé par terre", "Périmé"
+  
+  createdAt    DateTime     @default(now())
+}
+
+// --- ACHATS & FACTURES ---
+model PurchaseOrder {
+  id          String   @id @default(cuid())
+  supplierId  String
+  supplier    Supplier @relation(fields: [supplierId], references: [id])
+  
+  date        DateTime
+  invoiceNo   String?
+  totalAmount Decimal  @db.Decimal(10, 2)
+  status      String   @default("DRAFT") // DRAFT, ORDERED, RECEIVED
+  
+  // Lien vers PDF (Stocké sur S3/Minio plus tard)
+  pdfUrl      String?
+  
+  createdAt   DateTime @default(now())
+}
+
+// --- HACCP & HYGIENE ---
+enum LogType {
+  TEMPERATURE_FRIDGE
+  TEMPERATURE_FREEZER
+  TEMPERATURE_DELIVERY
+  CLEANING
+  OIL_CHANGE
+}
+
+model HaccpLog {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  
+  type        LogType
+  value       String?  // Ex: "4.2°C"
+  targetName  String   // Ex: "Frigo Positif 1"
+  isCompliant Boolean  @default(true)
+  photoUrl    String?  // Preuve photo
+  
+  createdAt   DateTime @default(now())
+}
+
+// --- CAISSE & CASH FLOW ---
+enum CashTransactionType {
+  IN
+  OUT
+}
+
+model CashTransaction {
+  id          String              @id @default(cuid())
+  date        DateTime            @default(now())
+  amount      Decimal             @db.Decimal(10, 2)
+  type        CashTransactionType
+  description String
+  categoryId  String?
+  category    CashCategory?       @relation(fields: [categoryId], references: [id])
+  
+  userId      String?
+  user        User?               @relation(fields: [userId], references: [id])
+  
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+
+  @@index([date])
+}
+
+model CashCategory {
+  id           String              @id @default(cuid())
+  name         String
+  type         CashTransactionType
+  color        String?             // Pour le UI
+  
+  transactions CashTransaction[]
+  
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  @@unique([name, type])
+}
+
+model AppSettings {
+  id              String   @id @default("global")
+  accountantEmail String?
+  updatedAt       DateTime @updatedAt
+}
