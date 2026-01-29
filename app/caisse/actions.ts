@@ -356,7 +356,29 @@ export async function importPopinaExcel(formData: FormData) {
             if (!rawDate || isNaN(cashAmount) || cashAmount <= 0) continue
 
             // Parse date (Handles string or Date object)
-            let date = rawDate instanceof Date ? rawDate : new Date(rawDate)
+            let date: Date | null = null
+            if (rawDate instanceof Date) {
+                date = rawDate
+            } else if (typeof rawDate === 'string') {
+                // Try to parse DD/MM/YYYY HH:mm
+                const parts = rawDate.split(/[/ :]/)
+                if (parts.length >= 3) {
+                    const d = parseInt(parts[0], 10)
+                    const m = parseInt(parts[1], 10) - 1
+                    const y = parseInt(parts[2], 10)
+                    const h = parts[3] ? parseInt(parts[3], 10) : 12
+                    const min = parts[4] ? parseInt(parts[4], 10) : 0
+                    const fullY = y < 100 ? 2000 + y : y
+                    date = new Date(fullY, m, d, h, min)
+                } else {
+                    date = new Date(rawDate)
+                }
+            }
+
+            if (!date || isNaN(date.getTime())) {
+                console.warn(`Invalid date at row ${i}:`, rawDate)
+                continue
+            }
 
             // Check for potential duplicate (same date and amount for Popina category)
             const existing = await prisma.cashTransaction.findFirst({
