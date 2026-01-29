@@ -20,7 +20,7 @@ export async function GET() {
                     password: hashedPassword,
                     role: "ADMIN",
                     isActive: true
-                }
+                } as any
             })
             return NextResponse.json({ message: "Admin mis à jour" })
         }
@@ -33,7 +33,7 @@ export async function GET() {
                 password: hashedPassword,
                 role: "ADMIN",
                 isActive: true
-            }
+            } as any
         })
 
         return NextResponse.json({ message: "Admin créé avec succès" })
