@@ -18,7 +18,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { updateCashTransaction } from "@/app/caisse/actions"
+import { updateCashTransaction, deleteCashTransaction } from "@/app/caisse/actions"
 import { toast } from "sonner"
 import { format } from "date-fns"
 
@@ -50,6 +50,24 @@ export function EditTransactionDialog({ transaction, categories, open, onOpenCha
             })
         }
     }, [transaction])
+
+    const handleDelete = async () => {
+        if (!confirm("Êtes-vous sûr de vouloir supprimer cette transaction ?")) return
+        setLoading(true)
+        try {
+            const res = await deleteCashTransaction(transaction.id)
+            if (res.success) {
+                toast.success("Transaction supprimée")
+                onOpenChange(false)
+            } else {
+                toast.error(res.message)
+            }
+        } catch (error) {
+            toast.error("Erreur lors de la suppression")
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -149,9 +167,18 @@ export function EditTransactionDialog({ transaction, categories, open, onOpenCha
                             </SelectContent>
                         </Select>
                     </div>
-                    <DialogFooter className="pt-4">
-                        <Button type="submit" disabled={loading} className="w-full">
-                            {loading ? "Enregistrement..." : "Enregistrer les modifications"}
+                    <DialogFooter className="pt-4 flex flex-col sm:flex-row gap-2">
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            onClick={handleDelete}
+                            disabled={loading}
+                            className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 order-2 sm:order-1"
+                        >
+                            Supprimer
+                        </Button>
+                        <Button type="submit" disabled={loading} className="w-full sm:flex-1 order-1 sm:order-2">
+                            {loading ? "Enregistrement..." : "Enregistrer"}
                         </Button>
                     </DialogFooter>
                 </form>

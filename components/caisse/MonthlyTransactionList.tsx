@@ -6,7 +6,7 @@ import { fr } from "date-fns/locale"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Edit2, ListFilter } from "lucide-react"
+import { Edit2, ListFilter, Trash2 } from "lucide-react"
 import {
     Table,
     TableBody,
@@ -22,6 +22,8 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { deleteCashTransaction } from "@/app/caisse/actions"
+import { toast } from "sonner"
 
 export function MonthlyTransactionList({ transactions, categories }: { transactions: any[], categories: any[] }) {
     const [sortBy, setSortBy] = useState<'date' | 'createdAt'>('date')
@@ -93,7 +95,7 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                                     <TableHead>Description</TableHead>
                                     <TableHead>Catégorie</TableHead>
                                     <TableHead className="text-right">Montant</TableHead>
-                                    <TableHead className="w-[80px] text-right">Action</TableHead>
+                                    <TableHead className="w-[100px] text-right">Action</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -116,7 +118,7 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                                         <TableCell className={`text-right font-bold ${t.type === 'IN' ? 'text-emerald-600' : 'text-rose-600'}`}>
                                             {t.type === 'IN' ? '+' : '-'}{Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                         </TableCell>
-                                        <TableCell className="text-right">
+                                        <TableCell className="text-right flex items-center justify-end gap-1">
                                             <Button
                                                 variant="ghost"
                                                 size="icon"
@@ -127,6 +129,20 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                                                 className="h-8 w-8 text-blue-500 hover:text-blue-600 hover:bg-blue-50"
                                             >
                                                 <Edit2 className="h-3.5 w-3.5" />
+                                            </Button>
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                onClick={async () => {
+                                                    if (confirm("Supprimer cette transaction ?")) {
+                                                        const res = await deleteCashTransaction(t.id)
+                                                        if (res.success) toast.success("Transaction supprimée")
+                                                        else toast.error(res.message)
+                                                    }
+                                                }}
+                                                className="h-8 w-8 text-slate-300 hover:text-rose-600 hover:bg-rose-50"
+                                            >
+                                                <Trash2 className="h-3.5 w-3.5" />
                                             </Button>
                                         </TableCell>
                                     </TableRow>
