@@ -1,8 +1,9 @@
 import { prisma } from "@/lib/prisma"
+export const dynamic = 'force-dynamic'
 import { InvoiceUploadButton } from "@/components/achats/InvoiceUploadButton"
 import { InvoiceList } from "@/components/achats/InvoiceList"
 import { AchatsStats } from "@/components/achats/AchatsStats"
-import { ShoppingCart, AlertTriangle, check } from "lucide-react"
+import { ShoppingCart, AlertTriangle } from "lucide-react"
 
 export default async function AchatsPage() {
     const invoices = await prisma.purchaseOrder.findMany({
