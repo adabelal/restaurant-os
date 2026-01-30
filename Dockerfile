@@ -57,5 +57,5 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME 0.0.0.0
 
-# Lancement de la synchronisation DB et du serveur
-CMD npx prisma db push --accept-data-loss && node server.js
+# Lancement de la synchronisation DB et du serveur (Fix: pinner la version de Prisma CLI)
+CMD npx prisma@5.22.0 db push --accept-data-loss && node server.js
