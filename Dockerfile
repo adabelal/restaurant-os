@@ -57,5 +57,5 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME 0.0.0.0
 
-# Lancement direct du serveur pour éviter les blocages de health-check
-CMD ["node", "server.js"]
+# Lancement de la synchronisation DB et du serveur
+CMD npx prisma db push --accept-data-loss && node server.js
