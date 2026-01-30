@@ -5,8 +5,12 @@ export async function GET() {
     try {
         // Cette commande va synchroniser le schéma avec la base de données de production
         // On utilise db push car on est en phase de développement rapide
-        console.log("Démarrage de la synchronisation Prisma...")
-        const output = execSync('npx prisma db push --accept-data-loss', { encoding: 'utf-8' })
+        // On fixe la version pour éviter que npx ne télécharge la v7 (breaking changes)
+        console.log("Démarrage de la synchronisation Prisma (v5.22.0)...")
+        const output = execSync('npx prisma@5.22.0 db push --accept-data-loss', {
+            encoding: 'utf-8',
+            env: { ...process.env }
+        })
         console.log("Résultat Prisma:", output)
 
         return NextResponse.json({
