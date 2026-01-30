@@ -87,7 +87,7 @@ model Shift {
 // --- ECONOMAT & STOCK ---
 model Supplier {
   id        String   @id @default(cuid())
-  name      String
+  name      String   @unique
   email     String?
   phone     String?
   address   String?
