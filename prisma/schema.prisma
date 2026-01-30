@@ -188,7 +188,6 @@ model StockMovement {
 }
 
 // --- ACHATS & FACTURES ---
-// --- ACHATS & FACTURES ---
 enum InvoiceStatus {
   DRAFT
   PROCESSING
