@@ -131,6 +131,7 @@ model Ingredient {
   // Relations
   inRecipes    RecipeIngredient[]
   movements    StockMovement[]
+  invoiceItems InvoiceItem[]
 }
 
 // --- FICHES TECHNIQUES (RECIPES) ---
@@ -187,20 +188,55 @@ model StockMovement {
 }
 
 // --- ACHATS & FACTURES ---
+// --- ACHATS & FACTURES ---
+enum InvoiceStatus {
+  DRAFT
+  PROCESSING
+  VALIDATED
+  ALERT       // Prix anormal détecté
+}
+
 model PurchaseOrder {
   id          String   @id @default(cuid())
-  supplierId  String
-  supplier    Supplier @relation(fields: [supplierId], references: [id])
+  supplierId  String?
+  supplier    Supplier? @relation(fields: [supplierId], references: [id])
   
-  date        DateTime
+  date        DateTime @default(now())
   invoiceNo   String?
-  totalAmount Decimal  @db.Decimal(10, 2)
-  status      String   @default("DRAFT") // DRAFT, ORDERED, RECEIVED
+  totalAmount Decimal  @default(0) @db.Decimal(10, 2)
+  status      InvoiceStatus @default(DRAFT)
   
-  // Lien vers PDF (Stocké sur S3/Minio plus tard)
-  pdfUrl      String?
+  // URL du fichier (PDF/Image)
+  scannedUrl  String?
+  
+  items       InvoiceItem[]
   
   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model InvoiceItem {
+  id              String         @id @default(cuid())
+  purchaseOrderId String
+  purchaseOrder   PurchaseOrder  @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  
+  // Description brute issue de l'OCR
+  rawLabel        String
+  
+  // Lien vers ingrédient (si mappé)
+  ingredientId    String?
+  ingredient      Ingredient?    @relation(fields: [ingredientId], references: [id])
+  
+  quantity        Decimal        @db.Decimal(10, 3)
+  unitPrice       Decimal        @db.Decimal(10, 4) // Prix unitaire
+  totalPrice      Decimal        @db.Decimal(10, 2)
+  
+  // Écarts de prix
+  priceVariation  Decimal?       @db.Decimal(5, 2) // Pourcentage d'augmentation/baisse
+  
+  packaging       String?        // Ex: "Carton 6x1L"
+  
+  createdAt       DateTime       @default(now())
 }
 
 // --- HACCP & HYGIENE ---
