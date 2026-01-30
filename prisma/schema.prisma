@@ -208,6 +208,10 @@ model PurchaseOrder {
   // URL du fichier (PDF/Image)
   scannedUrl  String?
   
+  // NOUVEAUX CHAMPS DE GESTION
+  paymentMethod String?   // CB, Virement, Espèces, Prélèvement
+  deliveryMode  String?   // Livraison, Enlèvement
+  
   items       InvoiceItem[]
   
   createdAt   DateTime @default(now())

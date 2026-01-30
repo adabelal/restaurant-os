@@ -50,9 +50,11 @@ export function InvoiceList({ invoices }: InvoiceListProps) {
                             <TableHead className="w-[120px]">Date</TableHead>
                             <TableHead>Fournisseur</TableHead>
                             <TableHead>Référence</TableHead>
+                            <TableHead>Réception</TableHead>
+                            <TableHead>Paiement</TableHead>
                             <TableHead className="text-right">Montant TTC</TableHead>
                             <TableHead className="w-[150px] text-center">Statut</TableHead>
-                            <TableHead className="w-[100px] text-right">Actions</TableHead>
+                            <TableHead className="w-[80px] text-right">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -64,8 +66,22 @@ export function InvoiceList({ invoices }: InvoiceListProps) {
                                 <TableCell>
                                     <span className="font-bold text-slate-700">{invoice.supplier?.name || "Inconnu"}</span>
                                 </TableCell>
-                                <TableCell className="text-muted-foreground font-mono text-xs">
+                                <TableCell className="text-muted-foreground font-mono text-[10px]">
                                     {invoice.invoiceNo || "---"}
+                                </TableCell>
+                                <TableCell>
+                                    {invoice.deliveryMode ? (
+                                        <Badge variant="outline" className="text-[10px] font-normal bg-blue-50/50 text-blue-600 border-blue-100">
+                                            {invoice.deliveryMode}
+                                        </Badge>
+                                    ) : "---"}
+                                </TableCell>
+                                <TableCell>
+                                    {invoice.paymentMethod ? (
+                                        <div className="text-[11px] text-slate-500 font-medium italic">
+                                            {invoice.paymentMethod}
+                                        </div>
+                                    ) : "---"}
                                 </TableCell>
                                 <TableCell className="text-right font-bold text-slate-900">
                                     {Number(invoice.totalAmount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}

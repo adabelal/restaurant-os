@@ -4,28 +4,38 @@ import { prisma } from "@/lib/prisma"
 export async function POST(req: Request) {
     try {
         const body = await req.json()
-        const { supplierName, date, invoiceNo, totalAmount, items, scannedUrl } = body
+        const {
+            supplierName,
+            date,
+            invoiceNo,
+            totalAmount,
+            items,
+            scannedUrl,
+            paymentMethod,
+            deliveryMode
+        } = body
 
         // 1. Trouver ou créer le fournisseur
-        let supplier = null
+        let supplier: any = null
         if (supplierName) {
-            supplier = await prisma.supplier.upsert({
-                where: { name: supplierName }, // On suppose que le nom est unique, sinon on peut affiner
+            supplier = await (prisma as any).supplier.upsert({
+                where: { name: supplierName },
                 update: {},
                 create: { name: supplierName }
             })
-            // Note: Si upsert échoue à cause de contraintes, on fait un findFirst puis create
         }
 
         // 2. Créer la facture (PurchaseOrder)
-        const purchaseOrder = await prisma.purchaseOrder.create({
+        const purchaseOrder: any = await (prisma as any).purchaseOrder.create({
             data: {
                 supplierId: supplier?.id,
                 date: date ? new Date(date) : new Date(),
                 invoiceNo: invoiceNo,
                 totalAmount: totalAmount || 0,
                 status: 'PROCESSING',
-                scannedUrl: scannedUrl
+                scannedUrl: scannedUrl,
+                paymentMethod: paymentMethod,
+                deliveryMode: deliveryMode
             }
         })
 
@@ -37,7 +47,7 @@ export async function POST(req: Request) {
             const unitPrice = parseFloat(item.unitPrice)
 
             // Chercher si cet ingrédient existe déjà (par son nom)
-            const ingredient = await prisma.ingredient.findFirst({
+            const ingredient: any = await (prisma as any).ingredient.findFirst({
                 where: { name: { contains: item.label, mode: 'insensitive' } }
             })
 
@@ -53,7 +63,7 @@ export async function POST(req: Request) {
                 }
 
                 // Mettre à jour le prix de l'ingrédient
-                await prisma.ingredient.update({
+                await (prisma as any).ingredient.update({
                     where: { id: ingredient.id },
                     data: { pricePerUnit: unitPrice }
                 })
@@ -72,12 +82,12 @@ export async function POST(req: Request) {
         }
 
         // Création groupée des items
-        await prisma.invoiceItem.createMany({
+        await (prisma as any).invoiceItem.createMany({
             data: invoiceItemsData
         })
 
         // 4. Mettre à jour le statut final
-        await prisma.purchaseOrder.update({
+        await (prisma as any).purchaseOrder.update({
             where: { id: purchaseOrder.id },
             data: { status: hasAlert ? 'ALERT' : 'VALIDATED' }
         })
