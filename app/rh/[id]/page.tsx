@@ -20,6 +20,7 @@ import Link from "next/link"
 import { EditShiftDialog } from "@/components/rh/EditShiftDialog"
 import { HistoryChart } from "@/components/rh/HistoryChart"
 import { ExportShiftsPDF } from "@/components/rh/ExportShiftsPDF"
+import { ShiftManager } from "@/components/rh/ShiftManager"
 
 export default async function EmployeeDetailPage({
     params,
@@ -239,97 +240,16 @@ export default async function EmployeeDetailPage({
                     </TabsContent>
 
                     {/* ONGLET 2: HEURES & TRAVAIL */}
-                    <TabsContent value="hours" className="space-y-6">
-                        <Card className="border-none shadow-sm">
-                            <CardHeader className="border-b flex flex-row items-center justify-between">
-                                <CardTitle>Historique & Saisie</CardTitle>
-                                <div className="flex items-center gap-2">
-                                    <Link href={`/rh/${employee.id}?month=${prevMonth}&year=${prevYear}`}>
-                                        <Button variant="outline" size="sm" className="gap-2"><ChevronLeft className="h-4 w-4" /> Précédent</Button>
-                                    </Link>
-                                    <Badge className="px-4 py-1 text-sm bg-slate-900 border-none">{monthLabel}</Badge>
-                                    <Link href={`/rh/${employee.id}?month=${nextMonth}&year=${nextYear}`}>
-                                        <Button variant="outline" size="sm" className="gap-2">Suivant <ChevronRight className="h-4 w-4" /></Button>
-                                    </Link>
-                                </div>
-                            </CardHeader>
-                            <CardContent className="p-0">
-                                <div className="p-6 bg-slate-50/50 border-b">
-                                    <form action={async (formData: FormData) => {
-                                        'use server'
-                                        const res = await addShift(formData)
-                                        if (res.success) {
-                                            toast.success("Shift ajouté avec succès.")
-                                        } else {
-                                            toast.error(res.message || "Erreur lors de l'ajout du shift.")
-                                        }
-                                    }} className="grid md:grid-cols-5 gap-4 items-end">
-                                        <input type="hidden" name="userId" value={employee.id} />
-                                        <div className="space-y-1">
-                                            <Label className="text-[10px] uppercase font-bold text-slate-500">Date</Label>
-                                            <Input type="date" name="date" defaultValue={new Date().toISOString().split('T')[0]} required />
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label className="text-[10px] uppercase font-bold text-slate-500">Début</Label>
-                                            <Input type="time" name="startTime" required />
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label className="text-[10px] uppercase font-bold text-slate-500">Fin</Label>
-                                            <Input type="time" name="endTime" required />
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label className="text-[10px] uppercase font-bold text-slate-500">Pause (min)</Label>
-                                            <Input type="number" name="breakMinutes" defaultValue="30" />
-                                        </div>
-                                        <Button type="submit" className="bg-blue-600 hover:bg-blue-700 h-10">Ajouter</Button>
-                                    </form>
-                                </div>
-                                <div className="divide-y overflow-hidden rounded-b-xl">
-                                    {filteredShifts.length === 0 ? (
-                                        <div className="p-12 text-center text-slate-400 italic">Aucun shift enregistré sur ce mois ({monthLabel}).</div>
-                                    ) : (
-                                        filteredShifts.map((s: any) => {
-                                            const diff = s.endTime ? s.endTime.getTime() - s.startTime.getTime() : 0
-                                            const h = (diff / 1000 / 3600) - (s.breakMinutes / 60)
-                                            return (
-                                                <div key={s.id} className="flex items-center justify-between p-4 hover:bg-slate-50 transition-colors">
-                                                    <div className="flex items-center gap-4">
-                                                        <div className="h-10 w-10 rounded bg-slate-100 flex flex-col items-center justify-center text-[10px] font-bold">
-                                                            <span className="text-slate-400">{s.startTime.toLocaleDateString('fr-FR', { weekday: 'short' }).toUpperCase()}</span>
-                                                            <span className="text-slate-900 text-lg leading-tight">{s.startTime.getDate()}</span>
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-sm font-semibold">{s.startTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - {s.endTime?.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</p>
-                                                            <p className="text-xs text-slate-500">Pause: {s.breakMinutes}m • {h.toFixed(1)}h effectives</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="text-right">
-                                                            <p className="text-sm font-bold">{(h * Number(s.hourlyRate)).toFixed(2)} €</p>
-                                                            <p className="text-[10px] text-slate-400">{Number(s.hourlyRate).toFixed(2)} €/h</p>
-                                                        </div>
-                                                        <div className="flex items-center gap-1">
-                                                            <EditShiftDialog shift={s} userId={employee.id} />
-                                                            <form action={async () => {
-                                                                'use server'
-                                                                const res = await deleteShift(s.id, employee.id)
-                                                                if (res.success) {
-                                                                    toast.success("Shift supprimé avec succès.")
-                                                                } else {
-                                                                    toast.error("Erreur lors de la suppression du shift.")
-                                                                }
-                                                            }}>
-                                                                <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-300 hover:text-red-600"><Trash2 className="h-4 w-4" /></Button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    )}
-                                </div>
-                            </CardContent>
-                        </Card>
+                    <TabsContent value="hours">
+                        <ShiftManager
+                            employee={employee}
+                            shifts={filteredShifts}
+                            monthLabel={monthLabel}
+                            prevMonth={prevMonth}
+                            prevYear={prevYear}
+                            nextMonth={nextMonth}
+                            nextYear={nextYear}
+                        />
                     </TabsContent>
 
                     {/* ONGLET 3: DOSSIER JURIDIQUE */}
