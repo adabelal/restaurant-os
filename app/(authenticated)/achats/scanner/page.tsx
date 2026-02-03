@@ -6,11 +6,14 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
-    Camera, FileSearch, X, AlertCircle, Loader2, Save, ShoppingCart
+    Camera, FileSearch, X, AlertCircle, Loader2, Save, ShoppingCart,
+    ChevronLeft, RefreshCcw, Sparkles
 } from "lucide-react"
 import { processInvoice, saveScannedInvoice } from "../actions"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 export default function InvoiceScannerPage() {
     const [image, setImage] = useState<string | null>(null)
@@ -70,28 +73,48 @@ export default function InvoiceScannerPage() {
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-slate-50/50 p-6 gap-6">
-            <header className="flex items-center justify-between">
+        <div className="flex flex-col p-6 md:p-10 space-y-8 animate-in fade-in duration-500">
+            {/* Header */}
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <h1 className="text-2xl font-black text-slate-900 flex items-center gap-2">
-                        <ShoppingCart className="h-6 w-6 text-blue-600" /> Scanner Intelligent
+                    <Button variant="ghost" size="sm" className="-ml-3 mb-2 text-muted-foreground hover:text-foreground" asChild>
+                        <Link href="/achats">
+                            <ChevronLeft className="mr-1 h-4 w-4" />
+                            Retour
+                        </Link>
+                    </Button>
+                    <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl flex items-center gap-3">
+                        <div className="p-2 bg-primary/10 rounded-xl">
+                            <Camera className="h-8 w-8 text-primary" />
+                        </div>
+                        Scanner Intelligent
                     </h1>
-                    <p className="text-sm text-slate-500">Posez votre facture à plat et capturez-la</p>
+                    <p className="text-muted-foreground mt-2 font-medium">Capturez vos factures, l'intelligence artificielle s'occupe du reste.</p>
                 </div>
-            </header>
+            </div>
 
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-8">
                 {/* Zone de Capture */}
-                <Card className="border-none shadow-sm overflow-hidden flex flex-col items-center justify-center min-h-[400px]">
+                <Card className="relative overflow-hidden border-none shadow-2xl bg-card transition-all duration-300 min-h-[500px] flex flex-col group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-50" />
+
                     {!image ? (
-                        <div className="p-12 text-center space-y-6">
-                            <div className="h-20 w-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto animate-pulse">
-                                <Camera className="h-10 w-10" />
+                        <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-8 text-center space-y-8">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-150 animate-pulse" />
+                                <div className="relative h-28 w-28 bg-gradient-to-br from-primary to-blue-600 text-white rounded-[2rem] flex items-center justify-center shadow-2xl shadow-primary/40 rotate-3 transform transition-transform group-hover:rotate-0 duration-500">
+                                    <Camera className="h-12 w-12" />
+                                </div>
+                                <div className="absolute -bottom-2 -right-2 h-10 w-10 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-lg border-4 border-card">
+                                    <Sparkles className="h-5 w-5" />
+                                </div>
                             </div>
-                            <div className="space-y-2">
-                                <p className="font-bold text-slate-900">Pas encore d'image</p>
-                                <p className="text-sm text-slate-500">Cliquez pour photographier une facture</p>
+
+                            <div className="space-y-3 max-w-xs">
+                                <h3 className="text-2xl font-bold">Prêt pour le scan ?</h3>
+                                <p className="text-muted-foreground font-medium">Placez votre document bien à plat avec un bon éclairage.</p>
                             </div>
+
                             <input
                                 type="file"
                                 accept="image/*"
@@ -100,86 +123,185 @@ export default function InvoiceScannerPage() {
                                 ref={fileInputRef}
                                 onChange={handleFileChange}
                             />
-                            <Button size="lg" className="bg-blue-600 w-full gap-2 rounded-xl" onClick={() => fileInputRef.current?.click()}>
-                                <Camera className="h-5 w-5" /> Photographier
+
+                            <Button
+                                size="lg"
+                                onClick={() => fileInputRef.current?.click()}
+                                className="h-16 px-10 rounded-2xl bg-primary hover:bg-primary/90 text-lg font-bold shadow-xl shadow-primary/20 transition-all hover:scale-105 active:scale-95 group"
+                            >
+                                <Camera className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
+                                Photographier maintenant
                             </Button>
+
+                            <p className="text-xs text-muted-foreground font-bold uppercase tracking-widest">ou glissez-déposez un fichier</p>
                         </div>
                     ) : (
-                        <div className="relative w-full h-full group min-h-[400px]">
-                            <img src={image} className="w-full h-full object-contain bg-slate-900" alt="Scan" />
-                            <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                <Button variant="destructive" size="sm" onClick={() => { setImage(null); setResults(null) }} className="gap-2 w-full">
-                                    <X className="h-4 w-4" /> Annuler & Refaire
-                                </Button>
+                        <div className="relative z-10 flex-1 flex flex-col">
+                            <div className="relative flex-1 bg-muted/30 overflow-hidden">
+                                <img src={image} className="absolute inset-0 w-full h-full object-contain" alt="Scan" />
+
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                                    <Button
+                                        variant="secondary"
+                                        onClick={() => fileInputRef.current?.click()}
+                                        className="rounded-xl font-bold"
+                                    >
+                                        <RefreshCcw className="mr-2 h-4 w-4" /> Changer l'image
+                                    </Button>
+                                    <Button
+                                        variant="destructive"
+                                        onClick={() => { setImage(null); setResults(null) }}
+                                        className="rounded-xl font-bold"
+                                    >
+                                        <X className="mr-2 h-4 w-4" /> Annuler
+                                    </Button>
+                                </div>
                             </div>
+                            {isAnalyzing && (
+                                <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] z-20 flex flex-col items-center justify-center p-8">
+                                    <div className="relative mb-6">
+                                        <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full scale-150 animate-pulse" />
+                                        <Loader2 className="h-16 w-16 text-primary animate-spin relative" />
+                                    </div>
+                                    <div className="text-center space-y-2">
+                                        <h4 className="text-xl font-bold animate-pulse">Analyse Gemini IA...</h4>
+                                        <p className="text-muted-foreground font-medium">Extraction des données en cours</p>
+                                    </div>
+                                    {/* Scanning Line Animation */}
+                                    <div className="absolute top-0 left-0 w-full h-1 bg-primary/40 shadow-[0_0_15px_rgba(var(--primary),0.8)] animate-scan-slow z-30 pointer-events-none" />
+                                </div>
+                            )}
                         </div>
                     )}
                 </Card>
 
                 {/* Zone de Résultats */}
-                <Card className="border-none shadow-sm overflow-hidden flex flex-col">
-                    <CardHeader className="bg-white border-b py-4">
+                <Card className={cn(
+                    "overflow-hidden border-none shadow-2xl bg-card transition-all duration-500",
+                    results ? "opacity-100 translate-y-0" : "opacity-70 translate-y-4"
+                )}>
+                    <CardHeader className="bg-muted/30 border-b p-6">
                         <div className="flex items-center justify-between">
-                            <CardTitle className="text-lg">Informations Extraites</CardTitle>
-                            {isAnalyzing && (
-                                <span className="flex items-center gap-2 text-xs font-bold text-blue-600 animate-pulse">
-                                    <Loader2 className="h-3 w-3 animate-spin" /> IA en action...
-                                </span>
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-background rounded-lg shadow-sm">
+                                    <FileSearch className="h-5 w-5 text-primary" />
+                                </div>
+                                <CardTitle className="text-xl font-bold">Données Extraites</CardTitle>
+                            </div>
+                            {results && (
+                                <div className="flex items-center gap-1 px-3 py-1 bg-emerald-500/10 text-emerald-600 rounded-full text-xs font-bold ring-1 ring-emerald-500/20">
+                                    <Sparkles className="h-3 w-3" /> Confiant
+                                </div>
                             )}
                         </div>
                     </CardHeader>
-                    <CardContent className="p-6 flex-1">
-                        {isAnalyzing ? (
-                            <div className="h-full flex flex-col items-center justify-center gap-4 text-slate-400 py-20">
-                                <FileSearch className="h-12 w-12 animate-bounce" />
-                                <p className="text-sm">Gemini 1.5 Flash déchiffre le document...</p>
+
+                    <CardContent className="p-8">
+                        {!results && !isAnalyzing ? (
+                            <div className="py-20 flex flex-col items-center justify-center text-center space-y-4 text-muted-foreground">
+                                <div className="h-16 w-16 bg-muted rounded-full flex items-center justify-center">
+                                    <AlertCircle className="h-8 w-8" />
+                                </div>
+                                <div className="max-w-xs space-y-1">
+                                    <p className="font-bold text-foreground">Aucune donnée pour l'instant</p>
+                                    <p className="text-sm">Les résultats de l'analyse IA apparaîtront ici après la capture.</p>
+                                </div>
                             </div>
                         ) : results ? (
-                            <div className="space-y-6">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-1">
-                                        <Label className="text-[10px] uppercase font-bold text-slate-400">Fournisseur</Label>
-                                        <Input value={results.supplierName || ''} onChange={(e) => setResults({ ...results, supplierName: e.target.value })} className="font-bold border-none bg-slate-100/50" />
+                            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground ml-1">Fournisseur</Label>
+                                        <Input
+                                            value={results.supplierName || ''}
+                                            onChange={(e) => setResults({ ...results, supplierName: e.target.value })}
+                                            className="h-12 rounded-xl bg-muted/30 border-none font-bold focus-visible:ring-primary/20 transition-all focus-visible:bg-muted/50"
+                                        />
                                     </div>
-                                    <div className="space-y-1">
-                                        <Label className="text-[10px] uppercase font-bold text-slate-400">N° Facture</Label>
-                                        <Input value={results.invoiceNo || ''} onChange={(e) => setResults({ ...results, invoiceNo: e.target.value })} className="border-none bg-slate-100/50" />
+                                    <div className="space-y-2">
+                                        <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground ml-1">Référence Facture</Label>
+                                        <Input
+                                            value={results.invoiceNo || ''}
+                                            onChange={(e) => setResults({ ...results, invoiceNo: e.target.value })}
+                                            className="h-12 rounded-xl bg-muted/30 border-none focus-visible:ring-primary/20 transition-all focus-visible:bg-muted/50"
+                                        />
                                     </div>
-                                    <div className="space-y-1">
-                                        <Label className="text-[10px] uppercase font-bold text-slate-400">Date</Label>
-                                        <Input type="date" value={results.date || ''} onChange={(e) => setResults({ ...results, date: e.target.value })} className="border-none bg-slate-100/50" />
+                                    <div className="space-y-2">
+                                        <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground ml-1">Date d'émission</Label>
+                                        <Input
+                                            type="date"
+                                            value={results.date || ''}
+                                            onChange={(e) => setResults({ ...results, date: e.target.value })}
+                                            className="h-12 rounded-xl bg-muted/30 border-none focus-visible:ring-primary/20 transition-all focus-visible:bg-muted/50"
+                                        />
                                     </div>
-                                    <div className="space-y-1">
-                                        <Label className="text-[10px] uppercase font-bold text-slate-400">Total TTC</Label>
-                                        <Input type="number" step="0.01" value={results.totalAmount || 0} onChange={(e) => setResults({ ...results, totalAmount: parseFloat(e.target.value) })} className="font-black text-blue-600 text-lg border-none bg-blue-50" />
+                                    <div className="space-y-2">
+                                        <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground ml-1">Montant Total TTC</Label>
+                                        <div className="relative">
+                                            <Input
+                                                type="number"
+                                                step="0.01"
+                                                value={results.totalAmount || 0}
+                                                onChange={(e) => setResults({ ...results, totalAmount: parseFloat(e.target.value) })}
+                                                className="h-12 rounded-xl bg-primary/5 border-none font-black text-primary text-xl pl-4 pr-10 focus-visible:ring-primary/20 transition-all focus-visible:bg-primary/10"
+                                            />
+                                            <span className="absolute right-4 top-1/2 -translate-y-1/2 font-black text-primary">€</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <Label className="text-[10px] uppercase font-bold text-slate-400">Articles détectés</Label>
-                                    <div className="border rounded-xl divide-y bg-white overflow-hidden max-h-[250px] overflow-y-auto">
+                                <div className="space-y-4">
+                                    <div className="flex items-center justify-between ml-1">
+                                        <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Détails des articles</Label>
+                                        <span className="text-[10px] font-bold bg-muted px-2 py-0.5 rounded-full">{results.items?.length || 0} détectés</span>
+                                    </div>
+                                    <div className="rounded-2xl border bg-background/50 backdrop-blur-sm divide-y overflow-hidden shadow-inner max-h-[300px] overflow-y-auto custom-scrollbar">
                                         {results.items?.length > 0 ? (
                                             results.items.map((item: any, i: number) => (
-                                                <div key={i} className="p-3 text-[11px] flex items-center justify-between hover:bg-slate-50">
-                                                    <span className="font-medium text-slate-700 truncate w-2/3">{item.name}</span>
-                                                    <span className="font-bold text-slate-900">{(item.totalPrice || 0).toFixed(2)}€</span>
+                                                <div key={i} className="p-4 flex items-center justify-between hover:bg-muted/30 transition-colors group">
+                                                    <div className="flex flex-col gap-0.5">
+                                                        <span className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">{item.name}</span>
+                                                        <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-tighter">Code: {item.code || 'N/A'}</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-4">
+                                                        <span className="text-xs font-bold py-1 px-2 bg-muted rounded-lg">{item.quantity} {item.unit}</span>
+                                                        <span className="font-black text-sm tabular-nums">{(item.totalPrice || 0).toFixed(2)}€</span>
+                                                    </div>
                                                 </div>
                                             ))
                                         ) : (
-                                            <div className="p-4 text-center text-slate-400 text-xs italic">Aucun article détaillé.</div>
+                                            <div className="p-8 text-center text-muted-foreground text-sm italic">Aucun article détaillé reconnu.</div>
                                         )}
                                     </div>
                                 </div>
 
-                                <Button className="w-full bg-emerald-600 hover:bg-emerald-700 h-12 rounded-xl gap-2 font-bold shadow-lg shadow-emerald-100 transition-all active:scale-95" onClick={handleSave} disabled={isSaving}>
-                                    {isSaving ? <Loader2 className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5" />}
-                                    Valider & Enregistrer l'Achat
+                                <Button
+                                    className="w-full h-16 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold gap-3 shadow-xl shadow-emerald-500/10 transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-70"
+                                    onClick={handleSave}
+                                    disabled={isSaving}
+                                >
+                                    {isSaving ? (
+                                        <>
+                                            <Loader2 className="h-6 w-6 animate-spin" />
+                                            Enregistrement...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Save className="h-6 w-6" />
+                                            Valider & Enregistrer l'Achat
+                                        </>
+                                    )}
                                 </Button>
                             </div>
-                        ) : (
-                            <div className="h-full flex flex-col items-center justify-center gap-4 text-slate-300 py-20">
-                                <AlertCircle className="h-10 w-10" />
-                                <p className="text-sm">Uploadez une image pour débuter l'analyse</p>
+                        ) : isAnalyzing && (
+                            <div className="py-20 flex flex-col items-center justify-center text-center space-y-6 text-muted-foreground animate-pulse">
+                                <div className="h-20 w-20 bg-primary/10 rounded-[2rem] flex items-center justify-center">
+                                    <FileSearch className="h-10 w-10 text-primary" />
+                                </div>
+                                <div className="space-y-2">
+                                    <p className="font-bold text-foreground">Traitement IA en cours</p>
+                                    <p className="text-sm">Veuillez patienter pendant que nous analysons chaque ligne de votre facture.</p>
+                                </div>
                             </div>
                         )}
                     </CardContent>

@@ -95,3 +95,23 @@
 ::-webkit-scrollbar-thumb:hover {
     @apply bg-slate-300 dark:bg-slate-700;
 }
+
+/* Custom Animations */
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+.animate-scan-slow {
+    animation: scan 3s linear infinite;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+}

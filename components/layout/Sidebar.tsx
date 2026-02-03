@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet, Camera } from "lucide-react"
+import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet, Camera, ChevronRight } from "lucide-react"
 import { ModeToggle } from "@/components/ModeToggle"
 import { UserMenu } from "@/components/layout/UserMenu"
 import { cn } from "@/lib/utils"
@@ -20,19 +20,26 @@ export function Sidebar() {
     ]
 
     return (
-        <div className="hidden border-r bg-card md:block w-64 min-h-screen fixed left-0 top-0 bottom-0 transition-colors duration-300">
-            <div className="flex h-full max-h-screen flex-col gap-2">
-                <div className="flex h-[80px] items-center justify-between border-b px-6">
-                    <Link className="flex items-center gap-2 font-bold" href="/">
-                        <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-100">
-                            <ChefHat className="h-5 w-5" />
+        <aside className="hidden md:flex flex-col w-72 h-screen fixed left-0 top-0 border-r bg-background/50 backdrop-blur-xl transition-all duration-300 z-50">
+            <div className="flex flex-col h-full">
+                {/* Logo Section */}
+                <div className="h-20 flex items-center px-8 border-b border-border/40">
+                    <Link className="flex items-center gap-3 group" href="/">
+                        <div className="h-10 w-10 bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200">
+                            <ChefHat className="h-6 w-6" />
                         </div>
-                        <span className="text-foreground tracking-tight">RestoOS</span>
+                        <div className="flex flex-col">
+                            <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+                                RestoOS
+                            </span>
+                            <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Management</span>
+                        </div>
                     </Link>
-                    <ModeToggle />
                 </div>
-                <div className="flex-1 overflow-auto py-6">
-                    <nav className="grid items-start px-4 text-sm font-medium gap-1">
+
+                {/* Navigation Section */}
+                <div className="flex-1 overflow-y-auto py-8 px-4 custom-scrollbar">
+                    <nav className="space-y-1.5">
                         {navItems.map((item) => {
                             const Icon = item.icon
                             const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href))
@@ -42,23 +49,42 @@ export function Sidebar() {
                                     key={item.href}
                                     href={item.href}
                                     className={cn(
-                                        "flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200",
+                                        "group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 relative",
                                         isActive
-                                            ? "bg-blue-50 text-blue-700 shadow-sm border border-blue-100/50"
-                                            : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                                            ? "bg-primary/10 text-primary shadow-[0_0_0_1px_rgba(var(--primary),0.1)]"
+                                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                                     )}
                                 >
-                                    <Icon className={cn("h-4 w-4", isActive ? "text-blue-600" : "")} />
-                                    {item.label}
+                                    <div className="flex items-center gap-3">
+                                        <div className={cn(
+                                            "flex items-center justify-center w-8 h-8 rounded-lg transition-colors duration-200",
+                                            isActive ? "bg-primary text-primary-foreground shadow-md shadow-primary/20" : "bg-muted group-hover:bg-muted-foreground/10"
+                                        )}>
+                                            <Icon className="h-4 w-4" />
+                                        </div>
+                                        <span>{item.label}</span>
+                                    </div>
+                                    {isActive && (
+                                        <ChevronRight className="h-4 w-4 opacity-50" />
+                                    )}
+                                    {isActive && (
+                                        <div className="absolute left-0 w-1 h-6 bg-primary rounded-r-full" />
+                                    )}
                                 </Link>
                             )
                         })}
                     </nav>
                 </div>
-                <div className="p-4 border-t mt-auto">
+
+                {/* Bottom Section */}
+                <div className="p-4 mt-auto space-y-4 border-t border-border/40 bg-muted/20">
+                    <div className="flex items-center justify-between px-2">
+                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Préférences</p>
+                        <ModeToggle />
+                    </div>
                     <UserMenu />
                 </div>
             </div>
-        </div>
+        </aside>
     )
 }
