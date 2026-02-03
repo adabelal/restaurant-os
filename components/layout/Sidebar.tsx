@@ -2,9 +2,9 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet, LogOut } from "lucide-react"
+import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet } from "lucide-react"
 import { ModeToggle } from "@/components/ModeToggle"
-import { signOut } from "next-auth/react"
+import { UserMenu } from "@/components/layout/UserMenu"
 import { cn } from "@/lib/utils"
 
 export function Sidebar() {
@@ -54,20 +54,8 @@ export function Sidebar() {
                         })}
                     </nav>
                 </div>
-
-                <div className="p-4 space-y-2 mt-auto">
-                    <button
-                        onClick={() => signOut({ callbackUrl: "/login" })}
-                        className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 transition-all duration-200"
-                    >
-                        <LogOut className="h-4 w-4" />
-                        Déconnexion
-                    </button>
-
-                    <div className="bg-muted dark:bg-zinc-900/50 p-4 rounded-xl border border-border/50">
-                        <p className="text-[10px] font-black uppercase text-muted-foreground tracking-widest mb-1">Espace</p>
-                        <p className="text-xs font-bold text-foreground">Restaurant Principal</p>
-                    </div>
+                <div className="p-4 border-t mt-auto">
+                    <UserMenu />
                 </div>
             </div>
         </div>

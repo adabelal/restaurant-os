@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/layout/Sidebar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { AuthProvider } from "@/components/AuthProvider";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,9 +12,6 @@ export const metadata: Metadata = {
     description: "Système de gestion complet pour restaurant",
 };
 
-import { Providers } from "@/components/Providers";
-import { AppShell } from "@/components/AppShell";
-
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -23,13 +20,12 @@ export default function RootLayout({
     return (
         <html lang="fr" suppressHydrationWarning>
             <body className={inter.className}>
-                <Providers>
+                <AuthProvider>
                     <ThemeProvider defaultTheme="light" storageKey="restaurant-os-theme">
-                        <AppShell>
-                            {children}
-                        </AppShell>
+                        {children}
+                        <Toaster position="top-center" richColors />
                     </ThemeProvider>
-                </Providers>
+                </AuthProvider>
             </body>
         </html>
     );
