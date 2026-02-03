@@ -87,3 +87,82 @@ export async function deleteFixedCost(id: string) {
         return { success: false, error }
     }
 }
+
+// BANK TRANSACTIONS & CHART DATA
+export async function getBankTransactions(params?: {
+    page?: number,
+    limit?: number,
+    search?: string
+}) {
+    const page = params?.page || 1
+    const limit = params?.limit || 20
+    const search = params?.search || ""
+    const skip = (page - 1) * limit
+
+    try {
+        const [transactions, total] = await Promise.all([
+            prisma.bankTransaction.findMany({
+                where: {
+                    OR: [
+                        { description: { contains: search, mode: 'insensitive' } }
+                    ]
+                },
+                orderBy: { date: 'desc' },
+                skip,
+                take: limit,
+                include: { category: true }
+            }),
+            prisma.bankTransaction.count({
+                where: {
+                    OR: [
+                        { description: { contains: search, mode: 'insensitive' } }
+                    ]
+                }
+            })
+        ])
+
+        return {
+            transactions,
+            totalPages: Math.ceil(total / limit),
+            totalCount: total
+        }
+    } catch (error) {
+        console.error("Error fetching transactions:", error)
+        return { transactions: [], totalPages: 0, totalCount: 0 }
+    }
+}
+
+export async function getBalanceChartData() {
+    try {
+        const transactions = await prisma.bankTransaction.findMany({
+            orderBy: { date: 'asc' },
+            select: { date: true, amount: true }
+        })
+
+        if (transactions.length === 0) return []
+
+        // Group by month and calculate running balance
+        const monthlyData: { [key: string]: number } = {}
+        let runningBalance = 0
+
+        transactions.forEach(tx => {
+            const date = new Date(tx.date)
+            const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
+            runningBalance += Number(tx.amount)
+            monthlyData[monthKey] = runningBalance
+        })
+
+        // Format for Recharts
+        const chartData = Object.entries(monthlyData)
+            .map(([month, balance]) => ({
+                month,
+                balance: Math.round(balance * 100) / 100
+            }))
+            .slice(-12) // Last 12 months
+
+        return chartData
+    } catch (error) {
+        console.error("Error generating chart data:", error)
+        return []
+    }
+}

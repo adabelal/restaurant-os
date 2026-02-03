@@ -8,9 +8,12 @@ import {
     ArrowUpRight,
     ArrowDownRight,
     Wallet,
-    ShoppingCart
+    ShoppingCart,
+    ArrowRight
 } from "lucide-react"
 import { prisma } from "@/lib/prisma"
+import { getBalanceChartData } from "./actions"
+import { BalanceChart } from "@/components/finance/BalanceChart"
 
 export const dynamic = 'force-dynamic'
 
@@ -64,6 +67,9 @@ async function getFinanceStats() {
         orderBy: { date: 'desc' }
     })
 
+    // 6. Chart Data
+    const chartData = await getBalanceChartData()
+
     return {
         currentBalance,
         monthlyFixedCost,
@@ -71,7 +77,8 @@ async function getFinanceStats() {
         totalUnpaidPOs,
         unpaidPOs,
         eomForecast,
-        recentTransactions
+        recentTransactions,
+        chartData
     }
 }
 
@@ -82,7 +89,8 @@ export default async function FinancePage() {
         totalUnpaidPOs,
         unpaidPOs,
         eomForecast,
-        recentTransactions
+        recentTransactions,
+        chartData
     } = await getFinanceStats()
 
     return (
@@ -177,62 +185,82 @@ export default async function FinancePage() {
                 </Card>
             </div>
 
-            {/* Recent Transactions & Actions */}
+            {/* Chart Section */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Left Column: Recent Transactions */}
-                <div className="lg:col-span-2 space-y-6">
-                    <Card className="border-slate-200 shadow-sm">
-                        <CardHeader>
-                            <CardTitle>Dernières Transactions Importées</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            {recentTransactions.length === 0 ? (
-                                <div className="text-center py-8 text-slate-500">
-                                    Aucune transaction importée. Commencez par importer un relevé.
-                                </div>
-                            ) : (
-                                <div className="space-y-4">
-                                    {recentTransactions.map((t: any) => (
-                                        <div key={t.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                            <div className="flex items-center gap-3">
-                                                <div className={`p-2 rounded-full ${Number(t.amount) >= 0 ? 'bg-emerald-100 text-emerald-600' : 'bg-red-100 text-red-600'}`}>
-                                                    {Number(t.amount) >= 0 ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
-                                                </div>
-                                                <div>
-                                                    <p className="font-medium text-slate-900">{t.description}</p>
-                                                    <p className="text-xs text-slate-500">{t.date.toLocaleDateString('fr-FR')}</p>
-                                                </div>
-                                            </div>
-                                            <div className={`font-bold ${Number(t.amount) >= 0 ? 'text-emerald-700' : 'text-slate-900'}`}>
-                                                {Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </CardContent>
-                    </Card>
+                <div className="lg:col-span-2">
+                    <BalanceChart data={chartData} />
                 </div>
 
-                {/* Right Column: Alerts */}
                 <div className="space-y-6">
-                    <Card className="bg-slate-900 text-white border-none shadow-md">
-                        <CardHeader>
-                            <CardTitle className="text-emerald-400">Pilotage Intelligent</CardTitle>
+                    <Card className="bg-slate-900 text-white border-none shadow-xl h-full flex flex-col justify-between overflow-hidden relative">
+                        <div className="absolute top-0 right-0 p-8 opacity-10">
+                            <TrendingUp className="h-32 w-32" />
+                        </div>
+                        <CardHeader className="relative z-10">
+                            <CardTitle className="text-emerald-400 flex items-center gap-2 text-sm uppercase tracking-widest">
+                                <TrendingUp className="h-5 w-5" />
+                                Pilotage Intelligent
+                            </CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="p-3 bg-white/10 rounded-lg border border-white/10 text-sm">
-                                <p className="font-medium text-white mb-1">Alertes Factures</p>
-                                <p className="text-slate-400">
+                        <CardContent className="space-y-6 relative z-10 pb-10">
+                            <div className="p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
+                                <p className="text-xs text-slate-400 mb-2 uppercase font-bold tracking-tight">Alertes Factures</p>
+                                <p className="text-lg font-medium leading-tight">
                                     Vous avez {unpaidPOs.length} factures non réconciliées avec votre banque.
                                 </p>
                             </div>
-                            <p className="text-sm text-slate-300">
-                                Le solde prévisionnel vous aide à anticiper si vous pourrez payer vos fournisseurs à la fin du mois.
-                            </p>
+                            <div className="pt-6 border-t border-white/10">
+                                <p className="text-sm text-slate-300 leading-relaxed italic opacity-80">
+                                    "Le solde prévisionnel vous aide à anticiper si vous pourrez payer vos fournisseurs à la fin du mois."
+                                </p>
+                            </div>
                         </CardContent>
                     </Card>
                 </div>
+            </div>
+
+            {/* Recent Transactions */}
+            <div className="grid grid-cols-1 gap-8">
+                <Card className="border-slate-200 shadow-sm border-none bg-white rounded-3xl overflow-hidden">
+                    <CardHeader className="flex flex-row items-center justify-between p-8 border-b border-slate-50">
+                        <div>
+                            <CardTitle className="text-xl font-bold text-slate-900">Dernières Transactions</CardTitle>
+                            <p className="text-sm text-slate-500 mt-1">Les mouvements les plus récents sur votre compte.</p>
+                        </div>
+                        <Link href="/finance/history">
+                            <Button variant="outline" size="sm" className="rounded-full px-6 border-slate-200 hover:bg-slate-50 hover:text-sky-600 transition-all">
+                                Voir l'historique <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                        </Link>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                        {recentTransactions.length === 0 ? (
+                            <div className="text-center py-16 text-slate-400">
+                                <Wallet className="h-12 w-12 mx-auto mb-4 opacity-20" />
+                                <p>Aucune transaction importée. Commencez par importer un relevé.</p>
+                            </div>
+                        ) : (
+                            <div className="space-y-3">
+                                {recentTransactions.map((t: any) => (
+                                    <div key={t.id} className="flex items-center justify-between p-4 hover:bg-slate-50 rounded-2xl transition-colors group">
+                                        <div className="flex items-center gap-4">
+                                            <div className={`p-3 rounded-xl transition-colors ${Number(t.amount) >= 0 ? 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-100' : 'bg-red-50 text-red-600 group-hover:bg-red-100'}`}>
+                                                {Number(t.amount) >= 0 ? <ArrowUpRight className="h-5 w-5" /> : <ArrowDownRight className="h-5 w-5" />}
+                                            </div>
+                                            <div>
+                                                <p className="font-bold text-slate-800 line-clamp-1">{t.description}</p>
+                                                <p className="text-xs text-slate-500 font-medium">{t.date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                                            </div>
+                                        </div>
+                                        <div className={`text-lg font-black ${Number(t.amount) >= 0 ? 'text-emerald-600' : 'text-slate-900'}`}>
+                                            {Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </CardContent>
+                </Card>
             </div>
         </div>
     )
