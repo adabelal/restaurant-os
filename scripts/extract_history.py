@@ -2,88 +2,75 @@ import os
 import re
 import json
 from pypdf import PdfReader
+from datetime import datetime
+
+def parse_price(s):
+    if not s: return 0.0
+    s = s.replace(' ', '').replace(',', '.')
+    s = "".join(c for c in s if c.isdigit() or c in '.-')
+    try: return float(s)
+    except: return 0.0
 
 def parse_pdf(file_path):
     reader = PdfReader(file_path)
-    full_text = ""
-    for page in reader.pages:
-        full_text += page.extract_text() + "\n"
-    
-    # Identify the year from the filename (e.g., 2026-01_...)
     filename = os.path.basename(file_path)
-    year = filename.split('-')[0]
-    
-    transactions = []
-    
-    # Regex to find transaction lines
-    # Pattern: Date(DD/MM) + Description + Date(DD/MM) + Date(DD/MM) + Amount(with €)
-    # Example: 02/01 REMISE CB 5401547011 0926211 02/01 02/01  3 725,60 €
-    # Example: 02/01 PRLV SEPA FMB 01EBTDS 02/01 02/01 - 291,83 €
-    
+    year = filename.split('-')[0] if '-' in filename else "2023"
+    full_text = ""
+    for page in reader.pages: full_text += page.extract_text() + "\n"
     lines = full_text.split('\n')
-    
+    txs = []
     current_tx = None
-    
     for line in lines:
         line = line.strip()
-        if not line: continue
-        
-        # Look for a starting transaction line
-        # Start with DD/MM
-        match = re.match(r'^(\d{2}/\d{2})\s+(.*?)\s+(\d{2}/\d{2})\s+(\d{2}/\d{2})\s+(-?\s?[\d\s]+,\d{2})\s?€', line)
-        
+        match = re.search(r'^(\d{2}/\d{2})\s+(.*?)\s+(\d{2}/\d{2})\s+(\d{2}/\d{2})\s+', line)
         if match:
-            if current_tx:
-                transactions.append(current_tx)
-            
-            date_str = match.group(1) # DD/MM
-            description = match.group(2)
-            amount_str = match.group(5).replace(' ', '').replace(',', '.')
-            
-            # Format date as YYYY-MM-DD
-            day, month = date_str.split('/')
-            formatted_date = f"{year}-{month}-{day}T12:00:00Z"
-            
-            current_tx = {
-                "date": formatted_date,
-                "description": description,
-                "amount": float(amount_str)
-            }
+            if current_tx: txs.append(current_tx)
+            day, month = match.group(1).split('/')
+            ref_part = match.group(2)
+            rest = line[match.end():].strip()
+            amts = re.findall(r'-?\s?[\d\s]+,\d{2}', rest)
+            if amts:
+                amount_str = amts[-1]
+                if "-" in rest and "-" not in amount_str: amount_str = "-" + amount_str
+                amount = parse_price(amount_str)
+                desc = (ref_part + " " + rest.replace(amts[-1], "").replace("€", "").strip()).strip()
+                desc_upper = desc.upper()
+                is_negative = False
+                if "-" in amount_str: is_negative = True
+                else:
+                    if any(k in desc_upper for k in ['CB****', 'RET DAB', 'RETRAIT', 'LOYER', 'METRO', 'URSSAF', 'EDF', 'BOURGOGNE', 'SONETRANS', 'COTIS', 'PRLV', 'FRAIS', 'DARTY', 'ACTION', 'BOUTIQUE ORANGE', 'COURTOIS', 'CASH', 'PAYFIT', 'GROUPAMA', 'ENGIE', 'SCI BAB', 'SIWA BLEURY', 'EPISAVEURS', 'L-ATELIER JEANNOT', 'DGFIP', 'TVA', 'IMPOT', 'ORDRE DE VIREMENT']):
+                        is_negative = True
+                    if "VIREMENT DE SARL SIWA" in desc_upper: is_negative = True
+                    if "VIREMENT DE M ADAM BELAL" in desc_upper or "OUVERTURE CAPITAL" in desc_upper: is_negative = False
+                    if any(k in desc_upper for k in ['REMISE CB', 'DEPOT AGENCE', 'VERSEMENT']): is_negative = False
+                amount = -abs(amount) if is_negative else abs(amount)
+                current_tx = {"date": f"{year}-{month}-{day}T12:00:00Z", "description": desc, "amount": amount}
         elif current_tx:
-            # Check if this line is part of the description (indented or following)
-            # Avoid lines that look like a new transaction or headers
-            if "SOLDE" in line or "PAGE" in line.upper():
-                transactions.append(current_tx)
+            if any(k in line.upper() for k in ["TOTAL", "SOLDE", "PAGE", "DATE"]):
+                txs.append(current_tx)
                 current_tx = None
             else:
-                # Append extra info to description
                 current_tx["description"] += " " + line
-    
-    if current_tx:
-        transactions.append(current_tx)
-        
-    return transactions
+    if current_tx: txs.append(current_tx)
+    return txs
 
 def main():
     folder = "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/Comptes"
-    all_data = []
-    
-    files = [f for f in os.listdir(folder) if f.endswith('.pdf')]
-    files.sort() # Process in order
-    
-    print(f"Found {len(files)} files.")
-    
-    for f in files:
-        path = os.path.join(folder, f)
-        try:
-            txs = parse_pdf(path)
-            all_data.extend(txs)
-            print(f"Processed {f}: {len(txs)} transactions.")
-        except Exception as e:
-            print(f"Error processing {f}: {e}")
-            
-    with open('history_data.json', 'w', encoding='utf-8') as f:
-        json.dump(all_data, f, ensure_ascii=False, indent=2)
+    all_transactions = []
+    files = sorted([f for f in os.listdir(folder) if f.endswith('.pdf')])
+    for filename in files:
+        all_transactions.extend(parse_pdf(os.path.join(folder, filename)))
+    unique = []
+    seen = set()
+    for t in all_transactions:
+        key = (t['date'], f"{t['amount']:.2f}", t['description'][:50])
+        if key not in seen:
+            unique.append(t)
+            seen.add(key)
+    with open('history_data.json', 'w') as f:
+        json.dump(unique, f, indent=2)
+    s = sum(tx['amount'] for tx in unique)
+    print(f"Final Count: {len(unique)} | Final Sum: {s:.2f}")
 
 if __name__ == "__main__":
     main()

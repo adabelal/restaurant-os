@@ -255,10 +255,57 @@ export async function syncFinanceIntelligence() {
             })
         }
 
-        revalidatePath('/finance')
         return { success: true }
     } catch (error) {
         console.error("Sync error:", error)
+        return { success: false, error: String(error) }
+    }
+}
+
+export async function importHistoricalData(transactions: any[]) {
+    try {
+        console.log("Wiping existing transactions...")
+        await prisma.bankTransaction.deleteMany({})
+
+        console.log(`Starting import of ${transactions.length} entries...`)
+
+        // Batch import in chunks of 100
+        const CHUNK_SIZE = 100
+        for (let i = 0; i < transactions.length; i += CHUNK_SIZE) {
+            const chunk = transactions.slice(i, i + CHUNK_SIZE).map(tx => ({
+                date: new Date(tx.date),
+                amount: tx.amount,
+                description: tx.description,
+                status: 'PENDING'
+            }))
+
+            await prisma.bankTransaction.createMany({
+                data: chunk
+            })
+        }
+
+        revalidatePath('/finance')
+        return { success: true, count: transactions.length }
+    } catch (error) {
+        console.error("Import error:", error)
+        return { success: false, error: String(error) }
+    }
+}
+
+export async function importFromJsonFile() {
+    try {
+        const fs = require('fs')
+        const path = require('path')
+        const filePath = path.join(process.cwd(), 'history_data.json')
+
+        if (!fs.existsSync(filePath)) {
+            return { success: false, error: "history_data.json non trouvé sur le serveur" }
+        }
+
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+        return await importHistoricalData(data)
+    } catch (error) {
+        console.error("JSON Import error:", error)
         return { success: false, error: String(error) }
     }
 }

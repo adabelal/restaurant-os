@@ -4,37 +4,29 @@ const prisma = new PrismaClient()
 
 async function main() {
     const data = JSON.parse(fs.readFileSync('history_data.json', 'utf8'))
+    console.log(`Clearing existing transactions...`)
+    await prisma.bankTransaction.deleteMany({})
+
     console.log(`Starting import of ${data.length} transactions...`)
 
-    let imported = 0
-    let skipped = 0
+    // Batch create for speed
+    const CHUNK_SIZE = 100
+    for (let i = 0; i < data.length; i += CHUNK_SIZE) {
+        const chunk = data.slice(i, i + CHUNK_SIZE).map(tx => ({
+            date: new Date(tx.date),
+            amount: tx.amount,
+            description: tx.description,
+            status: 'PENDING'
+        }))
 
-    for (const tx of data) {
-        // Simple duplicate check based on date, amount and description
-        const existing = await prisma.bankTransaction.findFirst({
-            where: {
-                date: new Date(tx.date),
-                amount: tx.amount,
-                description: tx.description
-            }
+        await prisma.bankTransaction.createMany({
+            data: chunk,
+            skipDuplicates: true
         })
-
-        if (!existing) {
-            await prisma.bankTransaction.create({
-                data: {
-                    date: new Date(tx.date),
-                    amount: tx.amount,
-                    description: tx.description,
-                    status: 'PENDING'
-                }
-            })
-            imported++
-        } else {
-            skipped++
-        }
+        console.log(`Imported ${i + chunk.length} / ${data.length}`)
     }
 
-    console.log(`Import finished. Imported: ${imported}, Skipped: ${skipped}`)
+    console.log(`Import finished.`)
 }
 
 main()
