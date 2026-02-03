@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet } from "lucide-react"
+import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet, Camera } from "lucide-react"
 import { ModeToggle } from "@/components/ModeToggle"
 import { UserMenu } from "@/components/layout/UserMenu"
 import { cn } from "@/lib/utils"
@@ -15,6 +15,7 @@ export function Sidebar() {
         { href: "/rh", label: "RH & Équipe", icon: Users },
         { href: "/stock", label: "Stock & Ingrédients", icon: Package },
         { href: "/achats", label: "Achats & Factures", icon: ShoppingCart },
+        { href: "/achats/scanner", label: "Scanner Intelligent", icon: Camera },
         { href: "/caisse", label: "Caisse", icon: Wallet },
     ]
 

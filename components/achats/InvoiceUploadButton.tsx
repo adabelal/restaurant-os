@@ -11,7 +11,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Upload, FileText, Loader2, ScanLine, Bot } from "lucide-react"
-import { processUploadedInvoice } from "@/app/achats/actions"
+import { processInvoice } from "@/app/(authenticated)/achats/actions"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 
@@ -31,17 +31,20 @@ export function InvoiceUploadButton() {
         }
 
         setIsLoading(true)
-        const formData = new FormData()
-        formData.append("file", file)
 
         try {
-            const result = await processUploadedInvoice(formData)
-            if (result.success) {
-                toast.success(result.message)
-                // setIsOpen(false) // Keep open to show results later
-                // router.refresh()
-            } else {
-                toast.error(result.error)
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onload = async () => {
+                const base64 = reader.result as string
+                const result = await processInvoice(base64)
+                if (result.success) {
+                    toast.success("Analyse terminée ! Redirection vers le scanner...")
+                    // On pourrait aussi ouvrir le scanner avec les résultats pré-remplis
+                    router.push("/achats/scanner")
+                } else {
+                    toast.error(result.error)
+                }
             }
         } catch (error) {
             toast.error("Erreur d'envoi")

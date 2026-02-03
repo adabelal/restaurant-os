@@ -3,9 +3,12 @@ export const dynamic = 'force-dynamic'
 import { InvoiceUploadButton } from "@/components/achats/InvoiceUploadButton"
 import { InvoiceList } from "@/components/achats/InvoiceList"
 import { AchatsStats } from "@/components/achats/AchatsStats"
-import { ShoppingCart, AlertTriangle } from "lucide-react"
+import { ShoppingCart } from "lucide-react"
+import { requireAuthOrRedirect } from "@/lib/auth-utils"
 
 export default async function AchatsPage() {
+    await requireAuthOrRedirect()
+
     const invoices = await prisma.purchaseOrder.findMany({
         orderBy: { date: 'desc' },
         include: {
@@ -14,7 +17,6 @@ export default async function AchatsPage() {
         }
     })
 
-    // Mock stats calculation
     const totalAmount = invoices.reduce((acc, inv) => acc + Number(inv.totalAmount), 0)
     const alertCount = invoices.filter(inv => inv.status === 'ALERT').length
 
@@ -38,13 +40,8 @@ export default async function AchatsPage() {
             </div>
 
             <div className="flex-1 px-8 py-8 max-w-7xl mx-auto w-full space-y-8">
-
-                {/* Stats Section */}
                 <AchatsStats totalAmount={totalAmount} alertCount={alertCount} />
-
-                {/* Invoices List */}
                 <InvoiceList invoices={invoices} />
-
             </div>
         </main>
     )
