@@ -141,7 +141,6 @@ export async function getBalanceChartData() {
 
         if (transactions.length === 0) return []
 
-        // Group by month and calculate running balance
         const monthlyData: { [key: string]: number } = {}
         let runningBalance = 0
 
@@ -152,17 +151,114 @@ export async function getBalanceChartData() {
             monthlyData[monthKey] = runningBalance
         })
 
-        // Format for Recharts
         const chartData = Object.entries(monthlyData)
             .map(([month, balance]) => ({
                 month,
                 balance: Math.round(balance * 100) / 100
             }))
-            .slice(-12) // Last 12 months
+            .slice(-12)
 
         return chartData
     } catch (error) {
         console.error("Error generating chart data:", error)
         return []
+    }
+}
+
+export async function syncFinanceIntelligence() {
+    try {
+        // 1. Categories
+        const categories = [
+            { name: 'Loyer & Charges', type: 'FIXED_COST' },
+            { name: 'Assurances', type: 'FIXED_COST' },
+            { name: 'Télécom & Tech', type: 'FIXED_COST' },
+            { name: 'Achats Matières', type: 'VARIABLE_COST' },
+            { name: 'Social & URSSAF', type: 'VARIABLE_COST' },
+            { name: 'Énergie', type: 'FIXED_COST' },
+            { name: 'Ventes CB', type: 'REVENUE' }
+        ]
+
+        const catMap: Record<string, string> = {}
+        for (const c of categories) {
+            let cat = await prisma.financeCategory.findFirst({ where: { name: c.name } })
+            if (!cat) {
+                cat = await prisma.financeCategory.create({
+                    data: { name: c.name, type: c.type as any }
+                })
+            }
+            catMap[c.name] = cat.id
+        }
+
+        // 2. Initial Balance Adjustment
+        const adjustment = 26695.75
+        const existingAdj = await prisma.bankTransaction.findFirst({
+            where: { description: "RAPPORT DE SOLDE INITIAL" }
+        })
+
+        if (!existingAdj) {
+            await prisma.bankTransaction.create({
+                data: {
+                    date: new Date('2023-11-01'),
+                    amount: adjustment,
+                    description: "RAPPORT DE SOLDE INITIAL",
+                    status: 'RECONCILED'
+                }
+            })
+        }
+
+        // 3. Fixed Costs
+        const fixedCosts = [
+            { name: 'Loyer Local', amount: 3600, dayOfMonth: 5, category: 'Loyer & Charges' },
+            { name: 'Abonnement Orange', amount: 63.60, dayOfMonth: 10, category: 'Télécom & Tech' },
+            { name: 'Loyer TPE', amount: 37.69, dayOfMonth: 1, category: 'Loyer & Charges' },
+            { name: 'Assurance Groupama', amount: 30.15, dayOfMonth: 1, category: 'Assurances' }
+        ]
+
+        for (const fc of fixedCosts) {
+            const existingCost = await prisma.fixedCost.findFirst({ where: { name: fc.name } })
+            if (!existingCost) {
+                await prisma.fixedCost.create({
+                    data: {
+                        name: fc.name,
+                        amount: fc.amount,
+                        dayOfMonth: fc.dayOfMonth,
+                        frequency: 'MONTHLY',
+                        isActive: true,
+                        categoryId: catMap[fc.category]
+                    }
+                })
+            }
+        }
+
+        // 4. Auto-Categorize existing
+        const rules = [
+            { pattern: 'METRO', category: 'Achats Matières' },
+            { pattern: 'URSSAF', category: 'Social & URSSAF' },
+            { pattern: 'GROUPAMA', category: 'Assurances' },
+            { pattern: 'ORANGE', category: 'Télécom & Tech' },
+            { pattern: 'LOYER', category: 'Loyer & Charges' },
+            { pattern: 'EDF', category: 'Énergie' },
+            { pattern: 'ENGIE', category: 'Énergie' },
+            { pattern: 'REMISE CB', category: 'Ventes CB' }
+        ]
+
+        for (const rule of rules) {
+            const targetCatId = catMap[rule.category]
+            if (!targetCatId) continue
+
+            await prisma.bankTransaction.updateMany({
+                where: {
+                    description: { contains: rule.pattern, mode: 'insensitive' },
+                    categoryId: null
+                },
+                data: { categoryId: targetCatId }
+            })
+        }
+
+        revalidatePath('/finance')
+        return { success: true }
+    } catch (error) {
+        console.error("Sync error:", error)
+        return { success: false, error: String(error) }
     }
 }

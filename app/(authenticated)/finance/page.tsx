@@ -14,6 +14,7 @@ import {
 import { prisma } from "@/lib/prisma"
 import { getBalanceChartData } from "./actions"
 import { BalanceChart } from "@/components/finance/BalanceChart"
+import { SyncIntelligenceButton } from "@/components/finance/SyncIntelligenceButton"
 
 export const dynamic = 'force-dynamic'
 
@@ -108,6 +109,7 @@ export default async function FinancePage() {
                     </p>
                 </div>
                 <div className="flex gap-3">
+                    <SyncIntelligenceButton />
                     <Button asChild variant="outline" className="shadow-sm">
                         <Link href="/finance/import">
                             <Upload className="mr-2 h-4 w-4" />

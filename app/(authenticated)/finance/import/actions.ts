@@ -101,6 +101,9 @@ export async function uploadBankStatement(formData: FormData) {
                     }
 
                     // 2. Smart Categorization
+                    const descriptionUpper = description.toUpperCase()
+
+                    // Priority 1: Exact match with Fixed Costs
                     const fixedCharge = await prisma.fixedCost.findFirst({
                         where: {
                             isActive: true,
@@ -112,6 +115,17 @@ export async function uploadBankStatement(formData: FormData) {
 
                     if (fixedCharge) {
                         categoryId = fixedCharge.categoryId
+                    } else {
+                        // Priority 2: Generic patterns
+                        const categories = await prisma.financeCategory.findMany()
+
+                        const findCat = (name: string) => categories.find(c => c.name.toLowerCase().includes(name.toLowerCase()))?.id
+
+                        if (descriptionUpper.includes('METRO')) categoryId = findCat('Achats')
+                        else if (descriptionUpper.includes('URSSAF')) categoryId = findCat('Social')
+                        else if (descriptionUpper.includes('GROUPAMA')) categoryId = findCat('Assurance')
+                        else if (descriptionUpper.includes('ORANGE')) categoryId = findCat('Télécom')
+                        else if (descriptionUpper.includes('EDF') || descriptionUpper.includes('ENGIE')) categoryId = findCat('Énergie')
                     }
                 }
 
