@@ -16,6 +16,7 @@ export function Sidebar() {
         { href: "/stock", label: "Stock & Ingrédients", icon: Package },
         { href: "/achats", label: "Achats & Factures", icon: ShoppingCart },
         { href: "/achats/scanner", label: "Scanner Intelligent", icon: Camera },
+        { href: "/finance", label: "Finance & Pilotage", icon: BarChart3 },
         { href: "/caisse", label: "Caisse", icon: Wallet },
     ]
 

@@ -2,6 +2,12 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 export async function POST(req: Request) {
+    // Sécurité: Vérification de la clé API
+    const apiKey = req.headers.get("x-api-key")
+    if (!process.env.N8N_API_KEY || apiKey !== process.env.N8N_API_KEY) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
     try {
         const body = await req.json()
         const {

@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 export async function POST(req: Request) {
     // Une clé API simple pour sécuriser l'appel depuis N8N
     const apiKey = req.headers.get("x-api-key")
-    if (process.env.N8N_API_KEY && apiKey !== process.env.N8N_API_KEY) {
+    if (!process.env.N8N_API_KEY || apiKey !== process.env.N8N_API_KEY) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 

@@ -214,6 +214,9 @@ model PurchaseOrder {
   
   items       InvoiceItem[]
   
+  // Relations Finance
+  bankTransactions BankTransaction[]
+  
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -307,4 +310,84 @@ model AppSettings {
   id              String   @id @default("global")
   accountantEmail String?
   updatedAt       DateTime @updatedAt
+}
+
+// --- FINANCE & CONTROLE DE GESTION ---
+
+enum FinanceCategoryType {
+  FIXED_COST      // Charges Fixes (Loyer, Assurance, Abonnements...)
+  VARIABLE_COST   // Charges Variables (Matières 1ères, Extras...)
+  REVENUE         // Chiffre d'Affaires
+  TAX             // TVA, Impôts
+  FINANCIAL       // Frais bancaires, Emprunts
+  INVESTMENT      // Achat Matériel
+  SALARY          // Salaires & Charges Sociales
+}
+
+model FinanceCategory {
+  id          String              @id @default(cuid())
+  name        String              @unique
+  type        FinanceCategoryType
+  description String?
+  color       String?             // Pour le UI
+  
+  // Relations
+  transactions BankTransaction[]
+  fixedCosts   FixedCost[]
+  budgetGoals  BudgetGoal[]
+
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+}
+
+model BankTransaction {
+  id          String   @id @default(cuid())
+  date        DateTime
+  amount      Decimal  @db.Decimal(10, 2) // Positif = Recette, Négatif = Dépense
+  description String
+  reference   String?  // Libellé banque standardisé
+  
+  status      String   @default("PENDING") // PENDING, RECONCILED, IGNORED
+
+  // Liens pour réconciliation
+  purchaseOrderId String?
+  purchaseOrder   PurchaseOrder? @relation(fields: [purchaseOrderId], references: [id])
+  
+  categoryId  String?
+  category    FinanceCategory? @relation(fields: [categoryId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model FixedCost {
+  id          String   @id @default(cuid())
+  name        String   // Ex: "Loyer", "Assurance"
+  amount      Decimal  @db.Decimal(10, 2)
+  dayOfMonth  Int      // Jour de prélèvement (ex: 5)
+  frequency   String   @default("MONTHLY") // MONTHLY, QUARTERLY, YEARLY
+  
+  categoryId  String
+  category    FinanceCategory @relation(fields: [categoryId], references: [id])
+  
+  isActive    Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BudgetGoal {
+  id          String   @id @default(cuid())
+  month       Int
+  year        Int
+  
+  categoryId  String
+  category    FinanceCategory @relation(fields: [categoryId], references: [id])
+  
+  targetAmount Decimal @db.Decimal(10, 2)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([month, year, categoryId])
 }
