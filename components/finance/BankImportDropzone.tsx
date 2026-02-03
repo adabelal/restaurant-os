@@ -6,7 +6,7 @@ import { UploadCloud, FileText, AlertCircle, CheckCircle } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { useToast } from "@/components/ui/use-toast"
+import { toast } from "sonner"
 import { uploadBankStatement } from "@/app/(authenticated)/finance/import/actions"
 
 export function BankImportDropzone() {
@@ -14,7 +14,7 @@ export function BankImportDropzone() {
     const [uploading, setUploading] = useState(false)
     const [progress, setProgress] = useState(0)
     const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
-    const { toast } = useToast()
+
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         if (acceptedFiles.length > 0) {
@@ -56,27 +56,15 @@ export function BankImportDropzone() {
 
             if (result.success) {
                 setStatus('success')
-                toast({
-                    title: "Import réussi",
-                    description: `${result.count} transactions ont été importées.`,
-                    variant: "default",
-                })
+                toast.success(`Import réussi: ${result.count} transactions importées.`)
             } else {
                 setStatus('error')
-                toast({
-                    title: "Erreur d'import",
-                    description: result.error || "Une erreur est survenue.",
-                    variant: "destructive",
-                })
+                toast.error(result.error || "Une erreur est survenue lors de l'import.")
             }
         } catch (error) {
             console.error(error)
             setStatus('error')
-            toast({
-                title: "Erreur",
-                description: "Erreur de connexion au serveur.",
-                variant: "destructive",
-            })
+            toast.error("Erreur de connexion au serveur.")
         } finally {
             setUploading(false)
         }

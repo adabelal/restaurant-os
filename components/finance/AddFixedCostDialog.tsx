@@ -24,7 +24,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { addFixedCost, createFinanceCategory } from "@/app/(authenticated)/finance/actions"
-import { useToast } from "@/components/ui/use-toast"
+import { toast } from "sonner"
 
 type Category = {
     id: string
@@ -37,7 +37,7 @@ export function AddFixedCostDialog({ initialCategories }: { initialCategories: C
     const [categories, setCategories] = useState<Category[]>(initialCategories)
     const [newCategoryName, setNewCategoryName] = useState("")
     const [isCreatingCategory, setIsCreatingCategory] = useState(false)
-    const { toast } = useToast()
+
 
     const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {
@@ -61,21 +61,13 @@ export function AddFixedCostDialog({ initialCategories }: { initialCategories: C
                     setIsCreatingCategory(false)
                     setNewCategoryName("")
                 } else {
-                    toast({
-                        variant: "destructive",
-                        title: "Erreur",
-                        description: "Impossible de créer la catégorie.",
-                    })
+                    toast.error("Erreur: Impossible de créer la catégorie.")
                     return
                 }
             }
 
             if (!categoryId) {
-                toast({
-                    variant: "destructive",
-                    title: "Erreur",
-                    description: "Veuillez sélectionner une catégorie.",
-                })
+                toast.error("Veuillez sélectionner une catégorie.")
                 return
             }
 
@@ -88,27 +80,16 @@ export function AddFixedCostDialog({ initialCategories }: { initialCategories: C
             })
 
             if (result.success) {
-                toast({
-                    title: "Succès",
-                    description: "La charge fixe a été ajoutée.",
-                })
+                toast.success("La charge fixe a été ajoutée.")
                 setOpen(false)
                 reset()
                 setIsCreatingCategory(false)
             } else {
-                toast({
-                    variant: "destructive",
-                    title: "Erreur",
-                    description: "Une erreur est survenue lors de l'ajout.",
-                })
+                toast.error("Une erreur est survenue.")
             }
         } catch (error) {
             console.error(error)
-            toast({
-                variant: "destructive",
-                title: "Erreur",
-                description: "Erreur inattendue.",
-            })
+            toast.error("Erreur inattendue.")
         }
     }
 
