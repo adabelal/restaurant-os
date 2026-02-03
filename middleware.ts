@@ -1,5 +1,6 @@
-import { auth } from "@/lib/auth"
+import { getToken } from "next-auth/jwt"
 import { NextResponse } from "next/server"
+import type { NextRequest } from "next/server"
 
 // Routes publiques qui ne nécessitent pas d'authentification
 const publicRoutes = ["/login"]
@@ -7,9 +8,10 @@ const publicRoutes = ["/login"]
 // Routes API publiques
 const publicApiRoutes = ["/api/auth"]
 
-export default auth((req) => {
+export async function middleware(req: NextRequest) {
     const { nextUrl } = req
-    const isLoggedIn = !!req.auth
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
+    const isLoggedIn = !!token
 
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
     const isPublicApiRoute = publicApiRoutes.some((route) =>
@@ -40,7 +42,7 @@ export default auth((req) => {
     }
 
     return NextResponse.next()
-})
+}
 
 export const config = {
     matcher: [

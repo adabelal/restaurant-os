@@ -1,4 +1,5 @@
-import { auth } from "@/lib/auth"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
 import { redirect } from "next/navigation"
 
 /**
@@ -6,7 +7,7 @@ import { redirect } from "next/navigation"
  * À utiliser dans les Server Actions
  */
 export async function requireAuth() {
-    const session = await auth()
+    const session = await getServerSession(authOptions)
 
     if (!session?.user) {
         throw new Error("Non autorisé")
@@ -20,7 +21,7 @@ export async function requireAuth() {
  * À utiliser dans les pages serveur
  */
 export async function requireAuthOrRedirect() {
-    const session = await auth()
+    const session = await getServerSession(authOptions)
 
     if (!session?.user) {
         redirect("/login")
@@ -33,7 +34,7 @@ export async function requireAuthOrRedirect() {
  * Récupère l'utilisateur courant (peut être null)
  */
 export async function getCurrentUser() {
-    const session = await auth()
+    const session = await getServerSession(authOptions)
     return session?.user ?? null
 }
 

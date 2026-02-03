@@ -52,8 +52,158 @@ L'utilisateur souhaitait configurer Resend pour l'envoi d'e-mails, notamment en 
 *   **État de la tâche :** [x] Module RH fonctionnel et déployé.
 
 ---
-**Résumé de l'état actuel (Mis à jour) :**
-- L'infrastructure DNS pour les emails est en cours de réflexion (N8N vs Resend).
-- Le module RH est opérationnel avec édition de profil, archivage et gestion documentaire.
-- Le projet est déployé sur Easypanel avec PostgreSQL.
 
+### 9. Implémentation de la Sécurité (03/02/2026) - Claude Code (Opus 4.5)
+
+**Contexte :** L'application n'avait aucune sécurité - toutes les pages étaient publiques, les mots de passe stockés en clair, aucune validation côté serveur.
+
+**Audit de sécurité effectué :**
+- Identification des problèmes critiques : pas d'authentification, mots de passe en clair, routes publiques
+- Secrets exposés dans le code (clé de chiffrement N8N dans `decrypt_n8n.js`)
+
+**Actions réalisées :**
+
+#### 9.1 Authentification NextAuth.js v5
+*   Installation de `next-auth@5.0.0-beta.30`, `bcryptjs`, `zod`
+*   Configuration du provider "credentials" (email/mot de passe)
+*   Création des fichiers :
+    - `lib/auth.ts` : Configuration NextAuth avec callbacks JWT/session
+    - `lib/password.ts` : Utilitaires hashage bcrypt (12 rounds)
+    - `lib/auth-utils.ts` : Helpers (`requireAuth`, `getCurrentUser`)
+    - `app/api/auth/[...nextauth]/route.ts` : Route API NextAuth
+    - `types/next-auth.d.ts` : Types TypeScript pour la session
+*   **État :** [x] Authentification fonctionnelle
+
+#### 9.2 Protection des routes
+*   Création de `middleware.ts` : Redirige vers `/login` si non authentifié
+*   Réorganisation en route groups :
+    - `app/(authenticated)/` : Pages protégées (dashboard, RH, stock, caisse)
+    - `app/login/` : Page publique de connexion
+*   **État :** [x] Routes protégées
+
+#### 9.3 Validation côté serveur avec Zod
+*   Création de `lib/validations.ts` avec schémas pour :
+    - Utilisateurs (`createUserSchema`, `updateUserSchema`)
+    - Shifts (`createShiftSchema`)
+    - Ingrédients (`createIngredientSchema`)
+    - Transactions caisse (`createCashTransactionSchema`)
+    - Catégories (`createCashCategorySchema`)
+    - Documents employé (`createDocumentSchema`)
+*   **État :** [x] Validation implémentée
+
+#### 9.4 Sécurisation des Server Actions
+*   Ajout de `await requireAuth()` au début de chaque action
+*   Validation Zod des entrées
+*   Fichiers modifiés :
+    - `app/(authenticated)/rh/actions.ts`
+    - `app/(authenticated)/caisse/actions.ts`
+    - `app/(authenticated)/stock/actions.ts`
+*   **État :** [x] Actions sécurisées
+
+#### 9.5 Headers de sécurité
+*   Modification de `next.config.js` pour ajouter :
+    - `X-Frame-Options: DENY`
+    - `X-Content-Type-Options: nosniff`
+    - `X-XSS-Protection: 1; mode=block`
+    - `Referrer-Policy: strict-origin-when-cross-origin`
+    - `Content-Security-Policy` (CSP)
+    - `Permissions-Policy`
+*   **État :** [x] Headers configurés
+
+#### 9.6 Interface utilisateur
+*   Page de login (`app/login/page.tsx`) avec :
+    - Formulaire email/mot de passe
+    - Gestion des erreurs
+    - Redirection après connexion
+*   Menu utilisateur (`components/layout/UserMenu.tsx`) :
+    - Affiche nom et email de l'utilisateur connecté
+    - Bouton de déconnexion
+*   **État :** [x] UI login/logout créée
+
+#### 9.7 Nettoyage sécurité
+*   Suppression de `decrypt_n8n.js` (contenait une clé de chiffrement exposée)
+*   Création de `.env.example` documentant les variables requises
+*   Création de `scripts/create-admin.ts` pour créer l'utilisateur admin initial
+*   **État :** [x] Secrets nettoyés
+
+**Fichiers créés :**
+```
+lib/auth.ts
+lib/auth-utils.ts
+lib/password.ts
+lib/validations.ts
+middleware.ts
+app/login/page.tsx
+app/login/layout.tsx
+app/(authenticated)/layout.tsx
+app/api/auth/[...nextauth]/route.ts
+components/AuthProvider.tsx
+components/layout/UserMenu.tsx
+types/next-auth.d.ts
+scripts/create-admin.ts
+.env.example
+```
+
+**Fichiers modifiés :**
+```
+app/layout.tsx (ajout AuthProvider)
+components/layout/Sidebar.tsx (ajout UserMenu)
+next.config.js (headers sécurité)
+package.json (nouvelles dépendances)
+app/(authenticated)/rh/actions.ts
+app/(authenticated)/caisse/actions.ts
+app/(authenticated)/stock/actions.ts
+```
+
+**Fichiers supprimés :**
+```
+decrypt_n8n.js (secret exposé)
+```
+
+**⚠️ ACTION REQUISE PAR L'UTILISATEUR :**
+1. Ajouter `AUTH_SECRET` dans les variables d'environnement Easypanel (voir guide ci-dessous)
+2. Créer un utilisateur admin avec le script `scripts/create-admin.ts`
+
+**Commit Git :** `9ab4eef0` - "feat: Implement authentication and security layer"
+
+---
+
+## Résumé de l'état actuel (Mis à jour le 03/02/2026)
+
+### Infrastructure
+- **Hébergement :** Easypanel (Docker)
+- **Base de données :** PostgreSQL
+- **Framework :** Next.js 14 (App Router)
+
+### Modules fonctionnels
+| Module | État | Description |
+|--------|------|-------------|
+| Dashboard | ✅ | KPIs et accès rapides |
+| RH | ✅ | Employés, shifts, documents, archivage |
+| Stock | ✅ | Ingrédients, CRUD complet |
+| Caisse | ✅ | Transactions, catégories, import Excel, export PDF/email |
+
+### Sécurité
+| Aspect | État | Détail |
+|--------|------|--------|
+| Authentification | ✅ | NextAuth.js v5 avec credentials |
+| Mots de passe | ✅ | Hashés avec bcrypt (12 rounds) |
+| Routes protégées | ✅ | Middleware de redirection |
+| Validation | ✅ | Zod côté serveur |
+| Headers sécurité | ✅ | CSP, X-Frame-Options, etc. |
+| CSRF | ⚠️ | Géré par NextAuth |
+
+### Variables d'environnement requises
+```env
+DATABASE_URL=postgresql://...
+AUTH_SECRET=<généré avec openssl rand -base64 32>
+NEXTAUTH_URL=https://votre-domaine.com
+RESEND_API_KEY=re_xxxx (optionnel)
+N8N_API_KEY=xxxx (optionnel)
+```
+
+### Prochaines étapes suggérées
+- [ ] Configurer AUTH_SECRET sur Easypanel
+- [ ] Créer l'utilisateur admin initial
+- [ ] Tester le flow de connexion en production
+- [ ] Décider entre N8N et Resend pour les emails
