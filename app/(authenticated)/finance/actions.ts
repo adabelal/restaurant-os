@@ -264,17 +264,23 @@ export async function getBalanceChartData() {
 
 export async function syncFinanceIntelligence() {
     try {
-        // 1. Categories
+        console.log("Starting Smart Finance Intelligence...")
+
+        // 1. Define Categories to Ensure
         const categories = [
-            { name: 'Loyer & Charges', type: 'FIXED_COST' },
-            { name: 'Assurances', type: 'FIXED_COST' },
-            { name: 'Télécom & Tech', type: 'FIXED_COST' },
-            { name: 'Achats Matières', type: 'VARIABLE_COST' },
-            { name: 'Social & URSSAF', type: 'VARIABLE_COST' },
-            { name: 'Énergie', type: 'FIXED_COST' },
-            { name: 'Ventes CB', type: 'REVENUE' }
+            { name: 'Loyer & Charges', type: 'FIXED_COST', keywords: ['SCI BAB', 'LOYER'] },
+            { name: 'Salaires & Rémunérations', type: 'SALARY', keywords: ['BELAL', 'SALAIRE', 'REMUNERATION', 'ROSSE', 'LEROY'] },
+            { name: 'Expert Comptable', type: 'FIXED_COST', keywords: ['SC EXPERT', 'COMPTABLE', 'FIDUCIAIRE'] },
+            { name: 'Frais Bancaires', type: 'FINANCIAL', keywords: ['COTISATION', 'COMMISSION', 'FRAIS'] },
+            { name: 'Assurances', type: 'FIXED_COST', keywords: ['GROUPAMA', 'ASSURANCE', 'AXA', 'MAAF'] },
+            { name: 'Télécom & Tech', type: 'FIXED_COST', keywords: ['ORANGE', 'FREE', 'SFR', 'BOUYGUES', 'OVH'] },
+            { name: 'Leasing & Crédit', type: 'FINANCIAL', keywords: ['CAPIT', 'LEASE', 'CREDIT', 'LOCAM'] },
+            { name: 'Fournisseurs', type: 'VARIABLE_COST', keywords: ['METRO', 'PROMUS', 'CARREFOUR'] },
+            { name: 'Impôts & Taxes', type: 'TAX', keywords: ['DGFIP', 'SIE', 'CFE', 'TVA'] },
+            { name: 'Social', type: 'SOCIAL', keywords: ['URSSAF', 'RETRAITE', 'PREVOYANCE'] }
         ]
 
+        // 2. Create/Get Categories
         const catMap: Record<string, string> = {}
         for (const c of categories) {
             let cat = await prisma.financeCategory.findFirst({ where: { name: c.name } })
@@ -286,62 +292,116 @@ export async function syncFinanceIntelligence() {
             catMap[c.name] = cat.id
         }
 
-        // 2. Cleanup Legacy Adjustments (Fix for 32k balance issue)
-        // We previously added a 26k adjustment. Now that history is perfect, we must remove it.
-        await prisma.bankTransaction.deleteMany({
-            where: { description: "RAPPORT DE SOLDE INITIAL" }
+        // 3. Smart Categorization of Transactions
+        // We look for uncategorized transactions and try to match keywords
+        const uncategorized = await prisma.bankTransaction.findMany({
+            where: { categoryId: null }
         })
 
-        // 3. Fixed Costs
-        const fixedCosts = [
-            { name: 'Loyer Local', amount: 3600, dayOfMonth: 5, category: 'Loyer & Charges' },
-            { name: 'Abonnement Orange', amount: 63.60, dayOfMonth: 10, category: 'Télécom & Tech' },
-            { name: 'Loyer TPE', amount: 37.69, dayOfMonth: 1, category: 'Loyer & Charges' },
-            { name: 'Assurance Groupama', amount: 30.15, dayOfMonth: 1, category: 'Assurances' }
-        ]
+        for (const tx of uncategorized) {
+            const desc = tx.description.toUpperCase()
+            let matchedCatId = null
 
-        for (const fc of fixedCosts) {
-            const existingCost = await prisma.fixedCost.findFirst({ where: { name: fc.name } })
-            if (!existingCost) {
-                await prisma.fixedCost.create({
-                    data: {
-                        name: fc.name,
-                        amount: fc.amount,
-                        dayOfMonth: fc.dayOfMonth,
-                        frequency: 'MONTHLY',
-                        isActive: true,
-                        categoryId: catMap[fc.category]
-                    }
+            for (const cat of categories) {
+                if (cat.keywords.some(k => desc.includes(k))) {
+                    matchedCatId = catMap[cat.name]
+                    break
+                }
+            }
+
+            if (matchedCatId) {
+                await prisma.bankTransaction.update({
+                    where: { id: tx.id },
+                    data: { categoryId: matchedCatId }
                 })
             }
         }
 
-        // 4. Auto-Categorize existing
-        const rules = [
-            { pattern: 'METRO', category: 'Achats Matières' },
-            { pattern: 'URSSAF', category: 'Social & URSSAF' },
-            { pattern: 'GROUPAMA', category: 'Assurances' },
-            { pattern: 'ORANGE', category: 'Télécom & Tech' },
-            { pattern: 'LOYER', category: 'Loyer & Charges' },
-            { pattern: 'EDF', category: 'Énergie' },
-            { pattern: 'ENGIE', category: 'Énergie' },
-            { pattern: 'REMISE CB', category: 'Ventes CB' }
+        // 4. Detect Recurring Fixed Costs (The "Expert" Logic)
+        // We look for transactions in specific categories that happen regularly
+        const detectionTargets = [
+            { catName: 'Loyer & Charges', name: 'Loyer Commercial (SCI BAB)' },
+            { catName: 'Expert Comptable', name: 'Expert Comptable (SC EXPERT)' },
+            { catName: 'Frais Bancaires', name: 'Frais Tenue de Compte' },
+            { catName: 'Leasing & Crédit', name: 'Leasing Matériel (CAPIT)' },
+            { catName: 'Télécom & Tech', name: 'Abonnement Internet' },
+            { catName: 'Assurances', name: 'Assurance Multirisque' }
         ]
 
-        for (const rule of rules) {
-            const targetCatId = catMap[rule.category]
-            if (!targetCatId) continue
+        for (const target of detectionTargets) {
+            const catId = catMap[target.catName]
+            if (!catId) continue
 
-            await prisma.bankTransaction.updateMany({
-                where: {
-                    description: { contains: rule.pattern, mode: 'insensitive' },
-                    categoryId: null
-                },
-                data: { categoryId: targetCatId }
+            // Find last 3 transactions for this category to estimate amount
+            const history = await prisma.bankTransaction.findMany({
+                where: { categoryId: catId, amount: { lt: 0 } }, // Only expenses
+                orderBy: { date: 'desc' },
+                take: 5
             })
+
+            if (history.length >= 2) {
+                // Calculate average amount
+                const avgAmount = Math.abs(history.reduce((sum, t) => sum + Number(t.amount), 0) / history.length)
+                // Determine day of month (based on most recent)
+                const dayOfMonth = new Date(history[0].date).getDate()
+
+                // Upsert Fixed Cost
+                const existingCost = await prisma.fixedCost.findFirst({
+                    where: { name: target.name }
+                })
+
+                if (!existingCost) {
+                    await prisma.fixedCost.create({
+                        data: {
+                            name: target.name,
+                            amount: avgAmount,
+                            dayOfMonth: dayOfMonth,
+                            frequency: 'MONTHLY',
+                            isActive: true,
+                            categoryId: catId
+                        }
+                    })
+                    console.log(`Detected and created fixed cost: ${target.name} - ${avgAmount}€`)
+                }
+            }
         }
 
+        // 5. Detect Salaries (Specific logic per person)
+        const salaryKeywords = ['BELAL', 'ROSSE', 'LEROY']
+        for (const nameKeyword of salaryKeywords) {
+            const salaryTx = await prisma.bankTransaction.findMany({
+                where: {
+                    description: { contains: nameKeyword, mode: 'insensitive' },
+                    amount: { lt: 0 }
+                },
+                orderBy: { date: 'desc' },
+                take: 5
+            })
+
+            if (salaryTx.length >= 3) {
+                const avgSalary = Math.abs(salaryTx.reduce((sum, t) => sum + Number(t.amount), 0) / salaryTx.length)
+                const costName = `Salaire - ${nameKeyword.charAt(0).toUpperCase() + nameKeyword.slice(1).toLowerCase()}`
+
+                const existingSalary = await prisma.fixedCost.findFirst({ where: { name: costName } })
+                if (!existingSalary) {
+                    await prisma.fixedCost.create({
+                        data: {
+                            name: costName,
+                            amount: avgSalary,
+                            dayOfMonth: 5, // Default for salaries usually
+                            frequency: 'MONTHLY',
+                            isActive: true,
+                            categoryId: catMap['Salaires & Rémunérations']
+                        }
+                    })
+                }
+            }
+        }
+
+        revalidatePath('/finance')
+        revalidatePath('/finance/charges')
         return { success: true }
+
     } catch (error) {
         console.error("Sync error:", error)
         return { success: false, error: String(error) }
