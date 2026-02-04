@@ -12,77 +12,13 @@ import {
     ArrowRight
 } from "lucide-react"
 import { prisma } from "@/lib/prisma"
-import { getBalanceChartData } from "./actions"
 import { Badge } from "@/components/ui/badge"
 import { BalanceChart } from "@/components/finance/BalanceChart"
 import { SyncIntelligenceButton } from "@/components/finance/SyncIntelligenceButton"
 
 export const dynamic = 'force-dynamic'
 
-// Helper to fetch stats
-async function getFinanceStats() {
-    const today = new Date()
-    const currentDay = today.getDate()
-
-    // 1. Calculate Current Balance from Bank Transactions
-    const transactions = await prisma.bankTransaction.findMany({
-        select: { amount: true }
-    })
-    const currentBalance = transactions.reduce((sum: number, t: any) => sum + Number(t.amount || 0), 0)
-
-    // 2. Fixed Costs
-    const fixedCosts = await prisma.fixedCost.findMany()
-
-    // Total monthly lissés
-    const monthlyFixedCost = fixedCosts.reduce((sum: number, cost: any) => {
-        const amount = Number(cost.amount || 0)
-        switch (cost.frequency) {
-            case 'MONTHLY': return sum + amount
-            case 'QUARTERLY': return sum + (amount / 3)
-            case 'YEARLY': return sum + (amount / 12)
-            default: return sum
-        }
-    }, 0)
-
-    // Remaining fixed costs for THIS month
-    const remainingFixedCosts = fixedCosts
-        .filter((cost: any) => cost.frequency === 'MONTHLY' && cost.dayOfMonth > currentDay && cost.isActive)
-        .reduce((sum: number, cost: any) => sum + Number(cost.amount || 0), 0)
-
-    // 3. Unpaid Purchase Orders (Not reconciled with bank)
-    const unpaidPOs = await prisma.purchaseOrder.findMany({
-        where: {
-            bankTransactions: {
-                none: {}
-            }
-        },
-        select: { id: true, totalAmount: true }
-    })
-    const totalUnpaidPOs = unpaidPOs.reduce((sum: number, po: any) => sum + Number(po.totalAmount || 0), 0)
-
-    // 4. Projection Fin de Mois
-    const eomForecast = currentBalance - remainingFixedCosts - totalUnpaidPOs
-
-    // 5. Last 5 Transactions for preview
-    const recentTransactions = await prisma.bankTransaction.findMany({
-        take: 5,
-        orderBy: { date: 'desc' }
-    })
-
-    // 6. Chart Data
-    const chartData = await getBalanceChartData()
-
-    return {
-        currentBalance,
-        monthlyFixedCost,
-        remainingFixedCosts,
-        totalUnpaidPOs,
-        unpaidPOs,
-        eomForecast,
-        recentTransactions,
-        chartData
-    }
-}
+import { getBalanceChartData, getFinanceStats } from "./actions"
 
 export default async function FinancePage() {
     const {
