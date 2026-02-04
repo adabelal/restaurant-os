@@ -286,22 +286,11 @@ export async function syncFinanceIntelligence() {
             catMap[c.name] = cat.id
         }
 
-        // 2. Initial Balance Adjustment
-        const adjustment = 26695.75
-        const existingAdj = await prisma.bankTransaction.findFirst({
+        // 2. Cleanup Legacy Adjustments (Fix for 32k balance issue)
+        // We previously added a 26k adjustment. Now that history is perfect, we must remove it.
+        await prisma.bankTransaction.deleteMany({
             where: { description: "RAPPORT DE SOLDE INITIAL" }
         })
-
-        if (!existingAdj) {
-            await prisma.bankTransaction.create({
-                data: {
-                    date: new Date('2023-11-01'),
-                    amount: adjustment,
-                    description: "RAPPORT DE SOLDE INITIAL",
-                    status: 'RECONCILED'
-                }
-            })
-        }
 
         // 3. Fixed Costs
         const fixedCosts = [
