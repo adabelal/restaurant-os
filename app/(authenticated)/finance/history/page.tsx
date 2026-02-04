@@ -1,9 +1,10 @@
-import { Search, ArrowLeft, ArrowUpRight, ArrowDownRight, Wallet, Calendar, Filter } from "lucide-react"
+import { Search, ArrowLeft, ArrowUpRight, ArrowDownRight, Database, BookOpen } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { getBankTransactions } from "../actions"
+import { Badge } from "@/components/ui/badge"
 
 export const dynamic = 'force-dynamic'
 
@@ -23,35 +24,47 @@ export default async function FinanceHistoryPage({
 
     return (
         <div className="flex flex-col min-h-screen bg-slate-50/50 space-y-8 p-8 max-w-7xl mx-auto">
-            {/* Header */}
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                    <Link href="/finance">
-                        <Button variant="ghost" size="icon" className="rounded-full hover:bg-white shadow-sm border border-slate-200">
-                            <ArrowLeft className="h-5 w-5 text-slate-600" />
-                        </Button>
-                    </Link>
+            {/* Header Section */}
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 p-8 shadow-xl text-white">
+                <div className="absolute top-0 right-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
+                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" />
+
+                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div>
-                        <h1 className="text-3xl font-black tracking-tight text-slate-900">Grand Livre de Compte</h1>
-                        <p className="text-slate-500 font-medium">{totalCount} transactions trouvées</p>
+                        <Link href="/finance" className="inline-flex items-center text-slate-400 hover:text-white mb-2 text-sm font-medium transition-colors">
+                            <ArrowLeft className="mr-2 h-4 w-4" />
+                            Retour au pilotage
+                        </Link>
+                        <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3 text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-200">
+                            <BookOpen className="h-8 w-8 text-blue-400" />
+                            Grand Livre
+                        </h1>
+                        <p className="mt-2 text-slate-400 font-medium max-w-xl text-lg">
+                            L'historique complet et inaltérable de vos flux bancaires.
+                        </p>
+                    </div>
+                    <div className="flex items-center gap-3 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+                        <Database className="h-4 w-4 text-emerald-400" />
+                        <span className="text-emerald-300 font-bold">{totalCount}</span>
+                        <span className="text-slate-400 text-sm">transactions indexées</span>
                     </div>
                 </div>
             </div>
 
             {/* Filters & Search */}
-            <Card className="border-none shadow-sm bg-white rounded-3xl overflow-hidden">
+            <Card className="border-none shadow-sm bg-white rounded-3xl overflow-hidden ring-1 ring-slate-100">
                 <CardContent className="p-6">
                     <form className="flex flex-col md:flex-row gap-4">
                         <div className="relative flex-1">
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                            <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                             <Input
                                 name="q"
                                 defaultValue={query}
-                                placeholder="Rechercher une transaction (ex: Metro, Urssaf, Loyer...)"
-                                className="pl-12 h-12 bg-slate-50 border-none rounded-2xl focus-visible:ring-sky-500 font-medium"
+                                placeholder="Rechercher (ex: Metro, Urssaf, Loyer...)"
+                                className="pl-14 h-14 bg-slate-50 border-none rounded-2xl focus-visible:ring-2 focus-visible:ring-blue-500 font-medium text-lg placeholder:text-slate-400 transition-all focus:bg-white"
                             />
                         </div>
-                        <Button type="submit" className="h-12 px-8 rounded-2xl bg-slate-900 hover:bg-slate-800 transition-all font-bold">
+                        <Button type="submit" className="h-14 px-10 rounded-2xl bg-slate-900 hover:bg-slate-800 transition-all font-bold text-lg shadow-lg shadow-slate-900/10">
                             Rechercher
                         </Button>
                     </form>
@@ -59,61 +72,66 @@ export default async function FinanceHistoryPage({
             </Card>
 
             {/* Transactions Table */}
-            <Card className="border-none shadow-sm bg-white rounded-3xl overflow-hidden">
+            <Card className="border-none shadow-xl bg-white rounded-3xl overflow-hidden ring-1 ring-slate-100">
                 <CardContent className="p-0">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="bg-slate-50 border-b border-slate-100">
-                                    <th className="px-8 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Date</th>
-                                    <th className="px-8 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Libellé / Description</th>
-                                    <th className="px-8 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Catégorie</th>
-                                    <th className="px-8 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">Montant</th>
+                                    <th className="px-8 py-6 text-xs font-bold uppercase tracking-wider text-slate-500">Date</th>
+                                    <th className="px-8 py-6 text-xs font-bold uppercase tracking-wider text-slate-500">Libellé</th>
+                                    <th className="px-8 py-6 text-xs font-bold uppercase tracking-wider text-slate-500">Catégorie</th>
+                                    <th className="px-8 py-6 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">Montant</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-50">
                                 {transactions.length === 0 ? (
                                     <tr>
-                                        <td colSpan={4} className="px-8 py-20 text-center text-slate-400">
+                                        <td colSpan={4} className="px-8 py-32 text-center text-slate-400">
                                             <div className="flex flex-col items-center">
-                                                <Search className="h-12 w-12 mb-4 opacity-10" />
-                                                <p className="text-lg">Aucune transaction ne correspond à votre recherche.</p>
+                                                <div className="h-20 w-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
+                                                    <Search className="h-10 w-10 opacity-20" />
+                                                </div>
+                                                <p className="text-xl font-medium text-slate-900">Aucune transaction trouvée</p>
+                                                <p className="text-slate-500 mt-1">Essayez de modifier vos termes de recherche.</p>
                                             </div>
                                         </td>
                                     </tr>
                                 ) : (
                                     transactions.map((t) => (
-                                        <tr key={t.id} className="hover:bg-slate-50/50 transition-colors group">
-                                            <td className="px-8 py-5 whitespace-nowrap">
+                                        <tr key={t.id} className="hover:bg-blue-50/30 transition-colors group">
+                                            <td className="px-8 py-6 whitespace-nowrap">
                                                 <div className="flex flex-col">
-                                                    <span className="font-bold text-slate-900">
-                                                        {t.date.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                                                    <span className="font-bold text-slate-900 text-base">
+                                                        {t.date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}
                                                     </span>
-                                                    <span className="text-[10px] text-slate-400 uppercase font-black">
+                                                    <span className="text-xs text-slate-400 font-bold uppercase tracking-wide mt-1">
                                                         {t.date.toLocaleDateString('fr-FR', { weekday: 'long' })}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td className="px-8 py-5">
-                                                <div className="flex items-center gap-3">
-                                                    <div className={`p-2 rounded-lg ${Number(t.amount) >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'}`}>
-                                                        {Number(t.amount) >= 0 ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
+                                            <td className="px-8 py-6">
+                                                <div className="flex items-center gap-4">
+                                                    <div className={`p-2.5 rounded-xl ${Number(t.amount) >= 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'}`}>
+                                                        {Number(t.amount) >= 0 ? <ArrowUpRight className="h-5 w-5" /> : <ArrowDownRight className="h-5 w-5" />}
                                                     </div>
-                                                    <p className="font-medium text-slate-800 line-clamp-1">{t.description}</p>
+                                                    <p className="font-semibold text-slate-700 max-w-md truncate text-base">{t.description}</p>
                                                 </div>
                                             </td>
-                                            <td className="px-8 py-5">
+                                            <td className="px-8 py-6">
                                                 {t.category ? (
-                                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-sky-700 border border-sky-100">
+                                                    <Badge variant="secondary" className="px-3 py-1 text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200 group-hover:bg-white transition-colors">
                                                         {t.category.name}
-                                                    </span>
+                                                    </Badge>
                                                 ) : (
-                                                    <span className="text-slate-300 text-xs italic">Non classé</span>
+                                                    <Badge variant="outline" className="text-slate-300 text-xs italic border-slate-200">
+                                                        Non classé
+                                                    </Badge>
                                                 )}
                                             </td>
-                                            <td className="px-8 py-5 text-right">
-                                                <span className={`text-lg font-black ${Number(t.amount) >= 0 ? 'text-emerald-600' : 'text-slate-900'}`}>
-                                                    {Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                            <td className="px-8 py-6 text-right">
+                                                <span className={`text-lg font-black tracking-tight ${Number(t.amount) >= 0 ? 'text-emerald-600' : 'text-slate-900'}`}>
+                                                    {Number(t.amount) > 0 ? '+' : ''}{Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                                 </span>
                                             </td>
                                         </tr>
@@ -132,16 +150,16 @@ export default async function FinanceHistoryPage({
                         <Link key={i} href={`/finance/history?q=${query}&page=${i + 1}`}>
                             <Button
                                 variant={page === i + 1 ? "default" : "outline"}
-                                className={`h-10 w-10 p-0 rounded-xl font-bold ${page === i + 1 ? 'bg-slate-900' : 'bg-white border-slate-200'}`}
+                                className={`h-12 w-12 p-0 rounded-xl font-bold text-base transition-all ${page === i + 1 ? 'bg-slate-900 shadow-lg shadow-slate-900/20 scale-110' : 'bg-white border-slate-200 hover:bg-slate-50'}`}
                             >
                                 {i + 1}
                             </Button>
                         </Link>
                     ))}
-                    {totalPages > 5 && <span className="flex items-center px-2 text-slate-400">...</span>}
+                    {totalPages > 5 && <span className="flex items-center px-4 text-slate-300 font-black text-xl">...</span>}
                     {totalPages > 5 && (
                         <Link href={`/finance/history?q=${query}&page=${totalPages}`}>
-                            <Button variant={page === totalPages ? "default" : "outline"} className="h-10 w-10 p-0 rounded-xl font-bold">
+                            <Button variant={page === totalPages ? "default" : "outline"} className="h-12 w-12 p-0 rounded-xl font-bold bg-white border-slate-200 hover:bg-slate-50">
                                 {totalPages}
                             </Button>
                         </Link>
