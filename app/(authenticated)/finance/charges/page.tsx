@@ -20,111 +20,142 @@ export default async function FinanceChargesPage() {
 
     return (
         <div className="flex flex-col min-h-screen bg-slate-50/50 space-y-8 p-8 max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 flex items-center gap-3">
-                        <CreditCard className="h-8 w-8 text-blue-600" />
-                        Charges Fixes
-                    </h1>
-                    <p className="text-slate-500 mt-1 font-medium">
-                        Planifiez vos décaissements récurrents pour un pilotage précis.
-                    </p>
-                </div>
-                <div>
-                    <AddFixedCostDialog initialCategories={categories} />
+            {/* Header Section with Gradient */}
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 p-8 shadow-xl text-white">
+                <div className="absolute top-0 right-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
+                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" />
+
+                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3 text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">
+                            <CreditCard className="h-8 w-8 text-blue-400" />
+                            Charges Fixes
+                        </h1>
+                        <p className="mt-2 text-slate-400 font-medium max-w-xl text-lg">
+                            Planifiez vos décaissements récurrents pour un pilotage précis de votre trésorerie.
+                        </p>
+                    </div>
+                    <div className="flex gap-3">
+                        <AddFixedCostDialog initialCategories={categories} />
+                    </div>
                 </div>
             </div>
 
-            {/* Summary Statistics */}
+            {/* KPIs Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="bg-white border-blue-100 shadow-sm border-l-4 border-l-blue-600">
+                <Card className="border-none shadow-lg bg-white/70 backdrop-blur-sm ring-1 ring-slate-200/50">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-slate-500 flex items-center gap-2">
-                            <PieChart className="h-4 w-4" />
+                        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                            <PieChart className="h-4 w-4 text-blue-600" />
                             Total Mensuel Estimé
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold text-slate-900">
+                        <div className="text-4xl font-extrabold text-slate-900 tracking-tight">
                             {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(totalMonthly)}
                         </div>
-                        <p className="text-xs text-slate-500 mt-1">Projection lissée sur l'année</p>
+                        <p className="text-sm font-medium text-slate-400 mt-2">Projection lissée sur l'année</p>
                     </CardContent>
                 </Card>
 
-                <Card className="bg-white border-slate-100 shadow-sm">
+                <Card className="border-none shadow-lg bg-white/70 backdrop-blur-sm ring-1 ring-slate-200/50">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-slate-500">Nombre de Prélèvements</CardTitle>
+                        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                            <Calendar className="h-4 w-4 text-emerald-600" />
+                            Nombre de Prélèvements
+                        </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold text-slate-900">{charges.length}</div>
-                        <p className="text-xs text-slate-500 mt-1">Contrats et abonnements actifs</p>
+                        <div className="text-4xl font-extrabold text-slate-900 tracking-tight">{charges.length}</div>
+                        <p className="text-sm font-medium text-slate-400 mt-2">Contrats et abonnements actifs</p>
+                    </CardContent>
+                </Card>
+
+                {/* Decorative Insight Card */}
+                <Card className="border-none shadow-lg bg-gradient-to-br from-blue-600 to-indigo-700 text-white relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-4 opacity-10">
+                        <CreditCard className="h-24 w-24" />
+                    </div>
+                    <CardContent className="flex flex-col justify-center h-full pt-6 relative z-10">
+                        <p className="text-lg font-medium leading-relaxed opacity-90">
+                            "Une gestion rigoureuse des charges fixes est la clé d'une rentabilité durable."
+                        </p>
                     </CardContent>
                 </Card>
             </div>
 
-            {/* Main Table */}
-            <Card className="border-slate-200 shadow-sm overflow-hidden">
-                <CardHeader className="bg-white border-b border-slate-100">
+            {/* Main Content */}
+            <Card className="border-none shadow-xl bg-white rounded-3xl overflow-hidden ring-1 ring-slate-200">
+                <CardHeader className="border-b border-slate-100 p-8 bg-slate-50/30">
                     <div className="flex items-center justify-between">
                         <div>
-                            <CardTitle>Échéancier</CardTitle>
-                            <CardDescription>Visualisez et gérez vos sorties de cash automatiques.</CardDescription>
+                            <CardTitle className="text-xl font-bold text-slate-900">Échéancier Détaillé</CardTitle>
+                            <CardDescription className="text-slate-500 mt-1">Visualisez et gérez vos sorties de cash automatiques.</CardDescription>
                         </div>
                     </div>
                 </CardHeader>
                 <CardContent className="p-0">
                     <Table>
-                        <TableHeader className="bg-slate-50/50">
-                            <TableRow>
-                                <TableHead className="w-[250px] pl-6">Libellé</TableHead>
-                                <TableHead>Catégorie</TableHead>
-                                <TableHead>Montant</TableHead>
-                                <TableHead>Fréquence</TableHead>
-                                <TableHead>Échéance</TableHead>
-                                <TableHead className="text-right pr-6">Actions</TableHead>
+                        <TableHeader>
+                            <TableRow className="bg-slate-50 border-b border-slate-100 hover:bg-slate-50">
+                                <TableHead className="w-[300px] pl-8 py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Libellé</TableHead>
+                                <TableHead className="py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Catégorie</TableHead>
+                                <TableHead className="py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Montant</TableHead>
+                                <TableHead className="py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Fréquence</TableHead>
+                                <TableHead className="py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Jour</TableHead>
+                                <TableHead className="text-right pr-8 py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {charges.length === 0 ? (
                                 <TableRow>
-                                    <TableCell colSpan={6} className="text-center h-32 text-slate-400">
-                                        Aucune charge configurée. Cliquez sur "Ajouter une charge" pour commencer.
+                                    <TableCell colSpan={6} className="text-center h-48 text-slate-400 bg-slate-50/20">
+                                        <div className="flex flex-col items-center justify-center gap-2">
+                                            <CreditCard className="h-8 w-8 opacity-20" />
+                                            <p>Aucune charge configurée.</p>
+                                            <p className="text-xs">Cliquez sur "Ajouter une charge" pour commencer.</p>
+                                        </div>
                                     </TableCell>
                                 </TableRow>
                             ) : (
                                 charges.map((charge) => (
-                                    <TableRow key={charge.id} className="hover:bg-slate-50/50 transition-colors">
-                                        <TableCell className="font-semibold text-slate-900 pl-6">
-                                            {charge.name}
+                                    <TableRow key={charge.id} className="hover:bg-blue-50/30 transition-colors group border-b border-slate-50">
+                                        <TableCell className="font-semibold text-slate-900 pl-8 py-6">
+                                            <div className="flex items-center gap-3">
+                                                <div className="h-2 w-2 rounded-full bg-blue-500" />
+                                                {charge.name}
+                                            </div>
                                         </TableCell>
                                         <TableCell>
-                                            <Badge variant="secondary" className="font-medium bg-slate-100 text-slate-700 hover:bg-slate-200">
-                                                {charge.category.name}
+                                            <Badge variant="secondary" className="font-semibold bg-slate-100 text-slate-600 border border-slate-200 px-3 py-1 group-hover:bg-white transition-colors">
+                                                {charge.category?.name || 'Non catégorisé'}
                                             </Badge>
                                         </TableCell>
-                                        <TableCell className="font-medium">
+                                        <TableCell className="font-bold text-slate-900 text-base">
                                             {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(Number(charge.amount))}
                                         </TableCell>
                                         <TableCell>
-                                            <span className="text-xs font-medium uppercase tracking-wider text-slate-500 px-2 py-1 bg-slate-100 rounded">
+                                            <span className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-md ${charge.frequency === 'MONTHLY' ? 'bg-emerald-100 text-emerald-700' :
+                                                    charge.frequency === 'QUARTERLY' ? 'bg-amber-100 text-amber-700' :
+                                                        'bg-purple-100 text-purple-700'
+                                                }`}>
                                                 {charge.frequency === 'MONTHLY' && 'Mensuel'}
                                                 {charge.frequency === 'QUARTERLY' && 'Trimestriel'}
                                                 {charge.frequency === 'YEARLY' && 'Annuel'}
                                             </span>
                                         </TableCell>
                                         <TableCell>
-                                            <div className="flex items-center gap-2 text-slate-600">
-                                                <Calendar className="h-3 w-3" />
+                                            <div className="flex items-center gap-2 text-slate-500 font-medium">
+                                                <Calendar className="h-4 w-4 text-slate-400" />
                                                 <span>le {charge.dayOfMonth}</span>
                                             </div>
                                         </TableCell>
-                                        <TableCell className="text-right pr-6">
+                                        <TableCell className="text-right pr-8">
                                             <form action={async () => {
                                                 'use server'
                                                 await deleteFixedCost(charge.id)
                                             }}>
-                                                <Button size="icon" variant="ghost" className="text-slate-400 hover:text-red-600 hover:bg-red-50">
+                                                <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-300 hover:text-red-500 hover:bg-red-50 transition-all">
                                                     <Trash2 className="h-4 w-4" />
                                                 </Button>
                                             </form>

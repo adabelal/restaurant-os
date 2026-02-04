@@ -35,13 +35,32 @@ export async function createFinanceCategory(name: string, type: 'FIXED_COST' | '
 // FIXED COSTS
 export async function getFixedCosts() {
     try {
-        const costs = await prisma.fixedCost.findMany({
-            include: {
-                category: true
-            },
-            orderBy: { dayOfMonth: 'asc' }
+        // Fetch costs and categories separately to avoid Relation errors if data is inconsistent
+        const [costs, categories] = await Promise.all([
+            prisma.fixedCost.findMany({
+                orderBy: { dayOfMonth: 'asc' }
+            }),
+            prisma.financeCategory.findMany()
+        ])
+
+        // Manual Join
+        const enrichedCosts = costs.map(cost => {
+            const category = categories.find(c => c.id === cost.categoryId) || {
+                id: 'unknown',
+                name: 'Non catégorisé',
+                type: 'FIXED_COST',
+                color: 'slate',
+                description: null,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+            return {
+                ...cost,
+                category
+            }
         })
-        return costs
+
+        return enrichedCosts
     } catch (error) {
         console.error("Error fetching fixed costs:", error)
         return []
