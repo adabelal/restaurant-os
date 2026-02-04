@@ -3,5 +3,1255 @@
     "date": "2023-05-30T00:00:00Z",
     "description": "SOLDE INITIAL",
     "amount": 0.0
+  },
+  {
+    "date": "2023-05-30T12:00:00Z",
+    "description": "30/05 G804002 30/05 30/05 500,00VIREMENT",
+    "amount": 500.0
+  },
+  {
+    "date": "2023-05-30T12:00:00Z",
+    "description": "30/05 G804003 30/05 30/05 500,00VIREMENT",
+    "amount": 500.0
+  },
+  {
+    "date": "2023-05-31T12:00:00Z",
+    "description": "31/05 0030993 30/05 30/05 22,82COTIS RYTHMEO",
+    "amount": -22.82
+  },
+  {
+    "date": "2024-01-01T12:00:00Z",
+    "description": "01/01 LOYER TPE / ELC 5401547 01/01 01/01 - 37,69 \u20ac",
+    "amount": -37.69
+  },
+  {
+    "date": "2024-01-02T12:00:00Z",
+    "description": "02/01 PRLV SEPA PREFILOC CAPIT 0DP3BHU 02/01 02/01 - 89,22 \u20ac",
+    "amount": 89.22
+  },
+  {
+    "date": "2024-01-03T12:00:00Z",
+    "description": "03/01 COTIS RYTHMEO 0008621 30/12 30/12 - 52,64 \u20ac",
+    "amount": 52.64
+  },
+  {
+    "date": "2024-01-04T12:00:00Z",
+    "description": "04/01 BOURGOGNE PRODUITS FRAIS 5360047 04/01 31/12 - 587,26 \u20ac",
+    "amount": 587.26
+  },
+  {
+    "date": "2024-01-04T12:00:00Z",
+    "description": "04/01 PRLV SEPA METRO CASH CAR 0DPX8S1 04/01 04/01 - 141,07 \u20ac",
+    "amount": 141.07
+  },
+  {
+    "date": "2024-01-04T12:00:00Z",
+    "description": "04/01 PRLV SEPA COURTOIS BOURG 0DPX5IP 04/01 04/01 - 1 071,41 \u20ac",
+    "amount": 1071.41
+  },
+  {
+    "date": "2024-01-05T12:00:00Z",
+    "description": "05/01 VIR INST MLE FLORENT MAN WJF7LIX 05/01 05/01 - 225,35 \u20ac",
+    "amount": 225.35
+  },
+  {
+    "date": "2024-01-05T12:00:00Z",
+    "description": "05/01 040124 CB****7917 09FFFCZ 05/01 05/01 - 120,00 \u20ac",
+    "amount": 120.0
+  },
+  {
+    "date": "2024-01-05T12:00:00Z",
+    "description": "05/01 040124 CB****7917 09FFFD0 05/01 05/01 - 148,81 \u20ac",
+    "amount": 148.81
+  },
+  {
+    "date": "2024-01-06T12:00:00Z",
+    "description": "06/01 FRAIS VIR INSTANTANE B2B 0024793 05/01 05/01 - 1,00 \u20ac",
+    "amount": -1.0
+  },
+  {
+    "date": "2024-01-08T12:00:00Z",
+    "description": "08/01 050124 CB****7917 0EE5PL4 08/01 08/01 - 17,00 \u20ac",
+    "amount": -17.0
+  },
+  {
+    "date": "2024-01-08T12:00:00Z",
+    "description": "08/01 281223 CB****7917 0EE5PL5 08/01 08/01 - 185,71 \u20ac",
+    "amount": 185.71
+  },
+  {
+    "date": "2024-01-08T12:00:00Z",
+    "description": "08/01 050124 CB****7917 0EE5PL6 08/01 08/01 - 423,45 \u20ac",
+    "amount": 423.45
+  },
+  {
+    "date": "2024-01-08T12:00:00Z",
+    "description": "08/01 050124 CB****7917 0EE5PL7 08/01 08/01 - 484,20 \u20ac",
+    "amount": 484.2
+  },
+  {
+    "date": "2024-01-08T12:00:00Z",
+    "description": "08/01 050124 CB****6839 0EE5Q6R 08/01 08/01 - 30,50 \u20ac",
+    "amount": 30.5
+  },
+  {
+    "date": "2024-01-08T12:00:00Z",
+    "description": "08/01 060124 CB****6839 0EE5Q6S 08/01 08/01 - 80,00 \u20ac",
+    "amount": -80.0
+  },
+  {
+    "date": "2024-01-08T12:00:00Z",
+    "description": "08/01 060124 CB****6839 0EE5Q6T 08/01 08/01 - 90,00 \u20ac",
+    "amount": 90.0
+  },
+  {
+    "date": "2024-01-08T12:00:00Z",
+    "description": "08/01 050124 CB****6839 0EE5Q6U 08/01 08/01 - 190,00 \u20ac",
+    "amount": 190.0
+  },
+  {
+    "date": "2024-01-10T12:00:00Z",
+    "description": "10/01 PRLV SEPA GROUPAMA 40137 0DQZXYS 10/01 10/01 - 602,75 \u20ac",
+    "amount": 602.75
+  },
+  {
+    "date": "2024-01-10T12:00:00Z",
+    "description": "10/01 PRLV SEPA GROUPAMA 40137 0DQZWYN 10/01 10/01 - 16,41 \u20ac",
+    "amount": -16.41
+  },
+  {
+    "date": "2024-01-10T12:00:00Z",
+    "description": "10/01 PRLV SEPA GROUPAMA 40137 0DQZU5R 10/01 10/01 - 16,41 \u20ac",
+    "amount": -16.41
+  },
+  {
+    "date": "2024-01-11T12:00:00Z",
+    "description": "11/01 BOURGOGNE PRODUITS FRAIS 5426015 11/01 09/01 - 473,38 \u20ac",
+    "amount": 473.38
+  },
+  {
+    "date": "2024-01-12T12:00:00Z",
+    "description": "12/01 Sas Courtois 6162683 12/01 12/01 - 1 381,85 \u20ac",
+    "amount": 1381.85
+  },
+  {
+    "date": "2024-01-12T12:00:00Z",
+    "description": "12/01 110124 CB****6839 0L06XJI 12/01 12/01 - 3,62 \u20ac",
+    "amount": -3.62
+  },
+  {
+    "date": "2024-01-12T12:00:00Z",
+    "description": "12/01 110124 CB****6839 0L06XJJ 12/01 12/01 - 16,48 \u20ac",
+    "amount": -16.48
+  },
+  {
+    "date": "2024-01-12T12:00:00Z",
+    "description": "12/01 110124 CB****6839 0L06XJK 12/01 12/01 - 26,37 \u20ac",
+    "amount": 26.37
+  },
+  {
+    "date": "2024-01-12T12:00:00Z",
+    "description": "12/01 120124 CB****6839 0L06XJL 12/01 12/01 - 131,94 \u20ac",
+    "amount": 131.94
+  },
+  {
+    "date": "2024-01-12T12:00:00Z",
+    "description": "12/01 110124 CB****6839 0L06XJM 12/01 12/01 - 280,88 \u20ac",
+    "amount": 280.88
+  },
+  {
+    "date": "2024-01-12T12:00:00Z",
+    "description": "12/01 110124 CB****7917 0L06X7W 12/01 12/01 - 14,46 \u20ac",
+    "amount": -14.46
+  },
+  {
+    "date": "2024-01-12T12:00:00Z",
+    "description": "12/01 REMISE CB 5401547011 0221218 12/01 12/01  213,27 \u20ac",
+    "amount": 213.27
+  },
+  {
+    "date": "2024-01-12T12:00:00Z",
+    "description": "12/01 REMISE CB 5401547011 0222643 12/01 12/01  401,15 \u20ac",
+    "amount": 401.15
+  },
+  {
+    "date": "2024-01-13T12:00:00Z",
+    "description": "13/01 110124 CB****6839 0MNQDL8 13/01 13/01 - 195,65 \u20ac",
+    "amount": 195.65
+  },
+  {
+    "date": "2024-01-13T12:00:00Z",
+    "description": "13/01 120124 CB****7917 0MNQDAX 13/01 13/01 - 19,97 \u20ac",
+    "amount": 19.97
+  },
+  {
+    "date": "2024-01-15T12:00:00Z",
+    "description": "15/01 REMISE CB 5401547011 0223560 15/01 15/01  447,56 \u20ac",
+    "amount": 447.56
+  },
+  {
+    "date": "2024-01-15T12:00:00Z",
+    "description": "15/01 REMISE CB 5401547011 0224943 15/01 15/01  375,49 \u20ac",
+    "amount": 375.49
+  },
+  {
+    "date": "2024-01-15T12:00:00Z",
+    "description": "15/01 REMISE CB 5401547011 0225323 15/01 15/01  1 920,78 \u20ac",
+    "amount": 1920.78
+  },
+  {
+    "date": "2024-01-15T12:00:00Z",
+    "description": "15/01 REMISE CB 5401547011 0226789 15/01 15/01  1 892,22 \u20ac",
+    "amount": 1892.22
+  },
+  {
+    "date": "2024-01-15T12:00:00Z",
+    "description": "15/01 PRLV SEPA URSSAF BOURGOG 0DSE5EA 15/01 15/01 - 474,00 \u20ac",
+    "amount": 474.0
+  },
+  {
+    "date": "2024-01-15T12:00:00Z",
+    "description": "15/01 PRLV SEPA METRO CASH CAR 0DSDBQB 15/01 15/01 - 725,19 \u20ac",
+    "amount": 725.19
+  },
+  {
+    "date": "2024-01-15T12:00:00Z",
+    "description": "15/01 PRLV SEPA METRO CASH CAR 0DSDBQC 15/01 15/01 - 178,82 \u20ac",
+    "amount": 178.82
+  },
+  {
+    "date": "2024-01-15T12:00:00Z",
+    "description": "15/01 130124 CB****6839 0PYVR31 15/01 15/01 - 9,99 \u20ac",
+    "amount": 9.99
+  },
+  {
+    "date": "2024-01-15T12:00:00Z",
+    "description": "15/01 REMISE CB 5401547011 0227687 15/01 15/01  32,79 \u20ac",
+    "amount": -32.79
+  },
+  {
+    "date": "2024-01-16T12:00:00Z",
+    "description": "16/01 PRLV SEPA METRO CASH CAR 0DSMIGE 16/01 16/01 - 684,13 \u20ac",
+    "amount": -684.13
+  },
+  {
+    "date": "2024-01-16T12:00:00Z",
+    "description": "16/01 PRLV SEPA SC EXPERT CONS 0DPMLV4 16/01 16/01 - 274,80 \u20ac",
+    "amount": -274.8
+  },
+  {
+    "date": "2024-01-16T12:00:00Z",
+    "description": "16/01 Caps Vert 6296156 16/01 16/01 - 464,80 \u20ac",
+    "amount": -464.8
+  },
+  {
+    "date": "2024-01-16T12:00:00Z",
+    "description": "16/01 150124 CB****6839 0RMBY81 16/01 16/01 - 13,88 \u20ac",
+    "amount": -13.88
+  },
+  {
+    "date": "2024-01-16T12:00:00Z",
+    "description": "16/01 150124 CB****6839 0RMBY82 16/01 16/01 - 63,99 \u20ac",
+    "amount": -63.99
+  },
+  {
+    "date": "2024-01-16T12:00:00Z",
+    "description": "16/01 150124 CB****6839 0RMBY83 16/01 16/01 - 177,42 \u20ac",
+    "amount": -177.42
+  },
+  {
+    "date": "2024-01-17T12:00:00Z",
+    "description": "17/01 PRLV SEPA METRO CASH CAR 0DSUYPB 17/01 17/01 - 141,72 \u20ac",
+    "amount": -141.72
+  },
+  {
+    "date": "2024-01-17T12:00:00Z",
+    "description": "17/01 PRLV SEPA METRO CASH CAR 0DSUYTN 17/01 17/01 - 2 866,05 \u20ac",
+    "amount": 2866.05
+  },
+  {
+    "date": "2024-01-17T12:00:00Z",
+    "description": "17/01 Mr Belal Benjamin 6340983 17/01 17/01 - 1 500,00 \u20ac",
+    "amount": -1500.0
+  },
+  {
+    "date": "2024-01-17T12:00:00Z",
+    "description": "17/01 Adam Belal 6341001 17/01 17/01 - 1 500,00 \u20ac",
+    "amount": -1500.0
+  },
+  {
+    "date": "2024-01-17T12:00:00Z",
+    "description": "17/01 Sci Bab 6341036 17/01 17/01 - 3 600,00 \u20ac",
+    "amount": -3600.0
+  },
+  {
+    "date": "2024-01-18T12:00:00Z",
+    "description": "18/01 Sarl Sonetrans Aveo 6356759 18/01 18/01 - 62,40 \u20ac",
+    "amount": -62.4
+  },
+  {
+    "date": "2024-01-18T12:00:00Z",
+    "description": "18/01 Tresorerie De Joigny 6356792 18/01 18/01 - 296,54 \u20ac",
+    "amount": -296.54
+  },
+  {
+    "date": "2024-01-19T12:00:00Z",
+    "description": "19/01 180124 CB****6839 0WKY3RY 19/01 19/01 - 5,49 \u20ac",
+    "amount": -5.49
+  },
+  {
+    "date": "2024-01-19T12:00:00Z",
+    "description": "19/01 180124 CB****6839 0WKY3RZ 19/01 19/01 - 27,51 \u20ac",
+    "amount": -27.51
+  },
+  {
+    "date": "2024-01-19T12:00:00Z",
+    "description": "19/01 180124 CB****6839 0WKY3S0 19/01 19/01 - 44,03 \u20ac",
+    "amount": -44.03
+  },
+  {
+    "date": "2024-01-19T12:00:00Z",
+    "description": "19/01 180124 CB****6839 0WKY3S1 19/01 19/01 - 126,22 \u20ac",
+    "amount": -126.22
+  },
+  {
+    "date": "2024-01-19T12:00:00Z",
+    "description": "19/01 180124 CB****6839 0WKY3S2 19/01 19/01 - 414,16 \u20ac",
+    "amount": -414.16
+  },
+  {
+    "date": "2024-01-19T12:00:00Z",
+    "description": "19/01 REMISE CB 5401547011 0228283 19/01 19/01  160,98 \u20ac",
+    "amount": -160.98
+  },
+  {
+    "date": "2024-01-19T12:00:00Z",
+    "description": "19/01 REMISE CB 5401547011 0229771 19/01 19/01  616,31 \u20ac",
+    "amount": -616.31
+  },
+  {
+    "date": "2024-01-22T12:00:00Z",
+    "description": "22/01 REMISE CB 5401547011 0230090 22/01 22/01  1 349,02 \u20ac",
+    "amount": -1349.02
+  },
+  {
+    "date": "2024-01-22T12:00:00Z",
+    "description": "22/01 REMISE CB 5401547011 0231500 22/01 22/01  1 364,42 \u20ac",
+    "amount": -1364.42
+  },
+  {
+    "date": "2024-01-22T12:00:00Z",
+    "description": "22/01 REMISE CB 5401547011 0232990 22/01 22/01  553,04 \u20ac",
+    "amount": -553.04
+  },
+  {
+    "date": "2024-01-22T12:00:00Z",
+    "description": "22/01 REMISE CB 5401547011 0233337 22/01 22/01  819,37 \u20ac",
+    "amount": -819.37
+  },
+  {
+    "date": "2024-01-22T12:00:00Z",
+    "description": "22/01 PRLV SEPA EPISAVEURS EST 0DSVQAV 22/01 22/01 - 198,07 \u20ac",
+    "amount": -198.07
+  },
+  {
+    "date": "2024-01-22T12:00:00Z",
+    "description": "22/01 REMISE CB 5401547011 0234635 22/01 22/01  63,99 \u20ac",
+    "amount": -63.99
+  },
+  {
+    "date": "2024-01-22T12:00:00Z",
+    "description": "22/01 REMISE CB 5401547011 0235778 22/01 22/01  328,34 \u20ac",
+    "amount": -328.34
+  },
+  {
+    "date": "2024-01-23T12:00:00Z",
+    "description": "23/01 EVI METRO FRANCE 1140REE 23/01 23/01  556,63 \u20ac",
+    "amount": -556.63
+  },
+  {
+    "date": "2024-01-23T12:00:00Z",
+    "description": "23/01 PRLV SEPA METRO CASH CAR 0DTJ2AO 23/01 23/01 - 151,34 \u20ac",
+    "amount": -151.34
+  },
+  {
+    "date": "2024-01-24T12:00:00Z",
+    "description": "24/01 PRLV SEPA METRO CASH CAR 0DTQFDT 24/01 24/01 - 655,45 \u20ac",
+    "amount": -655.45
+  },
+  {
+    "date": "2024-01-25T12:00:00Z",
+    "description": "25/01 PRLV SEPA FMB 0DTWT91 25/01 25/01 - 384,82 \u20ac",
+    "amount": -384.82
+  },
+  {
+    "date": "2024-01-25T12:00:00Z",
+    "description": "25/01 PVSI DGFIP 0DTS8C3 25/01 25/01 - 770,00 \u20ac",
+    "amount": -770.0
+  },
+  {
+    "date": "2024-01-26T12:00:00Z",
+    "description": "26/01 250124 CB****6839 185PMBZ 26/01 26/01 - 6,57 \u20ac",
+    "amount": -6.57
+  },
+  {
+    "date": "2024-01-26T12:00:00Z",
+    "description": "26/01 250124 CB****6839 185PMC0 26/01 26/01 - 55,57 \u20ac",
+    "amount": -55.57
+  },
+  {
+    "date": "2024-01-26T12:00:00Z",
+    "description": "26/01 250124 CB****6839 185PMC1 26/01 26/01 - 58,00 \u20ac",
+    "amount": -58.0
+  },
+  {
+    "date": "2024-01-26T12:00:00Z",
+    "description": "26/01 250124 CB****6839 185PMC2 26/01 26/01 - 113,55 \u20ac",
+    "amount": -113.55
+  },
+  {
+    "date": "2024-01-26T12:00:00Z",
+    "description": "26/01 250124 CB****6839 185PMC3 26/01 26/01 - 628,09 \u20ac",
+    "amount": -628.09
+  },
+  {
+    "date": "2024-01-26T12:00:00Z",
+    "description": "26/01 REMISE CB 5401547011 0236949 26/01 26/01  130,98 \u20ac",
+    "amount": -130.98
+  },
+  {
+    "date": "2024-01-26T12:00:00Z",
+    "description": "26/01 REMISE CB 5401547011 0237992 26/01 26/01  590,62 \u20ac",
+    "amount": -590.62
+  },
+  {
+    "date": "2024-01-27T12:00:00Z",
+    "description": "27/01 260124 CB****7917 19T977S 27/01 27/01 - 120,00 \u20ac",
+    "amount": -120.0
+  },
+  {
+    "date": "2024-01-29T12:00:00Z",
+    "description": "29/01 REMISE CB 5401547011 0238172 29/01 29/01  513,82 \u20ac",
+    "amount": -513.82
+  },
+  {
+    "date": "2024-01-29T12:00:00Z",
+    "description": "29/01 REMISE CB 5401547011 0239537 29/01 29/01  907,12 \u20ac",
+    "amount": -907.12
+  },
+  {
+    "date": "2024-01-29T12:00:00Z",
+    "description": "29/01 REMISE CB 5401547011 0240396 29/01 29/01  1 942,24 \u20ac",
+    "amount": -1942.24
+  },
+  {
+    "date": "2024-01-29T12:00:00Z",
+    "description": "29/01 REMISE CB 5401547011 0241654 29/01 29/01  969,47 \u20ac",
+    "amount": -969.47
+  },
+  {
+    "date": "2024-01-29T12:00:00Z",
+    "description": "29/01 PRLV SEPA METRO CASH CAR 0DU7PDQ 29/01 29/01 - 1 646,53 \u20ac",
+    "amount": -1646.53
+  },
+  {
+    "date": "2024-01-29T12:00:00Z",
+    "description": "29/01 PRLV SEPA Butagaz SAS 0DTY1XB 29/01 29/01 - 368,16 \u20ac",
+    "amount": -368.16
+  },
+  {
+    "date": "2024-01-29T12:00:00Z",
+    "description": "29/01 REMISE CB 5401547011 0242542 29/01 29/01  26,92 \u20ac",
+    "amount": -26.92
+  },
+  {
+    "date": "2024-01-29T12:00:00Z",
+    "description": "29/01 REMISE CB 5401547011 0243494 29/01 29/01  280,40 \u20ac",
+    "amount": -280.4
+  },
+  {
+    "date": "2024-01-30T12:00:00Z",
+    "description": "30/01 PRLV SEPA METRO CASH CAR 0DUH42B 30/01 30/01 - 116,19 \u20ac",
+    "amount": -116.19
+  },
+  {
+    "date": "2024-01-30T12:00:00Z",
+    "description": "30/01 PRLV SEPA PREFILOC CAPIT 0DU1U17 30/01 30/01 - 89,22 \u20ac",
+    "amount": -89.22
+  },
+  {
+    "date": "2024-01-30T12:00:00Z",
+    "description": "30/01 290124 CB****6839 1ERUSOC 30/01 30/01 - 9,00 \u20ac",
+    "amount": -9.0
+  },
+  {
+    "date": "2024-01-30T12:00:00Z",
+    "description": "30/01 VIR INST MLE FLORENT MAN WJJ4VSV 30/01 30/01 - 232,34 \u20ac",
+    "amount": -232.34
+  },
+  {
+    "date": "2024-01-30T12:00:00Z",
+    "description": "30/01 CHEQUE 0000003 30/01 30/01 - 40,64 \u20ac",
+    "amount": -40.64
+  },
+  {
+    "date": "2024-01-31T12:00:00Z",
+    "description": "31/01 FRAIS VIR INSTANTANE B2B 0017647 30/01 30/01 - 1,00 \u20ac",
+    "amount": -1.0
+  },
+  {
+    "date": "2024-01-31T12:00:00Z",
+    "description": "31/01 COTIS RYTHMEO 0017646 30/01 30/01 - 58,12 \u20ac",
+    "amount": -58.12
+  },
+  {
+    "date": "2024-08-01T12:00:00Z",
+    "description": "01/08 BOURGOGNE PRODUITS FRAIS 1619077 01/08 30/07 - 1 071,22 \u20ac",
+    "amount": 1071.22
+  },
+  {
+    "date": "2024-08-01T12:00:00Z",
+    "description": "01/08 FRAIS CREATION EURO PRLV 0032505 31/07 31/07 - 3,90 \u20ac",
+    "amount": 3.9
+  },
+  {
+    "date": "2024-08-01T12:00:00Z",
+    "description": "01/08 PRLV SEPA FMB 0EUNHRF 01/08 01/08 - 585,32 \u20ac",
+    "amount": 585.32
+  },
+  {
+    "date": "2024-08-01T12:00:00Z",
+    "description": "01/08 Sas Yonne Service Pro 3908558 01/08 01/08 - 1 791,29 \u20ac",
+    "amount": 1791.29
+  },
+  {
+    "date": "2024-08-01T12:00:00Z",
+    "description": "01/08 LOYER TPE / ELC 5401547 01/08 01/08 - 37,69 \u20ac",
+    "amount": 37.69
+  },
+  {
+    "date": "2024-08-01T12:00:00Z",
+    "description": "01/08 LOYER TPE / ELC 5401547 01/08 01/08 - 10,94 \u20ac",
+    "amount": 10.94
+  },
+  {
+    "date": "2024-08-01T12:00:00Z",
+    "description": "01/08 310724 CB****7917 9V2RG3C 01/08 01/08 - 139,74 \u20ac",
+    "amount": -139.74
+  },
+  {
+    "date": "2024-08-01T12:00:00Z",
+    "description": "01/08 310724 CB****6839 9V2RGCN 01/08 01/08 - 20,23 \u20ac",
+    "amount": -20.23
+  },
+  {
+    "date": "2024-08-02T12:00:00Z",
+    "description": "02/08 Sarl Sonetrans Aveo 3924843 02/08 02/08 - 606,72 \u20ac",
+    "amount": -606.72
+  },
+  {
+    "date": "2024-08-02T12:00:00Z",
+    "description": "02/08 REMISE CB 5401547011 0449051 02/08 02/08  249,20 \u20ac",
+    "amount": -249.2
+  },
+  {
+    "date": "2024-08-02T12:00:00Z",
+    "description": "02/08 REMISE CB 5401547011 0450364 02/08 02/08  863,92 \u20ac",
+    "amount": 863.92
+  },
+  {
+    "date": "2024-08-03T12:00:00Z",
+    "description": "03/08 010824 CB****6839 9YDUDR4 03/08 03/08 - 11,98 \u20ac",
+    "amount": 11.98
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 M Colin Marc 4025470 05/08 05/08 - 600,00 \u20ac",
+    "amount": 600.0
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 REMISE CB 5401547011 0451152 05/08 05/08  1 296,83 \u20ac",
+    "amount": 1296.83
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 REMISE CB 5401547011 0452687 05/08 05/08  1 537,68 \u20ac",
+    "amount": 1537.68
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 REMISE CB 5401547011 0453491 05/08 05/08  429,93 \u20ac",
+    "amount": 429.93
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 REMISE CB 5401547011 0454385 05/08 05/08  1 611,74 \u20ac",
+    "amount": 1611.74
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 PRLV SEPA METRO CASH CAR 0EVHVXV 05/08 05/08 - 789,27 \u20ac",
+    "amount": 789.27
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 PRLV SEPA COURTOIS BOURG 0EVDIF5 05/08 05/08 - 917,50 \u20ac",
+    "amount": 917.5
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 PRLV SEPA Orange SA 0EUK8FZ 05/08 05/08 - 63,60 \u20ac",
+    "amount": 63.6
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 REMISE CB 5401547011 0455459 05/08 05/08  600,69 \u20ac",
+    "amount": -600.69
+  },
+  {
+    "date": "2024-08-05T12:00:00Z",
+    "description": "05/08 REMISE CB 5401547011 0456783 05/08 05/08  1 013,15 \u20ac",
+    "amount": 1013.15
+  },
+  {
+    "date": "2024-08-06T12:00:00Z",
+    "description": "06/08 PRLV SEPA URSSAF BOURGOG 0EW5NFJ 06/08 06/08 - 1 751,00 \u20ac",
+    "amount": 1751.0
+  },
+  {
+    "date": "2024-08-06T12:00:00Z",
+    "description": "06/08 PRLV SEPA URSSAF BOURGOG 0EW5NGQ 06/08 06/08 - 2 108,00 \u20ac",
+    "amount": 2108.0
+  },
+  {
+    "date": "2024-08-07T12:00:00Z",
+    "description": "07/08 PRLV SEPA SACEM-SOC AUTE 0EWBJP3 07/08 07/08 - 402,36 \u20ac",
+    "amount": 402.36
+  },
+  {
+    "date": "2024-08-07T12:00:00Z",
+    "description": "07/08 060824 CB****7917 A4ZZHSR 07/08 07/08 - 481,35 \u20ac",
+    "amount": 481.35
+  },
+  {
+    "date": "2024-08-08T12:00:00Z",
+    "description": "08/08 PRLV SEPA FMB 0EWLBN6 08/08 08/08 - 674,36 \u20ac",
+    "amount": -674.36
+  },
+  {
+    "date": "2024-08-08T12:00:00Z",
+    "description": "08/08 070824 CB****7917 A6NIUJ7 08/08 08/08 - 48,49 \u20ac",
+    "amount": -48.49
+  },
+  {
+    "date": "2024-08-08T12:00:00Z",
+    "description": "08/08 REMISE CB 5401547011 0457754 08/08 08/08  1 398,73 \u20ac",
+    "amount": 1398.73
+  },
+  {
+    "date": "2024-08-08T12:00:00Z",
+    "description": "08/08 REMISE CB 5401547011 0458223 08/08 08/08  1 897,67 \u20ac",
+    "amount": -1897.67
+  },
+  {
+    "date": "2024-08-09T12:00:00Z",
+    "description": "09/08 PRLV SEPA SC EXPERT CONS 0EWXUDO 09/08 09/08 - 274,80 \u20ac",
+    "amount": -274.8
+  },
+  {
+    "date": "2024-08-09T12:00:00Z",
+    "description": "09/08 PRLV SEPA GROUPAMA 40137 0EWQ1EU 09/08 09/08 - 16,41 \u20ac",
+    "amount": -16.41
+  },
+  {
+    "date": "2024-08-09T12:00:00Z",
+    "description": "09/08 PRLV SEPA GROUPAMA 40137 0EWQ04O 09/08 09/08 - 16,41 \u20ac",
+    "amount": -16.41
+  },
+  {
+    "date": "2024-08-09T12:00:00Z",
+    "description": "09/08 PRLV SEPA GROUPAMA 40137 0EWQ15T 09/08 09/08 - 502,15 \u20ac",
+    "amount": -502.15
+  },
+  {
+    "date": "2024-08-09T12:00:00Z",
+    "description": "09/08 REMISE CB 5401547011 0459502 09/08 09/08  1 220,47 \u20ac",
+    "amount": -1220.47
+  },
+  {
+    "date": "2024-08-09T12:00:00Z",
+    "description": "09/08 REMISE CB 5401547011 0460765 09/08 09/08  595,14 \u20ac",
+    "amount": -595.14
+  },
+  {
+    "date": "2024-08-10T12:00:00Z",
+    "description": "10/08 090824 CB****7917 A9YLMDM 10/08 10/08 - 48,47 \u20ac",
+    "amount": -48.47
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 REMISE CB 5401547011 0461672 12/08 12/08  1 675,85 \u20ac",
+    "amount": -1675.85
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 REMISE CB 5401547011 0462937 12/08 12/08  1 862,70 \u20ac",
+    "amount": -1862.7
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 REMISE CB 5401547011 0463172 12/08 12/08  1 059,52 \u20ac",
+    "amount": -1059.52
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 REMISE CB 5401547011 0464891 12/08 12/08  1 262,23 \u20ac",
+    "amount": -1262.23
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 PRLV SEPA METRO CASH CAR 0EX46O0 12/08 12/08 - 691,21 \u20ac",
+    "amount": -691.21
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 100824 CB****7917 AD9NVQW 12/08 12/08 - 44,58 \u20ac",
+    "amount": -44.58
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 100824 CB****6839 AD9NVVM 12/08 12/08 - 198,85 \u20ac",
+    "amount": -198.85
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 Asso Note Et Harmonie 4312869 12/08 12/08 - 300,00 \u20ac",
+    "amount": -300.0
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 110824 CB****6839 AD9RHM9 12/08 12/08 - 138,72 \u20ac",
+    "amount": -138.72
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 REMISE CB 5401547011 0465641 12/08 12/08  203,95 \u20ac",
+    "amount": -203.95
+  },
+  {
+    "date": "2024-08-12T12:00:00Z",
+    "description": "12/08 REMISE CB 5401547011 0466366 12/08 12/08  35,69 \u20ac",
+    "amount": -35.69
+  },
+  {
+    "date": "2024-08-13T12:00:00Z",
+    "description": "13/08 BOURGOGNE PRODUITS FRAIS 1726113 13/08 09/08 - 248,78 \u20ac",
+    "amount": -248.78
+  },
+  {
+    "date": "2024-08-13T12:00:00Z",
+    "description": "13/08 PRLV SEPA METRO CASH CAR 0EXF9IL 13/08 13/08 - 133,51 \u20ac",
+    "amount": -133.51
+  },
+  {
+    "date": "2024-08-13T12:00:00Z",
+    "description": "13/08 PRLV SEPA METRO CASH CAR 0EXF95H 13/08 13/08 - 29,89 \u20ac",
+    "amount": -29.89
+  },
+  {
+    "date": "2024-08-14T12:00:00Z",
+    "description": "14/08 130824 CB****7917 AGKQU49 14/08 14/08 - 177,56 \u20ac",
+    "amount": -177.56
+  },
+  {
+    "date": "2024-08-14T12:00:00Z",
+    "description": "14/08 130824 CB****7917 AGKQU4A 14/08 14/08 - 718,75 \u20ac",
+    "amount": -718.75
+  },
+  {
+    "date": "2024-08-15T12:00:00Z",
+    "description": "15/08 PRLV SEPA FMB 0EXXHNF 15/08 15/08 - 580,34 \u20ac",
+    "amount": -580.34
+  },
+  {
+    "date": "2024-08-16T12:00:00Z",
+    "description": "16/08 PRLV SEPA URSSAF BOURGOG 0EY38W8 16/08 16/08 - 1 871,00 \u20ac",
+    "amount": -1871.0
+  },
+  {
+    "date": "2024-08-16T12:00:00Z",
+    "description": "16/08 130824 CB****6839 AJVTOOC 16/08 16/08 - 9,99 \u20ac",
+    "amount": -9.99
+  },
+  {
+    "date": "2024-08-16T12:00:00Z",
+    "description": "16/08 150824 CB****7917 AJVX58W 16/08 16/08 - 13,88 \u20ac",
+    "amount": -13.88
+  },
+  {
+    "date": "2024-08-17T12:00:00Z",
+    "description": "17/08 150824 CB****7917 ALJCYYV 17/08 17/08 - 100,02 \u20ac",
+    "amount": -100.02
+  },
+  {
+    "date": "2024-08-19T12:00:00Z",
+    "description": "19/08 Mr Belal Benjamin 4483105 19/08 19/08 - 1 500,00 \u20ac",
+    "amount": -1500.0
+  },
+  {
+    "date": "2024-08-19T12:00:00Z",
+    "description": "19/08 PRLV SEPA EPISAVEURS EST 0EX9YH0 19/08 19/08 - 705,61 \u20ac",
+    "amount": -705.61
+  },
+  {
+    "date": "2024-08-19T12:00:00Z",
+    "description": "19/08 170824 CB****7917 AOUF912 19/08 19/08 - 101,13 \u20ac",
+    "amount": -101.13
+  },
+  {
+    "date": "2024-08-19T12:00:00Z",
+    "description": "19/08 170824 CB****6839 AOUF962 19/08 19/08 - 30,65 \u20ac",
+    "amount": -30.65
+  },
+  {
+    "date": "2024-08-20T12:00:00Z",
+    "description": "20/08 BOURGOGNE PRODUITS FRAIS 1835041 20/08 19/08 - 995,80 \u20ac",
+    "amount": -995.8
+  },
+  {
+    "date": "2024-08-20T12:00:00Z",
+    "description": "20/08 Adam Belal 4552117 20/08 20/08 - 1 500,00 \u20ac",
+    "amount": -1500.0
+  },
+  {
+    "date": "2024-08-20T12:00:00Z",
+    "description": "20/08 Sci Bab 4552134 20/08 20/08 - 3 600,00 \u20ac",
+    "amount": -3600.0
+  },
+  {
+    "date": "2024-08-21T12:00:00Z",
+    "description": "21/08 PRLV SEPA METRO CASH CAR 0EYJV03 21/08 21/08 - 5,00 \u20ac",
+    "amount": -5.0
+  },
+  {
+    "date": "2024-08-21T12:00:00Z",
+    "description": "21/08 PVSI DGFIP 0EYFQJH 21/08 21/08 - 1 840,00 \u20ac",
+    "amount": -1840.0
+  },
+  {
+    "date": "2024-08-22T12:00:00Z",
+    "description": "22/08 PRLV SEPA FMB 0EYQWMR 22/08 22/08 - 466,40 \u20ac",
+    "amount": -466.4
+  },
+  {
+    "date": "2024-08-26T12:00:00Z",
+    "description": "26/08 PRLV SEPA SC EXPERT CONS 0EXL28M 26/08 26/08 - 274,80 \u20ac",
+    "amount": -274.8
+  },
+  {
+    "date": "2024-08-26T12:00:00Z",
+    "description": "26/08 PRLV SEPA COURTOIS BOURG 0EYZIGP 26/08 26/08 - 1 049,52 \u20ac",
+    "amount": -1049.52
+  },
+  {
+    "date": "2024-08-30T12:00:00Z",
+    "description": "30/08 PRLV SEPA PREFILOC CAPIT 0EZIBTU 30/08 30/08 - 89,22 \u20ac",
+    "amount": -89.22
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 REMISE CB 5401547011 0926211 02/01 02/01  3 725,60 \u20ac",
+    "amount": 3725.6
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 REMISE CB 5401547011 0927198 02/01 02/01  4 187,79 \u20ac",
+    "amount": 4187.79
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 PRLV SEPA FMB 01EBTDS 02/01 02/01 - 291,83 \u20ac",
+    "amount": -291.83
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 301225 CB****6839 04GU5US 02/01 02/01 - 2 111,62 \u20ac",
+    "amount": 2111.62
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 311225 CB****7917 04GU5P3 02/01 02/01 - 71,84 \u20ac",
+    "amount": 71.84
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 311225 CB****7917 04GU5P4 02/01 02/01 - 77,99 \u20ac",
+    "amount": 77.99
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 311225 CB****7917 04GU5P5 02/01 02/01 - 116,18 \u20ac",
+    "amount": 116.18
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 301225 CB****7917 04GU5P6 02/01 02/01 - 283,55 \u20ac",
+    "amount": -283.55
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 010126 CB****6839 04GX1H3 02/01 02/01 - 0,02 \u20ac",
+    "amount": -0.02
+  },
+  {
+    "date": "2026-01-02T12:00:00Z",
+    "description": "02/01 010126 CB****6839 04GX1H4 02/01 02/01 - 12,72 \u20ac",
+    "amount": -12.72
+  },
+  {
+    "date": "2026-01-03T12:00:00Z",
+    "description": "03/01 Location - Abonnement 5401547 01/01 01/01 - 37,69 \u20ac",
+    "amount": 37.69
+  },
+  {
+    "date": "2026-01-03T12:00:00Z",
+    "description": "03/01 Location - Abonnement 5401547 01/01 01/01 - 37,69 \u20ac",
+    "amount": -37.69
+  },
+  {
+    "date": "2026-01-05T12:00:00Z",
+    "description": "05/01 BOURGOGNE PRODUITS FRAIS 2223175 05/01 01/01 - 1 267,93 \u20ac",
+    "amount": -1267.93
+  },
+  {
+    "date": "2026-01-05T12:00:00Z",
+    "description": "05/01 PRLV SEPA COURTOIS BOURG 01EVPBR 05/01 05/01 - 2 028,08 \u20ac",
+    "amount": 2028.08
+  },
+  {
+    "date": "2026-01-05T12:00:00Z",
+    "description": "05/01 PRLV SEPA ORANGE SA 01DK7K0 05/01 05/01 - 63,60 \u20ac",
+    "amount": 63.6
+  },
+  {
+    "date": "2026-01-07T12:00:00Z",
+    "description": "07/01 PRLV SEPA SPRE 01FU3ZU 07/01 07/01 - 25,36 \u20ac",
+    "amount": -25.36
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST MR BELAL BENJAM W754NZD 08/01 08/01 - 3 000,00 \u20ac",
+    "amount": 3000.0
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST Souchet Laura W754O0O 08/01 08/01 - 134,48 \u20ac",
+    "amount": 134.48
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST Noellie SOUCHET W754O1F 08/01 08/01 - 129,60 \u20ac",
+    "amount": -129.6
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST Cauchois Amelie W754O22 08/01 08/01 - 155,16 \u20ac",
+    "amount": -155.16
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST MME LEROY FLORE W754O2J 08/01 08/01 - 123,62 \u20ac",
+    "amount": 123.62
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST M JULES COULON W754O3H 08/01 08/01 - 307,93 \u20ac",
+    "amount": 307.93
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST MME LEROY FLORE W754OVI 08/01 08/01 - 17,56 \u20ac",
+    "amount": -17.56
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST Belal Virginie W754OWA 08/01 08/01 - 123,62 \u20ac",
+    "amount": -123.62
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST Prudencia Kons W754OWQ 08/01 08/01 - 250,00 \u20ac",
+    "amount": -250.0
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST MME SARAH ROSSE W754OX9 08/01 08/01 - 108,41 \u20ac",
+    "amount": -108.41
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST Jennifer GUERRA W754OY5 08/01 08/01 - 62,08 \u20ac",
+    "amount": -62.08
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST Micheline Dupon W754OYQ 08/01 08/01 - 207,08 \u20ac",
+    "amount": -207.08
+  },
+  {
+    "date": "2026-01-08T12:00:00Z",
+    "description": "08/01 VIR INST SCI BAB W754OZD 08/01 08/01 - 3 600,00 \u20ac",
+    "amount": 3600.0
+  },
+  {
+    "date": "2026-01-09T12:00:00Z",
+    "description": "09/01 PRLV SEPA GROUPAMA 40137 01GLXZ9 09/01 09/01 - 30,15 \u20ac",
+    "amount": -30.15
+  },
+  {
+    "date": "2026-01-09T12:00:00Z",
+    "description": "09/01 PRLV SEPA GROUPAMA 40137 01GLZ29 09/01 09/01 - 676,63 \u20ac",
+    "amount": -676.63
+  },
+  {
+    "date": "2026-01-09T12:00:00Z",
+    "description": "09/01 PRLV SEPA GROUPAMA 40137 01GLZZC 09/01 09/01 - 30,15 \u20ac",
+    "amount": -30.15
+  },
+  {
+    "date": "2026-01-09T12:00:00Z",
+    "description": "09/01 060126 CB****6839 0G1L0O1 09/01 09/01 - 46,55 \u20ac",
+    "amount": -46.55
+  },
+  {
+    "date": "2026-01-10T12:00:00Z",
+    "description": "10/01 090126 CB****7917 0HP4T10 10/01 10/01 - 303,60 \u20ac",
+    "amount": -303.6
+  },
+  {
+    "date": "2026-01-10T12:00:00Z",
+    "description": "10/01 090126 CB****7917 0HP4T11 10/01 10/01 - 394,11 \u20ac",
+    "amount": -394.11
+  },
+  {
+    "date": "2026-01-12T12:00:00Z",
+    "description": "12/01 100126 CB****7917 0L073DU 12/01 12/01 - 1 139,09 \u20ac",
+    "amount": -1139.09
+  },
+  {
+    "date": "2026-01-12T12:00:00Z",
+    "description": "12/01 100126 CB****7917 0L0ARSZ 12/01 12/01 - 143,50 \u20ac",
+    "amount": -143.5
+  },
+  {
+    "date": "2026-01-12T12:00:00Z",
+    "description": "12/01 100126 CB****7917 0L0ART0 12/01 12/01 - 242,80 \u20ac",
+    "amount": -242.8
+  },
+  {
+    "date": "2026-01-12T12:00:00Z",
+    "description": "12/01 100126 CB****7917 0L0ART1 12/01 12/01 - 907,00 \u20ac",
+    "amount": -907.0
+  },
+  {
+    "date": "2026-01-13T12:00:00Z",
+    "description": "13/01 BOURGOGNE PRODUITS FRAIS 2302017 13/01 09/01 - 1 059,81 \u20ac",
+    "amount": -1059.81
+  },
+  {
+    "date": "2026-01-14T12:00:00Z",
+    "description": "14/01 REMB COMMERCIAL 3367218 14/01 14/01  150,00 \u20ac",
+    "amount": -150.0
+  },
+  {
+    "date": "2026-01-15T12:00:00Z",
+    "description": "15/01 130126 CB****6839 0PYT99J 15/01 15/01 - 9,99 \u20ac",
+    "amount": -9.99
+  },
+  {
+    "date": "2026-01-16T12:00:00Z",
+    "description": "16/01 150126 CB****7917 0RMCL4S 16/01 16/01 - 112,80 \u20ac",
+    "amount": -112.8
+  },
+  {
+    "date": "2026-01-16T12:00:00Z",
+    "description": "16/01 VIR INST SARL CALMUS W76VHVB 16/01 16/01 - 24,60 \u20ac",
+    "amount": -24.6
+  },
+  {
+    "date": "2026-01-17T12:00:00Z",
+    "description": "17/01 150126 CB****7917 0T9W92B 17/01 17/01 - 1 218,84 \u20ac",
+    "amount": -1218.84
+  },
+  {
+    "date": "2026-01-19T12:00:00Z",
+    "description": "19/01 REMISE CB 5401547011 0928210 19/01 19/01  1 067,22 \u20ac",
+    "amount": -1067.22
+  },
+  {
+    "date": "2026-01-19T12:00:00Z",
+    "description": "19/01 REMISE CB 5401547011 0929360 19/01 19/01  742,97 \u20ac",
+    "amount": -742.97
+  },
+  {
+    "date": "2026-01-19T12:00:00Z",
+    "description": "19/01 REMISE CB 5401547011 0930076 19/01 19/01  1 048,49 \u20ac",
+    "amount": -1048.49
+  },
+  {
+    "date": "2026-01-19T12:00:00Z",
+    "description": "19/01 REMISE CB 5401547011 0931934 19/01 19/01  2 728,85 \u20ac",
+    "amount": -2728.85
+  },
+  {
+    "date": "2026-01-19T12:00:00Z",
+    "description": "19/01 REMISE CB 5401547011 0932697 19/01 19/01  267,98 \u20ac",
+    "amount": -267.98
+  },
+  {
+    "date": "2026-01-19T12:00:00Z",
+    "description": "19/01 PVSI DGFIP 01IDNUP 19/01 19/01 - 749,00 \u20ac",
+    "amount": -749.0
+  },
+  {
+    "date": "2026-01-20T12:00:00Z",
+    "description": "20/01 PRLV SEPA SC EXPERT CONS 01IOWZE 20/01 20/01 - 360,00 \u20ac",
+    "amount": -360.0
+  },
+  {
+    "date": "2026-01-20T12:00:00Z",
+    "description": "20/01 PRLV SEPA PASSIONFROID B 01IV0G6 20/01 20/01 - 233,12 \u20ac",
+    "amount": -233.12
+  },
+  {
+    "date": "2026-01-20T12:00:00Z",
+    "description": "20/01 VIR INST TAVOLARA SETBON W77COKY 20/01 20/01 - 500,00 \u20ac",
+    "amount": -500.0
+  },
+  {
+    "date": "2026-01-21T12:00:00Z",
+    "description": "21/01 VIR INST Boulangerie Par W77JV9L 21/01 21/01 - 300,00 \u20ac",
+    "amount": -300.0
+  },
+  {
+    "date": "2026-01-21T12:00:00Z",
+    "description": "21/01 VIR INST Asso soley Vybz W77JVCB 21/01 21/01 - 350,00 \u20ac",
+    "amount": -350.0
+  },
+  {
+    "date": "2026-01-21T12:00:00Z",
+    "description": "21/01 200126 CB****6839 0ZW16A7 21/01 21/01 - 49,24 \u20ac",
+    "amount": -49.24
+  },
+  {
+    "date": "2026-01-21T12:00:00Z",
+    "description": "21/01 200126 CB****6839 0ZW16A8 21/01 21/01 - 99,00 \u20ac",
+    "amount": -99.0
+  },
+  {
+    "date": "2026-01-22T12:00:00Z",
+    "description": "22/01 210126 CB****7917 11JKMQE 22/01 22/01 - 99,57 \u20ac",
+    "amount": -99.57
+  },
+  {
+    "date": "2026-01-22T12:00:00Z",
+    "description": "22/01 PVSI DGFIP 01J57TO 22/01 22/01 - 1 660,00 \u20ac",
+    "amount": -1660.0
+  },
+  {
+    "date": "2026-01-23T12:00:00Z",
+    "description": "23/01 210126 CB****7917 1373Z7Y 23/01 23/01 - 1 447,76 \u20ac",
+    "amount": -1447.76
+  },
+  {
+    "date": "2026-01-23T12:00:00Z",
+    "description": "23/01 REMISE CB 5401547011 0933718 23/01 23/01  518,73 \u20ac",
+    "amount": -518.73
+  },
+  {
+    "date": "2026-01-23T12:00:00Z",
+    "description": "23/01 REMISE CB 5401547011 0934454 23/01 23/01  118,55 \u20ac",
+    "amount": -118.55
+  },
+  {
+    "date": "2026-01-25T12:00:00Z",
+    "description": "25/01 VIR INST Eirl Dvin W783S9I 25/01 25/01 - 1 271,10 \u20ac",
+    "amount": -1271.1
+  },
+  {
+    "date": "2026-01-26T12:00:00Z",
+    "description": "26/01 REMISE CB 5401547011 0935811 26/01 26/01  154,41 \u20ac",
+    "amount": -154.41
+  },
+  {
+    "date": "2026-01-26T12:00:00Z",
+    "description": "26/01 REMISE CB 5401547011 0936618 26/01 26/01  1 587,00 \u20ac",
+    "amount": -1587.0
+  },
+  {
+    "date": "2026-01-26T12:00:00Z",
+    "description": "26/01 REMISE CB 5401547011 0937028 26/01 26/01  71,53 \u20ac",
+    "amount": -71.53
+  },
+  {
+    "date": "2026-01-26T12:00:00Z",
+    "description": "26/01 REMISE CB 5401547011 0938117 26/01 26/01  1 906,91 \u20ac",
+    "amount": -1906.91
+  },
+  {
+    "date": "2026-01-26T12:00:00Z",
+    "description": "26/01 240126 CB****7917 185Q1HM 26/01 26/01 - 7,80 \u20ac",
+    "amount": -7.8
+  },
+  {
+    "date": "2026-01-26T12:00:00Z",
+    "description": "26/01 240126 CB****7917 185Q1HN 26/01 26/01 - 9,52 \u20ac",
+    "amount": -9.52
+  },
+  {
+    "date": "2026-01-26T12:00:00Z",
+    "description": "26/01 REMISE CB 5401547011 0939093 26/01 26/01  590,34 \u20ac",
+    "amount": -590.34
+  },
+  {
+    "date": "2026-01-27T12:00:00Z",
+    "description": "27/01 PRLV SEPA PASSIONFROID B 01K26U9 27/01 27/01 - 236,95 \u20ac",
+    "amount": -236.95
+  },
+  {
+    "date": "2026-01-29T12:00:00Z",
+    "description": "29/01 PRLV SEPA FMB 01KI5UY 29/01 29/01 - 449,29 \u20ac",
+    "amount": -449.29
+  },
+  {
+    "date": "2026-01-29T12:00:00Z",
+    "description": "29/01 280126 CB****7917 1D4C5XM 29/01 29/01 - 17,29 \u20ac",
+    "amount": -17.29
+  },
+  {
+    "date": "2026-01-30T12:00:00Z",
+    "description": "30/01 PRLV SEPA PREFILOC CAPIT 01KFQ0R 30/01 30/01 - 89,22 \u20ac",
+    "amount": -89.22
+  },
+  {
+    "date": "2026-01-30T12:00:00Z",
+    "description": "30/01 280126 CB****7917 1ERVHQE 30/01 30/01 - 298,67 \u20ac",
+    "amount": -298.67
+  },
+  {
+    "date": "2026-01-30T12:00:00Z",
+    "description": "30/01 280126 CB****7917 1ERVHQF 30/01 30/01 - 548,10 \u20ac",
+    "amount": -548.1
+  },
+  {
+    "date": "2026-01-30T12:00:00Z",
+    "description": "30/01 REMISE CB 5401547011 0940376 30/01 30/01  578,00 \u20ac",
+    "amount": -578.0
+  },
+  {
+    "date": "2026-01-30T12:00:00Z",
+    "description": "30/01 REMISE CB 5401547011 0941198 30/01 30/01  142,05 \u20ac",
+    "amount": -142.05
   }
 ]
