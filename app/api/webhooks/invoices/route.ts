@@ -4,7 +4,9 @@ import { prisma } from "@/lib/prisma"
 export async function POST(req: Request) {
     // Sécurité: Vérification de la clé API
     const apiKey = req.headers.get("x-api-key")
-    if (!process.env.N8N_API_KEY || apiKey !== process.env.N8N_API_KEY) {
+    const validKey = process.env.RESTAURANT_OS_API_KEY || process.env.N8N_API_KEY
+
+    if (!validKey || apiKey !== validKey) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
