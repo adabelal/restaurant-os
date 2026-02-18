@@ -24,25 +24,8 @@ COPY download_invoices_2026.py .
 COPY analyze_inbox.py .
 COPY smart_cleanup.py .
 
-# Créer un script de démarrage qui restaure les secrets depuis les variables d'environnement
-RUN echo '#!/bin/bash\n\
-  if [ -n "$GMAIL_CREDENTIALS_BASE64" ]; then\n\
-  echo "$GMAIL_CREDENTIALS_BASE64" | base64 -d > credentials.json\n\
-  echo "✅ credentials.json restauré depuis ENV"\n\
-  fi\n\
-  if [ -n "$GMAIL_TOKEN_BASE64" ]; then\n\
-  echo "$GMAIL_TOKEN_BASE64" | base64 -d > token.json\n\
-  echo "✅ token.json restauré depuis ENV"\n\
-  fi\n\
-  \n\
-  while true; do\n\
-  echo "--- Lancement du scan Gmail $(date) ---"\n\
-  python download_invoices_2026.py\n\
-  echo "--- Scan terminé. Prochain passage dans 12h ---"\n\
-  sleep 43200\n\
-  done' > /app/entrypoint.sh
+# Copier le script de démon
+COPY run_daemon.py .
 
-RUN chmod +x /app/entrypoint.sh
-
-# Lancer la boucle
-CMD ["/app/entrypoint.sh"]
+# Utiliser le démon Python pour gérer la boucle d'exécution de manière robuste
+CMD ["python", "run_daemon.py"]
