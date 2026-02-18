@@ -100,7 +100,7 @@ def analyze_with_ai(text_content, sender_info, subject_info):
 
     genai.configure(api_key=api_key)
     # Using 'gemini-1.5-flash' for speed and efficiency
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-pro')
 
     prompt = f"""
     Tu es un assistant comptable expert. Analyse le texte suivant extrait d'une facture ou d'un email.
