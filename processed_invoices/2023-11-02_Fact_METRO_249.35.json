@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-11-02",
+  "invoiceNo": "0/0 (067) 0001/008374",
+  "totalAmount": 249.35,
+  "items": [
+    {
+      "name": "0296202 GIGOT AGN S/OS HALAL S/V NZ",
+      "quantity": 16.244,
+      "unit": "kg",
+      "unitPrice": 14.55,
+      "totalPrice": 236.35
+    }
+  ]
+}

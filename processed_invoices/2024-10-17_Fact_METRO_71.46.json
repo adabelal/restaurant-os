@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-17",
+  "invoiceNo": "0/0 (067) 0015/016836",
+  "totalAmount": 71.46,
+  "items": [
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.83,
+      "totalPrice": 27.66
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.4,
+      "totalPrice": 7.55
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.46,
+      "totalPrice": 13.46
+    },
+    {
+      "name": "RAPE A LEGUME /FROMAG. INOX20CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.42,
+      "totalPrice": 3.42
+    },
+    {
+      "name": "PASSOIRE INOX 23 CM FM PRO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.34,
+      "totalPrice": 13.34
+    }
+  ]
+}

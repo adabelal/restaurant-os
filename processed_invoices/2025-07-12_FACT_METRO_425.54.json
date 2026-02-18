@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-07-12",
+  "invoiceNo": "0/0 (067) 0014/026514",
+  "totalAmount": 425.54,
+  "items": [
+    {
+      "name": "MC MELANG 4 EPICES 450G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.6,
+      "totalPrice": 7.6
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.44,
+      "totalPrice": 18.26
+    },
+    {
+      "name": "PAIN 100% MIE LC 12X12 820G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.13,
+      "totalPrice": 3.13
+    },
+    {
+      "name": "TAGLIATEL NATURES 1KG ROYANS",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 4.59,
+      "totalPrice": 9.18
+    },
+    {
+      "name": "ANCHOIS MARINES ORIENTA 1KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.01,
+      "totalPrice": 13.01
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 38.77
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 35.71
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 41.83
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 39.85
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 38.23
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 17.51
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 11.72
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 15.46
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 16.61
+    },
+    {
+      "name": "FLT SAUM 1.5/1.9 X20 EL/FEROE S/V. SALMO SALAR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 28.46
+    },
+    {
+      "name": "FRAISE MARIGUETTE 800G C1 FRFRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 10.99,
+      "totalPrice": 32.97
+    },
+    {
+      "name": "SAL BATAVIA MC PC6 C1 FRFRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 14.28
+    }
+  ]
+}

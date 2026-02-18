@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-21",
+  "invoiceNo": "0/0 (067)0001/0093542",
+  "totalAmount": 145.13,
+  "items": [
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 4.82
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.11,
+      "totalPrice": 132.74
+    }
+  ]
+}

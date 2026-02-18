@@ -1,0 +1,99 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-01-10",
+  "invoiceNo": "5010100252",
+  "totalAmount": 90.0,
+  "items": [
+    {
+      "name": "90 FUT 30 L LOBURG",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 3.705,
+      "totalPrice": 375.03
+    },
+    {
+      "name": "LT PUREE PASSION MONIN",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 9.031,
+      "totalPrice": 36.12
+    },
+    {
+      "name": "MONIN ORANGE SPRITZ 70 CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 6.776,
+      "totalPrice": 13.55
+    },
+    {
+      "name": "MONIN VIOLETTE SIROP 70 CL",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 6.204,
+      "totalPrice": 18.61
+    },
+    {
+      "name": "MONIN BASILIC SIROP 70 CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 8.96,
+      "totalPrice": 8.96
+    },
+    {
+      "name": "30 FUT 15L ROSE BLANCHE BRUXELLE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.022,
+      "totalPrice": 156.12
+    },
+    {
+      "name": "40 FUT 20 L TRIPEL KARMELIET",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.464,
+      "totalPrice": 244.48
+    },
+    {
+      "name": "ELSASS COLA 33CLX24 VC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 0.658,
+      "totalPrice": 50.54
+    },
+    {
+      "name": "ELSASS COLA ZERO 33CLX24 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.688,
+      "totalPrice": 16.8
+    },
+    {
+      "name": "LINESS MISS TONIC 33CLX24 VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.795,
+      "totalPrice": 39.55
+    },
+    {
+      "name": "WH.SINGLE MALT OUISKI 70CL 40\u00b0",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 27.502,
+      "totalPrice": 27.5
+    },
+    {
+      "name": "WH.FR G.ROZELIEURES 40\u00b0 70cl",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 28.596,
+      "totalPrice": 28.6
+    },
+    {
+      "name": "-1 WH.FR G.ROZELIEURES 40\u00b0 70cl",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 2.7,
+      "totalPrice": -2.7
+    }
+  ]
+}

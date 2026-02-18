@@ -1,0 +1,176 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-15",
+  "invoiceNo": "067/045",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.823,
+      "totalPrice": 21.88
+    },
+    {
+      "name": "BEURRE DX PLQ 250G ROCHAMBEAU",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.53,
+      "totalPrice": 20.24
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.01,
+      "totalPrice": 22.02
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.36,
+      "totalPrice": 26.72
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.17,
+      "totalPrice": 20.79
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.95,
+      "totalPrice": 9.9
+    },
+    {
+      "name": "FRY' N' DIP 2.5KG MCCAIN",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.52,
+      "totalPrice": 32.6
+    },
+    {
+      "name": "LIME MC CAL 1/2 BRESIL CIBRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.27,
+      "totalPrice": 86.35
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.55,
+      "totalPrice": 15.1
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 4.38
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.16,
+      "totalPrice": 26.32
+    },
+    {
+      "name": "OIG CHARC MC 7/10 8KG C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.71,
+      "totalPrice": 8.71
+    },
+    {
+      "name": "CONCOMBRE PC 4/5 MC FR C1FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.42,
+      "totalPrice": 8.52
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.015,
+      "totalPrice": 173.75
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.524,
+      "totalPrice": 73.53
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.54,
+      "totalPrice": 106.42
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.624,
+      "totalPrice": 118.33
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.776,
+      "totalPrice": 8.33
+    },
+    {
+      "name": "MC HUILE FRITURE 10L",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 2.29,
+      "totalPrice": 91.6
+    },
+    {
+      "name": "SEL GROS SEAU 5KG CEREBOS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.77,
+      "totalPrice": 4.77
+    },
+    {
+      "name": "SAUCE CHOCOLAT 1KG SWEETIES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.85,
+      "totalPrice": 7.85
+    },
+    {
+      "name": "LAIT ENT UHT BT1L MC ENGAGE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.345,
+      "totalPrice": 8.07
+    },
+    {
+      "name": "AEROSOL SUCREE 700ML DEBIC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.39,
+      "totalPrice": 44.34
+    }
+  ]
+}

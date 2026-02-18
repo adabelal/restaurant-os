@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-29",
+  "invoiceNo": "0/0 (067) 0001/0009822",
+  "totalAmount": 347.91,
+  "items": [
+    {
+      "name": "1632140 POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.6,
+      "totalPrice": 41.43
+    },
+    {
+      "name": "3034204 FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.36,
+      "totalPrice": 281.77
+    },
+    {
+      "name": "7130669 CELERI BOTTE 6 FRA C1FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    }
+  ]
+}

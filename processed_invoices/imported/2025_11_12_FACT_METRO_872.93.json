@@ -1,0 +1,239 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-11-12",
+  "invoiceNo": "0/0 (067) 0051/0063222",
+  "totalAmount": 596.4,
+  "items": [
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.997,
+      "totalPrice": 35.94
+    },
+    {
+      "name": "COUSCOUS FIN 5KG FERRERO",
+      "quantity": 4.0,
+      "unit": "kg",
+      "unitPrice": 2.384,
+      "totalPrice": 47.68
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.498,
+      "totalPrice": 7.49
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 11.81,
+      "totalPrice": 11.81
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.898,
+      "totalPrice": 14.49
+    },
+    {
+      "name": "AEROSOL SUCREE 700ML DEBIC",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 7.53,
+      "totalPrice": 45.18
+    },
+    {
+      "name": "*CHEVRE BUCHE 1KG PPX",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 37.96
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 38.5
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 37.6
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 39.4
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 33.82
+    },
+    {
+      "name": "FILET PLT BLC HAL 2.5 S/AT FR",
+      "quantity": 4.0,
+      "unit": "kg",
+      "unitPrice": 20.73,
+      "totalPrice": 82.92
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.49,
+      "totalPrice": 10.23
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.49,
+      "totalPrice": 13.86
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.49,
+      "totalPrice": 9.33
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.49,
+      "totalPrice": 11.15
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.49,
+      "totalPrice": 10.57
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.49,
+      "totalPrice": 12.94
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 20.12
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 16.34
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 15.05
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 15.59
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 14.28
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.59,
+      "totalPrice": 28.76
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.59,
+      "totalPrice": 28.05
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.59,
+      "totalPrice": 27.09
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.59,
+      "totalPrice": 27.92
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.59,
+      "totalPrice": 26.97
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.59,
+      "totalPrice": 28.83
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.95,
+      "totalPrice": 9.12
+    },
+    {
+      "name": "CELERI RAVE PC8 FR FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.99,
+      "totalPrice": 3.98
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 FRFRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.99,
+      "totalPrice": 5.97
+    }
+  ]
+}

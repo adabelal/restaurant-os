@@ -1,0 +1,148 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-07-04",
+  "invoiceNo": "0/0 (067) 0014/024238",
+  "totalAmount": 298.23,
+  "items": [
+    {
+      "name": "BLANCS NEIGE CARAMEL 2.2L MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.71,
+      "totalPrice": 8.13
+    },
+    {
+      "name": "CREME ANGLAISE 1L MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.29,
+      "totalPrice": 4.58
+    },
+    {
+      "name": "LIEGEOIS 4*100GCAFE ROCHAMBEAU",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.08,
+      "totalPrice": 3.24
+    },
+    {
+      "name": "1/32 COMTE AOP 6M 1, 2KGENV FN",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.75,
+      "totalPrice": 18.11
+    },
+    {
+      "name": "FROMAGE BREBIS CUBE 2X250G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.82,
+      "totalPrice": 6.82
+    },
+    {
+      "name": "P. MIE COMPLET LC 550G ROCHAMB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.37,
+      "totalPrice": 1.37
+    },
+    {
+      "name": "TER SAUMON ASC 840G ESCALLES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.64,
+      "totalPrice": 21.28
+    },
+    {
+      "name": "SAUMON FUME ARO 6/900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 25.7,
+      "totalPrice": 18.3
+    },
+    {
+      "name": "RILLETTES CANARD 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.16,
+      "totalPrice": 15.16
+    },
+    {
+      "name": "PATE PIMENT ESPELETTE 2KGENV",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.89,
+      "totalPrice": 20.85
+    },
+    {
+      "name": "JB SERRANO 60T 8MOIS 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.17,
+      "totalPrice": 16.17
+    },
+    {
+      "name": "ROTI PORC CUIT SUP 1KG ENV RUS",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.5,
+      "totalPrice": 12.07
+    },
+    {
+      "name": "EMINCE PLT TEX MEX 500G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.8,
+      "totalPrice": 6.8
+    },
+    {
+      "name": "ROTI BOEUF CUITMACREUSE 2KGENV",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.13,
+      "totalPrice": 31.84
+    },
+    {
+      "name": "ROTI BOEUF CUITMACREUSE 2KGENV",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.13,
+      "totalPrice": 29.28
+    },
+    {
+      "name": "ROTI PORCCUIT SUP 3. 7KGENV RUS",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.1,
+      "totalPrice": 34.89
+    },
+    {
+      "name": "CHORIZO DOUX CULAR 1.5KENV MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.0,
+      "totalPrice": 15.91
+    },
+    {
+      "name": "ROSETTE 2, 5KG ENV RUSTADOU",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.64,
+      "totalPrice": 25.4
+    },
+    {
+      "name": "SAL BATAVIA X6 MC C1 FRANCE FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.29,
+      "totalPrice": 7.74
+    },
+    {
+      "name": "OIG RGE GBOX 5/7 1KG DMLT C1 FR 80FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.99,
+      "totalPrice": 1.99
+    }
+  ]
+}

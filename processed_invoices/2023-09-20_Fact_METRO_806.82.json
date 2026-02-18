@@ -1,0 +1,141 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-20",
+  "invoiceNo": "0/(067) 0001/0071002",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.89,
+      "totalPrice": 108.9
+    },
+    {
+      "name": "MC CUMIN MOULU 400G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.51,
+      "totalPrice": 6.51
+    },
+    {
+      "name": "MC PAPRIKA DOUX 550G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.62,
+      "totalPrice": 6.62
+    },
+    {
+      "name": "ARO JUS CITRON JAUNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.95,
+      "totalPrice": 2.95
+    },
+    {
+      "name": "MC ASSAIS COUSCOUS 500G",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 8.2,
+      "totalPrice": 16.4
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 17.57,
+      "totalPrice": 35.14
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 11.5,
+      "totalPrice": 23.0
+    },
+    {
+      "name": "COCA COLA REG PET 1,25L",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 1.725,
+      "totalPrice": 41.4
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.21,
+      "totalPrice": 15.21
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.079,
+      "totalPrice": 25.9
+    },
+    {
+      "name": "CELERI RAVE FR 8 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.17,
+      "totalPrice": 4.34
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.5,
+      "totalPrice": 7.5
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.08,
+      "totalPrice": 6.48
+    },
+    {
+      "name": "COURG 14/21 MC 5 KG C1 FR FRANCE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 10.57,
+      "totalPrice": 31.71
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 7.03,
+      "totalPrice": 21.09
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 7.17,
+      "totalPrice": 21.51
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 12.677,
+      "totalPrice": 76.06
+    },
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 8.08,
+      "totalPrice": 24.24
+    },
+    {
+      "name": "BSR CAPT. MORGAN 35D 70CL",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 10.13,
+      "totalPrice": 121.56
+    }
+  ]
+}

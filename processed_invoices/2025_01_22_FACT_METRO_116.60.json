@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-22",
+  "invoiceNo": "0/0 (067) 0013/0009532",
+  "totalAmount": 116.6,
+  "items": [
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.7,
+      "totalPrice": 6.7
+    },
+    {
+      "name": "LACTE FRUIT 4X125G ABRICOT E-V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.98,
+      "totalPrice": 1.98
+    },
+    {
+      "name": "CREME DES VANIL125GX4 SAINTPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 0.99
+    },
+    {
+      "name": "CREME DES CARAMEL 125GX4 STPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 0.99
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.81,
+      "totalPrice": 19.28
+    },
+    {
+      "name": "VERITABLE CO BLEU PLT X6 900G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.24,
+      "totalPrice": 26.48
+    },
+    {
+      "name": "SCISSE TOULOUSE ETUV 8X125G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.59,
+      "totalPrice": 7.59
+    },
+    {
+      "name": "PLT F. LR PAC JNE MIS S/F 1,7+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.49,
+      "totalPrice": 9.88
+    },
+    {
+      "name": "OLIV VERTE DENOY SAV SOLEIL 2, 2KG MAR/ES MAROC/ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.94,
+      "totalPrice": 14.94
+    },
+    {
+      "name": "COURG 14/21 METRO CHEF 5KG ES C1 ESPAGNE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 9.95,
+      "totalPrice": 19.9
+    },
+    {
+      "name": "OIG JNE MC GBOX 6/8 1KG C1FR 80FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.79,
+      "totalPrice": 1.79
+    }
+  ]
+}

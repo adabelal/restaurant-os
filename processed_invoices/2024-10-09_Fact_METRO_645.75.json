@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-09",
+  "invoiceNo": "0/0 (067) 0017/0045232",
+  "totalAmount": 612.09,
+  "items": [
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.87,
+      "totalPrice": 92.2
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.5,
+      "totalPrice": 73.03
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.88,
+      "totalPrice": 134.9
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.63,
+      "totalPrice": 13.63
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.17,
+      "totalPrice": 21.78
+    },
+    {
+      "name": "CREME ANGLAISE 2L DEBIC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 6.47,
+      "totalPrice": 19.41
+    },
+    {
+      "name": "AEROSOL SUCREE 700ML DEBIC",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 7.1,
+      "totalPrice": 28.4
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 65.1
+    },
+    {
+      "name": "MC ASSAIS COUSCOUS 500G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 8.42,
+      "totalPrice": 50.52
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.58,
+      "totalPrice": 17.58
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.85,
+      "totalPrice": 2.85
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 3.184,
+      "totalPrice": 15.92
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.15,
+      "totalPrice": 24.15
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 ESPAGNE ESPAGNE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.74,
+      "totalPrice": 5.48
+    },
+    {
+      "name": "TOM RDE MC 57+6KG X56 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.43,
+      "totalPrice": 16.43
+    },
+    {
+      "name": "CONCOMBRE PC 5/6 MC FR C1FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.03,
+      "totalPrice": 6.18
+    }
+  ]
+}

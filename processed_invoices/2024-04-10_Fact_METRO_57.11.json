@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-10",
+  "invoiceNo": "0/0 (067) 0017/0007702",
+  "totalAmount": 57.11,
+  "items": [
+    {
+      "name": "CARAIBOS COCKT. ILES VP 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 2.628,
+      "totalPrice": 31.54
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V ESP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.49,
+      "totalPrice": 22.59
+    }
+  ]
+}

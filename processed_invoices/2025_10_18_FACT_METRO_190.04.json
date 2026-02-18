@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-18",
+  "invoiceNo": "0/0 (067) 0051/0040472",
+  "totalAmount": 190.04,
+  "items": [
+    {
+      "name": "FROMAGE BLC 3% 1KG MC",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 2.56,
+      "totalPrice": 5.12
+    },
+    {
+      "name": "CAMEMBERT 250G PRESIDENT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.0,
+      "totalPrice": 4.0
+    },
+    {
+      "name": "JB SERRANO 60T 8MOIS 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.92,
+      "totalPrice": 14.92
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 18.99,
+      "totalPrice": 34.81
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 18.99,
+      "totalPrice": 34.35
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 18.99,
+      "totalPrice": 35.8
+    },
+    {
+      "name": "MANGUE PRE. MURIE MC PC5 C1 ES ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.49,
+      "totalPrice": 7.45
+    },
+    {
+      "name": "SAL BATAVIA MC PC6 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.19,
+      "totalPrice": 7.14
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG 56 BE CIBELGIQUE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.94,
+      "totalPrice": 11.94
+    },
+    {
+      "name": "VERRRINE TAPAS 8CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.202,
+      "totalPrice": 21.63
+    }
+  ]
+}

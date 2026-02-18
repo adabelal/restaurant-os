@@ -1,0 +1,127 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-06-11",
+  "invoiceNo": "067/045",
+  "totalAmount": 381.11,
+  "items": [
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.16,
+      "totalPrice": 109.38
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.72,
+      "totalPrice": 111.27
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.03,
+      "totalPrice": 7.09
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.91,
+      "totalPrice": 21.82
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 19.38
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 10.85,
+      "totalPrice": 32.55
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.01,
+      "totalPrice": 16.01
+    },
+    {
+      "name": "SEL GROS SEAU 5KG CEREBOS",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.04,
+      "totalPrice": 5.04
+    },
+    {
+      "name": "SEL FIN CEREBOS SEAU 5 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.21,
+      "totalPrice": 4.21
+    },
+    {
+      "name": "MC PAPRIKA DOUX 550G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.5,
+      "totalPrice": 6.5
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.552,
+      "totalPrice": 7.76
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.85,
+      "totalPrice": 2.85
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC ESP C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 3.27
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG X56 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.83,
+      "totalPrice": 9.83
+    },
+    {
+      "name": "ARO LIQ VAISS MAIN POM 3X1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.01,
+      "totalPrice": 8.02
+    },
+    {
+      "name": "SUCR PDR SACHET 1KG ROCHAMB",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.593,
+      "totalPrice": 9.56
+    }
+  ]
+}

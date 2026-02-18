@@ -1,0 +1,50 @@
+{
+  "supplierName": "KRILL",
+  "date": "2025-01-17",
+  "invoiceNo": "0798113",
+  "totalAmount": 660.82,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": 8.82,
+      "unit": "kg",
+      "unitPrice": 7.3,
+      "totalPrice": 64.39
+    },
+    {
+      "name": "JAMBON SEC SERRANO 30 TRANCHES STG SAT 5 00 G ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.99,
+      "totalPrice": 7.99
+    },
+    {
+      "name": "SAUCISSON CUIT A L'AIL CHOIX FUME 1 KG F RANCE VPF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.85,
+      "totalPrice": 5.85
+    },
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 9.905,
+      "unit": "kg",
+      "unitPrice": 15.48,
+      "totalPrice": 153.33
+    },
+    {
+      "name": "ENTRECOTE VB LIMOUSINE 3/6 KG S/V FRANCE MF VBF",
+      "quantity": 11.01,
+      "unit": "kg",
+      "unitPrice": 22.96,
+      "totalPrice": 252.79
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30 S/V UK UE PTF",
+      "quantity": 9.661,
+      "unit": "kg",
+      "unitPrice": 14.49,
+      "totalPrice": 139.99
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-05",
+  "invoiceNo": "0/0 (067) 0013/0029632",
+  "totalAmount": 100.52,
+  "items": [
+    {
+      "name": "SAN PELL 1L PET",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.63,
+      "totalPrice": 3.78
+    },
+    {
+      "name": "MUTTI POLPA FINE BTE 1/2",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.112,
+      "totalPrice": 6.67
+    },
+    {
+      "name": "SAUCE BOUTEILLE MISTRAL 100G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.57,
+      "totalPrice": 5.57
+    },
+    {
+      "name": "BURRATINA 4X50G ZANETTI",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.64,
+      "totalPrice": 7.28
+    },
+    {
+      "name": "CHORIZO BELLOTA 500G ENV",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.76,
+      "totalPrice": 12.06
+    },
+    {
+      "name": "MERGUEZ BF/MOUTON HAL 1KG S/V",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.69,
+      "totalPrice": 10.89
+    },
+    {
+      "name": "MERGUEZ BF/MOUTON HAL 1KG S/V",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.69,
+      "totalPrice": 10.7
+    },
+    {
+      "name": "FRUIT PASSION COLOMBIE A PESER",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.99,
+      "totalPrice": 15.58
+    },
+    {
+      "name": "MPRO 100 BTE PIZZA 31X31X3.5CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.0,
+      "totalPrice": 20.0
+    }
+  ]
+}

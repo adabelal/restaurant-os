@@ -1,0 +1,141 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-16",
+  "invoiceNo": "067/045",
+  "totalAmount": 337.86,
+  "items": [
+    {
+      "name": "ARO LIQ VAISS MAIN POM 3X1L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 4.01,
+      "totalPrice": 8.02
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.88,
+      "totalPrice": 17.67
+    },
+    {
+      "name": "BEURRE DX PORT 8GX125 PRESID",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.96,
+      "totalPrice": 12.96
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.63,
+      "totalPrice": 13.63
+    },
+    {
+      "name": "CRISTALI 50CL PET",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.194,
+      "totalPrice": 4.66
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 25.46,
+      "totalPrice": 25.46
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.44,
+      "totalPrice": 16.44
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 2.41
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.74,
+      "totalPrice": 2.74
+    },
+    {
+      "name": "TOM RDE GRAP 5KG EX FRFRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.69,
+      "totalPrice": 13.69
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.46,
+      "totalPrice": 64.5
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 18.96,
+      "totalPrice": 86.27
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.5,
+      "totalPrice": 75.05
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.88,
+      "totalPrice": 112.04
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 5.0,
+      "unit": "kg",
+      "unitPrice": 10.85,
+      "totalPrice": 54.25
+    },
+    {
+      "name": "MC PAPRIKA DOUX 550G",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 6.5,
+      "totalPrice": 13.0
+    },
+    {
+      "name": "MC ASSAIS POULET ROTI 670G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.7,
+      "totalPrice": 4.7
+    },
+    {
+      "name": "MAIZENA 700G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.9,
+      "totalPrice": 3.9
+    },
+    {
+      "name": "LAIT ENT UHT BT1L MC ENGAGE",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.343,
+      "totalPrice": 8.06
+    }
+  ]
+}

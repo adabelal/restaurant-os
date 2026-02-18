@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-25",
+  "invoiceNo": "0/0 (067) 0017/0010462",
+  "totalAmount": 29.85,
+  "items": [
+    {
+      "name": "POITRINE AGN S/OS HAL S/V ESP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.99,
+      "totalPrice": 28.29
+    }
+  ]
+}

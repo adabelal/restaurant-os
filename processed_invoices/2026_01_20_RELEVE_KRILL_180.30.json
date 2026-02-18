@@ -1,0 +1,43 @@
+{
+  "supplierName": "KRILL",
+  "date": "2025-05-12",
+  "invoiceNo": "858926",
+  "totalAmount": 180.3,
+  "items": [
+    {
+      "name": "FILET CANARD 300/400 GX 2 S/V FRANCE",
+      "quantity": 0.806,
+      "unit": "kg",
+      "unitPrice": 9.6,
+      "totalPrice": 7.74
+    },
+    {
+      "name": "BOUDIN BLANC CEPE SUPERIEUR BN SAT 100 G X 10",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.4,
+      "totalPrice": 8.4
+    },
+    {
+      "name": "BURRATA POT 300 G PNE 125 G ITALIE X8",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 1.986,
+      "totalPrice": 15.89
+    },
+    {
+      "name": "MATIERE GRASSE LIQUIDE CUIRE ET ROTIR BO UTEILLE 1 L DEBIC",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 9.67,
+      "totalPrice": 9.67
+    },
+    {
+      "name": "ENTRECOTE VB LIMOUSINE 3/6 KG S/V FRANCE MF VBF",
+      "quantity": 5.285,
+      "unit": "kg",
+      "unitPrice": 24.344,
+      "totalPrice": 128.66
+    }
+  ]
+}

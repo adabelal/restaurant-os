@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-10-18",
+  "invoiceNo": "2024-0210",
+  "totalAmount": 1800.0,
+  "items": [
+    {
+      "name": "Chalmeau, Chitry rouge",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 11.5,
+      "totalPrice": 345.0
+    },
+    {
+      "name": "Richoux; Irancy",
+      "quantity": 60.0,
+      "unit": "U",
+      "unitPrice": 18.0,
+      "totalPrice": 1080.0
+    },
+    {
+      "name": "Mont-Olivet; Ros\u00e9",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 12.5,
+      "totalPrice": 375.0
+    }
+  ]
+}

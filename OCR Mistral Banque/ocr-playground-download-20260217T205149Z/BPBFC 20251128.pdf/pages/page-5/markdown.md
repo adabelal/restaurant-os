@@ -1,0 +1,82 @@
++
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 10 AU 28/11/2025
+
+|  DATE COMPTA | LIBELLE / REFERENCE |  | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- | --- |
+|  18/11 | PRLV SEPA PASSIONFROID B
+/INV/8333623477 14.11.2025
+00002ES000018612 | 013T36U | 18/11 | 18/11 | - 291,72 €  |
+|  19/11 | VIR INST SAS YONNE SERVI
+Pour SAS YONNE SERVICE PRO
+fa 1764 | W6SRS1Q | 19/11 | 19/11 | - 1 625,16 €  |
+|  19/11 | VIR INST MME SARAH ROSSE
+Pour MME SARAH ROSSE
+avance paie | W6SSB05 | 19/11 | 19/11 | - 350,00 €  |
+|  21/11 | BOURGOGNE PRODUITS FRAIS
+ECH:20/11/25 | 1503158 | 21/11 | 19/11 | - 573,57 €  |
+|  22/11 | 201125 CB***7917
+METRO FR MONETEAU067
+330,50EUR 1 EURO = 1,000000 | F0AYME5 | 22/11 | 22/11 | - 330,50 €  |
+|  24/11 | PRLV SEPA EPISAVEURS EST
+/INV/8971885895 14.11.2025
+00007SS000016712 | 01474I1 | 24/11 | 24/11 | - 226,26 €  |
+|  25/11 | PRLV SEPA COURTOIS BOURG
+Prelevement Magnetique
+++COU03601C4287S34160 | 0156RJ9 | 25/11 | 25/11 | - 2 554,89 €  |
+|  25/11 | 241125 CB***7917
+COURTOIS BOURGOFR MONETEAU
+30,54EUR 1 EURO = 1,000000 | F59K1LI | 25/11 | 25/11 | - 30,54 €  |
+|  25/11 | PVSI DGFIP
+TVA1-112025-3310CA3
+NN952717999DGFIP2023112419LKI4MZ | 014XPKS | 25/11 | 25/11 | - 1 891,00 €  |
+|  26/11 | 241125 CB***6839
+METRO FR MONETEAU067
+1502,65EUR 1 EURO = 1,000000 | F6X3L97 | 26/11 | 26/11 | - 1 502,65 €  |
+|  26/11 | 241125 CB***7917
+METRO FR MONETEAU067
+269,79EUR 1 EURO = 1,000000 | F6X3KYL | 26/11 | 26/11 | - 269,79 €  |
+|  27/11 | PRLV SEPA FMB
+PRLT FCT N-0854984 DU 14-11-25
+FMB059-00003006-001 | 015QYB5 | 27/11 | 27/11 | - 226,75 €  |
+|  27/11 | Tresorerie De Joigny
+Virement de Sarl Siwa
+2025 OM 00 11362 | 1178778 | 27/11 | 27/11 | - 753,08 €  |
+|  27/11 | 261125 CB***7917
+GRAND FRAIS FR PERRIGNY
+56,99EUR 1 EURO = 1,000000 | F8KN6JM | 27/11 | 27/11 | - 56,99 €  |
+|  27/11 | 261125 CB***6839
+GOOGLE*GSUITE SFR CC GOOGLE.CO
+10,00EUR 1 EURO = 1,000000 | F8KN6VE | 27/11 | 27/11 | - 10,00 €  |
+|  28/11 | PRLV SEPA PASSIONFROID B
+/INV/8333631097 26.11.2025
+00002ES000018612 | 015XVG7 | 28/11 | 28/11 | - 278,11 €  |
+|  28/11 | 261125 CB***7917
+METRO FR MONETEAU067
+513,38EUR 1 EURO = 1,000000 | FA86JL2 | 28/11 | 28/11 | - 513,38 €  |
+|  28/11 | REMISE CB 5401547011
+BRUT 142,50E - COM 1,19E
+- NB0002/172757 | 0893757 | 28/11 | 28/11 | 141,31 €  |
+|  28/11 | REMISE CB 5401547011
+BRUT 417,80E - COM 1,60E
+- NB0023/168096 | 0892096 | 28/11 | 28/11 | 416,20 €  |
+
+TOTAL DES MOUVEMENTS DEBITEURS
+- 45 205,56 €
+
+TOTAL DES MOUVEMENTS CREDITEURS
+27 453,18 €
+
+SOLDE CREDITEUR AU 28/11/2025*
+11 487,59 €
+
+(*) Sous réserve des opérations en cours d'enregistrement et d'une provision suffisante et disponible lors de l'arrêté du solde du compte réalisé en fin de journée. Ce document ne justifie pas la déduction de la TVA ou de la charge en matière d'impôt direct.
+
++
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPOJN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Madame la Médiateur de la Banque Populaire Bourgogne Franche-Comté, La Poste - 2 rue des Artisans BP 41008, 25500 Les Fins. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts

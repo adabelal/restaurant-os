@@ -1,0 +1,483 @@
+{
+  "releve_bancaire": {
+    "numero_releve": "N° 12",
+    "periode": "DU 01/01/2026 AU 30/01/2026",
+    "transactions": [
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 3 739,90E - COM 14,30E - NB0174/197211",
+        "debit": 0,
+        "credit": 3725.6
+      },
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 4 205,00E - COM 17,21E - NB0041/103198",
+        "debit": 0,
+        "credit": 4187.79
+      },
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "PRLV SEPA FMB PRLT FCT N-0861329 DU 19-12-25 FMB059-00003006-001",
+        "debit": 291.83,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "301225 CB***6839 METRO FR MONETEAU067 2111,62EUR 1 EURO = 1,000000",
+        "debit": 2111.62,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "311225 CB***7917 CENTRAKOR FR AUXERRE 71,84EUR 1 EURO = 1,000000",
+        "debit": 71.84,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "311225 CB***7917 GRAND FRAIS FR PERRIGNY 77,99EUR 1 EURO = 1,000000",
+        "debit": 77.99,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "311225 CB***7917 METRO FR MONETEAU067 116,18EUR 1 EURO = 1,000000",
+        "debit": 116.18,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "301225 CB***7917 METRO FR MONETEAU067 283,55EUR 1 EURO = 1,000000",
+        "debit": 283.55,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "010126 CB***6839 Google CLOUD 3WFR Paris 0,02EUR 1 EURO = 1,000000",
+        "debit": 0.02,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/01/2026",
+        "libelle": "010126 CB***6839 Google WorkspacFR Paris 12,72EUR 1 EURO = 1,000000",
+        "debit": 12.72,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/01/2026",
+        "libelle": "Location - Abonnement MOIS DE DECEMBRE 2025 HT: 31,41/TVA20,00: 6,28",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/01/2026",
+        "libelle": "Location - Abonnement MOIS DE DECEMBRE 2025 HT: 31,41/TVA20,00: 6,28",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "05/01/2026",
+        "libelle": "BOURGOGNE PRODUITS FRAIS ECH.02/01/26",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "05/01/2026",
+        "libelle": "PRLV SEPA COURTOIS BOURG Prelevement Magnetique ++COU03601C4287S34160",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "05/01/2026",
+        "libelle": "PRLV SEPA ORANGE SA Votre abonnement fibre (facture: M0063503064",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "07/01/2026",
+        "libelle": "PRLV SEPA SPRE Prelevement SPRE 15-MAN-123496327-841235823-01",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST MR BELAL BENJAM Pour MR BELAL BENJAMIN janvier",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST Souchet Laura Pour SOUCHET LAURA decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST Noellie SOUCHET Pour NOELLIE SOUCHET decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST Cauchois Amelie Pour CAUCHOIS AMELIE Decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST MME LEROY FLORE Pour MME LEROY FLORENCE Decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST M JULES COULON Pour M JULES COULON decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST MME LEROY FLORE Pour MME LEROY FLORENCE decembre complement",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST Belal Virginie Pour BELAL VIRGINIE Decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST Prudencia Kons Pour PRUDENCIA KONS decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST MME SARAH ROSSE Pour MME SARAH ROSSE decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST Jennifer GUERRA Pour JENNIFER GUERRA BAQUERO decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST Micheline Dupon Pour MICHELINE DUPONT decembre",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/01/2026",
+        "libelle": "VIR INST SCI BAB Pour SCI BAB loyer",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "09/01/2026",
+        "libelle": "PRLV SEPA GROUPAMA 40137 P088767537 19327041800028 MSIAPVL0200213720230912",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "09/01/2026",
+        "libelle": "PRLV SEPA GROUPAMA 40137 P088873359 19326780500028 MSIAPVL0200213720230912",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "09/01/2026",
+        "libelle": "PRLV SEPA GROUPAMA 40137 P088760822 15327102000128 MSIAPVL0200213720230912",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "09/01/2026",
+        "libelle": "060126 CB***6839 AMAZON PAYMENTSFR PAYLI2441535 46,55EUR 1 EURO = 1,000000",
+        "debit": 46.55,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/01/2026",
+        "libelle": "090126 CB***7917 JEFF DE BRUGES FR AUXERRE 303,60EUR 1 EURO = 1,000000",
+        "debit": 303.6,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/01/2026",
+        "libelle": "090126 CB***7917 SAS PASCAULT FR MONTHOLON 394,11EUR 1 EURO = 1,000000",
+        "debit": 394.11,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/01/2026",
+        "libelle": "100126 CB***7917 ESTAMPE H ET B FR 89AUXERRE 1139,09EUR 1 EURO = 1,000000",
+        "debit": 1139.09,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/01/2026",
+        "libelle": "100126 CB***7917 LE CLOS DE LESPFR AUXERRE 143,50EUR 1 EURO = 1,000000",
+        "debit": 143.5,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/01/2026",
+        "libelle": "100126 CB***7917 LES BRIMBOS FR AUXERRE 242,80EUR 1 EURO = 1,000000",
+        "debit": 242.8,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/01/2026",
+        "libelle": "100126 CB***7917 LA RENAISSANCE FR AUXERRE 907,00EUR 1 EURO = 1,000000",
+        "debit": 907,
+        "credit": 0
+      },
+      {
+        "date_operation": "13/01/2026",
+        "libelle": "BOURGOGNE PRODUITS FRAIS ECH:10/01/26",
+        "debit": 1059.81,
+        "credit": 0
+      },
+      {
+        "date_operation": "14/01/2026",
+        "libelle": "REMB COMMERCIAL EXT FORFAIT PRO",
+        "debit": 0,
+        "credit": 150
+      },
+      {
+        "date_operation": "15/01/2026",
+        "libelle": "130126 CB***6839 Google Play AppIE Dublin 9,99EUR 1 EURO = 1,000000",
+        "debit": 9.99,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/01/2026",
+        "libelle": "150126 CB***7917 GRAND FRAIS FR PERRIGNY 112,80EUR 1 EURO = 1,000000",
+        "debit": 112.8,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/01/2026",
+        "libelle": "VIR INST SARL CALMUS Pour SARL CALMUS CC6482 sonde",
+        "debit": 24.6,
+        "credit": 0
+      },
+      {
+        "date_operation": "17/01/2026",
+        "libelle": "150126 CB***7917 METRO FR MONETEAU067 1218,84EUR 1 EURO = 1,000000",
+        "debit": 1218.84,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 1 071,30E - COM 4,08E - NB0048/158210",
+        "debit": 0,
+        "credit": 1067.22
+      },
+      {
+        "date_operation": "19/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 748,33E - COM 5,36E - NB0006/164360",
+        "debit": 0,
+        "credit": 742.97
+      },
+      {
+        "date_operation": "19/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 1 052,50E - COM 4,01E - NB0014/153076",
+        "debit": 0,
+        "credit": 1048.49
+      },
+      {
+        "date_operation": "19/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 2 739,24E - COM 10,39E - NB0116/146934",
+        "debit": 0,
+        "credit": 2728.85
+      },
+      {
+        "date_operation": "19/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 269,00E - COM 1,02E - NB0003/195697",
+        "debit": 0,
+        "credit": 267.98
+      },
+      {
+        "date_operation": "19/01/2026",
+        "libelle": "PVSI DGFIP IS1-012026-2572 NN952717999DGFIP2023112419LKI4MZ",
+        "debit": 749,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/01/2026",
+        "libelle": "PRLV SEPA SC EXPERT CONS 00260000319 URXCQDFPGT",
+        "debit": 360,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/01/2026",
+        "libelle": "PRLV SEPA PASSIONFROID B /INV/8333662834 16.1.2026 00002ES000018612",
+        "debit": 233.12,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/01/2026",
+        "libelle": "VIR INST TAVOLARA SETBON Pour TAVOLARA SETBON DAVID Dj 31 janvier",
+        "debit": 500,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/01/2026",
+        "libelle": "VIR INST Boulangerie Par Pour BOULANGERIE PARIS Fact 2025 349",
+        "debit": 300,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/01/2026",
+        "libelle": "VIR INST Asso soley Vybz Pour ASSO SOLEY VYBZ Fact 00126",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/01/2026",
+        "libelle": "200126 CB***6839 AMAZON PAYMENTSFR PAYLI2441535 49,24EUR 1 EURO = 1,000000",
+        "debit": 49.24,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/01/2026",
+        "libelle": "200126 CB***6839 CONFEDERATION NFR JONAGE 99,00EUR 1 EURO = 1,000000",
+        "debit": 99,
+        "credit": 0
+      },
+      {
+        "date_operation": "22/01/2026",
+        "libelle": "210126 CB***7917 GRAND FRAIS FR PERRIGNY 99,57EUR 1 EURO = 1,000000",
+        "debit": 99.57,
+        "credit": 0
+      },
+      {
+        "date_operation": "22/01/2026",
+        "libelle": "PVSI DGFIP TVA1-012026-3310CA3 NN952717999DGFIP2023112419LKI4MZ",
+        "debit": 1660,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/01/2026",
+        "libelle": "210126 CB***7917 METRO FR MONETEAU067 1447,76EUR 1 EURO = 1,000000",
+        "debit": 1447.76,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 520,70E - COM 1,97E - NB0017/186718",
+        "debit": 0,
+        "credit": 518.73
+      },
+      {
+        "date_operation": "23/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 119,00E - COM 0,45E - NB0002/193454",
+        "debit": 0,
+        "credit": 118.55
+      },
+      {
+        "date_operation": "25/01/2026",
+        "libelle": "VIR INST Eirl Dvin Pour EIRL DVIN Fact 2025 11",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 155,00E - COM 0,59E - NB0004/196811",
+        "debit": 0,
+        "credit": 154.41
+      },
+      {
+        "date_operation": "26/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 1 593,50E - COM 6,50E - NB0054/191618",
+        "debit": 0,
+        "credit": 1587
+      },
+      {
+        "date_operation": "26/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 71,80E - COM 0,27E - NB0001/185028",
+        "debit": 0,
+        "credit": 71.53
+      },
+      {
+        "date_operation": "26/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 1 915,22E - COM 8,31E - NB0065/180117",
+        "debit": 0,
+        "credit": 1906.91
+      },
+      {
+        "date_operation": "26/01/2026",
+        "libelle": "240126 CB***7917 MARIE BLACHERE FR PERRIGNY 702 7,80EUR 1 EURO = 1,000000",
+        "debit": 7.8,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/01/2026",
+        "libelle": "240126 CB***7917 GRAND FRAIS FR PERRIGNY 9,52EUR 1 EURO = 1,000000",
+        "debit": 9.52,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 592,60E - COM 2,26E - NB0007/128093",
+        "debit": 0,
+        "credit": 590.34
+      },
+      {
+        "date_operation": "27/01/2026",
+        "libelle": "PRLV SEPA PASSIONFROID B /INV/8333667507 23.1.2026 00002ES000018612",
+        "debit": 236.95,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/01/2026",
+        "libelle": "PRLV SEPA FMB PRLT FCT N-0865364 DU 16-01-26 FMB059-00003006-001",
+        "debit": 449.29,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/01/2026",
+        "libelle": "280126 CB***7917 GRAND FRAIS FR PERRIGNY 17,29EUR 1 EURO = 1,000000",
+        "debit": 17.29,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/01/2026",
+        "libelle": "PRLV SEPA PREFILOC CAPIT F260065906 PRE000101879",
+        "debit": 89.22,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/01/2026",
+        "libelle": "280126 CB***7917 METRO FR MONETEAU067 298,67EUR 1 EURO = 1,000000",
+        "debit": 298.67,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/01/2026",
+        "libelle": "280126 CB***7917 METRO FR MONETEAU067 548,10EUR 1 EURO = 1,000000",
+        "debit": 548.1,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 580,40E - COM 2,40E - NB0016/120376",
+        "debit": 0,
+        "credit": 578
+      },
+      {
+        "date_operation": "30/01/2026",
+        "libelle": "REMISE CB 5401547011 BRUT 142,60E - COM 0,55E - NB0002/126198",
+        "debit": 0,
+        "credit": 142.05
+      }
+    ],
+    "solde_final": 5940.78
+  }
+}

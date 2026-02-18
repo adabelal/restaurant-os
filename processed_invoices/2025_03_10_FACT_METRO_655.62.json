@@ -1,0 +1,148 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-03-10",
+  "invoiceNo": "0/0 (067) 0014/0086042",
+  "totalAmount": 170.8,
+  "items": [
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 8.08,
+      "totalPrice": 48.48
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.0,
+      "totalPrice": 26.0
+    },
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 3.65,
+      "totalPrice": 65.7
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 3.25,
+      "totalPrice": 78.0
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.65,
+      "totalPrice": 21.9
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.027,
+      "totalPrice": 49.28
+    },
+    {
+      "name": "SCHWEPPES AGRUM SLIM 33CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.459,
+      "totalPrice": 11.02
+    },
+    {
+      "name": "COCA COLA REG PET 1,25L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.585,
+      "totalPrice": 57.06
+    },
+    {
+      "name": "PERRIER 33CL VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.858,
+      "totalPrice": 41.2
+    },
+    {
+      "name": "CAIS. PERSON. 24X33CL PLEIN",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 8.4
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 0.62,
+      "totalPrice": 11.16
+    },
+    {
+      "name": "CRISTALI 1.5L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.18,
+      "totalPrice": 1.08
+    },
+    {
+      "name": "SEL GROS SEAU 5KG CEREBOS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.44,
+      "totalPrice": 4.44
+    },
+    {
+      "name": "SEL FIN CEREBOS SEAU 5 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.73,
+      "totalPrice": 3.73
+    },
+    {
+      "name": "MC ASSAIS COUSCOUS 500G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.52,
+      "totalPrice": 30.08
+    },
+    {
+      "name": "MC ASSAIS POULET ROTI 670G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.49,
+      "totalPrice": 17.96
+    },
+    {
+      "name": "POIVRE NOIR MOULU 1KG ARO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.1,
+      "totalPrice": 18.1
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.7,
+      "totalPrice": 6.7
+    },
+    {
+      "name": "AROME FLEUR D'ORANGER 50CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.6,
+      "totalPrice": 3.2
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 8.4
+    }
+  ]
+}

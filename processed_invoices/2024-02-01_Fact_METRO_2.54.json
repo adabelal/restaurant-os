@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-01",
+  "invoiceNo": "0/0 (067) 0001/0005122",
+  "totalAmount": 2.54,
+  "items": [
+    {
+      "name": "CELERI BOTTE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 2.41
+    }
+  ]
+}

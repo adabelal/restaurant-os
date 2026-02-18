@@ -1,0 +1,155 @@
+{
+  "supplierName": "METRO France",
+  "date": "2024-12-12",
+  "invoiceNo": "067/045",
+  "totalAmount": 260.79,
+  "items": [
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.27,
+      "totalPrice": 40.48
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.54,
+      "totalPrice": 80.51
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.72,
+      "totalPrice": 131.78
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.52,
+      "totalPrice": 8.02
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.91,
+      "totalPrice": 10.91
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 19.43
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 65.1
+    },
+    {
+      "name": "MC CUMIN MOULU 400G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.59,
+      "totalPrice": 8.59
+    },
+    {
+      "name": "MC ASSAIS COUSCOUS 500G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.42,
+      "totalPrice": 8.42
+    },
+    {
+      "name": "MC ASSAIS POULET ROTI 670G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.7,
+      "totalPrice": 4.7
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 5.0,
+      "unit": "L",
+      "unitPrice": 1.552,
+      "totalPrice": 7.76
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.85,
+      "totalPrice": 2.85
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 3.186,
+      "totalPrice": 15.93
+    },
+    {
+      "name": "TOM CERISE DUO ALL. 2.5KG ESP C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.98,
+      "totalPrice": 10.98
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC ESP C1ESPAGNE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.87,
+      "totalPrice": 5.22
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 7.55,
+      "totalPrice": 15.1
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 4.38
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG MAROC C1MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.83,
+      "totalPrice": 9.83
+    },
+    {
+      "name": "PV VERT 1.2KG 70/90 ESP C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.27,
+      "totalPrice": 5.27
+    }
+  ]
+}

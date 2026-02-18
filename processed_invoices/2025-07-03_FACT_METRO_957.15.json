@@ -1,0 +1,267 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-07-03",
+  "invoiceNo": "0/067 0014/025048",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "REDUCTION VIN. BALSAM. PET320GR",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.25,
+      "totalPrice": 12.5
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 5.0,
+      "unit": "kg",
+      "unitPrice": 11.0,
+      "totalPrice": 55.0
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.498,
+      "totalPrice": 7.49
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 15.75,
+      "totalPrice": 15.75
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.75,
+      "totalPrice": 2.75
+    },
+    {
+      "name": "MAIZENA 700G",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 3.57,
+      "totalPrice": 7.14
+    },
+    {
+      "name": "COCO RAPEE 1KG METRO CHEF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.79,
+      "totalPrice": 6.79
+    },
+    {
+      "name": "MC POUDRE D' AMANDE BLANCHE 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.9,
+      "totalPrice": 10.9
+    },
+    {
+      "name": "*SUCRE MCX BLC N 4 1KG ROCHAMB",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.483,
+      "totalPrice": 8.9
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.39,
+      "totalPrice": 4.39
+    },
+    {
+      "name": "SCE FRUIT ROUGE 1KG SWEETIES",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.5,
+      "totalPrice": 6.5
+    },
+    {
+      "name": "CRISPEARLS CARAMEL B. SALE 800G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 19.47,
+      "totalPrice": 19.47
+    },
+    {
+      "name": "TOPPING CHOCO 1, 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.59,
+      "totalPrice": 9.59
+    },
+    {
+      "name": "LOTUS SPECULOOS 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.59,
+      "totalPrice": 11.59
+    },
+    {
+      "name": "SUCETTE CORAZON COEUR CERISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.59,
+      "totalPrice": 11.59
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 8.2,
+      "totalPrice": 24.6
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 1/2 AFF MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.34,
+      "totalPrice": 17.4
+    },
+    {
+      "name": "CHAOURCE AOP 500G MDF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.75,
+      "totalPrice": 5.75
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.01,
+      "totalPrice": 19.85
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 41.56
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 41.92
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 37.69
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 35.89
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.99,
+      "totalPrice": 22.31
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.84,
+      "totalPrice": 9.54
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.84,
+      "totalPrice": 7.28
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.84,
+      "totalPrice": 8.06
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.84,
+      "totalPrice": 8.82
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.84,
+      "totalPrice": 8.65
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.84,
+      "totalPrice": 8.39
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 18.12
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 18.34
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 23.88
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 18.29
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 18.23
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 12.95
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-17",
+  "invoiceNo": "067/045",
+  "totalAmount": 68.46,
+  "items": [
+    {
+      "name": "0291161 FX FILET 4.5KG+ S/P UE",
+      "quantity": 5.878,
+      "unit": "kg",
+      "unitPrice": 11.04,
+      "totalPrice": 64.89
+    }
+  ]
+}

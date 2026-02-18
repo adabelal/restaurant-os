@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-10-26",
+  "invoiceNo": "0/0 (067) 0014/0230702",
+  "totalAmount": 167.98,
+  "items": [
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 53.82
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 86.16
+    }
+  ]
+}

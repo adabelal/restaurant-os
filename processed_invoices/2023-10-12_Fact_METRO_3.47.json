@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-10",
+  "invoiceNo": "0/(067) 0017/0013402",
+  "totalAmount": 3.47,
+  "items": [
+    {
+      "name": "0993626 CITR VERT FILET 1KG BRESIL C1 BRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.29,
+      "totalPrice": 3.29
+    }
+  ]
+}

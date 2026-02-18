@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-09-28",
+  "invoiceNo": "3090500477",
+  "totalAmount": 62.75,
+  "items": [
+    {
+      "name": "2 LT PUREE COCO MONIN FRUIT PUREE MIX",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 11.068,
+      "totalPrice": 22.14
+    },
+    {
+      "name": "1 BT EAGLE RARE 10ans BARREL 45\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 29.152,
+      "totalPrice": 29.15
+    }
+  ]
+}

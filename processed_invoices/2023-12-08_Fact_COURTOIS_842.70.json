@@ -1,0 +1,85 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-08-12",
+  "invoiceNo": "3120100300",
+  "totalAmount": 842.7,
+  "items": [
+    {
+      "name": "1 BT EAGLE RARE 10ans BARREL 45\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 29.152,
+      "totalPrice": 29.15
+    },
+    {
+      "name": "30 FUT 15 L SLASH \u0399\u03a1\u0391",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 5.012,
+      "totalPrice": 10.024
+    },
+    {
+      "name": "60 FUT 30 L LOBURG",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 3.505,
+      "totalPrice": 7.01
+    },
+    {
+      "name": "15 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.914,
+      "totalPrice": 4.914
+    },
+    {
+      "name": "1 WHISKY BLEND MAC NAMARA70CL40",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 18.982,
+      "totalPrice": 18.982
+    },
+    {
+      "name": "12 PERRIER PET 6 X 1LT",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.168,
+      "totalPrice": 2.336
+    },
+    {
+      "name": "24 ORGANIC BIO GINGER BEER25CLV",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.36,
+      "totalPrice": 1.36
+    },
+    {
+      "name": "6 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 2.456
+    },
+    {
+      "name": "6 BOC CARAIBOS nectar PECHE 6x1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.591,
+      "totalPrice": 2.591
+    },
+    {
+      "name": "12 BOC CARAIBOS FRAISE 6 x 1LT",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 2.957,
+      "totalPrice": 5.914
+    },
+    {
+      "name": "24 DESPERADOS VC 24X33 CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.8,
+      "totalPrice": 1.8
+    }
+  ]
+}

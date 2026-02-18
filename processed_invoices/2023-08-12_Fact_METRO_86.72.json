@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-08-12",
+  "invoiceNo": "0/0 (067) 0014/0162532",
+  "totalAmount": 86.72,
+  "items": [
+    {
+      "name": "FRY' N' DIP 2.5KG MCCAIN",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 6.04,
+      "totalPrice": 30.2
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.99,
+      "totalPrice": 23.32
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.99,
+      "totalPrice": 24.71
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.89,
+      "totalPrice": 1.78
+    },
+    {
+      "name": "TOM RDE BQ 1KG SOLENVIE FR C2FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.19,
+      "totalPrice": 2.19
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+BANQUE POPULAIRE
+BOURGOGNE FRANCHE-COMTÉ
+RELEVE N° 3 AU 31/07/2023
+
+Votre conseiller :
+Isabelle CATHELIN
+Mail : isabelle.cathelin@bpbfc.fr
+Tel : 03 86 63 58 31 (appel non surtaxé)
+
+AILLANT SUR THOLON
+AILLANT SUR THOLON
+89110 MONTHOLON
+Fax : 03 86 63 58 34
+Tel : 03 86 63 58 30
+(appel non surtaxé)
+
+Cyberplus
+Identifiant : 21911648S
+www.banquepopulaire.fr/bpbfc
+TONALITE PLUS : 08 01 01 00 29
+(appel non surtaxé)
+Code : 084365
+
+SARL SIWA
+24 ROUTE DE POILLY SUR THOLON
+89110 POILLY SUR THOLON
+
+VOTRE COMPTE COURANT N° 32521140221
+IBAN FR76 1080 7004 7832 5211 4022 191
+SARL SIWA
+BIC CCBPFRPPDJN
+
+|  DATE COMPTA | LIBELLE/REFERENCE | DATE OPERATION | DATE VALEUR | DEBIT EUROS | CREDIT EUROS  |
+| --- | --- | --- | --- | --- | --- |
+|   | SOLDE CREDITEUR AU 30/06/2023 |  |  |  | 9 680,76  |
+|  01/07 | COTIS RYTHMEO
+XCCNV240 2023063000033292000001
+CONTRAT CNV5041449827 | 0033292 | 30/06 | 30/06 | 30,64  |
+|  01/07 | LOYER TPE / ELC
+MOIS DE JUIN 2023
+HT: 4,49/TVA20,00: 0,90 | 5401547 | 01/07 | 01/07 | 5,39  |
+|  01/07 | LOYER TPE / ELC
+MOIS DE JUIN 2023
+HT: 8,14/TVA20,00: 1,63 | 5401547 | 01/07 | 01/07 | 9,77  |
+|  03/07 | REMISE CB 5401547011
+BRUT 1 013,05E - COM 3,23E
+- NB0036/187787 | 0028787 | 03/07 | 03/07 | 1009,82  |
+|  03/07 | REMISE CB 5401547011
+BRUT 1 824,35E - COM 5,86E
+- NB0027/189230 | 0029230 | 03/07 | 03/07 | 1 818,49  |
+|  03/07 | REMISE CB 5401547011
+BRUT 1 179,92E - COM 3,77E
+- NB0061/184483 | 0030483 | 03/07 | 03/07 | 1176,15  |
+|  03/07 | REMISE CB 5401547011
+BRUT 36,80E - COM 0,12E
+- NB0002/184678 | 0031678 | 03/07 | 03/07 | 36,68  |
+|  03/07 | REMISE CB 5401547011
+BRUT 2 004,02E - COM 6,41E
+- NB0028/184740 | 0032740 | 03/07 | 03/07 | 1997,61  |
+|  03/07 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0CR9P6O | 03/07 | 03/07 | 292,45  |
+|  03/07 | PRLV SEPA Orange SA
+Votre abonnement fibre (facture:
+M0063503064 | 0CQPZVX | 03/07 | 03/07 | 48,59  |
+|  03/07 | REMISE CB 5401547011
+BRUT 148,60E - COM 0,47E
+- NB0006/136606 | 0033606 | 03/07 | 03/07 | 148,13  |
+|  03/07 | REMISE CB 5401547011
+BRUT 670,00E - COM 2,16E
+- NB0007/138627 | 0034627 | 03/07 | 03/07 | 667,84  |
+
+A la Banque Populaire Bourgogne Franche-Comté, l'assurance des personnes et des biens c'est aussi notre métier.
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orlas Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts

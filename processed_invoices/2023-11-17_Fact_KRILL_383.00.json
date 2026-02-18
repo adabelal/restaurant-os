@@ -1,0 +1,36 @@
+{
+  "supplierName": "KRILL",
+  "date": "2023-11-17",
+  "invoiceNo": "00722438",
+  "totalAmount": 383.0,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": 9.282,
+      "unit": "kg",
+      "unitPrice": 8.7,
+      "totalPrice": 80.75
+    },
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 6.92,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 92.04
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30 S/V UK UE PTF",
+      "quantity": 12.08,
+      "unit": "kg",
+      "unitPrice": 20.335,
+      "totalPrice": 178.78
+    },
+    {
+      "name": "POITRINE AGNEAU S/OS 2.5 KG ENV S/V UK U E MF",
+      "quantity": 1.74,
+      "unit": "kg",
+      "unitPrice": 6.2,
+      "totalPrice": 10.79
+    }
+  ]
+}

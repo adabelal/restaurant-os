@@ -1,0 +1,71 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-08-05",
+  "invoiceNo": "0/0 (067) 0014/0156952",
+  "totalAmount": 182.69,
+  "items": [
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 21.33
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 23.92
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 16.09
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 19.03
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 13.11
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 13.73
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 29.11
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.99,
+      "totalPrice": 24.97
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 11.88
+    }
+  ]
+}

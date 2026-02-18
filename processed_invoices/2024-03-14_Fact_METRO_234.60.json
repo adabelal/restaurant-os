@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-14",
+  "invoiceNo": "0/(067)0001/001243(2",
+  "totalAmount": 234.6,
+  "items": [
+    {
+      "name": "3034204 FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 222.37,
+      "unit": "kg",
+      "unitPrice": 6.77,
+      "totalPrice": 222.37
+    }
+  ]
+}

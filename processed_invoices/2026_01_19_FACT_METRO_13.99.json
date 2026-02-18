@@ -1,0 +1,302 @@
+{
+  "supplierName": "Unknown",
+  "date": "2025-12-31",
+  "invoiceNo": "N/A",
+  "totalAmount": 7260.5,
+  "items": [
+    {
+      "name": "AMAZON",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": -13.99,
+      "totalPrice": -13.99
+    },
+    {
+      "name": "AMAZON",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 710.36,
+      "totalPrice": 710.36
+    },
+    {
+      "name": "EVI SCP GROUPE \u0417\u0415\u041c\u0415 \u0410\u0421\u0422\u0415",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 837.14,
+      "totalPrice": 837.14
+    },
+    {
+      "name": "BOULANGER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 211.65,
+      "totalPrice": 211.65
+    },
+    {
+      "name": "PARIS DAVID",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 189.4,
+      "totalPrice": 189.4
+    },
+    {
+      "name": "SAS PASCAULT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 93.46,
+      "totalPrice": 93.46
+    },
+    {
+      "name": "SAS PASCAULT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 380.64,
+      "totalPrice": 380.64
+    },
+    {
+      "name": "MARIE BLACHERE F",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 96.7,
+      "totalPrice": 96.7
+    },
+    {
+      "name": "BOURGOGNE PRODUITS FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 573.57,
+      "totalPrice": 573.57
+    },
+    {
+      "name": "BOURGOGNE PRODUITS FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 531.72,
+      "totalPrice": 531.72
+    },
+    {
+      "name": "BOURGOGNE PRODUITS FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 451.23,
+      "totalPrice": 451.23
+    },
+    {
+      "name": "BRICO DEPOT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.14,
+      "totalPrice": 20.14
+    },
+    {
+      "name": "CHOMETTE FRANCE 311025",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 616.21,
+      "totalPrice": 616.21
+    },
+    {
+      "name": "COURTOIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 30.54,
+      "totalPrice": 30.54
+    },
+    {
+      "name": "COURTOIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.62,
+      "totalPrice": 25.62
+    },
+    {
+      "name": "COURTOIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 52.25,
+      "totalPrice": 52.25
+    },
+    {
+      "name": "G-STAR OUTLET",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 258.0,
+      "totalPrice": 258.0
+    },
+    {
+      "name": "VIR INST",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 306.0,
+      "totalPrice": 306.0
+    },
+    {
+      "name": "ALIEXPRESS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.48,
+      "totalPrice": 11.48
+    },
+    {
+      "name": "EPISAVEURS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 595.52,
+      "totalPrice": 595.52
+    },
+    {
+      "name": "EPISAVEURS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 397.8,
+      "totalPrice": 397.8
+    },
+    {
+      "name": "EPISAVEURS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 226.26,
+      "totalPrice": 226.26
+    },
+    {
+      "name": "EPISAVEURS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 198.41,
+      "totalPrice": 198.41
+    },
+    {
+      "name": "ESTAMPE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 300.0,
+      "totalPrice": 300.0
+    },
+    {
+      "name": "FMB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 180.3,
+      "totalPrice": 180.3
+    },
+    {
+      "name": "FMB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 228.38,
+      "totalPrice": 228.38
+    },
+    {
+      "name": "GIFI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.78,
+      "totalPrice": 18.78
+    },
+    {
+      "name": "GIFI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 120.15,
+      "totalPrice": 120.15
+    },
+    {
+      "name": "GIFI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 89.63,
+      "totalPrice": 89.63
+    },
+    {
+      "name": "GOOGLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.99,
+      "totalPrice": 9.99
+    },
+    {
+      "name": "GOOGLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.0,
+      "totalPrice": 10.0
+    },
+    {
+      "name": "GOOGLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.0,
+      "totalPrice": 2.0
+    },
+    {
+      "name": "GOOGLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.99,
+      "totalPrice": 9.99
+    },
+    {
+      "name": "GRAND FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 103.41,
+      "totalPrice": 103.41
+    },
+    {
+      "name": "GRAND FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 133.33,
+      "totalPrice": 133.33
+    },
+    {
+      "name": "GRAND FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 134.44,
+      "totalPrice": 134.44
+    },
+    {
+      "name": "GRAND FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 152.47,
+      "totalPrice": 152.47
+    },
+    {
+      "name": "GRAND FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.85,
+      "totalPrice": 20.85
+    },
+    {
+      "name": "GRAND FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.14,
+      "totalPrice": 21.14
+    },
+    {
+      "name": "GRAND FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.9,
+      "totalPrice": 11.9
+    },
+    {
+      "name": "GRAND FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 138.04,
+      "totalPrice": 138.04
+    },
+    {
+      "name": "GRAND FRAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 75.42,
+      "totalPrice": 75.42
+    }
+  ]
+}

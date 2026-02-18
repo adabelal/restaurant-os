@@ -1,0 +1,43 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-06-28",
+  "invoiceNo": "761939",
+  "totalAmount": 421.97,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": 22.624,
+      "unit": "kg",
+      "unitPrice": 7.71,
+      "totalPrice": 174.43
+    },
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 6.235,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 82.93
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.03,
+      "unit": "U",
+      "unitPrice": 0.097,
+      "totalPrice": 0.6
+    },
+    {
+      "name": "ENTRECOTE VB SEMI-PARE CHAROLAISE 4/7 KG S/V FRANCE MF VBF",
+      "quantity": 6.56,
+      "unit": "kg",
+      "unitPrice": 21.55,
+      "totalPrice": 141.37
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.03,
+      "unit": "U",
+      "unitPrice": 0.097,
+      "totalPrice": 0.64
+    }
+  ]
+}

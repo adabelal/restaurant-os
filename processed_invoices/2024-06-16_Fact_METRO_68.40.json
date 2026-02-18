@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-06-16",
+  "invoiceNo": "90121056",
+  "totalAmount": 68.4,
+  "items": [
+    {
+      "name": "Cotisation annuelle Carte METRO REFLEXE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 57.0,
+      "totalPrice": 57.0
+    },
+    {
+      "name": "TVA (20%)",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.4,
+      "totalPrice": 11.4
+    }
+  ]
+}

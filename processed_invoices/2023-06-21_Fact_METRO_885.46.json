@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-21",
+  "invoiceNo": "0/0 (067) 0014/0114572",
+  "totalAmount": 297.91,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.77,
+      "totalPrice": 70.62
+    },
+    {
+      "name": "P. WILLIAM 40D 70CL VRP MASSENE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.1,
+      "totalPrice": 18.1
+    },
+    {
+      "name": "TEQUILA ACAYUCAN DLT 35D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.92,
+      "totalPrice": 35.68
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.68,
+      "totalPrice": 64.08
+    },
+    {
+      "name": "GET 27 17,9D 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 13.807,
+      "totalPrice": 82.84
+    },
+    {
+      "name": "IRANCY RGE MIL 75CL GIVAUDIN",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 8.25,
+      "totalPrice": 99.0
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.87,
+      "totalPrice": 17.22
+    },
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 17.94
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.872,
+      "totalPrice": 17.23
+    },
+    {
+      "name": "BRG. CHARD CHITRY CHALMEAU 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.75,
+      "totalPrice": 93.0
+    },
+    {
+      "name": "RED BULL BLUE BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.975,
+      "totalPrice": 23.4
+    }
+  ]
+}

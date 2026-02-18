@@ -1,0 +1,197 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-23",
+  "invoiceNo": "0/0 (067) 0015/0223312",
+  "totalAmount": 35.74,
+  "items": [
+    {
+      "name": "LIPTON PECHE BTE 33CL SLIM",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.52,
+      "totalPrice": 12.48
+    },
+    {
+      "name": "FANTA CITRON BTE SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.45,
+      "totalPrice": 10.8
+    },
+    {
+      "name": "DADA FRAISE BTE SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.519,
+      "totalPrice": 12.46
+    },
+    {
+      "name": "HARIB BOUT. COLAMISTRAL TUB0210",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.28,
+      "totalPrice": 8.28
+    },
+    {
+      "name": "DRAGIBUS SAC DE 2KG.",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 13.99
+    },
+    {
+      "name": "EMMENTAL FR RAPE 1KG DOMI SAVOI",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.94,
+      "totalPrice": 8.94
+    },
+    {
+      "name": "STE MAURE AOP 250G MDF",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.79,
+      "totalPrice": 9.58
+    },
+    {
+      "name": "CAMEMBERT 250GX3 CDL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.85,
+      "totalPrice": 5.55
+    },
+    {
+      "name": "CHAOURCE 500G AOP LINCET",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.0,
+      "totalPrice": 6.0
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.05,
+      "totalPrice": 21.72
+    },
+    {
+      "name": "EPOISSES AOP BTE 250G BERTHA",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.54,
+      "totalPrice": 15.08
+    },
+    {
+      "name": "REBLO FERM AOP LC 450G ENV MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.36,
+      "totalPrice": 10.26
+    },
+    {
+      "name": "REBLOCHON AOP LC 450GENV CHABE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.35,
+      "totalPrice": 7.03
+    },
+    {
+      "name": "REBLOCHON AOP LC 450GENV CHABE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.35,
+      "totalPrice": 7.03
+    },
+    {
+      "name": "PAIN 100% MIE LC 12X12 820G MC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.11,
+      "totalPrice": 6.22
+    },
+    {
+      "name": "TZATZIKI 1KG INSPIRE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 8.95,
+      "totalPrice": 17.9
+    },
+    {
+      "name": "TARAMA ROSE 38% 500G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.1,
+      "totalPrice": 6.1
+    },
+    {
+      "name": "HOUMOUS PATATES DOUCES 500G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.02,
+      "totalPrice": 10.04
+    },
+    {
+      "name": "LARDONS NATURES 1KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.34,
+      "totalPrice": 6.34
+    },
+    {
+      "name": "JB SUP DD 16T 720G MC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 6.76,
+      "totalPrice": 20.28
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 36.13
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 35.98
+    },
+    {
+      "name": "HTR MAREN FDC N3 96P 8K METREAU E/FR. MAGALLANA GIGAS",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 49.99,
+      "totalPrice": 99.98
+    },
+    {
+      "name": "MANGUE KENT AVION 4 PC PEROU PEROU",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 3.99,
+      "totalPrice": 15.96
+    },
+    {
+      "name": "CLEM BERKANE IGP 5.5K C. 2 MAR MAROC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.7,
+      "totalPrice": 13.7
+    },
+    {
+      "name": "PDT AGATA 45/75 10K C1 FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.9,
+      "totalPrice": 9.9
+    },
+    {
+      "name": "0OIG CHARC MC 7/10 8KG C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.92,
+      "totalPrice": 7.92
+    }
+  ]
+}

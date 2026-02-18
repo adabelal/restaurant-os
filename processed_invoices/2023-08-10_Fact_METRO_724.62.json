@@ -1,0 +1,106 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-08-10",
+  "invoiceNo": "0/0 (067) 0014/016085",
+  "totalAmount": 664.05,
+  "items": [
+    {
+      "name": "EDV FIGUE BOKOBSA 37, 5D 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.58,
+      "totalPrice": 12.58
+    },
+    {
+      "name": "BSR CAPT. MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.82,
+      "totalPrice": 117.84
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.98,
+      "totalPrice": 23.52
+    },
+    {
+      "name": "RED BULL BLUE BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 28.56
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.7,
+      "totalPrice": 40.8
+    },
+    {
+      "name": "LION PEANUT 41G",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.477,
+      "totalPrice": 11.45
+    },
+    {
+      "name": "BIG HARI CHERRY SAC DE 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.81,
+      "totalPrice": 14.81
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 170.96
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 163.68
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.99,
+      "totalPrice": 24.73
+    },
+    {
+      "name": "CITR VERT FILET 1KG BRESIL C1 BRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.29,
+      "totalPrice": 8.58
+    },
+    {
+      "name": "TOM CERISE PANACHEE 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.96,
+      "totalPrice": 21.96
+    },
+    {
+      "name": "TOM RDE BQ 1KG SOLENVIE FR C2FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.99,
+      "totalPrice": 3.98
+    },
+    {
+      "name": "MPRO LIQ VAISS MAIN CIT 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.18,
+      "totalPrice": 2.18
+    }
+  ]
+}

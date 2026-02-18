@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-21",
+  "invoiceNo": "0/0 (067) 0014/0343002",
+  "totalAmount": 50.47,
+  "items": [
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.77,
+      "totalPrice": 15.77
+    },
+    {
+      "name": "JB SEC ITALIEN 2X250G 10M MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.79,
+      "totalPrice": 10.79
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.6,
+      "totalPrice": 15.63
+    },
+    {
+      "name": "ARO FILM ALIMENTA 300MX29CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.97,
+      "totalPrice": 4.97
+    }
+  ]
+}

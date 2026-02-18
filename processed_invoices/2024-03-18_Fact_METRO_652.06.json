@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-18",
+  "invoiceNo": "0/0 (067) 0014/009940",
+  "totalAmount": 562.74,
+  "items": [
+    {
+      "name": "WH J. DANIEL'S 70CL 40D",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 15.59,
+      "totalPrice": 93.54
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.58,
+      "totalPrice": 69.48
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 15.0,
+      "unit": "U",
+      "unitPrice": 11.72,
+      "totalPrice": 175.8
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 0.97,
+      "totalPrice": 69.84
+    },
+    {
+      "name": "PERRIER 33CL VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.792,
+      "totalPrice": 38.0
+    },
+    {
+      "name": "CAIS. PERSON. 24X33CL PLEIN",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 8.4
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 0.61,
+      "totalPrice": 29.28
+    },
+    {
+      "name": "LION PEANUT 41G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.477,
+      "totalPrice": 11.45
+    },
+    {
+      "name": "BIG HARI CHERRY SAC DE 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.94,
+      "totalPrice": 14.94
+    },
+    {
+      "name": "500 PAILLE PAP BLANC D8 15CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.49,
+      "totalPrice": 6.49
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.41,
+      "totalPrice": 7.41
+    }
+  ]
+}

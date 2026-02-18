@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-10",
+  "invoiceNo": "0/0 (067) 0015/0165072",
+  "totalAmount": 262.05,
+  "items": [
+    {
+      "name": "RIOBA NECTAR CRANBERRY VP 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.858,
+      "totalPrice": 11.15
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.99,
+      "totalPrice": 71.28
+    },
+    {
+      "name": "RED BULL BLUE BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 1.29,
+      "totalPrice": 30.96
+    },
+    {
+      "name": "RED BULL RED EDITION 25CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 1.29,
+      "totalPrice": 30.96
+    },
+    {
+      "name": "CRISTALI 50CL PET",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.145,
+      "totalPrice": 3.48
+    },
+    {
+      "name": "PENNA QUADRATAO MOLIS 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.55,
+      "totalPrice": 2.55
+    },
+    {
+      "name": "HEINZ MAYONNAISE KK 875ML",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 8.43,
+      "totalPrice": 8.43
+    },
+    {
+      "name": "PAT CHOCO BLANC NOISETTE 500G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.49,
+      "totalPrice": 5.49
+    },
+    {
+      "name": "LION PEANUT 41G",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.543,
+      "totalPrice": 13.03
+    },
+    {
+      "name": "BIG HARI CHERRY SAC DE 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.22,
+      "totalPrice": 15.22
+    },
+    {
+      "name": "1/2 ENTRECOTE VBF S/P MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.49,
+      "totalPrice": 53.75
+    }
+  ]
+}

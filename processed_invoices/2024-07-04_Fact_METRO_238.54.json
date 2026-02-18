@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-07",
+  "invoiceNo": "067/045",
+  "totalAmount": 238.54,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 16.5,
+      "unit": "kg",
+      "unitPrice": 12.84,
+      "totalPrice": 211.86
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 14.24,
+      "totalPrice": 14.24
+    }
+  ]
+}

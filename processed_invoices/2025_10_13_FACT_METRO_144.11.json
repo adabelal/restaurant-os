@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-13",
+  "invoiceNo": "0/0 (067) 0052/0037562",
+  "totalAmount": 144.11,
+  "items": [
+    {
+      "name": "CLEM FEUIL BOLLO CAL. 2 ES C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.95,
+      "totalPrice": 18.95
+    },
+    {
+      "name": "PACK 6 TERRINES F/WISS 200G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.893,
+      "totalPrice": 11.36
+    },
+    {
+      "name": "GOB SERENA 9CL AZUR CUIVRE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 2.558,
+      "totalPrice": 92.07
+    }
+  ]
+}

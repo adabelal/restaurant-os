@@ -1,0 +1,92 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-10-13",
+  "invoiceNo": "3100100503",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "60 FUT 30 L LOBURG",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.505,
+      "totalPrice": 237.06
+    },
+    {
+      "name": "20 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.338,
+      "totalPrice": 119.28
+    },
+    {
+      "name": "12 1/2CHAMP.L.TOLLET lerCRU ct12",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.182,
+      "totalPrice": 110.18
+    },
+    {
+      "name": "6 BOURG. ALIGOTE PERSENOT Ct/6bt",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.96,
+      "totalPrice": 35.76
+    },
+    {
+      "name": "MONIN THE FRAMBOISE 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.67,
+      "totalPrice": 6.67
+    },
+    {
+      "name": "MONIN GRENADINE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 4.72
+    },
+    {
+      "name": "MONIN KIWI 100 CL SIROP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.467,
+      "totalPrice": 7.47
+    },
+    {
+      "name": "MONIN RANTCHO CITRON VERT 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.35,
+      "totalPrice": 12.7
+    },
+    {
+      "name": "12 VILLERS MINERALE VC 12 X 100CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.461,
+      "totalPrice": 5.53
+    },
+    {
+      "name": "30 FUT 30 L SLASH MANGO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.122,
+      "totalPrice": 172.44
+    },
+    {
+      "name": "12 PERRIER PET 6 X 1LT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.168,
+      "totalPrice": 14.02
+    },
+    {
+      "name": "24 DESPERADOS 5.9\u00b0 VP 24X33CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.811,
+      "totalPrice": 47.11
+    }
+  ]
+}

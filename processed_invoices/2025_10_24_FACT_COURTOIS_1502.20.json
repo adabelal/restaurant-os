@@ -1,0 +1,92 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-10-25",
+  "invoiceNo": "5100100719",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "3 RHUM PLANT.BARBADOS 5A.70c140\u00b0",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 33.001,
+      "totalPrice": 99.0
+    },
+    {
+      "name": "60 FUT 15L ROSE BLANCHE BRUXELLE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 5.127,
+      "totalPrice": 318.54
+    },
+    {
+      "name": "15 FUT 15 L SLASH IPA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.244,
+      "totalPrice": 85.83
+    },
+    {
+      "name": "60 FUT 30 L LICORNE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.168,
+      "totalPrice": 213.42
+    },
+    {
+      "name": "12 RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 15.639,
+      "totalPrice": 187.67
+    },
+    {
+      "name": "48 ELSASS COLA 33CLX24 VC",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 0.721,
+      "totalPrice": 37.92
+    },
+    {
+      "name": "24 LES PLOS BLANC CHARD.IGP BT",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 5.703,
+      "totalPrice": 136.87
+    },
+    {
+      "name": "24 033DELIRIUM TREMENS 8\u00b05 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.552,
+      "totalPrice": 42.7
+    },
+    {
+      "name": "24 PECHER.LINDEMANS1.1\u00b0VC24X25CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.459,
+      "totalPrice": 35.28
+    },
+    {
+      "name": "48 PERRIER VC 24 x 33 CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.02,
+      "totalPrice": 48.96
+    },
+    {
+      "name": "6 MONIN MOJITO MINT 70 CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 6.674,
+      "totalPrice": 40.04
+    },
+    {
+      "name": "3 MONIN FRAISE SIROP 100 CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 6.434,
+      "totalPrice": 19.3
+    }
+  ]
+}

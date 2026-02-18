@@ -1,0 +1,29 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-09-13",
+  "invoiceNo": "776857",
+  "totalAmount": 475.98,
+  "items": [
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 9.27,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 123.29
+    },
+    {
+      "name": "ENTRECOTE VB SEMI-PARE CHAROLAISE 4/7 KG S/V FRANCE MF VBF",
+      "quantity": 5.14,
+      "unit": "kg",
+      "unitPrice": 24.95,
+      "totalPrice": 128.24
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30 S/V UK UE PTF",
+      "quantity": 11.978,
+      "unit": "kg",
+      "unitPrice": 16.55,
+      "totalPrice": 198.24
+    }
+  ]
+}

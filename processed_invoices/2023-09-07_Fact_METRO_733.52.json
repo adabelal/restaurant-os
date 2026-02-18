@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-07",
+  "invoiceNo": "0/0 (067)0001/0067572",
+  "totalAmount": 733.52,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.62,
+      "totalPrice": 188.5
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.85,
+      "totalPrice": 238.36
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.31,
+      "totalPrice": 262.6
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 16.0,
+      "unit": "U",
+      "unitPrice": 0.97,
+      "totalPrice": 5.82
+    }
+  ]
+}

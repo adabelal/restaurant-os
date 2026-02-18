@@ -1,0 +1,267 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-15",
+  "invoiceNo": "0/0 (067) 0013/015182",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.16,
+      "totalPrice": 17.16
+    },
+    {
+      "name": "HEINZ KETCHUP FS 342GR",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 1.6,
+      "totalPrice": 8.0
+    },
+    {
+      "name": "MC SAUCE SALADE 915G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.93,
+      "totalPrice": 17.58
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.54,
+      "totalPrice": 16.54
+    },
+    {
+      "name": "BENEDICTA MAYO FS 235G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 1.45,
+      "totalPrice": 7.25
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.29,
+      "totalPrice": 6.58
+    },
+    {
+      "name": "CREME ANGLAISE 2L DEBIC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.2,
+      "totalPrice": 12.4
+    },
+    {
+      "name": "1/4ROQUEF AOP LC 675GENV MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.23,
+      "totalPrice": 12.06
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.68,
+      "totalPrice": 23.36
+    },
+    {
+      "name": "STE MAURE AOP 250G MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.94,
+      "totalPrice": 4.94
+    },
+    {
+      "name": "CHAOURCE AOP 500G MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.94,
+      "totalPrice": 5.94
+    },
+    {
+      "name": "CAMEMBERT LC 240G VACHE PATURA",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.39,
+      "totalPrice": 4.78
+    },
+    {
+      "name": "BAV ALOY PAD UE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 19.36
+    },
+    {
+      "name": "BAV ALOY PAD UE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 27.41
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 24.62
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 20.01
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 21.96
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 22.87
+    },
+    {
+      "name": "POIRE CHARO PAD MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.49,
+      "totalPrice": 66.07
+    },
+    {
+      "name": "POIRE CHARO PAD MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.49,
+      "totalPrice": 47.38
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 19.12
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 19.12
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 18.97
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 20.24
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 19.67
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 16.65
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 20.08
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 17.35
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 17.95
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 17.16
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 8.18
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 9.62
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 19.43
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 18.95
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 17.54
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 17.77
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 19.41
+    }
+  ]
+}

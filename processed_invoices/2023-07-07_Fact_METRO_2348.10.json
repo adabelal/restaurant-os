@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-07",
+  "invoiceNo": "0/0 (067) 0013/0176992",
+  "totalAmount": 2348.1,
+  "items": [
+    {
+      "name": "1588193 R134A MACH GLACONS B 7540 AS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1956.75,
+      "totalPrice": 1956.75
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-07-13",
+  "invoiceNo": "0/0 (067) 0017/0027772",
+  "totalAmount": 15.6,
+  "items": [
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.79,
+      "totalPrice": 14.79
+    }
+  ]
+}

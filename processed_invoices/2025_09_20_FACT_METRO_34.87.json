@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-09-20",
+  "invoiceNo": "0/0 (067) 0051/0011532",
+  "totalAmount": 34.87,
+  "items": [
+    {
+      "name": "BARRE CRUNCHY MIEL 42G",
+      "quantity": 18.0,
+      "unit": "U",
+      "unitPrice": 0.662,
+      "totalPrice": 11.92
+    },
+    {
+      "name": "BURGER BRIOCHE 4X62G LFD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.8,
+      "totalPrice": 1.8
+    },
+    {
+      "name": "BRETZEL BRIOCHE X6 400G LFD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.43,
+      "totalPrice": 3.43
+    },
+    {
+      "name": "MPRO 60 SERV AIRLD NOIR 40X40",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.99,
+      "totalPrice": 13.98
+    }
+  ]
+}

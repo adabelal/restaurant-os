@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-02-17",
+  "invoiceNo": "0/0 (067) 0014/006003",
+  "totalAmount": 231.23,
+  "items": [
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.587,
+      "totalPrice": 14.09
+    },
+    {
+      "name": "COCACOLA BOITE SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.584,
+      "totalPrice": 14.01
+    },
+    {
+      "name": "CREME DE MARRONS DOYPACK 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.84,
+      "totalPrice": 5.84
+    },
+    {
+      "name": "SUC. POUDR. BV 1KG SAINT LOUISX",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.717,
+      "totalPrice": 10.3
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    },
+    {
+      "name": "NUTELLA 25G",
+      "quantity": 64.0,
+      "unit": "U",
+      "unitPrice": 0.548,
+      "totalPrice": 35.1
+    },
+    {
+      "name": "CONFITURE PECHE 30G B. MAMAN",
+      "quantity": 15.0,
+      "unit": "U",
+      "unitPrice": 0.617,
+      "totalPrice": 9.26
+    },
+    {
+      "name": "GELEE GROS/FRAMB 30G BMAMAN",
+      "quantity": 15.0,
+      "unit": "U",
+      "unitPrice": 0.541,
+      "totalPrice": 8.11
+    },
+    {
+      "name": "CONFITUR FRAISE 30G B. MAMAN",
+      "quantity": 15.0,
+      "unit": "U",
+      "unitPrice": 0.599,
+      "totalPrice": 8.99
+    },
+    {
+      "name": "CONFITUR ABRICO 30G B. MAMAN",
+      "quantity": 15.0,
+      "unit": "U",
+      "unitPrice": 0.587,
+      "totalPrice": 8.8
+    },
+    {
+      "name": "MC AROME VANILLE NATUREL 0.5L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.88,
+      "totalPrice": 11.88
+    },
+    {
+      "name": "BANDOS FRAISE 150",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.5,
+      "totalPrice": 10.5
+    },
+    {
+      "name": "TAGLIATEL NATURES 1KG ROYANS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.04,
+      "totalPrice": 8.08
+    },
+    {
+      "name": "PAVE SAUMON 140/160G FI S/AT EL/NO 2X2KG. SALMO SALAR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.99,
+      "totalPrice": 45.4
+    },
+    {
+      "name": "MAND NADORCOTT MLLE 7.1K C. 1 C1 ES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.13,
+      "totalPrice": 14.13
+    },
+    {
+      "name": "PACK 6 TERRINES F/WISS 200G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.703,
+      "totalPrice": 20.44
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-27",
+  "invoiceNo": "067/049",
+  "totalAmount": 644.15,
+  "items": [
+    {
+      "name": "WH ARDBEG ISLAY 10A 46D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 38.78,
+      "totalPrice": 38.78
+    },
+    {
+      "name": "WH JACK DANIEL'S 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 15.7,
+      "totalPrice": 94.2
+    },
+    {
+      "name": "GIN MARE 42. 7D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 27.51,
+      "totalPrice": 27.51
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.72,
+      "totalPrice": 70.32
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.72,
+      "totalPrice": 70.32
+    },
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 15.62,
+      "totalPrice": 93.72
+    },
+    {
+      "name": "GET31 24D 1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 17.11,
+      "totalPrice": 68.44
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.12,
+      "totalPrice": 133.44
+    },
+    {
+      "name": "CH FEUILLATE TRADITION BRT 75C",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 17.5,
+      "totalPrice": 315.0
+    }
+  ]
+}

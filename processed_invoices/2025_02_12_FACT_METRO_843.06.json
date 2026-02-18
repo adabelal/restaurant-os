@@ -1,0 +1,160 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-02-12",
+  "invoiceNo": "067/045",
+  "totalAmount": 521.98,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 15.155,
+      "unit": "kg",
+      "unitPrice": 13.35,
+      "totalPrice": 202.32
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 6.44,
+      "unit": "kg",
+      "unitPrice": 13.03,
+      "totalPrice": 83.91
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 10.912,
+      "unit": "kg",
+      "unitPrice": 7.71,
+      "totalPrice": 84.13
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 13.654,
+      "unit": "kg",
+      "unitPrice": 10.37,
+      "totalPrice": 141.59
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.678,
+      "unit": "kg",
+      "unitPrice": 5.98,
+      "totalPrice": 10.03
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.282,
+      "unit": "kg",
+      "unitPrice": 12.88,
+      "totalPrice": 16.51
+    },
+    {
+      "name": "BEURRE DX PLQ 250G ROCHAMBEAU",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 2.53,
+      "totalPrice": 15.18
+    },
+    {
+      "name": "BURRATA BUFALA 125G POT GAROFA",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 2.44,
+      "totalPrice": 19.52
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 11.01,
+      "totalPrice": 22.02
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 13.36,
+      "totalPrice": 40.08
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.344,
+      "unit": "kg",
+      "unitPrice": 14.76,
+      "totalPrice": 19.84
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 0.842,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 20.35
+    },
+    {
+      "name": "ARO HUILE TOURNESOL 1L",
+      "quantity": 15,
+      "unit": "L",
+      "unitPrice": 1.815,
+      "totalPrice": 27.23
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 17.21,
+      "totalPrice": 17.21
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 FRFRANCE",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 4.82
+    },
+    {
+      "name": "FENOUIL 3K ITITALIE",
+      "quantity": 1,
+      "unitPrice": 7.22,
+      "totalPrice": 7.22
+    },
+    {
+      "name": "CELERI RAVE PC6 FRFRANCE",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 2.19
+    },
+    {
+      "name": "PV VERT MC 3K C. 90/110 C1 ESESPAGNE",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 13.16,
+      "totalPrice": 26.32
+    },
+    {
+      "name": "OIG CHARC MC 7/10 8KG C1 FR 66FRANCE",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 6.07,
+      "totalPrice": 6.07
+    },
+    {
+      "name": "CONCOMBRE MC C. 4/5 PC12 C1 FRFRANCE",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 1.42,
+      "totalPrice": 7.1
+    },
+    {
+      "name": "50 POT A SAUCE KRAFT 3CL",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 1.11,
+      "totalPrice": 2.22
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 1,
+      "unitPrice": 4.95,
+      "totalPrice": 4.95
+    }
+  ]
+}

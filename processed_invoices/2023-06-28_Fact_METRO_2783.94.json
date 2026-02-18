@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-28",
+  "invoiceNo": "0/0 (067) 0016/005775",
+  "totalAmount": 343.44,
+  "items": [
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 6.993,
+      "totalPrice": 41.96
+    },
+    {
+      "name": "EDV FIGUE BOKOBSA 37, 5D 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.52,
+      "totalPrice": 12.52
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 12.05,
+      "totalPrice": 144.6
+    },
+    {
+      "name": "BERGER BLANC 45D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.68,
+      "totalPrice": 13.68
+    },
+    {
+      "name": "RICARD 45D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.6,
+      "totalPrice": 13.6
+    },
+    {
+      "name": "GET 27 17, 9D 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 13.807,
+      "totalPrice": 82.84
+    },
+    {
+      "name": "IRANCY RGE MIL 75CL GIVAUDIN",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 8.25,
+      "totalPrice": 49.5
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.19,
+      "totalPrice": 38.28
+    },
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 17.94
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 64.62
+    },
+    {
+      "name": "MAROC S. BRAHIM RSE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 17.94
+    }
+  ]
+}

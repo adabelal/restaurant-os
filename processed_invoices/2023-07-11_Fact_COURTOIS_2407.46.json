@@ -1,0 +1,106 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-11-07",
+  "invoiceNo": "3070500213",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "1 CAP MATTEI ROUGE 75CL 15\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.587,
+      "totalPrice": 16.587
+    },
+    {
+      "name": "1 CAP MATTEI BLANC 75CL 15\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.587,
+      "totalPrice": 16.587
+    },
+    {
+      "name": "1 24 ORGANIC BIO GINGER BEER25cLVP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.36,
+      "totalPrice": 1.36
+    },
+    {
+      "name": "1 24 BTE RED BULL PASTEQUE 24x25cl",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.369,
+      "totalPrice": 1.369
+    },
+    {
+      "name": "4 120 FUT 30 L LOBURG",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 3.505,
+      "totalPrice": 14.02
+    },
+    {
+      "name": "3 60 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 5.338,
+      "totalPrice": 16.014
+    },
+    {
+      "name": "5 75 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 4.914,
+      "totalPrice": 24.57
+    },
+    {
+      "name": "2 60 FUT 30 L SLASH MANGO",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.122,
+      "totalPrice": 10.244
+    },
+    {
+      "name": "6 KG CAFE LAVAZZA GRAIN supCREMA",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.95,
+      "totalPrice": 21.95
+    },
+    {
+      "name": "1 24 025LINDEMANS KRIEK3\u00b05VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.143,
+      "totalPrice": 1.143
+    },
+    {
+      "name": "1 24 PECHER.LINDEMANS1.1\u00b0VC24X25CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.399,
+      "totalPrice": 1.399
+    },
+    {
+      "name": "1 12 LIMONADE SOULTZY LT VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.05,
+      "totalPrice": 1.05
+    },
+    {
+      "name": "3 72 ROMAN COLA 20CLX24 VC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 0.627,
+      "totalPrice": 1.881
+    },
+    {
+      "name": "2 12 PET SOLAL ANANAS ABC 6x1LT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.44,
+      "totalPrice": 2.88
+    }
+  ]
+}

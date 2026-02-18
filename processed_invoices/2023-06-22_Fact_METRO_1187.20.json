@@ -1,0 +1,274 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-22",
+  "invoiceNo": "067/210",
+  "totalAmount": 24.59,
+  "items": [
+    {
+      "name": "ARO SESAME DORE SAC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.79,
+      "totalPrice": 7.79
+    },
+    {
+      "name": "ROCH FS MAYO 276G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.61,
+      "totalPrice": 9.66
+    },
+    {
+      "name": "ROCH FS KETCHUP 350G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 7.14
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 33.44
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 25.25
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 22.8
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 26.3
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 26.79
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 26.16
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 29.03
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 33.37
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 22.31
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 24.62
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 21.33
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P MDD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.99,
+      "totalPrice": 99.2
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 6.81
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 6.71
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 8.58
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 8.06
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 9.15
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 9.08
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 9.08
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 21.47
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 21.89
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 23.64
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 24.2
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 26.44
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 28.33
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 24.62
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 23.43
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 19.66
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 19.38
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 18.05
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 16.51
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 17.7
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 20.64
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 13.99
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 31.47
+    }
+  ]
+}

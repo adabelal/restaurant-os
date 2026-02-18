@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-11",
+  "invoiceNo": "0/0 (067) 0013/0181152",
+  "totalAmount": 261.37,
+  "items": [
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.7,
+      "totalPrice": 15.4
+    },
+    {
+      "name": "BSR CAPT. MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.65,
+      "totalPrice": 57.9
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.49,
+      "totalPrice": 62.94
+    },
+    {
+      "name": "CDP CAVALIER MIL RSE 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 5.825,
+      "totalPrice": 34.95
+    },
+    {
+      "name": "GRIS BLANC MIL VDP OC ROSE 75C",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 6.65,
+      "totalPrice": 39.9
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-02-14",
+  "invoiceNo": "0/0 (067) 0013/002482",
+  "totalAmount": 16.72,
+  "items": [
+    {
+      "name": "STVAL ROSE RGE40CM EMB IN X100 INDE",
+      "quantity": 16.0,
+      "unit": "U",
+      "unitPrice": 0.95,
+      "totalPrice": 15.2
+    }
+  ]
+}

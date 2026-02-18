@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-28",
+  "invoiceNo": "067 00710728 01 1 KY",
+  "totalAmount": 94.32,
+  "items": [
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.77,
+      "totalPrice": 82.04
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.85,
+      "totalPrice": 7.36
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-07",
+  "invoiceNo": "0/0 (067) 0051/0028622",
+  "totalAmount": 298.38,
+  "items": [
+    {
+      "name": "VODKA FJOROWKA DLT 37, 5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 88.2
+    },
+    {
+      "name": "GIN LIONHEART DLT 37,5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.93,
+      "totalPrice": 47.58
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.15,
+      "totalPrice": 133.8
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.6,
+      "totalPrice": 62.4
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.21,
+      "totalPrice": 13.26
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.769,
+      "totalPrice": 42.46
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.61,
+      "totalPrice": 14.64
+    },
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.997,
+      "totalPrice": 11.98
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.08,
+      "totalPrice": 44.32
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.12,
+      "totalPrice": 18.12
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    },
+    {
+      "name": "CARAMEL A L'ANCIENNE 1L VAHINE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.48,
+      "totalPrice": 9.48
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.898,
+      "totalPrice": 14.49
+    },
+    {
+      "name": "THE VERT TEMPLE DU CIEL 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.21,
+      "totalPrice": 8.21
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT LAITDICI",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 6.0
+    },
+    {
+      "name": "CREME ANGLAISE 2L DEBIC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 6.79
+    },
+    {
+      "name": "CANCOILLOTTE IGP NAT 250G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.21,
+      "totalPrice": 2.21
+    },
+    {
+      "name": "VACHE QUI RIT 32 P 512G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.98,
+      "totalPrice": 4.98
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.2,
+      "totalPrice": 16.4
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG PPX BELLAY",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "CAMEMBERT 250G PRESIDENT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.0,
+      "totalPrice": 4.0
+    }
+  ]
+}

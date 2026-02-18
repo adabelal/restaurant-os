@@ -1,0 +1,50 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-11-30",
+  "invoiceNo": "0/0 (067) 0001/0089742",
+  "totalAmount": 326.39,
+  "items": [
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.98,
+      "totalPrice": 66.07
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.04,
+      "totalPrice": 154.45
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.14,
+      "totalPrice": 47.96
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.88,
+      "totalPrice": 7.38
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "TOM CERISE ALL. 2.5KG ESP C1 ESPAGNE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.14,
+      "totalPrice": 26.28
+    }
+  ]
+}

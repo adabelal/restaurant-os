@@ -1,0 +1,36 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-10-26",
+  "invoiceNo": "3100500362",
+  "totalAmount": 48.72,
+  "items": [
+    {
+      "name": "CREME PECHE BRIOTTET 70CL18\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.952,
+      "totalPrice": 8.95
+    },
+    {
+      "name": "CRM FRAMBOISE BRIOTTET 70CL18\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.361,
+      "totalPrice": 10.36
+    },
+    {
+      "name": "CREME MURE BRIOTTET 70 CL 18\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.529,
+      "totalPrice": 9.53
+    },
+    {
+      "name": "CREME CASSIS 20\u00b0 BRIOTTET 70cl",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.12,
+      "totalPrice": 9.12
+    }
+  ]
+}

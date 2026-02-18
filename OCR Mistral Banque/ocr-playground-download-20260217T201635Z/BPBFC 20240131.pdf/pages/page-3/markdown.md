@@ -1,0 +1,82 @@
++
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 9 AU 31/01/2024
+
+|  DATE COMPTA | LIBELLE / REFERENCE |  | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- | --- |
+|  13/01 | 120124 CB***7917
+COURTOIS BOURGOFR MONETEAU
+19,97EUR 1 EURO = 1,000000 | 0MNQDAX | 13/01 | 13/01 | - 19,97 €  |
+|  15/01 | REMISE CB 5401547011
+BRUT 449,00E - COM 1,44E
+- NB0022/169560 | 0223560 | 15/01 | 15/01 | 447,56 €  |
+|  15/01 | REMISE CB 5401547011
+BRUT 376,70E - COM 1,21E
+- NB0005/169943 | 0224943 | 15/01 | 15/01 | 375,49 €  |
+|  15/01 | REMISE CB 5401547011
+BRUT 1 927,30E - COM 6,52E
+- NB0028/159323 | 0225323 | 15/01 | 15/01 | 1 920,78 €  |
+|  15/01 | REMISE CB 5401547011
+BRUT 1 898,50E - COM 6,28E
+- NB0049/158789 | 0226789 | 15/01 | 15/01 | 1 892,22 €  |
+|  15/01 | PRLV SEPA URSSAF BOURGOG
+UR 267000001641853658 OCT 231
+021077CT320230607154818A00005257 | 0DSE5EA | 15/01 | 15/01 | - 474,00 €  |
+|  15/01 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0DSDBQB | 15/01 | 15/01 | - 725,19 €  |
+|  15/01 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0DSDBQC | 15/01 | 15/01 | - 178,82 €  |
+|  15/01 | 130124 CB***6839
+Google Payment IE Dublin
+9,99EUR 1 EURO = 1,000000 | 0PYVR31 | 15/01 | 15/01 | - 9,99 €  |
+|  15/01 | REMISE CB 5401547011
+BRUT 32,90E - COM 0,11E
+- NB0001/102687 | 0227687 | 15/01 | 15/01 | 32,79 €  |
+|  16/01 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0DSMIGE | 16/01 | 16/01 | - 684,13 €  |
+|  16/01 | PRLV SEPA SC EXPERT CONS
+20240279
+URXCQDFPGT | 0DPMLV4 | 16/01 | 16/01 | - 274,80 €  |
+|  16/01 | Caps Vert
+Virement de Sarl Siwa
+fact 14 299972 de Sarl Siwa | 6296156 | 16/01 | 16/01 | - 464,80 €  |
+|  16/01 | 150124 CB***6839
+AMZN Mktp FR*22LU amazon.fr
+13,88EUR 1 EURO = 1,000000 | 0RMBY81 | 16/01 | 16/01 | - 13,88 €  |
+|  16/01 | 150124 CB***6839
+AMZN Mktp FR*P4LU amazon.fr
+63,99EUR 1 EURO = 1,000000 | 0RMBY82 | 16/01 | 16/01 | - 63,99 €  |
+|  16/01 | 150124 CB***6839
+AMZN Mktp FR*WDLU amazon.fr
+177,42EUR 1 EURO = 1,000000 | 0RMBY83 | 16/01 | 16/01 | - 177,42 €  |
+|  17/01 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0DSUYPB | 17/01 | 17/01 | - 141,72 €  |
+|  17/01 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0DSUYTN | 17/01 | 17/01 | - 2 866,05 €  |
+|  17/01 | Mr Belal Benjamin
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 6340983 | 17/01 | 17/01 | - 1 500,00 €  |
+|  17/01 | Adam Belal
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 6341001 | 17/01 | 17/01 | - 1 500,00 €  |
+|  17/01 | Sci Bab
+Virement de Sarl Siwa
+Loyer de Sarl Siwa | 6341036 | 17/01 | 17/01 | - 3 600,00 €  |
+|  18/01 | Sarl Sonetrans Aveo
+Virement de Sarl Siwa
+facture c3120492 de Sarl Siwa | 6356759 | 18/01 | 18/01 | - 62,40 €  |
+
++
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPIJN N° Orias Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+Page 3/7

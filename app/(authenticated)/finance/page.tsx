@@ -1,237 +1,245 @@
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
     TrendingUp,
-    Upload,
-    CalendarDays,
     ArrowUpRight,
     ArrowDownRight,
     Wallet,
-    ShoppingCart,
-    ArrowRight
+    Banknote,
+    RefreshCcw,
+    Calendar,
+    Settings
 } from "lucide-react"
-import { prisma } from "@/lib/prisma"
 import { Badge } from "@/components/ui/badge"
 import { BalanceChart } from "@/components/finance/BalanceChart"
-import { SyncIntelligenceButton } from "@/components/finance/SyncIntelligenceButton"
+import { ImportBankCsvDialog } from "@/components/finance/ImportBankCsvDialog"
+import { getMonthlyTimeline, getFinanceStats } from "./actions"
 
 export const dynamic = 'force-dynamic'
-
-import { getBalanceChartData, getFinanceStats } from "./actions"
 
 export default async function FinancePage() {
     const {
         currentBalance,
         remainingFixedCosts,
-        totalUnpaidPOs,
-        unpaidPOs,
         eomForecast,
         recentTransactions,
         chartData
     } = await getFinanceStats()
 
-    return (
-        <div className="flex flex-col min-h-screen bg-slate-50/50 space-y-8 p-8 max-w-7xl mx-auto">
-            {/* Header Section */}
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-900 to-emerald-800 p-8 shadow-xl text-white">
-                <div className="absolute top-0 right-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-                <div className="absolute bottom-0 left-0 -ml-16 -mb-16 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
+    const timeline = await getMonthlyTimeline()
 
-                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div>
-                        <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3 text-transparent bg-clip-text bg-gradient-to-r from-white to-emerald-200">
-                            <TrendingUp className="h-8 w-8 text-emerald-400" />
-                            Finance & Pilotage
-                        </h1>
-                        <p className="mt-2 text-emerald-100/80 font-medium max-w-xl text-lg">
-                            Vision 360° de votre trésorerie et pilotage en temps réel.
-                        </p>
-                    </div>
-                    <div className="flex flex-wrap gap-3">
-                        <SyncIntelligenceButton />
-                        <Button asChild variant="secondary" className="shadow-lg bg-white text-emerald-900 hover:bg-emerald-50">
-                            <Link href="/finance/import">
-                                <Upload className="mr-2 h-4 w-4" />
-                                Importer Relevé
-                            </Link>
-                        </Button>
-                        <Button asChild className="shadow-lg bg-emerald-950 text-white border border-emerald-800 hover:bg-emerald-900">
-                            <Link href="/finance/charges">
-                                <CalendarDays className="mr-2 h-4 w-4" />
-                                Charges Fixes
-                            </Link>
-                        </Button>
-                    </div>
+    // Combined indicators
+    const cashBalance = chartData.length > 0 ? (chartData[chartData.length - 1].cash || 0) : 0
+
+    return (
+        <div className="flex flex-col min-h-screen bg-background space-y-8 p-8 max-w-7xl mx-auto font-sans transition-colors duration-300">
+            {/* Header Section - Clean & Professional */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-2">
+                <div>
+                    <h1 className="text-3xl font-bold text-foreground tracking-tight">
+                        Tableau de Bord Financier
+                    </h1>
+                    <p className="text-muted-foreground font-medium mt-1">
+                        Vue d'ensemble de la trésorerie et des flux.
+                    </p>
+                </div>
+                <div className="flex items-center gap-3">
+                    <ImportBankCsvDialog />
+                    <Button asChild variant="outline" size="icon" className="h-10 w-10 rounded-full border-border hover:bg-muted hover:text-foreground transition-colors shadow-sm">
+                        <Link href="/finance/maintenance/bank" title="Maintenance & Imports">
+                            <span className="sr-only">Paramètres</span>
+                            <Settings className="h-4 w-4" />
+                        </Link>
+                    </Button>
                 </div>
             </div>
 
-            {/* KPIs Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <Card className="border-none shadow-lg bg-white/70 backdrop-blur-sm ring-1 ring-slate-200/50">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                            <Wallet className="h-4 w-4 text-emerald-600" />
-                            Solde Bancaire
+            {/* Main KPIs Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* 1. SOLDE BANQUE */}
+                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                            Solde Banque
                         </CardTitle>
+                        <Wallet className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
                     </CardHeader>
                     <CardContent>
-                        <div className={`text-3xl font-extrabold tracking-tight ${currentBalance >= 0 ? 'text-emerald-700' : 'text-red-600'}`}>
+                        <div className="text-2xl font-bold text-foreground">
                             {currentBalance.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
-                        <p className="text-xs text-emerald-600/70 mt-1 font-medium bg-emerald-50 inline-block px-2 py-0.5 rounded-full">
-                            Actualisé temps réel
+                        <p className="text-xs text-muted-foreground mt-1 font-medium">
+                            Disponible réel
                         </p>
                     </CardContent>
                 </Card>
 
-                <Card className="border-none shadow-lg bg-white/70 backdrop-blur-sm ring-1 ring-slate-200/50">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                            <CalendarDays className="h-4 w-4 text-blue-600" />
-                            Prélèvements à venir
+                {/* 2. SOLDE CAISSE */}
+                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                            Solde Caisse
                         </CardTitle>
+                        <Banknote className="h-4 w-4 text-amber-500" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-extrabold text-slate-900 tracking-tight">
-                            {remainingFixedCosts.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                        <div className="text-2xl font-bold text-foreground">
+                            {cashBalance.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
-                        <p className="text-xs text-slate-400 mt-1 font-medium">Sur le mois en cours</p>
-                    </CardContent>
-                </Card>
-
-                <Card className="border-none shadow-lg bg-white/70 backdrop-blur-sm ring-1 ring-slate-200/50">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                            <ShoppingCart className="h-4 w-4 text-amber-600" />
-                            Factures à payer
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-extrabold text-amber-700 tracking-tight">
-                            {totalUnpaidPOs.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                        </div>
-                        <p className="text-xs text-amber-600/70 mt-1 font-medium bg-amber-50 inline-block px-2 py-0.5 rounded-full">
-                            {unpaidPOs.length} factures en attente
+                        <p className="text-xs text-muted-foreground mt-1 font-medium">
+                            Dernier arrêté
                         </p>
                     </CardContent>
                 </Card>
 
-                <Card className="border-none shadow-lg bg-gradient-to-br from-emerald-600 to-teal-700 text-white relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-4 opacity-10">
-                        <TrendingUp className="h-24 w-24" />
-                    </div>
-                    <CardHeader className="pb-2 relative z-10">
-                        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-emerald-100 flex items-center gap-2">
-                            Est. Fin de Mois
+                {/* 3. CHARGES FIXES (Clickable) */}
+                <Link href="/finance/charges" className="group">
+                    <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-md transition-all h-full cursor-pointer relative">
+                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <ArrowUpRight className="h-4 w-4 text-indigo-400" />
+                        </div>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                Prélèvements
+                            </CardTitle>
+                            <RefreshCcw className="h-4 w-4 text-blue-500" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold text-foreground">
+                                {remainingFixedCosts.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                            </div>
+                            <p className="text-xs text-blue-600 dark:text-blue-400 font-medium mt-1">
+                                Restant ce mois
+                            </p>
+                        </CardContent>
+                    </Card>
+                </Link>
+
+                {/* 4. FORECAST */}
+                <Card className="border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-emerald-50/50 dark:bg-emerald-950/30 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-semibold text-emerald-700/70 dark:text-emerald-400/70 uppercase tracking-wider">
+                            Prévision Fin de Mois
                         </CardTitle>
+                        <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                     </CardHeader>
-                    <CardContent className="relative z-10">
-                        <div className="text-3xl font-extrabold tracking-tight">
+                    <CardContent>
+                        <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
                             {eomForecast.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
-                        <p className="text-xs text-emerald-200 mt-1 font-medium opacity-80">
+                        <p className="text-xs text-emerald-600/60 dark:text-emerald-400/60 mt-1 font-medium">
                             Projection hors CA futur
                         </p>
                     </CardContent>
                 </Card>
             </div>
 
-            {/* Chart Section */}
+            {/* Secondary Row: Chart & Timeline */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2">
-                    <BalanceChart data={chartData} />
-                </div>
-
-                <div className="space-y-6">
-                    <Card className="bg-slate-900 text-white border-none shadow-xl h-full flex flex-col justify-between overflow-hidden relative rounded-3xl">
-                        <div className="absolute top-0 right-0 p-8 opacity-10">
-                            <TrendingUp className="h-48 w-48" />
+                <div className="lg:col-span-2 space-y-6">
+                    {/* CHART */}
+                    <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
+                        <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                            <TrendingUp className="h-5 w-5 text-indigo-500" />
+                            Évolution Trésorerie
+                        </h3>
+                        <div className="dark:invert dark:hue-rotate-180">
+                            <BalanceChart data={chartData} />
                         </div>
-                        <div className="absolute bottom-0 left-0 -ml-10 -mb-10 h-32 w-32 bg-emerald-500/20 blur-2xl rounded-full" />
-                        <CardHeader className="relative z-10">
-                            <CardTitle className="text-emerald-400 flex items-center gap-2 text-sm uppercase tracking-widest font-bold">
-                                <TrendingUp className="h-5 w-5" />
-                                Pilotage Intelligent
-                            </CardTitle>
+                    </div>
+
+                    {/* RECENT TRANSACTIONS */}
+                    <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden">
+                        <CardHeader className="border-b border-border bg-muted/30 px-6 py-4">
+                            <div className="flex items-center justify-between">
+                                <CardTitle className="text-lg font-semibold text-foreground">Derniers Mouvements</CardTitle>
+                                <Badge variant="outline" className="font-normal text-muted-foreground bg-card">Banque</Badge>
+                            </div>
                         </CardHeader>
-                        <CardContent className="space-y-6 relative z-10 pb-10">
-                            <div className="p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10">
-                                <p className="text-xs text-slate-400 mb-2 uppercase font-bold tracking-tight">Alertes Trésorerie</p>
-                                {unpaidPOs.length > 0 ? (
-                                    <p className="text-lg font-medium leading-normal">
-                                        <span className="text-amber-400 font-bold">{unpaidPOs.length} factures</span> sont en attente de réconciliation ou de paiement.
-                                    </p>
-                                ) : (
-                                    <p className="text-lg font-medium leading-normal text-emerald-300">
-                                        Tout est à jour ! Aucune facture en attente.
-                                    </p>
-                                )}
-                            </div>
-                            <div className="pt-6 border-t border-white/10">
-                                <p className="text-sm text-slate-300 leading-relaxed italic opacity-80">
-                                    "Le solde prévisionnel inclut vos charges fixes restantes ({remainingFixedCosts.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}) et vos dettes fournisseurs."
-                                </p>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
-            </div>
-
-            {/* Recent Transactions */}
-            <div className="grid grid-cols-1 gap-8">
-                <Card className="border-none shadow-xl bg-white rounded-3xl overflow-hidden ring-1 ring-slate-200">
-                    <CardHeader className="flex flex-row items-center justify-between p-8 border-b border-slate-100 bg-slate-50/30">
-                        <div>
-                            <CardTitle className="text-xl font-bold text-slate-900">Dernières Transactions</CardTitle>
-                            <p className="text-sm text-slate-500 mt-1 font-medium">Flux bancaires récents (crédits et débits).</p>
-                        </div>
-                        <Link href="/finance/history">
-                            <Button variant="outline" size="sm" className="rounded-full px-6 border-slate-200 hover:bg-white hover:text-emerald-700 hover:border-emerald-200 transition-all font-medium">
-                                Voir tout l'historique <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                        </Link>
-                    </CardHeader>
-                    <CardContent className="p-0">
-                        {recentTransactions.length === 0 ? (
-                            <div className="text-center py-20 bg-slate-50/20">
-                                <div className="bg-slate-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                                    <Wallet className="h-8 w-8 text-slate-400" />
-                                </div>
-                                <h3 className="text-slate-900 font-medium">Aucune donnée</h3>
-                                <p className="text-slate-500 text-sm mt-1">Commencez par importer votre relevé bancaire.</p>
-                            </div>
-                        ) : (
-                            <div className="divide-y divide-slate-100">
+                        <CardContent className="p-0">
+                            <div className="divide-y divide-border">
                                 {recentTransactions.map((t: any) => (
-                                    <div key={t.id} className="flex items-center justify-between p-6 hover:bg-slate-50/80 transition-colors group">
-                                        <div className="flex items-center gap-5">
-                                            <div className={`p-4 rounded-2xl transition-all shadow-sm ${Number(t.amount) >= 0 ? 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-100 group-hover:scale-105' : 'bg-red-50 text-red-600 group-hover:bg-red-100 group-hover:scale-105'}`}>
-                                                {Number(t.amount) >= 0 ? <ArrowUpRight className="h-6 w-6" /> : <ArrowDownRight className="h-6 w-6" />}
+                                    <div key={t.id} className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors">
+                                        <div className="flex items-center gap-4">
+                                            <div className={`p-2 rounded-lg ${Number(t.amount) >= 0
+                                                ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400'
+                                                : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                                                }`}>
+                                                {Number(t.amount) >= 0 ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
                                             </div>
                                             <div>
-                                                <p className="font-bold text-slate-800 text-base">{t.description}</p>
-                                                <div className="flex items-center gap-2 mt-1">
-                                                    <Badge variant="outline" className="text-[10px] px-2 py-0 h-5 border-slate-200 text-slate-500 bg-slate-50">
+                                                <p className="font-medium text-foreground text-sm">{t.description}</p>
+                                                <div className="flex items-center gap-2 mt-0.5">
+                                                    <span className="text-xs text-muted-foreground">
                                                         {t.date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}
-                                                    </Badge>
+                                                    </span>
                                                     {t.category && (
-                                                        <Badge variant="secondary" className="text-[10px] px-2 py-0 h-5 bg-blue-50 text-blue-600 hover:bg-blue-100 border-none">
+                                                        <Badge variant="secondary" className="text-[10px] h-4 px-1.5 bg-muted text-muted-foreground hover:bg-muted/80 font-normal">
                                                             {t.category.name}
                                                         </Badge>
                                                     )}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className={`text-lg font-black tracking-tight ${Number(t.amount) >= 0 ? 'text-emerald-600' : 'text-slate-900'}`}>
+                                        <div className={`text-sm font-bold ${Number(t.amount) >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-foreground'}`}>
                                             {Number(t.amount) > 0 ? '+' : ''}{Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                        )}
-                    </CardContent>
-                </Card>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                <div className="space-y-6">
+                    {/* Monthly Timeline / Calendar */}
+                    <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden flex flex-col h-full">
+                        <CardHeader className="bg-muted/30 border-b border-border px-6 py-4">
+                            <CardTitle className="text-lg font-semibold text-foreground flex items-center gap-2">
+                                <Calendar className="h-5 w-5 text-indigo-500" />
+                                Échéancier du Mois
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-0 overflow-y-auto max-h-[600px] custom-scrollbar">
+                            {timeline.length === 0 ? (
+                                <div className="p-12 text-center">
+                                    <div className="bg-muted h-12 w-12 rounded-full mx-auto mb-3 flex items-center justify-center">
+                                        <RefreshCcw className="h-6 w-6 text-muted-foreground" />
+                                    </div>
+                                    <p className="text-muted-foreground text-sm font-medium italic">Aucune charge détectée</p>
+                                    <Button asChild variant="link" className="mt-2 text-indigo-600 dark:text-indigo-400 h-auto p-0">
+                                        <Link href="/finance/charges">Ajouter une charge</Link>
+                                    </Button>
+                                </div>
+                            ) : (
+                                <div className="divide-y divide-border">
+                                    {timeline.map((item: any) => (
+                                        <div key={item.id} className={`p-4 flex items-center justify-between group hover:bg-muted/50 transition-colors ${item.isPast ? 'opacity-50 grayscale' : ''}`}>
+                                            <div className="flex items-center gap-3">
+                                                <div className={`h-10 w-10 rounded-lg flex flex-col items-center justify-center font-bold text-xs ring-1 ring-inset ${item.isPast
+                                                        ? 'bg-muted text-muted-foreground ring-border'
+                                                        : 'bg-card text-indigo-600 dark:text-indigo-400 ring-indigo-100 dark:ring-indigo-900 shadow-sm'
+                                                    }`}>
+                                                    <span className="uppercase text-[8px] opacity-70">{item.date.toLocaleDateString('fr-FR', { month: 'short' })}</span>
+                                                    <span className="text-sm">{item.date.getDate()}</span>
+                                                </div>
+                                                <div>
+                                                    <p className="font-semibold text-foreground text-xs sm:text-sm truncate max-w-[120px] sm:max-w-none">{item.name}</p>
+                                                    <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wide mt-0.5">{item.category}</p>
+                                                </div>
+                                            </div>
+                                            <div className="text-right">
+                                                <p className="font-bold text-foreground text-xs sm:text-sm">-{item.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </CardContent>
+                    </Card>
+                </div>
             </div>
         </div>
     )

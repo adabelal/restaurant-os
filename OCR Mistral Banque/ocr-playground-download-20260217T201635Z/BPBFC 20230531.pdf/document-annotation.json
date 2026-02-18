@@ -1,0 +1,27 @@
+{
+  "releve_bancaire": {
+    "numero_releve": "N° 1",
+    "periode": "DU 01/05/2023 AU 31/05/2023",
+    "transactions": [
+      {
+        "date_operation": "30/05/2023",
+        "libelle": "VIREMENT G804002 OUVERTURE CAPITAL M ADAM BELAL",
+        "debit": 0,
+        "credit": 500
+      },
+      {
+        "date_operation": "30/05/2023",
+        "libelle": "VIREMENT G804003 OUVERTURE CAPITAL MLLE VANESSA BOUVET",
+        "debit": 0,
+        "credit": 500
+      },
+      {
+        "date_operation": "30/05/2023",
+        "libelle": "COTIS RYTHMEO 0030993 XCCNV240 2023053000030993000001 CONTRAT CNV5041449827",
+        "debit": 22.82,
+        "credit": 0
+      }
+    ],
+    "solde_final": 977.18
+  }
+}

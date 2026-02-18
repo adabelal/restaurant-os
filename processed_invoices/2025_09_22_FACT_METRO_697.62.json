@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-09-22",
+  "invoiceNo": "0/0 (067) 0051/0012022",
+  "totalAmount": 411.08,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.91,
+      "totalPrice": 59.55
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 44.1
+    },
+    {
+      "name": "GIN LIONHEART DLT 37,5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.93,
+      "totalPrice": 31.72
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 13.0,
+      "totalPrice": 26.0
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.435,
+      "totalPrice": 137.22
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.17,
+      "totalPrice": 56.68
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.25,
+      "totalPrice": 58.5
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.02,
+      "totalPrice": 73.44
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.77,
+      "totalPrice": 42.48
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.21,
+      "totalPrice": 11.21
+    }
+  ]
+}

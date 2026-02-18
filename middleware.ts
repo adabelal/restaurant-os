@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 // Routes publiques qui ne nécessitent pas d'authentification
-const publicRoutes = ["/login"]
+const publicRoutes = ["/login", "/forgot-password", "/reset-password"]
 
 // Routes API publiques
 const publicApiRoutes = ["/api/auth"]

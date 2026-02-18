@@ -1,0 +1,15 @@
+{
+  "supplierName": "KRILL",
+  "date": "2025-11-01",
+  "invoiceNo": null,
+  "totalAmount": 5.8,
+  "items": [
+    {
+      "name": "GALETTE PUR BEURRE \u00c0 LA FRANGIPANE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.8,
+      "totalPrice": 5.8
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-02-02",
+  "invoiceNo": "4020500026",
+  "totalAmount": 33.3,
+  "items": [
+    {
+      "name": "24 BTE ORGANIC BIO TONIC WATER25C",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.197,
+      "totalPrice": 29.5
+    }
+  ]
+}

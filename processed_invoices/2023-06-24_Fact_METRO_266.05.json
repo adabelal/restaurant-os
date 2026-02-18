@@ -1,0 +1,211 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-24",
+  "invoiceNo": "0/0 (067) 0016/0056902",
+  "totalAmount": 23.79,
+  "items": [
+    {
+      "name": "SIROP GILBERT MANGUE 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.73,
+      "totalPrice": 2.73
+    },
+    {
+      "name": "GALETTE DE RIZ 1/4 31CM 500G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.82,
+      "totalPrice": 2.82
+    },
+    {
+      "name": "MC SAUCE PIMENT DOUX 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.55,
+      "totalPrice": 4.55
+    },
+    {
+      "name": "COLONA CHEEZY EASY SQ 950ML",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 5.39,
+      "totalPrice": 5.39
+    },
+    {
+      "name": "FAR SACCOROSSO TOO W320 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.45,
+      "totalPrice": 7.45
+    },
+    {
+      "name": "FAR CLASSICA TOO W220-240 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.75,
+      "totalPrice": 6.75
+    },
+    {
+      "name": "DOONUTS NAPPES X40",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.45,
+      "totalPrice": 12.45
+    },
+    {
+      "name": "SAVANE POCKET MAX BARR X7 210G",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 1.95,
+      "totalPrice": 3.9
+    },
+    {
+      "name": "SURFIZZ COLA XL GAINE 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.09,
+      "totalPrice": 12.09
+    },
+    {
+      "name": "LASSO TORSADE COLA 200",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.39,
+      "totalPrice": 14.39
+    },
+    {
+      "name": "20 ICE LOLLIES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.09,
+      "totalPrice": 9.09
+    },
+    {
+      "name": "BEURRE DX. TRAD. MOULE 500G PB",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.5,
+      "totalPrice": 5.5
+    },
+    {
+      "name": "BURRATA BQ 8X100G TOSCA",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.5,
+      "totalPrice": 11.5
+    },
+    {
+      "name": "MOZZA PAIN 1KG BIANCALATTE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.59,
+      "totalPrice": 8.59
+    },
+    {
+      "name": "TR SAV CHEDDAR 400G NURISHH",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.85,
+      "totalPrice": 4.85
+    },
+    {
+      "name": "PAIN 100% MIE LC 12X12 820G MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.69,
+      "totalPrice": 3.69
+    },
+    {
+      "name": "MAXI HOT DOG 6X100G METRO CHEF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.63,
+      "totalPrice": 2.63
+    },
+    {
+      "name": "CLUB MEGA POULET OEUF 230G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.4,
+      "totalPrice": 2.4
+    },
+    {
+      "name": "SCISSE FRANCFORT 1KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.24,
+      "totalPrice": 6.24
+    },
+    {
+      "name": "1/2 SALAME M. CRESPONE 1, 5KGENV",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.6,
+      "totalPrice": 13.43
+    },
+    {
+      "name": "BAV ALOY PAD UE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 35.11
+    },
+    {
+      "name": "CHIPOLATAS PORC 75/25 S/AT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.99,
+      "totalPrice": 14.55
+    },
+    {
+      "name": "FRAMBOISE 125G PORTUGAL",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 1.39,
+      "totalPrice": 2.78
+    },
+    {
+      "name": "PAST BOX 8/12 KG PC MAROC 35",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 6.49
+    },
+    {
+      "name": "PDT CONSO AGATA 40+ C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.9,
+      "totalPrice": 7.9
+    },
+    {
+      "name": "TOM RDE ROSE 3.5KG FR C2 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.17,
+      "totalPrice": 11.17
+    },
+    {
+      "name": "OIG JNE GBOX 6/8 1KG DMLT C1FR 90FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.79,
+      "totalPrice": 1.79
+    },
+    {
+      "name": "BAC A PATE 15L 60X40 H9CM",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 12.5,
+      "totalPrice": 12.5
+    },
+    {
+      "name": "BAC A PATE 9L 60X40 H5.5CM",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 11.29,
+      "totalPrice": 11.29
+    }
+  ]
+}

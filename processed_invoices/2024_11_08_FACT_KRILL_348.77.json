@@ -1,0 +1,36 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-08-11",
+  "invoiceNo": "786661",
+  "totalAmount": 348.77,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": 13.254,
+      "unit": "kg",
+      "unitPrice": 7.3,
+      "totalPrice": 96.75
+    },
+    {
+      "name": "ENTRECOTE VB 4/5 KG S/V FRANCE MF VBF",
+      "quantity": 5.34,
+      "unit": "kg",
+      "unitPrice": 17.5,
+      "totalPrice": 93.45
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.03,
+      "unit": "U",
+      "unitPrice": 0.097,
+      "totalPrice": 0.52
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30 S/V UK UE PTF",
+      "quantity": 9.653,
+      "unit": "kg",
+      "unitPrice": 14.49,
+      "totalPrice": 139.87
+    }
+  ]
+}

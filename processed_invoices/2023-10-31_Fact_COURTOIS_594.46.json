@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-10-31",
+  "invoiceNo": "3100500433",
+  "totalAmount": 594.46,
+  "items": [
+    {
+      "name": "72 IRANCY Bienvenu Ct 6BT PROMOTION",
+      "quantity": 75.0,
+      "unit": "U",
+      "unitPrice": 9.14,
+      "totalPrice": 658.08
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-23",
+  "invoiceNo": "067/008",
+  "totalAmount": 641.97,
+  "items": [
+    {
+      "name": "WHISKY NIKKA BARREL 51.4D 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 28.99,
+      "totalPrice": 28.99
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37, 5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.27,
+      "totalPrice": 130.86
+    },
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.99,
+      "totalPrice": 23.97
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.92,
+      "totalPrice": 12.92
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.8,
+      "totalPrice": 58.8
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.72,
+      "totalPrice": 140.64
+    },
+    {
+      "name": "ANGOSTURA BITTER 44. 7D 20CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.71,
+      "totalPrice": 47.13
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.12,
+      "totalPrice": 133.44
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 47.52
+    },
+    {
+      "name": "COCA COLA REG PET 1,25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.58,
+      "totalPrice": 75.84
+    },
+    {
+      "name": "HO VE CARAPELLI CLASS B10*75CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.3,
+      "totalPrice": 13.3
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.0,
+      "totalPrice": 44.0
+    }
+  ]
+}

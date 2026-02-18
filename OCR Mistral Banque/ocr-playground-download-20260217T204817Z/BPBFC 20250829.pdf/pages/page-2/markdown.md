@@ -1,0 +1,74 @@
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 7 AU 29/08/2025
+
+|  DATE COMPTA | LIBELLE / REFERENCE | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- |
+|  04/08 | REMISE CB 5401547011
+BRUT 1 496,90E - COM 4,77E
+- NB0019/108430 | 0810430 | 04/08 | 1 492,13 €  |
+|  04/08 | REMISE CB 5401547011
+BRUT 1 756,42E - COM 5,64E
+- NB0018/105338 | 0812338 | 04/08 | 1 750,78 €  |
+|  04/08 | REMISE CB 5401547011
+BRUT 3 063,20E - COM 10,51E
+- NB0095/194279 | 0811279 | 04/08 | 3 052,69 €  |
+|  04/08 | PRLV SEPA EPISAVEURS EST
+/INV/8971823216 25.7.2025
+00007SS000016712 | 00F0VB3 | 04/08 | - 381,78 €  |
+|  04/08 | PRLV SEPA Butagaz SAS
+/INV/0009747808 25.7.2025
+ZB07638592 | 00FAIGY | 04/08 | - 276,12 €  |
+|  04/08 | PRLV SEPA COURTOIS BOURG
+Prelevement Magnetique
+++COU03601C4287S34160 | 00FZ9QN | 04/08 | - 3 424,23 €  |
+|  04/08 | REMISE CB 5401547011
+BRUT 193,20E - COM 0,61E
+- NB0002/155503 | 0814503 | 04/08 | 192,59 €  |
+|  04/08 | REMISE CB 5401547011
+BRUT 421,00E - COM 1,36E
+- NB0005/152591 | 0813591 | 04/08 | 419,64 €  |
+|  05/08 | PRLV SEPA PASSIONFROID B
+/INV/8333558725 1.8.2025
+00002ES000018612 | 00GJKTR | 05/08 | - 252,97 €  |
+|  05/08 | Mme Bernard Ingrid
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 7381318 | 05/08 | - 164,21 €  |
+|  05/08 | Sarl Guillaume Verdin
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 7381376 | 05/08 | - 3 023,42 €  |
+|  05/08 | Sarl Guillaume Verdin
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 7381414 | 05/08 | - 349,23 €  |
+|  05/08 | Earl Du Limousin
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 7381531 | 05/08 | - 98,74 €  |
+|  05/08 | Chubb France
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 7387650 | 05/08 | - 228,19 €  |
+|  06/08 | PRLV SEPA METRO FRANCE S
+/INV/0014.029541
+CMR000084696901 | 00H9J6V | 06/08 | - 355,96 €  |
+|  06/08 | PRLV SEPA SACEM-SOC AUTE
+Prelevement SACEM
+01-MAN-123496327-841235823-01 | 00H4BZ0 | 06/08 | - 438,70 €  |
+|  07/08 | 060825 CB***7917
+GRAND FRAIS FR PERRIGNY
+27,27EUR 1 EURO = 1,000000 | A3CGDY3 | 07/08 | - 27,27 €  |
+|  08/08 | 070825 CB***7917
+METRO FR MONETEAU067
+162,61EUR 1 EURO = 1,000000 | A4ZZOCP | 08/08 | - 162,61 €  |
+|  08/08 | 060825 CB***7917
+METRO FR MONETEAU067
+772,43EUR 1 EURO = 1,000000 | A4ZZOCQ | 08/08 | - 772,43 €  |
+|  08/08 | REMISE CB 5401547011
+BRUT 1 241,47E - COM 3,99E
+- NB0040/112856 | 0815856 | 08/08 | 1 237,48 €  |
+|  08/08 | REMISE CB 5401547011
+BRUT 796,35E - COM 2,55E
+- NB0008/115544 | 0816544 | 08/08 | 793,80 €  |
+|  11/08 | REMISE CB 5401547011
+BRUT 2 396,00E - COM 8,42E
+- NB0096/116355 | 0817355 | 11/08 | 2 387,58 €  |
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPOJN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+Page 2/6

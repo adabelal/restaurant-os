@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-12-12",
+  "invoiceNo": "0/0 (067) 0051/0094582",
+  "totalAmount": 427.45,
+  "items": [
+    {
+      "name": "*DESPERAD 5. 9D 33CL VP //",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.106,
+      "totalPrice": 26.54
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.05,
+      "totalPrice": 50.4
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.95,
+      "totalPrice": 29.99
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.95,
+      "totalPrice": 25.76
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.95,
+      "totalPrice": 30.78
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.95,
+      "totalPrice": 31.5
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.95,
+      "totalPrice": 33.18
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 17.89
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 22.39
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 21.5
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 21.04
+    },
+    {
+      "name": "SAL BATAVIA MC PC6 C1 FRFRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 11.88
+    },
+    {
+      "name": "6 MOULES NOIR MAT d 6.5CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.69,
+      "totalPrice": 23.38
+    },
+    {
+      "name": "PACK 6 TERRINES F/WISS 200G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.893,
+      "totalPrice": 22.72
+    },
+    {
+      "name": "VERRRINE TAPAS 8CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.202,
+      "totalPrice": 14.42
+    },
+    {
+      "name": "GOB FH STARLINE 31CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.44,
+      "totalPrice": 8.64
+    }
+  ]
+}

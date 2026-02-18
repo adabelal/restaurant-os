@@ -1,0 +1,155 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-13",
+  "invoiceNo": "0/0 (067)0001/0012402",
+  "totalAmount": 514.97,
+  "items": [
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.76,
+      "totalPrice": 16.76
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.8,
+      "totalPrice": 21.6
+    },
+    {
+      "name": "8 CROISSANTS 320G ROCHAMBEAU",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.81,
+      "totalPrice": 3.62
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 2.76,
+      "totalPrice": 16.56
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 36.0,
+      "unit": "L",
+      "unitPrice": 1.763,
+      "totalPrice": 63.48
+    },
+    {
+      "name": "CRISTALI 50CL PET",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.174,
+      "totalPrice": 4.18
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.8,
+      "totalPrice": 13.8
+    },
+    {
+      "name": "RAISIN SULTANINE 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.08,
+      "totalPrice": 6.08
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.57,
+      "totalPrice": 74.58
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.08,
+      "totalPrice": 27.88
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.62,
+      "totalPrice": 146.24
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.84,
+      "totalPrice": 13.89
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 4.0,
+      "unit": "kg",
+      "unitPrice": 11.47,
+      "totalPrice": 45.88
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.55,
+      "totalPrice": 15.55
+    },
+    {
+      "name": "ARO JUS CITRON JAUNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.0,
+      "totalPrice": 3.0
+    },
+    {
+      "name": "POIVRE NOIR MOULU 1KG ARO",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.79,
+      "totalPrice": 16.79
+    },
+    {
+      "name": "ROCH SQUEZ MOUT DIJON 265G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.627,
+      "totalPrice": 9.76
+    },
+    {
+      "name": "COCO RAPEE 1KG METRO CHEF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.7,
+      "totalPrice": 5.7
+    },
+    {
+      "name": "MC POUDRE D' AMANDE BLANCHE 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.05,
+      "totalPrice": 10.05
+    },
+    {
+      "name": "MC CERNEAUX NOIX ARLEQUIN 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.57,
+      "totalPrice": 13.57
+    },
+    {
+      "name": "OEUF 90 M SOL",
+      "quantity": 90.0,
+      "unit": "U",
+      "unitPrice": 0.215,
+      "totalPrice": 19.36
+    }
+  ]
+}

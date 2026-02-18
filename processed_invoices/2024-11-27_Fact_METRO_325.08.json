@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-27",
+  "invoiceNo": "067/008",
+  "totalAmount": 325.08,
+  "items": [
+    {
+      "name": "COUSCOUS DARI FIN 5 KG",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 3.0,
+      "totalPrice": 15.0
+    },
+    {
+      "name": "LE RENARD COUSCOUS PREM. FIN5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.01,
+      "totalPrice": 26.02
+    },
+    {
+      "name": "COUSCOUS FIN 5KG FERRERO",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.38,
+      "totalPrice": 11.9
+    },
+    {
+      "name": "MC AMANDE EMONDEE 23/25 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.09,
+      "totalPrice": 10.09
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.2,
+      "totalPrice": 4.2
+    },
+    {
+      "name": "1/2 ENTRECOTE CHARO S/P MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 25.99,
+      "totalPrice": 83.3
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.29,
+      "totalPrice": 10.99
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.29,
+      "totalPrice": 12.31
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.29,
+      "totalPrice": 11.82
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.17
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.09
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 23.6
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.25
+    },
+    {
+      "name": "TOM CERISE DUO ALL. 2.5KG ESP C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.98,
+      "totalPrice": 9.98
+    },
+    {
+      "name": "AIL PELE MC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.49,
+      "totalPrice": 5.49
+    },
+    {
+      "name": "MPRO FILM ALIM 9MICR 300MX44CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.6,
+      "totalPrice": 9.6
+    }
+  ]
+}

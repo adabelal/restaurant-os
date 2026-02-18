@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-22",
+  "invoiceNo": "067/045",
+  "totalAmount": 508.47,
+  "items": [
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.8,
+      "totalPrice": 10.8
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 21.51
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 26.34,
+      "totalPrice": 26.34
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.308,
+      "totalPrice": 15.7
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.55,
+      "totalPrice": 7.55
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.85,
+      "totalPrice": 5.7
+    },
+    {
+      "name": "COURG 14/21 METRO CHEF 5KG ES C1 20 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.79,
+      "totalPrice": 44.37
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.16,
+      "totalPrice": 26.32
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG 56 MAROC C1MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.57,
+      "totalPrice": 9.57
+    },
+    {
+      "name": "OIG CHARC MC 7/10 8KG C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.35,
+      "totalPrice": 11.35
+    },
+    {
+      "name": "CAROTTE MC 10KG 40+ GB18 FR C1FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.48,
+      "totalPrice": 34.96
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.148,
+      "totalPrice": 42.89
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 12.818,
+      "totalPrice": 230.73
+    },
+    {
+      "name": "ANGOSTURA BITTER 44. 7D 20CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 44.97
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 12.677,
+      "totalPrice": 152.12
+    }
+  ]
+}

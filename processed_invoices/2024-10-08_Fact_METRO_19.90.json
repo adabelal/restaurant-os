@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-08",
+  "invoiceNo": "0/0 (067) 0015/0161712",
+  "totalAmount": 19.9,
+  "items": [
+    {
+      "name": "7008717 SAL FDC BLONDE X6 MC C1 FRANCE FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.29,
+      "totalPrice": 7.74
+    },
+    {
+      "name": "7023500 SAL FDC MIXTE X8 MC C1 FRANCE FRANCE",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 1.39,
+      "totalPrice": 11.12
+    }
+  ]
+}

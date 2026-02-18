@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-17",
+  "invoiceNo": "0/0 (067) 0013/0155062",
+  "totalAmount": 143.45,
+  "items": [
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 20.99
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 19.34
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 13.94
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 21.68
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 18.58
+    },
+    {
+      "name": "CITR VERT FILET 1KG BRESIL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 8.97
+    },
+    {
+      "name": "MPRO 250 SERV 2P NOIRE 40X40",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.65,
+      "totalPrice": 13.3
+    },
+    {
+      "name": "MPRO 200 SET RAYE NOIR/GRIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.25,
+      "totalPrice": 15.25
+    }
+  ]
+}

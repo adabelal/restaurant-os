@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-11-24",
+  "invoiceNo": "0/0 (067) 0052/0088852",
+  "totalAmount": 269.79,
+  "items": [
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 16.543,
+      "totalPrice": 198.52
+    },
+    {
+      "name": "HAR. VERT EXT FIN 2.5KG BONDUEL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.17,
+      "totalPrice": 10.17
+    },
+    {
+      "name": "CUISSE PLT LR IGP LICQ B SAT*10",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.49,
+      "totalPrice": 19.75
+    }
+  ]
+}

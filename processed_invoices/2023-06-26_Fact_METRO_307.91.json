@@ -1,0 +1,239 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-26",
+  "invoiceNo": "0/0 (067) 0014/011933",
+  "totalAmount": 17.22,
+  "items": [
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.56,
+      "totalPrice": 13.44
+    },
+    {
+      "name": "CRISTALI GAZ 1.5L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.27,
+      "totalPrice": 1.62
+    },
+    {
+      "name": "CRISTALI 1.5L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.18,
+      "totalPrice": 2.16
+    },
+    {
+      "name": "ROCH. DBLE CON TOMATE 1/6 X4",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 0.688,
+      "totalPrice": 2.75
+    },
+    {
+      "name": "CORNICH. PAYSAN. BOC. 850G KUHNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.64,
+      "totalPrice": 3.64
+    },
+    {
+      "name": "MOUSLINE NATURE 520G MAGGI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.7,
+      "totalPrice": 5.4
+    },
+    {
+      "name": "MC THYM MONDE SEC 220G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.23,
+      "totalPrice": 3.23
+    },
+    {
+      "name": "CREME DE MARRONS DOYPACK 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.57,
+      "totalPrice": 5.57
+    },
+    {
+      "name": "CASSONADE 1KG SAINT LOUIS",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 2.467,
+      "totalPrice": 14.8
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.71,
+      "totalPrice": 5.71
+    },
+    {
+      "name": "CHOCAPIC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.55,
+      "totalPrice": 5.55
+    },
+    {
+      "name": "MARS 51G UVC",
+      "quantity": 32.0,
+      "unit": "U",
+      "unitPrice": 0.421,
+      "totalPrice": 13.48
+    },
+    {
+      "name": "MILKA RIZ 100G X 2 TABLETTES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.7,
+      "totalPrice": 3.4
+    },
+    {
+      "name": "BARRE MARBREE 600G ROCHAMBEAU",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.35,
+      "totalPrice": 2.35
+    },
+    {
+      "name": "GRANOLA COOKIES AMANDES 184GX4",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.55,
+      "totalPrice": 6.2
+    },
+    {
+      "name": "PETIT ECOLIER CHOC. LAIT 150GX6",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.313,
+      "totalPrice": 7.88
+    },
+    {
+      "name": "MALABAR FRAISE BOITE 200PCES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.0,
+      "totalPrice": 12.0
+    },
+    {
+      "name": "VAN HOUTEN VH12 DA 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.49,
+      "totalPrice": 5.49
+    },
+    {
+      "name": "NESC SPF NL 25X2GR.",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.29,
+      "totalPrice": 2.29
+    },
+    {
+      "name": "NESCAFE CAPPUCCINO 280G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.43,
+      "totalPrice": 4.43
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "SUISSE GERVAIS 9,5% MG 60GX12",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.39,
+      "totalPrice": 4.78
+    },
+    {
+      "name": "LAITIERE VANILL4X125G NESTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.86,
+      "totalPrice": 1.86
+    },
+    {
+      "name": "DANONE 16*125G FRUITS CREMEUX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.41,
+      "totalPrice": 4.41
+    },
+    {
+      "name": "YOP 180GX6 PARFUM FRAISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.59,
+      "totalPrice": 2.59
+    },
+    {
+      "name": "YAOS VANILLE 4X125G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.64,
+      "totalPrice": 2.64
+    },
+    {
+      "name": "YAOURT A LA GREC 1KG CREMOS",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.88,
+      "totalPrice": 3.88
+    },
+    {
+      "name": "CREME DESSERT 4*125G PRAL E&V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.92,
+      "totalPrice": 1.92
+    },
+    {
+      "name": "CREME DESSERT 4*125G CARAM E&V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.92,
+      "totalPrice": 1.92
+    },
+    {
+      "name": "VIENNOIS CAFE 4X100G NESTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.46,
+      "totalPrice": 1.46
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.89,
+      "totalPrice": 5.67
+    },
+    {
+      "name": "CREME DESSERT 4*125G CAFE E&V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.92,
+      "totalPrice": 1.92
+    },
+    {
+      "name": "CREM OEUF VANIL4X100G LAITIERE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.94,
+      "totalPrice": 1.94
+    }
+  ]
+}

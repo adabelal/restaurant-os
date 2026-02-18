@@ -1,0 +1,127 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-15",
+  "invoiceNo": "067/045",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.8,
+      "totalPrice": 21.6
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 21.15
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.84,
+      "totalPrice": 338.78
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.84,
+      "totalPrice": 177.6
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.88,
+      "totalPrice": 116.07
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.76,
+      "totalPrice": 18.76
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 26.34,
+      "totalPrice": 26.34
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 4.82
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.56,
+      "totalPrice": 6.56
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.74,
+      "totalPrice": 5.48
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 9.29,
+      "totalPrice": 18.58
+    },
+    {
+      "name": "COURG 14/21 METRO CHEF 5KG ES C1 20 ESPAGNE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 14.79,
+      "totalPrice": 29.58
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG 56 MAROC C1MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.51,
+      "totalPrice": 8.51
+    },
+    {
+      "name": "WH ARDBEG ISLAY 10A 46D 70CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 38.22,
+      "totalPrice": 76.44
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 13.05,
+      "totalPrice": 26.1
+    },
+    {
+      "name": "RH BUMBU XO 40D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 35.52,
+      "totalPrice": 35.52
+    },
+    {
+      "name": "SKIP ACTIVE LIQUIDE 1,67L 37D",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 11.7,
+      "totalPrice": 11.7
+    }
+  ]
+}

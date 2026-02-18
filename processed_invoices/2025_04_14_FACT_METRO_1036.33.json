@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-14",
+  "invoiceNo": "067/049",
+  "totalAmount": 551.2,
+  "items": [
+    {
+      "name": "GIN G'VINE FLORAISON 40D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 22.59,
+      "totalPrice": 22.59
+    },
+    {
+      "name": "GIN TANQUERAY 43, 1D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 16.32,
+      "totalPrice": 16.32
+    },
+    {
+      "name": "GIN LIONHEART DLT 37,5D 70CL",
+      "quantity": 9.0,
+      "unit": "L",
+      "unitPrice": 8.08,
+      "totalPrice": 72.72
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 11.65,
+      "totalPrice": 139.8
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 11.65,
+      "totalPrice": 69.9
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 11.16,
+      "totalPrice": 66.96
+    },
+    {
+      "name": "GET31 24D 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 17.9,
+      "totalPrice": 107.4
+    },
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 3.65,
+      "totalPrice": 43.8
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 3.65,
+      "totalPrice": 65.7
+    },
+    {
+      "name": "CREM VINAIGRE BALSA 500G PONTI",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 5.43,
+      "totalPrice": 10.86
+    },
+    {
+      "name": "RIOBA POIVRIERE 18G X20",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.23,
+      "totalPrice": 10.23
+    },
+    {
+      "name": "RIOBA SALIERE 50G X20",
+      "quantity": 20.0,
+      "unit": "kg",
+      "unitPrice": 0.285,
+      "totalPrice": 5.7
+    },
+    {
+      "name": "MC PAPRIKA DOUX 550G",
+      "quantity": 8.0,
+      "unit": "kg",
+      "unitPrice": 6.46,
+      "totalPrice": 51.68
+    }
+  ]
+}

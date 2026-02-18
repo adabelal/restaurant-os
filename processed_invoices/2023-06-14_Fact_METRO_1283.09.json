@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-14",
+  "invoiceNo": "0/0 (067) 0016/0053672",
+  "totalAmount": 614.84,
+  "items": [
+    {
+      "name": "TEQUILA SAN JOSE SILVER70CL35D",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.3,
+      "totalPrice": 22.6
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.68,
+      "totalPrice": 192.24
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.49,
+      "totalPrice": 62.94
+    },
+    {
+      "name": "RICARD 45D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.94,
+      "totalPrice": 12.94
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.87,
+      "totalPrice": 34.44
+    },
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 35.88
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.872,
+      "totalPrice": 51.69
+    },
+    {
+      "name": "MAROC S. BRAHIM RSE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 35.88
+    },
+    {
+      "name": "ROCHAMBEAU NECTAR MULTI BRIKIL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.167,
+      "totalPrice": 14.0
+    },
+    {
+      "name": "ROCHAMBEAU ABC ORANGE BRICK 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.998,
+      "totalPrice": 17.97
+    },
+    {
+      "name": "ROCHAMBEAU ABC ANANAS BRICK 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.258,
+      "totalPrice": 22.65
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.63,
+      "totalPrice": 78.24
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.55,
+      "totalPrice": 219.45
+    }
+  ]
+}

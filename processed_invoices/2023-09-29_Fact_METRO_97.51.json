@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-29",
+  "invoiceNo": "0/0 (067) 0013/026547",
+  "totalAmount": 97.51,
+  "items": [
+    {
+      "name": "SEMOULE EXTRA FINE ZAKIA 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.75,
+      "totalPrice": 6.75
+    },
+    {
+      "name": "POUDRE AMANDE BLANCHE 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.83,
+      "totalPrice": 9.83
+    },
+    {
+      "name": "AROME FLEUR D'ORANGER 50CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.55,
+      "totalPrice": 1.55
+    },
+    {
+      "name": "OEUF 12 M/G SOL ROCHAMBEAU",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.215,
+      "totalPrice": 5.16
+    },
+    {
+      "name": "6 ESSUIE-VERRES LIN ZANZIBAR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 30.39,
+      "totalPrice": 60.78
+    }
+  ]
+}

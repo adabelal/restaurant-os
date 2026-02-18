@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-09-12",
+  "invoiceNo": "0/0 (067) 0051/0090582",
+  "totalAmount": 77.05,
+  "items": [
+    {
+      "name": "CAPRISUN TROPICAL 4X10X20CL",
+      "quantity": 40.0,
+      "unit": "U",
+      "unitPrice": 0.281,
+      "totalPrice": 11.22
+    },
+    {
+      "name": "KINDER MOULAGE P\u00c8RE NOEL 160G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.18,
+      "totalPrice": 54.34
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-01",
+  "invoiceNo": "067/088",
+  "totalAmount": 744.7,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.91,
+      "totalPrice": 214.38
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 44.1
+    },
+    {
+      "name": "RHUM BOTRAN 15 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.99,
+      "totalPrice": 25.99
+    },
+    {
+      "name": "RHUM KRAKEN SPICED 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 23.24,
+      "totalPrice": 46.48
+    },
+    {
+      "name": "RHUM COLOMA 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 27.34,
+      "totalPrice": 54.68
+    },
+    {
+      "name": "GET31 24D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.03,
+      "totalPrice": 72.12
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.17,
+      "totalPrice": 85.02
+    },
+    {
+      "name": "LIQ JAGERMEISTER 35D 70CL+VER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.17,
+      "totalPrice": 85.02
+    },
+    {
+      "name": "LIMONCELLO MEDITERRANEO 22D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.74,
+      "totalPrice": 38.96
+    },
+    {
+      "name": "MX A ROMET 75CL BLC MET TRAD",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.8,
+      "totalPrice": 84.0
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-12-15",
+  "invoiceNo": "3120100560",
+  "totalAmount": 1071.41,
+  "items": [
+    {
+      "name": "60 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 4.914,
+      "totalPrice": 305.4
+    },
+    {
+      "name": "12 PERRIER PET 6 X 1LT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.168,
+      "totalPrice": 14.02
+    },
+    {
+      "name": "2 MONIN CARIBBEAN 70CL gout rhum",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 13.09
+    },
+    {
+      "name": "2 MONIN THE CITRON 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.67,
+      "totalPrice": 13.34
+    },
+    {
+      "name": "20 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.338,
+      "totalPrice": 119.28
+    },
+    {
+      "name": "15 FUT 15 L SLASH IPA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.012,
+      "totalPrice": 82.1
+    },
+    {
+      "name": "12 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 29.47
+    },
+    {
+      "name": "6 NORBERT POMME ABC PET 6X100CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.965,
+      "totalPrice": 11.79
+    },
+    {
+      "name": "1 MONIN FRAISE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.307,
+      "totalPrice": 6.31
+    },
+    {
+      "name": "6 RHUM BRUN TRAD.ORATOIR 40\u00b0LIT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.16,
+      "totalPrice": 54.96
+    },
+    {
+      "name": "48 ROMAN COLA 20CLX24 VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.627,
+      "totalPrice": 31.68
+    },
+    {
+      "name": "6 MONIN MOJITO MINT 70 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 39.26
+    },
+    {
+      "name": "24 ROMAN TONIC 20CLX24 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.786,
+      "totalPrice": 19.44
+    },
+    {
+      "name": "6 RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.014,
+      "totalPrice": 90.9
+    },
+    {
+      "name": "FUT 15 L SLASH \u0399\u03a1\u0391",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 5.012,
+      "totalPrice": -120.0
+    },
+    {
+      "name": "LIMO ROMAN ORANGE 20CLX24 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.627,
+      "totalPrice": -4.5
+    }
+  ]
+}

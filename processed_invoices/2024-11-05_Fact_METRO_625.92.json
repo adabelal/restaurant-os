@@ -1,0 +1,141 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-05",
+  "invoiceNo": "0/0 (067) 0013/0107352",
+  "totalAmount": 528.4,
+  "items": [
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.99,
+      "totalPrice": 143.82
+    },
+    {
+      "name": "TEQ SAN JOSE SILVER 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.44,
+      "totalPrice": 205.92
+    },
+    {
+      "name": "TROPICAN ORANGE SS P 1L PET",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.207,
+      "totalPrice": 13.24
+    },
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.587,
+      "totalPrice": 14.09
+    },
+    {
+      "name": "RIOBA PJ MULTIFRUITS PET 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.573,
+      "totalPrice": 9.44
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 8.4
+    },
+    {
+      "name": "LOTUS SPECULOOS 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.12,
+      "totalPrice": 11.12
+    },
+    {
+      "name": "TAGADA PINK VRAC 1.5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.96,
+      "totalPrice": 9.96
+    },
+    {
+      "name": "BAMS BANANES SAC 1,5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.96,
+      "totalPrice": 9.96
+    },
+    {
+      "name": "CROCOPIK VRAC 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.06,
+      "totalPrice": 14.06
+    },
+    {
+      "name": "HAPPY LIFE 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.8,
+      "totalPrice": 12.8
+    },
+    {
+      "name": "LOVE PIK 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.58,
+      "totalPrice": 7.58
+    },
+    {
+      "name": "40 VERRINE 4 CL PS CRISTAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.75,
+      "totalPrice": 7.0
+    },
+    {
+      "name": "RLX PAP CUISSON 38CMX50M",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.18,
+      "totalPrice": 6.18
+    },
+    {
+      "name": "50 BATEAU PIN 8.5CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.58,
+      "totalPrice": 12.9
+    },
+    {
+      "name": "250 BROCHETTE LASSO 15 CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.28,
+      "totalPrice": 6.28
+    },
+    {
+      "name": "250 BROCHETTE LASSO 10 CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.1,
+      "totalPrice": 6.1
+    },
+    {
+      "name": "100 CUILLERE GLACE BAMBOU 9CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.72,
+      "totalPrice": 5.72
+    },
+    {
+      "name": "50 POT A SAUCE KRAFT 3CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 4.0
+    }
+  ]
+}

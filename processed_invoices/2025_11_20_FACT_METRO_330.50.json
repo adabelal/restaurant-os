@@ -1,0 +1,155 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-11-20",
+  "invoiceNo": "0/0 (067) 0052/008432",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.63,
+      "totalPrice": 15.12
+    },
+    {
+      "name": "CAPRISUN MANG PASSION 33CL",
+      "quantity": 15.0,
+      "unit": "U",
+      "unitPrice": 0.884,
+      "totalPrice": 13.26
+    },
+    {
+      "name": "THON LIST NAT MCX 4/4 KERADEN",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.29,
+      "totalPrice": 6.29
+    },
+    {
+      "name": "MC OLIV VERT DENOY 30/33 4/4",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.69,
+      "totalPrice": 2.69
+    },
+    {
+      "name": "SCE PIMEN DOUX PR POULET 295ML",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.8,
+      "totalPrice": 2.8
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    },
+    {
+      "name": "CHIPS EXTRA CRAQUANT 400G VICO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 2.99
+    },
+    {
+      "name": "GRANOLA COOKIES CHOCOLAT184GX4",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.39,
+      "totalPrice": 7.39
+    },
+    {
+      "name": "PRODAC L' EXCEPTIONNEL 1KG B10*",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.0,
+      "totalPrice": 17.0
+    },
+    {
+      "name": "TARTARE AFH 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.27,
+      "totalPrice": 11.27
+    },
+    {
+      "name": "PAIN MIE COMPLET LC 550G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.44,
+      "totalPrice": 1.44
+    },
+    {
+      "name": "CROISSANT X8 320G ROCH",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.63,
+      "totalPrice": 3.26
+    },
+    {
+      "name": "FEUILLE BRICK JRX10 170G",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 0.113,
+      "totalPrice": 4.52
+    },
+    {
+      "name": "RILLETTE OIE 2KG THIOL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 33.45,
+      "totalPrice": 33.45
+    },
+    {
+      "name": "EGRENE PUR BF 20%MG HAL 1KG VBF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.49,
+      "totalPrice": 13.49
+    },
+    {
+      "name": "TENDER PLT JAPAN STYLE 1KG HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.99,
+      "totalPrice": 10.99
+    },
+    {
+      "name": "LE TENDRE NATUR 2,5KG HAL CERT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 23.39,
+      "totalPrice": 23.39
+    },
+    {
+      "name": "NOIX ST JAC CORAIL 4X2kg P/ANE BOITE. PECTEN MAXIMUS",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 57.98,
+      "totalPrice": 57.98
+    },
+    {
+      "name": "CLEM SOCULENTE 11K C. 2 C1 ESESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 54.89,
+      "totalPrice": 54.89
+    },
+    {
+      "name": "CORIANDRE MC BOTTE 30G 5",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 4.95
+    },
+    {
+      "name": "PDT AGATA 45/75 10K C1 FR",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 9.9,
+      "totalPrice": 19.8
+    }
+  ]
+}

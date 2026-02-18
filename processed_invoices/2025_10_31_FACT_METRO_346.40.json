@@ -1,0 +1,141 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-31",
+  "invoiceNo": "0/0 (067) 0051/0052172",
+  "totalAmount": 314.51,
+  "items": [
+    {
+      "name": "FERNET BRANCA 39D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 19.15,
+      "totalPrice": 38.3
+    },
+    {
+      "name": "RIOBA SUCRE DE CANNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.89,
+      "totalPrice": 2.89
+    },
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.997,
+      "totalPrice": 11.98
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 11.08,
+      "totalPrice": 33.24
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 11.0
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 17.19
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 16.47
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 19.51
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 12.26
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 8.58
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 13.7
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 10.46
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 15.34
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 11.36
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 16.36
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 13.5
+    },
+    {
+      "name": "10 FILS POUR LYRE DE 17CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.25,
+      "totalPrice": 7.25
+    },
+    {
+      "name": "AIGUISEUR MANUEL CC445",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 28.42,
+      "totalPrice": 28.42
+    },
+    {
+      "name": "6 MOULES NOIR MAT d 6.5CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.69,
+      "totalPrice": 23.38
+    }
+  ]
+}

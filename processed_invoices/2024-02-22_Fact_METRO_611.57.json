@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-22",
+  "invoiceNo": "0/0 (067)0001/0008542",
+  "totalAmount": 611.57,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.22,
+      "totalPrice": 196.65
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.6,
+      "totalPrice": 46.23
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.16,
+      "totalPrice": 89.25
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.36,
+      "totalPrice": 111.27
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.14,
+      "totalPrice": 113.91
+    },
+    {
+      "name": "TOM CERISE DUO ALL. 2. 5KG ESP C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.09,
+      "totalPrice": 12.09
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.86,
+      "totalPrice": 3.72
+    },
+    {
+      "name": "CELERI BOTTE 6 FRA C1FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    }
+  ]
+}

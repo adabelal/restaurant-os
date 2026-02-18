@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-19",
+  "invoiceNo": "0/0(067)0014/014348",
+  "totalAmount": 89.27,
+  "items": [
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 27.87
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 28.4
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 28.35
+    }
+  ]
+}

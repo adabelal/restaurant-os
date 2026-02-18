@@ -1,0 +1,197 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-22",
+  "invoiceNo": "0/0 (067) 0052/004888",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "OASIS TROPICAL SLIM BTE 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.54,
+      "totalPrice": 12.96
+    },
+    {
+      "name": "LIPTON PECHE BTE 33CL SLIM",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.494,
+      "totalPrice": 11.85
+    },
+    {
+      "name": "PULPE FINE TOMATE 1/2X6 MUTTI",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.005,
+      "totalPrice": 6.03
+    },
+    {
+      "name": "HEINZ KETCH BOUCH PROP FS 910G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.99,
+      "totalPrice": 3.99
+    },
+    {
+      "name": "MC SAUCE BEARNAISE TUBE 870G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.82,
+      "totalPrice": 3.82
+    },
+    {
+      "name": "CROUSTILLES FROMAGE 210G BELIN",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.18,
+      "totalPrice": 2.18
+    },
+    {
+      "name": "LAY'S NATURE 370G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.4,
+      "totalPrice": 3.4
+    },
+    {
+      "name": "BEST FIZZ SAC 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.48,
+      "totalPrice": 6.48
+    },
+    {
+      "name": "LACTE PULPE 4X125G FRAISE E-V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.02,
+      "totalPrice": 2.02
+    },
+    {
+      "name": "YOP VANILLE 825G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.97,
+      "totalPrice": 1.97
+    },
+    {
+      "name": "YAOS NATURE 8*125G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.44,
+      "totalPrice": 3.44
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.04,
+      "totalPrice": 2.04
+    },
+    {
+      "name": "CREME FRAI EP 15% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.6,
+      "totalPrice": 1.6
+    },
+    {
+      "name": "CREME DES VANIL125GX4 SAINTPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.05,
+      "totalPrice": 1.05
+    },
+    {
+      "name": "D. FRUIT SSA P/ ABRICOT 4X100G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.63,
+      "totalPrice": 1.63
+    },
+    {
+      "name": "TOASTI CHEDD 10TR 200G LA VOR",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.85,
+      "totalPrice": 3.7
+    },
+    {
+      "name": "TOASTI ORIGIN 10TR 200G LA VQR",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.85,
+      "totalPrice": 3.7
+    },
+    {
+      "name": "BURGER SESAME 6X85G JBD",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 0.322,
+      "totalPrice": 5.79
+    },
+    {
+      "name": "PIZZA BOLOGNAISE LA PIZZA 375G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.89,
+      "totalPrice": 2.89
+    },
+    {
+      "name": "PIZZA 5 FROMAGES LA PIZZA 390G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.89,
+      "totalPrice": 2.89
+    },
+    {
+      "name": "PIZZA RISTORANTE MOZARELL 355G STAND. -VAR.",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.17,
+      "totalPrice": 3.17
+    },
+    {
+      "name": "PIZZA RUSTICA CHEESE 555G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.22,
+      "totalPrice": 5.22
+    },
+    {
+      "name": "PIZZA RUSTICA SUPREME 565G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.22,
+      "totalPrice": 5.22
+    },
+    {
+      "name": "FILET PLT J 1.5K ENV FR MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.75,
+      "totalPrice": 12.34
+    },
+    {
+      "name": "SH RD 15%MG CHARO 150GX8 S/AT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.62,
+      "totalPrice": 19.62
+    },
+    {
+      "name": "FRAMBOISE 125G BQ12 C1 PTPORTUGAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.49,
+      "totalPrice": 1.49
+    },
+    {
+      "name": "OIG JNE MC 1K C. 6/8 BOX80 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.79,
+      "totalPrice": 1.79
+    }
+  ]
+}

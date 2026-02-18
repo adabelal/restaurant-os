@@ -1,0 +1,183 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-03-05",
+  "invoiceNo": "067/045",
+  "totalAmount": 883.07,
+  "items": [
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.4,
+      "unit": "kg",
+      "unitPrice": 12.88,
+      "totalPrice": 15.58
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 11.01,
+      "totalPrice": 22.02
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.36,
+      "totalPrice": 26.72
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.439,
+      "unit": "kg",
+      "unitPrice": 14.76,
+      "totalPrice": 21.24
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 0.932,
+      "unit": "kg",
+      "unitPrice": 24.39,
+      "totalPrice": 22.73
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.95,
+      "totalPrice": 9.9
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.85,
+      "totalPrice": 9.85
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 FRFRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "FENOUIL 3K ITITALIE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 6.56,
+      "totalPrice": 13.12
+    },
+    {
+      "name": "CELERI RAVE PC6 FRFRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 4.82
+    },
+    {
+      "name": "PV VERT MC 3K C. 90/110 C1 ESESPAGNE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 13.16,
+      "totalPrice": 26.32
+    },
+    {
+      "name": "CONCOMBRE MC C. 4/5 PC12 C1 FRFRANCE",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 1.42,
+      "totalPrice": 9.94
+    },
+    {
+      "name": "AIL PELE MC 1KG CHINE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.09,
+      "totalPrice": 6.09
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 13.555,
+      "unit": "kg",
+      "unitPrice": 13.35,
+      "totalPrice": 180.96
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 4.404,
+      "unit": "kg",
+      "unitPrice": 12.18,
+      "totalPrice": 53.64
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 14.98,
+      "unit": "kg",
+      "unitPrice": 7.71,
+      "totalPrice": 115.5
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 13.554,
+      "unit": "kg",
+      "unitPrice": 10.64,
+      "totalPrice": 144.21
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.73,
+      "unit": "kg",
+      "unitPrice": 5.44,
+      "totalPrice": 9.41
+    },
+    {
+      "name": "MC HUILE FRITURE 10L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 22.9,
+      "totalPrice": 45.8
+    },
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 6.44,
+      "totalPrice": 25.76
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 10.0,
+      "unit": "kg",
+      "unitPrice": 10.85,
+      "totalPrice": 108.5
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.21,
+      "totalPrice": 17.21
+    },
+    {
+      "name": "TOPPING CHOCO 1,2KG",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 9.51,
+      "totalPrice": 28.53
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.064,
+      "totalPrice": 15.32
+    },
+    {
+      "name": "METRO CHEF BISC ROUL CROUS 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.74,
+      "totalPrice": 9.74
+    }
+  ]
+}

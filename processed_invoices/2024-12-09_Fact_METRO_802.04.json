@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-09",
+  "invoiceNo": "067/049",
+  "totalAmount": 541.52,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.3,
+      "unit": "U",
+      "unitPrice": 11.68,
+      "totalPrice": 210.24
+    },
+    {
+      "name": "WH HATOZAKI 40D 70CL",
+      "quantity": 1.1,
+      "unit": "U",
+      "unitPrice": 24.25,
+      "totalPrice": 24.25
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.2,
+      "unit": "L",
+      "unitPrice": 12.92,
+      "totalPrice": 25.84
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 1.12,
+      "unit": "U",
+      "unitPrice": 11.72,
+      "totalPrice": 140.64
+    },
+    {
+      "name": "LIQUEUR CHAMBORD 16,5D 70CL",
+      "quantity": 1.1,
+      "unit": "U",
+      "unitPrice": 21.58,
+      "totalPrice": 21.58
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 1.4,
+      "unit": "U",
+      "unitPrice": 14.09,
+      "totalPrice": 56.36
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.3,
+      "unit": "U",
+      "unitPrice": 0.985,
+      "totalPrice": 70.92
+    },
+    {
+      "name": "COCA COLA REG PET 1,25L",
+      "quantity": 12.3,
+      "unit": "L",
+      "unitPrice": 1.58,
+      "totalPrice": 56.88
+    },
+    {
+      "name": "VOLVIC RPET 1L",
+      "quantity": 6.1,
+      "unit": "L",
+      "unitPrice": 0.47,
+      "totalPrice": 2.82
+    },
+    {
+      "name": "NUTS BARRE 42G NESTLE",
+      "quantity": 24.1,
+      "unit": "U",
+      "unitPrice": 0.671,
+      "totalPrice": 16.1
+    },
+    {
+      "name": "LINDOR CORNET LAIT 337G",
+      "quantity": 1.1,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 8.99
+    },
+    {
+      "name": "THE VERT TEMPLE DU CIEL 1KG",
+      "quantity": 1.2,
+      "unit": "kg",
+      "unitPrice": 7.26,
+      "totalPrice": 14.52
+    },
+    {
+      "name": "SAUMON FUME NORV 5 TR 200G MC",
+      "quantity": 1.3,
+      "unit": "kg",
+      "unitPrice": 6.74,
+      "totalPrice": 20.22
+    },
+    {
+      "name": "MPRO 250 PAILLE NOIR D6 14CM",
+      "quantity": 1.1,
+      "unit": "U",
+      "unitPrice": 2.53,
+      "totalPrice": 2.53
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 1.1,
+      "unit": "U",
+      "unitPrice": 7.55,
+      "totalPrice": 7.55
+    }
+  ]
+}

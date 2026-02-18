@@ -1,0 +1,36 @@
+{
+  "supplierName": "KRILL",
+  "date": "2026-01-16",
+  "invoiceNo": null,
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "FAUX-FILET DE B\u0152UF SEMI-PAR\u00c9 RACE \u00c0 VIANDE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.45,
+      "totalPrice": 14.45
+    },
+    {
+      "name": "HAMPE DE B\u0152UF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.9,
+      "totalPrice": 11.9
+    },
+    {
+      "name": "FILET DE B\u0152UF SANS CHAINETTE PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 19.95,
+      "totalPrice": 19.95
+    },
+    {
+      "name": "ARAIGN\u00c9E DE PORC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.4,
+      "totalPrice": 5.4
+    }
+  ]
+}

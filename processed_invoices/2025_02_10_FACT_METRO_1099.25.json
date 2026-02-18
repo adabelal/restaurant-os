@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-02-10",
+  "invoiceNo": "0/0 (067) 0014/005036",
+  "totalAmount": 932.15,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.85,
+      "totalPrice": 284.4
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.355,
+      "totalPrice": 132.39
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.65,
+      "totalPrice": 279.6
+    },
+    {
+      "name": "APEROL 12, 5D 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 12.53,
+      "totalPrice": 75.18
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.585,
+      "totalPrice": 57.06
+    },
+    {
+      "name": "CRISTALI 50CL PET",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.145,
+      "totalPrice": 3.49
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.62,
+      "totalPrice": 14.88
+    },
+    {
+      "name": "TAGLIATELLE 500G DE CECCO",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.39,
+      "totalPrice": 7.17
+    },
+    {
+      "name": "COLONA SCE ANDALOUS SQ GM 840G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.29,
+      "totalPrice": 4.29
+    },
+    {
+      "name": "BUCHETTE 3G C3KG SLIM RIOBA",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.44,
+      "totalPrice": 17.44
+    },
+    {
+      "name": "LOTUS SPECULOOS 400 PCES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.89,
+      "totalPrice": 17.89
+    },
+    {
+      "name": "MILKA CARAMEL 3X100G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.85,
+      "totalPrice": 3.85
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.46,
+      "totalPrice": 13.46
+    }
+  ]
+}

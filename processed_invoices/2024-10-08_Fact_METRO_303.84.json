@@ -1,0 +1,225 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-08",
+  "invoiceNo": "0/0 (067) 0015/0161702",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "VIANDOX LIQUIDE FLACON 160ML",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.73,
+      "totalPrice": 1.73
+    },
+    {
+      "name": "AMORA MAYO FS 395GR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.64,
+      "totalPrice": 3.64
+    },
+    {
+      "name": "AMORA MOUTAR MI-FTE BOCAL 415G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.07,
+      "totalPrice": 2.07
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.14,
+      "totalPrice": 6.14
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.7,
+      "totalPrice": 6.7
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "LAITIERE VANILL4X125G NESTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.96,
+      "totalPrice": 1.96
+    },
+    {
+      "name": "LACTE PULPE 4X125G FRAISE E-V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.91,
+      "totalPrice": 1.91
+    },
+    {
+      "name": "LACTE FRUIT 4X125G ABRICOT E-V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.91,
+      "totalPrice": 1.91
+    },
+    {
+      "name": "PERLE DE LAIT VANILLE 8X125G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.46,
+      "totalPrice": 3.46
+    },
+    {
+      "name": "VIENNOIS CAFE 4X100G NESTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.5,
+      "totalPrice": 1.5
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.93,
+      "totalPrice": 1.93
+    },
+    {
+      "name": "CREME DES VANIL125GX4 SAINTPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 0.99
+    },
+    {
+      "name": "CREME DESSERT 4*125G CARAM E&V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.0,
+      "totalPrice": 2.0
+    },
+    {
+      "name": "MOZZA BUFALA AOP 2X75G AZZURA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.49,
+      "totalPrice": 2.49
+    },
+    {
+      "name": "CHEVRE BUCHE FONDANT 180G PRES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.25,
+      "totalPrice": 2.25
+    },
+    {
+      "name": "GALET DE LA LOIRE 260G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.4,
+      "totalPrice": 3.4
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 13.83,
+      "totalPrice": 41.49
+    },
+    {
+      "name": "CAMEMBERT BUFALA 250G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.44,
+      "totalPrice": 4.44
+    },
+    {
+      "name": "PAIN SANDW 7 CEREAL LC 550G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.67,
+      "totalPrice": 2.67
+    },
+    {
+      "name": "10 PAINS PEPITES LC 350G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.99,
+      "totalPrice": 1.99
+    },
+    {
+      "name": "LARDONS NATURE SUP 150G ROCHB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.53,
+      "totalPrice": 1.53
+    },
+    {
+      "name": "JB BON PARIS 4T 170G HERTA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.35,
+      "totalPrice": 2.35
+    },
+    {
+      "name": "VERITABLE CO BLEU PLT X6 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.24,
+      "totalPrice": 13.24
+    },
+    {
+      "name": "HAR. VERT EXT FIN 2.5KG BONDUEL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.91,
+      "totalPrice": 9.91
+    },
+    {
+      "name": "YAKISOBA NOUIL SAUTE LEGU 255G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.0,
+      "totalPrice": 6.0
+    },
+    {
+      "name": "EGRENE PUR BF 20%MG ANGUS 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 10.49
+    },
+    {
+      "name": "CORDON BLEU DINDE FR 125GX8",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.31,
+      "totalPrice": 6.31
+    },
+    {
+      "name": "BURGER BLACK ANGUS 200GX16 UE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 38.37,
+      "totalPrice": 38.37
+    },
+    {
+      "name": "PLT F. LR PAC JNE MIS S/F 1,7+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.49,
+      "totalPrice": 10.83
+    },
+    {
+      "name": "ROTI ECHINE SOS PORC VPF SV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.8,
+      "totalPrice": 11.27
+    }
+  ]
+}

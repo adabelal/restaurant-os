@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-19",
+  "invoiceNo": "067/045",
+  "totalAmount": 30.0,
+  "items": [
+    {
+      "name": "3052909 02 CONSIGNE PALETTE EUROPE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.0,
+      "totalPrice": 30.0
+    }
+  ]
+}

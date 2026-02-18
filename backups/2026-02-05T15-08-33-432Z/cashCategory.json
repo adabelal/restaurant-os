@@ -1,0 +1,82 @@
+[
+  {
+    "id": "cmkwamu670000p7qip2tns28h",
+    "name": "Monnaie",
+    "type": "IN",
+    "color": null,
+    "createdAt": "2026-01-27T07:47:16.160Z",
+    "updatedAt": "2026-01-27T07:47:16.160Z"
+  },
+  {
+    "id": "cmkwamu6f0001p7qir49rtwuc",
+    "name": "Recettes",
+    "type": "IN",
+    "color": null,
+    "createdAt": "2026-01-27T07:47:16.168Z",
+    "updatedAt": "2026-01-27T07:47:16.168Z"
+  },
+  {
+    "id": "cmkwamu6j0002p7qi6lf1vwxn",
+    "name": "Autre",
+    "type": "IN",
+    "color": null,
+    "createdAt": "2026-01-27T07:47:16.171Z",
+    "updatedAt": "2026-01-27T07:47:16.171Z"
+  },
+  {
+    "id": "cmkwamu6m0003p7qibrargm9a",
+    "name": "Autre",
+    "type": "OUT",
+    "color": null,
+    "createdAt": "2026-01-27T07:47:16.174Z",
+    "updatedAt": "2026-01-27T07:47:16.174Z"
+  },
+  {
+    "id": "cmkwamu6p0004p7qiea7b8qv3",
+    "name": "Banque",
+    "type": "OUT",
+    "color": null,
+    "createdAt": "2026-01-27T07:47:16.178Z",
+    "updatedAt": "2026-01-27T07:47:16.178Z"
+  },
+  {
+    "id": "cmkwamu6u0005p7qidxqa1gq6",
+    "name": "Achats",
+    "type": "OUT",
+    "color": null,
+    "createdAt": "2026-01-27T07:47:16.182Z",
+    "updatedAt": "2026-01-27T07:47:16.182Z"
+  },
+  {
+    "id": "cmkzowb8d00009ba4q33jqled",
+    "name": "Recettes (Popina)",
+    "type": "IN",
+    "color": "#10b981",
+    "createdAt": "2026-01-29T16:49:51.324Z",
+    "updatedAt": "2026-01-29T16:49:51.324Z"
+  },
+  {
+    "id": "cmkzpfmef002e130myyppo10x",
+    "name": "Jeux",
+    "type": "IN",
+    "color": null,
+    "createdAt": "2026-01-29T17:04:52.263Z",
+    "updatedAt": "2026-01-29T17:04:52.263Z"
+  },
+  {
+    "id": "cmkzpggez002f130mxsyeoz44",
+    "name": "Pain",
+    "type": "OUT",
+    "color": null,
+    "createdAt": "2026-01-29T17:05:31.163Z",
+    "updatedAt": "2026-01-29T17:05:31.163Z"
+  },
+  {
+    "id": "cmkzph1jg002g130meut324eu",
+    "name": "Event ",
+    "type": "OUT",
+    "color": null,
+    "createdAt": "2026-01-29T17:05:58.540Z",
+    "updatedAt": "2026-01-29T17:05:58.540Z"
+  }
+]

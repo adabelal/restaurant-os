@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-09",
+  "invoiceNo": "0/0 (067) 0015/0036842",
+  "totalAmount": 285.55,
+  "items": [
+    {
+      "name": "GIN SUNTORY ROKU 43D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.01,
+      "totalPrice": 22.01
+    },
+    {
+      "name": "RH 3RIVIERE CVEE OCEAN 42D70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.5,
+      "totalPrice": 19.5
+    },
+    {
+      "name": "LIMONCEL DELA RIVIER 18D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 7.54,
+      "totalPrice": 30.16
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 13.97,
+      "totalPrice": 83.82
+    },
+    {
+      "name": "RED BULL BLUE BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.202,
+      "totalPrice": 28.85
+    },
+    {
+      "name": "RED BULL RED EDITION 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.202,
+      "totalPrice": 28.85
+    },
+    {
+      "name": "RED BULL GREEN EDITION 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.202,
+      "totalPrice": 28.85
+    },
+    {
+      "name": "RIOBA SUCRE DE CANNE 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.04,
+      "totalPrice": 3.04
+    },
+    {
+      "name": "BIG HARI CHERRY SAC DE 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.94,
+      "totalPrice": 14.94
+    },
+    {
+      "name": "THE VERT TEMPLE DU CIEL 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.66,
+      "totalPrice": 6.66
+    },
+    {
+      "name": "500 PAILLE PAP BLANC D8 15CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.49,
+      "totalPrice": 6.49
+    }
+  ]
+}

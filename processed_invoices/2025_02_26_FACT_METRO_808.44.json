@@ -1,0 +1,176 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-02-26",
+  "invoiceNo": "0/0 (067) 0017/0007442",
+  "totalAmount": 517.46,
+  "items": [
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.63,
+      "totalPrice": 9.26
+    },
+    {
+      "name": "EXTR DE VANILLE MADAGASCAR 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 38.53,
+      "totalPrice": 38.53
+    },
+    {
+      "name": "CARAMEL A L'ANCIENNE 1L VAHINE",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 9.52,
+      "totalPrice": 9.52
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 3.064,
+      "totalPrice": 15.32
+    },
+    {
+      "name": "SUCETTE CORAZON COEUR CERISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.57,
+      "totalPrice": 12.57
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.85,
+      "totalPrice": 10.85
+    },
+    {
+      "name": "SEMOULE ROYALE EXTRA FINE 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.15,
+      "totalPrice": 10.15
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.21,
+      "totalPrice": 17.21
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 5.0,
+      "unit": "L",
+      "unitPrice": 7.76,
+      "totalPrice": 7.76
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 17.58,
+      "totalPrice": 17.58
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.35,
+      "totalPrice": 197.11
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.03,
+      "totalPrice": 78.28
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.71,
+      "totalPrice": 98.84
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.46,
+      "totalPrice": 120.58
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.98,
+      "totalPrice": 22.65
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.87,
+      "totalPrice": 17.74
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.01,
+      "totalPrice": 11.01
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 21.58
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 FRFRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 4.82
+    },
+    {
+      "name": "FENOUIL 3K ITITALIE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.91,
+      "totalPrice": 4.91
+    },
+    {
+      "name": "CELERI RAVE PC6 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.41,
+      "totalPrice": 2.41
+    },
+    {
+      "name": "PV VERT MC 3K C. 90/110 C1 ESESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.15,
+      "totalPrice": 14.15
+    },
+    {
+      "name": "TOM RDE MC 6K C. 67+ PAL56 C1 MAMAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.8,
+      "totalPrice": 11.8
+    },
+    {
+      "name": "CONCOMBRE MC C. 4/5 PC12 C1 FRFRANCE",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 1.42,
+      "totalPrice": 9.94
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-10-18",
+  "invoiceNo": "4100100622",
+  "totalAmount": 555.84,
+  "items": [
+    {
+      "name": "3 CREME CASSIS 20\u00b0 BRIOTTET 70cl",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 9.165,
+      "totalPrice": 27.5
+    },
+    {
+      "name": "18 RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 18.0,
+      "unit": "U",
+      "unitPrice": 10.014,
+      "totalPrice": 274.32
+    },
+    {
+      "name": "2 LT RHUM BLANC ORATOIRE 40\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 9.25,
+      "totalPrice": 18.5
+    },
+    {
+      "name": "18 MONIN MOJITO MINT 70 CL",
+      "quantity": 18.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 117.77
+    }
+  ]
+}

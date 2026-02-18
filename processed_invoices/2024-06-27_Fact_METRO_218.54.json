@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO France",
+  "date": "2024-06-27",
+  "invoiceNo": "067/045",
+  "totalAmount": 218.54,
+  "items": [
+    {
+      "name": "CELERI RAVE FR 8 FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 3.29,
+      "totalPrice": 6.58
+    },
+    {
+      "name": "2365963 FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.84,
+      "totalPrice": 200.57
+    }
+  ]
+}

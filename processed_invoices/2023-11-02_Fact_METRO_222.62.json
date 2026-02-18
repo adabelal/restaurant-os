@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-02-11",
+  "invoiceNo": "0/0 (067) 0001/0083732",
+  "totalAmount": 222.62,
+  "items": [
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.99,
+      "totalPrice": 211.01
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-02-10",
+  "invoiceNo": "4020500129",
+  "totalAmount": 887.29,
+  "items": [
+    {
+      "name": "12 NORBERT ORANGE.SS. PULP PET6x1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.637,
+      "totalPrice": 19.64
+    },
+    {
+      "name": "6 PET GRANINI JUS ANANAS 6X1LT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.552,
+      "totalPrice": 15.31
+    },
+    {
+      "name": "45 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 4.715,
+      "totalPrice": 220.23
+    },
+    {
+      "name": "30 FUT 15 L SLASH \u0399\u03a1\u0391",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 5.012,
+      "totalPrice": 164.46
+    },
+    {
+      "name": "6 BOC CARAIBOS PLANTEUR ILE 6X1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.941,
+      "totalPrice": 18.08
+    },
+    {
+      "name": "24 ORGANIC BIO GINGER BEER25CLVP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.36,
+      "totalPrice": 33.41
+    },
+    {
+      "name": "20 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 5.339,
+      "totalPrice": 119.52
+    },
+    {
+      "name": "1 MONIN MANGUE SP 70 CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.197,
+      "totalPrice": 3.2
+    },
+    {
+      "name": "2 MONIN GLASCO CITRON 100 CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.594,
+      "totalPrice": 5.19
+    }
+  ]
+}

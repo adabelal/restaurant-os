@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-12-18",
+  "invoiceNo": "2024-1812",
+  "totalAmount": 1350.9,
+  "items": [
+    {
+      "name": "Chalmeau, Chitry rouge 2022",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 11.5,
+      "totalPrice": 414.0
+    },
+    {
+      "name": "Richoux; Irancy 2019",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 18.0,
+      "totalPrice": 648.0
+    },
+    {
+      "name": "Desertaux-Ferrand; Ladoix",
+      "quantity": 18.0,
+      "unit": "U",
+      "unitPrice": 20.0,
+      "totalPrice": 360.0
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-08",
+  "invoiceNo": "0/(067) 0014/0047432",
+  "totalAmount": 81.58,
+  "items": [
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 4.8,
+      "unit": "kg",
+      "unitPrice": 16.11,
+      "totalPrice": 77.33
+    }
+  ]
+}

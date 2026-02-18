@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO France",
+  "date": "2025-03-26",
+  "invoiceNo": "067/045",
+  "totalAmount": 748.9,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.8,
+      "totalPrice": 249.16
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.18,
+      "totalPrice": 94.44
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.0,
+      "totalPrice": 166.62
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.64,
+      "totalPrice": 96.38
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.44,
+      "totalPrice": 10.54
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.01,
+      "totalPrice": 11.01
+    },
+    {
+      "name": "LESIEUR HLE TOURNESOL 3L 4 POUR 3",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 8.25,
+      "totalPrice": 33.0
+    },
+    {
+      "name": "\u0396\u0391\u039a\u0399A COUSCOUS FIN 5KG",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 43.4
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 ESESPAGNE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "FENOUIL 3K ITITALIE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.9,
+      "totalPrice": 11.8
+    },
+    {
+      "name": "CELERI RAVE PC6 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.74,
+      "totalPrice": 2.74
+    },
+    {
+      "name": "PV VERT MC 3K C. 90/110 C1 ESESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.8,
+      "totalPrice": 15.8
+    },
+    {
+      "name": "CONCOMBRE MC C. 4/5 PC12 C1 FRFRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.31,
+      "totalPrice": 7.86
+    },
+    {
+      "name": "50 POT A SAUCE KRAFT 3CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.11,
+      "totalPrice": 2.22
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.95,
+      "totalPrice": 4.95
+    }
+  ]
+}

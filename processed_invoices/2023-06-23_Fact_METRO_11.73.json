@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-23",
+  "invoiceNo": "067/049",
+  "totalAmount": 11.73,
+  "items": [
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.99,
+      "totalPrice": 4.99
+    },
+    {
+      "name": "MPRO FILM ALIMENTA 300MX 29CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.39,
+      "totalPrice": 5.39
+    }
+  ]
+}

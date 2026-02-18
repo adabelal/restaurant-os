@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-03-05",
+  "invoiceNo": "0/0(067)0013/003750",
+  "totalAmount": 622.29,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 11.85,
+      "totalPrice": 213.3
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.355,
+      "totalPrice": 88.26
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 18.0,
+      "unit": "U",
+      "unitPrice": 11.65,
+      "totalPrice": 209.7
+    },
+    {
+      "name": "LIMONCELLO MEDITERRANEO 22D 1L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 9.43,
+      "totalPrice": 28.29
+    },
+    {
+      "name": "CH V. PELLETIER BRT 75CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 14.75,
+      "totalPrice": 177.0
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.994,
+      "totalPrice": 47.72
+    },
+    {
+      "name": "RED BULL RED EDITION 25CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.292,
+      "totalPrice": 31.0
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 23.0,
+      "unit": "U",
+      "unitPrice": 2.36,
+      "totalPrice": 54.28
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.67,
+      "totalPrice": 5.67
+    },
+    {
+      "name": "SAUCISSE PORC VPF 16X130GR SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 19.96
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.7,
+      "totalPrice": 15.4
+    }
+  ]
+}

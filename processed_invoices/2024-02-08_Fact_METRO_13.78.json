@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-08",
+  "invoiceNo": "0/(067) 0014/004745",
+  "totalAmount": 13.78,
+  "items": [
+    {
+      "name": "0305912 SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.088,
+      "totalPrice": 13.06
+    }
+  ]
+}

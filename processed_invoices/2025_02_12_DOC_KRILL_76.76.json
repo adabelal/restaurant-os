@@ -1,0 +1,22 @@
+{
+  "supplierName": "KRILL",
+  "date": "2025-02-12",
+  "invoiceNo": "802750",
+  "totalAmount": -76.76,
+  "items": [
+    {
+      "name": "ENTRECOTE VB 4/5 KG S/V FRANCE MF VBF",
+      "quantity": -4.135,
+      "unit": "kg",
+      "unitPrice": 17.5,
+      "totalPrice": -72.36
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.03,
+      "unit": "kg",
+      "unitPrice": 0.097,
+      "totalPrice": -0.4
+    }
+  ]
+}

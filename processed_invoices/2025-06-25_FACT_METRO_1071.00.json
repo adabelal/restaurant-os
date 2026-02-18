@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-25",
+  "invoiceNo": "0/0 (067) 0013/013789",
+  "totalAmount": 1071.0,
+  "items": [
+    {
+      "name": "MPRO BBQ NAGADO KIT 2",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 892.5,
+      "totalPrice": 892.5
+    }
+  ]
+}

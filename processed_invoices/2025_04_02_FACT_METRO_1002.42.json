@@ -1,0 +1,197 @@
+{
+  "supplierName": "METRO France",
+  "date": "2025-04-02",
+  "invoiceNo": "067/045",
+  "totalAmount": 931.49,
+  "items": [
+    {
+      "name": "CELERI BOTTE PC10 C1 ESESPAGNE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 4.38
+    },
+    {
+      "name": "FENOUIL 3K ITITALIE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.9,
+      "totalPrice": 5.9
+    },
+    {
+      "name": "CELERI RAVE PC6 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.74,
+      "totalPrice": 2.74
+    },
+    {
+      "name": "PV VERT MC 3K C. 90/110 C1 ESESPAGNE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 14.81,
+      "totalPrice": 29.62
+    },
+    {
+      "name": "TOM RDE MC 6K C. 67+ PAL56 C1 MAMAROC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.94,
+      "totalPrice": 11.94
+    },
+    {
+      "name": "OIG CHARC MC 8K C. 7/10 PAL66 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.55,
+      "totalPrice": 7.55
+    },
+    {
+      "name": "CONCOMBRE MC C. 4/5 PC12 C1 FRFRANCE",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 1.31,
+      "totalPrice": 9.17
+    },
+    {
+      "name": "AIL PELE MC 1KG CHINE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.09,
+      "totalPrice": 6.09
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.71,
+      "totalPrice": 287.09
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.18,
+      "totalPrice": 73.3
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.0,
+      "totalPrice": 109.63
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.11,
+      "totalPrice": 124.85
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.44,
+      "totalPrice": 9.65
+    },
+    {
+      "name": "MASCARPONE 500G LATTE BIANCO",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.94,
+      "totalPrice": 9.88
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 8.94,
+      "totalPrice": 26.82
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.01,
+      "totalPrice": 22.02
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.36,
+      "totalPrice": 13.36
+    },
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 6.44,
+      "totalPrice": 12.88
+    },
+    {
+      "name": "CREM VINAIGRE BALSA 500G PONTI",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.92,
+      "totalPrice": 11.84
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 10.85,
+      "totalPrice": 65.1
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.21,
+      "totalPrice": 17.21
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 7.76,
+      "totalPrice": 7.76
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 17.58,
+      "totalPrice": 17.58
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.85,
+      "totalPrice": 2.85
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.99,
+      "totalPrice": 9.98
+    },
+    {
+      "name": "CREME ANGLAISE 2L DEBIC",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 7.01,
+      "totalPrice": 14.02
+    },
+    {
+      "name": "AEROSOL SUCREE 700ML DEBIC",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 7.39,
+      "totalPrice": 36.95
+    }
+  ]
+}

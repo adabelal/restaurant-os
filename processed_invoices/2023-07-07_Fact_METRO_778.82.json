@@ -1,0 +1,176 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-07",
+  "invoiceNo": "067/210",
+  "totalAmount": 138.78,
+  "items": [
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 3.19,
+      "totalPrice": 38.28
+    },
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 2.99,
+      "totalPrice": 35.88
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 18.0,
+      "unit": "L",
+      "unitPrice": 3.59,
+      "totalPrice": 64.62
+    },
+    {
+      "name": "SIROP MONIN PECHE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 7.47,
+      "totalPrice": 7.47
+    },
+    {
+      "name": "MC CONDIMENT BALSAMIQUE 500ML",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 4.34,
+      "totalPrice": 26.04
+    },
+    {
+      "name": "ARO SESAME DORE SAC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.79,
+      "totalPrice": 7.79
+    },
+    {
+      "name": "MC PAPRIKA DOUX 550G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.26,
+      "totalPrice": 6.26
+    },
+    {
+      "name": "ARO JUS CITRON JAUNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.99,
+      "totalPrice": 2.99
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 16.54,
+      "totalPrice": 16.54
+    },
+    {
+      "name": "SUCRE BUCHETTE 500X4G ST LOUIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.95,
+      "totalPrice": 6.95
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.68,
+      "totalPrice": 11.68
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.97,
+      "totalPrice": 15.97
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 126.61
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 26.39
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 15.58
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 17.35
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 20.09
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 17.6
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 19.14
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 16.09
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 15.61
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 15.61
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 18.11
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 20.67
+    }
+  ]
+}

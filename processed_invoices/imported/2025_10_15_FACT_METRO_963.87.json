@@ -1,0 +1,169 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-15",
+  "invoiceNo": "0/0 (067) 0052/004058",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.4,
+      "totalPrice": 56.4
+    },
+    {
+      "name": "BS BUMBU ORIGINAL 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.98,
+      "totalPrice": 51.96
+    },
+    {
+      "name": "GET27 17,9D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.06,
+      "totalPrice": 60.36
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.043,
+      "totalPrice": 50.04
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.769,
+      "totalPrice": 42.46
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.08,
+      "totalPrice": 44.32
+    },
+    {
+      "name": "HARIS FLAM CAP BON TUBE 70GR",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.662,
+      "totalPrice": 3.97
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.39,
+      "totalPrice": 8.78
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG PPX BELLAY",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.39,
+      "totalPrice": 10.39
+    },
+    {
+      "name": "CROISSANT X8 320G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.73,
+      "totalPrice": 3.46
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.25,
+      "totalPrice": 17.25
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.49,
+      "totalPrice": 23.39
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.49,
+      "totalPrice": 46.69
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.49,
+      "totalPrice": 26.44
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.49,
+      "totalPrice": 27.37
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 10.8
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 10.32
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 9.97
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 17.33
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 16.88
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 13.81
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 17.78
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "cml775jcq0000m2afab5slfns",
+    "name": "Charge Fixe",
+    "type": "FIXED_COST",
+    "description": null,
+    "color": null,
+    "createdAt": "2026-02-03T22:55:18.072Z",
+    "updatedAt": "2026-02-03T22:55:18.072Z"
+  },
+  {
+    "id": "cml78n4d002i4ts6l3ylfmviq",
+    "name": "Loyer & Charges",
+    "type": "FIXED_COST",
+    "description": null,
+    "color": null,
+    "createdAt": "2026-02-03T23:36:58.068Z",
+    "updatedAt": "2026-02-03T23:36:58.068Z"
+  },
+  {
+    "id": "cml78n4da02i5ts6l69gfddtk",
+    "name": "Assurances",
+    "type": "FIXED_COST",
+    "description": null,
+    "color": null,
+    "createdAt": "2026-02-03T23:36:58.078Z",
+    "updatedAt": "2026-02-03T23:36:58.078Z"
+  },
+  {
+    "id": "cml78n4de02i6ts6l5g1r1e7l",
+    "name": "Télécom & Tech",
+    "type": "FIXED_COST",
+    "description": null,
+    "color": null,
+    "createdAt": "2026-02-03T23:36:58.082Z",
+    "updatedAt": "2026-02-03T23:36:58.082Z"
+  },
+  {
+    "id": "cml78n4dm02i7ts6lihi2uob4",
+    "name": "Achats Matières",
+    "type": "VARIABLE_COST",
+    "description": null,
+    "color": null,
+    "createdAt": "2026-02-03T23:36:58.089Z",
+    "updatedAt": "2026-02-03T23:36:58.089Z"
+  },
+  {
+    "id": "cml78n4dr02i8ts6l8qcs4uuh",
+    "name": "Social & URSSAF",
+    "type": "VARIABLE_COST",
+    "description": null,
+    "color": null,
+    "createdAt": "2026-02-03T23:36:58.096Z",
+    "updatedAt": "2026-02-03T23:36:58.096Z"
+  },
+  {
+    "id": "cml78n4dx02i9ts6lrkf4tlxn",
+    "name": "Énergie",
+    "type": "FIXED_COST",
+    "description": null,
+    "color": null,
+    "createdAt": "2026-02-03T23:36:58.101Z",
+    "updatedAt": "2026-02-03T23:36:58.101Z"
+  },
+  {
+    "id": "cml78n4e102iats6lyd5jvot3",
+    "name": "Ventes CB",
+    "type": "REVENUE",
+    "description": null,
+    "color": null,
+    "createdAt": "2026-02-03T23:36:58.105Z",
+    "updatedAt": "2026-02-03T23:36:58.105Z"
+  }
+]

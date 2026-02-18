@@ -1,0 +1,113 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-03-15",
+  "invoiceNo": "4030100544",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "80 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 5.339,
+      "totalPrice": 478.08
+    },
+    {
+      "name": "75 FUT 15 L SLASH IPA",
+      "quantity": 5.0,
+      "unit": "L",
+      "unitPrice": 5.012,
+      "totalPrice": 411.15
+    },
+    {
+      "name": "150 FUT 30 L LOBURG",
+      "quantity": 5.0,
+      "unit": "L",
+      "unitPrice": 3.505,
+      "totalPrice": 593.85
+    },
+    {
+      "name": "90 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 4.915,
+      "totalPrice": 458.46
+    },
+    {
+      "name": "24 CHIMAY BLEUE 9\u00b0 VC 24X33 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.618,
+      "totalPrice": 41.66
+    },
+    {
+      "name": "6 BOURG.ALIGOTE BT COURTOIS Cx6b",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.94,
+      "totalPrice": 35.64
+    },
+    {
+      "name": "6 LES PLOS BLANC CHARD.IGP BT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.591,
+      "totalPrice": 33.55
+    },
+    {
+      "name": "PORTO TRES ARCOS BLANC19.5\u00b0BT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.978,
+      "totalPrice": 6.98
+    },
+    {
+      "name": "RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 0.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "24 PERRIER PET 6 X 1LT",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.168,
+      "totalPrice": 28.03
+    },
+    {
+      "name": "24 ORGANIC BIO GINGER BEER25CLVP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.36,
+      "totalPrice": 33.41
+    },
+    {
+      "name": "24 BTE ORGANIC BIO TONIC WATER25C",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.197,
+      "totalPrice": 29.5
+    },
+    {
+      "name": "24 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 58.94
+    },
+    {
+      "name": "6 MONIN MOJITO MINT 70 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 39.26
+    },
+    {
+      "name": "24 NORBERT ORANGE.SS.PULP PET6X1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.637,
+      "totalPrice": 39.29
+    }
+  ]
+}

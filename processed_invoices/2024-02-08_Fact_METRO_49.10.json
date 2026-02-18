@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-08",
+  "invoiceNo": "0/0 (067) 0001/0006382",
+  "totalAmount": 49.1,
+  "items": [
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.6,
+      "totalPrice": 33.4
+    },
+    {
+      "name": "TOM CERISE DUO ALL. 2.5KG ESP C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.14,
+      "totalPrice": 13.14
+    }
+  ]
+}

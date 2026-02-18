@@ -1,0 +1,155 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-11-22",
+  "invoiceNo": "0/0 (067) 0015/0107982",
+  "totalAmount": 167.14,
+  "items": [
+    {
+      "name": "ALG RGE KOUTOUBIA MASCARA 75C",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 4.158,
+      "totalPrice": 49.9
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 43.08
+    },
+    {
+      "name": "MAROC S. BRAHIM RSE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 35.88
+    },
+    {
+      "name": "MAROC RSE BOULA 75CL +ICEBAG",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.19,
+      "totalPrice": 38.28
+    },
+    {
+      "name": "CRISTALI 1.5L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.18,
+      "totalPrice": 2.16
+    },
+    {
+      "name": "CREME DE MARRONS DOYPACK 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.57,
+      "totalPrice": 5.57
+    },
+    {
+      "name": "COLORANT ALIM MAROC 100SC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.79,
+      "totalPrice": 3.58
+    },
+    {
+      "name": "*CHOCO MILKA LAIT NOIS 100GX4",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.045,
+      "totalPrice": 4.18
+    },
+    {
+      "name": "BEST FIZZ SAC 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.35,
+      "totalPrice": 6.35
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "SUISSE GERVAIS 9,5% MG 60GX12",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.4,
+      "totalPrice": 2.4
+    },
+    {
+      "name": "YAOURT A LA GRECQ 1KG BURGOS",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.85,
+      "totalPrice": 3.85
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.89,
+      "totalPrice": 3.78
+    },
+    {
+      "name": "CREME DES VANIL125GX4 SAINTPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.97,
+      "totalPrice": 0.97
+    },
+    {
+      "name": "CREME DES CARAMEL 125GX4 STPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.97,
+      "totalPrice": 0.97
+    },
+    {
+      "name": "CREME DESSERT 4*125G CARAM E&V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.96,
+      "totalPrice": 1.96
+    },
+    {
+      "name": "CREME DESSERT 4*125G VANIL E&V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.96,
+      "totalPrice": 1.96
+    },
+    {
+      "name": "SOUMAINTRAIN IGP 400G BERTHAUT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.42,
+      "totalPrice": 7.42
+    },
+    {
+      "name": "FEUILLE BRICK JRX10 170G",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 0.11,
+      "totalPrice": 2.2
+    },
+    {
+      "name": "PLT F. LR PAC JNE MIS S/F 1,7+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.49,
+      "totalPrice": 10.47
+    },
+    {
+      "name": "ROQUETTE METRO CHEF 300GR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.69,
+      "totalPrice": 3.69
+    }
+  ]
+}

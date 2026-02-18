@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-10-31",
+  "invoiceNo": "0/0 (067) 0014/0236902",
+  "totalAmount": 14.0,
+  "items": [
+    {
+      "name": "HAPPY LIFE 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.67,
+      "totalPrice": 11.67
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-28",
+  "invoiceNo": "0/0 (067) 0013/003677",
+  "totalAmount": 67.32,
+  "items": [
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.33,
+      "totalPrice": 61.32
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.708,
+      "totalPrice": 16.25
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.708,
+      "totalPrice": 16.25
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.65,
+      "totalPrice": 65.7
+    },
+    {
+      "name": "TROPICAN ORANGE SS P 1L PET",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.207,
+      "totalPrice": 13.24
+    },
+    {
+      "name": "SIROP MONIN HIBISCUS 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 9.58,
+      "totalPrice": 9.58
+    },
+    {
+      "name": "SEMOULE ROYALE EXTRA FINE 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.12,
+      "totalPrice": 9.12
+    },
+    {
+      "name": "POIS CHICHES 48/50 SAC1KG SAB",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.58,
+      "totalPrice": 4.58
+    },
+    {
+      "name": "ARO JUS CITRON JAUNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.99,
+      "totalPrice": 2.99
+    },
+    {
+      "name": "MC ASSAIS COUSCOUS 500G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.52,
+      "totalPrice": 7.52
+    },
+    {
+      "name": "POIVRE NOIR MOULU 1KG ARO",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.65,
+      "totalPrice": 15.65
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.24,
+      "totalPrice": 11.2
+    },
+    {
+      "name": "AEROSOL SUCREE 700ML DEBIC",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 8.07,
+      "totalPrice": 24.21
+    },
+    {
+      "name": "OEUF 90 M PPX",
+      "quantity": 90.0,
+      "unit": "U",
+      "unitPrice": 0.214,
+      "totalPrice": 19.22
+    },
+    {
+      "name": "BEURRE DX PLQ 60% 4*250G E&V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 17.98
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.29,
+      "totalPrice": 20.58
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.77,
+      "totalPrice": 15.77
+    },
+    {
+      "name": "1/2 FX FILET CHARO S/P MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.98,
+      "totalPrice": 71.6
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.1,
+      "totalPrice": 29.38
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.365,
+      "totalPrice": 33.09
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.175,
+      "totalPrice": 30.43
+    }
+  ]
+}

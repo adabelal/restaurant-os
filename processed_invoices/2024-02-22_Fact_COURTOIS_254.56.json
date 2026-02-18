@@ -1,0 +1,36 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-02-22",
+  "invoiceNo": "4020500265",
+  "totalAmount": 216.87,
+  "items": [
+    {
+      "name": "6 COTE AUXERRE RGE PRESTIGE DOM GERARD PERSENOT",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.383,
+      "totalPrice": 56.3
+    },
+    {
+      "name": "6 COULANGES ROUGE Borgnat C6BT BOURGOGNE Tradition ct 6bt",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.95,
+      "totalPrice": 59.7
+    },
+    {
+      "name": "1 RHUM HAMPDEN OVERPROOF70cl 60\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 57.396,
+      "totalPrice": 57.4
+    },
+    {
+      "name": "2 MONIN POIVRE BLC PENJ.48.5CL PET",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 19.566,
+      "totalPrice": 39.13
+    }
+  ]
+}

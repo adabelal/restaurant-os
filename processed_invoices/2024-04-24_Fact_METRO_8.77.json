@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-24",
+  "invoiceNo": "0/0 (067) 0017/001038",
+  "totalAmount": 8.77,
+  "items": [
+    {
+      "name": "2540243 MC ASSAIS PAELLA 720G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.31,
+      "totalPrice": 8.31
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-02-20",
+  "invoiceNo": "0/0 (067) 0013/002834",
+  "totalAmount": 84.08,
+  "items": [
+    {
+      "name": "*SEMOUL BLE DUR EXTRA FINE 5K",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.98,
+      "totalPrice": 5.98
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.49,
+      "totalPrice": 23.61
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.49,
+      "totalPrice": 23.96
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.49,
+      "totalPrice": 26.15
+    }
+  ]
+}

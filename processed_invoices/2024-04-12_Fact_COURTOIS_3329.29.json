@@ -1,0 +1,106 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-12-04",
+  "invoiceNo": "4040100441",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "36 PERRIER PET 6 X 1LT",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 1.168,
+      "totalPrice": 42.05
+    },
+    {
+      "name": "48 PERRIER VC 24 x 33 CL",
+      "quantity": 48.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 48.0
+    },
+    {
+      "name": "120 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 120.0,
+      "unit": "L",
+      "unitPrice": 5.021,
+      "totalPrice": 624.0
+    },
+    {
+      "name": "120 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 120.0,
+      "unit": "L",
+      "unitPrice": 5.463,
+      "totalPrice": 732.0
+    },
+    {
+      "name": "30 FUT 15 L SLASH IPA",
+      "quantity": 30.0,
+      "unit": "L",
+      "unitPrice": 5.13,
+      "totalPrice": 168.0
+    },
+    {
+      "name": "60 FUT 30 L LOBURG",
+      "quantity": 60.0,
+      "unit": "L",
+      "unitPrice": 3.705,
+      "totalPrice": 249.54
+    },
+    {
+      "name": "30 BOURG.ALIGOTE BT COURTOIS Cx6b DOM.PERSENOT",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 5.94,
+      "totalPrice": 178.2
+    },
+    {
+      "name": "24 LES PLOS BLANC CHARD.IGP BT Maison Ventenac - Chardonnay",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 5.591,
+      "totalPrice": 134.18
+    },
+    {
+      "name": "48 VILLERS GAZEIFIEE VC 12X100CL",
+      "quantity": 48.0,
+      "unit": "U",
+      "unitPrice": 0.6,
+      "totalPrice": 28.8
+    },
+    {
+      "name": "48 VILLERS MINERALE VC 12 X 100CL",
+      "quantity": 48.0,
+      "unit": "U",
+      "unitPrice": 0.55,
+      "totalPrice": 26.4
+    },
+    {
+      "name": "12 LIMONADE SOULTZY LT VC",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.074,
+      "totalPrice": 14.16
+    },
+    {
+      "name": "24 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 58.94
+    },
+    {
+      "name": "24 NORBERT ORANGE.SS.PULP PET6x1L",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.637,
+      "totalPrice": 39.29
+    },
+    {
+      "name": "24 NORBERT POMME ABC PET 6X100CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 2.151,
+      "totalPrice": 51.62
+    }
+  ]
+}

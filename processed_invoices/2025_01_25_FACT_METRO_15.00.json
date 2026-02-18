@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-25",
+  "invoiceNo": "0/0 (067) 0017/000287",
+  "totalAmount": 15.0,
+  "items": [
+    {
+      "name": "BIO* SIGNIFIE PRODUIT ALIMENTAIRE ISSU DE L'AGRICULTURE BIOLOGIQUE. MCCF CERTIFIE PAR FR-B10-10 Mention 'MSC' dans la d\u00e9signation article = produit MSC certifi\u00e9 sous le n\u00b0 MSC-C-57276 Mention 'ASC' dans la d\u00e9signation article = produit ASC certifi\u00e9 sous le n\u00b0 ASC-C-02489 Mention 'ECOC' dans la d\u00e9signation article = produit certifi\u00e9 par ECOCERT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.0,
+      "totalPrice": 15.0
+    }
+  ]
+}

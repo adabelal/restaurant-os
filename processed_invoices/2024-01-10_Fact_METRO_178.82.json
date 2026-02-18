@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-01-10",
+  "invoiceNo": "0/0 (067)0001/0001412",
+  "totalAmount": 178.82,
+  "items": [
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 89.7
+    },
+    {
+      "name": "APLATISSEUR ROND INOX 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 29.66,
+      "totalPrice": 59.32
+    }
+  ]
+}

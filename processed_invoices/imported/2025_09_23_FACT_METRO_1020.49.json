@@ -1,0 +1,211 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-09-23",
+  "invoiceNo": "0/0 (067) 0052/0018572",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.08,
+      "totalPrice": 44.32
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.12,
+      "totalPrice": 18.12
+    },
+    {
+      "name": "SEL GROS SEAU 5KG CEREBOS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 4.2
+    },
+    {
+      "name": "SEL FIN CEREBOS SEAU 5 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.73,
+      "totalPrice": 3.73
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.75,
+      "totalPrice": 15.75
+    },
+    {
+      "name": "CARAMEL BEURRE SALE TUBE 300G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.28,
+      "totalPrice": 3.28
+    },
+    {
+      "name": "EXT. VANILTAHITENSIS 0.5KG SEB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 40.43,
+      "totalPrice": 40.43
+    },
+    {
+      "name": "EXTR DE VANILLE MADAGASCAR 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 38.47,
+      "totalPrice": 38.47
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.898,
+      "totalPrice": 14.49
+    },
+    {
+      "name": "SUCETTE CORAZON COEUR CERISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.67,
+      "totalPrice": 11.67
+    },
+    {
+      "name": "CREME ANGLAISE 2L DEBIC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 6.79
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.2,
+      "totalPrice": 16.4
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG PPX BELLAY",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.44,
+      "totalPrice": 18.75
+    },
+    {
+      "name": "REBLO FERM AOP LC 450G ENV MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.8,
+      "totalPrice": 9.73
+    },
+    {
+      "name": "REBLO FERM AOP LC 450G ENV MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.8,
+      "totalPrice": 10.65
+    },
+    {
+      "name": "TZATZIKI 1KG INSPIRE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 9.09,
+      "totalPrice": 18.18
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.25,
+      "totalPrice": 17.25
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.19,
+      "totalPrice": 32.0
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.19,
+      "totalPrice": 30.58
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.19,
+      "totalPrice": 28.9
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.19,
+      "totalPrice": 33.31
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.19,
+      "totalPrice": 33.34
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 12.52
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 12.96
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 12.29
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 10.04
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 12.43
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 10.07
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-11-07",
+  "invoiceNo": "0/0 (067) 0052/0068822",
+  "totalAmount": 204.92,
+  "items": [
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.99,
+      "totalPrice": 32.04
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.99,
+      "totalPrice": 28.5
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.99,
+      "totalPrice": 32.83
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.99,
+      "totalPrice": 30.38
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.99,
+      "totalPrice": 30.67
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.99,
+      "totalPrice": 31.62
+    },
+    {
+      "name": "VERRRINE TAPAS 8CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.202,
+      "totalPrice": 7.21
+    }
+  ]
+}

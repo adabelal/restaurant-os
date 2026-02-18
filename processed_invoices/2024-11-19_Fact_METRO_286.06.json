@@ -1,0 +1,141 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-19",
+  "invoiceNo": "0/0 (067) 0015/0197412",
+  "totalAmount": 249.51,
+  "items": [
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 11.72,
+      "totalPrice": 140.64
+    },
+    {
+      "name": "LE FRUIT DE MONIN FRAMBOISE 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.06,
+      "totalPrice": 22.12
+    },
+    {
+      "name": "SIROP MONIN THE PECHE 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.0,
+      "totalPrice": 9.0
+    },
+    {
+      "name": "VOLVIC RPET 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.47,
+      "totalPrice": 2.82
+    },
+    {
+      "name": "ROCH. DBLE CONC TOMATE 1/12X6",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.465,
+      "totalPrice": 2.79
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 50CL BT BRID",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.825,
+      "totalPrice": 4.95
+    },
+    {
+      "name": "MOZZA BUFALA 125G SACH GALBANI",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.33,
+      "totalPrice": 4.66
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.83,
+      "totalPrice": 13.83
+    },
+    {
+      "name": "REBLOCHON AOP LC 450G ENV MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.4,
+      "totalPrice": 6.85
+    },
+    {
+      "name": "FROM VACHE DES HUILE 150G APE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.03,
+      "totalPrice": 2.03
+    },
+    {
+      "name": "BRIOCHE TRESSEE 800G LB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.0,
+      "totalPrice": 5.0
+    },
+    {
+      "name": "CAPPELLETTI FROM/EPINARD 500G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 3.59
+    },
+    {
+      "name": "RAVIOLI 3 FROMAGES 500G ROYANS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.67,
+      "totalPrice": 3.67
+    },
+    {
+      "name": "SAUMON FUME NORV 5 TR 200G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.74,
+      "totalPrice": 6.74
+    },
+    {
+      "name": "ROCHAMBEAU ALU 30MX29CM X4",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.233,
+      "totalPrice": 8.93
+    },
+    {
+      "name": "MPRO FILM ALIMENTA 300MX29CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.39,
+      "totalPrice": 5.39
+    },
+    {
+      "name": "MPRO 15 SACS ZIP CONGEL 3L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.35,
+      "totalPrice": 2.35
+    },
+    {
+      "name": "100 GANTS NITRIL NOIR M",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.0,
+      "totalPrice": 4.0
+    },
+    {
+      "name": "CIF PISTOL ANTIBACTERIEN 750ML",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.43,
+      "totalPrice": 2.43
+    }
+  ]
+}

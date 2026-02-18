@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-10-26",
+  "invoiceNo": "3100500360",
+  "totalAmount": 39.07,
+  "items": [
+    {
+      "name": "24 VILLERS GAZEIFIEE VC 12X100CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.546,
+      "totalPrice": 13.1
+    },
+    {
+      "name": "24 VILLERS MINERALE VC 12 X 100CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.461,
+      "totalPrice": 11.06
+    }
+  ]
+}

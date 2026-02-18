@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-10-05",
+  "invoiceNo": "0/0 (067) 0001/007628",
+  "totalAmount": 464.55,
+  "items": [
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.34,
+      "totalPrice": 15.34
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "COURG 14/21 MC 5 KG C1 FR FRANCE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 9.83,
+      "totalPrice": 29.49
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P MDD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 25.55,
+      "totalPrice": 121.36
+    },
+    {
+      "name": "FILET DND HAL FR 1.5KG SV",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.23,
+      "totalPrice": 266.91
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-03-02",
+  "invoiceNo": "0/0 (067) 0014/0041092",
+  "totalAmount": 301.81,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.85,
+      "totalPrice": 142.2
+    },
+    {
+      "name": "TROPICO L'ORIG BTE 33 CL SLIM",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.55,
+      "totalPrice": 13.2
+    },
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.587,
+      "totalPrice": 14.09
+    },
+    {
+      "name": "ROCH. DBLE CON TOMATE 1/6 X4",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 0.74,
+      "totalPrice": 2.96
+    },
+    {
+      "name": "PASSATA BOUT. 700G MUTTI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.98,
+      "totalPrice": 3.96
+    },
+    {
+      "name": "LASAGNES BTE 500G BARILLA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.14,
+      "totalPrice": 2.14
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.3,
+      "totalPrice": 12.6
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.7,
+      "totalPrice": 6.7
+    },
+    {
+      "name": "TOPPING MOKA 1, 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.97,
+      "totalPrice": 17.94
+    },
+    {
+      "name": "KINDER BUENO WHITE",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 0.7,
+      "totalPrice": 20.99
+    },
+    {
+      "name": "SUCETTE CORAZON COEUR CERISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.22,
+      "totalPrice": 11.22
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.093,
+      "totalPrice": 6.56
+    },
+    {
+      "name": "CREME FRAI EP 15% 50CL BRIDELI",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.97,
+      "totalPrice": 1.97
+    },
+    {
+      "name": "EMMENTAL RAPE GR. BR 1KG PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.54,
+      "totalPrice": 6.54
+    },
+    {
+      "name": "8 PAIN CHOCOLAT LC 360G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.72,
+      "totalPrice": 1.72
+    },
+    {
+      "name": "TAGLIATEL NATURES 1KG ROYANS",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.04,
+      "totalPrice": 4.04
+    },
+    {
+      "name": "SCISSE TOULOUSE ETUV 8X125G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.59,
+      "totalPrice": 7.59
+    },
+    {
+      "name": "SH RD 15% VBF 150GX8 HAL S/AT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.31,
+      "totalPrice": 16.31
+    }
+  ]
+}

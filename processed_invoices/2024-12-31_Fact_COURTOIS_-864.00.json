@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-12-31",
+  "invoiceNo": "4120100933",
+  "totalAmount": 864.0,
+  "items": [
+    {
+      "name": "FUT 15L ROSE BLANCHE BRUXELLE",
+      "quantity": 11.85,
+      "unit": "L",
+      "unitPrice": 50.0,
+      "totalPrice": 592.5
+    },
+    {
+      "name": "FUT 15 L SLASH IPA",
+      "quantity": 1.8,
+      "unit": "L",
+      "unitPrice": 50.0,
+      "totalPrice": 90.0
+    },
+    {
+      "name": "FUT 15 L SLASH MANGO",
+      "quantity": 0.75,
+      "unit": "L",
+      "unitPrice": 50.0,
+      "totalPrice": 37.5
+    }
+  ]
+}

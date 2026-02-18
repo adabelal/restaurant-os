@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-07-30",
+  "invoiceNo": "0/0 (067) 0014/0289602",
+  "totalAmount": 723.45,
+  "items": [
+    {
+      "name": "WH JACK DANIEL'S 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 15.63,
+      "totalPrice": 93.78
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 88.2
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.0,
+      "totalPrice": 26.0
+    },
+    {
+      "name": "CACHACA AGUACANA 37.5D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.05,
+      "totalPrice": 20.1
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 11.21,
+      "totalPrice": 134.52
+    },
+    {
+      "name": "COINTREAU 40D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 14.71,
+      "totalPrice": 44.13
+    },
+    {
+      "name": "GET31 24D 1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 18.03,
+      "totalPrice": 54.09
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 14.17,
+      "totalPrice": 85.02
+    },
+    {
+      "name": "SOHO LITCHI 15D 70CL",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 5.79,
+      "totalPrice": 23.16
+    },
+    {
+      "name": "APEROL 12, 5D 1L",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 11.16,
+      "totalPrice": 66.96
+    },
+    {
+      "name": "LIMONCELLO MEDITERRANEO 22D 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 9.74,
+      "totalPrice": 9.74
+    }
+  ]
+}

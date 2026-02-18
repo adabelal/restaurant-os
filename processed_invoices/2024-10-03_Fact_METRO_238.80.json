@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-10",
+  "invoiceNo": "0/0 (067) 0015/0159652",
+  "totalAmount": 238.8,
+  "items": [
+    {
+      "name": "MPRO MICRO-ONDES 25L GMW1125",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 199.0,
+      "totalPrice": 199.0
+    }
+  ]
+}

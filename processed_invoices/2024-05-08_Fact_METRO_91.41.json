@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-08-05",
+  "invoiceNo": "0/(067) 0017/001313",
+  "totalAmount": 91.41,
+  "items": [
+    {
+      "name": "2327914 COCA SANS SUCRES 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.805,
+      "totalPrice": 86.64
+    }
+  ]
+}

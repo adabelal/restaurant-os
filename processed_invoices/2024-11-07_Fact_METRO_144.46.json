@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-07",
+  "invoiceNo": "067/045",
+  "totalAmount": 144.46,
+  "items": [
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.0,
+      "totalPrice": 90.29
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.8,
+      "totalPrice": 14.8
+    },
+    {
+      "name": "TOM CERISE PANACHEE 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 26.36,
+      "totalPrice": 26.36
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.74,
+      "totalPrice": 5.48
+    }
+  ]
+}

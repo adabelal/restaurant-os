@@ -1,0 +1,190 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-04",
+  "invoiceNo": "0/0 (067) 0016/005069",
+  "totalAmount": 515.77,
+  "items": [
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.12,
+      "totalPrice": 66.72
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.65,
+      "totalPrice": 87.6
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.62,
+      "totalPrice": 14.88
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.0,
+      "totalPrice": 88.0
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.16,
+      "totalPrice": 17.16
+    },
+    {
+      "name": "MC PAPRIKA DOUX 550G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.46,
+      "totalPrice": 6.46
+    },
+    {
+      "name": "MC ASSAIS POULET ROTI 670G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.49,
+      "totalPrice": 4.49
+    },
+    {
+      "name": "POIVRE NOIR MOULU 1KG ARO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.65,
+      "totalPrice": 15.65
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.75,
+      "totalPrice": 15.75
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.29,
+      "totalPrice": 20.58
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.83,
+      "totalPrice": 41.49
+    },
+    {
+      "name": "TAGLIATEL NATURES 1KG ROYANS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.49,
+      "totalPrice": 4.49
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.29,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.29,
+      "totalPrice": 13.0
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.29,
+      "totalPrice": 13.05
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.29,
+      "totalPrice": 12.44
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.29,
+      "totalPrice": 16.3
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.29,
+      "totalPrice": 13.84
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.79,
+      "totalPrice": 14.52
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.15,
+      "totalPrice": 15.72
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.15,
+      "totalPrice": 13.7
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.15,
+      "totalPrice": 15.29
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.15,
+      "totalPrice": 15.43
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.49,
+      "totalPrice": 23.83
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.15,
+      "totalPrice": 7.3
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.15,
+      "totalPrice": 7.3
+    }
+  ]
+}

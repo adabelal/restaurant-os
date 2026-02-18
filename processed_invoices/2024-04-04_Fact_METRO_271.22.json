@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-04",
+  "invoiceNo": "0/0 (067) 0015/0053842",
+  "totalAmount": 271.22,
+  "items": [
+    {
+      "name": "WH ARDBEG ISLAY 10A 46D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 38.22,
+      "totalPrice": 38.22
+    },
+    {
+      "name": "ARMAGNAC DELAITRE 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.41,
+      "totalPrice": 12.41
+    },
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.65,
+      "totalPrice": 109.5
+    },
+    {
+      "name": "ALG RGE KOUTOUBIA MASCARA 75C",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 5.19,
+      "totalPrice": 62.28
+    }
+  ]
+}

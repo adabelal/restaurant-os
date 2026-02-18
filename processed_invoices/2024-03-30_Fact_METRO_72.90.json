@@ -1,0 +1,71 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-30",
+  "invoiceNo": "067/041",
+  "totalAmount": 72.9,
+  "items": [
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 6.54
+    },
+    {
+      "name": "VIENNOIS CAFE 4X100G NESTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.47,
+      "totalPrice": 1.47
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.93,
+      "totalPrice": 1.93
+    },
+    {
+      "name": "CREME DESSERT 4*125G VANIL E&V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.96,
+      "totalPrice": 1.96
+    },
+    {
+      "name": "JUS ACE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.74,
+      "totalPrice": 2.74
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 11.35,
+      "totalPrice": 22.7
+    },
+    {
+      "name": "8 PAIN CHOCOLAT LC 360G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.75,
+      "totalPrice": 1.75
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.49,
+      "totalPrice": 7.65
+    },
+    {
+      "name": "TOM ALL. CER RGE PIG 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.36,
+      "totalPrice": 22.36
+    }
+  ]
+}

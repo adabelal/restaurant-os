@@ -1,0 +1,64 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-09-21",
+  "invoiceNo": "3090500372",
+  "totalAmount": 374.3,
+  "items": [
+    {
+      "name": "15 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 15.0,
+      "unit": "L",
+      "unitPrice": 4.914,
+      "totalPrice": 73.35
+    },
+    {
+      "name": "20 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 20.0,
+      "unit": "L",
+      "unitPrice": 5.338,
+      "totalPrice": 119.28
+    },
+    {
+      "name": "30 FUT 30 L LOBURG",
+      "quantity": 30.0,
+      "unit": "L",
+      "unitPrice": 3.505,
+      "totalPrice": 118.53
+    },
+    {
+      "name": "12 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 29.47
+    },
+    {
+      "name": "12 LIMONADE SOULTZY LT VC",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.05,
+      "totalPrice": 13.8
+    },
+    {
+      "name": "1 MONIN GLASCO CITRON 100 CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 5.187,
+      "totalPrice": 5.19
+    },
+    {
+      "name": "12 PERRIER PET 6 X 1LT",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 1.168,
+      "totalPrice": 14.02
+    },
+    {
+      "name": "48 ROMAN COLA 20CLX24 VC",
+      "quantity": 96.0,
+      "unit": "L",
+      "unitPrice": 0.0,
+      "totalPrice": -9.0
+    }
+  ]
+}

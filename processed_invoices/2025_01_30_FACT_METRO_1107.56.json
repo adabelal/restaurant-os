@@ -1,0 +1,162 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-30",
+  "invoiceNo": "067/045",
+  "totalAmount": 332.77,
+  "items": [
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.01,
+      "totalPrice": 16.02
+    },
+    {
+      "name": "ARO LIQ VAISS MAIN POM 3X1L",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 4.01,
+      "totalPrice": 12.03
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "JB SERRANO 60T 8MOIS 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.95,
+      "totalPrice": 17.95
+    },
+    {
+      "name": "BEURRE DX PLQ 250G ROCHAMBEAU",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 2.53,
+      "totalPrice": 10.12
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.99,
+      "totalPrice": 15.98
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.01,
+      "totalPrice": 11.01
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.36,
+      "totalPrice": 13.36
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 4.95,
+      "totalPrice": 9.9
+    },
+    {
+      "name": "CG CAFE 2.5L METRO CHEF",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 9.25,
+      "totalPrice": 9.25
+    },
+    {
+      "name": "GLACE ARTISANALE VANILLE 2.5L",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 17.77,
+      "totalPrice": 53.31
+    },
+    {
+      "name": "GLACE ARTISANALE FRAISE 2.5L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 17.44,
+      "totalPrice": 17.44
+    },
+    {
+      "name": "FRY' N' DIP 2.5KG MCCAIN",
+      "quantity": 15.0,
+      "unit": "kg",
+      "unitPrice": 6.52,
+      "totalPrice": 97.8
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.28,
+      "totalPrice": 16.28
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 2.41
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.55,
+      "totalPrice": 7.55
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.52,
+      "totalPrice": 2.52
+    },
+    {
+      "name": "CHOU FLEUR ORANGE 6 ESP C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.39,
+      "totalPrice": 4.39
+    },
+    {
+      "name": "CHOU FLEUR VIOLET X6 ITAL C2 ITALIE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.84,
+      "totalPrice": 3.84
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.16,
+      "totalPrice": 13.16
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG 56 BE C1BELGIQUE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.81,
+      "totalPrice": 11.81
+    },
+    {
+      "name": "CONCOMBRE PC 4/5 MC FR C1FRANCE",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 1.42,
+      "totalPrice": 9.94
+    }
+  ]
+}

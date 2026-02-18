@@ -1,0 +1,120 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-02-02",
+  "invoiceNo": "4020100098",
+  "totalAmount": 131.7,
+  "items": [
+    {
+      "name": "NORBERT ANANAS PET ABC6X1L",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 29.47
+    },
+    {
+      "name": "NORBERT POMME ABC PET 6X100CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 2.151,
+      "totalPrice": 25.81
+    },
+    {
+      "name": "FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 5.339,
+      "totalPrice": 239.04
+    },
+    {
+      "name": "FUT 15 L SLASH \u0399\u03a1\u0391",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 5.012,
+      "totalPrice": 82.23
+    },
+    {
+      "name": "FUT 30 L LOBURG",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.505,
+      "totalPrice": 118.77
+    },
+    {
+      "name": "FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 4.915,
+      "totalPrice": 229.23
+    },
+    {
+      "name": "BOURG.ALIGOTE BT COURTOIS Cx6b",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 5.94,
+      "totalPrice": 71.28
+    },
+    {
+      "name": "LES PLOS BLANC CHARD.IGP BT",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 5.591,
+      "totalPrice": 67.09
+    },
+    {
+      "name": "CHAMP.L.TOLLET 1er CRU BT",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 18.167,
+      "totalPrice": 109.0
+    },
+    {
+      "name": "RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.014,
+      "totalPrice": 91.44
+    },
+    {
+      "name": "PERRIER PET 6 X 1LT",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.168,
+      "totalPrice": 14.02
+    },
+    {
+      "name": "ROMAN COLA 20CLX24 VC",
+      "quantity": 48.0,
+      "unit": "U",
+      "unitPrice": 0.628,
+      "totalPrice": 31.78
+    },
+    {
+      "name": "LT PUREE COCO MONIN",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 11.068,
+      "totalPrice": 11.07
+    },
+    {
+      "name": "CAP MATTEI ROUGE 75CL 15\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 16.614,
+      "totalPrice": 16.61
+    },
+    {
+      "name": "CAP MATTEI BLANC 75CL 15\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 16.614,
+      "totalPrice": 16.61
+    },
+    {
+      "name": "KG CAFE LAVAZZA GRAIN SUPCREMA",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 21.95,
+      "totalPrice": 131.7
+    }
+  ]
+}

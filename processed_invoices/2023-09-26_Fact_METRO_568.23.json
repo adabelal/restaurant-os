@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-26",
+  "invoiceNo": "0/0 (067) 0014/0202372",
+  "totalAmount": 201.79,
+  "items": [
+    {
+      "name": "WH CONNEMARA ETUI 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.93,
+      "totalPrice": 21.93
+    },
+    {
+      "name": "EDV FIGUE BOKOBSA 37, 5D 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.58,
+      "totalPrice": 12.58
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.58,
+      "totalPrice": 12.58
+    },
+    {
+      "name": "TEQUILA SAN JOSE SILVER70CL35D",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.36,
+      "totalPrice": 22.72
+    },
+    {
+      "name": "AMARRETTO SAN PIETRO 18D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.72,
+      "totalPrice": 6.72
+    },
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 15.23,
+      "totalPrice": 30.46
+    },
+    {
+      "name": "COINTREAU 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.25,
+      "totalPrice": 14.25
+    },
+    {
+      "name": "SUZE 15D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.44,
+      "totalPrice": 7.44
+    },
+    {
+      "name": "GET 27 17, 9D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.99,
+      "totalPrice": 59.94
+    },
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 64.62
+    },
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 35.88
+    }
+  ]
+}

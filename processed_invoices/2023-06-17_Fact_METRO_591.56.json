@@ -1,0 +1,197 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-17",
+  "invoiceNo": "0/0 (067) 0013/0154212",
+  "totalAmount": 555.99,
+  "items": [
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 2.872,
+      "totalPrice": 34.46
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.68,
+      "totalPrice": 11.68
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 30.22
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 24.34
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 26.37
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P MDD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.99,
+      "totalPrice": 108.28
+    },
+    {
+      "name": "GIGOT AGN S/OS HALAL S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.99,
+      "totalPrice": 18.02
+    },
+    {
+      "name": "GIGOT AGN S/OS HALAL S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.99,
+      "totalPrice": 19.08
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.99,
+      "totalPrice": 16.52
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.99,
+      "totalPrice": 15.16
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 8.76
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 9.12
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 9.98
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 10.82
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.99,
+      "totalPrice": 18.25
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.99,
+      "totalPrice": 18.64
+    },
+    {
+      "name": "FILET DND STD 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 15.38
+    },
+    {
+      "name": "FILET DND STD 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 15.38
+    },
+    {
+      "name": "FILET DND STD 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 16.17
+    },
+    {
+      "name": "FILET DND STD 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 18.71
+    },
+    {
+      "name": "FILET DND STD 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 16.16
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 20.37
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 20.34
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 31.96,
+      "totalPrice": 31.96
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 11.88
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.49,
+      "totalPrice": 2.49
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.45,
+      "totalPrice": 7.45
+    }
+  ]
+}

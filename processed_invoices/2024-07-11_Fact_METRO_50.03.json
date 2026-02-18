@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-07-11",
+  "invoiceNo": "0/0 (067) 0014/0251562",
+  "totalAmount": 50.03,
+  "items": [
+    {
+      "name": "PAIN MIE COMPL. LC 1000G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.86,
+      "totalPrice": 2.86
+    },
+    {
+      "name": "RILLETTE MANS 500G LABEL ROUGE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.65,
+      "totalPrice": 7.65
+    },
+    {
+      "name": "BEURRE MAITRE HOTEL 250G M. C.",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.99,
+      "totalPrice": 3.99
+    },
+    {
+      "name": "BAV ALOY PAD UE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 29.94
+    },
+    {
+      "name": "MEL CJ 8/950 MEF FR PC C1 12 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.49,
+      "totalPrice": 2.98
+    }
+  ]
+}

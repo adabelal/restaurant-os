@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-05",
+  "invoiceNo": "067/045",
+  "totalAmount": 413.46,
+  "items": [
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 5.196,
+      "unit": "kg",
+      "unitPrice": 11.09,
+      "totalPrice": 57.62
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 13.25,
+      "unit": "kg",
+      "unitPrice": 11.66,
+      "totalPrice": 154.5
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.838,
+      "unit": "kg",
+      "unitPrice": 4.62,
+      "totalPrice": 8.49
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 17.89,
+      "totalPrice": 17.89
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.01,
+      "totalPrice": 11.01
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.523,
+      "unit": "kg",
+      "unitPrice": 13.83,
+      "totalPrice": 21.06
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 54.25
+    },
+    {
+      "name": "MC SAUCE SALADE   BIDON 5L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.92,
+      "totalPrice": 6.92
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.58,
+      "totalPrice": 17.58
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.85,
+      "totalPrice": 2.85
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 ESESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 4.38
+    },
+    {
+      "name": "CELERI RAVE PC8 FR FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.07,
+      "totalPrice": 6.14
+    },
+    {
+      "name": "FENOUIL 3K ITITALIE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.9,
+      "totalPrice": 5.9
+    },
+    {
+      "name": "PV VERT MC 90/110 2.5Kg ESP C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.97,
+      "totalPrice": 21.94
+    },
+    {
+      "name": "CONCOMBRE MC C. 5/6 PC12 C1 FR FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 7.63
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.1,
+      "totalPrice": 15.3
+    }
+  ]
+}

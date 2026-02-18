@@ -1,0 +1,71 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-06",
+  "invoiceNo": "0/0 (067) 0013/0107912",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "WH ARDBEG ISLAY 10A 46D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 38.78,
+      "totalPrice": 77.56
+    },
+    {
+      "name": "GIN MARE 42.7D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 27.51,
+      "totalPrice": 27.51
+    },
+    {
+      "name": "EDV POIRE WILLIAM DLT 40D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 14.07,
+      "totalPrice": 56.28
+    },
+    {
+      "name": "ARMAGNAC DELAITRE 40D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 12.41,
+      "totalPrice": 24.82
+    },
+    {
+      "name": "RH 3RIVIERES BLC 40D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.95,
+      "totalPrice": 17.9
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.8,
+      "totalPrice": 176.4
+    },
+    {
+      "name": "ANGOSTURA BITTER 44.7D 20CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 14.14,
+      "totalPrice": 42.42
+    },
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 15.62,
+      "totalPrice": 46.86
+    },
+    {
+      "name": "GET 31 24D 1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 17.11,
+      "totalPrice": 68.44
+    }
+  ]
+}

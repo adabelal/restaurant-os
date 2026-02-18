@@ -1,0 +1,71 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-20",
+  "invoiceNo": "0/0 (067) 0052/0046302",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.91,
+      "totalPrice": 214.38
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 88.2
+    },
+    {
+      "name": "PORTO BLANC DON PABLO 19D 75CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.71,
+      "totalPrice": 11.42
+    },
+    {
+      "name": "EDV POIRE WILLIAM DLT 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.07,
+      "totalPrice": 42.21
+    },
+    {
+      "name": "PORTO ROUGE DON PABLO 19D 75CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.71,
+      "totalPrice": 11.42
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.0,
+      "totalPrice": 39.0
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.4,
+      "totalPrice": 225.6
+    },
+    {
+      "name": "BS BUMBU ORIGINAL 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.98,
+      "totalPrice": 155.88
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.495,
+      "totalPrice": 113.94
+    }
+  ]
+}

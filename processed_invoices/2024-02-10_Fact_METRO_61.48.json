@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-10",
+  "invoiceNo": "0/0 (067) 0015/002215",
+  "totalAmount": 61.48,
+  "items": [
+    {
+      "name": "VODKA FJOROWKA DLT 37, 5D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 7.19,
+      "totalPrice": 28.76
+    },
+    {
+      "name": "ANGOSTURA BITTER 44.7D 20CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 14.13,
+      "totalPrice": 14.13
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.35,
+      "totalPrice": 2.35
+    }
+  ]
+}

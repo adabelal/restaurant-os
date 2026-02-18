@@ -1,0 +1,71 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-02-02",
+  "invoiceNo": "00735359",
+  "totalAmount": 534.9,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": 6.374,
+      "unit": "kg",
+      "unitPrice": 8.3,
+      "totalPrice": 52.9
+    },
+    {
+      "name": "JAMBON SEC SERRANO 30 TRANCHES STG SAT 5\n00 G ESPAGNE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 7.99,
+      "totalPrice": 31.96
+    },
+    {
+      "name": "SAUCISSON SEC D'AUVERGNE LONG IGP CE2 1\nKG ENV FRANCE VPF",
+      "quantity": 0.836,
+      "unit": "kg",
+      "unitPrice": 14.856,
+      "totalPrice": 12.42
+    },
+    {
+      "name": "CHORIZO CULAR IBERIQUE BELLOTA 1/1.3 KG\nESPAGNE",
+      "quantity": 1.31,
+      "unit": "kg",
+      "unitPrice": 19.456,
+      "totalPrice": 25.49
+    },
+    {
+      "name": "CORNICHON LAMELLE AIGRE-DOUX BOCAL 1.6 K\nG PNE 845 G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.786,
+      "totalPrice": 8.79
+    },
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB\nF",
+      "quantity": 21.33,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 283.69
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.097,
+      "unit": "kg",
+      "unitPrice": 0.097,
+      "totalPrice": 2.07
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 GX 30\nS/V UK UE PTF",
+      "quantity": 6.06,
+      "unit": "kg",
+      "unitPrice": 14.8,
+      "totalPrice": 89.69
+    },
+    {
+      "name": "FILET DINDE HALAL 1 KG ENV S/V FRANCE",
+      "quantity": 0.0,
+      "unit": "kg",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    }
+  ]
+}

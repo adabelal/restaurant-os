@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-03-08",
+  "invoiceNo": "0/0 (067) 0001/0057562",
+  "totalAmount": 3.78,
+  "items": [
+    {
+      "name": "COLORANT ALIM MAROC 100SC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.79,
+      "totalPrice": 3.58
+    }
+  ]
+}

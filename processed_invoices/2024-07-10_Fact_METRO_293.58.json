@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-07-10",
+  "invoiceNo": "0/0 (067) 0015/0120222",
+  "totalAmount": 254.23,
+  "items": [
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.8,
+      "totalPrice": 110.4
+    },
+    {
+      "name": "NOUIL RAMEN 375G GOLDEN TURTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.29,
+      "totalPrice": 2.29
+    },
+    {
+      "name": "HIKARI PATE MISO RGE BQT 300G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.98,
+      "totalPrice": 7.98
+    },
+    {
+      "name": "NUTS BARRE 42G NESTLE",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.598,
+      "totalPrice": 14.35
+    },
+    {
+      "name": "TOBLERONE LAIT 50G",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.82,
+      "totalPrice": 19.69
+    },
+    {
+      "name": "HALVA VANILLE BOITE FER 400G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.55,
+      "totalPrice": 3.55
+    },
+    {
+      "name": "BIG HARI CHERRY SAC DE 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.94,
+      "totalPrice": 14.94
+    },
+    {
+      "name": "PARMIG. R. AOP B10*16M BLC1KGENV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.56,
+      "totalPrice": 21.14
+    },
+    {
+      "name": "PARMIG. R. AOP B10*16M BLC1KGENV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.56,
+      "totalPrice": 22.39
+    },
+    {
+      "name": "BURRATA POT 120G AMB",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.18,
+      "totalPrice": 4.36
+    },
+    {
+      "name": "BURRATA BUFALA 125G POT GAROFA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.56,
+      "totalPrice": 2.56
+    },
+    {
+      "name": "BURRATA CHEVRE 120G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.8,
+      "totalPrice": 2.8
+    },
+    {
+      "name": "CHEDDAR CIRE 18M 200G RES IVYS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.22,
+      "totalPrice": 4.22
+    },
+    {
+      "name": "GOUDA 100 SEMAINES 270G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.38,
+      "totalPrice": 4.38
+    },
+    {
+      "name": "CAMEMBERT BUFALA 250G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.44,
+      "totalPrice": 4.44
+    },
+    {
+      "name": "BRIOCH 6 BURGERS CEREALES 375G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.74,
+      "totalPrice": 2.74
+    }
+  ]
+}

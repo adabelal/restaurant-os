@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-19",
+  "invoiceNo": "0/0 (067) 0014/0100522",
+  "totalAmount": 334.16,
+  "items": [
+    {
+      "name": "MAILLE VINAIG VIN FRAMB 500ML",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.05,
+      "totalPrice": 3.05
+    },
+    {
+      "name": "HARIS FLAM CAP BON TUBE 70GR",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.568,
+      "totalPrice": 20.46
+    },
+    {
+      "name": "MP 6 DISTRIB SAUC TRANSP 260ML",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.65,
+      "totalPrice": 38.6
+    },
+    {
+      "name": "SPHI LOT 12 VAP OPTIMA 36CL",
+      "quantity": 15.0,
+      "unit": "U",
+      "unitPrice": 15.0,
+      "totalPrice": 225.0
+    }
+  ]
+}

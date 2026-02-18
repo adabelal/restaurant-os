@@ -1,0 +1,127 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-01-31",
+  "invoiceNo": "0/0 (067) 0001/0005072",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.24,
+      "totalPrice": 16.48
+    },
+    {
+      "name": "SKIP ACTIVE LIQUIDE 1,67L 37D",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.28,
+      "totalPrice": 11.28
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.76,
+      "totalPrice": 16.76
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 10.85
+    },
+    {
+      "name": "TOM CERISE DUO ALL. 2.5KG ESP C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.14,
+      "totalPrice": 13.14
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.088,
+      "totalPrice": 13.06
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC ESP C1 ESPAGNE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.31,
+      "totalPrice": 7.86
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.42,
+      "totalPrice": 1.42
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.63,
+      "totalPrice": 7.63
+    },
+    {
+      "name": "COURG 14/21 METRO CHEF 5KG ES C1 20 ESPAGNE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 19.19,
+      "totalPrice": 38.38
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.51,
+      "totalPrice": 11.51
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.69,
+      "totalPrice": 5.69
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.05,
+      "totalPrice": 26.1
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 12.02,
+      "totalPrice": 144.24
+    },
+    {
+      "name": "AMARRETTO SAN PIETRO 18D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.41,
+      "totalPrice": 14.82
+    },
+    {
+      "name": "GET 31 24D 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 16.85,
+      "totalPrice": 101.1
+    },
+    {
+      "name": "MALIBU COCO 18D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.435,
+      "totalPrice": 56.61
+    }
+  ]
+}

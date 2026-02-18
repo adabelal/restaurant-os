@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-08",
+  "invoiceNo": "0/0 (067) 0014/012482",
+  "totalAmount": 62.69,
+  "items": [
+    {
+      "name": "CRISTALI 1.5L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 0.18,
+      "totalPrice": 2.16
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.99,
+      "totalPrice": 6.99
+    },
+    {
+      "name": "BEST FIZZ SAC 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.48,
+      "totalPrice": 6.48
+    },
+    {
+      "name": "LAIT ENT UHT BT1L MC ENGAGE",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.21,
+      "totalPrice": 7.26
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT LAITDICI",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.0,
+      "totalPrice": 6.0
+    },
+    {
+      "name": "FROMAGE BLC 9% 1KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.04,
+      "totalPrice": 3.04
+    },
+    {
+      "name": "CREME FRAI EP 15% 50CL ROCHAM",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.59,
+      "totalPrice": 3.18
+    },
+    {
+      "name": "BEURRE DX PLQ 60% 4*250G E&V",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.09,
+      "totalPrice": 9.09
+    },
+    {
+      "name": "CANCOILLOTTE IGP NAT 250G ROCH",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 2.14,
+      "totalPrice": 4.28
+    },
+    {
+      "name": "VACHE QUI RIT 32 P 512G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.98,
+      "totalPrice": 4.98
+    },
+    {
+      "name": "8 CROISSANTS 320G ROCHAMBEAU",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.69,
+      "totalPrice": 5.07
+    }
+  ]
+}

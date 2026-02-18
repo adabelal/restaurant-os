@@ -1,0 +1,106 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-05",
+  "invoiceNo": "0/0 (067) 0001/0047922",
+  "totalAmount": 542.12,
+  "items": [
+    {
+      "name": "WH J. DANIEL'S 70CL 40D",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 15.3,
+      "totalPrice": 91.8
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.77,
+      "totalPrice": 70.62
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 12.05,
+      "totalPrice": 144.6
+    },
+    {
+      "name": "BERGER BLANC 45D 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.68,
+      "totalPrice": 27.36
+    },
+    {
+      "name": "GET 31 24D 1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 16.5,
+      "totalPrice": 66.0
+    },
+    {
+      "name": "RICARD 45D 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.6,
+      "totalPrice": 27.2
+    },
+    {
+      "name": "GET 27 17,9D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.99,
+      "totalPrice": 59.94
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.19,
+      "totalPrice": 19.14
+    },
+    {
+      "name": "MAROC S. BRAHIM RSE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 17.94
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.16,
+      "totalPrice": 17.16
+    },
+    {
+      "name": "MC ASSAIS POULET ROTI 670G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.49,
+      "totalPrice": 4.49
+    },
+    {
+      "name": "ROCH FS MAYO 276G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.61,
+      "totalPrice": 9.66
+    },
+    {
+      "name": "ROCH FS KETCHUP 350G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 7.14
+    },
+    {
+      "name": "MC SAUCE SALADE 915G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.93,
+      "totalPrice": 17.58
+    }
+  ]
+}

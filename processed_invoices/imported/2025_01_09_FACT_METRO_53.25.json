@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-09",
+  "invoiceNo": "0/0 (067) 0014/000897",
+  "totalAmount": 53.25,
+  "items": [
+    {
+      "name": "CREME UHT 30% 1L MC BK AP",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 3.99,
+      "totalPrice": 23.94
+    },
+    {
+      "name": "SCISSON SEC PP 1,4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.6,
+      "totalPrice": 14.08
+    },
+    {
+      "name": "FENOUIL 5K IT ITALIE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.45,
+      "totalPrice": 12.45
+    }
+  ]
+}

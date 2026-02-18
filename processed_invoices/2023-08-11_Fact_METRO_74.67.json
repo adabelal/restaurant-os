@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-11-08",
+  "invoiceNo": "0/0 (067) 0013/021476",
+  "totalAmount": 74.67,
+  "items": [
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 12.58,
+      "totalPrice": 12.58
+    },
+    {
+      "name": "ANGOSTURA BITTER 44. 7D 20CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 15.7,
+      "totalPrice": 15.7
+    },
+    {
+      "name": "MC CONDIMENT BALSAMIQUE 500ML",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.34,
+      "totalPrice": 4.34
+    },
+    {
+      "name": "OEUF 12 M/G SOL ROCHAMBEAU",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.228,
+      "totalPrice": 2.74
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.68,
+      "totalPrice": 11.68
+    },
+    {
+      "name": "GESIERS PLT CONFIT 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.6,
+      "totalPrice": 10.6
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.89,
+      "totalPrice": 1.78
+    },
+    {
+      "name": "ARO LIQ VAISS MAIN POM 1LX3",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.62,
+      "totalPrice": 3.62
+    }
+  ]
+}

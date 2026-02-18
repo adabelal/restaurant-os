@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-09-16",
+  "invoiceNo": "0/0 (067) 0051/0007512",
+  "totalAmount": 478.56,
+  "items": [
+    {
+      "name": "PORTO SANDEMAN RUBY 19, 5D 75CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.53,
+      "totalPrice": 7.53
+    },
+    {
+      "name": "CACHACA YPIOCA PAILLE 38D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.0,
+      "totalPrice": 42.0
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 18.0,
+      "unit": "U",
+      "unitPrice": 11.43,
+      "totalPrice": 205.74
+    },
+    {
+      "name": "LIMONCELLO MEDITERRANEO 22D 1L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 9.74,
+      "totalPrice": 29.22
+    },
+    {
+      "name": "GET27 17,9D 70CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 8.55,
+      "totalPrice": 153.9
+    },
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 3.65,
+      "totalPrice": 87.6
+    },
+    {
+      "name": "CH FEUILLATE TRADITION BRT 75C",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 17.8,
+      "totalPrice": 213.6
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.02,
+      "totalPrice": 73.44
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.77,
+      "totalPrice": 63.72
+    },
+    {
+      "name": "PERRIER IL PET",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 0.625,
+      "totalPrice": 11.25
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.09,
+      "totalPrice": 16.18
+    },
+    {
+      "name": "MP LOT 3 POELES INOX A/A",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 107.0,
+      "totalPrice": 107.0
+    },
+    {
+      "name": "MPRO FRITEUSE 8L GDF3008",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 99.0,
+      "totalPrice": 99.0
+    }
+  ]
+}

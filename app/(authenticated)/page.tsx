@@ -1,167 +1,194 @@
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import {
+    LayoutDashboard,
+    Banknote,
+    Wallet,
+    AlertCircle,
+    ScanLine,
+    Plus,
+    Users,
+    ArrowRight,
+    ArrowUpRight,
+    ArrowDownRight,
+    CalendarDays
+} from "lucide-react"
+import Link from "next/link"
+import { getDashboardStats } from "./dashboard.actions"
+
 export const dynamic = 'force-dynamic'
 
-import { prisma } from "@/lib/prisma"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, Package, ShoppingCart, TrendingUp, ArrowUpRight, Plus, ScanLine } from "lucide-react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-
 export default async function DashboardPage() {
-    const userCount = await prisma.user.count()
-    const ingredientCount = await prisma.ingredient.count()
+    const {
+        dailyRevenue,
+        totalTreasury,
+        pendingInvoicesCount,
+        recentActivity,
+        employeeCount
+    } = await getDashboardStats()
+
+    const todayDate = new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
 
     return (
-        <main className="flex flex-col p-6 md:p-10 space-y-10 animate-in fade-in duration-500">
-            {/* Header Section */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <main className="flex flex-col min-h-screen bg-background p-6 md:p-10 max-w-7xl mx-auto space-y-8 font-sans transition-colors duration-300">
+
+            {/* 1. HEADER SIMPLE & EFFICACE */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-6">
                 <div>
-                    <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+                    <h1 className="text-3xl font-bold text-foreground tracking-tight flex items-center gap-3">
+                        <LayoutDashboard className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
                         Tableau de Bord
                     </h1>
-                    <p className="text-lg text-muted-foreground mt-2">
-                        Bienvenue ! Voici l'activité de votre restaurant aujourd'hui.
-                    </p>
+                    <p className="text-muted-foreground font-medium mt-1 first-letter:uppercase">{todayDate}</p>
                 </div>
-                <div className="flex items-center gap-3">
-                    <Button variant="outline" className="rounded-full px-6 border-2 hover:bg-muted font-semibold transition-all active:scale-95" asChild>
+                <div className="flex gap-3">
+                    <Button asChild variant="default" className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-sm dark:bg-indigo-600 dark:hover:bg-indigo-500">
                         <Link href="/achats/scanner">
-                            <ScanLine className="mr-2 h-4 w-4" />
-                            Scanner Facture
+                            <ScanLine className="mr-2 h-4 w-4" /> Scanner Facture
                         </Link>
                     </Button>
-                    <Button className="rounded-full px-6 bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 font-semibold transition-all active:scale-95" asChild>
-                        <Link href="/stock">
-                            <Plus className="mr-2 h-4 w-4" />
-                            Nouvelle Entrée
+                    <Button asChild variant="outline" className="font-semibold border-border text-foreground hover:bg-muted">
+                        <Link href="/caisse">
+                            <Plus className="mr-2 h-4 w-4" /> Nouvelle Vente
                         </Link>
                     </Button>
                 </div>
             </div>
 
-            {/* KPI Cards Grid */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-                <Card className="group relative overflow-hidden border-none shadow-xl shadow-blue-500/5 bg-card/60 backdrop-blur-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300">
-                    <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <Users className="h-24 w-24 -mr-8 -mt-8" />
-                    </div>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Effectif Total</CardTitle>
-                        <div className="p-2 bg-blue-500/10 rounded-lg">
-                            <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                        </div>
+            {/* 2. KPI: LES CHIFFRES CLÉS DU JOUR */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* RECETTE DU JOUR */}
+                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Recette du Jour</CardTitle>
+                        <Banknote className="h-5 w-5 text-emerald-500" />
                     </CardHeader>
-                    <CardContent className="pt-4">
-                        <div className="flex items-baseline gap-2">
-                            <div className="text-4xl font-black text-foreground">{userCount}</div>
-                            <span className="text-sm font-medium text-emerald-500 flex items-center">
-                                +2 <ArrowUpRight className="h-4 w-4" />
-                            </span>
+                    <CardContent>
+                        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                            {dailyRevenue > 0 ? '+' : ''}{dailyRevenue.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2 font-medium">Collaborateurs actifs sur site</p>
+                        <p className="text-xs text-muted-foreground mt-1 font-medium">Entrées Caisse aujourd'hui</p>
                     </CardContent>
-                    <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Card>
 
-                <Card className="group relative overflow-hidden border-none shadow-xl shadow-emerald-500/5 bg-card/60 backdrop-blur-sm hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300">
-                    <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <Package className="h-24 w-24 -mr-8 -mt-8" />
-                    </div>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Stock Références</CardTitle>
-                        <div className="p-2 bg-emerald-500/10 rounded-lg">
-                            <Package className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-                        </div>
+                {/* TRÉSORERIE TOTALE */}
+                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Trésorerie Totale</CardTitle>
+                        <Wallet className="h-5 w-5 text-indigo-500" />
                     </CardHeader>
-                    <CardContent className="pt-4">
-                        <div className="flex items-baseline gap-2">
-                            <div className="text-4xl font-black text-foreground">{ingredientCount}</div>
-                            <span className="text-sm font-medium text-rose-500 flex items-center">
-                                -5 <ArrowUpRight className="h-4 w-4 rotate-180" />
-                            </span>
+                    <CardContent>
+                        <div className="text-3xl font-bold text-foreground">
+                            {totalTreasury.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2 font-medium">Produits en base de données</p>
+                        <p className="text-xs text-muted-foreground mt-1 font-medium">Banque + Caisse consolidés</p>
                     </CardContent>
-                    <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Card>
 
-                <Card className="group relative overflow-hidden border-none shadow-xl shadow-indigo-500/5 bg-card/60 backdrop-blur-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300">
-                    <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <TrendingUp className="h-24 w-24 -mr-8 -mt-8" />
-                    </div>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Chiffre d'Affaires</CardTitle>
-                        <div className="p-2 bg-indigo-500/10 rounded-lg">
-                            <TrendingUp className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-                        </div>
-                    </CardHeader>
-                    <CardContent className="pt-4">
-                        <div className="flex items-baseline gap-2">
-                            <div className="text-4xl font-black text-foreground">--</div>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-2 font-medium">Données en cours d'intégration</p>
-                    </CardContent>
-                    <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-indigo-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Card>
-            </div>
-
-            {/* Quick Actions Grid */}
-            <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                    <h2 className="text-2xl font-bold text-foreground">Accès Rapide</h2>
-                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Voir tout</Button>
-                </div>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
-                    <Link href="/stock" className="group block h-full">
-                        <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-card/40 p-1 transition-all group-hover:border-emerald-500/30 group-hover:shadow-2xl group-hover:shadow-emerald-500/10 h-full">
-                            <div className="relative z-10 p-6 flex flex-col h-full bg-background/40 group-hover:bg-emerald-50/5 dark:group-hover:bg-emerald-950/20 rounded-[calc(1.5rem-1px)] transition-colors">
-                                <div className="h-14 w-14 bg-emerald-500/10 dark:bg-emerald-900/30 rounded-2xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-6 group-hover:scale-110 transition-transform duration-300">
-                                    <Package className="h-8 w-8" />
-                                </div>
-                                <h3 className="text-xl font-bold text-foreground mb-2">Gérer l'Inventaire</h3>
-                                <p className="text-muted-foreground leading-relaxed font-medium">Contrôlez vos stocks en temps réel, gérez les alertes et optimisez vos commandes fournisseurs.</p>
-                                <div className="mt-auto pt-6 flex items-center text-sm font-bold text-emerald-600 dark:text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    Accéder maintenant <ChevronRight className="ml-1 h-4 w-4" />
-                                </div>
+                {/* FACTURES À PAYER */}
+                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow cursor-pointer group hover:border-amber-500/30">
+                    <Link href="/achats">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2">
+                            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Factures en Attente</CardTitle>
+                            <AlertCircle className="h-5 w-5 text-amber-500" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-bold text-amber-600 dark:text-amber-400">
+                                {pendingInvoicesCount}
                             </div>
-                        </div>
+                            <p className="text-xs text-muted-foreground mt-1 font-medium group-hover:text-amber-600/70 dark:group-hover:text-amber-400/70 transition-colors">Documents à traiter</p>
+                        </CardContent>
+                    </Link>
+                </Card>
+            </div>
+
+            {/* 3. ACTIVITÉ RÉCENTE & ACCÈS RAPIDES */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* COLONNE GAUCHE (2/3) : ACTIVITÉ */}
+                <div className="lg:col-span-2 space-y-6">
+                    <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden">
+                        <CardHeader className="border-b border-border bg-muted/30 px-6 py-4 flex flex-row items-center justify-between">
+                            <CardTitle className="text-lg font-semibold text-foreground">Activités Récentes</CardTitle>
+                            <Button variant="ghost" size="sm" className="text-xs font-semibold text-indigo-600 dark:text-indigo-400" asChild>
+                                <Link href="/finance">Voir Tout</Link>
+                            </Button>
+                        </CardHeader>
+                        <CardContent className="p-0">
+                            <div className="divide-y divide-border">
+                                {recentActivity.length === 0 ? (
+                                    <div className="p-8 text-center text-muted-foreground text-sm italic">Aucune activité récente.</div>
+                                ) : (
+                                    recentActivity.map((t) => (
+                                        <div key={t.id} className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors">
+                                            <div className="flex items-center gap-4">
+                                                <div className={`p-2 rounded-lg ${Number(t.amount) >= 0
+                                                    ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400'
+                                                    : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                                                    }`}>
+                                                    {Number(t.amount) >= 0 ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
+                                                </div>
+                                                <div>
+                                                    <p className="font-medium text-foreground text-sm truncate max-w-[200px] sm:max-w-md">{t.description}</p>
+                                                    <p className="text-xs text-muted-foreground">{new Date(t.date).toLocaleDateString('fr-FR')}</p>
+                                                </div>
+                                            </div>
+                                            <div className={`text-sm font-bold ${Number(t.amount) >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-foreground'}`}>
+                                                {Number(t.amount) > 0 ? '+' : ''}{Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* COLONNE DROITE (1/3) : MODULES */}
+                <div className="space-y-4">
+                    <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-wider px-1">Modules</h3>
+
+                    <Link href="/finance" className="block group">
+                        <Card className="border border-border shadow-sm bg-card rounded-xl p-4 hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-md transition-all flex items-center gap-4">
+                            <div className="h-12 w-12 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                                <Wallet className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-foreground group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">Finance & Pilotage</h4>
+                                <p className="text-xs text-muted-foreground">Trésorerie, Charges, Banque</p>
+                            </div>
+                            <ArrowRight className="h-4 w-4 text-border ml-auto group-hover:text-indigo-400 transition-colors" />
+                        </Card>
                     </Link>
 
-                    <Link href="/rh" className="group block h-full">
-                        <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-card/40 p-1 transition-all group-hover:border-blue-500/30 group-hover:shadow-2xl group-hover:shadow-blue-500/10 h-full">
-                            <div className="relative z-10 p-6 flex flex-col h-full bg-background/40 group-hover:bg-blue-50/5 dark:group-hover:bg-blue-950/20 rounded-[calc(1.5rem-1px)] transition-colors">
-                                <div className="h-14 w-14 bg-blue-500/10 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 group-hover:scale-110 transition-transform duration-300">
-                                    <Users className="h-8 w-8" />
-                                </div>
-                                <h3 className="text-xl font-bold text-foreground mb-2">Gérer l'Équipe</h3>
-                                <p className="text-muted-foreground leading-relaxed font-medium">Suivez les feuilles de présence, gérez les contrats et planifiez les sessions de formation.</p>
-                                <div className="mt-auto pt-6 flex items-center text-sm font-bold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    Accéder au portail RH <ChevronRight className="ml-1 h-4 w-4" />
-                                </div>
+                    <Link href="/rh" className="block group">
+                        <Card className="border border-border shadow-sm bg-card rounded-xl p-4 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-md transition-all flex items-center gap-4">
+                            <div className="h-12 w-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                <Users className="h-6 w-6" />
                             </div>
-                        </div>
+                            <div>
+                                <h4 className="font-bold text-foreground group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">RH & Équipe</h4>
+                                <p className="text-xs text-muted-foreground">{employeeCount} collaborateurs actifs</p>
+                            </div>
+                            <ArrowRight className="h-4 w-4 text-border ml-auto group-hover:text-blue-400 transition-colors" />
+                        </Card>
+                    </Link>
+
+                    <Link href="/achats" className="block group">
+                        <Card className="border border-border shadow-sm bg-card rounded-xl p-4 hover:border-amber-300 dark:hover:border-amber-700 hover:shadow-md transition-all flex items-center gap-4">
+                            <div className="h-12 w-12 rounded-lg bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                                <ScanLine className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-foreground group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">Achats & Factures</h4>
+                                <p className="text-xs text-muted-foreground">Fournisseurs, Stocks, Scans</p>
+                            </div>
+                            <ArrowRight className="h-4 w-4 text-border ml-auto group-hover:text-amber-400 transition-colors" />
+                        </Card>
                     </Link>
                 </div>
             </div>
         </main>
-    )
-}
-
-function ChevronRight({ className, ...props }: React.SVGProps<SVGSVGElement>) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-        >
-            <path d="m9 18 6-6-6-6" />
-        </svg>
     )
 }

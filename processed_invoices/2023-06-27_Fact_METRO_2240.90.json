@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-27",
+  "invoiceNo": "0/0 (113) 0194/014033",
+  "totalAmount": 2240.9,
+  "items": [
+    {
+      "name": "R134A MACH GLACONS B 4015 AS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1551.0,
+      "totalPrice": 1551.0
+    },
+    {
+      "name": "ESSOREUSE 10L MANUEL DYNAMIC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 93.6,
+      "totalPrice": 93.6
+    },
+    {
+      "name": "10CPELLE MONNAI NOIR POLYPRO",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 16.67,
+      "totalPrice": 33.34
+    },
+    {
+      "name": "PIQUE FICHE SOCLE MARBRE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 15.59,
+      "totalPrice": 31.18
+    },
+    {
+      "name": "MP RACLET PLAN DE TRAV 25CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.72,
+      "totalPrice": 13.72
+    },
+    {
+      "name": "PORTE VISUEL VERTICAL A4 PLEXI",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 6.98,
+      "totalPrice": 69.8
+    },
+    {
+      "name": "MP TAB SERV NOIRZIP MULTIPOCH",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 16.62,
+      "totalPrice": 33.24
+    },
+    {
+      "name": "MP 2 TABLIERS MULTIPOCHE NOIR",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 20.77,
+      "totalPrice": 41.54
+    }
+  ]
+}

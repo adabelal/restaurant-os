@@ -1,0 +1,36 @@
+{
+  "supplierName": "KRILL",
+  "date": "2026-01-30",
+  "invoiceNo": null,
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "FAUX-FILET DE B\u0152UF RACE CHAROLAISE SEMI-PAR\u00c9 F 12463",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.9,
+      "totalPrice": 15.9
+    },
+    {
+      "name": "FAUX-FILET DE B\u0152UF SEMI-PAR\u00c9 F 12779",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.25,
+      "totalPrice": 13.25
+    },
+    {
+      "name": "PALERON DE B\u0152UF SEMI-PAR\u00c9 F 13750",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.75,
+      "totalPrice": 13.75
+    },
+    {
+      "name": "C\u00d4TE DE PORC \u00c9CHINE AVEC OS F 10787",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.3,
+      "totalPrice": 5.3
+    }
+  ]
+}

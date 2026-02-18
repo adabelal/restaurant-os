@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-30",
+  "invoiceNo": "0/0 (067) 0016/001685",
+  "totalAmount": 41.61,
+  "items": [
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.587,
+      "totalPrice": 14.09
+    },
+    {
+      "name": "COLORANT ALIM MAROC 100SC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.79,
+      "totalPrice": 1.79
+    },
+    {
+      "name": "CREME SIROP GINGEMBRE 500ML",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.99,
+      "totalPrice": 4.99
+    },
+    {
+      "name": "CREME SIRO PAILL BEUR SAL500ML",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 5.49,
+      "totalPrice": 5.49
+    },
+    {
+      "name": "ASS PIZZA ALHAMBRA ROUGE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.5,
+      "totalPrice": 11.5
+    }
+  ]
+}

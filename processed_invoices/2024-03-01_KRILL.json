@@ -1,0 +1,36 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-01-03",
+  "invoiceNo": "740342",
+  "totalAmount": 598.55,
+  "items": [
+    {
+      "name": "CHORIZO CULAR IBERIQUE BELLOTA 1/1.3 KG",
+      "quantity": 1.15,
+      "unit": "kg",
+      "unitPrice": 19.5,
+      "totalPrice": 22.43
+    },
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 20.64,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 274.51
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.03,
+      "unit": "U",
+      "unitPrice": 0.097,
+      "totalPrice": 2.0
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30 S/V UK UE PTF",
+      "quantity": 18.136,
+      "unit": "kg",
+      "unitPrice": 14.8,
+      "totalPrice": 268.41
+    }
+  ]
+}

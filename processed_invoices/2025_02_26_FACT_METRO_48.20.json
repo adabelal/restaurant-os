@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-02-26",
+  "invoiceNo": "0/0 (067) 0014/007129",
+  "totalAmount": 48.2,
+  "items": [
+    {
+      "name": "ARO ALU 200MX29CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.0,
+      "totalPrice": 12.0
+    },
+    {
+      "name": "FOUET GOMA 30CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.75,
+      "totalPrice": 14.75
+    },
+    {
+      "name": "MP LOT 4 RASOIRS LEG CASTOR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.42,
+      "totalPrice": 13.42
+    }
+  ]
+}

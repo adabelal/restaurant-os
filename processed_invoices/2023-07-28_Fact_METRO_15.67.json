@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-28",
+  "invoiceNo": "0/0 (067) 0013/020036",
+  "totalAmount": 15.67,
+  "items": [
+    {
+      "name": "MENTHE BOTTE MC 30 GR 5",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 14.85
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-12-16",
+  "invoiceNo": "4120900042",
+  "totalAmount": 72.01,
+  "items": [
+    {
+      "name": "2 RHUM PLANT.GRAN ANEJO 70cl 42\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 30.372,
+      "totalPrice": 54.67
+    }
+  ]
+}

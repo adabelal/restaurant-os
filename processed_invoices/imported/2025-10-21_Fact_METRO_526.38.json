@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-21",
+  "invoiceNo": "INV-25-FR-127227",
+  "totalAmount": 526.38,
+  "items": [
+    {
+      "name": "KitchenAid Robot de cuisine 5KSM70JPXECU, 6.6 L, 11 vitesses, avec 4 accessoires, argent\u00e9",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 526.38,
+      "totalPrice": 526.38
+    }
+  ]
+}

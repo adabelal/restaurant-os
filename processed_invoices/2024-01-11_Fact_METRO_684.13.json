@@ -1,0 +1,50 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-01-11",
+  "invoiceNo": "0/(067)0001/0001622",
+  "totalAmount": 684.13,
+  "items": [
+    {
+      "name": "1883701 POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.37,
+      "totalPrice": 209.87
+    },
+    {
+      "name": "1904473 ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.12,
+      "totalPrice": 77.13
+    },
+    {
+      "name": "0296202 GIGOT AGN S/OS HALAL S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.51,
+      "totalPrice": 71.06
+    },
+    {
+      "name": "2365963 FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.04,
+      "totalPrice": 276.98
+    },
+    {
+      "name": "7130669 CELERI BOTTE 6 FRA C1FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    },
+    {
+      "name": "7601503 TOM RDE 47+ 2.5K PITUFO MAR C1 MAROC\nPRIX AU KG OU AU LITRE: 2,740",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.85,
+      "totalPrice": 6.85
+    }
+  ]
+}

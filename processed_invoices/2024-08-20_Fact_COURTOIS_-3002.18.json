@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-08-20",
+  "invoiceNo": "4080500312",
+  "totalAmount": -3002.18,
+  "items": [
+    {
+      "name": "CAUTION BARNUM 1500",
+      "quantity": -2.0,
+      "unit": "U",
+      "unitPrice": 1500.0,
+      "totalPrice": -3000.0
+    },
+    {
+      "name": "FRAIS DE REFACTURATION 20%",
+      "quantity": -1.0,
+      "unit": "U",
+      "unitPrice": 1.82,
+      "totalPrice": -1.82
+    }
+  ]
+}

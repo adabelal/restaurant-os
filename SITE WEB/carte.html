@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Carte Complète | Le Siwa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Montserrat:wght@300;400;600&family=Rock+Salt&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #ef4444;
+            --primary-gold: #fbbf24;
+            --bg-dark: #09090b;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f3f4f6;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(239, 68, 68, 0.10) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(251, 191, 36, 0.05) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        h1, h2, h3, .font-title {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .font-hand {
+            font-family: 'Rock Salt', cursive;
+        }
+
+        /* Effet Verre */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-panel:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Sticky */
+        .nav-link.active {
+            color: var(--primary-gold);
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        /* Badges */
+        .badge {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .badge-vege { background-color: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-new { background-color: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Retour Accueil -->
+    <a href="index.html" class="fixed top-4 left-4 z-50 bg-black/60 hover:bg-red-600 text-white p-3 rounded-full backdrop-blur-md transition-all border border-white/10 group shadow-lg">
+        <i data-lucide="arrow-left" class="w-6 h-6 group-hover:-translate-x-1 transition-transform"></i>
+    </a>
+
+    <!-- Header Hero -->
+    <header class="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover opacity-40 filter brightness-50">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/50 to-black/60"></div>
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <p class="text-amber-500 font-hand text-lg md:text-2xl mb-4 rotate-[-3deg]">Bar & Restaurant</p>
+            <h1 class="font-title text-6xl md:text-8xl font-bold text-white tracking-tighter drop-shadow-2xl mb-6">
+                LA <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-500">CARTE</span>
+            </h1>
+        </div>
+    </header>
+
+    <!-- Navigation Rapide -->
+    <div class="sticky top-0 z-40 bg-[#09090b]/95 backdrop-blur-xl border-b border-white/10 py-4 overflow-x-auto">
+        <div class="max-w-7xl mx-auto px-4 flex justify-start md:justify-center space-x-8 min-w-max">
+            <a href="#bieres-softs" class="font-title text-sm md:text-lg font-bold text-white hover:text-amber-500 transition-colors uppercase tracking-widest">Bières & Softs</a>
+            <a href="#manger" class="font-title text-sm md:text-lg font-bold text-white hover:text-amber-500 transition-colors uppercase tracking-widest">Cuisine</a>
+            <a href="#cocktails-vins" class="font-title text-sm md:text-lg font-bold text-white hover:text-amber-500 transition-colors uppercase tracking-widest">Cocktails & Vins</a>
+            <a href="#douceurs" class="font-title text-sm md:text-lg font-bold text-white hover:text-amber-500 transition-colors uppercase tracking-widest">Desserts</a>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-24">
+
+        <!-- 1. BIÈRES & SOFTS (Pour commencer) -->
+        <section id="bieres-softs" class="scroll-mt-32">
+            <div class="text-center mb-12">
+                <h2 class="font-title text-4xl md:text-5xl font-bold text-white mb-2">SOIFS & <span class="text-amber-500">BIÈRES</span></h2>
+                <p class="text-gray-400 italic">Pour bien démarrer</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Bières -->
+                <div class="glass-panel rounded-2xl p-8 border-t-4 border-amber-500">
+                    <h3 class="font-title text-2xl text-white mb-6 flex items-center gap-3">
+                        <i data-lucide="beer" class="text-amber-500 w-6 h-6"></i> BIÈRES
+                    </h3>
+                    <div class="space-y-6">
+                        <!-- Pressions -->
+                        <div>
+                            <h4 class="text-amber-500 font-bold text-sm uppercase mb-3 border-b border-white/10 pb-1">Pressions</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-white">LICORNE BLONDE (5.7°)</span>
+                                    <span class="font-title text-lg text-amber-500">3.50€</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-white">BLANCHE DE BRUXELLES ROSÉE</span>
+                                    <span class="font-title text-lg text-amber-500">4.50€</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-white">TRIPEL KARMELIET (8.4°)</span>
+                                    <span class="font-title text-lg text-amber-500">5.00€</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-white">BIÈRE DU MOMENT</span>
+                                    <span class="font-title text-lg text-amber-500">5.00€</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bouteilles -->
+                        <div>
+                            <h4 class="text-amber-500 font-bold text-sm uppercase mb-3 border-b border-white/10 pb-1">Bouteilles (33cl) - 7.00€</h4>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Delirium Tremens, Lindemans Kriek/Pêcheresse, Desperados, Kwak Ambrée, Chimay Brune.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Softs & Café -->
+                <div class="glass-panel rounded-2xl p-8 border-t-4 border-blue-400">
+                    <h3 class="font-title text-2xl text-white mb-6 flex items-center gap-3">
+                        <i data-lucide="coffee" class="text-blue-400 w-6 h-6"></i> SOFTS & CAFÉTERIE
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2 text-sm">
+                            <h4 class="text-gray-500 font-bold text-xs uppercase mb-2">Fraîcheur</h4>
+                            <div class="flex justify-between"><span>Sodas (Cola, Tonic...)</span> <span class="text-white font-bold">3.00€</span></div>
+                            <div class="flex justify-between"><span>Jus de Fruits</span> <span class="text-white font-bold">3.00€</span></div>
+                            <div class="flex justify-between"><span>Perrier / Diabolo</span> <span class="text-white font-bold">3.00€</span></div>
+                            <div class="flex justify-between"><span>Sirop à l'eau</span> <span class="text-white font-bold">2.00€</span></div>
+                            <div class="flex justify-between"><span>Thé Glacé</span> <span class="text-white font-bold">4.00€</span></div>
+                            <div class="flex justify-between"><span>Redbull / Gingerbeer</span> <span class="text-white font-bold">4.50€</span></div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <h4 class="text-gray-500 font-bold text-xs uppercase mb-2">Chaud</h4>
+                            <div class="flex justify-between"><span>Expresso / Allongé</span> <span class="text-white font-bold">5.00€</span></div>
+                            <div class="flex justify-between"><span>Café Crème</span> <span class="text-white font-bold">5.00€</span></div>
+                            <div class="flex justify-between"><span>Thé à la Menthe</span> <span class="text-white font-bold">5.00€</span></div>
+                            <div class="flex justify-between"><span>Irish Coffee</span> <span class="text-white font-bold">5.00€</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CÔTÉ CUISINE (Le plat de résistance) -->
+        <section id="manger" class="scroll-mt-32">
+            <div class="text-center mb-12">
+                <h2 class="font-title text-4xl md:text-5xl font-bold text-white mb-2">NOTRE <span class="text-red-500">CUISINE</span></h2>
+                <p class="text-gray-400 italic">Fait maison & Produits frais</p>
+            </div>
+
+            <!-- Salades & Tapas (Entrées) -->
+            <div class="glass-panel rounded-3xl p-8 md:p-10 mb-12 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-1/3 h-full opacity-20 hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" style="mask-image: linear-gradient(to left, black, transparent);">
+                </div>
+                
+                <div class="relative z-10">
+                    <h3 class="font-title text-3xl font-bold text-green-500 mb-8">POUR COMMENCER (OU PARTAGER)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <!-- Salades -->
+                        <div class="space-y-4">
+                            <h4 class="text-white font-bold uppercase tracking-wider border-b border-green-500/30 pb-2 mb-4">Nos Salades</h4>
+                            <div class="flex justify-between"><span>SALADE ORIENTALE (Concombre, Poivrons...)</span><span class="text-green-400 font-bold">14.50€</span></div>
+                            <div class="flex justify-between"><span>SALADE BURRATA DI BUFFALA <span class="badge badge-vege">VÉGÉ</span></span><span class="text-green-400 font-bold">12.50€</span></div>
+                            <div class="flex justify-between"><span>SALADE CAMEMBERT COULANT <span class="badge badge-new">NEW</span></span><span class="text-green-400 font-bold">14.50€</span></div>
+                            <div class="flex justify-between"><span>CHÈVRE CHAUD (Pané maison)</span><span class="text-green-400 font-bold">9.50€</span></div>
+                            <div class="flex justify-between"><span>SALADE ROQUEFORT & NOIX</span><span class="text-green-400 font-bold">9.50€</span></div>
+                            <div class="flex justify-between"><span>SALADE DE GÉSIERS POÊLÉS</span><span class="text-green-400 font-bold">9.80€</span></div>
+                        </div>
+                        <!-- Tapas -->
+                        <div class="space-y-4">
+                            <h4 class="text-white font-bold uppercase tracking-wider border-b border-amber-500/30 pb-2 mb-4">Sur le Pouce</h4>
+                            <div class="flex justify-between"><span>PLANCHE MIXTE (Charcuterie/Fromage)</span><span class="text-amber-400 font-bold">15.00€</span></div>
+                            <div class="flex justify-between"><span>CAMEMBERT RÔTI (Jambon cru)</span><span class="text-amber-400 font-bold">13.00€</span></div>
+                            <div class="flex justify-between"><span>LA FRITE</span><span class="text-amber-400 font-bold">3.50€</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Couscous & Grillades (Plats) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Image Couscous -->
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <img src="Couscous.jpg" alt="Couscous Royal" class="w-full h-full object-cover rounded-2xl shadow-2xl border border-white/10 min-h-[300px]"
+                    onerror="this.src='https://images.unsplash.com/photo-1541518763669-27fef04b14ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';">
+                </div>
+                
+                <!-- Liste Couscous -->
+                <div class="lg:col-span-7 order-1 lg:order-2 glass-panel rounded-3xl p-8 md:p-10 flex flex-col justify-center relative">
+                    <div class="absolute -top-6 -right-6 bg-amber-500 text-black font-bold font-title px-4 py-2 rounded-lg transform rotate-12 shadow-lg">LE ROI DU SIWA</div>
+                    <h2 class="font-title text-4xl font-bold text-amber-500 mb-2">LES COUSCOUS</h2>
+                    <p class="text-gray-400 italic mb-8 text-sm border-l-2 border-amber-500 pl-4">Semoule fine, bouillon maison, légumes frais.</p>
+
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                            <h3 class="font-bold text-white">ROYAL <span class="text-xs font-normal text-gray-400 ml-2">(Boeuf, Volaille, Merguez, Agneau)</span></h3>
+                            <span class="font-title text-lg font-bold text-amber-500">28€</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                            <h3 class="font-bold text-white">MINI-ROYAL <span class="text-xs font-normal text-gray-400 ml-2">(Idem Royal, petite faim)</span></h3>
+                            <span class="font-title text-lg font-bold text-amber-500">25€</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                            <h3 class="font-bold text-white">MIXTE <span class="text-xs font-normal text-gray-400 ml-2">(Brochette Boeuf/Volaille + Merguez)</span></h3>
+                            <span class="font-title text-lg font-bold text-amber-500">23€</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                            <h3 class="font-bold text-white">1 À 2 VIANDES <span class="text-xs font-normal text-gray-400 ml-2">(+ Brochette personnalisée)</span></h3>
+                            <span class="font-title text-lg font-bold text-amber-500">23€</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                            <h3 class="font-bold text-white">LE BOWL <span class="text-xs font-normal text-gray-400 ml-2">(1 viande au choix)</span></h3>
+                            <span class="font-title text-lg font-bold text-amber-500">13€</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-white">NATURE <span class="badge badge-vege">VÉGÉ</span></h3>
+                            <span class="font-title text-lg font-bold text-amber-500">11€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grillades & Brochettes (Large) -->
+                <div class="lg:col-span-12 glass-panel rounded-3xl p-8 mt-8">
+                    <h3 class="font-title text-2xl font-bold text-red-500 mb-6 flex items-center gap-3"><i data-lucide="flame"></i> GRILLADES & BROCHETTES</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div class="flex justify-between"><span>BROCHETTE ROYALE (4 Viandes)</span><span class="font-bold">22.90€</span></div>
+                            <div class="flex justify-between"><span>BROCHETTE MINI-ROYALE</span><span class="font-bold">20.90€</span></div>
+                            <div class="flex justify-between"><span>BROCHETTE PERSONNALISÉE / MIXTE</span><span class="font-bold">18.90€</span></div>
+                        </div>
+                        <div class="space-y-4 border-l border-white/10 pl-8 md:border-l-0 md:pl-0">
+                            <div class="flex justify-between"><span>L'ENTRECÔTE DU CHEF</span><span class="font-bold">22.90€</span></div>
+                            <div class="flex justify-between"><span>LA BAVETTE</span><span class="font-bold">18.90€</span></div>
+                            <p class="text-xs text-gray-500 mt-4 italic">*Nos viandes sont accompagnées de frites et salade orientale.<br>Sauces (+2.20€) : Roquefort, Poivre, Béarnaise.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. COCKTAILS & VINS (Pour la suite) -->
+        <section id="cocktails-vins" class="scroll-mt-32">
+            <div class="text-center mb-12">
+                <h2 class="font-title text-4xl md:text-5xl font-bold text-white mb-2">BAR À <span class="text-purple-500">COCKTAILS</span> & CAVE</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cocktails -->
+                <div class="lg:col-span-2 glass-panel rounded-2xl p-6 border-t-4 border-pink-500">
+                    <h3 class="font-title text-xl text-pink-400 mb-6 flex items-center gap-2"><i data-lucide="martini" class="w-5 h-5"></i> COCKTAILS</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+                        
+                        <!-- Colonne 1 -->
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-green-400 font-bold text-xs uppercase mb-2">Mojitos & Mules</h4>
+                                <div class="flex justify-between"><span>Mojito Classic</span> <span class="font-bold text-white">8.00€</span></div>
+                                <div class="flex justify-between"><span>Mojito Fruité</span> <span class="font-bold text-white">8.50€</span></div>
+                                <div class="flex justify-between"><span>Mojito Millionnaire (Champagne)</span> <span class="font-bold text-white">11.00€</span></div>
+                                <div class="flex justify-between"><span>Mules (Jamaican, London, Moscow)</span> <span class="font-bold text-white">7.00€</span></div>
+                            </div>
+                            <div>
+                                <h4 class="text-blue-400 font-bold text-xs uppercase mb-2">Gin & Spritz</h4>
+                                <div class="flex justify-between"><span>Gin Tonic / La Madeleine</span> <span class="font-bold text-white">7.00€</span></div>
+                                <div class="flex justify-between"><span>La Merveille (Gin Pamplemousse)</span> <span class="font-bold text-white">5.50€</span></div>
+                                <div class="flex justify-between"><span>Spritz (Aperol/Limoncello/Sureau)</span> <span class="font-bold text-white">7.50€</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Colonne 2 -->
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-amber-400 font-bold text-xs uppercase mb-2">Signatures</h4>
+                                <div class="flex justify-between"><span>Le Siwa (Oasis de Passion)</span> <span class="font-bold text-white">5.50€</span></div>
+                                <div class="flex justify-between"><span>La Bomba (Triple Sec)</span> <span class="font-bold text-white">8.50€</span></div>
+                                <div class="flex justify-between"><span>Le Marbre (Coco/Fraise)</span> <span class="font-bold text-white">5.50€</span></div>
+                                <div class="flex justify-between"><span>Porn Star</span> <span class="font-bold text-white">??€</span></div>
+                            </div>
+                            <div>
+                                <h4 class="text-red-400 font-bold text-xs uppercase mb-2">Classiques</h4>
+                                <div class="flex justify-between"><span>Pina Colada / Cuba Libre</span> <span class="font-bold text-white">8.00€</span></div>
+                                <div class="flex justify-between"><span>Ti Punch / Caipirinha</span> <span class="font-bold text-white">8.00€</span></div>
+                                <div class="flex justify-between"><span>Tequila Sunrise</span> <span class="font-bold text-white">8.00€</span></div>
+                                <div class="flex justify-between"><span>Sex on the Beach</span> <span class="font-bold text-white">7.00€</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mocktails -->
+                    <div class="mt-6 pt-4 border-t border-white/10">
+                        <h4 class="text-gray-400 font-bold text-xs uppercase mb-2">Sans Alcool (7.00€)</h4>
+                        <p class="text-xs text-gray-500">Virgin Mojito, Virgin Colada, Virgin Siwa, Apple Moon, Virgin Spritz.</p>
+                    </div>
+                </div>
+
+                <!-- Vins & Spiritueux -->
+                <div class="glass-panel rounded-2xl p-6 border-t-4 border-purple-500">
+                    <h3 class="font-title text-xl text-purple-300 mb-4 flex items-center gap-2"><i data-lucide="wine" class="w-5 h-5"></i> CAVE & SPIRITUEUX</h3>
+                    
+                    <!-- Vins -->
+                    <div class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li class="flex justify-between font-bold text-white border-b border-white/10 pb-1"><span>VINS (Verre / Bouteille)</span></li>
+                        <li class="flex justify-between"><span>Blancs (Chablis, Chardonnay...)</span> <span>5.50 / 28-30€</span></li>
+                        <li class="flex justify-between"><span>Rouges (Irancy, Beaujolais...)</span> <span>6.00 / 35€</span></li>
+                        <li class="flex justify-between"><span>Rosés (Gris, Mont-Olivet...)</span> <span>4.00 / 17-28€</span></li>
+                        <li class="flex justify-between"><span>Champagne Brut</span> <span>9.50 / 60€</span></li>
+                    </div>
+
+                    <!-- Spiritueux -->
+                    <div class="space-y-2 text-sm text-gray-300">
+                         <li class="flex justify-between font-bold text-white border-b border-white/10 pb-1"><span>SPIRITUEUX</span></li>
+                         <li class="flex justify-between"><span>Apéros (Ricard, Kir...)</span> <span>3.50 - 5.00€</span></li>
+                         <li class="flex justify-between"><span>Rhum/Whisky (Jack, Diplo...)</span> <span>5.00 - 9.50€</span></li>
+                         <li class="flex justify-between"><span>Digestifs (Poire, Get, Bailey's...)</span> <span>5.00€</span></li>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. DESSERTS (Pour finir) -->
+        <section id="douceurs" class="pb-16">
+            <div class="glass-panel rounded-3xl p-8 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-transparent"></div>
+                <h2 class="font-title text-3xl font-bold text-white mb-6 relative z-10">POUR FINIR EN DOUCEUR</h2>
+                <div class="flex flex-wrap justify-center gap-4 relative z-10 text-sm">
+                    <span class="px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-pink-500 transition-colors">Tiramisu (6€)</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-pink-500 transition-colors">Fondant Chocolat (6€)</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-pink-500 transition-colors">Basboussa (6€)</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-pink-500 transition-colors">Coupes Glacées (2.50€ - 6.80€)</span>
+                    <span class="px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-pink-500 transition-colors">Café/Thé Gourmand (8.50€)</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- MENU ENFANT -->
+        <div class="text-center mb-16">
+            <div class="inline-block bg-blue-600 text-white px-10 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-transform cursor-default">
+                <span class="font-hand text-xl mr-2">Pour les petits :</span>
+                <span class="font-title text-3xl font-bold">MENU ENFANT 12.90€</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-black py-12 border-t border-white/5 text-center">
+        <p class="font-title text-2xl text-white mb-4">LE SIWA</p>
+        <div class="text-gray-500 text-sm space-y-2">
+            <p>Prix nets en Euros • Service Compris</p>
+            <p>L'abus d'alcool est dangereux pour la santé.</p>
+            <a href="index.html" class="text-amber-500 hover:underline">Retour à l'accueil</a>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

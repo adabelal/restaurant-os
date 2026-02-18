@@ -1,0 +1,141 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-22",
+  "invoiceNo": "0/0 (067) 0013/019495",
+  "totalAmount": 597.54,
+  "items": [
+    {
+      "name": "LION PEANUT 41G",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.477,
+      "totalPrice": 11.45
+    },
+    {
+      "name": "SNICKERS 50G",
+      "quantity": 32.0,
+      "unit": "U",
+      "unitPrice": 0.476,
+      "totalPrice": 15.24
+    },
+    {
+      "name": "SAC VRAC CERISES LISSES 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.29,
+      "totalPrice": 5.29
+    },
+    {
+      "name": "FRAIZIBUS VRAC 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.86,
+      "totalPrice": 13.86
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.97,
+      "totalPrice": 15.97
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P MDD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 23.99,
+      "totalPrice": 110.47
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 178.23
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 15.86
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 17.05
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 28.13
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 16.6
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 16.07
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.99,
+      "totalPrice": 24.2
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.99,
+      "totalPrice": 24.31
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.99,
+      "totalPrice": 24.22
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.99,
+      "totalPrice": 24.27
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 11.88
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 1.98
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.58,
+      "totalPrice": 6.58
+    }
+  ]
+}

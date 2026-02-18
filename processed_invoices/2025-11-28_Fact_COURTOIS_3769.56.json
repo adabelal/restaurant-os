@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-11-28",
+  "invoiceNo": "5110100865",
+  "totalAmount": 3769.56,
+  "items": [
+    {
+      "name": "CONS16.",
+      "quantity": 6.1,
+      "unit": "U",
+      "unitPrice": 1.68,
+      "totalPrice": 10.24
+    },
+    {
+      "name": "TOTAL DECONS.",
+      "quantity": 1.68,
+      "unit": "L",
+      "unitPrice": 5.5,
+      "totalPrice": 133.99
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-06-14",
+  "invoiceNo": "4060100544",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "80 FUT 20L FISCHER DORELEI AMBREE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 5.065,
+      "totalPrice": 445.36
+    },
+    {
+      "name": "200 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 5.463,
+      "totalPrice": 1220.0
+    },
+    {
+      "name": "240 FUT 30 L LOBURG",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 3.705,
+      "totalPrice": 998.16
+    },
+    {
+      "name": "150 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 5.021,
+      "totalPrice": 780.0
+    },
+    {
+      "name": "24 033DELIRIUM TREMENS 8\u00b05 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.517,
+      "totalPrice": 41.76
+    },
+    {
+      "name": "12 BOC CARAIBOS PLANTEUR ILE 6X1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.941,
+      "totalPrice": 36.16
+    },
+    {
+      "name": "96 ELSASS COLA 33CLX24 VC",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 0.657,
+      "totalPrice": 67.1
+    },
+    {
+      "name": "72 LIMONADE SOULTZY LT VC",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.074,
+      "totalPrice": 84.96
+    },
+    {
+      "name": "48 LINESS MISS TONIC 33CLX24 VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.794,
+      "totalPrice": 39.46
+    },
+    {
+      "name": "48 ORGANIC BIO GINGER BEER25CLVP",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.388,
+      "totalPrice": 68.16
+    },
+    {
+      "name": "60 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 147.36
+    },
+    {
+      "name": "60 NORBERT POMME ABC PET 6X100CL",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 2.151,
+      "totalPrice": 129.06
+    },
+    {
+      "name": "4 LT PUREE FRAMBOISE MONIN",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 11.068,
+      "totalPrice": 44.27
+    }
+  ]
+}

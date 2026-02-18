@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-11-09",
+  "invoiceNo": "0/0 (067) 0001/0085392",
+  "totalAmount": 211.47,
+  "items": [
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.34,
+      "totalPrice": 15.34
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.39,
+      "totalPrice": 185.11
+    }
+  ]
+}

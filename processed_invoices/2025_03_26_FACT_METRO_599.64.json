@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-03-26",
+  "invoiceNo": "067/008",
+  "totalAmount": 401.02,
+  "items": [
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 7.042,
+      "totalPrice": 84.5
+    },
+    {
+      "name": "RHUM CLEMENT VIEUX 40D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 18.65,
+      "totalPrice": 18.65
+    },
+    {
+      "name": "BS BUMBU ORIGINAL 40D 70CL",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 27.3,
+      "totalPrice": 109.2
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 11.16,
+      "totalPrice": 66.96
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 14.17,
+      "totalPrice": 85.02
+    },
+    {
+      "name": "CARAIBOS PINA COLADA VP 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.882,
+      "totalPrice": 17.29
+    },
+    {
+      "name": "CARAIBOS PINA COLADA VP 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.882,
+      "totalPrice": 17.29
+    },
+    {
+      "name": "RIOBA NECTAR FRAISE VP 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.99,
+      "totalPrice": 11.94
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.797,
+      "totalPrice": 43.12
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 0.62,
+      "totalPrice": 14.88
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.7,
+      "totalPrice": 15.4
+    }
+  ]
+}

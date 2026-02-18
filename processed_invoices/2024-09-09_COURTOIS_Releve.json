@@ -1,0 +1,43 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-09-09",
+  "invoiceNo": null,
+  "totalAmount": 5536.26,
+  "items": [
+    {
+      "name": "Facture 4060100544",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6161.99,
+      "totalPrice": 6161.99
+    },
+    {
+      "name": "Facture 4060100603",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": -235.65,
+      "totalPrice": -235.65
+    },
+    {
+      "name": "Facture 4060100897",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 85.12,
+      "totalPrice": 85.12
+    },
+    {
+      "name": "Facture 4090100229",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 201.6,
+      "totalPrice": 201.6
+    },
+    {
+      "name": "Faut Avoir 4090500064-Cave Dontrean",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": -273.6,
+      "totalPrice": -273.6
+    }
+  ]
+}

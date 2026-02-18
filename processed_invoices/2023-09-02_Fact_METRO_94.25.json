@@ -1,0 +1,57 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-02",
+  "invoiceNo": "0/0 (067) 0013/0237502",
+  "totalAmount": 94.25,
+  "items": [
+    {
+      "name": "MERGUEZ BF/MOUTON STD2.5KG SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.89,
+      "totalPrice": 24.57
+    },
+    {
+      "name": "MERGUEZ BF/MOUTON STD2.5KG SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.89,
+      "totalPrice": 24.37
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 11.88
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.29,
+      "totalPrice": 2.29
+    },
+    {
+      "name": "COURG 14/21 MC 5 KG C1 FR FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.95,
+      "totalPrice": 9.95
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.95,
+      "totalPrice": 3.95
+    },
+    {
+      "name": "MP ALLUME GAZ PIEZZO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.83,
+      "totalPrice": 10.83
+    }
+  ]
+}

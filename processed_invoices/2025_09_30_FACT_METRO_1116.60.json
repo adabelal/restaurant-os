@@ -1,0 +1,211 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-09-30",
+  "invoiceNo": "0/0 (067) 0051/001978",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "RHUM CORUBA NPU 74D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 26.67,
+      "totalPrice": 26.67
+    },
+    {
+      "name": "TROPICO L'ORIG BTE 33 CL SLIM",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.573,
+      "totalPrice": 13.75
+    },
+    {
+      "name": "COCACOLA BOITE SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.645,
+      "totalPrice": 15.48
+    },
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.163,
+      "totalPrice": 12.98
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.08,
+      "totalPrice": 55.4
+    },
+    {
+      "name": "ROCH *FARINE BLE T45 10X1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.82,
+      "totalPrice": 8.2
+    },
+    {
+      "name": "CARAMEL BEURRE SALE TUBE 300G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.28,
+      "totalPrice": 6.56
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.85,
+      "totalPrice": 6.85
+    },
+    {
+      "name": "AROME FLEUR D'ORANGER 50CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.64,
+      "totalPrice": 3.28
+    },
+    {
+      "name": "PAILLETTE FIN CHOCOLAT 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.16,
+      "totalPrice": 18.16
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.898,
+      "totalPrice": 14.49
+    },
+    {
+      "name": "LOTUS SPECULOOS 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.59,
+      "totalPrice": 11.59
+    },
+    {
+      "name": "CREME ANGLAISE 2L DEBIC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 6.79
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG PPX BELLAY",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "TZATZIKI 1KG INSPIRE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.09,
+      "totalPrice": 9.09
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.49,
+      "totalPrice": 40.03
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.12,
+      "totalPrice": 39.2
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.935,
+      "totalPrice": 35.78
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.998,
+      "totalPrice": 11.47
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.746,
+      "totalPrice": 8.57
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.978,
+      "totalPrice": 11.24
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.018,
+      "totalPrice": 11.7
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.046,
+      "totalPrice": 12.02
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.345,
+      "totalPrice": 24.47
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.54,
+      "totalPrice": 28.01
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.525,
+      "totalPrice": 27.74
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.525,
+      "totalPrice": 27.74
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.58,
+      "totalPrice": 28.74
+    }
+  ]
+}

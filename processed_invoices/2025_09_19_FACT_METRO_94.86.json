@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-09-19",
+  "invoiceNo": "0/0 (067) 0052/001444",
+  "totalAmount": 94.86,
+  "items": [
+    {
+      "name": "LIQ JAGERMEISTER 35D 70CL+VER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.17,
+      "totalPrice": 56.68
+    },
+    {
+      "name": "MANGUE PRE. MURIE METRO CHEF ESP C1 ESPAGNE",
+      "quantity": 5.0,
+      "unit": "kg",
+      "unitPrice": 1.49,
+      "totalPrice": 7.45
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.21,
+      "totalPrice": 11.21
+    }
+  ]
+}

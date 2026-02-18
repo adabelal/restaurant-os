@@ -1,0 +1,43 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-05-24",
+  "invoiceNo": "754856",
+  "totalAmount": 863.72,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": 20.0,
+      "unit": "kg",
+      "unitPrice": 7.3,
+      "totalPrice": 146.0
+    },
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 8.605,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 114.45
+    },
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 7.35,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 97.76
+    },
+    {
+      "name": "ENTRECOTE VB SEMI-PARE CHAROLAISE 4/7 KG S/V FRANCE MF VBF",
+      "quantity": 8.55,
+      "unit": "kg",
+      "unitPrice": 21.55,
+      "totalPrice": 184.25
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 GX 30 S/V UK UE PTF",
+      "quantity": 18.504,
+      "unit": "kg",
+      "unitPrice": 14.8,
+      "totalPrice": 273.86
+    }
+  ]
+}

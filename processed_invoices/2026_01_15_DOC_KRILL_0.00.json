@@ -1,0 +1,36 @@
+{
+  "supplierName": "KRILL",
+  "date": "2026-01-23",
+  "invoiceNo": null,
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "CARR\u00c9 D\u00c9TALONN\u00c9 DE BOEUF RACE CHAROLAISE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.5,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "GROSSE POIRE DE B\u0152UF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.9,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "CARR\u00c9 DE VEAU ENTIER",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.5,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "PALERON \u00c9PAULE DE PORC D\u00c9SOSS\u00c9 D\u00c9COUENN\u00c9 D\u00c9GRAISS\u00c9",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.1,
+      "totalPrice": 0.0
+    }
+  ]
+}

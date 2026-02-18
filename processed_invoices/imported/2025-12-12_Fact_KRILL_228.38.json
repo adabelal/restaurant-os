@@ -1,0 +1,50 @@
+{
+  "supplierName": "KRILL",
+  "date": "2025-12-12",
+  "invoiceNo": "860247",
+  "totalAmount": 228.38,
+  "items": [
+    {
+      "name": "BOUDIN BLANC A L'ANCIENNE BN SAT 130 G X 10 FRANCE VPF",
+      "quantity": 1.318,
+      "unit": "kg",
+      "unitPrice": 6.65,
+      "totalPrice": 8.76
+    },
+    {
+      "name": "BURRATA POT 300 G PNE 125 G ITALIE X8",
+      "quantity": 16.0,
+      "unit": "U",
+      "unitPrice": 1.986,
+      "totalPrice": 31.78
+    },
+    {
+      "name": "MELANGE 4 FROMAGES RAPE SPECIAL FONDUE S ACHET 1 KG FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.95,
+      "totalPrice": 10.95
+    },
+    {
+      "name": "ENTRECOTE VB LIMOUSINE 3/6 KG S/V FRANCE MF VBF",
+      "quantity": 5.37,
+      "unit": "kg",
+      "unitPrice": 23.974,
+      "totalPrice": 128.74
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.103,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": 0.55
+    },
+    {
+      "name": "POITRINE AGNEAU S/OS 2.5 KG ENV S/V UK U E MF",
+      "quantity": 3.612,
+      "unit": "kg",
+      "unitPrice": 9.88,
+      "totalPrice": 35.69
+    }
+  ]
+}

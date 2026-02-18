@@ -1,0 +1,36 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-12-10",
+  "invoiceNo": "3100500171",
+  "totalAmount": 279.95,
+  "items": [
+    {
+      "name": "RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 10.014,
+      "totalPrice": 181.8
+    },
+    {
+      "name": "MONIN RANTCHO CITRON VERT 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.35,
+      "totalPrice": 12.7
+    },
+    {
+      "name": "PORTO SANDEMAN BL19\u00b05APITIV BT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.787,
+      "totalPrice": 8.79
+    },
+    {
+      "name": "PORTO SANDEMAN RgeRUBY 19\u00b05 BT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.176,
+      "totalPrice": 9.18
+    }
+  ]
+}

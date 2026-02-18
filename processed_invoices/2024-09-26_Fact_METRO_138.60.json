@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO France",
+  "date": "2024-09-26",
+  "invoiceNo": "0/0(067)0017/004266",
+  "totalAmount": 138.6,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.46,
+      "totalPrice": 131.37
+    }
+  ]
+}

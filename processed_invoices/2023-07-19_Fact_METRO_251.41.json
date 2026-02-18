@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-19",
+  "invoiceNo": "0/0 (067) 0013/019030",
+  "totalAmount": 216.95,
+  "items": [
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 3.59,
+      "totalPrice": 43.08
+    },
+    {
+      "name": "MAROC S. BRAHIM RSE M TIR 75CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 2.99,
+      "totalPrice": 71.76
+    },
+    {
+      "name": "ARO SESAME DORE SAC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.79,
+      "totalPrice": 7.79
+    },
+    {
+      "name": "SEL FIN CEREBOS SEAU 5 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.85,
+      "totalPrice": 4.85
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.29,
+      "totalPrice": 3.29
+    },
+    {
+      "name": "*CACAHUETE SALE 1,5KG MC",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 7.34,
+      "totalPrice": 14.68
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 6.54
+    },
+    {
+      "name": "GALET DE LA LOIRE 260G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.32,
+      "totalPrice": 3.32
+    },
+    {
+      "name": "CHAOURCE AOP 250G LINCET",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.72,
+      "totalPrice": 3.72
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.45,
+      "totalPrice": 12.45
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 2.49,
+      "totalPrice": 4.98
+    },
+    {
+      "name": "MPRO 250 SERV 2P NOIRE 40X40",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.65,
+      "totalPrice": 6.65
+    },
+    {
+      "name": "MPRO 10 TAMPON /EPONG VERT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.65,
+      "totalPrice": 6.65
+    },
+    {
+      "name": "ROCH LV SEL 1KG*4",
+      "quantity": 4.0,
+      "unit": "kg",
+      "unitPrice": 0.693,
+      "totalPrice": 2.77
+    },
+    {
+      "name": "DEGRAI BACT 5L SOLIGERM",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 20.8,
+      "totalPrice": 20.8
+    },
+    {
+      "name": "ARO LIQ VAISS MAIN CIT 1LX3",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.62,
+      "totalPrice": 3.62
+    }
+  ]
+}

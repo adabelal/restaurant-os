@@ -1,0 +1,106 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-08-02",
+  "invoiceNo": "067/049",
+  "totalAmount": 355.96,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.662,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 29.9
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 2.262,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 40.69
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.92,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 34.54
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.722,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 30.98
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.862,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 33.5
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.602,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 28.82
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.894,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 17.03
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 2.524,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 22.69
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.93,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 17.35
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.958,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 17.6
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 2.128,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 19.13
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.904,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 17.12
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 2.326,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 20.91
+    },
+    {
+      "name": "SAL BATAVIA MC PC6 C1 FRFRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 7.14
+    }
+  ]
+}

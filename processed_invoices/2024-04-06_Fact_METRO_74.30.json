@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-06",
+  "invoiceNo": "0/0 (067) 0014/0124172",
+  "totalAmount": 74.3,
+  "items": [
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.75,
+      "totalPrice": 15.75
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.99,
+      "totalPrice": 13.57
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.99,
+      "totalPrice": 14.41
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.99,
+      "totalPrice": 14.82
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 11.88
+    }
+  ]
+}

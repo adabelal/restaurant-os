@@ -1,0 +1,36 @@
+{
+  "supplierName": "KRILL",
+  "date": "2026-02-06",
+  "invoiceNo": null,
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "ENTREC\u00d4TE DE B\u0152UF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.5,
+      "totalPrice": 17.5
+    },
+    {
+      "name": "FILET DE B\u0152UF RACE \u00c0 VIANDE SEMI-PAR\u00c9",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 28.5,
+      "totalPrice": 28.5
+    },
+    {
+      "name": "C\u0152UR DE RUMSTEAK DE B\u0152UF \u00c9CLAT\u00c9 PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.95,
+      "totalPrice": 13.95
+    },
+    {
+      "name": "FILET MIGNON DE PORC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.5,
+      "totalPrice": 6.5
+    }
+  ]
+}

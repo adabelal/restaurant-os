@@ -1,0 +1,141 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-10-07",
+  "invoiceNo": "0/0 (067)0001/0006112",
+  "totalAmount": 317.2,
+  "items": [
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.92,
+      "totalPrice": 18.92
+    },
+    {
+      "name": "SCISSON SEC PP 1,4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.88,
+      "totalPrice": 16.02
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.94,
+      "totalPrice": 17.88
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 11.01,
+      "totalPrice": 22.02
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.39,
+      "totalPrice": 22.49
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 5.1,
+      "totalPrice": 10.2
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.86,
+      "totalPrice": 30.96
+    },
+    {
+      "name": "FENOUIL 3K FR FRANCE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 7.55,
+      "totalPrice": 15.1
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 ESESPAGNE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    },
+    {
+      "name": "PV VERT 5K C. 70/90 C2 ESESPAGNE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 12.04,
+      "totalPrice": 24.08
+    },
+    {
+      "name": "TOM RDE MC 6K C. 67+ PAL56 C1 FR FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.74,
+      "totalPrice": 10.74
+    },
+    {
+      "name": "CONCOMBRE MC C. 5/6 PC12 C1 FR FRANCE",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 7.63
+    },
+    {
+      "name": "AIL PELE MC 1KG CHINE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.09,
+      "totalPrice": 6.09
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 5.0,
+      "unit": "L",
+      "unitPrice": 3.417,
+      "totalPrice": 102.5
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 10.0,
+      "unit": "L",
+      "unitPrice": 3.578,
+      "totalPrice": 214.7
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.03,
+      "totalPrice": 44.1
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.66,
+      "totalPrice": 105.71
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.62,
+      "totalPrice": 9.96
+    },
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 6.48,
+      "totalPrice": 25.92
+    }
+  ]
+}

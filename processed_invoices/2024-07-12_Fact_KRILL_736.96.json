@@ -1,0 +1,57 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-07-12",
+  "invoiceNo": "764886",
+  "totalAmount": 736.96,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": 16.24,
+      "unit": "kg",
+      "unitPrice": 7.71,
+      "totalPrice": 125.21
+    },
+    {
+      "name": "CHORIZO CULAR IBERIQUE BELLOTA 1/1.3 KG ESPAGNE",
+      "quantity": 1.1,
+      "unit": "kg",
+      "unitPrice": 19.5,
+      "totalPrice": 21.45
+    },
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 7.89,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 104.94
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.0,
+      "unit": "kg",
+      "unitPrice": 0.097,
+      "totalPrice": 0.77
+    },
+    {
+      "name": "ENTRECOTE VB SEMI-PARE CHAROLAISE 4/7 KG S/V FRANCE ME VBE",
+      "quantity": 6.36,
+      "unit": "kg",
+      "unitPrice": 22.45,
+      "totalPrice": 142.78
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.0,
+      "unit": "kg",
+      "unitPrice": 0.097,
+      "totalPrice": 0.62
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 GX 30 S/V UK UE PTF",
+      "quantity": 18.294,
+      "unit": "kg",
+      "unitPrice": 16.55,
+      "totalPrice": 302.77
+    }
+  ]
+}

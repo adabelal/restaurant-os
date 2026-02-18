@@ -1,0 +1,183 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-07-26",
+  "invoiceNo": "0/0 (067) 0014/028623",
+  "totalAmount": 444.61,
+  "items": [
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.85,
+      "totalPrice": 6.85
+    },
+    {
+      "name": "BARRE MARBREE 600G ROCHAMBEAU",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.31,
+      "totalPrice": 2.31
+    },
+    {
+      "name": "PETIT ECOLIER CHOC. LAIT 150GX6",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.867,
+      "totalPrice": 11.2
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT LAITDICI",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.0,
+      "totalPrice": 6.0
+    },
+    {
+      "name": "CREME FRAI. EP 30% 1L EUROLAIT",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.5,
+      "totalPrice": 4.5
+    },
+    {
+      "name": "COEUR NEUFCHATEL AOP 200G CATE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.13,
+      "totalPrice": 3.13
+    },
+    {
+      "name": "PAIN SANDWICH COMPLET 600G LC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.51,
+      "totalPrice": 2.51
+    },
+    {
+      "name": "8 PAIN CHOCOLAT LC 360G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.87,
+      "totalPrice": 1.87
+    },
+    {
+      "name": "8 CROISSANTS 320G ROCHAMBEAU",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.73,
+      "totalPrice": 1.73
+    },
+    {
+      "name": "VERITABLE CO BLEU PLT X6 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.56,
+      "totalPrice": 13.56
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 34.58
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 33.86
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 34.58
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 39.97
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 37.1
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 29.18
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 34.58
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 36.38
+    },
+    {
+      "name": "SUPREME PLT LR JNE X10 MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 29.74
+    },
+    {
+      "name": "FILET DND STD 1.5KG ENV SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 14.56
+    },
+    {
+      "name": "FILET DND HAL 1.5KG ENV SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 12.46
+    },
+    {
+      "name": "FILET DND HAL 1.5KG ENV SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 14.91
+    },
+    {
+      "name": "FILET DND HAL 1.5KG ENV SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 17.89
+    },
+    {
+      "name": "FILET DND HAL 1.5KG ENV SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 14.02
+    },
+    {
+      "name": "SAL BATAVIA MC PC6 C1 FRFRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 7.14
+    }
+  ]
+}

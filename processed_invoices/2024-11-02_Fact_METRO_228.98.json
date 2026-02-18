@@ -1,0 +1,71 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-02",
+  "invoiceNo": "0/0 (067) 0013/0106562",
+  "totalAmount": 228.98,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 32.83
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 34.33
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 38.0
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 50.97
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 11.64
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 10.5
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 12.92
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 12.83
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 13.02
+    }
+  ]
+}

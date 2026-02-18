@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": null,
+  "invoiceNo": "2024-0530",
+  "totalAmount": 345.0,
+  "items": [
+    {
+      "name": "Chalmeau, Cuv\u00e9e Chitry rouge",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 11.5,
+      "totalPrice": 345.0
+    }
+  ]
+}

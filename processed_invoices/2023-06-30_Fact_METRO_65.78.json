@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-30",
+  "invoiceNo": "0/0 (067) 0014/0124052",
+  "totalAmount": 65.78,
+  "items": [
+    {
+      "name": "CHEVRE BUCHE 450G SOIGN",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.8,
+      "totalPrice": 9.6
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.97,
+      "totalPrice": 15.97
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 12.45,
+      "totalPrice": 24.9
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 11.88
+    }
+  ]
+}

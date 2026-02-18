@@ -1,0 +1,211 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-11-10",
+  "invoiceNo": "0/0 (067) 0051/0033282",
+  "totalAmount": 281.3,
+  "items": [
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.63,
+      "totalPrice": 15.12
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.043,
+      "totalPrice": 50.04
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 1.498,
+      "totalPrice": 7.49
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.75,
+      "totalPrice": 15.75
+    },
+    {
+      "name": "CREME UHT 18% 1L PRESIDENT C",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 4.1,
+      "totalPrice": 24.6
+    },
+    {
+      "name": "DF SSA POM/MAN/POI/ABR 16X100G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.8,
+      "totalPrice": 5.8
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.2,
+      "totalPrice": 8.2
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.01,
+      "totalPrice": 20.32
+    },
+    {
+      "name": "PAIN MIE 7 CEREALES LC 550G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.74,
+      "totalPrice": 2.74
+    },
+    {
+      "name": "TABOULE ORIENT BQ 310G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.8,
+      "totalPrice": 1.8
+    },
+    {
+      "name": "JB SERRANO 60T 8MOIS 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.92,
+      "totalPrice": 14.92
+    },
+    {
+      "name": "COPPA 12T 100G ROCHAMBEAU",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.09,
+      "totalPrice": 2.09
+    },
+    {
+      "name": "SCISSON AIL 8T 80G ROCHB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.2,
+      "totalPrice": 1.2
+    },
+    {
+      "name": "SCISSON AIL FUME VPF 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.0,
+      "totalPrice": 4.0
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.49,
+      "totalPrice": 32.36
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.49,
+      "totalPrice": 32.36
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.49,
+      "totalPrice": 30.14
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.49,
+      "totalPrice": 30.32
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 15.05
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 14.85
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 13.32
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 14.29
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 12.15
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 15.41
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 14.92
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 13.66
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 16.29
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 15.98
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.6,
+      "totalPrice": 10.2
+    }
+  ]
+}

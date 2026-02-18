@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-29",
+  "invoiceNo": "0/0 (067) 0013/0307722",
+  "totalAmount": 141.07,
+  "items": [
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.58,
+      "totalPrice": 13.92
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.56,
+      "totalPrice": 18.72
+    },
+    {
+      "name": "FAR PIZZERIA TOO W280-300 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.51,
+      "totalPrice": 6.51
+    },
+    {
+      "name": "NUTELLA SEAU 1, 35KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.76,
+      "totalPrice": 7.76
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 6.54
+    },
+    {
+      "name": "YAOS NATURE 8*125G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.71,
+      "totalPrice": 3.71
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.89,
+      "totalPrice": 3.78
+    },
+    {
+      "name": "CREME DES VANIL125GX4 SAINTPER",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.97,
+      "totalPrice": 1.94
+    },
+    {
+      "name": "MOZZA PAIN 1KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.7,
+      "totalPrice": 9.7
+    },
+    {
+      "name": "REBLOCHON AOP LC 450G FRUIT A",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 6.69,
+      "totalPrice": 13.38
+    },
+    {
+      "name": "ALLUMETTE NATURE 1KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.96,
+      "totalPrice": 6.96
+    },
+    {
+      "name": "PLT F. LR PAC JNE MIS S/F 1, 7+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.99,
+      "totalPrice": 10.63
+    },
+    {
+      "name": "SAUTE EPBC VEAU SV UE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.99,
+      "totalPrice": 19.98
+    },
+    {
+      "name": "FRAMBOISE 125G MAROC C1 PieceMAROC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.29,
+      "totalPrice": 2.29
+    },
+    {
+      "name": "PDT CONSO AGATA 40+ C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.9,
+      "totalPrice": 7.9
+    }
+  ]
+}

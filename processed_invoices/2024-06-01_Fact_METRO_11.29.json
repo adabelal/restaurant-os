@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-01-06",
+  "invoiceNo": "067/049",
+  "totalAmount": 11.29,
+  "items": [
+    {
+      "name": "LAMELLES ENCORNET BARQUETTE1KG",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.35,
+      "totalPrice": 10.7
+    }
+  ]
+}

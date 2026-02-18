@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-02-08",
+  "invoiceNo": "4080100116",
+  "totalAmount": 1049.52,
+  "items": [
+    {
+      "name": "Vins",
+      "quantity": 4.1,
+      "unit": "L",
+      "unitPrice": 127.88,
+      "totalPrice": 524.32
+    },
+    {
+      "name": "Bi\u00e8res",
+      "quantity": 5.5,
+      "unit": "L",
+      "unitPrice": 54.12,
+      "totalPrice": 297.66
+    },
+    {
+      "name": "Eaux Alcools",
+      "quantity": 4.1,
+      "unit": "L",
+      "unitPrice": 6.0,
+      "totalPrice": 24.59
+    }
+  ]
+}

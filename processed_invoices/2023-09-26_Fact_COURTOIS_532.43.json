@@ -1,0 +1,71 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-09-26",
+  "invoiceNo": "3090500444",
+  "totalAmount": 532.43,
+  "items": [
+    {
+      "name": "30 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.914,
+      "totalPrice": 146.7
+    },
+    {
+      "name": "6 CHAMP.L.TOLLET 1er CRU BT",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 18.167,
+      "totalPrice": 109.0
+    },
+    {
+      "name": "6 KG CAFE LAVAZZA GRAIN supCREMA",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 21.95,
+      "totalPrice": 131.7
+    },
+    {
+      "name": "12 VILLERS GAZEIFIEE VC 12X100CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.546,
+      "totalPrice": 6.55
+    },
+    {
+      "name": "1 MONIN GRENADINE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 4.72
+    },
+    {
+      "name": "1 MONIN RANTCHO CITRON VERT 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.35,
+      "totalPrice": 6.35
+    },
+    {
+      "name": "1 MONIN VANILLE SIROP 70 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.954,
+      "totalPrice": 6.95
+    },
+    {
+      "name": "1 MONIN CARIBBEAN 70CL gout rhum",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 6.54
+    },
+    {
+      "name": "1 COGNAC VS ISLE D RE 40\u00b070cl BT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.391,
+      "totalPrice": 16.39
+    }
+  ]
+}

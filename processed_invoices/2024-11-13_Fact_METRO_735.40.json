@@ -1,0 +1,71 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-13",
+  "invoiceNo": "0/0 (067) 0015/018981",
+  "totalAmount": 633.33,
+  "items": [
+    {
+      "name": "VODKA FJOROWKA DLT 37, 5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.27,
+      "totalPrice": 130.86
+    },
+    {
+      "name": "BS BUMBU ORIGINAL 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 26.49,
+      "totalPrice": 132.45
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.12,
+      "totalPrice": 66.72
+    },
+    {
+      "name": "CH V. PELLETIER BRT 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 14.75,
+      "totalPrice": 88.5
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.98,
+      "totalPrice": 47.04
+    },
+    {
+      "name": "RED BULL BLUE BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.097,
+      "totalPrice": 52.64
+    },
+    {
+      "name": "COCA COLA REG PET 1,25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.58,
+      "totalPrice": 56.88
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.55,
+      "totalPrice": 15.1
+    }
+  ]
+}

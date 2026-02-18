@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-03-31",
+  "invoiceNo": "0/0 (067) 0014/0113572",
+  "totalAmount": 843.81,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.94,
+      "totalPrice": 214.92
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.042,
+      "totalPrice": 42.25
+    },
+    {
+      "name": "COGN MEUKOV BLACK VS 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.74,
+      "totalPrice": 22.74
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.65,
+      "totalPrice": 209.7
+    },
+    {
+      "name": "COINTREAU 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.32,
+      "totalPrice": 28.64
+    },
+    {
+      "name": "RICARD 45D 100X6 + KIT",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 14.037,
+      "totalPrice": 84.22
+    },
+    {
+      "name": "APEROL 12.5D 6X1L + KIT",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 12.53,
+      "totalPrice": 75.18
+    },
+    {
+      "name": "GET27 17, 9D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.395,
+      "totalPrice": 62.37
+    },
+    {
+      "name": "GET MENTHE CITRON 17,9D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.08,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "CH V. PELLETIER BRT 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 14.75,
+      "totalPrice": 88.5
+    },
+    {
+      "name": "DESPERAD 5.9D 33CL VP //",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.028,
+      "totalPrice": 24.68
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-10-20",
+  "invoiceNo": "3100100783",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "45 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 4.914,
+      "totalPrice": 229.05
+    },
+    {
+      "name": "40 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.338,
+      "totalPrice": 238.56
+    },
+    {
+      "name": "6 MONIN MOJITO MINT 70 CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 39.26
+    },
+    {
+      "name": "24 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 58.94
+    },
+    {
+      "name": "12 BOC CARAIBOS FRAISE 6 x 1LT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.957,
+      "totalPrice": 36.68
+    },
+    {
+      "name": "24 NORBERT ORANGE.SS.PULP PET6x1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.637,
+      "totalPrice": 39.29
+    },
+    {
+      "name": "2 MONIN ORANGE SPRITZ 70 CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.776,
+      "totalPrice": 13.55
+    },
+    {
+      "name": "36 LIMONADE SOULTZY LT VC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.05,
+      "totalPrice": 41.4
+    },
+    {
+      "name": "24 BOURG. ALIGOTE BT COURTOIS Cx6b",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 5.94,
+      "totalPrice": 142.56
+    },
+    {
+      "name": "6 CHAMP.L.TOLLET ler CRU BT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.167,
+      "totalPrice": 109.0
+    },
+    {
+      "name": "1 MONIN NOISETTE SIROP 70cl",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.764,
+      "totalPrice": 6.76
+    },
+    {
+      "name": "1 MONIN BROWNIES 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.394,
+      "totalPrice": 6.39
+    },
+    {
+      "name": "1 MONIN PAMPLEMOUSS.ROSE 70CL SP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.394,
+      "totalPrice": 6.39
+    },
+    {
+      "name": "1 MONIN ROSE SIROP 70 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.204,
+      "totalPrice": 6.2
+    },
+    {
+      "name": "1 MONIN CHOCOLAT COOKIES 70CL SP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.394,
+      "totalPrice": 6.39
+    }
+  ]
+}

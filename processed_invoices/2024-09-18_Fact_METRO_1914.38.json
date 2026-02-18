@@ -1,0 +1,127 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-18",
+  "invoiceNo": "067/045",
+  "totalAmount": 77.39,
+  "items": [
+    {
+      "name": "ARO LIQ VAISS MAIN POM 3X1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.01,
+      "totalPrice": 4.01
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 13.63,
+      "totalPrice": 27.26
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 23.78
+    },
+    {
+      "name": "ENTRECOTE 4KG+ UE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 20.36,
+      "totalPrice": 111.37
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.46,
+      "totalPrice": 74.23
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.16,
+      "totalPrice": 88.14
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.88,
+      "totalPrice": 86.11
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.85,
+      "totalPrice": 14.51
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.75,
+      "totalPrice": 19.75
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.95,
+      "totalPrice": 21.95
+    },
+    {
+      "name": "CONCOMBRE PC 4/5 FR C1 FRANCE",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 1.03,
+      "totalPrice": 5.15
+    },
+    {
+      "name": "TOM ALL. TORINO 47+ SAV. FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 23.01,
+      "totalPrice": 23.01
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.53,
+      "totalPrice": 7.53
+    },
+    {
+      "name": "SIGMA10 RL80X77X12 THERMI SBPA",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 2.365,
+      "totalPrice": 23.65
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37, 5D 70CL",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 7.45,
+      "totalPrice": 178.8
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 10.878,
+      "totalPrice": 130.54
+    }
+  ]
+}

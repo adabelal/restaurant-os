@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-11-15",
+  "invoiceNo": "2025-11",
+  "totalAmount": 1681.5,
+  "items": [
+    {
+      "name": "Domaine CHALMEAU Chitry rouge",
+      "quantity": 60.0,
+      "unit": "U",
+      "unitPrice": 11.5,
+      "totalPrice": 690.0
+    },
+    {
+      "name": "Domaine RICHOUX Irancy",
+      "quantity": 60.0,
+      "unit": "U",
+      "unitPrice": 18.0,
+      "totalPrice": 1080.0
+    }
+  ]
+}

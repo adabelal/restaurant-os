@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-30",
+  "invoiceNo": "0/0 (067) 0013/0267412",
+  "totalAmount": 144.44,
+  "items": [
+    {
+      "name": "SIROP MONIN SAVEUR RHUM 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.66,
+      "totalPrice": 7.66
+    },
+    {
+      "name": "AMORA MAYO FS 225GR",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.0,
+      "totalPrice": 12.0
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 20.99,
+      "totalPrice": 105.37
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 11.88
+    }
+  ]
+}

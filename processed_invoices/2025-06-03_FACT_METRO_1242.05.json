@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-03-06",
+  "invoiceNo": "067/049",
+  "totalAmount": 697.62,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.91,
+      "totalPrice": 214.38
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 44.1
+    },
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.93,
+      "totalPrice": 15.86
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.3,
+      "totalPrice": 223.2
+    },
+    {
+      "name": "GET27 17,9D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.06,
+      "totalPrice": 120.72
+    },
+    {
+      "name": "CH CHARLES MONTAINE 75 CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 167.88
+    },
+    {
+      "name": "DESPERADOS 5, 9D 12X33CL VP",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.925,
+      "totalPrice": 44.4
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.983,
+      "totalPrice": 47.16
+    },
+    {
+      "name": "RED BULL BLUE BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.335,
+      "totalPrice": 32.05
+    },
+    {
+      "name": "RIOBA SUCRE DE CANNE 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.89,
+      "totalPrice": 5.78
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.756,
+      "totalPrice": 105.35
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.593,
+      "totalPrice": 21.36
+    },
+    {
+      "name": "THE VERT TEMPLE DU CIEL 2*500G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 3.59
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-05-04",
+  "invoiceNo": "0/0 (067) 0014/0121752",
+  "totalAmount": 476.51,
+  "items": [
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 11.7,
+      "totalPrice": 23.4
+    },
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 16.11,
+      "totalPrice": 64.44
+    },
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.65,
+      "totalPrice": 21.9
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 3.25,
+      "totalPrice": 39.0
+    },
+    {
+      "name": "1/32COMTE AOP 18M 1, 2KGENV RJ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 19.6,
+      "totalPrice": 30.67
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.52,
+      "totalPrice": 17.83
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.77,
+      "totalPrice": 15.77
+    },
+    {
+      "name": "SCISSON AIL FUME VPF 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.0,
+      "totalPrice": 4.0
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.6,
+      "totalPrice": 14.15
+    },
+    {
+      "name": "ENTRECOTE 4KG+ UE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.95,
+      "totalPrice": 79.33
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.29,
+      "totalPrice": 17.21
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.29,
+      "totalPrice": 14.61
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.29,
+      "totalPrice": 14.36
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.29,
+      "totalPrice": 15.73
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.29,
+      "totalPrice": 17.31
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.99,
+      "totalPrice": 26.86
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.99,
+      "totalPrice": 26.98
+    }
+  ]
+}

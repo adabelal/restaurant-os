@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-08-30",
+  "invoiceNo": "0/0 (067) 0002/0095792",
+  "totalAmount": 281.12,
+  "items": [
+    {
+      "name": "2270163 GIGOT AGN A/OS PAC S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.09,
+      "totalPrice": 266.46
+    }
+  ]
+}

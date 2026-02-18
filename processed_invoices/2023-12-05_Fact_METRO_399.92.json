@@ -1,0 +1,127 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-05",
+  "invoiceNo": "067/008",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 43.08
+    },
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 17.94
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 43.08
+    },
+    {
+      "name": "MAROC S. BRAHIM RSE M TIR 75CL",
+      "quantity": 18.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 53.82
+    },
+    {
+      "name": "OASIS TROPICAL SLIM BTE 33CL",
+      "quantity": 48.0,
+      "unit": "U",
+      "unitPrice": 0.52,
+      "totalPrice": 24.96
+    },
+    {
+      "name": "POIS CHICHES SULT 4/4 DAUCY",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.432,
+      "totalPrice": 8.59
+    },
+    {
+      "name": "MC NAPPAGE CARAMEL LIQUIDE 1 L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 6.88,
+      "totalPrice": 6.88
+    },
+    {
+      "name": "KINDER BUENO WHITE",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 0.544,
+      "totalPrice": 16.32
+    },
+    {
+      "name": "BIG HARI CHERRY SAC DE 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.81,
+      "totalPrice": 14.81
+    },
+    {
+      "name": "FRAIZIBUS VRAC 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.86,
+      "totalPrice": 13.86
+    },
+    {
+      "name": "CHEVRE BUCHE 450G SOIGN",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.8,
+      "totalPrice": 9.6
+    },
+    {
+      "name": "CHAOURCE 500G AOP LINCET",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.9,
+      "totalPrice": 5.9
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.81,
+      "totalPrice": 19.74
+    },
+    {
+      "name": "RIS DE VEAU GORGE SV UE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 32.99,
+      "totalPrice": 38.66
+    },
+    {
+      "name": "OLIV VERTE DENOYAUTEE 2KG MAROC MAROC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.38,
+      "totalPrice": 8.38
+    },
+    {
+      "name": "CLEM BERKANE IGP Cal.2 C1 MAR 5.5KG MAROC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.35,
+      "totalPrice": 15.35
+    },
+    {
+      "name": "FENOUIL 5K ITALIE ITALIE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.45,
+      "totalPrice": 12.45
+    }
+  ]
+}

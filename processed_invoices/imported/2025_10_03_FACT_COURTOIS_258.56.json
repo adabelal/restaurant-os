@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-10-03",
+  "invoiceNo": "5100100157",
+  "totalAmount": -258.56,
+  "items": [
+    {
+      "name": "-15 FUT 15 L SLASH IPA CAPSULE VERTE",
+      "quantity": -1.0,
+      "unit": "U",
+      "unitPrice": 5.244,
+      "totalPrice": -85.83
+    },
+    {
+      "name": "-15 FUT 15L ROSE BLANCHE BRUXELLE CAP BLANCHE COL ROSE",
+      "quantity": -1.0,
+      "unit": "U",
+      "unitPrice": 5.127,
+      "totalPrice": -79.64
+    }
+  ]
+}

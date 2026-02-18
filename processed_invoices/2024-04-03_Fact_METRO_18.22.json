@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-04",
+  "invoiceNo": "067/045",
+  "totalAmount": 18.22,
+  "items": [
+    {
+      "name": "FRUITS ET LEGUMES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.27,
+      "totalPrice": 17.27
+    }
+  ]
+}

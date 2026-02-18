@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-16",
+  "invoiceNo": "0/0 (067) 0014/044077",
+  "totalAmount": 277.29,
+  "items": [
+    {
+      "name": "GIN HENDRICK'S 41.4D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.63,
+      "totalPrice": 25.63
+    },
+    {
+      "name": "GIN MARE 42.7D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 27.51,
+      "totalPrice": 27.51
+    },
+    {
+      "name": "CACHACA AGUACANA 37.5D 70CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 10.0,
+      "totalPrice": 30.0
+    },
+    {
+      "name": "AMARRETTO SAN PIETRO 18D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.71,
+      "totalPrice": 6.71
+    },
+    {
+      "name": "COINTREAU 40D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 12.83,
+      "totalPrice": 51.32
+    },
+    {
+      "name": "GET27 17,9D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.532,
+      "totalPrice": 57.19
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.36,
+      "totalPrice": 7.08
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.58,
+      "totalPrice": 37.92
+    },
+    {
+      "name": "LINDOR CORNET LAIT 337G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 8.99
+    },
+    {
+      "name": "LIME CAL 54/60 FILET 1KG BRESIL C1 BRESIL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.99,
+      "totalPrice": 9.98
+    }
+  ]
+}

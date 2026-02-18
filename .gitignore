@@ -36,3 +36,10 @@ next-env.d.ts
 # prisma
 /prisma/*.db
 /prisma/*.db-journal
+
+# Gmail Automation Secrets
+Mail/credentials.json
+Mail/token.json
+Mail/venv/
+Mail/__pycache__/
+Mail/env/

@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-16",
+  "invoiceNo": "0/0 (067) 0017/0015122",
+  "totalAmount": 96.81,
+  "items": [
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.57,
+      "totalPrice": 42.49
+    },
+    {
+      "name": "CONCOMBRE PC 4/5 FR C1 FRANCE",
+      "quantity": 12.0,
+      "unit": "kg",
+      "unitPrice": 1.198,
+      "totalPrice": 14.38
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france\nPRIX AU KG OU AU LITRE: 1,858",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 0.98,
+      "totalPrice": 5.88
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE\nPRIX AU KG OU AU LITRE: 3,287",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.29,
+      "totalPrice": 9.29
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE\nPRIX AU KG OU AU LITRE: 3,287",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 9.86,
+      "totalPrice": 19.72
+    }
+  ]
+}

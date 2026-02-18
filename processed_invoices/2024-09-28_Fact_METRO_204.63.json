@@ -1,0 +1,141 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-28",
+  "invoiceNo": "0/0 (067) 0015/0158072",
+  "totalAmount": 193.96,
+  "items": [
+    {
+      "name": "ORANGINA SLIM BOITE JAUN 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.49,
+      "totalPrice": 11.76
+    },
+    {
+      "name": "LASAGNES BTE 500G BARILLA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.06,
+      "totalPrice": 4.12
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.14,
+      "totalPrice": 6.14
+    },
+    {
+      "name": "COLORANT ALIM MAROC 100SC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.82,
+      "totalPrice": 5.46
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.83,
+      "totalPrice": 13.83
+    },
+    {
+      "name": "TAGLIATELLE MC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.6,
+      "totalPrice": 4.6
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.79,
+      "totalPrice": 11.0
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.79,
+      "totalPrice": 14.16
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.79,
+      "totalPrice": 8.3
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.79,
+      "totalPrice": 11.34
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.79,
+      "totalPrice": 9.83
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.79,
+      "totalPrice": 10.86
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.79,
+      "totalPrice": 11.53
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.79,
+      "totalPrice": 11.62
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.99,
+      "totalPrice": 7.7
+    },
+    {
+      "name": "FLT SAUM 1, 2/1,6 MCF X20 EL/NO S/V. SALMO SALAR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.99,
+      "totalPrice": 19.44
+    },
+    {
+      "name": "AVOCAT PRE MURI 203/243g MC PEROU C1 PEROU",
+      "quantity": 9.0,
+      "unit": "U",
+      "unitPrice": 1.49,
+      "totalPrice": 13.41
+    },
+    {
+      "name": "SAL FDC BLONDE X6 MC C1 FRANCE FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.29,
+      "totalPrice": 7.74
+    },
+    {
+      "name": "SAL FDC MIXTE X8 MC C1 FRANCE FRANCE",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 1.39,
+      "totalPrice": 11.12
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-28",
+  "invoiceNo": "0/0 (067) 0014/015439",
+  "totalAmount": 553.17,
+  "items": [
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.042,
+      "totalPrice": 42.25
+    },
+    {
+      "name": "RHUM BOTRAN 15A 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.81,
+      "totalPrice": 25.81
+    },
+    {
+      "name": "RHUM KRAKEN SPICED 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 23.24,
+      "totalPrice": 23.24
+    },
+    {
+      "name": "TEQ SAN JOSE SILVER 35D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 11.46,
+      "totalPrice": 137.52
+    },
+    {
+      "name": "RHUM COLOMA 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 23.96,
+      "totalPrice": 23.96
+    },
+    {
+      "name": "FERNET BRANCA 39D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 16.79,
+      "totalPrice": 33.58
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 11.24,
+      "totalPrice": 134.88
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 14.17,
+      "totalPrice": 56.68
+    },
+    {
+      "name": "GET MENTHE CITRON 17,9D 70CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 11.12,
+      "totalPrice": 33.36
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.6,
+      "totalPrice": 93.6
+    }
+  ]
+}

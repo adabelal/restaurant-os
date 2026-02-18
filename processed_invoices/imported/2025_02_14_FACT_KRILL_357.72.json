@@ -1,0 +1,43 @@
+{
+  "supplierName": "KRILL",
+  "date": "2025-02-14",
+  "invoiceNo": "803173",
+  "totalAmount": 357.72,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": 18.874,
+      "unit": "kg",
+      "unitPrice": 7.886,
+      "totalPrice": 148.84
+    },
+    {
+      "name": "SAUCISSON CUIT A L'AIL CHOIX FUME 1 KG F RANCE VPF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.85,
+      "totalPrice": 5.85
+    },
+    {
+      "name": "ENTRECOTE VB LIMOUSINE 3/6 KG S/V FRANCE MF VBF",
+      "quantity": 4.64,
+      "unit": "kg",
+      "unitPrice": 23.38,
+      "totalPrice": 108.48
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.03,
+      "unit": "U",
+      "unitPrice": 0.097,
+      "totalPrice": 0.45
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 GX 30 S/V UK UE PTF",
+      "quantity": 4.798,
+      "unit": "kg",
+      "unitPrice": 15.725,
+      "totalPrice": 75.45
+    }
+  ]
+}

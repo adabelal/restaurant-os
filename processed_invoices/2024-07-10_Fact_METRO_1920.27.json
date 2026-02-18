@@ -1,0 +1,154 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-07",
+  "invoiceNo": "0/0 (067) 0017/0026842",
+  "totalAmount": 465.66,
+  "items": [
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "JB CRU PAYS 20T 500G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 5.72,
+      "totalPrice": 28.6
+    },
+    {
+      "name": "SCISSON AIL ANC. 1.3K ENV RUST",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.12,
+      "totalPrice": 10.2
+    },
+    {
+      "name": "SCISSON SEC PP 1,4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.64,
+      "totalPrice": 36.02
+    },
+    {
+      "name": "BEURRE DX PORT 8GX125 PRESID",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.72,
+      "totalPrice": 12.72
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 10.7,
+      "totalPrice": 32.1
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.17,
+      "totalPrice": 21.68
+    },
+    {
+      "name": "8 PAIN CHOCOLAT LC 360G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.86,
+      "totalPrice": 1.86
+    },
+    {
+      "name": "8 CROISSANTS 320G ROCHAMBEAU",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.83,
+      "totalPrice": 1.83
+    },
+    {
+      "name": "ARO ABC ORANGE BRICK 1L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.757,
+      "totalPrice": 21.08
+    },
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 0.763,
+      "totalPrice": 18.32
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 10.0,
+      "unit": "L",
+      "unitPrice": 2.78,
+      "totalPrice": 27.8
+    },
+    {
+      "name": "CRISTALI 50CL PET",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 0.191,
+      "totalPrice": 4.59
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.75,
+      "totalPrice": 19.75
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.75,
+      "totalPrice": 19.75
+    },
+    {
+      "name": "CELERI RAVE FR 8 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.29,
+      "totalPrice": 6.58
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "CONCOMBRE PC 4/5 FR C1 FRANCE",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 1.03,
+      "totalPrice": 8.24
+    },
+    {
+      "name": "TOM ALL. TORINO 47+ SAV. FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.47,
+      "totalPrice": 21.47
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 6.14,
+      "totalPrice": 18.42
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.53,
+      "totalPrice": 7.53
+    }
+  ]
+}

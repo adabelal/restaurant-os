@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-11-22",
+  "invoiceNo": "0/0 (067) 0001/0088082",
+  "totalAmount": 1086.49,
+  "items": [
+    {
+      "name": "ASS PATES DARKAE 30CM",
+      "quantity": 1.54,
+      "unit": "U",
+      "unitPrice": 7.58,
+      "totalPrice": 409.32
+    },
+    {
+      "name": "POKE BOWL AZUR 20CM 120CL",
+      "quantity": 1.52,
+      "unit": "U",
+      "unitPrice": 9.54,
+      "totalPrice": 496.08
+    },
+    {
+      "name": "COMPLEMENT PRESTATION LIV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.01,
+      "totalPrice": 0.01
+    }
+  ]
+}

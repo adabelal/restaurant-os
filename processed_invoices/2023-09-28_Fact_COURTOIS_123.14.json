@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-09-28",
+  "invoiceNo": "3090500492",
+  "totalAmount": 123.14,
+  "items": [
+    {
+      "name": "RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.014,
+      "totalPrice": 90.9
+    }
+  ]
+}

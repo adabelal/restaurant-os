@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-05-21",
+  "invoiceNo": "4030178180",
+  "totalAmount": 792.36,
+  "items": [
+    {
+      "name": "4030100781",
+      "quantity": 1408.78,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 1408.78
+    },
+    {
+      "name": "4030100795",
+      "quantity": -623.85,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": -623.85
+    }
+  ]
+}

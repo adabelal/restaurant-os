@@ -1,0 +1,71 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-08-02",
+  "invoiceNo": "3080500038",
+  "totalAmount": 61.48,
+  "items": [
+    {
+      "name": "12 LIMONADE SOULTZY LT VC",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.05,
+      "totalPrice": 13.8
+    },
+    {
+      "name": "24 $LIMO ROMAN ORANGE 20CLX24 VC",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.636,
+      "totalPrice": 15.84
+    },
+    {
+      "name": "18 PERRIER PET 6 X 1LT",
+      "quantity": 18.0,
+      "unit": "L",
+      "unitPrice": 1.168,
+      "totalPrice": 21.02
+    },
+    {
+      "name": "LIQUEUR GOLD STRIKE 50cl 50\u00b0",
+      "quantity": 50.0,
+      "unit": "L",
+      "unitPrice": 16.34,
+      "totalPrice": 65.36
+    },
+    {
+      "name": "1 CREME CASSIS 20\u00b0LITRE BRIOTTET",
+      "quantity": 20.0,
+      "unit": "L",
+      "unitPrice": 14.396,
+      "totalPrice": 14.4
+    },
+    {
+      "name": "1 MONIN GRENADINE SIROP 100 CL",
+      "quantity": 100.0,
+      "unit": "L",
+      "unitPrice": 4.716,
+      "totalPrice": 4.72
+    },
+    {
+      "name": "1 MONIN PECHE SIROP 100 CL",
+      "quantity": 100.0,
+      "unit": "L",
+      "unitPrice": 7.224,
+      "totalPrice": 7.22
+    },
+    {
+      "name": "1 MONIN FRAISE SIROP 100 CL",
+      "quantity": 100.0,
+      "unit": "L",
+      "unitPrice": 6.307,
+      "totalPrice": 6.31
+    },
+    {
+      "name": "120 FUT 30 L LICORNE",
+      "quantity": 120.0,
+      "unit": "L",
+      "unitPrice": 4.8,
+      "totalPrice": null
+    }
+  ]
+}

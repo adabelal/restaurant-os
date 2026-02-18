@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-11-22",
+  "invoiceNo": "0/0 (067) 0001/0088232",
+  "totalAmount": 645.8,
+  "items": [
+    {
+      "name": "POKE BOWL AZUR 20CM 120CL",
+      "quantity": 115.0,
+      "unit": "U",
+      "unitPrice": 8.59,
+      "totalPrice": 128.85
+    },
+    {
+      "name": "ASS PATES DARKAE 30CM",
+      "quantity": 154.0,
+      "unit": "U",
+      "unitPrice": 7.58,
+      "totalPrice": 409.32
+    }
+  ]
+}

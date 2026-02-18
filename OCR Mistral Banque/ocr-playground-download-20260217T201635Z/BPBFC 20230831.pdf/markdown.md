@@ -1,0 +1,367 @@
+BANQUE POPULAIRE
+BOURGOGNE FRANCHE-COMTÉ
+RELEVE N° 4 AU 31/08/2023
+
+Votre conseiller :
+Isabelle CATHELIN
+Mail : isabelle.cathelin@bpbfc.fr
+Tel : 03 86 63 58 31 (appel non surtaxé)
+
+AILLANT SUR THOLON
+AILLANT SUR THOLON
+89110 MONTHOLON
+Fax : 03 86 63 58 34
+Tel : 03 86 63 58 30
+(appel non surtaxé)
+
+Cyberplus
+Identifiant : 21911648S
+www.banquepopulaire.fr/bpbfc
+TONALITE PLUS : 08 01 01 00 29
+(appel non surtaxé)
+Code : 084365
+
+SARL SIWA
+24 ROUTE DE POILLY SUR THOLON
+89110 POILLY SUR THOLON
+
+VOTRE COMPTE COURANT N° 32521140221
+IBAN FR76 1080 7004 7832 5211 4022 191
+SARL SIWA
+BIC CCBPFRPPDJN
+
+|  DATE COMPTA | LIBELLE/REFERENCE |   | DATE OPERATION | DATE VALEUR | DEBIT EUROS | CREDIT EUROS  |
+| --- | --- | --- | --- | --- | --- | --- |
+|   | SOLDE CREDITEUR AU 31/07/2023 |   |  |  |  | 19 134,50  |
+|  01/08 | BOURGOGNE PRODUITS FRAIS
+ECH:31/07/23 | 2950162 | 01/08 | 30/07 | 949,45 |   |
+|  01/08 | COTIS RYTHMEO
+XCCNV240 2023073000007314000001
+CONTRAT CNV5041449827 | 0007314 | 30/07 | 30/07 | 30,64 |   |
+|  01/08 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0CWOQGI | 01/08 | 01/08 | 236,62 |   |
+|  01/08 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0CWOQ7W | 01/08 | 01/08 | 1 228,21 |   |
+|  01/08 | LOYER TPE / ELC
+MOIS DE JUILLET 2023
+HT: 5,07/TVA20,00: 1,01 | 5401547 | 01/08 | 01/08 | 6,08 |   |
+|  01/08 | LOYER TPE / ELC
+MOIS DE JUILLET 2023
+HT: 31,41/TVA20,00: 6,28 | 5401547 | 01/08 | 01/08 | 37,69 |   |
+|  01/08 | 310723 CB***6839
+AMZN Mktp FR*6WLU amazon.fr
+33,99EUR 1 EURO = 1,000000 | 9T3ASDJ | 01/08 | 01/08 | 33,99 |   |
+|  01/08 | 300723 CB***6839
+AVIA DAC FR 8902776 MONT
+82,19EUR 1 EURO = 1,000000 | 9T3ASDK | 01/08 | 01/08 | 82,19 |   |
+|  02/08 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0CX3NVM | 02/08 | 02/08 | 73,19 |   |
+|  02/08 | SCI BAB
+Virement de SARL SIWA
+Loyer de SARL SIWA | 0029262 | 02/08 | 02/08 | 3 500,00 |   |
+|  03/08 | PRLV SEPA Orange SA
+Votre abonnement fibre (facture: M0063503064 | 0CWRQMB | 03/08 | 03/08 | 40,32 |   |
+|  03/08 | 020823 CB***6839
+GRAND FRAIS FR PERRIGNY
+37,26EUR 1 EURO = 1,000000 | 9WEDG3M | 03/08 | 03/08 | 37,26 |   |
+
+A la Banque Populaire Bourgogne Franche-Comté, l'assurance des personnes et des biens c'est aussi notre métier.
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orlas Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+VOTRE COMPTE COURANT N° 32521140221
+
+RELEVE N° 4 AU 31/08/2023
+
+|  DATE COMPTA | LIBELLE/REFERENCE | DATE OPERATION | DATE VALEUR | DEBIT EUROS | CREDIT EUROS  |
+| --- | --- | --- | --- | --- | --- |
+|  03/08 | 020823 CB***6839
+COURTOIS BOURGOFR MONETEAU
+61.48EUR 1 EURO = 1,000000 | 9WEDG3N | 03/08 | 61,48 |   |
+|  03/08 | 020823 CB***6839
+METRO FR MONETEAU067
+650.68EUR 1 EURO = 1,000000 | 9WEDG3O | 03/08 | 650,68 |   |
+|  04/08 | PRLV SEPA COURTOIS BOURG
+Prelevement Magnetique
+++COU03605C4287S34161 | 0CXS7SX | 04/08 | 134,79 |   |
+|  04/08 | PRLV SEPA Butagaz SAS
+/INV/0007937544 25.7.2023
+ZB07638592 | 0CW9ZE3 | 04/08 | 460,20 |   |
+|  04/08 | PRLV SEPA PREFILOC CAPIT
+F230266833
+PRE000101879 | 0CXN8PH | 04/08 | 56,21 |   |
+|  04/08 | REMISE CB 5401547011
+BRUT 932,10E - COM 2,98E
+- NB0012/123415 | 0079415 | 04/08 |  | 929,12  |
+|  04/08 | REMISE CB 5401547011
+BRUT 416,80E - COM 1,33E
+- NB0020/123821 | 0080821 | 04/08 |  | 415,47  |
+|  04/08 | 030823 CB***7917
+GRAND FRAIS FR PERRIGNY
+20,15EUR 1 EURO = 1,000000 | 9Y1WRY8 | 04/08 | 20,15 |   |
+|  07/08 | MON PETIT ARRANGE
+Virement de SARL SIWA
+Virement de SARL SIWA | 0147850 | 07/08 | 25,20 |   |
+|  07/08 | Tresorerie de Joigny
+Virement de SARL SIWA
+2023-CM-00-3632 SARL SIWA | 0168482 | 07/08 | 65,29 |   |
+|  07/08 | REMISE CB 5401547011
+BRUT 1 164,70E - COM 3,69E
+- NB0054/128462 | 0081462 | 07/08 |  | 1 161,01  |
+|  07/08 | REMISE CB 5401547011
+BRUT 2 097,98E - COM 6,70E
+- NB0021/128739 | 0082739 | 07/08 |  | 2091,28  |
+|  07/08 | REMISE CB 5401547011
+BRUT 848,31E - COM 3,78E
+- NB0032/115038 | 0083038 | 07/08 |  | 844,53  |
+|  07/08 | REMISE CB 5401547011
+BRUT 2 083,99E - COM 6,64E
+- NB0024/116678 | 0084678 | 07/08 |  | 2077,35  |
+|  07/08 | REMISE CB 5401547011
+BRUT 190,35E - COM 0,62E
+- NB0006/165277 | 0085277 | 07/08 |  | 189,73  |
+|  07/08 | REMISE CB 5401547011
+BRUT 455,45E - COM 1,46E
+- NB0005/162656 | 0086656 | 07/08 |  | 453,99  |
+|  07/08 | 030823 CB***6839
+AVIA DAC FR 8902776 MONT
+150,00EUR 1 EURO = 1,000000 | A30MNDR | 07/08 | 150,00 |   |
+|  07/08 | 040823 CB***7917
+MAISON DE LA PRFR AILLANT SUR
+220,00EUR 1 EURO = 1,000000 | A30MMUI | 07/08 | 220,00 |   |
+|  08/08 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0CYL9DY | 08/08 | 1 352,06 |   |
+|  08/08 | VIR INST MR BELAL BENJAM
+Pour MR BELAL BENJAMIN
+Benjamin | WIN886G | 08/08 | 1 500,00 |   |
+|  09/08 | FRAIS VIR INSTANTANE B2B
+XCMDZ020 2023080800024350000001 | 0024350 | 08/08 | 1,00 |   |
+|  09/08 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0CYUBN4 | 09/08 | 182,69 |   |
+|  09/08 | 080823 CB***6839
+IKEA FR LISSES000082
+69,90EUR 1 EURO = 1,000000 | A6BLHEL | 09/08 | 69,90 |   |
+
+A la Banque Populaire Bourgogne Franche-Comté, l'assurance des personnes et des biens c'est aussi notre métier.
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPQJN N° Orlas Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWJB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+BANQUE POPULAIRE
+BOURGOGNE FRANCHE-COMTÉ
+
+RELEVE N° 4 AU 31/08/2023
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE COMPTA | LIBELLE/REFERENCE | DATE OPERATION | DATE VALEUR | DEBIT EUROS | CREDIT EUROS  |
+| --- | --- | --- | --- | --- | --- |
+|  10/08 | BOURGOGNE PRODUITS FRAIS
+ECH:10/08/23
+3055084 | 10/08 | 09/08 | 400,81 |   |
+|  10/08 | PRLV SEPA PREFILCC CAPIT
+F230267619
+PRE000101879
+0CYKQY5 | 10/08 | 10/08 | 89,22 |   |
+|  11/08 | REMISE CB 5401547011
+BRUT 348,40E - COM 1,07E
+- NB0024/115727
+0087727 | 11/08 | 11/08 |  | 347,33  |
+|  11/08 | REMISE CB 5401547011
+BRUT 1 413,00E - COM 4,52E
+- NB0017/115990
+0088990 | 11/08 | 11/08 |  | 1 408,48  |
+|  11/08 | 100823 CB***6839
+COURTOIS BOURGOFR MONETEAU
+104,12EUR 1 EURO = 1,000000
+A9MO60Y | 11/08 | 11/08 | 104,12 |   |
+|  11/08 | 100823 CB***6839
+COURTOIS BOURGOFR MONETEAU
+697,57EUR 1 EURO = 1,000000
+A9MO610 | 11/08 | 11/08 | 697,57 |   |
+|  11/08 | 100823 CB***6839
+METRO FR MONETEAU067
+724,62EUR 1 EURO = 1,000000
+A9MO610 | 11/08 | 11/08 | 724,62 |   |
+|  14/08 | REMISE CB 5401547011
+BRUT 1 227,72E - COM 3,89E
+- NB0059/111538
+0089538 | 14/08 | 14/08 |  | 1 223,83  |
+|  14/08 | REMISE CB 5401547011
+BRUT 2 595,60E - COM 8,33E
+- NB0032/111801
+0090801 | 14/08 | 14/08 |  | 2587,27  |
+|  14/08 | REMISE CB 5401547011
+BRUT 475,40E - COM 1,50E
+- NB0019/195372
+0091372 | 14/08 | 14/08 |  | 473,90  |
+|  14/08 | REMISE CB 5401547011
+BRUT 1 492,66E - COM 4,80E
+- NB0022/193410
+0092410 | 14/08 | 14/08 |  | 1487,86  |
+|  14/08 | 100823 CB***7917
+MAISON DE LA PRFR AILLANT SUR
+110,00EUR 1 EURO = 1,000000
+AELDM1I | 14/08 | 14/08 | 110,00 |   |
+|  14/08 | 120823 CB***6839
+GRAND FRAIS FR PERRIGNY
+11,74EUR 1 EURO = 1,000000
+AELDMHS | 14/08 | 14/08 | 11,74 |   |
+|  16/08 | PRLV SEPA COURTOIS BOURG
+Prelevement Magnetique
+++COU03601C4287534160
+0D02P20 | 16/08 | 16/08 | 176,74 |   |
+|  16/08 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901
+0CZU69C | 16/08 | 16/08 | 1 229,19 |   |
+|  17/08 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901
+0DD04CN0 | 17/08 | 17/08 | 86,72 |   |
+|  17/08 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901
+0DD04CQK | 17/08 | 17/08 | 74,67 |   |
+|  17/08 | Extourne
+OFFRE RYTHMEO
+CONTRAT CNV5041449827
+AQ655YR | 17/08 | 01/08 |  | 30,64  |
+|  21/08 | 180823 CB***6839
+AVIA DAC FR 8902776 MONT
+140,77EUR 1 EURO = 1,000000
+AQ655YR | 21/08 | 21/08 | 140,77 |   |
+|  24/08 | BOURGOGNE PRODUITS FRAIS
+ECH:20/08/23
+3204080 | 24/08 | 19/08 | 773,54 |   |
+|  28/08 | 240823 CB***6839
+INTERMARCHE FR NEVERS
+30,67EUR 1 EURO = 1,000000
+B1QWKAU | 28/08 | 28/08 | 30,67 |   |
+|  28/08 | 240823 CB***6839
+CORA AUXERRE FR CABIN2129569
+53,29EUR 1 EURO = 1,000000
+B1QWKAU | 28/08 | 28/08 | 53,29 |   |
+|  29/08 | 280823 CB***6839
+INTERMARCHE FR NEVERS
+33,62EUR 1 EURO = 1,000000
+B3ECES4 | 29/08 | 29/08 | 33,62 |   |
+
+A la Banque Populaire Bourgogne Franche-Comté, l'assurance des personnes et des biens c'est aussi notre métier.
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPOJN N° Orlas Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWJB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+RELEVE N° 4 AU 31/08/2023
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE COMPTA | LIBELLE/REFERENCE | DATE OPERATION | DATE VALEUR | DEBIT EUROS | CREDIT EUROS  |
+| --- | --- | --- | --- | --- | --- |
+|  30/08 | PRLV SEPA PREFILOC CAPIT
+F230322035
+PRE000101879 | 0D1IAEY | 30/08 | 30/08 | 89,22  |
+|  30/08 | 290823 CB***7917
+ESTAMPE H ET B FR 89AUXERRE
+137,80EUR 1 EURO = 1,000000 | B51VQCJ | 30/08 | 30/08 | 137,80  |
+|  31/08 | COTIS RYTHMEO
+XCCNV240 2023083000019375000001
+CONTRAT CNV5041449827 | 0019375 | 30/08 | 30/08 | 30,64  |
+|   | TOTAL DES MOUVEMENTS
+SOLDE CREDITEUR AU 31/08/2023* |  |  |  | 16 200,24  |
+|   |  |  |  |  | 15 721,79  |
+|   |  |  |  |  | 18 656,05  |
+
+(*) Sous réserve des opérations en cours d'enregistrement et d'une provision suffisante et disponible lors de l'arrêté du solde du compte réalisé en fin de journée.
+- Ce document ne justifie pas la déduction de la TVA ou de la charge en matière d'impôt direct -
+
+RELEVE N° 4 AU 31/08/2023
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE | DETAIL DES PRELEVEMENTS SEPA RECUS | DEBIT EUROS  |
+| --- | --- | --- |
+|  01/08/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901
+PRELEVEMENT | 236,62  |
+|  01/08/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901
+PRELEVEMENT | 1 228,21  |
+|  02/08/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901
+PRELEVEMENT | 73,19  |
+|  03/08/2023 | Orange SA
+FR18ZZZ002305
+M0063503064
+3C896A037 C896A0373F321E
+Votre abonnement fibre (facture: XXXXX0373F3) - P | 40,32  |
+|  04/08/2023 | COURTOIS BOURGOGNE BOISSONS
+FR74ZZZ441774
+++COU03605C4287S34161
+Prelevement Magnetique | 134,79  |
+|  04/08/2023 | Butagaz SAS
+FR27ZZZ100404
+ZB07638592
+/INV/0007937544 25.7.2023 | 460,20  |
+|  04/08/2023 | PREFILOC CAPITAL
+FR46ZZZ850260
+PRE000101879
+F230266833 | 56,21  |
+|  08/08/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901
+PRELEVEMENT | 1 352,06  |
+|  09/08/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901
+PRELEVEMENT | 182,69  |
+|  10/08/2023 | PREFILOC CAPITAL
+FR46ZZZ850260
+PRE000101879
+F230267619 | 89,22  |
+|  16/08/2023 | COURTOIS BOURGOGNE BOISSONS
+FR74ZZZ441774
+++COU03601C4287S34160
+Prelevement Magnetique | 176,74  |
+|  16/08/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901
+PRELEVEMENT | 1 229,19  |
+
+A la Banque Populaire Bourgogne Franche-Comté, l'assurance des personnes et des biens c'est aussi notre métier.
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPGJN N° Orlas Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWJB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
++
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 4 AU 31/08/2023
+
+|  DATE | DETAIL DES PRELEVEMENTS SEPA RECUS | DEBIT EUROS  |
+| --- | --- | --- |
+|  17/08/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901
+PRELEVEMENT
+0112202902 | 86,72  |
+|  17/08/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901
+PRELEVEMENT
+0112202903 | 74,67  |
+|  30/08/2023 | PREFILOC CAPITAL
+FR46ZZZ850260
+PRE000101879
+F230322035
+PREFILOC/T000083514/3264241 | 89,22  |
+
+Vos dépôts sont éligibles à la garantie des dépôts du Fonds de Garantie des Dépôts et de Résolution, sous réserve des exclusions prévues par les textes en vigueur. Reportez-vous à la plaquette FGDR disponible sur le site internet de notre établissement ou au formulaire d'information communiqué annuellement ou sur demande, par votre conseiller. Concernant le Livret A, le Livret de Développement Durable et Solidaire et le Livret d'Epargne Populaire, leurs montants sont intégralement garantis par l'Etat.
+
+#
+
+A la Banque Populaire Bourgogne Franche-Comté, l'assurance des personnes et des biens c'est aussi notre métier.
+
+PAGE 5
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPLUN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts

@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-24",
+  "invoiceNo": "0/0 (067) 0014/0453272",
+  "totalAmount": 126.08,
+  "items": [
+    {
+      "name": "CORNICHON AIG DOUX TRANCHE 2L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.2,
+      "totalPrice": 6.2
+    },
+    {
+      "name": "CHEF JUS VEAU LIE 22L 660G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.96,
+      "totalPrice": 11.96
+    },
+    {
+      "name": "SAUCE TARTARE 950ML CALIFORNI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.5,
+      "totalPrice": 7.5
+    },
+    {
+      "name": "SCE DELUXE HELLMAN S 860G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.02,
+      "totalPrice": 7.02
+    },
+    {
+      "name": "FLT SAUM 1, 2/1,6 MCF X20 EL/NO S/V. SALMO SALAR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 21.46
+    },
+    {
+      "name": "FLT SAUM 1,2/1,6 MCF X20 EL/NO S/V. SALMO SALAR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 22.16
+    },
+    {
+      "name": "CLEM SOCULENTE CAL 1 ESPAGNE C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 39.92,
+      "totalPrice": 39.92
+    },
+    {
+      "name": "ECHALION 3/5 FILET 1KG MC C1 FR 12FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.29,
+      "totalPrice": 3.29
+    }
+  ]
+}

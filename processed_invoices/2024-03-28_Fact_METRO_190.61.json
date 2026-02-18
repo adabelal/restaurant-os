@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-28",
+  "invoiceNo": "067/045",
+  "totalAmount": 190.61,
+  "items": [
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 25.636,
+      "unit": "kg",
+      "unitPrice": 6.78,
+      "totalPrice": 173.81
+    },
+    {
+      "name": "TOM RDE 47+ 2.5K PITUFO MAR C1 MAROC",
+      "quantity": 25.636,
+      "unit": "kg",
+      "unitPrice": 2.744,
+      "totalPrice": 6.86
+    }
+  ]
+}

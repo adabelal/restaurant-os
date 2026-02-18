@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-20",
+  "invoiceNo": "0/0 (067)0001/0013542",
+  "totalAmount": 655.1,
+  "items": [
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.59,
+      "totalPrice": 75.02
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.09,
+      "totalPrice": 10.73
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.78,
+      "totalPrice": 232.89
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.14,
+      "totalPrice": 143.4
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.85,
+      "totalPrice": 7.52
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 11.47,
+      "totalPrice": 68.82
+    },
+    {
+      "name": "ARO SESAME DORE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.81,
+      "totalPrice": 7.81
+    },
+    {
+      "name": "MC PAPRIKA DOUX 550G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.82,
+      "totalPrice": 2.82
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.77,
+      "totalPrice": 16.77
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.282,
+      "totalPrice": 11.41
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.8,
+      "totalPrice": 10.8
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.81,
+      "totalPrice": 13.81
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.32,
+      "totalPrice": 7.92
+    },
+    {
+      "name": "OIG CHARC MC 7/10 8KG C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.07,
+      "totalPrice": 6.07
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.7,
+      "totalPrice": 5.7
+    },
+    {
+      "name": "LAIT ENT UHT BT1L MC ENGAGE",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.323,
+      "totalPrice": 7.94
+    },
+    {
+      "name": "OEUF 90 M SOL",
+      "quantity": 90.0,
+      "unit": "U",
+      "unitPrice": 0.215,
+      "totalPrice": 19.37
+    }
+  ]
+}

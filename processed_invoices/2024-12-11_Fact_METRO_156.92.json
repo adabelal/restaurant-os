@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-11",
+  "invoiceNo": "0/0 (067) 0014/0432642",
+  "totalAmount": 156.92,
+  "items": [
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "CREME FRAI EP 15% 50CL BRIDELI",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.97,
+      "totalPrice": 3.94
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 27.51
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 17.09
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 28.41
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 28.71
+    },
+    {
+      "name": "FLT SAUM 1, 2/1,6 MCF X20 EL/NO S/V. SALMO SALAR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 20.42
+    },
+    {
+      "name": "OLIV VERTE DENOYAUTEE 2KG MAROC MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.58,
+      "totalPrice": 9.58
+    }
+  ]
+}

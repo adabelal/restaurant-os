@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-01-12",
+  "invoiceNo": "4010500127",
+  "totalAmount": 19.97,
+  "items": [
+    {
+      "name": "1 MONIN GRENADINE SIROP 100 CL",
+      "quantity": 100.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 4.72
+    },
+    {
+      "name": "1 MONIN FRAISE DES BOIS 70CL",
+      "quantity": 70.0,
+      "unit": "U",
+      "unitPrice": 6.954,
+      "totalPrice": 6.95
+    },
+    {
+      "name": "1 MONIN GLASCO CITRON 100 CL",
+      "quantity": 100.0,
+      "unit": "U",
+      "unitPrice": 5.187,
+      "totalPrice": 5.19
+    }
+  ]
+}

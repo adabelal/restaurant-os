@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-27",
+  "invoiceNo": "0/0 (067) 0014/014842",
+  "totalAmount": 236.62,
+  "items": [
+    {
+      "name": "MC HUILE FRITURE 10L",
+      "quantity": 20.0,
+      "unit": "L",
+      "unitPrice": 2.55,
+      "totalPrice": 51.0
+    },
+    {
+      "name": "COCO RAPEE 1KG METRO CHEF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.9,
+      "totalPrice": 5.9
+    },
+    {
+      "name": "AMANDE EMONDEE 23/25 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.9,
+      "totalPrice": 8.9
+    },
+    {
+      "name": "AROME FLEUR D'ORANGER 50CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.54,
+      "totalPrice": 1.54
+    },
+    {
+      "name": "AROME VANILLE 1L. SEBALC",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 11.8,
+      "totalPrice": 11.8
+    },
+    {
+      "name": "LEVURE CHIMIQUE 6SCX10 OETKER",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 0.715,
+      "totalPrice": 7.15
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.038,
+      "totalPrice": 10.19
+    },
+    {
+      "name": "BOX KINDER X 48 PIECES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 34.26,
+      "totalPrice": 34.26
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 30.8
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 14.06
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 15.45
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 17.79
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 15.44
+    }
+  ]
+}

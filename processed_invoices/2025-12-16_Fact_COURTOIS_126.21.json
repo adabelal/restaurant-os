@@ -1,0 +1,57 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-12-16",
+  "invoiceNo": "5120500217",
+  "totalAmount": 126.21,
+  "items": [
+    {
+      "name": "RHUM CANERO SHERRY CREAM 40\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 39.719,
+      "totalPrice": 39.72
+    },
+    {
+      "name": "BANDOL ROUGEFIEF MOULIN BT*",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.918,
+      "totalPrice": 7.92
+    },
+    {
+      "name": "CDR CAIRANNE RGE RICHAUD BT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.843,
+      "totalPrice": 15.84
+    },
+    {
+      "name": "C.NIMES RGE SIGNAT MAS NOTAI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.02,
+      "totalPrice": 5.02
+    },
+    {
+      "name": "FRONTON RGE FOLLE NOIRE AMBAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.189,
+      "totalPrice": 7.19
+    },
+    {
+      "name": "FAUGERES BLANC CUV.CISTUS 75cl",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.142,
+      "totalPrice": 12.14
+    },
+    {
+      "name": "COLLIOURE BLC CUV.INSOLENCE BT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.819,
+      "totalPrice": 13.82
+    }
+  ]
+}

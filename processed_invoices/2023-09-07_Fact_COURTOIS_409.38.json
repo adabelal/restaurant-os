@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-09-07",
+  "invoiceNo": "3090500130",
+  "totalAmount": 409.38,
+  "items": [
+    {
+      "name": "45 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 4.914,
+      "totalPrice": 220.05
+    },
+    {
+      "name": "20 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.338,
+      "totalPrice": 119.28
+    }
+  ]
+}

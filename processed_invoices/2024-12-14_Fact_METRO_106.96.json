@@ -1,0 +1,50 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-14",
+  "invoiceNo": "0/0 (067) 0014/043920",
+  "totalAmount": 106.96,
+  "items": [
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.79,
+      "totalPrice": 17.27
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.79,
+      "totalPrice": 15.95
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.79,
+      "totalPrice": 18.88
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.79,
+      "totalPrice": 24.83
+    },
+    {
+      "name": "LIME CAL 54/60 FILET 1KG BRESIL C1 BRESIL",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 4.99,
+      "totalPrice": 14.97
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.79,
+      "totalPrice": 9.48
+    }
+  ]
+}

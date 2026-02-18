@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-03-18",
+  "invoiceNo": "0/0 (067) 0014/009646",
+  "totalAmount": 865.5,
+  "items": [
+    {
+      "name": "WH JACK DANIEL'S 40D 70CL",
+      "quantity": 1.12,
+      "unit": "U",
+      "unitPrice": 15.7,
+      "totalPrice": 188.4
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 1.18,
+      "unit": "U",
+      "unitPrice": 11.65,
+      "totalPrice": 209.7
+    },
+    {
+      "name": "AMARRETTO SAN PIETRO 18D 70CL",
+      "quantity": 1.2,
+      "unit": "U",
+      "unitPrice": 6.9,
+      "totalPrice": 13.8
+    },
+    {
+      "name": "APEROL 12, 5D 1L",
+      "quantity": 6.1,
+      "unit": "U",
+      "unitPrice": 12.53,
+      "totalPrice": 75.18
+    },
+    {
+      "name": "GET27 17,9D 70CL",
+      "quantity": 6.3,
+      "unit": "U",
+      "unitPrice": 8.84,
+      "totalPrice": 159.12
+    },
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 6.5,
+      "unit": "U",
+      "unitPrice": 3.65,
+      "totalPrice": 109.5
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.3,
+      "unit": "U",
+      "unitPrice": 1.585,
+      "totalPrice": 57.06
+    },
+    {
+      "name": "PRODAC HARMO 80/20 1KG GR B10*",
+      "quantity": 1.1,
+      "unit": "U",
+      "unitPrice": 15.4,
+      "totalPrice": 15.4
+    },
+    {
+      "name": "PRODACT CLASSIQ 1KG MOULU BIO*",
+      "quantity": 1.1,
+      "unit": "U",
+      "unitPrice": 16.92,
+      "totalPrice": 16.92
+    },
+    {
+      "name": "LIME MC 1K C. 3/4 FILET4 C1 BRBRESIL",
+      "quantity": 1.4,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 11.96
+    }
+  ]
+}

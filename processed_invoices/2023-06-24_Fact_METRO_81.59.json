@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-24",
+  "invoiceNo": "0/0 (067) 0016/0056892",
+  "totalAmount": 81.59,
+  "items": [
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 16.47
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 13.99
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 15.98
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 28.23
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 0.89,
+      "totalPrice": 2.67
+    }
+  ]
+}

@@ -81,22 +81,37 @@ export async function processInvoice(base64Image: string) {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
 
         const prompt = `
-            Tu es un assistant comptable pour un restaurant. 
-            Analyse cette image de facture et extrais les informations suivantes au format JSON :
+            Tu es un expert comptable et un spécialiste de la saisie de factures pour restaurants.
+            Analyse cette image de facture fournisseur et extrais les données avec une précision extrême.
+            
+            Format de réponse attendu (JSON uniquement) :
             {
-                "supplierName": "NOM DU FOURNISSEUR",
+                "supplierName": "NOM DU FOURNISSEUR (ex: METRO, PROMOCASH...)",
                 "invoiceNo": "NUMERO DE FACTURE",
-                "date": "YYYY-MM-DD",
-                "totalAmount": 0.00,
+                "date": "YYYY-MM-DD (Date d'émission)",
+                "totalAmount": 0.00 (Montant TTC exact),
+                "tvaAmount": 0.00 (Montant total TVA),
                 "paymentMethod": "CB, VIREMENT, ESPECES, ou PRELEVEMENT",
                 "items": [
-                    { "name": "ARTICLE", "quantity": 0.0, "unitPrice": 0.0, "totalPrice": 0.0 }
+                    { 
+                        "name": "DESCRIPTION PRECISE DE L'ARTICLE", 
+                        "code": "REF_ARTICLE (si dispo)",
+                        "quantity": 0.0, 
+                        "unit": "kg/L/U (si détecté, sinon U)",
+                        "unitPrice": 0.00 (Prix unitaire HT), 
+                        "tvaRate": 0.0 (Taux TVA: 5.5, 10, 20...),
+                        "totalPrice": 0.00 (Prix total HT) 
+                    }
                 ]
             }
-            Règles :
-            - Si une info est manquante, mets null.
-            - Le montant doit être un nombre.
-            - Réponds UNIQUEMENT avec le JSON, pas de texte avant ou après.
+
+            Règles strictes :
+            1. Si une information est illisible ou manquante, mets null.
+            2. Le montant total doit être le TTC (Toutes Taxes Comprises).
+            3. Les prix des articles sont généralement HT (Hors Taxe) sur les factures de gros (Metro, etc.), mais vérifie bien les colonnes.
+            4. Ne sois pas créatif, sois factuel. Si tu as un doute sur un chiffre, ne l'invente pas.
+            5. Essaye de nettoyer les noms d'articles (enlève les codes bizarres au début si possible).
+            6. Réponds UNIQUEMENT avec le JSON validé.
         `
 
         const result = await model.generateContent([
@@ -154,7 +169,8 @@ export async function saveScannedInvoice(data: any) {
                     rawLabel: item.name,
                     quantity: item.quantity || 1,
                     unitPrice: item.unitPrice || item.totalPrice,
-                    totalPrice: item.totalPrice
+                    totalPrice: item.totalPrice,
+                    packaging: item.unit || null // Map detected unit to packaging
                 }))
             })
         }

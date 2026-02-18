@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-03-20",
+  "invoiceNo": "067/045",
+  "totalAmount": 621.73,
+  "items": [
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.18,
+      "totalPrice": 69.13
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.71,
+      "totalPrice": 192.09
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.64,
+      "totalPrice": 95.72
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.44,
+      "totalPrice": 8.02
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.01,
+      "totalPrice": 22.02
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.36,
+      "totalPrice": 13.36
+    },
+    {
+      "name": "SCISSON SEC PP 1,4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.88,
+      "totalPrice": 15.51
+    },
+    {
+      "name": "CREME ANGLAISE 2L DEBIC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.01,
+      "totalPrice": 14.02
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 43.4
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.21,
+      "totalPrice": 17.21
+    },
+    {
+      "name": "MC PAPRIKA DOUX 550G",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 6.5,
+      "totalPrice": 52.0
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.81,
+      "totalPrice": 13.81
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 FRFRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 4.82
+    },
+    {
+      "name": "FENOUIL 3K ITITALIE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.57,
+      "totalPrice": 5.57
+    },
+    {
+      "name": "CELERI RAVE PC6 FRFRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.52,
+      "totalPrice": 5.04
+    },
+    {
+      "name": "PV VERT MC 3K C. 90/110 C1 ESESPAGNE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 15.47,
+      "totalPrice": 30.94
+    },
+    {
+      "name": "CONCOMBRE MC C. 4/5 PC12 C1 FRFRANCE",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 1.31,
+      "totalPrice": 9.17
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.95,
+      "totalPrice": 9.9
+    }
+  ]
+}

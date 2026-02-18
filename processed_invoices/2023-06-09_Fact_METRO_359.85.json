@@ -1,0 +1,162 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-09",
+  "invoiceNo": "0/0 (067) 0013/014555",
+  "totalAmount": 105.98,
+  "items": [
+    {
+      "name": "ROCHAMBEAU NECTAR MULTI BRIKIL",
+      "quantity": 7.0,
+      "unit": "L",
+      "unitPrice": 1.167,
+      "totalPrice": 49.0
+    },
+    {
+      "name": "ROCHAMBEAU ABC ORANGE BRICK 1L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 0.998,
+      "totalPrice": 11.98
+    },
+    {
+      "name": "ROCHAMBEAU ABC ANANAS BRICK 1L",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 1.258,
+      "totalPrice": 30.2
+    },
+    {
+      "name": "GILBERT PUR JUS POMME BIB 5L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.698,
+      "totalPrice": 8.49
+    },
+    {
+      "name": "SIROP GILBERT SUCRE CAN 1L PET",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.07,
+      "totalPrice": 3.07
+    },
+    {
+      "name": "CRISTALI 1.5L",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 0.18,
+      "totalPrice": 3.24
+    },
+    {
+      "name": "MC MELANG 4 EPICES 450G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.99,
+      "totalPrice": 6.99
+    },
+    {
+      "name": "*SUCRE MCX BLC N 4 1KG ROCHAMB",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.748,
+      "totalPrice": 10.49
+    },
+    {
+      "name": "PACK CASSONADE ST LOUIS 650G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.96,
+      "totalPrice": 1.96
+    },
+    {
+      "name": "WORLD MIX SAC DE 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.2,
+      "totalPrice": 12.2
+    },
+    {
+      "name": "DRAGIBUS SAC DE 2KG.",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.7,
+      "totalPrice": 12.7
+    },
+    {
+      "name": "THE VERT TEMPLE DU CIEL 500G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.6,
+      "totalPrice": 3.6
+    },
+    {
+      "name": "SUCHARD INTENSE CACAO 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.57,
+      "totalPrice": 5.57
+    },
+    {
+      "name": "NECTA JNE CAL A ROYAL ESP",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 15.96,
+      "totalPrice": 15.96
+    },
+    {
+      "name": "CITR VERT FILET 1KG BRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.19,
+      "totalPrice": 15.95
+    },
+    {
+      "name": "ROCH PH 4RLX COMPACT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.26,
+      "totalPrice": 15.82
+    },
+    {
+      "name": "ARO MINI BOBINE DC 1P 120M X9",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.194,
+      "totalPrice": 39.5
+    },
+    {
+      "name": "ALLUMEUR ELECT RECHARG FLEX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.84,
+      "totalPrice": 3.84
+    },
+    {
+      "name": "LOT 2 DOSEURS A BILLE 2CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 12.5,
+      "totalPrice": 25.0
+    },
+    {
+      "name": "LOT 2 DOSEURS A BILLE 4CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.5,
+      "totalPrice": 12.5
+    },
+    {
+      "name": "MP LOT 5 BOUCHONS VERSEUR 68MM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.08,
+      "totalPrice": 6.16
+    },
+    {
+      "name": "MP 10 BLOC MH METRO 80X150TRIP",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 13.45,
+      "totalPrice": 40.35
+    }
+  ]
+}

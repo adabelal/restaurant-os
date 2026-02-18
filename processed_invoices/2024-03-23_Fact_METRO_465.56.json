@@ -1,0 +1,57 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-23",
+  "invoiceNo": "067/049",
+  "totalAmount": 389.27,
+  "items": [
+    {
+      "name": "EDV POIRE WILLIAM DLT 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.98,
+      "totalPrice": 13.98
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.72,
+      "totalPrice": 140.64
+    },
+    {
+      "name": "ANGOSTURA BITTER 44.7D 20CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.71,
+      "totalPrice": 47.13
+    },
+    {
+      "name": "CURACAO TRIPLE SEC 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.22,
+      "totalPrice": 12.44
+    },
+    {
+      "name": "RICARD 45D 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 12.98,
+      "totalPrice": 77.88
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.97,
+      "totalPrice": 41.91
+    },
+    {
+      "name": "BUCHETTE SUCRE 4GX1000 GILBERT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.82,
+      "totalPrice": 10.82
+    }
+  ]
+}

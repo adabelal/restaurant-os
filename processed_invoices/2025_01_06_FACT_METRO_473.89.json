@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-06",
+  "invoiceNo": "0/0 (067) 0014/000538",
+  "totalAmount": 418.45,
+  "items": [
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.27,
+      "totalPrice": 43.62
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.09,
+      "totalPrice": 14.09
+    },
+    {
+      "name": "GET27 17,9D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.4,
+      "totalPrice": 62.4
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.76,
+      "totalPrice": 33.12
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.985,
+      "totalPrice": 70.92
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.58,
+      "totalPrice": 56.88
+    },
+    {
+      "name": "TAGLIATELLE 500G DE CECCO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.39,
+      "totalPrice": 2.39
+    },
+    {
+      "name": "PENNA QUADRATAO MOLIS 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.55,
+      "totalPrice": 5.1
+    },
+    {
+      "name": "MC POIV TELLICHERY 170G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.25,
+      "totalPrice": 8.25
+    },
+    {
+      "name": "MC ANETH POINTES 40G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.35,
+      "totalPrice": 2.35
+    },
+    {
+      "name": "PARMIG. R AOP 12M BLC 1KGENV MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.5,
+      "totalPrice": 24.02
+    },
+    {
+      "name": "CHEDDAR RGE MAT 25TR BQ500G WF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.39,
+      "totalPrice": 6.39
+    },
+    {
+      "name": "BRIOCHE TRESSEE 800G LB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.0,
+      "totalPrice": 5.0
+    },
+    {
+      "name": "SAUMON FUME NORV 5 TR 200G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.74,
+      "totalPrice": 13.48
+    },
+    {
+      "name": "MPRO 250 PAILLE NOIR D6 14CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.53,
+      "totalPrice": 5.06
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.55,
+      "totalPrice": 7.55
+    }
+  ]
+}

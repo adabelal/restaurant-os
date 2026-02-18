@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-16",
+  "invoiceNo": "0/0 (067) 0015/0085672",
+  "totalAmount": 122.2,
+  "items": [
+    {
+      "name": "SIROP MONIN 70CL PAMPLE ROSE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.02,
+      "totalPrice": 7.02
+    },
+    {
+      "name": "SIROP MONIN GRENADINE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.52,
+      "totalPrice": 4.52
+    },
+    {
+      "name": "NOCCIOLATA 830G BIO*",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.82,
+      "totalPrice": 8.82
+    },
+    {
+      "name": "MINI TABL CHOC NOIR 900GR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.6,
+      "totalPrice": 17.6
+    },
+    {
+      "name": "MADEL. COQUILLE 600G ROCHAMB",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.25,
+      "totalPrice": 2.25
+    },
+    {
+      "name": "PARMIG. R AOP 12M BLC 1KGENV MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 18.2,
+      "totalPrice": 19.75
+    },
+    {
+      "name": "BURRATA BUFALA 125G POT GAROFA",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.56,
+      "totalPrice": 2.56
+    },
+    {
+      "name": "SCISSON AIL FUME VPF 1KG",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 4.13,
+      "totalPrice": 8.26
+    },
+    {
+      "name": "CHORIZO PP TRANCHE 2X500G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.4,
+      "totalPrice": 12.4
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.6,
+      "totalPrice": 15.8
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.41,
+      "totalPrice": 14.82
+    }
+  ]
+}

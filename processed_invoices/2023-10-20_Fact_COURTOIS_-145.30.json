@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-10-20",
+  "invoiceNo": "3100100865",
+  "totalAmount": 145.3,
+  "items": [
+    {
+      "name": "-12 1/2CHAMP.L.TOLLET lerCRU ct12",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 37.5,
+      "totalPrice": -121.08
+    }
+  ]
+}

@@ -24,7 +24,8 @@ export const authOptions: NextAuthOptions = {
                     return null
                 }
 
-                const { email, password } = parsed.data
+                const email = parsed.data.email.toLowerCase()
+                const { password } = parsed.data
 
                 const user = await prisma.user.findUnique({
                     where: { email },
@@ -61,14 +62,14 @@ export const authOptions: NextAuthOptions = {
         async jwt({ token, user }) {
             if (user) {
                 token.id = user.id
-                token.role = (user as any).role
+                token.role = user.role
             }
             return token
         },
         async session({ session, token }) {
             if (session.user) {
-                (session.user as any).id = token.id as string
-                (session.user as any).role = token.role as string
+                session.user.id = token.id
+                session.user.role = token.role
             }
             return session
         },

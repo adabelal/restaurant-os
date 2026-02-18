@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-12-13",
+  "invoiceNo": "0/0(067)0051/009609",
+  "totalAmount": 28.91,
+  "items": [
+    {
+      "name": "MERGUEZ COUS HAL 2,3KENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 27.4
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-01",
+  "invoiceNo": "067/008",
+  "totalAmount": 250.75,
+  "items": [
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 23.76
+    },
+    {
+      "name": "MC SCE SALAD MOUT ANCIEN 4. 9KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.39,
+      "totalPrice": 8.39
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 4.2
+    },
+    {
+      "name": "PAILLETTE FIN CHOCOLAT 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.58,
+      "totalPrice": 18.58
+    },
+    {
+      "name": "CARAMEL A L'ANCIENNE 1L VAHINE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.98,
+      "totalPrice": 8.98
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.83,
+      "totalPrice": 27.66
+    },
+    {
+      "name": "TORTILLAS 20CMX8 320G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.36,
+      "totalPrice": 1.36
+    },
+    {
+      "name": "GRANRAVIOLI BASILIC PARM 500G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.4,
+      "totalPrice": 7.4
+    },
+    {
+      "name": "FEUILLE MILBRICK X10 170G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.12,
+      "totalPrice": 2.24
+    },
+    {
+      "name": "ANCHOIS MARINES ORIENTA 1KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.92,
+      "totalPrice": 12.92
+    },
+    {
+      "name": "ANCHOIS MARINES HUILE 1KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.92,
+      "totalPrice": 12.92
+    },
+    {
+      "name": "ALLUMEUR ELECT RECHARG FLEX",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.87,
+      "totalPrice": 7.74
+    },
+    {
+      "name": "3BTE HERM GN1/4 H150MM 4. 3L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 9.537,
+      "totalPrice": 28.61
+    },
+    {
+      "name": "3BTE HERM GN1/4 H100MM 2.8L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 8.547,
+      "totalPrice": 25.64
+    },
+    {
+      "name": "PACK 6 TERRINES F/WISS 200G",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.893,
+      "totalPrice": 34.08
+    }
+  ]
+}

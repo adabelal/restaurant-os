@@ -1,0 +1,211 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-19",
+  "invoiceNo": "0/0 (067) 0014/006093",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "OASIS TROPICAL 2L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.95,
+      "totalPrice": 11.7
+    },
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.58,
+      "totalPrice": 13.92
+    },
+    {
+      "name": "FUZETEA PECHE PET 125CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.473,
+      "totalPrice": 8.84
+    },
+    {
+      "name": "ORANGINA JAUN 1.5L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.58,
+      "totalPrice": 9.48
+    },
+    {
+      "name": "FANTA CITRON BTE SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.511,
+      "totalPrice": 12.27
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.56,
+      "totalPrice": 18.72
+    },
+    {
+      "name": "CRISTALI 1.5L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.18,
+      "totalPrice": 2.16
+    },
+    {
+      "name": "CREME DE MARRONS DOYPACK 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.84,
+      "totalPrice": 5.84
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.87,
+      "totalPrice": 5.87
+    },
+    {
+      "name": "CHOCAPIC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.55,
+      "totalPrice": 5.55
+    },
+    {
+      "name": "CRUNCH 980 XXL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.57,
+      "totalPrice": 5.57
+    },
+    {
+      "name": "VERITABLE PETIT BEURRE 200GX6",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.137,
+      "totalPrice": 6.82
+    },
+    {
+      "name": "PETIT ECOLIER CHOC. LAIT 150GX6",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.362,
+      "totalPrice": 8.17
+    },
+    {
+      "name": "SAC RONDELLES POMME 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.42,
+      "totalPrice": 5.42
+    },
+    {
+      "name": "HAPPY LIFE 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.8,
+      "totalPrice": 12.8
+    },
+    {
+      "name": "SURFIZZ FRUITS GAINE 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.31,
+      "totalPrice": 12.31
+    },
+    {
+      "name": "DRAGIBUS SAC DE 2KG.",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.54,
+      "totalPrice": 13.54
+    },
+    {
+      "name": "DANONE 16*125G LE NATURE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.18,
+      "totalPrice": 3.18
+    },
+    {
+      "name": "LACTE PULPE 4X125G FRAISE E-V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.84,
+      "totalPrice": 1.84
+    },
+    {
+      "name": "YAOURT A LA GRECQ 1KG BURGOS",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.85,
+      "totalPrice": 3.85
+    },
+    {
+      "name": "VIENNOIS CAFE 4X100G NESTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.47,
+      "totalPrice": 2.94
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.93,
+      "totalPrice": 1.93
+    },
+    {
+      "name": "CREME DES VANIL125GX4 SAINTPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.97,
+      "totalPrice": 1.94
+    },
+    {
+      "name": "CREME DES CARAMEL 125GX4 STPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.97,
+      "totalPrice": 1.94
+    },
+    {
+      "name": "BEURRE DX PLQ. 250G ROCHAMB",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.09,
+      "totalPrice": 4.18
+    },
+    {
+      "name": "VACHE QUI RIT 12 P 192G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.99,
+      "totalPrice": 3.98
+    },
+    {
+      "name": "CAMEMBERT 250GX3 CDL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.9,
+      "totalPrice": 5.7
+    },
+    {
+      "name": "8 PAIN CHOCOLAT LC 360G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.71,
+      "totalPrice": 3.42
+    },
+    {
+      "name": "10 PAIN LAIT LC 350G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.29,
+      "totalPrice": 1.29
+    }
+  ]
+}

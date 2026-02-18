@@ -1,0 +1,43 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-06-21",
+  "invoiceNo": "4060100897",
+  "totalAmount": 85.12,
+  "items": [
+    {
+      "name": "MANQUANT SUR DERNIERE LIV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "6 PET SOLAL ORANGE ABC 6x1LT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.243,
+      "totalPrice": 5.243
+    },
+    {
+      "name": "6 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.637,
+      "totalPrice": 0.637
+    },
+    {
+      "name": "6 NORBERT POMME ABC PET 6X100CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 176.4,
+      "totalPrice": 176.4
+    },
+    {
+      "name": "30 FUT 15 L SLASH MANGO",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": -157.29,
+      "totalPrice": -157.29
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-01-18",
+  "invoiceNo": "0/0 (067) 0013/0003712",
+  "totalAmount": 144.22,
+  "items": [
+    {
+      "name": "WH MEXIQUE ABASOLO 43D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 23.88,
+      "totalPrice": 23.88
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 12.7,
+      "totalPrice": 25.4
+    },
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 15.31,
+      "totalPrice": 30.62
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 13.89,
+      "totalPrice": 41.67
+    },
+    {
+      "name": "ANGOSTURA BITTER COCOA 48D10CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 7.15,
+      "totalPrice": 7.15
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 3.19,
+      "totalPrice": 57.42
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 3.19,
+      "totalPrice": 57.42
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.56,
+      "totalPrice": 56.16
+    },
+    {
+      "name": "PERRIER 33CL VC",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.78,
+      "totalPrice": 18.72
+    },
+    {
+      "name": "CAIS. PERSON. 24X33CL PLEIN",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 4.2
+    },
+    {
+      "name": "CRISTALI 50CL PET",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.16,
+      "totalPrice": 3.85
+    },
+    {
+      "name": "LION BARRE 42G NESTLE",
+      "quantity": 24.0,
+      "unit": "kg",
+      "unitPrice": 0.477,
+      "totalPrice": 11.45
+    },
+    {
+      "name": "THE VERT TEMPLE DU CIEL 250G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.87,
+      "totalPrice": 3.74
+    }
+  ]
+}

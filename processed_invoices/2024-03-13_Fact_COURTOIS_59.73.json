@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-03-13",
+  "invoiceNo": "4030500154",
+  "totalAmount": 49.77,
+  "items": [
+    {
+      "name": "2 RHUM BRUN TRAD.ORATOIR 40\u00b0LIT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 9.225,
+      "totalPrice": 18.45
+    },
+    {
+      "name": "10 BIB 5L ARDECHE BLANC FONVENE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.471,
+      "totalPrice": 24.71
+    }
+  ]
+}

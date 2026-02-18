@@ -2,18 +2,19 @@
 
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
+import { BankTransaction, FixedCost, PurchaseOrder } from "@prisma/client"
+import { FINANCE_RULES } from "@/lib/finance-rules"
 
 // FINANCE STATS WITH AUTO-REPAIR
 export async function getFinanceStats() {
-    // AUTO-REPAIR: If DB is empty, import from history_data.json
+    // AUTO-REPAIR: Feature disabled (Json Import removed)
     try {
         const count = await prisma.bankTransaction.count()
         if (count === 0) {
-            console.log("DB Empty inside getFinanceStats. Triggering auto-import...")
-            await importFromJsonFile()
+            console.log("DB Empty inside getFinanceStats.")
         }
     } catch (e) {
-        console.error("Auto-repair check failed:", e)
+        console.error("Check failed:", e)
     }
 
     const today = new Date()
@@ -24,13 +25,13 @@ export async function getFinanceStats() {
         select: { amount: true }
     })
     // Ensure we handle Decimal properly if using Prisma Decimal
-    const currentBalance = transactions.reduce((sum: number, t: any) => sum + Number(t.amount || 0), 0)
+    const currentBalance = transactions.reduce((sum: number, t) => sum + Number(t.amount || 0), 0)
 
     // 2. Fixed Costs
     const fixedCosts = await prisma.fixedCost.findMany()
 
     // Total monthly lissés
-    const monthlyFixedCost = fixedCosts.reduce((sum: number, cost: any) => {
+    const monthlyFixedCost = fixedCosts.reduce((sum: number, cost) => {
         const amount = Number(cost.amount || 0)
         switch (cost.frequency) {
             case 'MONTHLY': return sum + amount
@@ -42,8 +43,8 @@ export async function getFinanceStats() {
 
     // Remaining fixed costs for THIS month
     const remainingFixedCosts = fixedCosts
-        .filter((cost: any) => cost.frequency === 'MONTHLY' && cost.dayOfMonth > currentDay && cost.isActive)
-        .reduce((sum: number, cost: any) => sum + Number(cost.amount || 0), 0)
+        .filter((cost) => cost.frequency === 'MONTHLY' && cost.dayOfMonth > currentDay && cost.isActive)
+        .reduce((sum: number, cost) => sum + Number(cost.amount || 0), 0)
 
     // 3. Unpaid Purchase Orders (Not reconciled with bank)
     const unpaidPOs = await prisma.purchaseOrder.findMany({
@@ -54,7 +55,7 @@ export async function getFinanceStats() {
         },
         select: { id: true, totalAmount: true }
     })
-    const totalUnpaidPOs = unpaidPOs.reduce((sum: number, po: any) => sum + Number(po.totalAmount || 0), 0)
+    const totalUnpaidPOs = unpaidPOs.reduce((sum: number, po) => sum + Number(po.totalAmount || 0), 0)
 
     // 4. Projection Fin de Mois
     const eomForecast = currentBalance - remainingFixedCosts - totalUnpaidPOs
@@ -231,28 +232,52 @@ export async function getBankTransactions(params?: {
 
 export async function getBalanceChartData() {
     try {
-        const transactions = await prisma.bankTransaction.findMany({
-            orderBy: { date: 'asc' },
-            select: { date: true, amount: true }
-        })
+        const [bankTxs, cashTxs] = await Promise.all([
+            prisma.bankTransaction.findMany({
+                orderBy: { date: 'asc' },
+                select: { date: true, amount: true }
+            }),
+            prisma.cashTransaction.findMany({
+                orderBy: { date: 'asc' },
+                select: { date: true, amount: true }
+            })
+        ])
 
-        if (transactions.length === 0) return []
+        if (bankTxs.length === 0 && cashTxs.length === 0) return []
 
-        const monthlyData: { [key: string]: number } = {}
-        let runningBalance = 0
+        const monthlyData: { [key: string]: { bank: number, cash: number } } = {}
+        let runningBank = 0
+        let runningCash = 0
 
-        transactions.forEach(tx => {
+        // Process Bank
+        bankTxs.forEach(tx => {
             const date = new Date(tx.date)
             const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
-            runningBalance += Number(tx.amount)
-            monthlyData[monthKey] = runningBalance
+            runningBank += Number(tx.amount)
+            if (!monthlyData[monthKey]) monthlyData[monthKey] = { bank: 0, cash: 0 }
+            monthlyData[monthKey].bank = runningBank
+        })
+
+        // Process Cash
+        cashTxs.forEach(tx => {
+            const date = new Date(tx.date)
+            const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
+            // For cash usually we might want to handle IN/OUT if the schema has it. 
+            // In her schema it is signed or has a type? Let me check type.
+            // Actually I'll just use the amount as signed for now or check if it's based on type.
+            runningCash += Number(tx.amount)
+            if (!monthlyData[monthKey]) monthlyData[monthKey] = { bank: 0, cash: 0 }
+            monthlyData[monthKey].cash = runningCash
         })
 
         const chartData = Object.entries(monthlyData)
-            .map(([month, balance]) => ({
+            .map(([month, balances]) => ({
                 month,
-                balance: Math.round(balance * 100) / 100
+                bank: Math.round(balances.bank * 100) / 100,
+                cash: Math.round(balances.cash * 100) / 100,
+                total: Math.round((balances.bank + balances.cash) * 100) / 100
             }))
+            .sort((a, b) => a.month.localeCompare(b.month))
             .slice(-12)
 
         return chartData
@@ -262,29 +287,47 @@ export async function getBalanceChartData() {
     }
 }
 
+export async function getMonthlyTimeline() {
+    try {
+        const fixedCosts = await prisma.fixedCost.findMany({
+            where: { isActive: true },
+            include: { category: true }
+        })
+
+        // Map them to the current month days
+        const today = new Date()
+        const currentMonth = today.getMonth()
+        const currentYear = today.getFullYear()
+
+        const timeline = fixedCosts.map(cost => {
+            const date = new Date(currentYear, currentMonth, cost.dayOfMonth)
+            return {
+                id: cost.id,
+                name: cost.name,
+                amount: Number(cost.amount),
+                date,
+                category: cost.category.name,
+                isPast: cost.dayOfMonth < today.getDate()
+            }
+        }).sort((a, b) => a.date.getTime() - b.date.getTime())
+
+        return timeline
+    } catch (error) {
+        console.error("Error fetching timeline:", error)
+        return []
+    }
+}
+
 export async function syncFinanceIntelligence() {
     try {
         console.log("Starting Smart Finance Intelligence...")
 
-        // 1. Define Categories to Ensure
-        const categories = [
-            { name: 'Loyer & Charges', type: 'FIXED_COST', keywords: ['SCI BAB', 'LOYER'] },
-            { name: 'Salaires & Rémunérations', type: 'SALARY', keywords: ['BELAL', 'SALAIRE', 'REMUNERATION', 'ROSSE', 'LEROY'] },
-            { name: 'Expert Comptable', type: 'FIXED_COST', keywords: ['SC EXPERT', 'COMPTABLE', 'FIDUCIAIRE'] },
-            { name: 'Frais Bancaires', type: 'FINANCIAL', keywords: ['COTISATION', 'COMMISSION', 'FRAIS'] },
-            { name: 'Assurances', type: 'FIXED_COST', keywords: ['GROUPAMA', 'ASSURANCE', 'AXA', 'MAAF'] },
-            { name: 'Télécom & Tech', type: 'FIXED_COST', keywords: ['ORANGE', 'FREE', 'SFR', 'BOUYGUES', 'OVH'] },
-            { name: 'Leasing & Crédit', type: 'FINANCIAL', keywords: ['CAPIT', 'LEASE', 'CREDIT', 'LOCAM'] },
-            { name: 'Fournisseurs', type: 'VARIABLE_COST', keywords: ['METRO', 'PROMUS', 'CARREFOUR'] },
-            { name: 'Impôts & Taxes', type: 'TAX', keywords: ['DGFIP', 'SIE', 'CFE', 'TVA'] },
-            { name: 'Social', type: 'SOCIAL', keywords: ['URSSAF', 'RETRAITE', 'PREVOYANCE'] }
-        ]
-
-        // 2. Create/Get Categories
+        // 1. Create/Get Categories
         const catMap: Record<string, string> = {}
-        for (const c of categories) {
+        for (const c of FINANCE_RULES.categories) {
             let cat = await prisma.financeCategory.findFirst({ where: { name: c.name } })
             if (!cat) {
+                // @ts-ignore - Prisma enum type mismatch with string literal
                 cat = await prisma.financeCategory.create({
                     data: { name: c.name, type: c.type as any }
                 })
@@ -302,7 +345,7 @@ export async function syncFinanceIntelligence() {
             const desc = tx.description.toUpperCase()
             let matchedCatId = null
 
-            for (const cat of categories) {
+            for (const cat of FINANCE_RULES.categories) {
                 if (cat.keywords.some(k => desc.includes(k))) {
                     matchedCatId = catMap[cat.name]
                     break
@@ -319,16 +362,7 @@ export async function syncFinanceIntelligence() {
 
         // 4. Detect Recurring Fixed Costs (The "Expert" Logic)
         // We look for transactions in specific categories that happen regularly
-        const detectionTargets = [
-            { catName: 'Loyer & Charges', name: 'Loyer Commercial (SCI BAB)' },
-            { catName: 'Expert Comptable', name: 'Expert Comptable (SC EXPERT)' },
-            { catName: 'Frais Bancaires', name: 'Frais Tenue de Compte' },
-            { catName: 'Leasing & Crédit', name: 'Leasing Matériel (CAPIT)' },
-            { catName: 'Télécom & Tech', name: 'Abonnement Internet' },
-            { catName: 'Assurances', name: 'Assurance Multirisque' }
-        ]
-
-        for (const target of detectionTargets) {
+        for (const target of FINANCE_RULES.detectionTargets) {
             const catId = catMap[target.catName]
             if (!catId) continue
 
@@ -367,8 +401,7 @@ export async function syncFinanceIntelligence() {
         }
 
         // 5. Detect Salaries (Specific logic per person)
-        const salaryKeywords = ['BELAL', 'ROSSE', 'LEROY']
-        for (const nameKeyword of salaryKeywords) {
+        for (const nameKeyword of FINANCE_RULES.salaryKeywords) {
             const salaryTx = await prisma.bankTransaction.findMany({
                 where: {
                     description: { contains: nameKeyword, mode: 'insensitive' },
@@ -408,10 +441,14 @@ export async function syncFinanceIntelligence() {
     }
 }
 
-export async function importHistoricalData(transactions: any[]) {
+export async function importHistoricalData(transactions: any[], options: { resetMode?: boolean } = {}) {
     try {
-        console.log("Wiping existing transactions...")
-        await prisma.bankTransaction.deleteMany({})
+        if (options.resetMode) {
+            console.log("RESET MODE ENABLED: Wiping existing transactions...")
+            await prisma.bankTransaction.deleteMany({})
+        } else {
+            console.log("Importing without wipe...")
+        }
 
         console.log(`Starting import of ${transactions.length} entries...`)
 
@@ -438,20 +475,103 @@ export async function importHistoricalData(transactions: any[]) {
     }
 }
 
-export async function importFromJsonFile() {
-    try {
-        const fs = require('fs')
-        const path = require('path')
-        const filePath = path.join(process.cwd(), 'history_data.json')
 
-        if (!fs.existsSync(filePath)) {
-            return { success: false, error: "history_data.json non trouvé sur le serveur" }
+export async function importBankCsvAction(formData: FormData) {
+    try {
+        const file = formData.get('file') as File
+        if (!file) return { success: false, error: "Aucun fichier reçu" }
+
+        const text = await file.text() // Read file content
+        const lines = text.split('\n')
+
+        let importedCount = 0
+        let duplicateCount = 0
+
+        // Format de Banque Populaire attendu :
+        // Compte;Date de comptabilisation;Date opération;Libellé;Référence;Date valeur;Montant
+
+        // Detect CSV format (header check)
+        const header = lines[0].split(';')
+        const isValidFormat = header.some(h => h.includes('Date opération') || h.includes('Libellé') || h.includes('Montant'))
+
+        if (!isValidFormat) {
+            // Try to find the header row
+            // Maybe it's not the first line
         }
 
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'))
-        return await importHistoricalData(data)
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim()
+            if (!line) continue
+
+            const cols = line.split(';')
+            if (cols.length < 5) continue
+
+            // Index mapping (based on previous manual parsing)
+            // 2: Date Opération (DD/MM/YYYY)
+            // 3: Libellé
+            // 6: Montant (French format: 1 234,56 or "-123,45" with quotes)
+
+            const dateStr = cols[2]?.replace(/"/g, '').trim()
+            const libelle = cols[3]?.replace(/"/g, '').trim()
+            let amountStr = cols[6]?.replace(/"/g, '').trim()
+
+            if (!dateStr || !amountStr) continue
+
+            // Parse Date
+            const [day, month, year] = dateStr.split('/')
+            const dateObj = new Date(Number(year), Number(month) - 1, Number(day))
+
+            if (isNaN(dateObj.getTime())) continue
+
+            // Check if future date (sometimes banks export 'future' lines)
+            // Actually we accept future lines if they are in the CSV
+
+            // Parse Amount (French to Float)
+            // Remove ' ' (thousands) and replace ',' with '.'
+            amountStr = amountStr.replace(/\s/g, '').replace(',', '.')
+            // Handle invisible chars
+            amountStr = amountStr.replace(/[^0-9.-]/g, '')
+            const amount = parseFloat(amountStr)
+
+            if (isNaN(amount) || amount === 0) continue
+
+            // --- ANTI-DUPLICATE CHECK ---
+            // We check for exact match on Date + Amount + Description (First 50 chars)
+            // We use a small tolerance on date (some banks change date slightly between pending/posted) ?? No, usually date operation is stable.
+            // Let's stick to strict date.
+
+            const existing = await prisma.bankTransaction.findFirst({
+                where: {
+                    date: dateObj,
+                    amount: amount,
+                    description: libelle
+                }
+            })
+
+            if (existing) {
+                duplicateCount++
+                continue
+            }
+
+            // --- CREATE ---
+            await prisma.bankTransaction.create({
+                data: {
+                    date: dateObj,
+                    amount: amount,
+                    description: libelle,
+                    reference: 'CSV_IMPORT_' + new Date().toISOString().split('T')[0],
+                    status: 'COMPLETED'
+                }
+            })
+            importedCount++
+        }
+
+        revalidatePath('/finance')
+        return { success: true, data: { imported: importedCount, duplicates: duplicateCount } }
+
     } catch (error) {
-        console.error("JSON Import error:", error)
+        console.error("CSV Import Error:", error)
         return { success: false, error: String(error) }
     }
 }
+

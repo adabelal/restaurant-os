@@ -1,0 +1,134 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-01-12",
+  "invoiceNo": "4010100265",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 5.339,
+      "totalPrice": 10.678
+    },
+    {
+      "name": "FUT 15 L SLASH IPA",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 5.012,
+      "totalPrice": 10.024
+    },
+    {
+      "name": "FUT 30 L LOBURG",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 3.505,
+      "totalPrice": 7.01
+    },
+    {
+      "name": "FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 4.915,
+      "totalPrice": 9.83
+    },
+    {
+      "name": "CHIMAY BLEUE 9\u00b0 VC 24X33 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.618,
+      "totalPrice": 1.618
+    },
+    {
+      "name": "CHAMP.L. TOLLET 1er CRU BT",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 18.167,
+      "totalPrice": 18.167
+    },
+    {
+      "name": "BOC CARAIBOS PLANTEUR ILE 6X1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.941,
+      "totalPrice": 2.941
+    },
+    {
+      "name": "LIMONADE SOULTZY LT VC",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.05,
+      "totalPrice": 1.05
+    },
+    {
+      "name": "ORGANIC BIO GINGER BEER25CLVP",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.36,
+      "totalPrice": 1.36
+    },
+    {
+      "name": "NORBERT POMME ABC PET 6X100CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.965,
+      "totalPrice": 1.965
+    },
+    {
+      "name": "BOC CARAIBOS nectar PECHE 6x1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.591,
+      "totalPrice": 2.591
+    },
+    {
+      "name": "MONIN FRAISE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 6.307,
+      "totalPrice": 6.307
+    },
+    {
+      "name": "CRM FRAMBOISE BRIOTTET 70CL18\u00b0",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 10.402,
+      "totalPrice": 10.402
+    },
+    {
+      "name": "CREME PECHE BRIOTTET 70CL18\u00b0",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 8.993,
+      "totalPrice": 8.993
+    },
+    {
+      "name": "CREME MURE BRIOTTET 70 CL 18\u00b0",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 9.57,
+      "totalPrice": 9.57
+    },
+    {
+      "name": "CREME CASSIS 20\u00b0 BRIOTTET 70cl",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 9.165,
+      "totalPrice": 9.165
+    },
+    {
+      "name": "LIMO ROMAN ORANGE 20CLX24 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.656,
+      "totalPrice": 0.656
+    },
+    {
+      "name": "LIMO ROMAN CITRON 20CLX24 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.656,
+      "totalPrice": 0.656
+    }
+  ]
+}

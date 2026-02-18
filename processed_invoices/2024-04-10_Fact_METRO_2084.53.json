@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-10",
+  "invoiceNo": "0/0 (067) 0017/0007682",
+  "totalAmount": 1011.46,
+  "items": [
+    {
+      "name": "WH J. DANIEL'S 70CL 40D",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.83,
+      "totalPrice": 100.98
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 12.867,
+      "totalPrice": 154.4
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.05,
+      "totalPrice": 26.1
+    },
+    {
+      "name": "CACHACA AGUACANA 37.5D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.51,
+      "totalPrice": 23.02
+    },
+    {
+      "name": "BS BUMBU ORIGINAL 40D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 29.53,
+      "totalPrice": 118.12
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 12.357,
+      "totalPrice": 296.56
+    },
+    {
+      "name": "ANGOSTURA BITTER 44. 7D 20CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 29.98
+    },
+    {
+      "name": "AMARRETTO SAN PIETRO 18D 70CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 7.38,
+      "totalPrice": 22.14
+    },
+    {
+      "name": "GET 31 24D 1L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 16.99,
+      "totalPrice": 50.97
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 15.37,
+      "totalPrice": 92.22
+    }
+  ]
+}

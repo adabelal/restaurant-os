@@ -1,0 +1,43 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-07-06",
+  "invoiceNo": "4060100277",
+  "totalAmount": 148.16,
+  "items": [
+    {
+      "name": "24 NORBERT ORANGE.SS.PULP PET6x1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.637,
+      "totalPrice": 6.548
+    },
+    {
+      "name": "24 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 9.824
+    },
+    {
+      "name": "12 BOC CARAIBOS PLANTEUR ILE 6X1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.941,
+      "totalPrice": 5.882
+    },
+    {
+      "name": "24 PERRIER VC 24 x 33 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 1.0
+    },
+    {
+      "name": "2 PARASOL SLASH JUMBO 3M X 3M",
+      "quantity": 0.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-16",
+  "invoiceNo": "0/0 (067) 0013/0070522",
+  "totalAmount": 67.63,
+  "items": [
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.593,
+      "totalPrice": 21.36
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.39,
+      "totalPrice": 4.39
+    },
+    {
+      "name": "KINDER BUENO WHITE",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 0.7,
+      "totalPrice": 20.99
+    },
+    {
+      "name": "BOUNTY BARRE 57G",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.479,
+      "totalPrice": 11.5
+    },
+    {
+      "name": "CANCOILLOTTE IGP NAT 250G ROCH",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.14,
+      "totalPrice": 4.28
+    }
+  ]
+}

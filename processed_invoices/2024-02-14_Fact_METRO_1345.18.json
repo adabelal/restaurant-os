@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-14",
+  "invoiceNo": "0/0 (067) 0001/0007382",
+  "totalAmount": 149.59,
+  "items": [
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.27,
+      "totalPrice": 17.27
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.53,
+      "totalPrice": 6.12
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.22,
+      "totalPrice": 7.22
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.64,
+      "totalPrice": 3.28
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 5.44,
+      "totalPrice": 16.32
+    },
+    {
+      "name": "CELERI BOTTE 6 FRA C1FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    },
+    {
+      "name": "COURG 14/21 METRO CHEF 5KG ES C1 20 ESPAGNE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 18.09,
+      "totalPrice": 54.27
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.51,
+      "totalPrice": 23.02
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG X56 C1 MAROCMAROC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.83,
+      "totalPrice": 9.83
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.69,
+      "totalPrice": 5.69
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.75,
+      "totalPrice": 16.5
+    },
+    {
+      "name": "WH J. DANIEL'S 70CL 40D",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 16.83,
+      "totalPrice": 100.98
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.233,
+      "totalPrice": 173.6
+    },
+    {
+      "name": "GIN LIONHEART DLT 37,5D 70CL",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 7.97,
+      "totalPrice": 39.85
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 10.18,
+      "totalPrice": 122.16
+    }
+  ]
+}

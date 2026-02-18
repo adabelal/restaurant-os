@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-02-11",
+  "invoiceNo": "3110500013",
+  "totalAmount": 130.7,
+  "items": [
+    {
+      "name": "15 FUT 15 L SLASH IPA",
+      "quantity": 15.0,
+      "unit": "L",
+      "unitPrice": 5.012,
+      "totalPrice": 82.1
+    }
+  ]
+}

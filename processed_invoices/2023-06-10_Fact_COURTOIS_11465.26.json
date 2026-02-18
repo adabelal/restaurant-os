@@ -1,0 +1,113 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-06-10",
+  "invoiceNo": "3060500208",
+  "totalAmount": 11465.26,
+  "items": [
+    {
+      "name": "240 FUT 30 L LOBURG",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.505,
+      "totalPrice": 948.24
+    },
+    {
+      "name": "120 FUT 20 L TRIPEL KARMELIET",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.338,
+      "totalPrice": 715.68
+    },
+    {
+      "name": "195 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.714,
+      "totalPrice": 953.55
+    },
+    {
+      "name": "180 FUT 30 L SLASH MANGO",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.122,
+      "totalPrice": 1034.64
+    },
+    {
+      "name": "2 MONIN GRENADINE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 9.43
+    },
+    {
+      "name": "2 MONIN FRAISE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.307,
+      "totalPrice": 12.61
+    },
+    {
+      "name": "1 MONIN FRAISE DES BOIS 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.954,
+      "totalPrice": 6.95
+    },
+    {
+      "name": "1 MONIN FRAISE BONBON 70 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.588,
+      "totalPrice": 7.59
+    },
+    {
+      "name": "2 MONIN MENTHE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 9.43
+    },
+    {
+      "name": "1 MONIN MENTHE GLACIALE 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.523,
+      "totalPrice": 11.05
+    },
+    {
+      "name": "2 MONIN CITRON SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 9.43
+    },
+    {
+      "name": "2 MONIN GLASCO CITRON 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.187,
+      "totalPrice": 10.37
+    },
+    {
+      "name": "2 MONIN BANANE VERTE 100CL SIROP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.803,
+      "totalPrice": 15.61
+    },
+    {
+      "name": "2 MOMIN PECHE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.224,
+      "totalPrice": 14.45
+    },
+    {
+      "name": "1 MONIN ORGEAT SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.523,
+      "totalPrice": 5.52
+    }
+  ]
+}

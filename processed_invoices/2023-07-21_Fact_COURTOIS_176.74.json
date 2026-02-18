@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-07-21",
+  "invoiceNo": "3070100957",
+  "totalAmount": 176.74,
+  "items": [
+    {
+      "name": "BTGAZ MIXTE70/30 CO2/AZOTE4m3",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 74.625,
+      "totalPrice": 74.63
+    }
+  ]
+}

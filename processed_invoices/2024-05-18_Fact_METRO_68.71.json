@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-18",
+  "invoiceNo": "0/0 (067) 0014/0177522",
+  "totalAmount": 68.71,
+  "items": [
+    {
+      "name": "FAR CLASSICA TOO W220-240 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.64,
+      "totalPrice": 6.64
+    },
+    {
+      "name": "CHORIZO BELLOTA 500G ENV",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.76,
+      "totalPrice": 11.15
+    },
+    {
+      "name": "AIGUILLETTE PLT CORNF HAL 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.49,
+      "totalPrice": 7.49
+    },
+    {
+      "name": "WINGS PLT CRUNCH SPICY 1KG HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.52,
+      "totalPrice": 6.52
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.46
+    },
+    {
+      "name": "FRAISE PLT 1KG ESP C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.49,
+      "totalPrice": 5.49
+    },
+    {
+      "name": "FRAMBOISE 125G MAROC C1 PieceMAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.49,
+      "totalPrice": 1.49
+    },
+    {
+      "name": "CHOU CHINOIS ESP CAT 1 8 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 1.89,
+      "totalPrice": 1.89
+    }
+  ]
+}

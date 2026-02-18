@@ -1,0 +1,71 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-08-09",
+  "invoiceNo": "0/0 (067) 0014/0342602",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "WH JACK DANIEL'S 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.86,
+      "totalPrice": 15.86
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.91,
+      "totalPrice": 71.46
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 44.1
+    },
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.93,
+      "totalPrice": 7.93
+    },
+    {
+      "name": "RH PLANTERAY DARK 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.62,
+      "totalPrice": 17.62
+    },
+    {
+      "name": "CACHACA AGUACANA 37.5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.05,
+      "totalPrice": 10.05
+    },
+    {
+      "name": "BS BUMBU ORIGINAL 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 28.87,
+      "totalPrice": 28.87
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.435,
+      "totalPrice": 68.61
+    },
+    {
+      "name": "ANGOSTURA BITTER 44. 7D 20CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.57,
+      "totalPrice": 13.57
+    }
+  ]
+}

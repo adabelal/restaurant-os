@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-06-28",
+  "invoiceNo": "4060101205",
+  "totalAmount": 1244.94,
+  "items": [
+    {
+      "name": "CONSIG.",
+      "quantity": 0.0,
+      "unit": "U",
+      "unitPrice": 1108.27,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "TOTAL",
+      "quantity": 0.0,
+      "unit": "U",
+      "unitPrice": 20.14,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "DECONS.",
+      "quantity": 0.0,
+      "unit": "U",
+      "unitPrice": 246.73,
+      "totalPrice": 0.0
+    }
+  ]
+}

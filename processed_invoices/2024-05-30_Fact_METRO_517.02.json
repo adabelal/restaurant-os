@@ -1,0 +1,57 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-30",
+  "invoiceNo": "067/045",
+  "totalAmount": 517.02,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 16.76,
+      "unit": "kg",
+      "unitPrice": 12.84,
+      "totalPrice": 215.2
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 4.185,
+      "unit": "kg",
+      "unitPrice": 18.44,
+      "totalPrice": 77.17
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 12.0,
+      "unit": "kg",
+      "unitPrice": 6.84,
+      "totalPrice": 82.08
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 9.5,
+      "unit": "kg",
+      "unitPrice": 9.88,
+      "totalPrice": 93.86
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 2.01,
+      "unit": "kg",
+      "unitPrice": 3.85,
+      "totalPrice": 7.74
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 2.41,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 4.82
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 9.2,
+      "unit": "kg",
+      "unitPrice": 9.2,
+      "totalPrice": 9.2
+    }
+  ]
+}

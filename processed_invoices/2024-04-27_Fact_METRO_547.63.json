@@ -1,0 +1,246 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-27",
+  "invoiceNo": "0/0 (067) 0014/0151572",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "PAIN CRAQUANT BREAKFAST 240G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.28,
+      "totalPrice": 3.28
+    },
+    {
+      "name": "KELLOGG'S CORN FLAKES 500G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.33,
+      "totalPrice": 2.33
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 50CL BT BRID",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.81,
+      "totalPrice": 4.86
+    },
+    {
+      "name": "LACTE FRUIT 4X125G ABRICOT E-V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.87,
+      "totalPrice": 1.87
+    },
+    {
+      "name": "YAOURT GREC 1KG METRO CHEF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.7,
+      "totalPrice": 4.7
+    },
+    {
+      "name": "JUS ACE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.74,
+      "totalPrice": 2.74
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.35,
+      "totalPrice": 11.35
+    },
+    {
+      "name": "GALET DE LA LOIRE 260G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.32,
+      "totalPrice": 3.32
+    },
+    {
+      "name": "COEUR NEUFCHATEL AOP 200G CATE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.88,
+      "totalPrice": 2.88
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.81,
+      "totalPrice": 19.74
+    },
+    {
+      "name": "P. MIE COMPLET LC 550G ROCHAMB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.37,
+      "totalPrice": 1.37
+    },
+    {
+      "name": "8 PAIN CHOCOLAT LC 360G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.75,
+      "totalPrice": 1.75
+    },
+    {
+      "name": "RILLETTES MANS 1KG RUSTADOU",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.71,
+      "totalPrice": 11.71
+    },
+    {
+      "name": "JB CRU PAYS 20T 500G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.2,
+      "totalPrice": 10.4
+    },
+    {
+      "name": "CORDON BLEU DINDE 8X125G HALAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.73,
+      "totalPrice": 7.73
+    },
+    {
+      "name": "SCISSON AIL FUME VPF 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.13,
+      "totalPrice": 4.13
+    },
+    {
+      "name": "CHORIZO TR. EXT 250G TAPAS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.99,
+      "totalPrice": 3.99
+    },
+    {
+      "name": "SCISSON SEC SUPAVEYR 2X200G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.02,
+      "totalPrice": 8.02
+    },
+    {
+      "name": "SCISSON COMTE NOISET 2X200G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.84,
+      "totalPrice": 7.84
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 24.06
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 29.24
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 26.51
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 21.96
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 28.47
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 27.07
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 22.52
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 16.91
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 20.0
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 21.42
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 20.92
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 23.77
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 20.18
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 20.14
+    }
+  ]
+}

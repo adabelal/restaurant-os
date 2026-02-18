@@ -1,0 +1,141 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-09",
+  "invoiceNo": "0/0 (067) 0014/012771",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "WH J. DANIEL'S 70CL 40D",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 15.59,
+      "totalPrice": 93.54
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 10.75,
+      "totalPrice": 129.0
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 12.85,
+      "totalPrice": 25.7
+    },
+    {
+      "name": "CACHACA AGUACANA 37.5D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 10.41,
+      "totalPrice": 20.82
+    },
+    {
+      "name": "BS BUMBU ORIGINAL 40D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 26.49,
+      "totalPrice": 105.96
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 9.96,
+      "totalPrice": 239.04
+    },
+    {
+      "name": "ANGOSTURA BITTER 44. 7D 20CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 15.71,
+      "totalPrice": 31.42
+    },
+    {
+      "name": "AMARRETTO SAN PIETRO 18D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 6.71,
+      "totalPrice": 20.13
+    },
+    {
+      "name": "GET 31 24D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 17.11,
+      "totalPrice": 51.33
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 13.97,
+      "totalPrice": 83.82
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 3.25,
+      "totalPrice": 117.0
+    },
+    {
+      "name": "CARAIBOS COCKT. ILES VP 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 2.628,
+      "totalPrice": 15.77
+    },
+    {
+      "name": "CARAIBOS COCKT. ILES VP 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 2.628,
+      "totalPrice": 15.77
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.99,
+      "totalPrice": 71.28
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.36,
+      "totalPrice": 28.32
+    },
+    {
+      "name": "LE FRUIT DE MONIN COCO 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 11.06,
+      "totalPrice": 22.12
+    },
+    {
+      "name": "LE FRUIT DE MONIN PASSION 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 11.06,
+      "totalPrice": 22.12
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.58,
+      "totalPrice": 94.8
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.31,
+      "totalPrice": 19.31
+    }
+  ]
+}

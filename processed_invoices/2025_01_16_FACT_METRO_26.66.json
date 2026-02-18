@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-16",
+  "invoiceNo": "0/0 (067) 0014/0017972",
+  "totalAmount": 26.66,
+  "items": [
+    {
+      "name": "MERGUEZ BFMOUT STD2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.79,
+      "totalPrice": 25.27
+    }
+  ]
+}

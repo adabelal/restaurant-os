@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-24",
+  "invoiceNo": "0/0 (067) 0015/0091182",
+  "totalAmount": 16.62,
+  "items": [
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 15.75,
+      "totalPrice": 15.75
+    }
+  ]
+}

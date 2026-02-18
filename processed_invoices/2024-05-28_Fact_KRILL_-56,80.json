@@ -1,0 +1,15 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-05-28",
+  "invoiceNo": "755498",
+  "totalAmount": -56.8,
+  "items": [
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30\nS/V UK UE PTF",
+      "quantity": -3.638,
+      "unit": "kg",
+      "unitPrice": 14.8,
+      "totalPrice": -53.84
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "supplierName": "KRILL",
+  "date": "2025-02-07",
+  "invoiceNo": "801963",
+  "totalAmount": -16.44,
+  "items": [
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 9.905,
+      "unit": "kg",
+      "unitPrice": -1.573,
+      "totalPrice": -15.58
+    }
+  ]
+}

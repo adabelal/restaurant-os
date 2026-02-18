@@ -1,0 +1,29 @@
+{
+  "supplierName": "KRILL",
+  "date": "2023-10-11",
+  "invoiceNo": "00721154",
+  "totalAmount": 345.39,
+  "items": [
+    {
+      "name": "ENTRECOTE VB SEMI-PARE CHAROLAISE 4/7 KG",
+      "quantity": 5.15,
+      "unit": "kg",
+      "unitPrice": 21.55,
+      "totalPrice": 110.98
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.03,
+      "unit": "U",
+      "unitPrice": 0.097,
+      "totalPrice": 0.5
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30",
+      "quantity": 14.588,
+      "unit": "kg",
+      "unitPrice": 20.335,
+      "totalPrice": 215.9
+    }
+  ]
+}

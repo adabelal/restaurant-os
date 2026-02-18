@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-07-16",
+  "invoiceNo": "067/049",
+  "totalAmount": 810.69,
+  "items": [
+    {
+      "name": "VODKA FJOROWKA DLT 37, 5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 44.1
+    },
+    {
+      "name": "TEQ SAN JOSE SILVER 35D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.54,
+      "totalPrice": 207.72
+    },
+    {
+      "name": "TEQ SAN JOSE SILVER 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.54,
+      "totalPrice": 69.24
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.4,
+      "totalPrice": 225.6
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.642,
+      "totalPrice": 115.7
+    },
+    {
+      "name": "ANGOSTURA BITTER 44.7D 20CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.97,
+      "totalPrice": 47.91
+    },
+    {
+      "name": "ROCHAMBEAU NECTAR MULTI BRIKIL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.328,
+      "totalPrice": 23.91
+    },
+    {
+      "name": "ARO ORANGE MULTI ABC BRIC 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.633,
+      "totalPrice": 29.4
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.02,
+      "totalPrice": 73.44
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.756,
+      "totalPrice": 42.14
+    },
+    {
+      "name": "PERRIER IL PET",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.593,
+      "totalPrice": 42.72
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.46,
+      "totalPrice": 13.46
+    },
+    {
+      "name": "MPRO 500 PAILLE NOIR D6 20CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.96,
+      "totalPrice": 5.96
+    }
+  ]
+}

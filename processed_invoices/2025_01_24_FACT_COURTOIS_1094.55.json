@@ -1,0 +1,99 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-01-24",
+  "invoiceNo": "5010100682",
+  "totalAmount": 72.0,
+  "items": [
+    {
+      "name": "72 PERRIER VC 24 x 33 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 1.0
+    },
+    {
+      "name": "60 FUT 30 L LOBURG",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 3.705,
+      "totalPrice": 3.705
+    },
+    {
+      "name": "30 FUT 15L ROSE BLANCHE BRUXELLE",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 5.022,
+      "totalPrice": 5.022
+    },
+    {
+      "name": "40 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 5.464,
+      "totalPrice": 5.464
+    },
+    {
+      "name": "24 KWAK 24X33CL VC 8.4\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.429,
+      "totalPrice": 1.429
+    },
+    {
+      "name": "2 CREME CASSIS 20\u00b0 BRIOTTET 70cl",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 9.211,
+      "totalPrice": 9.211
+    },
+    {
+      "name": "6 RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 15.332,
+      "totalPrice": 15.332
+    },
+    {
+      "name": "12 LIMONADE SOULTZY LT VC",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.075,
+      "totalPrice": 1.075
+    },
+    {
+      "name": "12 PET SOLAL ANANAS ABC 6x1LT",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.64,
+      "totalPrice": 1.64
+    },
+    {
+      "name": "12 NORBERT NECTAR ORANGE PET6x1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.151,
+      "totalPrice": 1.151
+    },
+    {
+      "name": "3 LT PUREE PASSION MONIN",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 9.031,
+      "totalPrice": 9.031
+    },
+    {
+      "name": "12 LT PERRIER FINE.BULLE.VC 12",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 0.999,
+      "totalPrice": 0.999
+    },
+    {
+      "name": "1 LT PUREE PASSION MONIN",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 9.031,
+      "totalPrice": 9.031
+    }
+  ]
+}

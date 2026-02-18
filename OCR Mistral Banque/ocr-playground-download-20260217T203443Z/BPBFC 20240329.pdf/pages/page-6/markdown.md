@@ -1,0 +1,71 @@
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 2 AU 29/03/2024
+
+|  DATE COMPTA | LIBELLE / REFERENCE | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- |
+|  25/03 | PRLV SEPA EPISAVEURS EST
+/INV/8971547025 15.3.2024
+00007SS000016712 | 0E4OHHJ | 25/03 | 25/03  |
+|  25/03 | 230324 CB***7917
+BI1 FR MONTHOLON
+20,71EUR 1 EURO = 1,000000 | 3XQEX66 | 25/03 | 25/03  |
+|  25/03 | 210324 CB***7917
+SAS PASCAULT FR MONTHOLON
+34,56EUR 1 EURO = 1,000000 | 3XQEX67 | 25/03 | 25/03  |
+|  25/03 | 220324 CB***7917
+METRO FR MONETEAU067
+80,33EUR 1 EURO = 1,000000 | 3XQEX68 | 25/03 | 25/03  |
+|  25/03 | 230324 CB***6839
+METRO FR MONETEAU067
+465,56EUR 1 EURO = 1,000000 | 3XQHTQ7 | 25/03 | 25/03  |
+|  25/03 | REMISE CB 5401547011
+BRUT 36,80E - COM 0,12E
+- NB0003/175166 | 0308166 | 25/03 | 25/03  |
+|  25/03 | REMISE CB 5401547011
+BRUT 459,30E - COM 1,48E
+- NB0004/175368 | 0309368 | 25/03 | 25/03  |
+|  26/03 | 250324 CB***7917
+METRO FR MONETEAU067
+22,97EUR 1 EURO = 1,000000 | 3ZDYR4Z | 26/03 | 26/03  |
+|  26/03 | MLE FLORENT MANON
+Virement de Sarl Siwa
+salaire mars de Sarl Siwa | 8896349 | 26/03 | 26/03  |
+|  28/03 | PRLV SEPA FMB
+PRLT FCT N-0742567 DU 15-03-24
+FMB059-00003006-001 | 0E5ZUXU | 28/03 | 28/03  |
+|  28/03 | 270324 CB***7917
+GRAND FRAIS FR PERRIGNY
+183,26EUR 1 EURO = 1,000000 | 42P1FWW | 28/03 | 28/03  |
+|  28/03 | Bureau veritas
+Virement de Sarl Siwa
+fact 24144969 de Sarl Siwa | 9010325 | 28/03 | 28/03  |
+|  29/03 | 280324 CB***7917
+MAISON DE LA PRFR MONTHOLON
+120,00EUR 1 EURO = 1,000000 | 44CKTNY | 29/03 | 29/03  |
+|  29/03 | REMISE CB 5401547011
+BRUT 687,75E - COM 2,19E
+- NB0009/158696 | 0310696 | 29/03 | 29/03  |
+|  29/03 | REMISE CB 5401547011
+BRUT 255,85E - COM 0,82E
+- NB0007/157891 | 0311891 | 29/03 | 29/03  |
+|  TOTAL DES MOUVEMENTS DEBITEURS |   |   |   | - 30 214,43 €  |
+|  TOTAL DES MOUVEMENTS CREDITEURS |   |   |   | 38 289,29 €  |
+|  SOLDE CREDITEUR AU 29/03/2024* |   |   |   | 47 965,63 €  |
+
+(*) Sous réserve des opérations en cours d'enregistrement et d'une provision suffisante et disponible lors de l'arrêté du solde du compte réalisé en fin de journée. Ce document ne justifie pas la déduction de la TVA ou de la charge en matière d'impôt direct.
+
+# DETAIL DE VOS MOUVEMENTS SEPA
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 2 AU 29/03/2024
+
+|  DATE | DETAIL DE VOS PRELEVEMENTS SEPA RECUS | DEBIT  |
+| --- | --- | --- |
+|  04/03 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0115786024
+PRELEVEMENT | 1 422,13 €  |
+|  05/03 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0115814583
+PRELEVEMENT | 347,91 €  |
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts

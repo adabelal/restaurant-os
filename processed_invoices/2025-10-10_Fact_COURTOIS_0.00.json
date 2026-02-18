@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-10-10",
+  "invoiceNo": "5100100668",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "1 MACHINE CAFE SAECO MAGIC B2 AVEC GARANTIE SAECO PROMOTION N\u00b0SERIE 9J0426 N\u00b0COURTOIS 1476",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2150.0,
+      "totalPrice": 2150.0
+    }
+  ]
+}

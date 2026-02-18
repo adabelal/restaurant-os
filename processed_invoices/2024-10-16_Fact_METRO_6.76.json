@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-16",
+  "invoiceNo": "0/0 (067) 0015/016745",
+  "totalAmount": 6.76,
+  "items": [
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.4,
+      "totalPrice": 6.41
+    }
+  ]
+}

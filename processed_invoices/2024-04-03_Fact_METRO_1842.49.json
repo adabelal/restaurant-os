@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-04",
+  "invoiceNo": "0/0 (067) 0017/000605",
+  "totalAmount": 57.8,
+  "items": [
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.88,
+      "totalPrice": 137.81
+    },
+    {
+      "name": "MIEUXA JAVEL 9,6% 10L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 10.9,
+      "totalPrice": 10.9
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.8,
+      "totalPrice": 10.8
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 1.108,
+      "totalPrice": 26.6
+    },
+    {
+      "name": "COCA COLA REG PET 1,25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.763,
+      "totalPrice": 84.64
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 28.54,
+      "totalPrice": 28.54
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.31,
+      "totalPrice": 7.86
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG 56 MAROC C1MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.81,
+      "totalPrice": 11.81
+    },
+    {
+      "name": "OIG CHARC MC 7/10 8KG C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.59,
+      "totalPrice": 9.59
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 12.867,
+      "totalPrice": 77.2
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37, 5D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 7.233,
+      "totalPrice": 86.8
+    },
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 7.98,
+      "totalPrice": 47.88
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 13.05,
+      "totalPrice": 39.15
+    }
+  ]
+}

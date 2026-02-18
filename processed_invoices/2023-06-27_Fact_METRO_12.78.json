@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-27",
+  "invoiceNo": "113/998",
+  "totalAmount": 12.78,
+  "items": [
+    {
+      "name": "2178721 ECUMOIRE MONOBLOC INOX D. 10 CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.65,
+      "totalPrice": 10.65
+    }
+  ]
+}

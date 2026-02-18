@@ -1,0 +1,99 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-05-31",
+  "invoiceNo": "4050101139",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "1 BTGAZ MIXTE70/30 CO2/AZOTE4m3",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 77.65,
+      "totalPrice": 77.65
+    },
+    {
+      "name": "6 MONIN HIBISCUS SIROP 70 CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 6.954,
+      "totalPrice": 41.72
+    },
+    {
+      "name": "2 ANGOSTURA 1919 ETUI 70CL 40\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 29.535,
+      "totalPrice": 59.07
+    },
+    {
+      "name": "100 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 5.463,
+      "totalPrice": 610.0
+    },
+    {
+      "name": "120 FUT 30 L LOBURG",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 3.705,
+      "totalPrice": 499.08
+    },
+    {
+      "name": "105 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 5.021,
+      "totalPrice": 546.0
+    },
+    {
+      "name": "24 033DELIRIUM TREMENS 8\u00b05 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.517,
+      "totalPrice": 41.76
+    },
+    {
+      "name": "24 KWAK 24X33CL VC 8.4\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.429,
+      "totalPrice": 39.6
+    },
+    {
+      "name": "6 BOURG.ALIGOTE BT COURTOIS Cx6b DOM.PERSENOT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.94,
+      "totalPrice": 35.64
+    },
+    {
+      "name": "6 KG CAFE LAVAZZA GRAIN supCREMA",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 21.95,
+      "totalPrice": 131.7
+    },
+    {
+      "name": "40 FUT 20L FISCHER DORELEI AMBREE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.065,
+      "totalPrice": 222.68
+    },
+    {
+      "name": "12 MONIN MOJITO MINT 70 CL",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 6.543,
+      "totalPrice": 78.52
+    },
+    {
+      "name": "2 MONIN MENTHE SIROP 100 CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 4.716,
+      "totalPrice": 9.43
+    }
+  ]
+}

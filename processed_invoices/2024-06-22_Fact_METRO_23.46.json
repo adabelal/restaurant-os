@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-06-22",
+  "invoiceNo": "0/0 (067) 0017/0023122",
+  "totalAmount": 23.46,
+  "items": [
+    {
+      "name": "2365047 EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.17,
+      "totalPrice": 22.24
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-01",
+  "invoiceNo": "067/008",
+  "totalAmount": 40.0,
+  "items": [
+    {
+      "name": "CONSIGNE PAL EUROPE METRO",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 20.0,
+      "totalPrice": 40.0
+    }
+  ]
+}

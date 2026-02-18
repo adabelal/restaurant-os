@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-14",
+  "invoiceNo": "067/045",
+  "totalAmount": 125.95,
+  "items": [
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.37,
+      "totalPrice": 119.38
+    }
+  ]
+}

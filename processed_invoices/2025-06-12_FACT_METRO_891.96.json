@@ -1,0 +1,183 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-12",
+  "invoiceNo": "0/0 (067) 0017/0024322",
+  "totalAmount": 733.34,
+  "items": [
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.89,
+      "totalPrice": 17.89
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.88,
+      "totalPrice": 15.46
+    },
+    {
+      "name": "BEURRE DX PLQ 250G ROCHAMBEAU",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 2.6,
+      "totalPrice": 20.8
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 8.94,
+      "totalPrice": 26.82
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.36,
+      "totalPrice": 13.36
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.39,
+      "totalPrice": 21.19
+    },
+    {
+      "name": "TOMATE CONFITE 1KG METRO CHEF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.72,
+      "totalPrice": 11.72
+    },
+    {
+      "name": "CELERI RAVE PC8 FR FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.07,
+      "totalPrice": 6.14
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 FRFRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    },
+    {
+      "name": "FENOUIL 3K ITITALIE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.9,
+      "totalPrice": 11.8
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.77,
+      "totalPrice": 17.54
+    },
+    {
+      "name": "PV VERT MC 90/110 2.5Kg ESP C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.97,
+      "totalPrice": 10.97
+    },
+    {
+      "name": "CONCOMBRE MC C. 4/5 PC12 C1 FRFRANCE",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 0.76,
+      "totalPrice": 5.32
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.09,
+      "totalPrice": 84.08
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.14,
+      "totalPrice": 195.94
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.66,
+      "totalPrice": 153.59
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.62,
+      "totalPrice": 7.43
+    },
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 6.44,
+      "totalPrice": 19.32
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 54.25
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.97,
+      "totalPrice": 16.97
+    },
+    {
+      "name": "MC CUMIN MOULU 400G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.59,
+      "totalPrice": 8.59
+    },
+    {
+      "name": "ARO JUS CITRON JAUNE 1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.0,
+      "totalPrice": 18.0
+    },
+    {
+      "name": "POIVRE NOIR MOULU 1KG ARO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.55,
+      "totalPrice": 19.55
+    },
+    {
+      "name": "TOPPING MOKA 1, 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.51,
+      "totalPrice": 9.51
+    },
+    {
+      "name": "SUCETTE CORAZON COEUR CERISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.57,
+      "totalPrice": 12.57
+    }
+  ]
+}

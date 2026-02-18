@@ -1,0 +1,92 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-11-10",
+  "invoiceNo": "4100100411",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "60 FUT 15 L SLASH MANGO",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 5.243,
+      "totalPrice": 352.8
+    },
+    {
+      "name": "60 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 5.463,
+      "totalPrice": 366.0
+    },
+    {
+      "name": "4 MONIN GLASCO CITRON 100 CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 5.187,
+      "totalPrice": 20.75
+    },
+    {
+      "name": "4 MONIN GRENADINE SIROP 100 CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 18.86
+    },
+    {
+      "name": "8 MONIN MENTHE SIROP 100 CL",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 37.73
+    },
+    {
+      "name": "4 MONIN PECHE SIROP 100 CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 7.224,
+      "totalPrice": 28.9
+    },
+    {
+      "name": "42 PET SOLAL ANANAS ABC 6x1LT LE COMTPOIR",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 1.64,
+      "totalPrice": 68.88
+    },
+    {
+      "name": "24 PET SOLAL POMME ABC 6x1LT sans sucre ajout\u00e9 LE COMPTOIR",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.76,
+      "totalPrice": 42.24
+    },
+    {
+      "name": "24 ELSASS COLA ZERO 33CLX24 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.688,
+      "totalPrice": 16.78
+    },
+    {
+      "name": "48 ELSASS COLA 33CLX24 VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.657,
+      "totalPrice": 33.55
+    },
+    {
+      "name": "24 LIMONADE SOULTZY LT VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.074,
+      "totalPrice": 28.32
+    },
+    {
+      "name": "30 LES PLOS BLANC CHARD.IGP BT Maison Ventenac - Chardonnay",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 5.591,
+      "totalPrice": 167.73
+    }
+  ]
+}

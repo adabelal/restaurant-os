@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-07",
+  "invoiceNo": "0/0 (067) 0017/0025912",
+  "totalAmount": 4.84,
+  "items": [
+    {
+      "name": "CRISTALI 50CL PET",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.191,
+      "totalPrice": 4.59
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-15",
+  "invoiceNo": "0/0 (067) 0014/013533",
+  "totalAmount": 274.89,
+  "items": [
+    {
+      "name": "MC CAPRES CAPUCINES PET 950G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.36,
+      "totalPrice": 5.36
+    },
+    {
+      "name": "ARO HUILE OLIVE VE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 10.44,
+      "totalPrice": 10.44
+    },
+    {
+      "name": "MC VINAIGRE CIDRE BIO* 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.1,
+      "totalPrice": 3.1
+    },
+    {
+      "name": "GROS SEL GUERANDE SAC 5KG",
+      "quantity": 5.0,
+      "unit": "kg",
+      "unitPrice": 1.63,
+      "totalPrice": 8.15
+    },
+    {
+      "name": "FLT TRUITE 1.3/1.9 S/V X20 EL/NO. ONCORHYNCHUS MYKISS 8,630",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 19.99,
+      "totalPrice": 172.51
+    },
+    {
+      "name": "LIME CAL 54/60 FILET 1KG BRESIL C1 BRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.99,
+      "totalPrice": 4.99
+    },
+    {
+      "name": "POM GALA 136/180 8kg METRO CHEF C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.32,
+      "totalPrice": 14.32
+    },
+    {
+      "name": "PDT CONSO AGATA 40+ C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.9,
+      "totalPrice": 9.9
+    },
+    {
+      "name": "100 PIPETTE PLAST 4ML",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.26,
+      "totalPrice": 6.26
+    },
+    {
+      "name": "VERRE BODEGA CRIST 25CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 7.23,
+      "totalPrice": 21.69
+    }
+  ]
+}

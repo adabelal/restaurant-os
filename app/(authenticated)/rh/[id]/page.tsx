@@ -14,7 +14,7 @@ import { toast } from "sonner"
 import {
     FileText, Save, ArrowLeft, ExternalLink, Archive, UserCheck,
     Phone, MapPin, Mail, Euro, Calendar,
-    ShieldCheck, Clock, Download, Plus, ChevronLeft, ChevronRight, Trash2
+    ShieldCheck, Clock, Download, Plus, ChevronLeft, ChevronRight, Trash2, Check
 } from "lucide-react"
 import Link from "next/link"
 import { EditShiftDialog } from "@/components/rh/EditShiftDialog"
@@ -255,6 +255,38 @@ export default async function EmployeeDetailPage({
                     {/* ONGLET 3: DOSSIER JURIDIQUE */}
                     <TabsContent value="legal" className="grid md:grid-cols-3 gap-6">
                         <div className="md:col-span-2 space-y-6">
+                            {/* Checklist Onboarding */}
+                            <Card className="border-none shadow-sm bg-indigo-50/50">
+                                <CardHeader className="pb-3">
+                                    <CardTitle className="text-base font-bold text-indigo-900 flex items-center gap-2">
+                                        <ShieldCheck className="h-5 w-5 text-indigo-600" />
+                                        Conformité Onboarding
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                        {[
+                                            { label: "Contrat Signé", type: "CONTRACT" },
+                                            { label: "Carte Identité / Passeport", type: "ID_CARD" },
+                                            { label: "Titre de Séjour / Autoris.", type: "RESIDENCE_PERMIT" }, // Need to map 'OTHER' sometimes
+                                            { label: "Mutuelle / RIB", type: "INSURANCE" }
+                                        ].map((item, i) => {
+                                            const isPresent = employee.documents.some((d: any) => d.type === item.type);
+                                            // Fallback logic for ease of use: Check names or generic 'OTHER' if specific type missing
+                                            const isLikelyPresent = isPresent || employee.documents.some((d: any) => d.name.toLowerCase().includes(item.type === 'ID_CARD' ? 'identi' : item.type === 'CONTRACT' ? 'contrat' : 'titre'));
+
+                                            return (
+                                                <div key={i} className={`flex items-center gap-3 p-3 rounded-lg border ${isLikelyPresent ? 'bg-white border-emerald-200 shadow-sm' : 'bg-white/50 border-slate-200 border-dashed opacity-70'}`}>
+                                                    <div className={`h-6 w-6 rounded-full flex items-center justify-center border ${isLikelyPresent ? 'bg-emerald-500 border-emerald-500 text-white' : 'bg-transparent border-slate-300'}`}>
+                                                        {isLikelyPresent && <Check className="h-3 w-3" />}
+                                                    </div>
+                                                    <span className={`text-xs font-bold leading-tight ${isLikelyPresent ? 'text-slate-800' : 'text-slate-400'}`}>{item.label}</span>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </CardContent>
+                            </Card>
                             <Card className="border-none shadow-sm">
                                 <CardHeader className="bg-slate-50 border-b">
                                     <div className="flex justify-between items-center">

@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-25",
+  "invoiceNo": "0/0 (067) 0013/0017322",
+  "totalAmount": 22.97,
+  "items": [
+    {
+      "name": "TROPICO L'ORIG BTE 33 CL SLIM",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.54,
+      "totalPrice": 12.96
+    },
+    {
+      "name": "ROCHE DES ECRINS 1.5L PET",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.31,
+      "totalPrice": 1.86
+    },
+    {
+      "name": "CRISTALI 1.5L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.18,
+      "totalPrice": 1.08
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.87,
+      "totalPrice": 5.87
+    }
+  ]
+}

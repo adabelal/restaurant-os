@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-06",
+  "invoiceNo": "0/0 (067) 0002/0098522",
+  "totalAmount": 293.7,
+  "items": [
+    {
+      "name": "0394262 GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.08,
+      "totalPrice": 37.03
+    },
+    {
+      "name": "0394262 GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.08,
+      "totalPrice": 169.51
+    },
+    {
+      "name": "1632140 POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.18,
+      "totalPrice": 71.85
+    }
+  ]
+}

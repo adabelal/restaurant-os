@@ -1,0 +1,183 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-27",
+  "invoiceNo": "0/0 (067) 0002/010742",
+  "totalAmount": 1683.16,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.37,
+      "totalPrice": 374.89
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 20.26,
+      "totalPrice": 88.64
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.12,
+      "totalPrice": 48.66
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.09,
+      "totalPrice": 150.54
+    },
+    {
+      "name": "FILET DND HAL FR 1.5KG SV",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.23,
+      "totalPrice": 196.32
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.14,
+      "totalPrice": 139.87
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.1,
+      "totalPrice": 11.77
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 11.5,
+      "totalPrice": 23.0
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 10.0,
+      "unit": "kg",
+      "unitPrice": 10.89,
+      "totalPrice": 108.9
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.35,
+      "totalPrice": 15.35
+    },
+    {
+      "name": "SEL FIN CEREBOS SEAU 5 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.2,
+      "totalPrice": 5.2
+    },
+    {
+      "name": "ROCH FS KETCHUP 350G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.4,
+      "totalPrice": 8.4
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 18.46,
+      "totalPrice": 18.46
+    },
+    {
+      "name": "CITRON VERT 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.79,
+      "totalPrice": 14.79
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.34,
+      "totalPrice": 15.34
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.088,
+      "totalPrice": 26.12
+    },
+    {
+      "name": "CELERI RAVE FR 8 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 4.38
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.52,
+      "totalPrice": 7.56
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 4.36
+    },
+    {
+      "name": "COURG 14/21 MC 5 KG C1 FR FRANCE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 9.83,
+      "totalPrice": 29.49
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 6.53,
+      "totalPrice": 19.59
+    },
+    {
+      "name": "01G CHARC 7/10 8KG DMLT C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.35,
+      "totalPrice": 11.35
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 7.23,
+      "totalPrice": 21.69
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.69,
+      "totalPrice": 5.69
+    },
+    {
+      "name": "ST LOUIS PDRE SACH. POLY 1KG",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 1.8,
+      "totalPrice": 10.8
+    }
+  ]
+}

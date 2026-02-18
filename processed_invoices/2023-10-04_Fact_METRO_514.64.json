@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-04-10",
+  "invoiceNo": "0/0 (067) 0013/027118",
+  "totalAmount": 367.86,
+  "items": [
+    {
+      "name": "RHUM ANGOSTURA 1919 40D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 21.61,
+      "totalPrice": 21.61
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 12.58,
+      "totalPrice": 12.58
+    },
+    {
+      "name": "TEQUILA SAN JOSE SILVER70CL35D",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 11.36,
+      "totalPrice": 22.72
+    },
+    {
+      "name": "RH KIYOMI 40D 70CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 18.0,
+      "totalPrice": 36.0
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 8.0,
+      "unit": "L",
+      "unitPrice": 11.93,
+      "totalPrice": 143.16
+    },
+    {
+      "name": "BERGER BLANC 45D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 13.75,
+      "totalPrice": 13.75
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 7.0,
+      "unit": "L",
+      "unitPrice": 11.35,
+      "totalPrice": 68.1
+    },
+    {
+      "name": "SEEDLIP GROVE 42 70 CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 17.95,
+      "totalPrice": 17.95
+    },
+    {
+      "name": "RED BULL BLUE BOITE 25CL",
+      "quantity": 25.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 28.56
+    },
+    {
+      "name": "RED BULL GREEN EDITION 25CL",
+      "quantity": 25.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 28.56
+    },
+    {
+      "name": "LION PEANUT 41G",
+      "quantity": 25.0,
+      "unit": "U",
+      "unitPrice": 0.477,
+      "totalPrice": 11.45
+    },
+    {
+      "name": "BIG HARI CHERRY SAC DE 2KG",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 14.81,
+      "totalPrice": 14.81
+    },
+    {
+      "name": "CREME UHT 3*20CL 15% ROCHAMBEA",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.82,
+      "totalPrice": 3.64
+    }
+  ]
+}

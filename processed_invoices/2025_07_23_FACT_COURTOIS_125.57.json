@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-07-23",
+  "invoiceNo": "5070100899",
+  "totalAmount": -125.57,
+  "items": [
+    {
+      "name": "-15 FUT 15L ROSE BLANCHE BRUXELLE",
+      "quantity": -1.0,
+      "unit": "U",
+      "unitPrice": 5.127,
+      "totalPrice": -79.64
+    }
+  ]
+}

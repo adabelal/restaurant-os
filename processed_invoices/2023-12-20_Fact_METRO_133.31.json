@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-20",
+  "invoiceNo": "0/0 (067) 0016/0095602",
+  "totalAmount": 133.31,
+  "items": [
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.58,
+      "totalPrice": 13.92
+    },
+    {
+      "name": "HARIB BOUT. COLAMISTRAL TUB0210",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.94,
+      "totalPrice": 7.94
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 6.54
+    },
+    {
+      "name": "CREME FRAI EP 15% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.49,
+      "totalPrice": 2.98
+    },
+    {
+      "name": "FOIE G. CND 1ER CH DEV FR SV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 54.99,
+      "totalPrice": 36.4
+    },
+    {
+      "name": "FOIE G. CND 1ER CH DEV FR SV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 54.99,
+      "totalPrice": 35.41
+    },
+    {
+      "name": "CLEM BERKANE IGP CAL. 2 5.5KG MAR C1 MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.7,
+      "totalPrice": 13.7
+    },
+    {
+      "name": "XTRA TOTAL 47 LAV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.37,
+      "totalPrice": 7.37
+    }
+  ]
+}

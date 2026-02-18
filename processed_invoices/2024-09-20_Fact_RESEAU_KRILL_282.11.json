@@ -1,0 +1,43 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-09-20",
+  "invoiceNo": "778144",
+  "totalAmount": 282.11,
+  "items": [
+    {
+      "name": "MAGRET CANARD TRANCHE FUME 220/320 G S/V",
+      "quantity": 0.346,
+      "unit": "kg",
+      "unitPrice": 32.554,
+      "totalPrice": 11.26
+    },
+    {
+      "name": "CHORIZO CULAR IBERIQUE BELLOTA 1/1.3 KG",
+      "quantity": 0.87,
+      "unit": "kg",
+      "unitPrice": 19.5,
+      "totalPrice": 16.97
+    },
+    {
+      "name": "PETIT CAMEMBERT 150 G ISIGNY STE MERE X8",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 2.42,
+      "totalPrice": 19.36
+    },
+    {
+      "name": "ENTRECOTE VB 4/5 KG S/V FRANCE MF VBF",
+      "quantity": 4.84,
+      "unit": "kg",
+      "unitPrice": 20.5,
+      "totalPrice": 99.22
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30",
+      "quantity": 7.258,
+      "unit": "kg",
+      "unitPrice": 16.55,
+      "totalPrice": 120.12
+    }
+  ]
+}

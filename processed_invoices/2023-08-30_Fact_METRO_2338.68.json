@@ -1,0 +1,148 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-08-30",
+  "invoiceNo": "0/0 (067) 0001/006567",
+  "totalAmount": 236.91,
+  "items": [
+    {
+      "name": "MPRO 250 SERV 2P NOIRE 40X40",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.57,
+      "totalPrice": 13.14
+    },
+    {
+      "name": "DEGRAI BACT 5L SOLIGERM",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 22.46,
+      "totalPrice": 22.46
+    },
+    {
+      "name": "ARO LIQ VAISS MAIN POM 1LX3",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 3.84,
+      "totalPrice": 7.68
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 17.57,
+      "totalPrice": 35.14
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 11.5,
+      "totalPrice": 23.0
+    },
+    {
+      "name": "CHAOURCE AOP 500G MDF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.59,
+      "totalPrice": 6.59
+    },
+    {
+      "name": "CITRON VERT 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.42,
+      "totalPrice": 18.42
+    },
+    {
+      "name": "TOM DUO CERISE RDE 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.81,
+      "totalPrice": 24.81
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 15.21,
+      "totalPrice": 30.42
+    },
+    {
+      "name": "COURG 14/21 5KG C1 FR FRANCE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 9.21,
+      "totalPrice": 27.63
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.079,
+      "totalPrice": 25.9
+    },
+    {
+      "name": "CELERI RAVE FR 8 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.17,
+      "totalPrice": 4.34
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.5,
+      "totalPrice": 7.5
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.97,
+      "totalPrice": 5.82
+    },
+    {
+      "name": "TOM ALL. TORINO 47+ SAV. FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.81,
+      "totalPrice": 22.81
+    },
+    {
+      "name": "PV VERT MC 80/100 3KG FR C1 FRANCE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 9.12,
+      "totalPrice": 27.36
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 19.47
+    },
+    {
+      "name": "OIG CHARC 7/10 8KG DMLT C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.25,
+      "totalPrice": 11.25
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 5.59,
+      "totalPrice": 11.18
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 12.677,
+      "totalPrice": 228.18
+    }
+  ]
+}

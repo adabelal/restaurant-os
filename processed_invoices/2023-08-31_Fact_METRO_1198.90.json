@@ -1,0 +1,57 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-08-31",
+  "invoiceNo": "067/049",
+  "totalAmount": 1198.9,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.62,
+      "totalPrice": 128.98
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P MDD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.55,
+      "totalPrice": 114.59
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.09,
+      "totalPrice": 76.32
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.85,
+      "totalPrice": 334.89
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.31,
+      "totalPrice": 314.1
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.67,
+      "totalPrice": 147.33
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.5,
+      "totalPrice": 20.19
+    }
+  ]
+}

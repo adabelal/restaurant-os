@@ -1,0 +1,50 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-24",
+  "invoiceNo": "0/0 (067) 0014/0386332",
+  "totalAmount": 65.71,
+  "items": [
+    {
+      "name": "CORNICHON RONDELLE 2L DELECTAB",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.93,
+      "totalPrice": 4.93
+    },
+    {
+      "name": "SEL FIN IODE SALIERE 250G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 0.94,
+      "totalPrice": 0.94
+    },
+    {
+      "name": "OLIVE VERTE DENOY AIL 2KG 4 MAROCMAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.98,
+      "totalPrice": 12.98
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.96,
+      "totalPrice": 21.96
+    },
+    {
+      "name": "CONCOMBRE 5/6 PC FR C1 FRANCE",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 0.94,
+      "totalPrice": 7.52
+    },
+    {
+      "name": "TOM RDE GRAPPE MC 5KG BE CIBELGIQUE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.95,
+      "totalPrice": 13.95
+    }
+  ]
+}

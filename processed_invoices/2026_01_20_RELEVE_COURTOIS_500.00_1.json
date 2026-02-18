@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-11-24",
+  "invoiceNo": "5110500281",
+  "totalAmount": 30.54,
+  "items": [
+    {
+      "name": "12 LIMONADE 33 CL MORTUACIEN12VP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.093,
+      "totalPrice": 13.14
+    },
+    {
+      "name": "1 MONIN FRAISE DES BOIS 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.094,
+      "totalPrice": 7.09
+    },
+    {
+      "name": "1 MONIN COLA SIROP 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.65,
+      "totalPrice": 6.65
+    }
+  ]
+}

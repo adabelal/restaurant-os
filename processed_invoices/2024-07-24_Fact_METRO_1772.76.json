@@ -1,0 +1,127 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-07-24",
+  "invoiceNo": "0/0 (067) 0017/0030182",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.01,
+      "totalPrice": 8.01
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "JB CRU PAYS 20T 500G",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 5.72,
+      "totalPrice": 22.88
+    },
+    {
+      "name": "SCISSON SEC PP 1,4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.88,
+      "totalPrice": 18.07
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.63,
+      "totalPrice": 13.63
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 23.18
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 57.14
+    },
+    {
+      "name": "LE FRUIT DE MONIN COCO 1L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 13.05,
+      "totalPrice": 26.1
+    },
+    {
+      "name": "LE FRUIT DE MONIN PASSION 1L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 13.05,
+      "totalPrice": 26.1
+    },
+    {
+      "name": "COCA COLA REG PET 1,25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.808,
+      "totalPrice": 43.4
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 26.34,
+      "totalPrice": 26.34
+    },
+    {
+      "name": "TOM ALL. TORINO 47+ SAV. FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 23.01,
+      "totalPrice": 23.01
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 6.58,
+      "totalPrice": 13.16
+    },
+    {
+      "name": "CONCOMBRE PC 5/6 MC FR C1FRANCE",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 1.03,
+      "totalPrice": 5.15
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 12.923,
+      "totalPrice": 77.54
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 7.148,
+      "totalPrice": 42.89
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 13.05,
+      "totalPrice": 26.1
+    }
+  ]
+}

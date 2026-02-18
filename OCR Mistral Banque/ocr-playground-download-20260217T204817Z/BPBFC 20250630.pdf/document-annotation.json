@@ -1,0 +1,699 @@
+{
+  "releve_bancaire": {
+    "numero_releve": "N° 5",
+    "periode": "DU 01/06/2025 AU 30/06/2025",
+    "transactions": [
+      {
+        "date_operation": "30/05",
+        "libelle": "COTIS RYTHMEO XCCNV240 2025053000042910000001 CONTRAT CNV5041449827",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/06",
+        "libelle": "LOYER TPE / ELC MOIS DE MAI 2025 HT: 31,41/TVA20,00: 6,28",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/06",
+        "libelle": "LOYER TPE / ELC MOIS DE MAI 2025 HT: 31,41/TVA20,00: 6,28",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/06",
+        "libelle": "REMISE CB 5401547011 BRUT 2 032,55E - COM 6,52E - NB0096/189157",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 908,95E - COM 6,11E - NB0020/194931",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/06",
+        "libelle": "REMISE CB 5401547011 BRUT 710,50E - COM 4,03E - NB0010/188311",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 558,30E - COM 5,07E - NB0065/182040",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/06",
+        "libelle": "PRLV SEPA ORANGE SA Votre abonnement fibre (facture: M0063503064",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/06",
+        "libelle": "REMISE CB 5401547011 BRUT 274,32E - COM 0,88E - NB0004/139380",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/06",
+        "libelle": "REMISE CB 5401547011 BRUT 127,38E - COM 0,41E - NB0005/136149",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/06",
+        "libelle": "PRLV SEPA METRO FRANCE S /INV/0017.002202 CMR000084696901",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/06",
+        "libelle": "PRLV SEPA METRO FRANCE S /INV/0017.002203 CMR000084696901",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/06",
+        "libelle": "PRLV SEPA PASSIONFROID B /INV/8333519982 30.5.2025 00002ES000018612",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "PRLV SEPA COURTOIS BOURG Prelevement Magnétique ++COU03601C4287S34160",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Souchet Laura Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Souchet Noelie Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Cauchois Amelie Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Belal Laetitia Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "M Jules Coulon Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Mme Leroy Florence Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Sylvain Souday Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Mme Sarah Rosse Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Jennifer Guerra Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Micheline Dupont Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Sci Bab Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Mr Belal Benjamin Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Adam Belal Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/06",
+        "libelle": "Sci Bab Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "05/06",
+        "libelle": "Sarl Guillaume Verdin Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "05/06",
+        "libelle": "040625 CB***7917 GRAND FRAIS FR PERRIGNY 115,77EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "05/06",
+        "libelle": "030625 CB***6839 METRO FR MONETEAU067 1242,05EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "06/06",
+        "libelle": "REMISE CB 5401547011 BRUT 330,30E - COM 1,05E - NB0005/138879",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "06/06",
+        "libelle": "REMISE CB 5401547011 BRUT 2 210,31E - COM 7,08E - NB0079/131502",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "REMISE CB 5401547011 BRUT 2 877,56E - COM 9,24E - NB0140/146633",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "REMISE CB 5401547011 BRUT 2 052,68E - COM 6,57E - NB0022/151773",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "REMISE CB 5401547011 BRUT 6 688,39E - COM 21,50E - NB0375/143066",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "REMISE CB 5401547011 BRUT 2 730,74E - COM 8,74E - NB0040/148770",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "PRLV SEPA EPISAVEURS EST /INV/8971793032 30.5.2025 00007SS000016712",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "PRLV SEPA GROUPAMA 40137 P087003544 19326780500021 MSIAPVL0200213720230912",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "PRLV SEPA GROUPAMA 40137 P086892364 19327041800021 MSIAPVL0200213720230912",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "PRLV SEPA GROUPAMA 40137 P086885534 15327102000121 MSIAPVL0200213720230912",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "PRLV SEPA METRO FRANCE S /INV/0017.002311 CMR000084696901",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "070625 CB***7917 METRO FR MONETEAU067 199,08EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/06",
+        "libelle": "PRLV SEPA PASSIONFROID B /INV/8333525011 6.6.2025 00002ES000018612",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/06",
+        "libelle": "PRLV SEPA SACEM-SOC AUTE Prelevement SACEM 01-MAN-123496327-841235823-01",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "100625 CB***6839 METRO FR MONETEAU067 1740,55EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "110625 CB***7917 GRAND FRAIS FR PERRIGNY 94,43EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "13/06",
+        "libelle": "PRLV SEPA URSSAF BOURGOG UR 267000001641851298 7 T9626F6FD1F2028C47D5B1B9FC844CC3",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "13/06",
+        "libelle": "PRLV SEPA URSSAF BOURGOG UR 267000001641854409 7 T55967D44535D141460532F9F4FD21CC",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "13/06",
+        "libelle": "REMISE CB 5401547011 BRUT 674,39E - COM 2,17E - NB0008/174304",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "13/06",
+        "libelle": "REMISE CB 5401547011 BRUT 470,66E - COM 1,51E - NB0016/166669",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "REMISE CB 5401547011 BRUT 931,75E - COM 2,97E - NB0014/187420",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "REMISE CB 5401547011 BRUT 2 193,25E - COM 7,05E - NB0108/182380",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "REMISE CB 5401547011 BRUT 724,26E - COM 2,32E - NB0011/165098",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "REMISE CB 5401547011 BRUT 2 015,44E - COM 7,48E - NB0098/153939",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "PRLV SEPA EPISAVEURS EST /INV/8971795499 4.6.2025/INV/897 00007SS000016712",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "PRLV SEPA Butagaz SAS /INV/0009623978 6.6.2025 ZB07638592",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "PRLV SEPA COURTOIS BOURG Prelevement Magnétique ++COU03601C4287S34160",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "130625 CB***6839 Google Play AppIE Dublin 9,99EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "REMISE CB 5401547011 BRUT 189,50E - COM 0,60E - NB0003/124737",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "REMISE CB 5401547011 BRUT 651,10E - COM 2,08E - NB0005/127778",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "17/06",
+        "libelle": "PRLV SEPA PASSIONFROID B /INV/8333529459 13.6.2025 00002ES000018612",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "17/06",
+        "libelle": "PRLV SEPA METRO FRANCE S /INV/0017.002432 CMR000084696901",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/06",
+        "libelle": "PRLV SEPA METRO FRANCE S /INV/0090167507 CMR000084696901",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/06",
+        "libelle": "160625 CB***6839 METRO FR MONETEAU067 689,99EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/06",
+        "libelle": "160625 CB***7917 METRO FR MONETEAU067 341,98EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/06",
+        "libelle": "Sarl Guillaume Verdin Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/06",
+        "libelle": "Activa Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/06",
+        "libelle": "180625 CB***6839 POLE EMPLOI FR PARIS 20 798,57EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "PRLV SEPA SC EXPERT CONS 00250000783 URXCQDFPGT",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "Hedou Emilie Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "Baroin Nicolas Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "Auberger Thomas Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "Lefier Jerome Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "Leriche Julien Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "Saget Olivier Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "Vivens Stephanus Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "190625 CB***7917 GRAND FRAIS FR PERRIGNY 79,12EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "REMISE CB 5401547011 BRUT 691,50E - COM 2,22E - NB0006/129244",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "REMISE CB 5401547011 BRUT 522,10E - COM 1,66E - NB0016/121400",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/06",
+        "libelle": "200625 CB***7917 COURTOIS BOURGOFR MONETEAU 72,59EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "Mme Naulin Yvette Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 266,20E - COM 4,04E - NB0058/135597",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "REMISE CB 5401547011 BRUT 806,80E - COM 2,55E - NB0010/142084",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "REMISE CB 5401547011 BRUT 4 380,80E - COM 13,98E - NB0155/134905",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "REMISE CB 5401547011 BRUT 3 314,74E - COM 10,66E - NB0039/140573",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "PRLV SEPA EPISAVEURS EST /INV/8971801339 13.6.2025/INV/89 00007SS000016712",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "200625 CB***7917 METRO FR MONETEAU067 15,07EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "200625 CB***7917 METRO FR MONETEAU067 64,09EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "REMISE CB 5401547011 BRUT 573,64E - COM 1,83E - NB0010/192811",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "REMISE CB 5401547011 BRUT 135,86E - COM 0,43E - NB0003/189942",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "24/06",
+        "libelle": "PRLV SEPA PASSIONFROID B /INV/8333534476 20.6.2025 00002ES000018612",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "24/06",
+        "libelle": "PRLV SEPA METRO FRANCE S /INV/0017.002543 CMR000084696901",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "24/06",
+        "libelle": "Baroin Nicolas Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "24/06",
+        "libelle": "Enfraze Jonathan Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "24/06",
+        "libelle": "Berenguer Nicolas Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "24/06",
+        "libelle": "Sarl Guillaume Verdin Virement de Sarl Siwa Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "24/06",
+        "libelle": "Sas Courtois Virement de Sarl Siwa Barnum Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/06",
+        "libelle": "PRLV SEPA COURTOIS BOURG Prelèvement Magnetique ++COU03601C4287S34160",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/06",
+        "libelle": "240625 CB***6839 LA POSTE 890030FR AILLANT/THOL 9,48EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/06",
+        "libelle": "230625 CB***6839 METRO FR MONETEAU067 1004,05EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/06",
+        "libelle": "PVSI DGFIP TVA1-062025-3310CA3 NN952717999DGFIP2023112419LKI4MZ",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "250625 CB***7917 GRAND FRAIS FR PERRIGNY 110,34EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/06",
+        "libelle": "REMISE CB 5401547011 BRUT 299,75E - COM 0,96E - NB0004/192911",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 061,65E - COM 3,39E - NB0027/186271",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/06",
+        "libelle": "CHEQ",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 084,90E - COM 3,46E - NB0014/108991",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 757,69E - COM 5,56E - NB0079/102574",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "REMISE CB 5401547011 BRUT 985,45E - COM 3,17E - NB0043/100786",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 730,25E - COM 5,52E - NB0019/105704",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "PRLV SEPA METRO FRANCE S /INV/0013.013789 CMR000084696901",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "PRLV SEPA PREFILOC CAPIT F250429291 PRE000101879",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "REMISE CB 5401547011 BRUT 238,30E - COM 0,76E - NB0012/156203",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "REMISE CB 5401547011 BRUT 661,60E - COM 2,12E - NB0005/159955",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "280625 CB***7917 METRO FR MONETEAU067 210,42EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 0
+      }
+    ],
+    "solde_final": 39938.47
+  }
+}

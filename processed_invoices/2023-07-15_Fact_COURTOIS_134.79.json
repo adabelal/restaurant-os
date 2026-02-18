@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-07-15",
+  "invoiceNo": "3070500311",
+  "totalAmount": 134.79,
+  "items": [
+    {
+      "name": "3 MONIN MOJITO MINT 70 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 19.63
+    },
+    {
+      "name": "2 PICON BIERE 100 CL 18\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.984,
+      "totalPrice": 21.97
+    },
+    {
+      "name": "12 BOURG. ALIGOTE BT COURTOIS Cx6b",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.94,
+      "totalPrice": 71.28
+    }
+  ]
+}

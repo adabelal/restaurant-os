@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-08-11",
+  "invoiceNo": "0/0 (067) 0001/0085232",
+  "totalAmount": 113.39,
+  "items": [
+    {
+      "name": "POKE BOWL AZUR 20CM 120CL",
+      "quantity": 11,
+      "unit": "U",
+      "unitPrice": 8.59,
+      "totalPrice": 94.49
+    }
+  ]
+}

@@ -71,20 +71,37 @@ export function EmployeeListContent({ activeEmployees, archivedEmployees, active
                                 </CardHeader>
 
                                 <CardContent>
-                                    <div className="space-y-3">
-                                        <div className="flex items-center justify-between text-sm">
-                                            <span className="text-muted-foreground">Email</span>
-                                            <span className="text-foreground font-medium truncate max-w-[120px]" title={emp.email}>{emp.email}</span>
+                                    <div className="space-y-4">
+                                        <div className="flex flex-wrap gap-2">
+                                            <Badge variant="secondary" className="text-[10px] uppercase font-bold text-slate-500 bg-slate-100">
+                                                {emp.contractType || 'CDI'}
+                                            </Badge>
+                                            <Badge variant="secondary" className="text-[10px] uppercase font-bold text-slate-500 bg-slate-100">
+                                                {emp.contractDuration === 'PART_TIME' ? 'Temps Partiel' : 'Temps Plein'}
+                                            </Badge>
                                         </div>
 
-                                        <div className="flex items-center justify-between text-sm">
-                                            <span className="text-muted-foreground">Taux Horaire</span>
-                                            <span className="font-semibold text-foreground">{Number(emp.hourlyRate).toFixed(2)} € / h</span>
+                                        <div className="space-y-2">
+                                            <div className="flex items-center justify-between text-sm">
+                                                <span className="text-muted-foreground text-xs uppercase font-medium">Taux Horaire</span>
+                                                <span className="font-bold text-foreground bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-md">
+                                                    {Number(emp.hourlyRate).toFixed(2)} €/h
+                                                </span>
+                                            </div>
+                                            <div className="flex items-center justify-between text-sm">
+                                                <span className="text-muted-foreground text-xs uppercase font-medium">Documents</span>
+                                                <span className={`text-xs font-bold px-2 py-0.5 rounded-md ${(emp._count?.documents || 0) < 3 ? 'bg-amber-50 text-amber-700' : 'bg-blue-50 text-blue-700'
+                                                    }`}>
+                                                    {emp._count?.documents || 0} / 3 requis
+                                                </span>
+                                            </div>
                                         </div>
 
-                                        <div className="border-t dark:border-zinc-800 pt-4 mt-4 flex justify-between items-center text-xs text-muted-foreground">
-                                            <span>{emp._count?.documents || 0} document(s)</span>
-                                            <span className="group-hover:translate-x-1 transition-transform text-primary font-medium">Voir le dossier →</span>
+                                        <div className="pt-3 border-t border-dashed flex justify-between items-center text-xs">
+                                            <span className={(emp._count?.documents || 0) < 3 ? "text-amber-600 font-medium flex items-center gap-1" : "text-emerald-600 font-medium flex items-center gap-1"}>
+                                                {(emp._count?.documents || 0) < 3 ? '⚠️ Dossier incomplet' : '✅ Dossier à jour'}
+                                            </span>
+                                            <span className="text-primary font-bold group-hover:translate-x-1 transition-transform">Gérer →</span>
                                         </div>
                                     </div>
                                 </CardContent>
@@ -119,8 +136,8 @@ export function EmployeeListContent({ activeEmployees, archivedEmployees, active
                                         <td className="px-6 py-4">
                                             <div className="flex flex-col gap-1">
                                                 <Badge variant="outline" className={`${emp.role === 'ADMIN' ? 'border-purple-200 text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800' :
-                                                        emp.role === 'MANAGER' ? 'border-blue-200 text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800' :
-                                                            'border-emerald-200 text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800'
+                                                    emp.role === 'MANAGER' ? 'border-blue-200 text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800' :
+                                                        'border-emerald-200 text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800'
                                                     }`}>
                                                     {emp.role}
                                                 </Badge>

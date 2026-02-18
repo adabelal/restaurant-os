@@ -1,0 +1,183 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-21",
+  "invoiceNo": "0/0 (067) 0015/017015",
+  "totalAmount": 194.5,
+  "items": [
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.587,
+      "totalPrice": 14.09
+    },
+    {
+      "name": "SCHWEPPES LEMON SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.545,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "SAN PELL 50CL PET",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.45,
+      "totalPrice": 10.8
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.16,
+      "totalPrice": 17.16
+    },
+    {
+      "name": "COCO RAPEE 1KG METRO CHEF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.25,
+      "totalPrice": 5.25
+    },
+    {
+      "name": "MC POUDRE D' AMANDE BLANCHE 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.5,
+      "totalPrice": 8.5
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.14,
+      "totalPrice": 6.14
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 6.7,
+      "totalPrice": 13.4
+    },
+    {
+      "name": "LAYS MULTIPACK NATURE 25G X6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.11,
+      "totalPrice": 2.11
+    },
+    {
+      "name": "PETIT ECOLIER CHOC. LAIT 150GX6",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.468,
+      "totalPrice": 8.81
+    },
+    {
+      "name": "12COOKIES. CHOC. PEPIT200G ROCX4",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.35,
+      "totalPrice": 5.4
+    },
+    {
+      "name": "SUCETTE CORAZON COEUR CERISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.68,
+      "totalPrice": 10.68
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "DANONE 16*125G FRUITS CREMEUX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.79,
+      "totalPrice": 4.79
+    },
+    {
+      "name": "LACTE FRUIT 4X125G ABRICOT E-V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.91,
+      "totalPrice": 1.91
+    },
+    {
+      "name": "VIENNOIS CAFE 4X100G NESTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.5,
+      "totalPrice": 1.5
+    },
+    {
+      "name": "CREME DES CARAMEL 125GX4 STPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 0.99
+    },
+    {
+      "name": "RONDELE AFH 125G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.72,
+      "totalPrice": 1.72
+    },
+    {
+      "name": "GALET DE LA LOIRE 260G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.4,
+      "totalPrice": 3.4
+    },
+    {
+      "name": "PAIN SANDWICH COMPLET 600G LC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.44,
+      "totalPrice": 2.44
+    },
+    {
+      "name": "PAIN SANDW 7 CEREAL LC 550G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.67,
+      "totalPrice": 2.67
+    },
+    {
+      "name": "BRIOCHE TRANCHE500G F. DOREE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.37,
+      "totalPrice": 2.37
+    },
+    {
+      "name": "JB CUIT SUP 10T 400G PORC FERM",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.79,
+      "totalPrice": 4.79
+    },
+    {
+      "name": "VERITABLE CO BLEU PLT X6 900G",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 13.24,
+      "totalPrice": 26.48
+    },
+    {
+      "name": "CLEM FEUIL BOLLO CAL. 2 ES C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.45,
+      "totalPrice": 16.45
+    }
+  ]
+}

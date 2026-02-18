@@ -1,0 +1,36 @@
+{
+  "supplierName": "KRILL",
+  "date": "2026-01-09",
+  "invoiceNo": null,
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "PALERON DE B\u0152UF SEMI-PAR\u00c9",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.25,
+      "totalPrice": 13.25
+    },
+    {
+      "name": "BAVETTE ALOYAU DE B\u0152UF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.95,
+      "totalPrice": 13.95
+    },
+    {
+      "name": "BOURGUIGNON ASSORTIMENT DE B\u0152UF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.6,
+      "totalPrice": 11.6
+    },
+    {
+      "name": "TRAVERS DE PORC AVEC OS",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.25,
+      "totalPrice": 6.25
+    }
+  ]
+}

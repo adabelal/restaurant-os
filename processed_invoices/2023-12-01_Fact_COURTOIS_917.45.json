@@ -1,0 +1,57 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-12-01",
+  "invoiceNo": "3120100037",
+  "totalAmount": 917.45,
+  "items": [
+    {
+      "name": "24 BOURG.ALIGOTE BT COURTOIS Cx6b",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 5.94,
+      "totalPrice": 570.24
+    },
+    {
+      "name": "12 LES PLOS BLANC CHARD. IGP BT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.591,
+      "totalPrice": 67.09
+    },
+    {
+      "name": "40 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.338,
+      "totalPrice": 238.56
+    },
+    {
+      "name": "30 FUT 15 L SLASH IPA",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.012,
+      "totalPrice": 164.19
+    },
+    {
+      "name": "30 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.914,
+      "totalPrice": 152.7
+    },
+    {
+      "name": "FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "VILLERS GAZEIFIRE VC 12X100CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    }
+  ]
+}

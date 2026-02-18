@@ -1,0 +1,204 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-11-26",
+  "invoiceNo": "0/0 (067) 0051/0077052",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "COUSCOUS DARI FIN 5 KG",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.918,
+      "totalPrice": 14.59
+    },
+    {
+      "name": "COUSCOUS FIN 5KG FERRERO",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.384,
+      "totalPrice": 23.84
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.12,
+      "totalPrice": 18.12
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.898,
+      "totalPrice": 14.49
+    },
+    {
+      "name": "*CHEVRE BUCHE 1KG PPX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "CHAOURCE AOP 500G MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.75,
+      "totalPrice": 5.75
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.44,
+      "totalPrice": 18.04
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.01,
+      "totalPrice": 19.15
+    },
+    {
+      "name": "JB SERRANO 60T 8MOIS 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.92,
+      "totalPrice": 29.84
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 10.75
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 10.36
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 10.78
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 9.58
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 9.7
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 9.12
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 27.95
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 27.3
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 27.77
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 27.97
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 27.75
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.95,
+      "totalPrice": 12.41
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.71,
+      "totalPrice": 15.71
+    },
+    {
+      "name": "FENOUIL 3K FR FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.47,
+      "totalPrice": 7.47
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.99,
+      "totalPrice": 3.98
+    },
+    {
+      "name": "CONCOMBRE C. 4/5 PC12 C1 ES ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 3.96
+    },
+    {
+      "name": "CELERI RAVE PC6 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.99,
+      "totalPrice": 3.98
+    },
+    {
+      "name": "COURG MC 5K C. 14/21 C1 ESESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.95,
+      "totalPrice": 17.9
+    },
+    {
+      "name": "TOM RDE MC 6K C. 67+ PAL56 C1 MAMAROC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.94,
+      "totalPrice": 5.94
+    }
+  ]
+}

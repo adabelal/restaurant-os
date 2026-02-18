@@ -1,0 +1,183 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-29",
+  "invoiceNo": "0/0 (067) 0013/008137",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "RHUM CLEMENT VIEUX 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.65,
+      "totalPrice": 18.65
+    },
+    {
+      "name": "COCA SANS SUCRES 25CL VP",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.694,
+      "totalPrice": 8.33
+    },
+    {
+      "name": "ARO CONCENTRE TOMA 4/4",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.083,
+      "totalPrice": 18.5
+    },
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 1.95,
+      "totalPrice": 5.85
+    },
+    {
+      "name": "REDUCTION VIN. BALSAM. PET320GR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.13,
+      "totalPrice": 6.13
+    },
+    {
+      "name": "CREME BALS YUZU BASI THAI 500ML",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 8.65,
+      "totalPrice": 8.65
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.0,
+      "totalPrice": 44.0
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.16,
+      "totalPrice": 17.16
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 15.75,
+      "totalPrice": 15.75
+    },
+    {
+      "name": "PING MAYO 5L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 24.0,
+      "totalPrice": 24.0
+    },
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.75,
+      "totalPrice": 2.75
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.8,
+      "totalPrice": 6.8
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.39,
+      "totalPrice": 4.39
+    },
+    {
+      "name": "METRO CHEF BISC ROUL CROUS 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.4,
+      "totalPrice": 8.4
+    },
+    {
+      "name": "SUCETTE CORAZON COEUR CERISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.22,
+      "totalPrice": 11.22
+    },
+    {
+      "name": "LAIT ENT UHT BT1L MC ENGAGE",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.21,
+      "totalPrice": 7.26
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.53,
+      "totalPrice": 15.06
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.95,
+      "totalPrice": 13.95
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.01,
+      "totalPrice": 19.68
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.01,
+      "totalPrice": 19.28
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.49,
+      "totalPrice": 8.98
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.31,
+      "totalPrice": 16.31
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.6,
+      "totalPrice": 13.48
+    }
+  ]
+}

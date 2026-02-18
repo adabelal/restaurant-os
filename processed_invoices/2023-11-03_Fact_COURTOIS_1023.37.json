@@ -1,0 +1,64 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-03-11",
+  "invoiceNo": "3110100088",
+  "totalAmount": 1023.37,
+  "items": [
+    {
+      "name": "40 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 5.338,
+      "totalPrice": 238.56
+    },
+    {
+      "name": "60 FUT 30 L LOBURG",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 3.505,
+      "totalPrice": 237.06
+    },
+    {
+      "name": "45 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 4.914,
+      "totalPrice": 229.05
+    },
+    {
+      "name": "24 PERRIER PET 6 X 1LT",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 1.168,
+      "totalPrice": 28.03
+    },
+    {
+      "name": "2 MONIN CARIBBEAN 70CL gout rhum",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 6.543,
+      "totalPrice": 13.09
+    },
+    {
+      "name": "1 TRIPLE SEC cura\u00e7aoVEDREN35\u00b0 BT",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 12.387,
+      "totalPrice": 12.39
+    },
+    {
+      "name": "1 MONIN FRAISE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 6.307,
+      "totalPrice": 6.31
+    },
+    {
+      "name": "6 KG CAFE LAVAZZA GRAIN supCREMA",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.95,
+      "totalPrice": 131.7
+    }
+  ]
+}

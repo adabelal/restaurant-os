@@ -1,0 +1,176 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-11-01",
+  "invoiceNo": "067/008",
+  "totalAmount": 372.85,
+  "items": [
+    {
+      "name": "ROCH CONCENTRETOMATE 1/2X6",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.583,
+      "totalPrice": 9.5
+    },
+    {
+      "name": "*LAIT UHT 1/2ECR 1L PPX BK",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 6.0
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.04,
+      "totalPrice": 2.04
+    },
+    {
+      "name": "CREME FRAI. EP 30% 1L EUROLAIT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.5,
+      "totalPrice": 4.5
+    },
+    {
+      "name": "BURRATA BQ 8X100G TOSCA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.65,
+      "totalPrice": 11.65
+    },
+    {
+      "name": "KIRI 8P 144G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.13,
+      "totalPrice": 4.26
+    },
+    {
+      "name": "VACHE QUI RIT 32 P 512G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.98,
+      "totalPrice": 4.98
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.2,
+      "totalPrice": 8.2
+    },
+    {
+      "name": "CHEVRE BUCHE 450G SOIGN",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.93,
+      "totalPrice": 4.93
+    },
+    {
+      "name": "CAPRICE DES DIEUX GM 200G X2",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.82,
+      "totalPrice": 5.64
+    },
+    {
+      "name": "CHAOURCE AOP 500G MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.75,
+      "totalPrice": 5.75
+    },
+    {
+      "name": "CAMEMBERT 250G PRESIDENT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.0,
+      "totalPrice": 4.0
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.01,
+      "totalPrice": 19.37
+    },
+    {
+      "name": "RAVIOLIS SAUMON 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.99,
+      "totalPrice": 9.99
+    },
+    {
+      "name": "BASE MINI PINSA ROMANA 3X130G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.03,
+      "totalPrice": 10.06
+    },
+    {
+      "name": "\u03a4\u0396\u0391\u03a4\u0396\u0399\u039a\u0399 500G METRO CHEF",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.49,
+      "totalPrice": 8.98
+    },
+    {
+      "name": "FILET PLT BLC HAL 2.5 S/AT FR",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 20.73,
+      "totalPrice": 62.19
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.99,
+      "totalPrice": 30.38
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.99,
+      "totalPrice": 32.28
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 27.9
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 27.92
+    },
+    {
+      "name": "FLT SAUM 1,9/2, 3 X20 EL/FEROE S/V. SALMO SALAR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 31.43
+    },
+    {
+      "name": "MPRO BOBINE 2P 450F X6",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.35,
+      "totalPrice": 20.7
+    },
+    {
+      "name": "MPRO 50 SERV DP KANGOU 2P NOI",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 2.17,
+      "totalPrice": 21.7
+    }
+  ]
+}

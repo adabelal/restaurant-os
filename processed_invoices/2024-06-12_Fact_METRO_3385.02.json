@@ -1,0 +1,155 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-06-12",
+  "invoiceNo": "067/045",
+  "totalAmount": 610.09,
+  "items": [
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.66,
+      "totalPrice": 31.98
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 20.69
+    },
+    {
+      "name": "ROCHAMBEAU NECTAR MULTI BRIKIL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.638,
+      "totalPrice": 39.32
+    },
+    {
+      "name": "ARO ABC ANANAS BRICK 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.495,
+      "totalPrice": 35.88
+    },
+    {
+      "name": "ARO ABC ORANGE BRICK 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.757,
+      "totalPrice": 42.16
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 1.19,
+      "totalPrice": 114.28
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.76,
+      "totalPrice": 33.12
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.808,
+      "totalPrice": 130.2
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.15,
+      "totalPrice": 24.15
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.44,
+      "totalPrice": 16.44
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.308,
+      "totalPrice": 15.7
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "CONCOMBRE PC 4/5 FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 6.54
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.62,
+      "totalPrice": 7.24
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.77,
+      "totalPrice": 17.54
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG X56 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.51,
+      "totalPrice": 8.51
+    },
+    {
+      "name": "OIG CHARC MC 7/10 8KG C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.95,
+      "totalPrice": 6.95
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.53,
+      "totalPrice": 7.53
+    },
+    {
+      "name": "WH JACK DANIEL'S 40D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 16.24,
+      "totalPrice": 389.76
+    },
+    {
+      "name": "COTIS. SECURITE SOCIALE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 40.32,
+      "totalPrice": 40.32
+    }
+  ]
+}

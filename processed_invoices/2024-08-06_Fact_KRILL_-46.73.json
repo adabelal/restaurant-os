@@ -1,0 +1,15 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-08-06",
+  "invoiceNo": "769772",
+  "totalAmount": -46.73,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": -5.7,
+      "unit": "kg",
+      "unitPrice": 7.77,
+      "totalPrice": -44.29
+    }
+  ]
+}

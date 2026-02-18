@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-19",
+  "invoiceNo": "0/0 (067) 0014/0142792",
+  "totalAmount": 289.89,
+  "items": [
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 3.65,
+      "totalPrice": 65.7
+    },
+    {
+      "name": "ARO HUILE OLIVE VE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 5.65,
+      "totalPrice": 11.3
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 16.76
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 14.16
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 15.34
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 18.22
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 15.15
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 15.8
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 16.33
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 17.66
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 14.13
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 14.41
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.29,
+      "totalPrice": 15.9
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.21,
+      "totalPrice": 11.21
+    },
+    {
+      "name": "OIG CHARC MC 8K C. 7/10 PAL66 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.12,
+      "totalPrice": 7.12
+    },
+    {
+      "name": "MPRO BOBINE 2P 450F X6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.35,
+      "totalPrice": 20.7
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-22",
+  "invoiceNo": "0/0 (067) 0017/0002442",
+  "totalAmount": 464.0,
+  "items": [
+    {
+      "name": "ARO LIQ VAISS MAIN POM 3X1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 4.01,
+      "totalPrice": 4.01
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.88,
+      "totalPrice": 15.89
+    },
+    {
+      "name": "BEURRE DX PLQ 250G ROCHAMBEAU",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.53,
+      "totalPrice": 12.65
+    },
+    {
+      "name": "MASCARPONE 500G LATTE BIANCO",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 4.94,
+      "totalPrice": 19.76
+    },
+    {
+      "name": "ROQUEFORT AOP LC CUBE 250GX2MC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.99,
+      "totalPrice": 15.98
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.01,
+      "totalPrice": 11.01
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.36,
+      "totalPrice": 13.36
+    },
+    {
+      "name": "FRY' N' DIP 2.5KG MCCAIN",
+      "quantity": 12.0,
+      "unit": "kg",
+      "unitPrice": 6.52,
+      "totalPrice": 78.24
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.35,
+      "totalPrice": 213.27
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.27,
+      "totalPrice": 36.92
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.86,
+      "totalPrice": 133.67
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.37,
+      "totalPrice": 71.7
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.69,
+      "totalPrice": 8.44
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 FRFRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 4.82
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.55,
+      "totalPrice": 7.55
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.52,
+      "totalPrice": 2.52
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 13.16,
+      "totalPrice": 26.32
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG 56 MAROC C1MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.81,
+      "totalPrice": 11.81
+    },
+    {
+      "name": "CONCOMBRE PC 4/5 MC FR C1FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.42,
+      "totalPrice": 8.52
+    },
+    {
+      "name": "AIL PELE MC 1KG CHINE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.09,
+      "totalPrice": 6.09
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 9.93,
+      "totalPrice": 119.16
+    }
+  ]
+}

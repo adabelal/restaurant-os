@@ -1,0 +1,155 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-07-22",
+  "invoiceNo": "0/0 (067) 0014/0261532",
+  "totalAmount": 171.82,
+  "items": [
+    {
+      "name": "TROPICO L'ORIG BTE 33 CL SLIM",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.558,
+      "totalPrice": 13.38
+    },
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.587,
+      "totalPrice": 14.09
+    },
+    {
+      "name": "FUZETEA PECHE BOITE 33CL SLIM",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.54,
+      "totalPrice": 12.96
+    },
+    {
+      "name": "SCHWEPPES LEMON SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.463,
+      "totalPrice": 11.12
+    },
+    {
+      "name": "HAWAI TROPICAL BOITE 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.534,
+      "totalPrice": 12.81
+    },
+    {
+      "name": "COCACOLA BOITE SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.59,
+      "totalPrice": 14.16
+    },
+    {
+      "name": "CORNICHON AD PAYSANNE BOC 850G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.75,
+      "totalPrice": 3.75
+    },
+    {
+      "name": "HEINZ KETCHUP FS 342GR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.54,
+      "totalPrice": 3.08
+    },
+    {
+      "name": "PAIN CRAQUANT BREAKFAST 240G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.34,
+      "totalPrice": 3.34
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.7,
+      "totalPrice": 6.7
+    },
+    {
+      "name": "HAPPY LIFE 2KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.8,
+      "totalPrice": 12.8
+    },
+    {
+      "name": "MRFREEZE CLASSIC ASS 45 ML",
+      "quantity": 140.0,
+      "unit": "U",
+      "unitPrice": 0.17,
+      "totalPrice": 23.81
+    },
+    {
+      "name": "BEST FIZZ SAC 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.48,
+      "totalPrice": 6.48
+    },
+    {
+      "name": "PAIN SANDW 7 CEREAL LC 550G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.67,
+      "totalPrice": 2.67
+    },
+    {
+      "name": "PAIN CHOCOLAT LC 360G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.72,
+      "totalPrice": 1.72
+    },
+    {
+      "name": "CROISSANTS 320G ROCHAMBEAU",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.68,
+      "totalPrice": 1.68
+    },
+    {
+      "name": "PDT CONSO AGATA 40+ C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.9,
+      "totalPrice": 9.9
+    },
+    {
+      "name": "ECHALION 3/5 FILET 1K C1 TUR TURQUIE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.49,
+      "totalPrice": 2.49
+    },
+    {
+      "name": "ARIEL SIMPLY LIQ INTENSE 33D",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.6,
+      "totalPrice": 11.2
+    },
+    {
+      "name": "MPRO SPRAY ANTICAL 750ML",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.98,
+      "totalPrice": 1.98
+    },
+    {
+      "name": "MPRO NETT MU JAVEL 750ML",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.7,
+      "totalPrice": 1.7
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-06-01",
+  "invoiceNo": "0/0 (067) 0014/019732",
+  "totalAmount": 30.71,
+  "items": [
+    {
+      "name": "JB CRU PAYS 20T 500G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.2,
+      "totalPrice": 10.4
+    },
+    {
+      "name": "SCISSON AIL FUME VPF 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.13,
+      "totalPrice": 4.13
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.6,
+      "totalPrice": 14.58
+    }
+  ]
+}

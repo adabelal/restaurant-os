@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-06-06",
+  "invoiceNo": "0/0 (067) 0017/001949",
+  "totalAmount": 46.2,
+  "items": [
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.95,
+      "totalPrice": 21.95
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.308,
+      "totalPrice": 15.7
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.07,
+      "totalPrice": 6.14
+    }
+  ]
+}

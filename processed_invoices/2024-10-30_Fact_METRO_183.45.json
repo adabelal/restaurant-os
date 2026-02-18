@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-30",
+  "invoiceNo": "0/0 (067) 0014/0394552",
+  "totalAmount": 168.89,
+  "items": [
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.14,
+      "totalPrice": 6.14
+    },
+    {
+      "name": "LAY'S NATURE 370G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.4,
+      "totalPrice": 6.8
+    },
+    {
+      "name": "BANDOS FRAISE 150",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.5,
+      "totalPrice": 10.5
+    },
+    {
+      "name": "HAPPY LIFE 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.8,
+      "totalPrice": 12.8
+    },
+    {
+      "name": "SCHTROUMPFS VRAC 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.05,
+      "totalPrice": 13.05
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 1L BT BRIDEL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.09,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.93,
+      "totalPrice": 3.86
+    },
+    {
+      "name": "CANCOILLOTTE IGP AIL 250G ROCH",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.13,
+      "totalPrice": 2.13
+    },
+    {
+      "name": "CANCOILLOTTE IGP NAT 250G ROCH",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.13,
+      "totalPrice": 2.13
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.83,
+      "totalPrice": 27.66
+    },
+    {
+      "name": "10 PAINS PEPITES LC 350G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.99,
+      "totalPrice": 1.99
+    },
+    {
+      "name": "STICK CHEVRE PANE 1KG SOI GNON",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.9,
+      "totalPrice": 14.9
+    },
+    {
+      "name": "WINGS PLT TEX MEX HAL 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.08,
+      "totalPrice": 5.08
+    },
+    {
+      "name": "TENDER PLT JAPAN STYLE 1KG HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.38,
+      "totalPrice": 10.38
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.4,
+      "totalPrice": 6.13
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.4,
+      "totalPrice": 6.45
+    },
+    {
+      "name": "CLEM ORONULES MLLE CAL. 3 ES C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 23.32,
+      "totalPrice": 23.32
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.49,
+      "totalPrice": 2.49
+    }
+  ]
+}

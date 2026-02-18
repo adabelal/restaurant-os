@@ -1,0 +1,22 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-01-26",
+  "invoiceNo": "00733977",
+  "totalAmount": 353.65,
+  "items": [
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB",
+      "quantity": 8.315,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 110.59
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30",
+      "quantity": 15.122,
+      "unit": "kg",
+      "unitPrice": 14.8,
+      "totalPrice": 223.81
+    }
+  ]
+}

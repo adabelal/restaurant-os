@@ -1,0 +1,74 @@
+[
+  {
+    "id": "cmkvbqzui0003m0v0a8bsirns",
+    "userId": "cmkow3y6m0001arhmekrwe956",
+    "startTime": "2026-01-26T17:30:00.000Z",
+    "endTime": "2026-01-26T20:30:00.000Z",
+    "breakMinutes": 30,
+    "isSunday": false,
+    "isNight": false,
+    "hourlyRate": "12.08",
+    "status": "COMPLETED",
+    "notes": null
+  },
+  {
+    "id": "cmkvbvld60007m0v0e6wktz6a",
+    "userId": "cmkow3y6m0001arhmekrwe956",
+    "startTime": "2025-12-10T17:34:00.000Z",
+    "endTime": "2025-12-10T19:34:00.000Z",
+    "breakMinutes": 30,
+    "isSunday": false,
+    "isNight": false,
+    "hourlyRate": "12.08",
+    "status": "COMPLETED",
+    "notes": null
+  },
+  {
+    "id": "cmkvs9oh20009qzukj4pwvs2z",
+    "userId": "cmkvegcil0002yyyvo4u8kj3d",
+    "startTime": "2025-11-12T00:12:00.000Z",
+    "endTime": "2025-11-12T03:12:00.000Z",
+    "breakMinutes": 0,
+    "isSunday": false,
+    "isNight": false,
+    "hourlyRate": "12.08",
+    "status": "COMPLETED",
+    "notes": null
+  },
+  {
+    "id": "cmkvsa6ei000lqzukxv3lxqmm",
+    "userId": "cmkvegcil0002yyyvo4u8kj3d",
+    "startTime": "2025-12-12T00:12:00.000Z",
+    "endTime": "2025-12-12T03:12:00.000Z",
+    "breakMinutes": 0,
+    "isSunday": false,
+    "isNight": false,
+    "hourlyRate": "12.08",
+    "status": "COMPLETED",
+    "notes": null
+  },
+  {
+    "id": "cmkvsavgj000pqzukolzg0a5u",
+    "userId": "cmkvegcil0002yyyvo4u8kj3d",
+    "startTime": "2025-10-03T00:12:00.000Z",
+    "endTime": "2025-10-03T04:12:00.000Z",
+    "breakMinutes": 0,
+    "isSunday": false,
+    "isNight": false,
+    "hourlyRate": "12.08",
+    "status": "COMPLETED",
+    "notes": null
+  },
+  {
+    "id": "cmkw7ycmt0001kvmels8jkr5d",
+    "userId": "cmkvegcil0002yyyvo4u8kj3d",
+    "startTime": "2026-01-27T11:32:00.000Z",
+    "endTime": "2026-01-27T12:32:00.000Z",
+    "breakMinutes": 0,
+    "isSunday": false,
+    "isNight": false,
+    "hourlyRate": "12.08",
+    "status": "COMPLETED",
+    "notes": null
+  }
+]

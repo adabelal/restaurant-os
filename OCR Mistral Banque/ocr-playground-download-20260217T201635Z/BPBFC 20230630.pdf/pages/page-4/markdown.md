@@ -1,0 +1,79 @@
+RELEVE N° 2 AU 30/06/2023
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE COMPTA | LIBELLE/REFERENCE |   | DATE OPERATION | DATE VALEUR | DEBIT EUROS | CREDIT EUROS  |
+| --- | --- | --- | --- | --- | --- | --- |
+|  27/06 | 230623 CB***6839
+METRO C&C Fr FR 92LEVALLOIS
+362,88EUR 1 EURO = 1,000000 | 877HFVE | 27/06 | 27/06 | 362,88 |   |
+|  27/06 | 230623 CB***6839
+METRO C&C Fr FR 92LEVALLOIS
+846,72EUR 1 EURO = 1,000000 | 877HFVF | 27/06 | 27/06 | 846,72 |   |
+|  28/06 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0CQI9Q4 | 28/06 | 28/06 | 1 187,20 |   |
+|  28/06 | 230623 CB***6839
+METRO C&C Fr FR 92LEVALLOIS
+1940,90EUR 1 EURO = 1,000000 | 88V0RXO | 28/06 | 28/06 | 1 940,90 |   |
+|  29/06 | 230623 CB***6839
+METRO C&C Fr DONT FRAIS: 0,00E
+60,00EUR 1 EURO = 1,000000 | 8ACJTSE | 29/06 | 29/06 |  | 60,00  |
+|  29/06 | 230623 CB***6839
+METRO C&C Fr DONT FRAIS: 0,00E
+1940,90EUR 1 EURO = 1,000000 | 8ACJTSF | 29/06 | 29/06 |  | 1940,90  |
+|  29/06 | 280623 CB***6839
+COURTOIS BOURGOFR MONETEAU
+1263,35EUR 1 EURO = 1,000000 | 8AIK8SP | 29/06 | 29/06 | 1 263,35 |   |
+|  29/06 | 280623 CB***6839
+METRO FR MONETEAU067
+2783,94EUR 1 EURO = 1,000000 | 8AIK8SQ | 29/06 | 29/06 | 2 783,94 |   |
+|  30/06 | COTIS RYTHMEO
+XCCNV240 2023062900020036000001
+CONTRAT CNV5041449827 | 0020036 | 29/06 | 29/06 | 0,26 |   |
+|  30/06 | PRLV SEPA COURTOIS BOURG
+Prelevement Magnetique
+++COU03601C4287S34160 | 0CQYVGD | 30/06 | 30/06 | 142,60 |   |
+|  30/06 | REMISE CB 5401547011
+BRUT 8,50E - COM 0,03E
+- NB0001/176620 | 0025620 | 30/06 | 30/06 |  | 8,47  |
+|  30/06 | REMISE CB 5401547011
+BRUT 458,80E - COM 1,47E
+- NB0007/175048 | 0026048 | 30/06 | 30/06 |  | 457,33  |
+|  30/06 | REMISE CB 5401547011
+BRUT 477,85E - COM 1,55E
+- NB0021/177178 | 0027178 | 30/06 | 30/06 |  | 476,30  |
+|   | TOTAL DES MOUVEMENTS
+SOLDE CREDITEUR AU 30/06/2023* |   |  |  | 19 165,01 | 27 868,59
+9 680,76  |
+|  |   |   |   |   |   |   |
+
+(*) Sous réserve des opérations en cours d'enregistrement et d'une provision suffisante et disponible lors de l'arrêté du solde du compte réalisé en fin de journée.
+- Ce document ne justifie pas la déduction de la TVA ou de la charge en matière d'impôt direct -
+
+RELEVE N° 2 AU 30/06/2023
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE | DETAIL DES PRELEVEMENTS SEPA RECUS | DEBIT EUROS  |
+| --- | --- | --- |
+|  27/06/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111085193
+PRELEVEMENT | 68,40  |
+|  28/06/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111203922
+PRELEVEMENT | 1 187,20  |
+|  30/06/2023 | COURTOIS BOURGOGNE BOISSONS FR74ZZZ441774
+++COU03601C4287S34160 Prelevement Magnetique | 142,60  |
+
+RELEVE N° 2 AU 30/06/2023
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE | DETAIL DES VIREMENTS SEPA RECUS | CREDIT EUROS  |
+| --- | --- | --- |
+|  |   |   |
+
+A la Banque Populaire Bourgogne Franche-Comté, l'assurance des personnes et des biens c'est aussi notre métier.
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPQJN N° Orlas Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 400 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts

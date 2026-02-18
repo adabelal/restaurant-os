@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-10-30",
+  "invoiceNo": "4100500417",
+  "totalAmount": 141.12,
+  "items": [
+    {
+      "name": "AZZA GRAIN supCREMA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 131.7,
+      "totalPrice": 131.7
+    }
+  ]
+}

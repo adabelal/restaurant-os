@@ -3,6 +3,7 @@
 import { Suspense, useState } from "react"
 import { signIn } from "next-auth/react"
 import { useRouter, useSearchParams } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -82,7 +83,12 @@ function LoginForm() {
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="password">Mot de passe</Label>
+                        <div className="flex items-center justify-between">
+                            <Label htmlFor="password">Mot de passe</Label>
+                            <Link href="/forgot-password" className="text-sm text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 hover:underline">
+                                Mot de passe oublié ?
+                            </Link>
+                        </div>
                         <Input
                             id="password"
                             type="password"

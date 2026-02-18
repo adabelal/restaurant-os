@@ -1,0 +1,190 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-12-10",
+  "invoiceNo": "0/0 (067) 0052/010978",
+  "totalAmount": 333.91,
+  "items": [
+    {
+      "name": "BS CANEROCK 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.01,
+      "totalPrice": 25.01
+    },
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 1.17,
+      "unit": "U",
+      "unitPrice": 16.55,
+      "totalPrice": 281.35
+    },
+    {
+      "name": "ROCH HUILE TOURNESOL 3L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.997,
+      "totalPrice": 11.98
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 11.08,
+      "totalPrice": 44.32
+    },
+    {
+      "name": "SEMOULE ROYALE EXTRA FINE 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.14,
+      "totalPrice": 9.14
+    },
+    {
+      "name": "MC POIVRE CONCASSE 530G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.5,
+      "totalPrice": 11.5
+    },
+    {
+      "name": "MC ASSAIS POULET ROTI 670G",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 4.49,
+      "totalPrice": 35.92
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.498,
+      "totalPrice": 7.49
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.75,
+      "totalPrice": 15.75
+    },
+    {
+      "name": "SUCRE MCX BLC N 4 1KG ROCHAMB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.483,
+      "totalPrice": 8.9
+    },
+    {
+      "name": "AROME FLEUR D' ORANGER 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.64,
+      "totalPrice": 6.56
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.39,
+      "totalPrice": 4.39
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.04,
+      "totalPrice": 2.04
+    },
+    {
+      "name": "*CHEVRE BUCHE 1KG PPX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.39,
+      "totalPrice": 31.17
+    },
+    {
+      "name": "GALET DE LA LOIRE 260G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.51,
+      "totalPrice": 3.51
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.05,
+      "totalPrice": 14.05
+    },
+    {
+      "name": "TZATZIKI 1KG INSPIRE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 9.09,
+      "totalPrice": 18.18
+    },
+    {
+      "name": "FILET PLT BLC HAL 2.5 S/AT FR",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 20.73,
+      "totalPrice": 62.19
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.95,
+      "totalPrice": 30.18
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.95,
+      "totalPrice": 27.71
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 13.56
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.49,
+      "totalPrice": 15.9
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 15.88
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 16.65
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 12.69
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.99,
+      "totalPrice": 14.65
+    }
+  ]
+}

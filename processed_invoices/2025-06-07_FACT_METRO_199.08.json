@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-07-06",
+  "invoiceNo": "0/0 (067) 0014/021408",
+  "totalAmount": 199.08,
+  "items": [
+    {
+      "name": "RIOBA PJ ANANAS PET 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 2.247,
+      "totalPrice": 40.44
+    },
+    {
+      "name": "CREM VINAIGRE BALSA 500G PONTI",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.43,
+      "totalPrice": 10.86
+    },
+    {
+      "name": "SEL FIN CEREBOS SEAU 5 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.73,
+      "totalPrice": 3.73
+    },
+    {
+      "name": "ARO JUS CITRON JAUNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.99,
+      "totalPrice": 5.98
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.67,
+      "totalPrice": 5.67
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.8,
+      "totalPrice": 6.8
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 2.898,
+      "totalPrice": 14.49
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.59,
+      "totalPrice": 28.78
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.59,
+      "totalPrice": 27.72
+    },
+    {
+      "name": "LIME MC 4.5K C. 1/2 C1 BRBRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.21,
+      "totalPrice": 11.21
+    },
+    {
+      "name": "SAL FDC BLONDE MC PC6 C1 FRFRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 14.28
+    },
+    {
+      "name": "OIG CHARC MC 8K C. 7/10 PAL66 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.12,
+      "totalPrice": 7.12
+    },
+    {
+      "name": "CONCOMBRE MC C. 4/5 PC12 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 1.98
+    },
+    {
+      "name": "AIL PELE MC 1KG CHINE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.49,
+      "totalPrice": 5.49
+    },
+    {
+      "name": "250 POT A SAUCE 3 CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.65,
+      "totalPrice": 3.65
+    }
+  ]
+}

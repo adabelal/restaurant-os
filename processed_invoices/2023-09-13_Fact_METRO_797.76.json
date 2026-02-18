@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-13",
+  "invoiceNo": "0/0 (067) 0001/006935",
+  "totalAmount": 211.26,
+  "items": [
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.57,
+      "totalPrice": 17.57
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.5,
+      "totalPrice": 11.5
+    },
+    {
+      "name": "CITRON VERT 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.45,
+      "totalPrice": 17.45
+    },
+    {
+      "name": "TOM DUO CERISE RDE 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.81,
+      "totalPrice": 24.81
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.21,
+      "totalPrice": 15.21
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.079,
+      "totalPrice": 25.9
+    },
+    {
+      "name": "CELERI RAVE FR 8 FRANCE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 2.17,
+      "totalPrice": 4.34
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.5,
+      "totalPrice": 7.5
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.97,
+      "totalPrice": 5.82
+    },
+    {
+      "name": "TOM ALL. TORINO 47+ SAV. FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 22.81,
+      "totalPrice": 22.81
+    },
+    {
+      "name": "COURG 14/21 MC 5 KG C1 FR FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 32.55
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 7.03,
+      "totalPrice": 21.09
+    },
+    {
+      "name": "01G CHARC 7/10 8KG DMLT C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.63,
+      "totalPrice": 8.63
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 6.52,
+      "totalPrice": 19.56
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.59,
+      "totalPrice": 5.59
+    },
+    {
+      "name": "SIGMA10 RL80X77X12 THERMI SBPA",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 2.46,
+      "totalPrice": 24.6
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.302,
+      "totalPrice": 43.81
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 12.297,
+      "totalPrice": 147.56
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-07-25",
+  "invoiceNo": "067/045",
+  "totalAmount": 697.01,
+  "items": [
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.92,
+      "totalPrice": 18.92
+    },
+    {
+      "name": "SCISSON SEC PP 1, 4KG ENV RUST",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.88,
+      "totalPrice": 15.46
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.01,
+      "totalPrice": 22.02
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.93,
+      "totalPrice": 20.24
+    },
+    {
+      "name": "TZATZIKI 500G METRO CHEF",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.1,
+      "totalPrice": 10.2
+    },
+    {
+      "name": "CELERI BOTTE PC10 C1 ESESPAGNE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 4.38
+    },
+    {
+      "name": "CELERI RAVE 6 BE C1 BELGIQUE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.39,
+      "totalPrice": 4.39
+    },
+    {
+      "name": "CONCOMBRE C. 5/6 PC12 C1 BE BELGIQUE",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 1.31,
+      "totalPrice": 9.17
+    },
+    {
+      "name": "PROSECCO PERLINO EXT DRY 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 4.947,
+      "totalPrice": 59.36
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.03,
+      "totalPrice": 24.69
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.66,
+      "totalPrice": 129.38
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.62,
+      "totalPrice": 8.57
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 43.4
+    },
+    {
+      "name": "MC POIVRE CONCASSE 530G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.42,
+      "totalPrice": 12.42
+    },
+    {
+      "name": "MC SCE SALAD MOUT ANCIEN 4.9KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.75,
+      "totalPrice": 8.75
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.58,
+      "totalPrice": 17.58
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 17.08,
+      "totalPrice": 17.08
+    },
+    {
+      "name": "SUCETTE CORAZON COEUR CERISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.07,
+      "totalPrice": 13.07
+    },
+    {
+      "name": "CREME ANGLAISE 2L DEBIC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.06,
+      "totalPrice": 14.12
+    },
+    {
+      "name": "AEROSOL SUCREE 700ML DEBIC",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 7.39,
+      "totalPrice": 29.56
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-29",
+  "invoiceNo": "0/0 (067) 0013/0201422",
+  "totalAmount": 73.19,
+  "items": [
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 16.54,
+      "totalPrice": 16.54
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.97,
+      "totalPrice": 15.97
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 11.88
+    },
+    {
+      "name": "RAISIN SULTANINE 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.9,
+      "totalPrice": 4.9
+    },
+    {
+      "name": "MPRO MINI BOBINE DC 2P 200FX6",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.943,
+      "totalPrice": 17.66
+    }
+  ]
+}

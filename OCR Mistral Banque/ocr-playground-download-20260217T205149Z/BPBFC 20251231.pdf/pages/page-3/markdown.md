@@ -1,0 +1,82 @@
++
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 11 AU 31/12/2025
+
+|  DATE COMPTA | LIBELLE / REFERENCE |  | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- | --- |
+|  10/12 | PRLV SEPA GROUPAMA 40137
+P088507623 19327041800027
+MSIAPVL0200213720230912 | 019Q944 | 10/12 | 10/12 | -30,15 €  |
+|  10/12 | PRLV SEPA GROUPAMA 40137
+P088614322 19326780500027
+MSIAPVL0200213720230912 | 019QC82 | 10/12 | 10/12 | -676,63 €  |
+|  10/12 | PRLV SEPA GROUPAMA 40137
+P088500892 15327102000127
+MSIAPVL0200213720230912 | 019QBP0 | 10/12 | 10/12 | -30,15 €  |
+|  10/12 | 091225 CB***7917
+COURTOIS BOURGOFR MONETEAU
+25,62EUR 1 EURO = 1,000000 | FU2MOAT | 10/12 | 10/12 | -25,62 €  |
+|  11/12 | PRLV SEPA FMB
+PRLT FCT N-0857460 DU 28-11-25
+FMB059-00003006-001 | 01A0K5J | 11/12 | 11/12 | -282,42 €  |
+|  11/12 | Scp Groupe 3Eme Acte
+Virement de Sarl Siwa
+CVG 791933994 | 1725542 | 11/12 | 11/12 | -837,14 €  |
+|  11/12 | VIR INST earl du limousi
+Pour EARL DU LIMOUSIN
+F00102 | W6YICN7 | 11/12 | 11/12 | -49,37 €  |
+|  11/12 | VIR INST Souchet Laura
+Pour SOUCHET LAURA
+novembre | W6YIJIS | 11/12 | 11/12 | -139,64 €  |
+|  11/12 | VIR INST Cauchois Amelie
+Pour CAUCHOIS AMELIE
+novembre | W6YIJLB | 11/12 | 11/12 | -186,21 €  |
+|  11/12 | VIR INST Belal Virginie
+Pour BELAL VIRGINIE
+novembre | W6YIJM3 | 11/12 | 11/12 | -123,62 €  |
+|  11/12 | VIR INST M JULES COULON
+Pour M JULES COULON
+novembre | W6YIJMV | 11/12 | 11/12 | -208,34 €  |
+|  11/12 | VIR INST MME LEROY FLORE
+Pour MME LEROY FLORENCE
+novembre | W6YIJO0 | 11/12 | 11/12 | -111,71 €  |
+|  11/12 | VIR INST Prudencia Kons
+Pour PRUDENCIA KONS
+novembre | W6YILLS | 11/12 | 11/12 | -199,66 €  |
+|  11/12 | Jennifer Guerra Baquero
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1726831 | 11/12 | 11/12 | -118,97 €  |
+|  11/12 | VIR INST Micheline Dupon
+Pour MICHELINE DUPONT
+novembre | W6YILTF | 11/12 | 11/12 | -138,93 €  |
+|  11/12 | VIR INST SCI BAB
+Pour SCI BAB
+loyer | W6YILTX | 11/12 | 11/12 | -3 600,00 €  |
+|  11/12 | 091225 CB***7917
+METRO FR MONETEAU067
+77,05EUR 1 EURO = 1,000000 | FVQ67HP | 11/12 | 11/12 | -77,05 €  |
+|  11/12 | 101225 CB***7917
+GRAND FRAIS FR PERRIGNY
+89,14EUR 1 EURO = 1,000000 | FVQ67HQ | 11/12 | 11/12 | -89,14 €  |
+|  11/12 | 101225 CB***7917
+ESTAMPE H ET B FR 89AUXERRE
+300,00EUR 1 EURO = 1,000000 | FVQ67HR | 11/12 | 11/12 | -300,00 €  |
+|  12/12 | BOURGOGNE PRODUITS FRAIS
+ECH:10/12/25 | 1854073 | 12/12 | 09/12 | -451,23 €  |
+|  12/12 | EVI QUATRA FRANCE
+HUILE DE FRITURE 251115023, / 13
+7725 | FWYRHKG | 12/12 | 12/12 | 10,00 €  |
+|  12/12 | 101225 CB***7917
+METRO FR MONETEAU067
+1259,05EUR 1 EURO = 1,000000 | FXDPGVO | 12/12 | 12/12 | -1 259,05 €  |
+
++
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPOJN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Madame la Médiateur de la Banque Populaire Bourgogne Franche-Comté, La Poste - 2 rue des Artisans BP 41008, 25500 Les Fins. Adresse du médiateur : https://www.mediateur-bptifc.fr/Contacts
+
+Page 3/8

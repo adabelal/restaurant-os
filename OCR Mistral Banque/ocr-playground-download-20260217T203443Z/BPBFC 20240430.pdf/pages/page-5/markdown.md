@@ -1,0 +1,78 @@
++
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 3 AU 30/04/2024
+
+|  DATE COMPTA | LIBELLE / REFERENCE |  | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- | --- |
+|  23/04 | PRLV SEPA METRO CASH CAR
+/INV/0015.006256
+CMR000084696901 | 0EB453F | 23/04 | 23/04 | - 158,27 €  |
+|  24/04 | EVI QUATRA FRANCE SARL
+HUILE DE FRITURE 240319000, / 13
+7725 | 5AX06N4 | 24/04 | 24/04 | 56,00 €  |
+|  25/04 | PRLV SEPA FMB
+PRLT FCT N-0747681 DU 12-04-24
+FMB059-00003006-001 | 0EBI2YG | 25/04 | 25/04 | - 432,37 €  |
+|  25/04 | 240424 CB***7917
+GRAND FRAIS FR PERRIGNY
+27,32EUR 1 EURO = 1,000000 | 5D03276 | 25/04 | 25/04 | - 27,32 €  |
+|  25/04 | PVSI DGFIP
+TVA1-042024-3310CA3
+NN952717999DGFIP2023112419LKI4MZ | 0EBCSL2 | 25/04 | 25/04 | - 3 872,00 €  |
+|  26/04 | Asso Le Reve Africain
+Virement de Sarl Siwa
+fact 291 de Sarl Siwa | 0051672 | 26/04 | 26/04 | - 300,00 €  |
+|  26/04 | REMISE CB 5401547011
+BRUT 317,20E - COM 1,03E
+- NB0022/198747 | 0334747 | 26/04 | 26/04 | 316,17 €  |
+|  26/04 | REMISE CB 5401547011
+BRUT 561,50E - COM 1,81E
+- NB0008/199189 | 0335189 | 26/04 | 26/04 | 559,69 €  |
+|  29/04 | REMISE CB 5401547011
+BRUT 1 479,38E - COM 4,75E
+- NB0024/110041 | 0336041 | 29/04 | 29/04 | 1 474,63 €  |
+|  29/04 | REMISE CB 5401547011
+BRUT 2 755,86E - COM 8,85E
+- NB0115/109394 | 0337394 | 29/04 | 29/04 | 2 747,01 €  |
+|  29/04 | REMISE CB 5401547011
+BRUT 1 378,90E - COM 4,40E
+- NB0083/103788 | 0338788 | 29/04 | 29/04 | 1 374,50 €  |
+|  29/04 | REMISE CB 5401547011
+BRUT 2 548,04E - COM 8,13E
+- NB0036/104223 | 0339223 | 29/04 | 29/04 | 2 539,91 €  |
+|  29/04 | PRLV SEPA METRO CASH CAR
+/INV/0017.001039
+CMR000084696901 | 0EBVIBN | 29/04 | 29/04 | - 372,32 €  |
+|  29/04 | 270424 CB***7917
+GRAND FRAIS FR PERRIGNY
+79,82EUR 1 EURO = 1,000000 | 5JM8D95 | 29/04 | 29/04 | - 79,82 €  |
+|  29/04 | 280424 CB***6839
+GRAND FRAIS FR PERRIGNY
+18,25EUR 1 EURO = 1,000000 | 5JMBC9I | 29/04 | 29/04 | - 18,25 €  |
+|  29/04 | REMISE CB 5401547011
+BRUT 71,50E - COM 0,22E
+- NB0004/152250 | 0340250 | 29/04 | 29/04 | 71,28 €  |
+|  29/04 | REMISE CB 5401547011
+BRUT 781,90E - COM 2,50E
+- NB0005/151992 | 0341992 | 29/04 | 29/04 | 779,40 €  |
+|  30/04 | PRLV SEPA METRO CASH CAR
+/INV/0017.001046
+CMR000084696901 | 0EC4YGJ | 30/04 | 30/04 | - 29,85 €  |
+|  30/04 | PRLV SEPA METRO CASH CAR
+/INV/0017.001050
+CMR000084696901 | 0EC4YOC | 30/04 | 30/04 | - 445,16 €  |
+|   | TOTAL DES MOUVEMENTS DEBITEURS |  |  |  | - 46 100,15 €  |
+|   | TOTAL DES MOUVEMENTS CREDITEURS |  |  |  | 38 270,94 €  |
+|   | SOLDE CREDITEUR AU 30/04/2024* |  |  |  | 40 136,42 €  |
+
+(*) Sous réserve des opérations en cours d'enregistrement et d'une provision suffisante et disponible lors de l'arrêté du solde du compte réalisé en fin de journée. Ce document ne justifie pas la déduction de la TVA ou de la charge en matière d'impôt direct.
+
++
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+Page 5/8

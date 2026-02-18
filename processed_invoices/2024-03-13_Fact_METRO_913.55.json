@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-13",
+  "invoiceNo": "0/0 (067) 0015/0038752",
+  "totalAmount": 664.58,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.58,
+      "totalPrice": 69.48
+    },
+    {
+      "name": "TEQUILA SAN JOSE SILVER70CL35D",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.36,
+      "totalPrice": 68.16
+    },
+    {
+      "name": "BS BUMBU ORIGINAL 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 26.49,
+      "totalPrice": 132.45
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.72,
+      "totalPrice": 70.32
+    },
+    {
+      "name": "LIQUEUR GOLD STRIKE 50D 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.33,
+      "totalPrice": 91.98
+    },
+    {
+      "name": "GET 31 24D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.11,
+      "totalPrice": 102.66
+    },
+    {
+      "name": "APEROL 12, 5D 100CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.53,
+      "totalPrice": 75.18
+    },
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.65,
+      "totalPrice": 43.8
+    },
+    {
+      "name": "ARO ABC ANANAS BRICK 1L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.15,
+      "totalPrice": 20.7
+    },
+    {
+      "name": "RIOBA PJ ORANGE SS PULPE 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.89,
+      "totalPrice": 22.68
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.99,
+      "totalPrice": 4.99
+    },
+    {
+      "name": "SUCETTE CORAZON COEUR CERISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.19,
+      "totalPrice": 10.19
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.99,
+      "totalPrice": 6.57
+    }
+  ]
+}

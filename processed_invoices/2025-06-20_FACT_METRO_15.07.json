@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-20",
+  "invoiceNo": "067/210",
+  "totalAmount": 15.07,
+  "items": [
+    {
+      "name": "SAL BATAVIA MC PC6 C1 FRFRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 14.28
+    }
+  ]
+}

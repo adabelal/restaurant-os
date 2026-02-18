@@ -1,0 +1,76 @@
+F
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+JE CONSERVE
+
+CE DOCUMENT
+
++
+
+Votre Agence :
+AILLANT SUR THOLON
+AILLANT SUR THOLON
+89110 MONTHOLON
+
+Votre Conseillère :
+Isabelle CATHELIN
+isabelle.cathelin@bpbfc.fr
+Tél : 03 86 63 58 31
+
+SARL SIWA
+24 ROUTE DE POILLY SUR THOLON
+89110 POILLY SUR THOLON
+
+# Votre relevé de compte n°8 au 30/09/2024
+
+DETAIL DES OPERATIONS DE VOTRE COMPTE COURANT N° 32521140221
+
+SARL SIWA
+IBAN : FR76 1080 7004 7832 5211 4022 191
+BIC : CCBPFRPPDJN
+
+|  DATE COMPTA | LIBELLE / REFERENCE | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- |
+|  SOLDE CREDITEUR AU 30/08/2024 |   |   |   | 27 320,14 €  |
+|  31/08 | COTIS RYTHMEO
+XCCNV240 2024083000034273000001
+CONTRAT CNV5041449827 | 0034273 | 30/08 | 30/08  |
+|  SOLDE CREDITEUR AU 31/08/2024 |   |   |   | 27 262,02 €  |
+|  01/09 | LOYER TPE / ELC
+MOIS DE AOUT 2024
+HT: 31,41/TVA20,00: 6,28 | 5401547 | 01/09 | 01/09  |
+|  01/09 | LOYER TPE / ELC
+MOIS DE AOUT 2024
+HT: 31,41/TVA20,00: 6,28 | 5401547 | 01/09 | 01/09  |
+|  02/09 | BOURGOGNE PRODUITS FRAIS
+ECH:02/09/24 | 1961198 | 02/09 | 01/09  |
+|  02/09 | EVI ASSO MAMMOUTH
+ASSO MAMMOUTH
+MAMMOUTH FEST | B6LW89Q | 02/09 | 02/09  |
+|  02/09 | PRLV SEPA Orange SA
+Votre abonnement fibre (facture: M0063503064 | 0EZKRDJ | 02/09 | 02/09  |
+|  05/09 | Earl Du Limousin
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 5188727 | 05/09 | 05/09  |
+|  05/09 | 040924 CB***7917
+COURTOIS BOURGOFR MONETEAU
+39,14EUR 1 EURO = 1,000000 | BGYKGOZ | 05/09 | 05/09  |
+|  05/09 | 040924 CB***7917
+Boulanger FR AUXERRE
+2161,99EUR 1 EURO = 1,000000 | BGYKGP0 | 05/09 | 05/09  |
+|  06/09 | Sas Courtois
+Virement de Sarl Siwa
+4090100269 | 5241334 | 06/09 | 06/09  |
+|  07/09 | 050924 CB***6839
+AMAZON PAYMENTSFR PAYLI2441535
+238,91EUR 1 EURO = 1,000000 | BK9NB1Z | 07/09 | 07/09  |
+|  07/09 | 060924 CB***7917
+METRO FR NANTERRE
+283,00EUR 1 EURO = 1,000000 | BK9NAR8 | 07/09 | 07/09  |
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+Page 1/7

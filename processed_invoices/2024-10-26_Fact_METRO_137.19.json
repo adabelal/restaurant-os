@@ -1,0 +1,57 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-26",
+  "invoiceNo": "0/0 (067) 0014/039039",
+  "totalAmount": 137.19,
+  "items": [
+    {
+      "name": "PAIN SANDW 7 CEREAL LC 550G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.67,
+      "totalPrice": 2.67
+    },
+    {
+      "name": "8 PAIN CHOCOLAT LC 360G ROCH",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.72,
+      "totalPrice": 3.44
+    },
+    {
+      "name": "VERITABLE CO BLEU PLT X6 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.24,
+      "totalPrice": 13.24
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 24.73
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 24.73
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 34.85
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.99,
+      "totalPrice": 26.38
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-01-28",
+  "invoiceNo": "5010500309",
+  "totalAmount": 136.44,
+  "items": [
+    {
+      "name": "6 CHAMP CHASSENAY CUV SELECTION",
+      "quantity": 75.0,
+      "unit": "U",
+      "unitPrice": 16.53,
+      "totalPrice": 99.18
+    },
+    {
+      "name": "2 MONIN PECHE SIROP 100 CL",
+      "quantity": 100.0,
+      "unit": "L",
+      "unitPrice": 7.224,
+      "totalPrice": 14.45
+    }
+  ]
+}

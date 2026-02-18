@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO France",
+  "date": "2023-11-02",
+  "invoiceNo": "0/0 (067) 0001/0083922",
+  "totalAmount": 192.35,
+  "items": [
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 182.32
+    }
+  ]
+}

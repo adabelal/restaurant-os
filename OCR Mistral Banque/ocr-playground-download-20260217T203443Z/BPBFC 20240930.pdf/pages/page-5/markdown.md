@@ -1,0 +1,79 @@
+F
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+RELEVE N° 8 AU 30/09/2024
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE COMPTA | LIBELLE / REFERENCE |  | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- | --- |
+|  27/09 | REMISE CB 5401547011
+BRUT 586,20E - COM 1,88E
+- NB0026/186922 | 0483922 | 27/09 | 27/09 | 584,32 €  |
+|  27/09 | REMISE CB 5401547011
+BRUT 73,05E - COM 0,23E
+- NB0001/192071 | 0484071 | 27/09 | 27/09 | 72,82 €  |
+|  28/09 | 260924 CB***6839
+AMAZON PAYMENTSFR PAYLI2441535
+11,98EUR 1 EURO = 1,000000 | CIZXPH4 | 28/09 | 28/09 | - 11,98 €  |
+|  28/09 | 260924 CB***6839
+AMAZON PAYMENTSFR PAYLI2441535
+19,07EUR 1 EURO = 1,000000 | CIZXPH5 | 28/09 | 28/09 | - 19,07 €  |
+|  30/09 | REMISE CB 5401547011
+BRUT 1 133,33E - COM 3,61E
+- NB0057/196098 | 0485098 | 30/09 | 30/09 | 1 129,72 €  |
+|  30/09 | REMISE CB 5401547011
+BRUT 574,30E - COM 1,84E
+- NB0010/101144 | 0486144 | 30/09 | 30/09 | 572,46 €  |
+|  30/09 | REMISE CB 5401547011
+BRUT 2 513,35E - COM 8,06E
+- NB0030/195820 | 0487820 | 30/09 | 30/09 | 2 505,29 €  |
+|  30/09 | REMISE CB 5401547011
+BRUT 1 187,48E - COM 3,78E
+- NB0059/190019 | 0488019 | 30/09 | 30/09 | 1 183,70 €  |
+|  30/09 | PRLV SEPA PREFILOC CAPIT
+F240539861
+PRE000101879 | 0F551GN | 30/09 | 30/09 | - 89,22 €  |
+|  30/09 | PRLV SEPA Butagaz SAS
+/INV/0008908807 19.9.2024
+ZB07638592 | 0F52Y58 | 30/09 | 30/09 | - 368,16 €  |
+|  30/09 | PRLV SEPA METRO CASH CAR
+/INV/0017.004263
+CMR000084696901 | 0F5JQ67 | 30/09 | 30/09 | - 1 606,51 €  |
+|  30/09 | 280924 CB***7917
+GRAND FRAIS FR PERRIGNY
+18,30EUR 1 EURO = 1,000000 | CMAZWRB | 30/09 | 30/09 | - 18,30 €  |
+|  30/09 | 280924 CB***7917
+SHOPIX FR APPOIGNY
+34,18EUR 1 EURO = 1,000000 | CMAZWRC | 30/09 | 30/09 | - 34,18 €  |
+|  30/09 | REMISE CB 5401547011
+BRUT 173,90E - COM 0,55E
+- NB0003/141292 | 0489292 | 30/09 | 30/09 | 173,35 €  |
+|  30/09 | REMISE CB 5401547011
+BRUT 621,30E - COM 1,98E
+- NB0006/145177 | 0490177 | 30/09 | 30/09 | 619,32 €  |
+|   | TOTAL DES MOUVEMENTS DEBITEURS |  |  |  | - 47 272,16 €  |
+|   | TOTAL DES MOUVEMENTS CREDITEURS |  |  |  | 37 111,50 €  |
+|   | SOLDE CREDITEUR AU 30/09/2024* |  |  |  | 17 159,48 €  |
+
+(*) Sous réserve des opérations en cours d'enregistrement et d'une provision suffisante et disponible lors de l'arrêté du solde du compte réalisé en fin de journée. Ce document ne justifie pas la déduction de la TVA ou de la charge en matière d'impôt direct.
+
+# DETAIL DE VOS MOUVEMENTS SEPA
+
+RELEVE N° 8 AU 30/09/2024
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE | DETAIL DE VOS PRELEVEMENTS SEPA RECUS |   | DEBIT  |
+| --- | --- | --- | --- |
+|  02/09 | Orange SA | FR18ZZZ002305 | 63,60 €  |
+|   | M0063503064 | 3C896A037 C896A0374G121E |   |
+|   | Votre abonnement fibre (facture: XXXXX0374G1) - P |   |   |
+|  10/09 | GROUPAMA 401374 | FR12ZZZ401374 | 16,41 €  |
+|   | MSIAPVL0200213720230912 | SMIA-P084456796 19327041800012 2 |   |
+|   | P084456796 | 19327041800012 |   |
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts

@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-10-03",
+  "invoiceNo": "5100100156",
+  "totalAmount": -179.72,
+  "items": [
+    {
+      "name": "-1 BT GAZ COURTE RGE PARTIC.10KG",
+      "quantity": -1.0,
+      "unit": "U",
+      "unitPrice": 8.1,
+      "totalPrice": -8.1
+    },
+    {
+      "name": "1 BT GAZ COURTE RGE PARTIC.10KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.1,
+      "totalPrice": 8.1
+    }
+  ]
+}

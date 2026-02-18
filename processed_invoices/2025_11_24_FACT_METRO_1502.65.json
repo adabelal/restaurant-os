@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-11-24",
+  "invoiceNo": "0/0 (067) 0052/0089092",
+  "totalAmount": 856.12,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.91,
+      "totalPrice": 214.38
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 88.2
+    },
+    {
+      "name": "GIN MONKEY 47 47D 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 36.92,
+      "totalPrice": 36.92
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.05,
+      "totalPrice": 44.2
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.03,
+      "totalPrice": 132.36
+    },
+    {
+      "name": "GET31 24D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.03,
+      "totalPrice": 54.09
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.99,
+      "totalPrice": 167.88
+    },
+    {
+      "name": "GET MENT/FRUITS RGE 17,9D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.08,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.25,
+      "totalPrice": 39.0
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.25,
+      "totalPrice": 78.0
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.05,
+      "totalPrice": 75.6
+    }
+  ]
+}

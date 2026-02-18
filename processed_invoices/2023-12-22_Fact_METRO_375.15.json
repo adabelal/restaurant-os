@@ -1,0 +1,183 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-22",
+  "invoiceNo": "0/0 (067) 0015/0132232",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "OASIS POMME /CASSIS /FRAM 2L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.95,
+      "totalPrice": 11.7
+    },
+    {
+      "name": "LIPTON PECHE 1, 25L PET",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.432,
+      "totalPrice": 8.59
+    },
+    {
+      "name": "SIROP MONIN FRAISE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 7.43,
+      "totalPrice": 7.43
+    },
+    {
+      "name": "ROCHAMBEAU LIMONADE PET 1,5L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.668,
+      "totalPrice": 4.01
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.56,
+      "totalPrice": 18.72
+    },
+    {
+      "name": "YRT GILBERT 6*150G CITRON",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.85,
+      "totalPrice": 5.1
+    },
+    {
+      "name": "PARMIG. R AOP RAPE SACH 500G MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.3,
+      "totalPrice": 10.3
+    },
+    {
+      "name": "1/16COMTE AOP 6M 2, 3KG ENV RJ",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.67,
+      "totalPrice": 34.83
+    },
+    {
+      "name": "CHEVRE F LG BLC 300G PDF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.61,
+      "totalPrice": 4.61
+    },
+    {
+      "name": "EPOISSES LAIT CRU AOP BT 250G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.35,
+      "totalPrice": 6.35
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.81,
+      "totalPrice": 20.09
+    },
+    {
+      "name": "1/2 SCISSE PERCHE PP1, 5KG RUST",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.9,
+      "totalPrice": 14.24
+    },
+    {
+      "name": "SCISSON SEC BEAUFORT 140G",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 2.48,
+      "totalPrice": 4.96
+    },
+    {
+      "name": "NX ST JACQ AC 1/2 COQ 25/40 1K",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.49,
+      "totalPrice": 17.49
+    },
+    {
+      "name": "MOULES FARCIES PERSILLADE X48",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.7,
+      "totalPrice": 15.7
+    },
+    {
+      "name": "NX ST JACQ AC10/20 JAP 800G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.99,
+      "totalPrice": 21.99
+    },
+    {
+      "name": "BEURRE AIL ET PERSIL BIO*MC",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 4.82,
+      "totalPrice": 14.46
+    },
+    {
+      "name": "NOIX ST JAC SC 120/150 ARG MSC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 18.04,
+      "totalPrice": 18.04
+    },
+    {
+      "name": "BAVETTE ALOY VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.99,
+      "totalPrice": 26.93
+    },
+    {
+      "name": "CLEM MLLE CAL. 2 ES C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 11.62,
+      "totalPrice": 11.62
+    },
+    {
+      "name": "SAL PETITE LAITUE ROUGE 1KG C1 ESPAGNEESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.99,
+      "totalPrice": 7.99
+    },
+    {
+      "name": "SAL ICEBERG MC PC DEMIPALX28 C1 ESESPAGNE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 0.99,
+      "totalPrice": 1.98
+    },
+    {
+      "name": "MPRO FILM ALIMENTA 300MX29CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.39,
+      "totalPrice": 5.39
+    },
+    {
+      "name": "MPRO TAB 5EN1 VAISS MACH X150",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 35.15,
+      "totalPrice": 35.15
+    },
+    {
+      "name": "MPRO CHARBON DE BOIS 10 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 19.65,
+      "totalPrice": 19.65
+    }
+  ]
+}

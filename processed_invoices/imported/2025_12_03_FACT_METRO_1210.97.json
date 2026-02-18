@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-12-03",
+  "invoiceNo": "0/0 (067) 0052/0100172",
+  "totalAmount": 466.54,
+  "items": [
+    {
+      "name": "WH ARDBEG ISLAY 10A 46D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 36.37,
+      "totalPrice": 36.37
+    },
+    {
+      "name": "WHISKY NIKKA BARREL 51.4D 50CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 26.94,
+      "totalPrice": 26.94
+    },
+    {
+      "name": "WH BELLEVOYE BLEU 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 29.36,
+      "totalPrice": 29.36
+    },
+    {
+      "name": "RH DIPLOMATICO EXCLUV 40D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 27.23,
+      "totalPrice": 108.92
+    },
+    {
+      "name": "RHUM CLEMENT VIEUX 40D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 18.78,
+      "totalPrice": 37.56
+    },
+    {
+      "name": "ANGOSTURA BITTER 44. 7D 20CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.97,
+      "totalPrice": 15.97
+    },
+    {
+      "name": "*DESPERAD 5. 9D 33CL VP //",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.106,
+      "totalPrice": 26.54
+    },
+    {
+      "name": "ARO ORANGE MULTI ABC BRIC 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.558,
+      "totalPrice": 18.7
+    },
+    {
+      "name": "COUSCOUS DARI FIN 5 KG",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.918,
+      "totalPrice": 87.54
+    },
+    {
+      "name": "CHEF JUS VEAU LIE 22L 660G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.04,
+      "totalPrice": 12.04
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.12,
+      "totalPrice": 18.12
+    },
+    {
+      "name": "SEL GROS SEAU 5KG CEREBOS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 4.2
+    },
+    {
+      "name": "SEL GROS SAC 10KG SALAISON",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 6.15,
+      "totalPrice": 12.3
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.67,
+      "totalPrice": 5.67
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.39,
+      "totalPrice": 4.39
+    },
+    {
+      "name": "BEST FIZZ SAC 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.48,
+      "totalPrice": 6.48
+    }
+  ]
+}

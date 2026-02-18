@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-20",
+  "invoiceNo": "0/0 (067)0001/0093412",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.75,
+      "totalPrice": 8.25
+    },
+    {
+      "name": "GILBERT SUCRE DE CANNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.16,
+      "totalPrice": 12.64
+    },
+    {
+      "name": "WH J. DANIEL'S 70CL 40D",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 16.688,
+      "totalPrice": 100.13
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.417,
+      "totalPrice": 89.0
+    },
+    {
+      "name": "TEQUILA SAN JOSE SILVER70CL35D",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 12.552,
+      "totalPrice": 75.31
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.212,
+      "totalPrice": 165.81
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 12.297,
+      "totalPrice": 147.56
+    },
+    {
+      "name": "MC CUMIN MOULU 400G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.4,
+      "totalPrice": 6.4
+    },
+    {
+      "name": "ARO JUS CITRON JAUNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.95,
+      "totalPrice": 2.95
+    },
+    {
+      "name": "POIVRE NOIR MOULU 1KG ARO",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.33,
+      "totalPrice": 16.33
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.37,
+      "totalPrice": 105.56
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.98,
+      "totalPrice": 34.07
+    },
+    {
+      "name": "COURG FILET 2K 14/21C1ESP ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.58,
+      "totalPrice": 6.58
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.088,
+      "totalPrice": 13.06
+    },
+    {
+      "name": "FENOUIL 5K ITALIE ITALIE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.69,
+      "totalPrice": 13.69
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC ESP C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.2,
+      "totalPrice": 3.6
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-02",
+  "invoiceNo": "0/0 (067) 0015/007188",
+  "totalAmount": 55.47,
+  "items": [
+    {
+      "name": "GUERROUA RGE MLTOULAL 75CL MAR",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.79,
+      "totalPrice": 90.96
+    },
+    {
+      "name": "ALG RGE KOUTOUBIA MASCARA 75C",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 5.19,
+      "totalPrice": 31.14
+    },
+    {
+      "name": "COCA COLA REG PET 1.25L",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.58,
+      "totalPrice": 75.84
+    },
+    {
+      "name": "LACTE PULPE 4X125G FRAISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.87,
+      "totalPrice": 1.87
+    },
+    {
+      "name": "CREME DESSERT 4*125G VANIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.96,
+      "totalPrice": 1.96
+    },
+    {
+      "name": "MASCARPONE 500G LATTE BIANCO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.5,
+      "totalPrice": 4.5
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.35,
+      "totalPrice": 11.35
+    },
+    {
+      "name": "GALET DE LA LOIRE 260G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.32,
+      "totalPrice": 3.32
+    },
+    {
+      "name": "JB CRU PAYS 20T 500G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.2,
+      "totalPrice": 10.4
+    },
+    {
+      "name": "SCISSON AIL FUME VPF 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.13,
+      "totalPrice": 4.13
+    },
+    {
+      "name": "SCISSON SEC SUPAVEYR 2X200G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.02,
+      "totalPrice": 8.02
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.49,
+      "totalPrice": 10.53
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.49,
+      "totalPrice": 8.05
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.49,
+      "totalPrice": 9.99
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.49,
+      "totalPrice": 9.23
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.49,
+      "totalPrice": 7.92
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.49,
+      "totalPrice": 9.75
+    },
+    {
+      "name": "LIME CAL 54/60 FILET 1KG BRESIL C1 BRESIL",
+      "quantity": 4.0,
+      "unit": "kg",
+      "unitPrice": 5.49,
+      "totalPrice": 21.96
+    },
+    {
+      "name": "COGNAC VSOP DELAITRE 40D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 25.55,
+      "totalPrice": 51.1
+    },
+    {
+      "name": "EDV POIRE WILLIAM DLT 40D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 14.07,
+      "totalPrice": 28.14
+    }
+  ]
+}

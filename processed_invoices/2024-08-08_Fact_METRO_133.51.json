@@ -1,0 +1,57 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-08-08",
+  "invoiceNo": "0/0 (067) 0013/0072872",
+  "totalAmount": 133.51,
+  "items": [
+    {
+      "name": "MC POIVRE CONCASSE 530G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.58,
+      "totalPrice": 9.58
+    },
+    {
+      "name": "GIGOT AGN S/OS HALAL S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.69,
+      "totalPrice": 30.09
+    },
+    {
+      "name": "GIGOT AGN S/OS HALAL S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.69,
+      "totalPrice": 29.87
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 12.81
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 13.05
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 13.19
+    },
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.79,
+      "totalPrice": 17.96
+    }
+  ]
+}

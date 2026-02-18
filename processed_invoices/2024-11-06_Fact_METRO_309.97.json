@@ -1,0 +1,162 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-06",
+  "invoiceNo": "0/067/0015/017969",
+  "totalAmount": 293.64,
+  "items": [
+    {
+      "name": "MOZZA BILLE 5G BQ 1KG TOSCA",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.3,
+      "totalPrice": 10.3
+    },
+    {
+      "name": "VACHE QUI RIT TERRINE 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.16,
+      "totalPrice": 12.16
+    },
+    {
+      "name": "BOUCHON CHEVR FRAIS TRAIT 600G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.63,
+      "totalPrice": 10.63
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 1/2 AFF MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.79,
+      "totalPrice": 19.8
+    },
+    {
+      "name": "CAMEMBERT BUFALA 250G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.44,
+      "totalPrice": 4.44
+    },
+    {
+      "name": "PLAQUE CEREALES 30X40CM 1250G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.29,
+      "totalPrice": 21.29
+    },
+    {
+      "name": "CARRE DE BRICK JR 160G",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.17,
+      "totalPrice": 7.02
+    },
+    {
+      "name": "GUACAMOLE 1, 1KG INSPIRE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 15.65,
+      "totalPrice": 31.3
+    },
+    {
+      "name": "MAGRET TR SS ATMO 250G SO",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 9.53,
+      "totalPrice": 19.06
+    },
+    {
+      "name": "PATE CAMPAGN ANC 3KG ENV RUSTA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.59,
+      "totalPrice": 26.62
+    },
+    {
+      "name": "POIT. FUMEE EXT 60T 2X350G MC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.29,
+      "totalPrice": 26.58
+    },
+    {
+      "name": "SCISSON SEC NATURE 200G SDMB",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.07,
+      "totalPrice": 6.14
+    },
+    {
+      "name": "SCISSON SEC POIVRE 200G SDMB",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 3.07,
+      "totalPrice": 9.21
+    },
+    {
+      "name": "FUET PAPRIKA 160G DEL PAIS",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.49,
+      "totalPrice": 7.47
+    },
+    {
+      "name": "SCISSON SEC IGP 250G ENV DAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.29,
+      "totalPrice": 4.11
+    },
+    {
+      "name": "SCISSON SEC IGP 250G ENV DAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.29,
+      "totalPrice": 4.4
+    },
+    {
+      "name": "SCISSON SEC IGP 250G ENV DAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.29,
+      "totalPrice": 4.24
+    },
+    {
+      "name": "EPAULE AGN A/OS HAL S/F UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 23.95
+    },
+    {
+      "name": "EPAULE AGN A/OS HAL S/F UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.59,
+      "totalPrice": 25.78
+    },
+    {
+      "name": "PV VERT MC 70/90 2KG FR C1FRANCE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 4.98,
+      "totalPrice": 9.96
+    },
+    {
+      "name": "PRUNEAUX DENOYAUTES 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.92,
+      "totalPrice": 7.92
+    },
+    {
+      "name": "MPRO 1000 CURE DENT 2 PTES",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.26,
+      "totalPrice": 1.26
+    }
+  ]
+}

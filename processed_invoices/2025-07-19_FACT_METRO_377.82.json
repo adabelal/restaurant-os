@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-07-19",
+  "invoiceNo": "0/0 (067) 0014/0276372",
+  "totalAmount": 377.82,
+  "items": [
+    {
+      "name": "CHAPELURE BRUNEKG",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.77,
+      "totalPrice": 5.54
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 29.54
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 32.2
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 34.81
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 35.62
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 34.63
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 29.32
+    },
+    {
+      "name": "GIGOT AGN S/OS S/V NZ HAL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.99,
+      "totalPrice": 32.47
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 15.03
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 15.39
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 15.44
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 16.4
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 10.79
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 15.25
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.99,
+      "totalPrice": 14.91
+    }
+  ]
+}

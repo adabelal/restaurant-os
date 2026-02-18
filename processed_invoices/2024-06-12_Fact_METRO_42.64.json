@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-06-12",
+  "invoiceNo": "0/0 (067) 0015/010160",
+  "totalAmount": 42.64,
+  "items": [
+    {
+      "name": "ESSUIE-VERRES CT/LIN METIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 35.53,
+      "totalPrice": 35.53
+    }
+  ]
+}

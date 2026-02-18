@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-08-08",
+  "invoiceNo": "0/0 (067) 0014/0302372",
+  "totalAmount": 70.42,
+  "items": [
+    {
+      "name": "MC PIGNON DE PIN 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 38.45,
+      "totalPrice": 38.45
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.84,
+      "totalPrice": 10.8
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.84,
+      "totalPrice": 7.18
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.84,
+      "totalPrice": 10.32
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-06-29",
+  "invoiceNo": "0/0 (067) 0013/0050602",
+  "totalAmount": 75.94,
+  "items": [
+    {
+      "name": "BURRATINA 4X50G ZANETTI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.64,
+      "totalPrice": 3.64
+    },
+    {
+      "name": "MOZZA PAIN 1KG BIANCALATTE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.99,
+      "totalPrice": 6.99
+    },
+    {
+      "name": "CLUB SUEDOIS JAMBON CHED 135G",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.91,
+      "totalPrice": 5.73
+    },
+    {
+      "name": "CLUB MEGA POULET OEUF 230G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.45,
+      "totalPrice": 2.45
+    },
+    {
+      "name": "BURGER POULET HALAL 10X100G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.99,
+      "totalPrice": 5.99
+    },
+    {
+      "name": "AIGUILLETTE PLT CORNF HAL 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.55,
+      "totalPrice": 8.55
+    },
+    {
+      "name": "WINGS PLT CRUNCH SPICY 1KG HAL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.52,
+      "totalPrice": 6.52
+    },
+    {
+      "name": "CHIPOLATAS PORC SUP X6 SAT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.19,
+      "totalPrice": 6.38
+    },
+    {
+      "name": "MERGUEZ BF/MOUTON HAL 1KG S/V",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 11.94
+    },
+    {
+      "name": "MERGUEZ BF/MOUTON HAL 1KG S/V",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 12.0
+    },
+    {
+      "name": "FRAMBOISE 125G ESPAGNE C1ESPAGNE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.79,
+      "totalPrice": 1.79
+    }
+  ]
+}

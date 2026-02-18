@@ -1,0 +1,81 @@
+{
+  "releve_bancaire": {
+    "numero_releve": "N° 6",
+    "periode": "DU 01/07/2025 AU 31/07/2025",
+    "transactions": [
+      {
+        "date_operation": "30/06",
+        "libelle": "COTIS RYTHMEO XCCNV240 2025063000055252000001 CONTRAT CNV5041449827",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/07",
+        "libelle": "PRLV SEPA PASSIONFROID B /INV/8333539132 27.6.2025 00002ES000018612",
+        "debit": 483.34,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/07",
+        "libelle": "LOYER TPE / ELC MOIS DE JUIN 2025 HT: 31,41/TVA20,00: 6,28",
+        "debit": 37.69,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/07",
+        "libelle": "LOYER TPE / ELC MOIS DE JUIN 2025 HT: 31,41/TVA20,00: 6,28",
+        "debit": 37.69,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/07",
+        "libelle": "VIR INST MR BELAL BENJAM Pour MR BELAL BENJAMIN Juin",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/07",
+        "libelle": "PRLV SEPA METRO FRANCE S /INV/0017.002646 CMR000084696901",
+        "debit": 953.17,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/07",
+        "libelle": "010725 CB***7917 FOUSSIER FR AUXERRE00088 19,92EUR 1 EURO = 1,000000",
+        "debit": 19.92,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/07",
+        "libelle": "300625 CB***7917 METRO FR MONETEAU067 94,54EUR 1 EURO = 1,000000",
+        "debit": 94.54,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/07",
+        "libelle": "PRLV SEPA ORANGE SA Votre abonnement fibre (facture: M0063503064",
+        "debit": 63.6,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/07",
+        "libelle": "020725 CB***7917 GRAND FRAIS FR PERRIGNY 120,93EUR 1 EURO = 1,000000",
+        "debit": 120.93,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/07",
+        "libelle": "REMISE CB 5401547011 BRUT 756,65E - COM 2,41E - NB0010/165743",
+        "debit": 0,
+        "credit": 754.24
+      },
+      {
+        "date_operation": "04/07",
+        "libelle": "REMISE CB 5401547011 BRUT 2 082,45E - COM 6,63E - NB0059/159242",
+        "debit": 0,
+        "credit": 2
+      }
+    ],
+    "solde_final": 50102.31
+  }
+}

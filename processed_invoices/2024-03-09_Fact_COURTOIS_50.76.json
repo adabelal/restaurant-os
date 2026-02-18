@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-03-09",
+  "invoiceNo": "4030500110",
+  "totalAmount": 44.66,
+  "items": [
+    {
+      "name": "1 LIQ MEUKOW WILD BERRY 70CL30\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.01,
+      "totalPrice": 22.01
+    },
+    {
+      "name": "1 MONIN POIVRE BLC PENJ.48.5CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.566,
+      "totalPrice": 19.57
+    }
+  ]
+}

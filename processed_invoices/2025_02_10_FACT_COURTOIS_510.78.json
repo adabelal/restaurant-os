@@ -1,0 +1,92 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-02-10",
+  "invoiceNo": "5020500112",
+  "totalAmount": 510.78,
+  "items": [
+    {
+      "name": "2 LT LIQUEUR SUREAU 20\u00b0 FUEGO",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 11.886,
+      "totalPrice": 23.77
+    },
+    {
+      "name": "1 RH CAMIKARA CASK 8A 70CL46\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.571,
+      "totalPrice": 31.69
+    },
+    {
+      "name": "40 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 5.464,
+      "totalPrice": 244.48
+    },
+    {
+      "name": "6 MONIN MOJITO MINT 70 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 39.26
+    },
+    {
+      "name": "1 MONIN CONCOMBRE 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.388,
+      "totalPrice": 6.39
+    },
+    {
+      "name": "2 CORSENDONK ROUSSE 8\u00b01VC24X33CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.822,
+      "totalPrice": 3.86
+    },
+    {
+      "name": "2 033VAL-DIEU BLONDE 6\u00b0 VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.371,
+      "totalPrice": 2.9
+    },
+    {
+      "name": "2 ORVAL 6\u00b02 VC 24X33 CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.546,
+      "totalPrice": 3.26
+    },
+    {
+      "name": "2 BURGINDIA VP5.4\u00b0 MIRABEL.33CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.49,
+      "totalPrice": 5.12
+    },
+    {
+      "name": "2 BONSECOURS MYRTILLE 6.4\u00b0VC33CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.746,
+      "totalPrice": 3.66
+    },
+    {
+      "name": "2 BONSECOURS BLDE 8\u00b0 VC 12X33 CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.58,
+      "totalPrice": 3.37
+    },
+    {
+      "name": "2 SACHET 460G BONBONS DAIM 7.6G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.477,
+      "totalPrice": 10.0
+    }
+  ]
+}

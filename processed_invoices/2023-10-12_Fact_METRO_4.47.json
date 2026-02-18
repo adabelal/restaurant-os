@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-10",
+  "invoiceNo": "0/0 (067) 0013/0279682",
+  "totalAmount": 4.47,
+  "items": [
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.12,
+      "totalPrice": 4.24
+    }
+  ]
+}

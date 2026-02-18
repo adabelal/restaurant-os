@@ -1,0 +1,64 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-07-06",
+  "invoiceNo": "757671",
+  "totalAmount": 612.5,
+  "items": [
+    {
+      "name": "FILET DINDE 1.2/2.2 KG S/V FRANCE",
+      "quantity": 1.952,
+      "unit": "kg",
+      "unitPrice": 7.71,
+      "totalPrice": 15.05
+    },
+    {
+      "name": "JAMBON SEC SERRANO 30 TRANCHES STG SAT 5 00 G ESPAGNE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.99,
+      "totalPrice": 15.98
+    },
+    {
+      "name": "SAUCISSON CUIT A L'AIL CHOIX NATURE 1 KG FRANCE VPF",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 6.542,
+      "totalPrice": 13.08
+    },
+    {
+      "name": "SAUCISSON SEC D'AUVERGNE LONG IGP CE2 1 KG ENV FRANCE VPF",
+      "quantity": 0.826,
+      "unit": "kg",
+      "unitPrice": 14.856,
+      "totalPrice": 12.27
+    },
+    {
+      "name": "CHORIZO CULAR IBERIQUE BELLOTA 1/1.3 KG ESPAGNE",
+      "quantity": 0.64,
+      "unit": "kg",
+      "unitPrice": 19.5,
+      "totalPrice": 12.48
+    },
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB",
+      "quantity": 5.27,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 70.09
+    },
+    {
+      "name": "ENTRECOTE VB SEMI-PARE CHAROLAISE 4/7 KG S/V FRANCE MF VBF",
+      "quantity": 6.14,
+      "unit": "kg",
+      "unitPrice": 21.55,
+      "totalPrice": 132.32
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30 S/V UK UE PTF",
+      "quantity": 18.622,
+      "unit": "kg",
+      "unitPrice": 16.55,
+      "totalPrice": 308.19
+    }
+  ]
+}

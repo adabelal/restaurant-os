@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-05-17",
+  "invoiceNo": "4050100638",
+  "totalAmount": -2.85,
+  "items": [
+    {
+      "name": "LT PERRIER FINE. BULLE.VC 12",
+      "quantity": -12.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": -2.85
+    }
+  ]
+}

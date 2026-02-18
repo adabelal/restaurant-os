@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-28",
+  "invoiceNo": "0/0 (067) 0014/0245102",
+  "totalAmount": 210.42,
+  "items": [
+    {
+      "name": "MX A ROMET 75CL BLC MET TRAD",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 2.8,
+      "totalPrice": 50.4
+    },
+    {
+      "name": "CREM VINAIGRE BALSA 500G PONTI",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.7,
+      "totalPrice": 11.4
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    },
+    {
+      "name": "BEST FIZZ SAC 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.48,
+      "totalPrice": 6.48
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.39,
+      "totalPrice": 20.78
+    },
+    {
+      "name": "TOM CER ALL RGE PIGEON 4K C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 19.96,
+      "totalPrice": 19.96
+    },
+    {
+      "name": "SAL FDC BLONDE MC PC6 C1 FRFRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 21.42
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.58,
+      "totalPrice": 5.58
+    },
+    {
+      "name": "MPRO 50 POT A SAUCE KRAFT 30ML",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 0.91,
+      "totalPrice": 13.65
+    },
+    {
+      "name": "COUTEAU ORION OFFICE 10CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.0,
+      "totalPrice": 10.0
+    },
+    {
+      "name": "COUTEAU ORION CUISINE 20CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.7,
+      "totalPrice": 19.7
+    }
+  ]
+}

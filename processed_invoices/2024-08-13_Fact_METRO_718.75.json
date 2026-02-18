@@ -1,0 +1,183 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-08-13",
+  "invoiceNo": "0/0 (067) 0014/029013",
+  "totalAmount": 678.12,
+  "items": [
+    {
+      "name": "FILET PLT BLC HAL 2.5 S/AT FR",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 17.48,
+      "totalPrice": 104.88
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 26.1
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.64
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.76
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.81
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.49
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.86
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.55
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.64
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.71
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.92
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.05
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.67
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.55
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.88
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.84
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.47
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.49
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.18
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 25.62
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 22.74
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 4.0,
+      "unit": "kg",
+      "unitPrice": 3.49,
+      "totalPrice": 13.96
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 4.0,
+      "unit": "kg",
+      "unitPrice": 6.58,
+      "totalPrice": 26.32
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.99,
+      "totalPrice": 5.99
+    },
+    {
+      "name": "80 GOB CARTON DB PAROI 10CL",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 4.6,
+      "totalPrice": 23.0
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-31",
+  "invoiceNo": "0/0 (067) 0013/0131812",
+  "totalAmount": 394.94,
+  "items": [
+    {
+      "name": "COGN MEUKOV BLACK VS 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.76,
+      "totalPrice": 22.76
+    },
+    {
+      "name": "FERNET BRANCA 39D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 16.97,
+      "totalPrice": 33.94
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.58,
+      "totalPrice": 56.88
+    },
+    {
+      "name": "MAILLE VINAIG VIN FRAMB 500ML",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 3.11,
+      "totalPrice": 6.22
+    },
+    {
+      "name": "BOUCHON CHEVR FRAIS TRAIT 600G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.63,
+      "totalPrice": 10.63
+    },
+    {
+      "name": "1/2 BRIE MEAUX AOP 3/4 AFF MDF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.05,
+      "totalPrice": 19.0
+    },
+    {
+      "name": "PATE CAMPAGN ANC 3KG ENV RUSTA",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.59,
+      "totalPrice": 26.99
+    },
+    {
+      "name": "ONION RINGS 1KG MCCAIN",
+      "quantity": 4.0,
+      "unit": "kg",
+      "unitPrice": 5.07,
+      "totalPrice": 20.28
+    },
+    {
+      "name": "HTR MAREN LAB ROUGE N3 48P 4K GEAY E/FR. MAGALLANA GIGAS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.98,
+      "totalPrice": 17.98
+    },
+    {
+      "name": "HTR MAREN SPECIA N3 48P 4K METR E/FR. MAGALLANA GIGAS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.98,
+      "totalPrice": 13.98
+    },
+    {
+      "name": "HTR FDC N3 48P 4K GEAY E/FR BIO*. MAGALLANA GIGAS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.38,
+      "totalPrice": 13.38
+    },
+    {
+      "name": "HTR MAREN FDC N3 48P 4K GEAY E/FR. CRASSOSTREA GIGAS",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 25.96,
+      "totalPrice": 103.84
+    },
+    {
+      "name": "OLIV VERTE DENOY SAV SOLEIL 2, 2KG MAR/ES MAROC/ESPAGNE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 14.28,
+      "totalPrice": 28.56
+    },
+    {
+      "name": "ECHALOTE 3/5 FILET 1KG MC C1 FR 12FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.49,
+      "totalPrice": 3.49
+    },
+    {
+      "name": "50 BATEAU PIN 8.5CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.58,
+      "totalPrice": 5.16
+    },
+    {
+      "name": "50 POT A SAUCE KRAFT 3CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 4.0
+    },
+    {
+      "name": "MPRO 250 BROCH BAMB NOEUD 6 CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.89,
+      "totalPrice": 2.89
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-14",
+  "invoiceNo": "0/0 (067) 0014/0333492",
+  "totalAmount": 345.53,
+  "items": [
+    {
+      "name": "WH ARDBEG ISLAY 10A 46D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 38.78,
+      "totalPrice": 38.78
+    },
+    {
+      "name": "WH ROZELIEURES SM 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 25.0,
+      "totalPrice": 25.0
+    },
+    {
+      "name": "EDV POIRE WILLIAM MAS 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.73,
+      "totalPrice": 18.73
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 12.92,
+      "totalPrice": 25.84
+    },
+    {
+      "name": "CACHACA AGUACANA 37.5D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.0,
+      "totalPrice": 20.0
+    },
+    {
+      "name": "TROPICO L'ORIG BTE 33 CL SLIM",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.558,
+      "totalPrice": 13.38
+    },
+    {
+      "name": "MAILLE VINAIG VIN FRAMB 500ML",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.11,
+      "totalPrice": 3.11
+    },
+    {
+      "name": "MC CERNEAUX NOIX ARLEQUIN 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.17,
+      "totalPrice": 13.17
+    },
+    {
+      "name": "KINDER BUENO WHITE",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 0.64,
+      "totalPrice": 19.2
+    },
+    {
+      "name": "VERITABLE PETIT BEURRE 200GX6",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.137,
+      "totalPrice": 6.82
+    },
+    {
+      "name": "HWD 10 DRAG S/S ICEFRESH",
+      "quantity": 20.0,
+      "unit": "U",
+      "unitPrice": 0.59,
+      "totalPrice": 11.79
+    },
+    {
+      "name": "ST NECT FERM AOP 1, 5KGENV MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.13,
+      "totalPrice": 21.86
+    },
+    {
+      "name": "CAMEMBERT LC 240G VACHE PATURA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.69,
+      "totalPrice": 2.69
+    },
+    {
+      "name": "CAMEMBERT 250G BONS MAYENNAIS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.05,
+      "totalPrice": 2.05
+    },
+    {
+      "name": "1/2 ENTRECOTE VBF S/P MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 23.49,
+      "totalPrice": 73.29
+    }
+  ]
+}

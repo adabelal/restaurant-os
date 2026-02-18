@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-06-08",
+  "invoiceNo": "3060100602",
+  "totalAmount": null,
+  "items": [
+    {
+      "name": "1 MOULIN CAFE SANTOS DOSEUR BRUN 40 A PROMOTION N\u00b0 SERIE 1178747 N\u00b0 COURTOIS 797",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 543.361,
+      "totalPrice": 543.36
+    },
+    {
+      "name": "1 MACHINE A CAFE EMB 2 GR CHAUDIERE 8LT PROMOTION N\u00b0SERIE 2304130652 N\u00b0COURTOIS 798",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4206.124,
+      "totalPrice": 4206.12
+    },
+    {
+      "name": "1 TETE BRITA PURITY C XXX 100485 0-70% G3/8 PROMOTION",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 66.501,
+      "totalPrice": 66.5
+    }
+  ]
+}

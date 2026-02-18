@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-25",
+  "invoiceNo": "0/0 (067) 0013/0197432",
+  "totalAmount": 196.89,
+  "items": [
+    {
+      "name": "EDV FIGUE BOKOBSA 37, 5D 50CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 12.52,
+      "totalPrice": 12.52
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 12.58,
+      "totalPrice": 12.58
+    },
+    {
+      "name": "BSR CAPT. MORGAN 35D 70CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 9.82,
+      "totalPrice": 117.84
+    },
+    {
+      "name": "BERGER BLANC 45D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 13.68,
+      "totalPrice": 13.68
+    },
+    {
+      "name": "RICARD 45D 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 13.6,
+      "totalPrice": 13.6
+    },
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 2.99,
+      "totalPrice": 35.88
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 3.59,
+      "totalPrice": 64.62
+    },
+    {
+      "name": "MAROC S. BRAHIM RSE M TIR 75CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.99,
+      "totalPrice": 17.94
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.98,
+      "totalPrice": 23.52
+    },
+    {
+      "name": "THE VERT TEMPLE DU CIEL 500G",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 3.6,
+      "totalPrice": 7.2
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.68,
+      "totalPrice": 15.36
+    }
+  ]
+}

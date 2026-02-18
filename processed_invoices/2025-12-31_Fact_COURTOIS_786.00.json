@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS BOURGOGNE BOISSONS",
+  "date": "2025-12-31",
+  "invoiceNo": "5120100914",
+  "totalAmount": 786.0,
+  "items": [
+    {
+      "name": "FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 11.6,
+      "unit": "L",
+      "unitPrice": 50.0,
+      "totalPrice": 580.0
+    },
+    {
+      "name": "FUT 30 L LOBURG",
+      "quantity": 1.5,
+      "unit": "L",
+      "unitPrice": 50.0,
+      "totalPrice": 75.0
+    }
+  ]
+}

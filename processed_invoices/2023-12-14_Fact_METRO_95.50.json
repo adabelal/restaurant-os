@@ -1,0 +1,50 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-14",
+  "invoiceNo": "0/0 (067) 0001/0092242",
+  "totalAmount": 95.5,
+  "items": [
+    {
+      "name": "3034204 FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 16.65
+    },
+    {
+      "name": "3034204 FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 16.51
+    },
+    {
+      "name": "3034204 FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 12.57
+    },
+    {
+      "name": "3034204 FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 14.96
+    },
+    {
+      "name": "3034204 FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 15.47
+    },
+    {
+      "name": "3034204 FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.79,
+      "totalPrice": 14.36
+    }
+  ]
+}

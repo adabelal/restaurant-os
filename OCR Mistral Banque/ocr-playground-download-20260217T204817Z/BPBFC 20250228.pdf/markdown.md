@@ -1,0 +1,582 @@
++
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ
+
+JE CONSERVE CE DOCUMENT
+
++
+
+Votre Agence :
+AILLANT SUR THOLON
+AILLANT SUR THOLON
+89110 MONTHOLON
+
+Votre Conseillère :
+Marie CARIOU
+marie.cariou@bpbfc.fr
+Tél : 03 86 63 58 31
+
+SARL SIWA
+24 ROUTE DE POILLY SUR THOLON
+89110 POILLY SUR THOLON
+
+# Votre relevé de compte n°1 au 28/02/2025
+
+## MESSAGE DE VOTRE BANQUE
+
+Les CGU de votre carte Visa dans Apple Pay et Samsung Pay évoluent en mai 2025.
+Consultez-les sur www.banquepopulaire.fr ou en agence. En cas de refus vous pouvez résilier ce service avant cette date, à défaut vous serez réputé les avoir acceptées.
+
+## DETAIL DES OPERATIONS DE VOTRE COMPTE COURANT N° 32521140221
+
+SARL SIWA
+IBAN : FR76 1080 7004 7832 5211 4022 191
+BIC : CCBPFRPPDJN
+
+|  DATE COMPTA | LIBELLE / REFERENCE |   | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- | --- |
+|   | SOLDE CREDITEUR AU 31/01/2025 |   |  |  | 10 209,11 €  |
+|  01/02 | LOYER TPE / ELC
+MOIS DE JANVIER 2025
+HT: 31,41/TVA20,00: 6,28 | 5401547 | 01/02 | 01/02 | - 37,69 €  |
+|  01/02 | LOYER TPE / ELC
+MOIS DE JANVIER 2025
+HT: 31,41/TVA20,00: 6,28 | 5401547 | 01/02 | 01/02 | - 37,69 €  |
+|  03/02 | Laurent Scuri
+Virement de Sarl Siwa
+prestation Dj | 1047273 | 03/02 | 03/02 | - 300,00 €  |
+|  03/02 | REMISES CHEQUES
+DE 4 CHEQUE(S) | 6170170 | 31/01 | 04/02 | 2 653,09 €  |
+|  03/02 | REMISE CB 5401547011
+BRUT 1 818,72E - COM 5,84E
+- NB0066/127368 | 0612368 | 03/02 | 03/02 | 1 812,88 €  |
+|  03/02 | REMISE CB 5401547011
+BRUT 1 741,34E - COM 5,57E
+- NB0023/130382 | 0613382 | 03/02 | 03/02 | 1 735,77 €  |
+|  03/02 | REMISE CB 5401547011
+BRUT 2 757,72E - COM 8,90E
+- NB0140/117759 | 0614759 | 03/02 | 03/02 | 2 748,82 €  |
+|  03/02 | REMISE CB 5401547011
+BRUT 1 490,97E - COM 4,79E
+- NB0024/124663 | 0615663 | 03/02 | 03/02 | 1 486,18 €  |
+|  03/02 | PRLV SEPA Orange SA
+Votre abonnement fibre (facture: M0063503064 | 0FUOJ7L | 03/02 | 03/02 | - 63,60 €  |
+|  03/02 | PRLV SEPA Butagaz SAS
+/INV/0009247372 24.1.2025
+ZB07638592 | 0FUS8QU | 03/02 | 03/02 | - 368,16 €  |
+
++
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 1 AU 28/02/2025
+
+|  DATE COMPTA | LIBELLE / REFERENCE | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- |
+|  03/02 | PRLV SEPA EPISAVEURS EST
+/INV/8971719652 24.1.2025
+00007SS000016712 | 0FUB5DM | 03/02 | 03/02  |
+|  03/02 | 010225 CB***7917
+GRAND FRAIS FR PERRIGNY
+23,81EUR 1 EURO = 1,000000 | 1LE0W0K | 03/02 | 03/02  |
+|  03/02 | REMISE CB 5401547011
+BRUT 852,90E - COM 2,73E
+- NB0007/169644 | 0616644 | 03/02 | 03/02  |
+|  03/02 | REMISE CB 5401547011
+BRUT 207,74E - COM 0,66E
+- NB0007/166569 | 0617569 | 03/02 | 03/02  |
+|  04/02 | PRLV SEPA METRO FRANCE S
+/INV/0017.000343
+CMR000084696901 | 0FVTH4F | 04/02 | 04/02  |
+|  05/02 | 040225 CB***7917
+CENTRAKOR 107 FR AUXERRE
+53,88EUR 1 EURO = 1,000000 | 1OP3IVK | 05/02 | 05/02  |
+|  05/02 | 030225 CB***7917
+METRO FR MONETEAU067
+341,97EUR 1 EURO = 1,000000 | 1OP3IVL | 05/02 | 05/02  |
+|  06/02 | Sci Bab
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1196728 | 06/02 | 06/02  |
+|  06/02 | Mr Belal Benjamin
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1196866 | 06/02 | 06/02  |
+|  06/02 | Adam Belal
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1196907 | 06/02 | 06/02  |
+|  06/02 | Souchet Laura
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1196972 | 06/02 | 06/02  |
+|  06/02 | Souchet Noelie
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1197014 | 06/02 | 06/02  |
+|  06/02 | Cauchois Amelie
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1197042 | 06/02 | 06/02  |
+|  06/02 | Belal Laetitia
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1197095 | 06/02 | 06/02  |
+|  06/02 | Belal Virginie
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1197117 | 06/02 | 06/02  |
+|  06/02 | Mme Leroy Florence
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1197157 | 06/02 | 06/02  |
+|  06/02 | Marie Geoffroy
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1197221 | 06/02 | 06/02  |
+|  06/02 | Mme Sarah Rosse
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1197295 | 06/02 | 06/02  |
+|  06/02 | Jennifer Guerra
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1197319 | 06/02 | 06/02  |
+|  06/02 | Julien Akremann
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1197462 | 06/02 | 06/02  |
+|  06/02 | PRLV SEPA FMB
+PRLT FCT N-0799287 DU 24-01-25
+FMB059-00003006-001 | 0FWWKFY | 06/02 | 06/02  |
+|  06/02 | 040225 CB***7917
+GIFI FR PERRIGNY
+23,85EUR 1 EURO = 1,000000 | 1QCMT10 | 06/02 | 06/02  |
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+Page 2/8
+
++
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 1 AU 28/02/2025
+
+|  DATE COMPTA | LIBELLE / REFERENCE |  | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- | --- |
+|  06/02 | 050225 CB***7917
+GRAND FRAIS FR PERRIGNY
+131,13EUR 1 EURO = 1,000000 | 1QCMT11 | 06/02 | 06/02 | - 131,13 €  |
+|  07/02 | Sas Courtois
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1262288 | 07/02 | 07/02 | - 1 147,07 €  |
+|  07/02 | 050225 CB***7917
+METRO FR MONETEAU067
+45,70EUR 1 EURO = 1,000000 | 1S06495 | 07/02 | 07/02 | - 45,70 €  |
+|  07/02 | 060225 CB***6839
+B11 FR MONTHOLON
+13,00EUR 1 EURO = 1,000000 | 1S064LJ | 07/02 | 07/02 | - 13,00 €  |
+|  07/02 | REMISE CB 5401547011
+BRUT 123,30E - COM 0,40E
+- NB0007/143936 | 0618936 | 07/02 | 07/02 | 122,90 €  |
+|  07/02 | REMISE CB 5401547011
+BRUT 97,30E - COM 0,31E
+- NB0001/147126 | 0619126 | 07/02 | 07/02 | 96,99 €  |
+|  10/02 | REMISE CB 5401547011
+BRUT 1 652,27E - COM 5,33E
+- NB0073/151905 | 0620905 | 10/02 | 10/02 | 1 646,94 €  |
+|  10/02 | REMISE CB 5401547011
+BRUT 1 395,46E - COM 4,46E
+- NB0015/157569 | 0621569 | 10/02 | 10/02 | 1 391,00 €  |
+|  10/02 | REMISE CB 5401547011
+BRUT 1 628,20E - COM 5,19E
+- NB0019/149743 | 0622743 | 10/02 | 10/02 | 1 623,01 €  |
+|  10/02 | REMISE CB 5401547011
+BRUT 3 424,05E - COM 11,39E
+- NB0143/142090 | 0623090 | 10/02 | 10/02 | 3 412,66 €  |
+|  10/02 | PRLV SEPA GROUPAMA 40137
+P085952448 19326780500017
+MSIAPVL0200213720230912 | 0FXIRHK | 10/02 | 10/02 | - 714,26 €  |
+|  10/02 | PRLV SEPA GROUPAMA 40137
+P085833456 19327041800017
+MSIAPVL0200213720230912 | 0FXIVEK | 10/02 | 10/02 | - 28,71 €  |
+|  10/02 | PRLV SEPA GROUPAMA 40137
+P085825945 15327102000117
+MSIAPVL0200213720230912 | 0FXIXU0 | 10/02 | 10/02 | - 28,71 €  |
+|  10/02 | PRLV SEPA EPISAVEURS EST
+/INV/8971723949 31.1.2025/INV/89
+00007SS000016712 | 0FVZFNU | 10/02 | 10/02 | - 166,70 €  |
+|  10/02 | 080225 CB***7917
+GRAND FRAIS FR PERRIGNY
+25,19EUR 1 EURO = 1,000000 | 1WYS53R | 10/02 | 10/02 | - 25,19 €  |
+|  10/02 | REMISE CB 5401547011
+BRUT 317,50E - COM 1,01E
+- NB0003/194798 | 0624798 | 10/02 | 10/02 | 316,49 €  |
+|  11/02 | Eurl De La Obra
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1354684 | 11/02 | 11/02 | - 970,00 €  |
+|  11/02 | 100225 CB***6839
+COURTOIS BOURGOFR MONETEAU
+510,78EUR 1 EURO = 1,000000 | 1YMB8IV | 11/02 | 11/02 | - 510,78 €  |
+|  11/02 | 100225 CB***6839
+METRO FR MONETEAU067
+1099,25EUR 1 EURO = 1,000000 | 1YMB8IW | 11/02 | 11/02 | - 1 099,25 €  |
+|  12/02 | PRLV SEPA SPRE
+Prelevement SPRE
+15-MAN-123496327-841235823-01 | 0FY6CN4 | 12/02 | 12/02 | - 29,58 €  |
+|  12/02 | PRLV SEPA SACEM-SOC AUTE
+Prelevement SACEM
+01-MAN-123496327-841235823-01 | 0FYAEDA | 12/02 | 12/02 | - 438,70 €  |
+|  12/02 | PRLV SEPA METRO FRANCE S
+/INV/0017.000443
+CMR000084696901 | 0FYAF45 | 12/02 | 12/02 | - 1 888,73 €  |
+
++
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 1 AU 28/02/2025
+
+|  DATE COMPTA | LIBELLE / REFERENCE | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- |
+|  13/02 | PRLV SEPA FMB
+PRLT FCT N-0800316 DU 31-01-25
+FMB059-00003006-001 | 0FYKLIB | 13/02 | 13/02  |
+|  13/02 | 120225 CB***6839
+AMAZON PAYMENTS DONT FRAIS: 0,00
+19,50EUR 1 EURO = 1,000000 | 21FGNRQ | 13/02 | 13/02  |
+|  13/02 | 120225 CB***7917
+GRAND FRAIS FR PERRIGNY
+101,36EUR 1 EURO = 1,000000 | 21XE6FY | 13/02 | 13/02  |
+|  13/02 | 120225 CB***7917
+ESTAMPE H ET B FR 89AUXERRE
+1282,70EUR 1 EURO = 1,000000 | 21XE6FZ | 13/02 | 13/02  |
+|  13/02 | 110225 CB***6839
+metro.fr O25-39DE Duesseldorf
+66,10EUR 1 EURO = 1,000000 | 21XE6QO | 13/02 | 13/02  |
+|  13/02 | 110225 CB***6839
+AVIA DAC FR 8902776 MONT
+100,10EUR 1 EURO = 1,000000 | 21XE6QP | 13/02 | 13/02  |
+|  14/02 | REMISE CB 5401547011
+BRUT 980,75E - COM 3,14E
+- NB0008/174361 | 0626361 | 14/02 | 977,61 €  |
+|  14/02 | REMISE CB 5401547011
+BRUT 516,80E - COM 1,67E
+- NB0034/168681 | 0625681 | 14/02 | 515,13 €  |
+|  15/02 | 130225 CB***6839
+Google Play AppIE Dublin
+9,99EUR 1 EURO = 1,000000 | 258HILC | 15/02 | 15/02  |
+|  17/02 | REMISE CB 5401547011
+BRUT 1 554,70E - COM 4,98E
+- NB0020/185146 | 0627146 | 17/02 | 1 549,72 €  |
+|  17/02 | REMISE CB 5401547011
+BRUT 1 065,60E - COM 3,43E
+- NB0044/175180 | 0628180 | 17/02 | 1 062,17 €  |
+|  17/02 | REMISE CB 5401547011
+BRUT 3 188,98E - COM 10,22E
+- NB0038/177151 | 0629151 | 17/02 | 3 178,76 €  |
+|  17/02 | REMISE CB 5401547011
+BRUT 2 256,38E - COM 7,20E
+- NB0105/167998 | 0630998 | 17/02 | 2 249,18 €  |
+|  17/02 | PRLV SEPA EPISAVEURS EST
+/INV/8971728275 7.2.2025
+00007SS000016712 | 0FY7M6O | 17/02 | - 362,50 €  |
+|  17/02 | PRLV SEPA URSSAF BOURGOG
+UR 267000001641853658 DEC 241
+021077CT320230607154818A00005257 | 0FZ1SYN | 17/02 | - 873,00 €  |
+|  17/02 | PRLV SEPA METRO FRANCE S
+/INV/0017.000531
+CMR000084696901 | 0FYZVOW | 17/02 | - 843,06 €  |
+|  17/02 | 150225 CB***7917
+GRAND FRAIS FR PERRIGNY
+13,90EUR 1 EURO = 1,000000 | 28JJLH3 | 17/02 | - 13,90 €  |
+|  17/02 | REMISE CB 5401547011
+BRUT 903,90E - COM 2,89E
+- NB0005/123741 | 0631741 | 17/02 | 901,01 €  |
+|  17/02 | REMISE CB 5401547011
+BRUT 31,30E - COM 0,10E
+- NB0001/121491 | 0632491 | 17/02 | 31,20 €  |
+|  18/02 | EVI AMERICAN EXPRESS PAY
+American Express/SE8336311659/DT
+20250215/TR1/GR79.14/DI0.00/REF | 29S5234 | 18/02 | 79,14 €  |
+|  18/02 | 170225 CB***7917
+METRO FR MONETEAU067
+248,44EUR 1 EURO = 1,000000 | 2A72OK5 | 18/02 | - 248,44 €  |
+|  18/02 | 170225 CB***7917
+Snipes Auxerre FR Snipes Auxer
+309,98EUR 1 EURO = 1,000000 | 2A72OK6 | 18/02 | - 309,98 €  |
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courtiers Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+Page 4/8
+
++
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 1 AU 28/02/2025
+
+|  DATE COMPTA | LIBELLE / REFERENCE |  | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- | --- |
+|  18/02 | 170225 CB***6839
+METRO FR MONETEAU067
+984,47EUR 1 EURO = 1,000000 | 2A72OTI | 18/02 | 18/02 | - 984,47 €  |
+|  19/02 | PRLV SEPA METRO FRANCE S
+/INV/0013.002482
+CMR000084696901 | 0FZIYAW | 19/02 | 19/02 | - 16,72 €  |
+|  19/02 | 180225 CB***7917
+CENTRAKOR 107 FR AUXERRE
+62,86EUR 1 EURO = 1,000000 | 2BUM52P | 19/02 | 19/02 | - 62,86 €  |
+|  20/02 | PRLV SEPA FMB
+PRELEVEMENTS FACTURES
+FMB059-00003006-001 | 0FZPWZY | 20/02 | 20/02 | - 652,00 €  |
+|  20/02 | PRLV SEPA SC EXPERT CONS
+00250000413
+URXCQDFPGT | 0FYSYMB | 20/02 | 20/02 | - 393,88 €  |
+|  20/02 | Maison Calmus
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1657467 | 20/02 | 20/02 | - 190,00 €  |
+|  20/02 | 190225 CB***7917
+GRAND FRAIS FR PERRIGNY
+111,03EUR 1 EURO = 1,000000 | 2DI5LAS | 20/02 | 20/02 | - 111,03 €  |
+|  21/02 | Sas Des Beaux Arts
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1677515 | 21/02 | 21/02 | - 720,00 €  |
+|  21/02 | PRLV SEPA PASSIONFROID B
+/INV/8333452485 14.2.2025
+00002ES000018612 | 0FZASYO | 21/02 | 21/02 | - 404,40 €  |
+|  21/02 | Sas Courtois
+Virement de Sarl Siwa
+Virement de Sarl Siwa | 1691399 | 21/02 | 21/02 | - 1 621,39 €  |
+|  21/02 | REMISE CB 5401547011
+BRUT 1 284,81E - COM 4,12E
+- NB0012/193743 | 0633743 | 21/02 | 21/02 | 1 280,69 €  |
+|  21/02 | REMISE CB 5401547011
+BRUT 466,10E - COM 1,48E
+- NB0023/191252 | 0634252 | 21/02 | 21/02 | 464,62 €  |
+|  21/02 | PVSI DGFIP
+TVA1-022025-3310CA3
+NN952717999DGFIP2023112419LKI4MZ | 0FZRR7W | 21/02 | 21/02 | - 2 112,00 €  |
+|  22/02 | FRAIS CREATION EURO PRLV
+XCIMR012 2025022100022311000001
+CREANCIER : PASSIONFROID BOU | 0022311 | 21/02 | 21/02 | - 3,90 €  |
+|  24/02 | REMISE CB 5401547011
+BRUT 1 137,90E - COM 3,65E
+- NB0016/102675 | 0635675 | 24/02 | 24/02 | 1 134,25 €  |
+|  24/02 | REMISE CB 5401547011
+BRUT 1 441,20E - COM 4,62E
+- NB0098/197631 | 0636631 | 24/02 | 24/02 | 1 436,58 €  |
+|  24/02 | REMISE CB 5401547011
+BRUT 1 636,05E - COM 5,26E
+- NB0030/192293 | 0637293 | 24/02 | 24/02 | 1 630,79 €  |
+|  24/02 | REMISE CB 5401547011
+BRUT 1 867,35E - COM 5,97E
+- NB0082/185423 | 0638423 | 24/02 | 24/02 | 1 861,38 €  |
+|  24/02 | PRLV SEPA METRO FRANCE S
+/INV/0017.000631
+CMR000084696901 | 0G04LEX | 24/02 | 24/02 | - 1 033,12 €  |
+|  24/02 | PRLV SEPA METRO FRANCE S
+/INV/0017.000632
+CMR000084696901 | 0G04LIU | 24/02 | 24/02 | - 14,31 €  |
+|  24/02 | REMISE CB 5401547011
+BRUT 590,40E - COM 1,90E
+- NB0018/136789 | 0639789 | 24/02 | 24/02 | 588,50 €  |
+|  24/02 | REMISE CB 5401547011
+BRUT 1 497,20E - COM 4,79E
+- NB0014/137089 | 0640089 | 24/02 | 24/02 | 1 492,41 €  |
+
++
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+Page 5/8
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 1 AU 28/02/2025
+
+|  DATE COMPTA | LIBELLE / REFERENCE | DATE OPERATION | DATE VALEUR | MONTANT  |
+| --- | --- | --- | --- | --- |
+|  25/02 | PRLV SEPA METRO FRANCE S
+/INV/0013.002834
+CMR000084696901 | 0G0E8G9 | 25/02 | 25/02  |
+|  25/02 | PRLV SEPA PASSIONFROID B
+/INV/8333456623 21.2.2025
+00002ES000018612 | 0G04YD2 | 25/02 | 25/02  |
+|  25/02 | 240225 CB***6839
+JD AUXERRE FR AUXERRE
+135,00EUR 1 EURO = 1,000000 | 2LRUJJK | 25/02 | 25/02  |
+|  25/02 | 240225 CB***6839
+METRO FR MONETEAU067
+728,98EUR 1 EURO = 1,000000 | 2LRUJJL | 25/02 | 25/02  |
+|  26/02 | 250225 CB***7917
+METRO FR MONETEAU067
+228,92EUR 1 EURO = 1,000000 | 2NFDOCJ | 26/02 | 26/02  |
+|  27/02 | PRLV SEPA FMB
+PRLT FCT N-0803173 DU 14-02-25
+FMB059-00003006-001 | 0G0VF4E | 27/02 | 27/02  |
+|  27/02 | 260225 CB***7917
+GRAND FRAIS FR PERRIGNY
+75,54EUR 1 EURO = 1,000000 | 2P2WVZE | 27/02 | 27/02  |
+|  28/02 | PRLV SEPA PREFILOC CAPIT
+F250138907
+PRE000101879 | 0G152V3 | 28/02 | 28/02  |
+|  28/02 | REMISE CB 5401547011
+BRUT 974,04E - COM 3,12E
+- NB0013/113399 | 0641399 | 28/02 | 28/02  |
+|  28/02 | REMISE CB 5401547011
+BRUT 973,76E - COM 3,13E
+- NB0035/107473 | 0642473 | 28/02 | 28/02  |
+|  TOTAL DES MOUVEMENTS DEBITEURS |   |   |   | - 33 276,70 €  |
+|  TOTAL DES MOUVEMENTS CREDITEURS |   |   |   | 42 498,17 €  |
+|  SOLDE CREDITEUR AU 28/02/2025* |   |   |   | 19 430,38 €  |
+
+(*) Sous réserve des opérations en cours d'enregistrement et d'une provision suffisante et disponible lors de l'arrêté du solde du compte réalisé en fin de journée. Ce document ne justifie pas la déduction de la TVA ou de la charge en matière d'impôt direct.
+
+## DETAIL DE VOS MOUVEMENTS SEPA
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 1 AU 28/02/2025
+
+|  DATE | DETAIL DE VOS PRELEVEMENTS SEPA RECUS |   | DEBIT  |
+| --- | --- | --- | --- |
+|  03/02 | Orange SA | FR18ZZZ002305 | 63,60 €  |
+|   | M0063503064 | 3C896A037 C896A0375A521E |   |
+|   | Votre abonnement fibre (facture: XXXXX0375A5) - P |   |   |
+|  03/02 | Butagaz SAS | FR27ZZZ100404 | 368,16 €  |
+|   | ZB07638592 | 2900390994 |   |
+|   | /INV/0009247372 24.1.2025 |   |   |
+|  03/02 | EPISAVEURS EST | FR28ZZZ503518 | 212,77 €  |
+|   | 000075S000016712 | 0900294029 |   |
+|   | /INV/8971719652 24.1.2025 |   |   |
+|  04/02 | METRO FRANCE S.A.S.-METRO FRANCE FR17ZZZ452888 |   | 1 107,56 €  |
+|   | CMR000084696901 | 03822920232025 |   |
+|   | /INV/0017.000343 |   |   |
+|  06/02 | FMB | FR30ZZZ448774 | 365,93 €  |
+|   | FMB059-00003006-001 | FMB.2025-02-06 |   |
+|   | PRLT FCT N-0799287 DU 24-01-25 |   |   |
+|  10/02 | GROUPAMA 401374 | FR12ZZZ401374 | 714,26 €  |
+|   | MSIAPVL0200213720230912 | SMIA-P085952448 19326780500017 2 |   |
+|   | P085952448 19326780500017 |  |   |
+|  10/02 | GROUPAMA 401374 | FR12ZZZ401374 | 28,71 €  |
+|   | MSIAPVL0200213720230912 | SMIA-P085833456 19327041800017 2 |   |
+|   | P085833456 19327041800017 |  |   |
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orlas Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+F
+
+BANQUE POPULAIRE
+
+BOURGOGNE FRANCHE-COMTÉ
+
+RELEVE N° 1 AU 28/02/2025
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE | DETAIL DE VOS PRELEVEMENTS SEPA RECUS | DEBIT  |
+| --- | --- | --- |
+|  10/02 | GROUPAMA 401374
+FR12ZZZ401374
+MSIAPVL0200213720230912
+SMIA-P085825945 15327102000117 2
+P085825945 15327102000117 | 28,71 €  |
+|  10/02 | EPISAVEURS EST
+FR28ZZZ503518
+00007SS000016712 0900294865
+/INV/8971723949 31.1.2025/INV/8971723950 31.1.2025 | 166,70 €  |
+|  12/02 | SPRE
+FR74ZZZ451668
+15-MAN-123496327-841235823-01 130019842369 4008 12022025
+Prelevement SPRE | 29,58 €  |
+|  12/02 | SACEM-SOC AUTEUR COMPOSITEUR EDITE FR06ZZZ186821
+01-MAN-123496327-841235823-01 130019842368 4007 12022025
+Prelevement SACEM | 438,70 €  |
+|  12/02 | METRO FRANCE S.A.S.-METRO FRANCE FR17ZZZ452888
+CMR000084696901 03824371792025
+/INV/0017.000443 | 1 888,73 €  |
+|  13/02 | FMB
+FR30ZZZ448774
+FMB059-00003006-001 FMB.2025-02-13
+PRLT FCT N-0800316 DU 31-01-25 | 458,62 €  |
+|  17/02 | EPISAVEURS EST
+FR28ZZZ503518
+00007SS000016712 0900295670
+/INV/8971728275 7.2.2025 | 362,50 €  |
+|  17/02 | URSSAF BOURGOGNE FR82ZZZ004354
+021077CT320230607154818A000052577 TT402672502121934124434300656001587
+UR 267000001641853658 DEC 24124434300656170225 | 873,00 €  |
+|  17/02 | METRO FRANCE S.A.S.-METRO FRANCE FR17ZZZ452888
+CMR000084696901 03825255512025
+/INV/0017.000531 | 843,06 €  |
+|  19/02 | METRO FRANCE S.A.S.-METRO FRANCE FR17ZZZ452888
+CMR000084696901 03825731552025
+/INV/0013.002482 | 16,72 €  |
+|  20/02 | FMB
+FR30ZZZ448774
+FMB059-00003006-001 FMB.2025-02-20
+PRELEVEMEMTS FACTURES | 652,00 €  |
+|  20/02 | SC EXPERT CONSEIL
+FR20ZZZ836081
+URXCQOFPGT 4912
+00250000413 | 393,88 €  |
+|  21/02 | PASSIONFROID BOURG. FRANCHE COMTE FR74ZZZ316644
+00002ES000018612 0900451688
+/INV/8333452485 14.2.2025 | 404,40 €  |
+|  24/02 | METRO FRANCE S.A.S.-METRO FRANCE FR17ZZZ452888
+CMR000084696901 03826564582025
+/INV/0017.000631 | 1 033,12 €  |
+|  24/02 | METRO FRANCE S.A.S.-METRO FRANCE FR17ZZZ452888
+CMR000084696901 03826564572025
+/INV/0017.000632 | 14,31 €  |
+|  25/02 | METRO FRANCE S.A.S.-METRO FRANCE FR17ZZZ452888
+CMR000084696901 03826791572025
+/INV/0013.002834 | 84,08 €  |
+|  25/02 | PASSIONFROID BOURG. FRANCHE COMTE FR74ZZZ316644
+00002ES000018612 0900452626
+/INV/8333456623 21.2.2025 | 336,31 €  |
+|  27/02 | FMB
+FR30ZZZ448774
+FMB059-00003006-001 FMB.2025-02-27
+PRLT FCT N-0803173 DU 14-02-25 | 357,72 €  |
+|  28/02 | PREFILOC CAPITAL
+FR46ZZZ850260
+PRE000101879 PREFILOC/T000083514/5631565
+F250138907 | 89,22 €  |
+
+RELEVE N° 1 AU 28/02/2025
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE | DETAIL DE VOS PRELEVEMENTS SEPA INTER ENTREPRISES RECUS | DEBIT  |
+| --- | --- | --- |
+|  21/02 | DGFIP
+FR46ZZZ005002
+nn952717999DGFIP2023112419LKI4MZCZ 220890260800109731000
+TVA1-022025-3310CA3 | 2 112,00 €  |
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+Page 7/8
+
+VOTRE COMPTE COURANT N° 32521140221
+RELEVE N° 1 AU 28/02/2025
+
+|  DATE | DETAIL DE VOS VIREMENTS SEPA RECUS | CREDIT  |
+| --- | --- | --- |
+|  18/02 | AMERICAN EXPRESS PAYMENTS EUROPE SL
+ICFSC T250218030031 TFR1FR47307103659 AMEXSCT83363116590490481331742T09
+American Express/SE8336311659/DT20250215/TR1/GR79.14/DI0.00/REF 540154
+7 | 79,14 €  |
+
+Votre Banque Populaire est à vos côtés et met tout au long de l'année son expertise à votre disposition.
+
+Simple et pratique ! Gérez vos comptes et services bancaires en quelques clics et bénéficiez de toutes les fonctionnalités utiles dans votre espace client en ligne.
+
+www.banquepopulaire.fr
+
+Application mobile
+Banque Populaire
+
+TONALITE PLUS : 08 01 01 00 29 - (appel non surtaxé) - Code : 084365
+
+Garantie de vos dépôts : Vos dépôts sont éligibles à la garantie des dépôts du Fonds de Garantie des Dépôts et de Résolution, sous réserve des exclusions prévues par les textes en vigueur. Reportez-vous à la plaquette FGDR disponible sur le site internet de notre établissement ou au formulaire d'information communiqué annuellement ou sur demande, par votre conseiller. Concernant le Livret A, le Livret de Développement Durable et Solidaire et le Livret d'Epargne Populaire, leurs montants sont intégralement garantis par l'Etat.
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTE, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPDJN N° Orias Courtier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts
+
+Page 8/8

@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-11-16",
+  "invoiceNo": "0/0 (067) 0001/0087002",
+  "totalAmount": 114.62,
+  "items": [
+    {
+      "name": "FILET DND HAL S/V UE 2KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.04,
+      "totalPrice": 108.64
+    }
+  ]
+}

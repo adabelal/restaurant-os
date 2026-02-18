@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-05-11",
+  "invoiceNo": "0/0 (067) 0015/008052",
+  "totalAmount": 23.36,
+  "items": [
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.16,
+      "totalPrice": 17.16
+    },
+    {
+      "name": "TOM RDE 47+ 2.5K PITUFO MAR C1 MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.98,
+      "totalPrice": 4.98
+    }
+  ]
+}

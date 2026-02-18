@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-12",
+  "invoiceNo": "0/0 (067) 0017/003994",
+  "totalAmount": 106.61,
+  "items": [
+    {
+      "name": "0197269 POITRINE AGN S/OS S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.88,
+      "totalPrice": 101.05
+    }
+  ]
+}

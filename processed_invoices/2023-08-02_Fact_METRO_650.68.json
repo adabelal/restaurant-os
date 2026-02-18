@@ -1,0 +1,92 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-08-02",
+  "invoiceNo": "0/0 (067) 0016/0069332",
+  "totalAmount": 316.6,
+  "items": [
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 12.05,
+      "totalPrice": 144.6
+    },
+    {
+      "name": "LIQUEUR CAFE DELAITRE 21D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.03,
+      "totalPrice": 8.03
+    },
+    {
+      "name": "LIMONCEL CELLINI 30D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.86,
+      "totalPrice": 10.86
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.04,
+      "totalPrice": 11.04
+    },
+    {
+      "name": "GET 31 24D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.5,
+      "totalPrice": 16.5
+    },
+    {
+      "name": "GET MENTHE CITRON 17,9D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.47,
+      "totalPrice": 12.47
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.19,
+      "totalPrice": 57.42
+    },
+    {
+      "name": "MAROC S. BRAHIM RGE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 53.82
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 64.62
+    },
+    {
+      "name": "MAROC S. BRAHIM RSE M TIR 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 17.94
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.7,
+      "totalPrice": 40.8
+    },
+    {
+      "name": "*SUCRE MCX BLC N 4 1KG ROCHAMB",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.748,
+      "totalPrice": 10.49
+    }
+  ]
+}

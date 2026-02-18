@@ -1,0 +1,687 @@
+{
+  "releve_bancaire": {
+    "numero_releve": "N° 5",
+    "periode": "DU 01/09/2023 AU 29/09/2023",
+    "transactions": [
+      {
+        "date_operation": "01/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 2348.1,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/09",
+        "libelle": "eir christophe roy Virement de SARL SIWA FA1268 de SARL SIWA",
+        "debit": 495.36,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/09",
+        "libelle": "REMISE CB 5401547011 BRUT 637,50E - COM 2,03E - NB0024/134994",
+        "debit": 0,
+        "credit": 635.47
+      },
+      {
+        "date_operation": "01/09",
+        "libelle": "REMISE CB 5401547011 BRUT 986,15E - COM 3,17E - NB0012/135293",
+        "debit": 0,
+        "credit": 982.98
+      },
+      {
+        "date_operation": "01/09",
+        "libelle": "LOYER TPE / ELC MOIS DE AOUT 2023 HT: 31,41/TVA20,00: 6,28",
+        "debit": 37.69,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/09",
+        "libelle": "310823 CB***6839 BUREAU VALLEE FR PERRIGNY 3,96EUR 1 EURO = 1,000000",
+        "debit": 3.96,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/09",
+        "libelle": "310823 CB***6839 GRAND FRAIS FR PERRIGNY 12,87EUR 1 EURO = 1,000000",
+        "debit": 12.87,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/09",
+        "libelle": "310823 CB***6839 METRO FR MONETEAU067 163,03EUR 1 EURO = 1,000000",
+        "debit": 163.03,
+        "credit": 0
+      },
+      {
+        "date_operation": "01/09",
+        "libelle": "310823 CB***6839 COURTOIS BOURGOFR MONETEAU 1137,41EUR 1 EURO = 1,000000",
+        "debit": 1137.41,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/09",
+        "libelle": "REMISE CB 5401547011 BRUT 2 568,10E - COM 9,41E - NB0030/143430",
+        "debit": 0,
+        "credit": 2558.69
+      },
+      {
+        "date_operation": "04/09",
+        "libelle": "REMISE CB 5401547011 BRUT 311,50E - COM 0,98E - NB0017/143130",
+        "debit": 0,
+        "credit": 310.52
+      },
+      {
+        "date_operation": "04/09",
+        "libelle": "REMISE CB 5401547011 BRUT 575,85E - COM 1,84E - NB0022/136275",
+        "debit": 0,
+        "credit": 574.01
+      },
+      {
+        "date_operation": "04/09",
+        "libelle": "REMISE CB 5401547011 BRUT 1 776,50E - COM 5,69E - NB0020/136979",
+        "debit": 1770.81,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 2037.56,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/09",
+        "libelle": "PRLV SEPA Orange SA Votre abonnement fibre (facture: M0063503064",
+        "debit": 40.32,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/09",
+        "libelle": "REMISE CB 5401547011 BRUT 29,10E - COM 0,10E - NB0003/185597",
+        "debit": 0,
+        "credit": 29
+      },
+      {
+        "date_operation": "04/09",
+        "libelle": "REMISE CB 5401547011 BRUT 82,60E - COM 0,26E - NB0001/185322",
+        "debit": 0,
+        "credit": 82.34
+      },
+      {
+        "date_operation": "04/09",
+        "libelle": "010923 CB***6839 RELAIS CHARBUY FR CHARBUY 220,00EUR 1 EURO = 1,000000",
+        "debit": 220,
+        "credit": 0
+      },
+      {
+        "date_operation": "05/09",
+        "libelle": "SCI BAB Virement de SARL SIWA Loyer de SARL SIWA",
+        "debit": 0,
+        "credit": 3700
+      },
+      {
+        "date_operation": "06/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 94.25,
+        "credit": 0
+      },
+      {
+        "date_operation": "06/09",
+        "libelle": "050923 CB***7917 TOTAL FR 89MONETEAU 82,01EUR 1 EURO = 1,000000",
+        "debit": 82.01,
+        "credit": 0
+      },
+      {
+        "date_operation": "06/09",
+        "libelle": "050923 CB***7917 SHOPIX FR APPOIGNY 99,98EUR 1 EURO = 1,000000",
+        "debit": 99.98,
+        "credit": 0
+      },
+      {
+        "date_operation": "06/09",
+        "libelle": "050923 CB***6839 AMZN Mktp FR*1ULU amazon.fr 11,86EUR 1 EURO = 1,000000",
+        "debit": 11.86,
+        "credit": 0
+      },
+      {
+        "date_operation": "06/09",
+        "libelle": "050923 CB***6839 AMZN Mktp FR*1ULU amazon.fr 41,79EUR 1 EURO = 1,000000",
+        "debit": 41.79,
+        "credit": 0
+      },
+      {
+        "date_operation": "06/09",
+        "libelle": "050923 CB***6839 IMPEX FOOD FR CANNES 56,47EUR 1 EURO = 1,000000",
+        "debit": 56.47,
+        "credit": 0
+      },
+      {
+        "date_operation": "07/09",
+        "libelle": "060923 CB***7917 TRENOIS DECAMPSFR MONETEAU 219,60EUR 1 EURO = 1,000000",
+        "debit": 219.6,
+        "credit": 0
+      },
+      {
+        "date_operation": "07/09",
+        "libelle": "PVSI DGFIP TVA-072023-3310CA3 NN952717999DGFIP2023112419LKI4MZ",
+        "debit": 449,
+        "credit": 0
+      },
+      {
+        "date_operation": "07/09",
+        "libelle": "PVSI DGFIP TVA-062023-3310CA3 NN952717999DGFIP2023112419LKI4MZ",
+        "debit": 359,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "REMISES CHEQUES DE 6 CHEQUE(S)",
+        "debit": 833.4,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "REMISES CHEQUES DE 1 CHEQUE(S)",
+        "debit": 70,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "REMISE CB 5401547011 BRUT 577,90E - COM 1,85E - NB0008/177382",
+        "debit": 0,
+        "credit": 576.05
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "REMISE CB 5401547011 BRUT 368,50E - COM 1,17E - NB0018/177207",
+        "debit": 0,
+        "credit": 367.33
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "060923 CB***7917 PROCOTEL FR MONETEAU 29,66EUR 1 EURO = 1,000000",
+        "debit": 29.66,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "070923 CB***6839 GRAND FRAIS FR PERRIGNY 11,63EUR 1 EURO = 1,000000",
+        "debit": 11.63,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "070923 CB***6839 Boulanger FR AUXERRE 12,99EUR 1 EURO = 1,000000",
+        "debit": 12.99,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "070923 CB***6839 Boulanger FR AUXERRE 31.99EUR 1 EURO = 1,000000",
+        "debit": 31.99,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "070923 CB***6839 AMZN Mktp FR*1ULU amazon.fr 67.98EUR 1 EURO = 1,000000",
+        "debit": 67.98,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/09",
+        "libelle": "070923 CB***6839 COURTOIS BOURGOFR MONETEAU 409.38EUR 1 EURO = 1,000000",
+        "debit": 409.38,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "REMISE CB 5401547011 BRUT 785,30E - COM 2,51E - NB0047/189756",
+        "debit": 0,
+        "credit": 782.79
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "REMISE CB 5401547011 BRUT 1 633,75E - COM 5,22E - NB0027/190092",
+        "debit": 0,
+        "credit": 1628.53
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "REMISE CB 5401547011 BRUT 1 561,08E - COM 5,03E - NB0016/184732",
+        "debit": 0,
+        "credit": 1556.05
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "REMISE CB 5401547011 BRUT 479,94E - COM 1,56E - NB0011/184758",
+        "debit": 0,
+        "credit": 478.38
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 269.22,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 1198.9,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "REMISE CB 5401547011 BRUT 226,90E - COM 0,73E - NB0002/134027",
+        "debit": 0,
+        "credit": 226.17
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "REMISE CB 5401547011 BRUT 12,00E - COM 0,04E - NB0001/133895",
+        "debit": 0,
+        "credit": 11.96
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "080923 CB***7917 ESTAMPE H ET B FR 89AUXERRE 72.72EUR 1 EURO = 1,000000",
+        "debit": 72.72,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "080923 CB***7917 RELAIS CHARBUY FR CHARBUY 220,00EUR 1 EURO = 1,000000",
+        "debit": 220,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/09",
+        "libelle": "070923 CB***6839 CORA AUXERRE FR DACCO2129771 56,22EUR 1 EURO = 1,000000",
+        "debit": 56.22,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 733.52,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/09",
+        "libelle": "REMISES CHEQUES DE 3 CHEQUE(S)",
+        "debit": 0,
+        "credit": 2434.7
+      },
+      {
+        "date_operation": "13/09",
+        "libelle": "BOURGOGNE PRODUITS FRAIS ECH:10/09/23",
+        "debit": 0,
+        "credit": 765.48
+      },
+      {
+        "date_operation": "15/09",
+        "libelle": "REMISE CB 5401547011 BRUT 494,90E - COM 1,59E - NB0008/127449",
+        "debit": 0,
+        "credit": 493.31
+      },
+      {
+        "date_operation": "15/09",
+        "libelle": "REMISE CB 5401547011 BRUT 496,20E - COM 1,58E - NB0027/127291",
+        "debit": 0,
+        "credit": 494.62
+      },
+      {
+        "date_operation": "15/09",
+        "libelle": "140923 CB***6839 GRAND FRAIS FR PERRIGNY 15,65EUR 1 EURO = 1,000000",
+        "debit": 15.65,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/09",
+        "libelle": "140923 CB***6839 METRO FR MONETEAU067 133,39EUR 1 EURO = 1,000000",
+        "debit": 133.39,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/09",
+        "libelle": "140923 CB***6839 COURTOIS BOURGOFR MONETEAU 672,04EUR 1 EURO = 1,000000",
+        "debit": 672.04,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "MR BELAL BENJAMIN Virement de SARL SIWA Virement de SARL SIWA",
+        "debit": 0,
+        "credit": 1500
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "REMISE CB 5401547011 BRUT 2 266,24E - COM 7,27E - NB0031/139035",
+        "debit": 0,
+        "credit": 2258.97
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "REMISE CB 5401547011 BRUT 665,61E - COM 2,16E - NB0031/138642",
+        "debit": 0,
+        "credit": 663.45
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "REMISE CB 5401547011 BRUT 811,19E - COM 2,58E - NB0026/133616",
+        "debit": 0,
+        "credit": 808.61
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "REMISE CB 5401547011 BRUT 1 955,24E - COM 6,29E - NB0025/132613",
+        "debit": 0,
+        "credit": 1948.95
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 797.76,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "PRLV SEPA EPISAVEURS EST /INV/8971447363 8.9.2023 000075S000016712",
+        "debit": 346.75,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "REMISE CB 5401547011 BRUT 258,50E - COM 0,84E - NB0004/180406",
+        "debit": 0,
+        "credit": 257.66
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "REMISE CB 5401547011 BRUT 149,60E - COM 0,49E - NB0006/181994",
+        "debit": 0,
+        "credit": 149.11
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "140923 CB***6839 PROCOTEL FR MONETEAU 13,91EUR 1 EURO = 1,000000",
+        "debit": 13.91,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "160923 CB***7917 GRAND FRAIS FR PERRIGNY 17,69EUR 1 EURO = 1,000000",
+        "debit": 17.69,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/09",
+        "libelle": "150923 CB***7917 MAISON DE LA PRFR AILLANT SUR 220,00EUR 1 EURO = 1,000000",
+        "debit": 220,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/09",
+        "libelle": "FRAIS CREATION EURO PRLV XCIMR012 2023091800022674000001 CREANCIER : EPISAVEURS EST",
+        "debit": 3.9,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 1195.45,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/09",
+        "libelle": "180923 CB***6839 MIROLINE FR MONTHOLON 68,96EUR 1 EURO = 1,000000",
+        "debit": 68.96,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/09",
+        "libelle": "180923 CB***6839 PBA FR PERRIGNY 70,98EUR 1 EURO = 1,000000",
+        "debit": 70.98,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/09",
+        "libelle": "180923 CB***6839 BRICO DEPOT FR PERRIGNY2403 140,30EUR 1 EURO = 1,000000",
+        "debit": 140.3,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/09",
+        "libelle": "180923 CB***7917 TRENOIS DECAMPSFR MONETEAU 45,60EUR 1 EURO = 1,000000",
+        "debit": 45.6,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/09",
+        "libelle": "PRLV SEPA SC EXPERT CONS 20230771 20230838 URXCQDFPGT",
+        "debit": 549.6,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/09",
+        "libelle": "FRAIS CREATION EURO PRLV XCIMR012 2023092000021227000001 CREANCIER : SC EXPERT CONSEI",
+        "debit": 3.9,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/09",
+        "libelle": "200923 CB***7917 MIROLINE FR MONTHOLON 68,96EUR 1 EURO = 1,000000",
+        "debit": 68.96,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/09",
+        "libelle": "200923 CB***7917 AVIA DAC FR 8902776 MONT 70,61EUR 1 EURO = 1,000000",
+        "debit": 70.61,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/09",
+        "libelle": "200923 CB***7917 SARL BONNICHON FR CHARNY OREE 157,78EUR 1 EURO = 1,000000",
+        "debit": 157.78,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/09",
+        "libelle": "200923 CB***7917 SARL BONNICHON FR CHARNY OREE 2413,01EUR 1 EURO = 1,000000",
+        "debit": 2413.01,
+        "credit": 0
+      },
+      {
+        "date_operation": "22/09",
+        "libelle": "BOURGOGNE PRODUITS FRAIS ECH:20/09/23 3655116",
+        "debit": 388.48,
+        "credit": 0
+      },
+      {
+        "date_operation": "22/09",
+        "libelle": "REMISE CB 5401547011 BRUT 16,50E - COM 0,05E NB0002/163471 0117471",
+        "debit": 0,
+        "credit": 16.45
+      },
+      {
+        "date_operation": "22/09",
+        "libelle": "REMISE CB 5401547011 BRUT 107,20E - COM 0,35E NB0002/163773 0118773",
+        "debit": 0,
+        "credit": 106.85
+      },
+      {
+        "date_operation": "22/09",
+        "libelle": "210923 CB***6839 GRAND FRAIS FR PERRIGNY 15,00EUR 1 EURO = 1,000000 C738PJA",
+        "debit": 15,
+        "credit": 0
+      },
+      {
+        "date_operation": "22/09",
+        "libelle": "210923 CB***6839 COURTOIS BOURGOFR MONETEAU 374,30EUR 1 EURO = 1,000000 C738PJB",
+        "debit": 374.3,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "REMISE CB 5401547011 BRUT 300,85E - COM 1,18E NB0018/174373 0119373",
+        "debit": 0,
+        "credit": 299.67
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "REMISE CB 5401547011 BRUT 1 509,15E - COM 4,84E NB0018/174706 0120706",
+        "debit": 0,
+        "credit": 1504.31
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "REMISE CB 5401547011 BRUT 1 149,30E - COM 3,67E NB0016/167258 0121258",
+        "debit": 0,
+        "credit": 1145.63
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "REMISE CB 5401547011 BRUT 579,10E - COM 1,84E NB0022/167413 0122413",
+        "debit": 0,
+        "credit": 577.26
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901 0D6BQNJ",
+        "debit": 806.82,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "PRLV SEPA EPISAVEURS EST /INV/8971449691 13.9.2023 00007SS000016712 0D5PINV",
+        "debit": 306.02,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "REMISE CB 5401547011 BRUT 60,30E - COM 0,19E NB0002/118230 0123230",
+        "debit": 0,
+        "credit": 60.11
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "REMISE CB 5401547011 BRUT 598,20E - COM 1,91E NB0005/118402 0124402",
+        "debit": 0,
+        "credit": 596.29
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "230923 CB***6839 AVIA DAC FR 8902776 MONT 50,51EUR 1 EURO = 1,000000 CC1YQJL",
+        "debit": 50.51,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/09",
+        "libelle": "PVSI DGFIP TVA1-092023-3310CA3 NN953717999DGFIP2023112419LKI4MZ 0D67YOR",
+        "debit": 1963,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/09",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901 0D6IGY8",
+        "debit": 720.24,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/09",
+        "libelle": "230923 CB***6839 BI1 FR MONTHOLON 7,79EUR 1 EURO = 1,000000 CDPE532",
+        "debit": 7.79,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/09",
+        "libelle": "260923 CB***6839 AMZN Mkip FR*1KLU amazon.fr 113,98EUR 1 EURO = 1,000000 CDPE533",
+        "debit": 113.98,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/09",
+        "libelle": "250923 CB***7917 BIGMAT FR AUXERRE 184,86EUR 1 EURO = 1,000000 CFCXC7G",
+        "debit": 184.86,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/09",
+        "libelle": "260923 CB***7917 YONNELEC FR AUXERRE 199,50EUR 1 EURO = 1,000000 CFCXC7H",
+        "debit": 199.5,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/09",
+        "libelle": "260923 CB***6839 GRAND FRAIS FR PERRIGNY 16,18EUR 1 EURO = 1,000000 CFCXCIA",
+        "debit": 16.18,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/09",
+        "libelle": "260923 CB***6839 TOTAL FR 89AUXERRE 47,17EUR 1 EURO = 1,000000 CFCXCIB",
+        "debit": 47.17,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/09",
+        "libelle": "260923 CB***6839 TOTAL FR 89AUXERRE 95,83EUR 1 EURO = 1,000000 CFCXCIC",
+        "debit": 95.83,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/09",
+        "libelle": "260923 CB***6839 COURTOIS BOURGOFR MONETEAU 532.43EUR 1 EURO = 1,000000 CFCXCID",
+        "debit": 532.43,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/09",
+        "libelle": "260923 CB***6839 METRO FR MONETEAU067 568.23EUR 1 EURO = 1,000000 CFCXCIE",
+        "debit": 568.23,
+        "credit": 0
+      },
+      {
+        "date_operation": "28/09",
+        "libelle": "260923 CB***7917 BIGMAT FR AUXERRE 380.69EUR 1 EURO = 1,000000 CH0GVHF",
+        "debit": 380.69,
+        "credit": 0
+      },
+      {
+        "date_operation": "28/09",
+        "libelle": "260923 CB***6839 PROCOTEL FR MONETEAU 72.72EUR 1 EURO = 1,000000 CH0GVR0",
+        "debit": 72.72,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/09",
+        "libelle": "REMISE CB 5401547011 BRUT 508,60E - COM 1,62E - NB0007/101332",
+        "debit": 0,
+        "credit": 506.98
+      },
+      {
+        "date_operation": "29/09",
+        "libelle": "REMISE CB 5401547011 BRUT 244,50E - COM 0,78E - NB0012/100961",
+        "debit": 0,
+        "credit": 243.72
+      },
+      {
+        "date_operation": "29/09",
+        "libelle": "280923 CB***7917 GRAND FRAIS FR PERRIGNY 49.91EUR 1 EURO = 1,000000 CIO07KP",
+        "debit": 49.91,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/09",
+        "libelle": "280923 CB***7917 Action 4669 FR Auxerre 76.88EUR 1 EURO = 1,000000 CIO07KQ",
+        "debit": 76.88,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/09",
+        "libelle": "270923 CB***7917 BIGMAT FR AUXERRE 212,62EUR 1 EURO = 1,000000 CIO07KR",
+        "debit": 212.62,
+        "credit": 0
+      }
+    ],
+    "solde_final": 15517.83
+  }
+}

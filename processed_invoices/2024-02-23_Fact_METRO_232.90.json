@@ -1,0 +1,106 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-23",
+  "invoiceNo": "0/0 (067) 0014/0067812",
+  "totalAmount": 213.69,
+  "items": [
+    {
+      "name": "RHUM STJAMES PAILLE 40D 70CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 9.59,
+      "totalPrice": 19.18
+    },
+    {
+      "name": "RH STJAMES IMPER BLC 40D 70CL",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 7.95,
+      "totalPrice": 23.85
+    },
+    {
+      "name": "SIROP MONIN FRAISE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 7.37,
+      "totalPrice": 7.37
+    },
+    {
+      "name": "SIROP GILBERT FRAISE 1L VP",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 3.59,
+      "totalPrice": 7.18
+    },
+    {
+      "name": "YRT GILBERT 6*150G CITRON",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.85,
+      "totalPrice": 5.1
+    },
+    {
+      "name": "YRT GILBERT 6*150G FRAISE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.1,
+      "totalPrice": 5.1
+    },
+    {
+      "name": "PARMIG. R AOP RAPE SACH 500G MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.3,
+      "totalPrice": 10.3
+    },
+    {
+      "name": "BRIE 60% 3KG ENV MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.38,
+      "totalPrice": 27.18
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.81,
+      "totalPrice": 20.15
+    },
+    {
+      "name": "CARPACCIO BF ANGUS 10*70G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.52,
+      "totalPrice": 17.52
+    },
+    {
+      "name": "SH RD FB 120GX21 20%MG HAL CERT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 31.78,
+      "totalPrice": 31.78
+    },
+    {
+      "name": "FILET DND STD S/V FR 1.7KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 16.1
+    },
+    {
+      "name": "SAL JP MEL MC 1KG UEUE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.49,
+      "totalPrice": 6.49
+    },
+    {
+      "name": "SAL PETITE LAITUE ROUGE 1KG C1 ESPAGNEESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.99,
+      "totalPrice": 7.99
+    }
+  ]
+}

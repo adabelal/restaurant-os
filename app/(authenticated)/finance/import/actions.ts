@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import * as XLSX from 'xlsx'
+import { FINANCE_RULES } from "@/lib/finance-rules"
 
 export async function uploadBankStatement(formData: FormData) {
     const file = formData.get('file') as File
@@ -117,15 +118,19 @@ export async function uploadBankStatement(formData: FormData) {
                         categoryId = fixedCharge.categoryId
                     } else {
                         // Priority 2: Generic patterns
+                        // Priority 2: Generic patterns
                         const categories = await prisma.financeCategory.findMany()
+                        const catMap = new Map(categories.map(c => [c.name, c.id]))
 
-                        const findCat = (name: string) => categories.find(c => c.name.toLowerCase().includes(name.toLowerCase()))?.id
-
-                        if (descriptionUpper.includes('METRO')) categoryId = findCat('Achats')
-                        else if (descriptionUpper.includes('URSSAF')) categoryId = findCat('Social')
-                        else if (descriptionUpper.includes('GROUPAMA')) categoryId = findCat('Assurance')
-                        else if (descriptionUpper.includes('ORANGE')) categoryId = findCat('Télécom')
-                        else if (descriptionUpper.includes('EDF') || descriptionUpper.includes('ENGIE')) categoryId = findCat('Énergie')
+                        for (const catRule of FINANCE_RULES.categories) {
+                            if (catRule.keywords.some(k => descriptionUpper.includes(k))) {
+                                const foundId = catMap.get(catRule.name)
+                                if (foundId) {
+                                    categoryId = foundId
+                                    break
+                                }
+                            }
+                        }
                     }
                 }
 

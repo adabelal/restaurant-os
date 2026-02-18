@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-08-28",
+  "invoiceNo": "0/0 (081) 0051/0015382",
+  "totalAmount": 51.39,
+  "items": [
+    {
+      "name": "MC POMME DE TERRE 5/1",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.48,
+      "totalPrice": 16.96
+    },
+    {
+      "name": "MC THYM MONDE SEC 220G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.62,
+      "totalPrice": 3.62
+    },
+    {
+      "name": "MC SAUCE SALADE 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.12,
+      "totalPrice": 3.12
+    },
+    {
+      "name": "ROCH MAYONNAISE POT 470G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.86,
+      "totalPrice": 1.86
+    },
+    {
+      "name": "MINI BURGER X8 192G DULCESOL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.6,
+      "totalPrice": 1.6
+    },
+    {
+      "name": "JB CRU 500G ARO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.76,
+      "totalPrice": 6.76
+    },
+    {
+      "name": "ROSETTE 50T 2X250G MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.94,
+      "totalPrice": 7.94
+    },
+    {
+      "name": "CHORIZO DOUX TR FINES 500G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.85,
+      "totalPrice": 6.85
+    }
+  ]
+}

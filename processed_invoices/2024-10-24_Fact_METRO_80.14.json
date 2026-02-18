@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-24",
+  "invoiceNo": "0/0 (067) 0015/0172172",
+  "totalAmount": 80.14,
+  "items": [
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.29,
+      "totalPrice": 10.29
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.29
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2.3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.49,
+      "totalPrice": 24.88
+    },
+    {
+      "name": "BAC GN 1/3 H 150 +CV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.51,
+      "totalPrice": 14.51
+    }
+  ]
+}

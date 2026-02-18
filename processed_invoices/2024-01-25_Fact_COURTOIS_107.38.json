@@ -1,0 +1,78 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-01-25",
+  "invoiceNo": "4010500261",
+  "totalAmount": 113.55,
+  "items": [
+    {
+      "name": "MONIN GRENADINE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 4.72
+    },
+    {
+      "name": "MONIN GLASCO CITRON 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.187,
+      "totalPrice": 5.19
+    },
+    {
+      "name": "MONIN PECHE SIROP 100 CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.224,
+      "totalPrice": 14.45
+    },
+    {
+      "name": "MONIN CARIBBEAN 70CL gout rhum",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 6.54
+    },
+    {
+      "name": "MONIN MENTHE GLACIALE 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.523,
+      "totalPrice": 5.52
+    },
+    {
+      "name": "MONIN PAMPLEMOUSS.ROSE 70CL SP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.394,
+      "totalPrice": 6.39
+    },
+    {
+      "name": "SIROP CURACAO BLEU MONIN 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.204,
+      "totalPrice": 6.2
+    },
+    {
+      "name": "MONIN MOJITO MINT 70 CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 39.26
+    },
+    {
+      "name": "6 NORBERT ORANGE.SS. PULP PET6x1L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.637,
+      "totalPrice": 9.82
+    },
+    {
+      "name": "MONIN CERISE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.467,
+      "totalPrice": 7.47
+    }
+  ]
+}

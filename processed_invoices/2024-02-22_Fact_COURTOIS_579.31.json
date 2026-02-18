@@ -1,0 +1,57 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-02-22",
+  "invoiceNo": "4020500261",
+  "totalAmount": 579.31,
+  "items": [
+    {
+      "name": "24 PERRIER VC 24 x 33 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 24.0
+    },
+    {
+      "name": "12 VILLERS MINERALE VC 12 X 100CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.461,
+      "totalPrice": 5.53
+    },
+    {
+      "name": "24 025LINDEMANS KRIEK3\u00b05VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.143,
+      "totalPrice": 28.27
+    },
+    {
+      "name": "12 LIMONADE SOULTZY LT VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.05,
+      "totalPrice": 13.87
+    },
+    {
+      "name": "12 NORBERT ORANGE.SS.PULP PET6x1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.637,
+      "totalPrice": 19.64
+    },
+    {
+      "name": "24 RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.014,
+      "totalPrice": 365.76
+    },
+    {
+      "name": "PROMOTION",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": null,
+      "totalPrice": -20.03
+    }
+  ]
+}

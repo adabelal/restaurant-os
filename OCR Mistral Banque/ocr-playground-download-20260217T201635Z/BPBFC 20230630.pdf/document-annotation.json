@@ -1,0 +1,441 @@
+{
+  "releve_bancaire": {
+    "numero_releve": "N° 2",
+    "periode": "DU 01/06/2023 AU 30/06/2023",
+    "transactions": [
+      {
+        "date_operation": "31/05",
+        "libelle": "SOLDE CREDITEUR AU 31/05/2023",
+        "debit": 0,
+        "credit": 977.18
+      },
+      {
+        "date_operation": "09/06",
+        "libelle": "EVI M ADAM BELAL Virement de M ADAM BELAL Virement de M ADAM BELAL",
+        "debit": 0,
+        "credit": 5000
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "RETRAIT CAISSE",
+        "debit": 950,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "RET DAB GAB AILLANT SUR CARTE ***6839 RETRAIT LE 10/06/2023 A 10:41",
+        "debit": 400,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "RET DAB GAB AILLANT SUR CARTE ***6839 RETRAIT LE 10/06/2023 A 10:45",
+        "debit": 30,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "RET DAB GAB AILLANT SUR CARTE ***6839 RETRAIT LE 10/06/2023 A 10:46",
+        "debit": 60,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/06",
+        "libelle": "RET DAB GAB AILLANT SUR CARTE ***6839 RETRAIT LE 10/06/2023 A 10:48",
+        "debit": 80,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "REMISE CB 5401547011 BRUT 2 434,00E - COM 7,81E - NB0195/181382",
+        "debit": 0,
+        "credit": 2426.19
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "REMISE CB 5401547011 BRUT 441,00E - COM 1,35E - NB0042/108424",
+        "debit": 0,
+        "credit": 439.65
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "REMISE CB 5401547011 BRUT 715,50E - COM 2,29E - NB0040/109106",
+        "debit": 0,
+        "credit": 713.21
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "REMISE CB 5401547011 BRUT 877,50E - COM 2,93E - NB0104/109153",
+        "debit": 0,
+        "credit": 874.57
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "REMISE CB 5401547011 BRUT 205,50E - COM 0,64E - NB0017/108563",
+        "debit": 0,
+        "credit": 204.86
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "DEPOT AGENCE 00478 10h49 SOUS RESERVE DE COMPTAGE",
+        "debit": 0,
+        "credit": 200
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "090623 CB***6839 DARTY FR AUXERRE 944 14.99EUR 1 EURO = 1,000000",
+        "debit": 14.99,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "090623 CB***6839 Action 4669 FR Auxerre 38.32EUR 1 EURO = 1,000000",
+        "debit": 38.32,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/06",
+        "libelle": "090623 CB***6839 METRO FR MONETEAU067 359.85EUR 1 EURO = 1,000000",
+        "debit": 359.85,
+        "credit": 0
+      },
+      {
+        "date_operation": "13/06",
+        "libelle": "100623 CB***6839 MAISON DE LA PRFR AILLANT SUR 247.00EUR 1 EURO = 1,000000",
+        "debit": 247,
+        "credit": 0
+      },
+      {
+        "date_operation": "14/06",
+        "libelle": "130623 CB***6839 VENTIL FR COLOMBELLES 121.20EUR 1 EURO = 1,000000",
+        "debit": 121.2,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/06",
+        "libelle": "Extourne OFFRE RYTHMEO CONTRAT CNV5041449827",
+        "debit": 22.82,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/06",
+        "libelle": "140623 CB***6839 COURTOIS BOURGOFR MONETEAU 397.13EUR 1 EURO = 1,000000",
+        "debit": 397.13,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/06",
+        "libelle": "140623 CB***6839 METRO FR MONETEAU067 1283.09EUR 1 EURO = 1,000000",
+        "debit": 1283.09,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "REMISE CB 5401547011 BRUT 247,70E - COM 0,79E - NB0010/160236",
+        "debit": 0,
+        "credit": 246.91
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "REMISE CB 5401547011 BRUT 734,50E - COM 2,35E - NB0009/160417",
+        "debit": 0,
+        "credit": 732.15
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "150623 CB***6839 ESTAMPE H ET B FR 89AUXERRE 56,57EUR 1 EURO = 1,000000",
+        "debit": 56.57,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/06",
+        "libelle": "150623 CB***6839 METRO FR MONETEAU067 1325.32EUR 1 EURO = 1,000000",
+        "debit": 1325.32,
+        "credit": 0
+      },
+      {
+        "date_operation": "19/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 850,70E - COM 5,91E - NB0024/173723",
+        "debit": 0,
+        "credit": 1844.79
+      },
+      {
+        "date_operation": "19/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 228,80E - COM 3,89E - NB0054/173945",
+        "debit": 0,
+        "credit": 1224.91
+      },
+      {
+        "date_operation": "19/06",
+        "libelle": "REMISE CB 5401547011 BRUT 908,60E - COM 2,92E - NB0061/172517",
+        "debit": 0,
+        "credit": 905.68
+      },
+      {
+        "date_operation": "19/06",
+        "libelle": "REMISE CB 5401547011 BRUT 2 584,97E - COM 8,27E - NB0036/170601",
+        "debit": 0,
+        "credit": 2576.7
+      },
+      {
+        "date_operation": "19/06",
+        "libelle": "REMISE CB 5401547011 BRUT 423,17E - COM 1,36E - NB0004/122489",
+        "debit": 0,
+        "credit": 421.81
+      },
+      {
+        "date_operation": "19/06",
+        "libelle": "REMISE CB 5401547011 BRUT 422,10E - COM 1,35E - NB0012/121152",
+        "debit": 0,
+        "credit": 420.75
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "170623 CB***6839 METRO FR MONETEAU067 143,45EUR 1 EURO = 1,000000",
+        "debit": 143.45,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "160623 CB***6839 BI1 FR MONTHOLON 208,90EUR 1 EURO = 1,000000",
+        "debit": 208.9,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "170623 CB***6839 METRO FR MONETEAU067 591,56EUR 1 EURO = 1,000000",
+        "debit": 591.56,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "190623 CB***6839 Boulanger FR AUXERRE 104,99EUR 1 EURO = 1,000000",
+        "debit": 104.99,
+        "credit": 0
+      },
+      {
+        "date_operation": "20/06",
+        "libelle": "190623 CB***6839 BOUTIQUE ORANGEFR AUXERRE 218,00EUR 1 EURO = 1,000000",
+        "debit": 218,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/06",
+        "libelle": "200623 CB***6839 BOUTIQUE ORANGEFR AUXERRE 109.00EUR 1 EURO = 1,000000",
+        "debit": 109,
+        "credit": 0
+      },
+      {
+        "date_operation": "21/06",
+        "libelle": "200623 CB***6839 COURTOIS BOURGOFR MONETEAU 799.92EUR 1 EURO = 1,000000",
+        "debit": 799.92,
+        "credit": 0
+      },
+      {
+        "date_operation": "22/06",
+        "libelle": "REMISE CB 5401547011 BRUT 869,70E - COM 2,77E - NB0062/111050",
+        "debit": 0,
+        "credit": 866.93
+      },
+      {
+        "date_operation": "22/06",
+        "libelle": "REMISE CB 5401547011 BRUT 220,90E - COM 0,71E - NB0013/113883",
+        "debit": 0,
+        "credit": 220.19
+      },
+      {
+        "date_operation": "22/06",
+        "libelle": "210623 CB***6839 GRAND FRAIS FR PERRIGNY 19,72EUR 1 EURO = 1,000000",
+        "debit": 19.72,
+        "credit": 0
+      },
+      {
+        "date_operation": "22/06",
+        "libelle": "210623 CB***6839 METRO FR MONETEAU067 885,46EUR 1 EURO = 1,000000",
+        "debit": 885.46,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "REMISE CB 5401547011 BRUT 224,20E - COM 0,72E - NB0006/119795",
+        "debit": 0,
+        "credit": 223.48
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "REMISE CB 5401547011 BRUT 150,30E - COM 0,48E - NB0009/117430",
+        "debit": 0,
+        "credit": 149.82
+      },
+      {
+        "date_operation": "23/06",
+        "libelle": "210623 CB***6839 PHIE AILLANTAISFR MONTHOLON 12,20EUR 1 EURO = 1,000000",
+        "debit": 12.2,
+        "credit": 0
+      },
+      {
+        "date_operation": "24/06",
+        "libelle": "RETRAIT CAISSE SARL SIWA",
+        "debit": 1450,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 740,80E - COM 5,57E - NB0020/131324",
+        "debit": 0,
+        "credit": 1735.23
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "REMISE CB 5401547011 BRUT 465,10E - COM 1,47E - NB0025/132560",
+        "debit": 0,
+        "credit": 463.63
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "REMISE CB 5401547011 BRUT 1 692,90E - COM 5,40E - NB0019/128196",
+        "debit": 0,
+        "credit": 1687.5
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "REMISE CB 5401547011 BRUT 824,45E - COM 2,63E - NB0029/128982",
+        "debit": 0,
+        "credit": 821.82
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "REMISE CB 5401547011 BRUT 13,00E - COM 0,04E - NB0001/129550",
+        "debit": 0,
+        "credit": 12.96
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "REMISE CB 5401547011 BRUT 7,00E - COM 0,02E - NB0001/178850",
+        "debit": 0,
+        "credit": 6.98
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "REMISE CB 5401547011 BRUT 483,60E - COM 1,55E - NB0005/177918",
+        "debit": 0,
+        "credit": 482.05
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "230623 CB***6839 METRO C&C Fr FR 92LEVALLOIS 12,78EUR 1 EURO = 1,000000",
+        "debit": 12.78,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "220623 CB***6839 ESSFLOREALYG841FR AUXERRE 55,62EUR 1 EURO = 1,000000",
+        "debit": 55.62,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "230623 CB***6839 METRO C&C Fr FR 92LEVALLOIS 138,00EUR 1 EURO = 1,000000",
+        "debit": 138,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/06",
+        "libelle": "220623 CB***6839 ESSFLOREALYG841FR AUXERRE 147,78EUR 1 EURO = 1,000000",
+        "debit": 147.78,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/06",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 68.4,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/06",
+        "libelle": "260623 CB***6839 METRO FR MONETEAU067 307,91EUR 1 EURO = 1,000000",
+        "debit": 307.91,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/06",
+        "libelle": "230623 CB***6839 METRO C&C Fr FR 92LEVALLOIS 362,88EUR 1 EURO = 1,000000",
+        "debit": 362.88,
+        "credit": 0
+      },
+      {
+        "date_operation": "27/06",
+        "libelle": "230623 CB***6839 METRO C&C Fr FR 92LEVALLOIS 846,72EUR 1 EURO = 1,000000",
+        "debit": 846.72,
+        "credit": 0
+      },
+      {
+        "date_operation": "28/06",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 1187.2,
+        "credit": 0
+      },
+      {
+        "date_operation": "28/06",
+        "libelle": "230623 CB***6839 METRO C&C Fr FR 92LEVALLOIS 1940,90EUR 1 EURO = 1,000000",
+        "debit": 1940.9,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/06",
+        "libelle": "230623 CB***6839 METRO C&C Fr DONT FRAIS: 0,00E 60,00EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 60
+      },
+      {
+        "date_operation": "29/06",
+        "libelle": "230623 CB***6839 METRO C&C Fr DONT FRAIS: 0,00E 1940,90EUR 1 EURO = 1,000000",
+        "debit": 0,
+        "credit": 1940.9
+      },
+      {
+        "date_operation": "29/06",
+        "libelle": "280623 CB***6839 COURTOIS BOURGOFR MONETEAU 1263,35EUR 1 EURO = 1,000000",
+        "debit": 1263.35,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/06",
+        "libelle": "280623 CB***6839 METRO FR MONETEAU067 2783,94EUR 1 EURO = 1,000000",
+        "debit": 2783.94,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "COTIS RYTHMEO XCCNV240 2023062900020036000001 CONTRAT CNV5041449827",
+        "debit": 0.26,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "PRLV SEPA COURTOIS BOURG Prelevement Magnetique ++COU03601C4287S34160",
+        "debit": 142.6,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "REMISE CB 5401547011 BRUT 8,50E - COM 0,03E - NB0001/176620",
+        "debit": 0,
+        "credit": 8.47
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "REMISE CB 5401547011 BRUT 458,80E - COM 1,47E - NB0007/175048",
+        "debit": 0,
+        "credit": 457.33
+      },
+      {
+        "date_operation": "30/06",
+        "libelle": "REMISE CB 5401547011 BRUT 477,85E - COM 1,55E - NB0021/177178",
+        "debit": 0,
+        "credit": 476.3
+      }
+    ],
+    "solde_final": 9680.76
+  }
+}

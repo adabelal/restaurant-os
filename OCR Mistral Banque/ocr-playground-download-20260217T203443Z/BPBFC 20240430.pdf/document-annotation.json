@@ -1,0 +1,585 @@
+{
+  "releve_bancaire": {
+    "numero_releve": "N° 3",
+    "periode": "DU 01/04/2024 AU 30/04/2024",
+    "transactions": [
+      {
+        "date_operation": "01/04/2024",
+        "libelle": "LOYER TPE / ELC MOIS DE MARS 2024 HT: 31,41/TVA20,00: 6,28",
+        "debit": 37.69,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "M BELAL BENJAMIN Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "M ADAM BELAL Virement de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 2 166,95E - COM 6,98E - NB0104/168688",
+        "debit": 0,
+        "credit": 2166.95
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 806,44E - COM 5,81E - NB0031/168860",
+        "debit": 0,
+        "credit": 1806.44
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 2 437,75E - COM 7,83E - NB0034/163804",
+        "debit": 0,
+        "credit": 2437.75
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 873,76E - COM 5,98E - NB0079/163958",
+        "debit": 0,
+        "credit": 1873.76
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 160,50E - COM 0,52E - NB0005/110444",
+        "debit": 0,
+        "credit": 160.5
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 853,90E - COM 2,73E - NB0008/111240",
+        "debit": 0,
+        "credit": 853.9
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "PRLV SEPA PREFILOC CAPIT F240160308 PRE000101879",
+        "debit": 89.22,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "PRLV SEPA EPISAVEURS EST /INV/8971551245 22.3.2024 00007SS000016712",
+        "debit": 35.66,
+        "credit": 0
+      },
+      {
+        "date_operation": "02/04/2024",
+        "libelle": "280324 CB***7917 SAS PASCAULT FR MONTHOLON 33,75EUR",
+        "debit": 33.75,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "Souchet Laura Virement de Sarl Siwa salaire mars",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "souchet noelie Virement de Sarl Siwa salaire Mars",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "Cauchois Amelie Virement de Sarl Siwa Salaire Mars",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "MLLE BELAL LAETITIA OU M Virement de Sarl Siwa Salaire Mars",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "MME VIRGINIE BELAL Virement de Sarl Siwa Salaire Mars",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "MME LEROY FLORENCE Virement de Sarl Siwa Salaire Mars",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "COTIS RYTHMEO XCCNV240 2024033000008493000001 CONTRAT CNV5041449827",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0017.000453 CMR000084696901",
+        "debit": 1371.36,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR PRELEVEMENT CMR000084696901",
+        "debit": 20,
+        "credit": 0
+      },
+      {
+        "date_operation": "03/04/2024",
+        "libelle": "020424 CB***7917 TOOLSTATION FR 89AUXERRE 88,32EUR",
+        "debit": 88.32,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/04/2024",
+        "libelle": "BOURGOGNE PRODUITS FRAIS ECH:02/04/24",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/04/2024",
+        "libelle": "PRLV SEPA COURTOIS BOURG Prelevement Magnetique ++COU03601C4287S34160",
+        "debit": 3147.38,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0017.000465 CMR000084696901",
+        "debit": 190.61,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0016.001244 CMR000084696901",
+        "debit": 72.9,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/04/2024",
+        "libelle": "PRLV SEPA FMB PRLT FCT N-0743860 DU 22-03-24 FMB059-00003006-001",
+        "debit": 631.58,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/04/2024",
+        "libelle": "Crazy Hops Virement de Sarl Siwa Facture F20231631",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "04/04/2024",
+        "libelle": "030424 CB***7917 GRAND FRAIS FR PERRIGNY 178,66EUR",
+        "debit": 178.66,
+        "credit": 0
+      },
+      {
+        "date_operation": "05/04/2024",
+        "libelle": "040424 CB***6839 COURTOIS BOURGOFR MONETEAU 686,96EUR",
+        "debit": 686.96,
+        "credit": 0
+      },
+      {
+        "date_operation": "05/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 157,70E - COM 0,49E - NB0006/162771",
+        "debit": 0,
+        "credit": 157.7
+      },
+      {
+        "date_operation": "05/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 232,60E - COM 0,74E - NB0001/163238",
+        "debit": 0,
+        "credit": 232.6
+      },
+      {
+        "date_operation": "06/04/2024",
+        "libelle": "050424 CB***7917 MAISON DE LA PRFR MONTHOLON 120,00EUR",
+        "debit": 120,
+        "credit": 0
+      },
+      {
+        "date_operation": "06/04/2024",
+        "libelle": "040424 CB***6839 METRO FR MONETEAU067 271,22EUR",
+        "debit": 271.22,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "M XAVIER BELAL Virement de Sarl Siwa salaire de Sarl Siwa",
+        "debit": 300,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 2 029,88E - COM 6,50E - NB0028/177873",
+        "debit": 0,
+        "credit": 2029.88
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 2 523,66E - COM 8,08E - NB0121/176162",
+        "debit": 0,
+        "credit": 2523.66
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 272,70E - COM 4,11E - NB0072/172288",
+        "debit": 0,
+        "credit": 1272.7
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 2 809,90E - COM 8,99E - NB0027/172483",
+        "debit": 0,
+        "credit": 2809.9
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0017.000605 CMR000084696901",
+        "debit": 1842.49,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0017.000616 CMR000084696901",
+        "debit": 18.22,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "040424 CB***7917 SAS PASCAULT FR MONTHOLON 27,72EUR",
+        "debit": 27.72,
+        "credit": 0
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 101,10E - COM 0,32E - NB0003/120805",
+        "debit": 0,
+        "credit": 101.1
+      },
+      {
+        "date_operation": "08/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 535,10E - COM 1,71E - NB0006/120800",
+        "debit": 0,
+        "credit": 535.1
+      },
+      {
+        "date_operation": "09/04/2024",
+        "libelle": "M ADAM BELAL Virement de Sarl Siwa Remboursements de Sarl Siwa",
+        "debit": 5000,
+        "credit": 0
+      },
+      {
+        "date_operation": "09/04/2024",
+        "libelle": "STAMP Virement de Sarl Siwa acompte 14832 1 de Sarl Siwa",
+        "debit": 4114.98,
+        "credit": 0
+      },
+      {
+        "date_operation": "09/04/2024",
+        "libelle": "EVI AMERICAN EXPRESS PAY American Express/SE8336311659/DT 20240405/TR1/GR63.30/DI0.00/REF",
+        "debit": 0,
+        "credit": 63.3
+      },
+      {
+        "date_operation": "10/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0014.012417 CMR000084696901",
+        "debit": 74.3,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/04/2024",
+        "libelle": "PRLV SEPA GROUPAMA 40137 P083087880 15327102000107 MSIAPVL0200213720230912",
+        "debit": 16.41,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/04/2024",
+        "libelle": "PRLV SEPA GROUPAMA 40137 P083094949 19327041800007 MSIAPVL0200213720230912",
+        "debit": 16.41,
+        "credit": 0
+      },
+      {
+        "date_operation": "10/04/2024",
+        "libelle": "PRLV SEPA GROUPAMA 40137 P083218074 19326780500007 MSIAPVL0200213720230912",
+        "debit": 602.75,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/04/2024",
+        "libelle": "Eirl Dvin Virement de Sarl Siwa 2024 0330 de Sarl Siwa",
+        "debit": 3864.6,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/04/2024",
+        "libelle": "100424 CB***7917 GRAND FRAIS FR PERRIGNY 89,78EUR",
+        "debit": 89.78,
+        "credit": 0
+      },
+      {
+        "date_operation": "11/04/2024",
+        "libelle": "090424 CB***6839 METRO FR MONETEAU067 1523,09EUR",
+        "debit": 1523.09,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/04/2024",
+        "libelle": "BOURGOGNE PRODUITS FRAIS ECH:10/04/24",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/04/2024",
+        "libelle": "PRLV SEPA FMB PRLT FCT N-0745012 DU 29-03-24 FMB059-00003006-001",
+        "debit": 383.84,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/04/2024",
+        "libelle": "SAS COURTOIS Virement de Sarl Siwa 4040100441 de Sarl Siwa",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "12/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 66,50E - COM 0,22E - NB0004/110076",
+        "debit": 0,
+        "credit": 66.5
+      },
+      {
+        "date_operation": "12/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 321,40E - COM 1,03E - NB0004/111969",
+        "debit": 0,
+        "credit": 321.4
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 221,90E - COM 3,90E - NB0065/122464",
+        "debit": 0,
+        "credit": 1221.9
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 452,60E - COM 4,64E - NB0013/123322",
+        "debit": 0,
+        "credit": 1452.6
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 526,61E - COM 4,92E - NB0053/119561",
+        "debit": 0,
+        "credit": 1526.61
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 615,69E - COM 5,18E - NB0021/120011",
+        "debit": 0,
+        "credit": 1615.69
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "PRLV SEPA URSSAF BOURGOGNE-SECTEUR PRIVE FR82ZZZ004354 021077CT320230607154818A000052577 TT402672404102009124114300656001796 UR 267000001641853658 JANV24124114300656150424",
+        "debit": 321,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "PRLV SEPA COURTOIS BOURG Prelevement Magnetique ++COU03601C4287S34160",
+        "debit": 792.36,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "PRLV SEPA Butagaz SAS /INV/0008514608 5.4.2024 ZB07638592",
+        "debit": 368.16,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "PRLV SEPA EPISAVEURS EST /INV/8971559035 5.4.2024 00007SS000016712",
+        "debit": 436.34,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "130424 CB***7917 MARAIS THIERRY FR AILLANT SUR 10,70EUR",
+        "debit": 10.7,
+        "credit": 0
+      },
+      {
+        "date_operation": "15/04/2024",
+        "libelle": "130424 CB***6839 Google Payment IE Dublin 9,99EUR",
+        "debit": 9.99,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0017.000770 CMR000084696901",
+        "debit": 57.11,
+        "credit": 0
+      },
+      {
+        "date_operation": "16/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0017.000768 CMR000084696901",
+        "debit": 561.44,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0014.013533 CMR000084696901",
+        "debit": 274.89,
+        "credit": 0
+      },
+      {
+        "date_operation": "18/04/2024",
+        "libelle": "PRLV SEPA FMB PRLT FCT N-0746424 DU 05-04-24 FMB059-00003006-001",
+        "debit": 548.11,
+        "credit": 0
+      },
+      {
+        "date_operation": "22/04/2024",
+        "libelle": "BOURGOGNE PRODUITS FRAIS ECH:20/04/24",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "date_operation": "22/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 281,00E - COM 4,09E - NB0065/165112",
+        "debit": 0,
+        "credit": 1281
+      },
+      {
+        "date_operation": "22/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 932,36E - COM 6,18E - NB0028/164925",
+        "debit": 0,
+        "credit": 1932.36
+      },
+      {
+        "date_operation": "22/04/2024",
+        "libelle": "PRLV SEPA SC EXPERT CONS 00240240603 URXCQDFPGT",
+        "debit": 274.8,
+        "credit": 0
+      },
+      {
+        "date_operation": "23/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0015.006256 CMR000084696901",
+        "debit": 158.27,
+        "credit": 0
+      },
+      {
+        "date_operation": "24/04/2024",
+        "libelle": "EVI QUATRA FRANCE SARL HUILE DE FRITURE 240319000, / 13 7725",
+        "debit": 0,
+        "credit": 56
+      },
+      {
+        "date_operation": "25/04/2024",
+        "libelle": "PRLV SEPA FMB PRLT FCT N-0747681 DU 12-04-24 FMB059-00003006-001",
+        "debit": 432.37,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/04/2024",
+        "libelle": "240424 CB***7917 GRAND FRAIS FR PERRIGNY 27,32EUR",
+        "debit": 27.32,
+        "credit": 0
+      },
+      {
+        "date_operation": "25/04/2024",
+        "libelle": "PVSI DGFIP TVA1-042024-3310CA3 NN952717999DGFIP2023112419LKI4MZ",
+        "debit": 3872,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/04/2024",
+        "libelle": "Asso Le Reve Africain Virement de Sarl Siwa fact 291 de Sarl Siwa",
+        "debit": 300,
+        "credit": 0
+      },
+      {
+        "date_operation": "26/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 317,20E - COM 1,03E - NB0022/198747",
+        "debit": 0,
+        "credit": 317.2
+      },
+      {
+        "date_operation": "26/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 561,50E - COM 1,81E - NB0008/199189",
+        "debit": 0,
+        "credit": 561.5
+      },
+      {
+        "date_operation": "29/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 479,38E - COM 4,75E - NB0024/110041",
+        "debit": 0,
+        "credit": 1479.38
+      },
+      {
+        "date_operation": "29/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 2 755,86E - COM 8,85E - NB0115/109394",
+        "debit": 0,
+        "credit": 2755.86
+      },
+      {
+        "date_operation": "29/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 1 378,90E - COM 4,40E - NB0083/103788",
+        "debit": 0,
+        "credit": 1378.9
+      },
+      {
+        "date_operation": "29/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 2 548,04E - COM 8,13E - NB0036/104223",
+        "debit": 0,
+        "credit": 2548.04
+      },
+      {
+        "date_operation": "29/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0017.001039 CMR000084696901",
+        "debit": 372.32,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/04/2024",
+        "libelle": "270424 CB***7917 GRAND FRAIS FR PERRIGNY 79,82EUR",
+        "debit": 79.82,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/04/2024",
+        "libelle": "280424 CB***6839 GRAND FRAIS FR PERRIGNY 18,25EUR",
+        "debit": 18.25,
+        "credit": 0
+      },
+      {
+        "date_operation": "29/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 71,50E - COM 0,22E - NB0004/152250",
+        "debit": 0,
+        "credit": 71.5
+      },
+      {
+        "date_operation": "29/04/2024",
+        "libelle": "REMISE CB 5401547011 BRUT 781,90E - COM 2,50E - NB0005/151992",
+        "debit": 0,
+        "credit": 781.9
+      },
+      {
+        "date_operation": "30/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0017.001046 CMR000084696901",
+        "debit": 29.85,
+        "credit": 0
+      },
+      {
+        "date_operation": "30/04/2024",
+        "libelle": "PRLV SEPA METRO CASH CAR /INV/0017.001050 CMR000084696901",
+        "debit": 445.16,
+        "credit": 0
+      }
+    ],
+    "solde_final": 40136.42
+  }
+}

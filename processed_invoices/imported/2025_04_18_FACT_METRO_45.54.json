@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-18",
+  "invoiceNo": "0/0 (067) 0013/007316",
+  "totalAmount": 45.54,
+  "items": [
+    {
+      "name": "FROMAGE BLC 9% 1KG MC",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.04,
+      "totalPrice": 18.24
+    },
+    {
+      "name": "FRAISE 1K PLT C1 ESESPAGNE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 3.99,
+      "totalPrice": 15.96
+    },
+    {
+      "name": "LIME 1K C. 3/4 FILET4 C1 BRBRESIL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 8.97
+    }
+  ]
+}

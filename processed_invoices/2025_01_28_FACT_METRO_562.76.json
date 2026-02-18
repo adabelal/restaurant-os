@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-28",
+  "invoiceNo": "067/049",
+  "totalAmount": 355.93,
+  "items": [
+    {
+      "name": "WH ARDBEG ISLAY 10A 46D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 38.78,
+      "totalPrice": 77.56
+    },
+    {
+      "name": "GIN GENEROUS 44D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.55,
+      "totalPrice": 19.55
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 13.0,
+      "totalPrice": 26.0
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.64,
+      "totalPrice": 115.68
+    },
+    {
+      "name": "ANGOSTURA BITTER 44.7D 20CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.71,
+      "totalPrice": 15.71
+    },
+    {
+      "name": "LIQUEUR CAFE DELAITRE 21D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.07,
+      "totalPrice": 8.07
+    },
+    {
+      "name": "JAGERMEISTER 35D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 14.17,
+      "totalPrice": 56.68
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.985,
+      "totalPrice": 47.28
+    },
+    {
+      "name": "COCA COLA REG PET 1,25L",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 1.58,
+      "totalPrice": 56.88
+    },
+    {
+      "name": "HO VE CARAPELLI CLASS B10*75CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.3,
+      "totalPrice": 13.3
+    },
+    {
+      "name": "TAGLIATELLE 500G DE CECCO",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 2.39,
+      "totalPrice": 2.39
+    },
+    {
+      "name": "BRIOCHE TRESSEE 800G LB",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 5.0,
+      "totalPrice": 5.0
+    },
+    {
+      "name": "MPRO 250 PAILLE NOIR D6 14CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.53,
+      "totalPrice": 2.53
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.55,
+      "totalPrice": 7.55
+    },
+    {
+      "name": "CIF PISTOL ANTIBACTERIEN 750ML",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 2.43,
+      "totalPrice": 2.43
+    }
+  ]
+}

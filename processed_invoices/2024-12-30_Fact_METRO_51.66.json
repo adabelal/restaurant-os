@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-12-30",
+  "invoiceNo": "0/0 (067) 0013/013146",
+  "totalAmount": 51.66,
+  "items": [
+    {
+      "name": "HAPPY LIFE 2KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.8,
+      "totalPrice": 12.8
+    },
+    {
+      "name": "TZATZIKI 1KG INSPIRE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 8.95,
+      "totalPrice": 17.9
+    },
+    {
+      "name": "HOUMOUS PATATES DOUCES 500G",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 5.02,
+      "totalPrice": 10.04
+    },
+    {
+      "name": "MPRO 250 RINCE DOIGTS CIT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.68,
+      "totalPrice": 5.68
+    }
+  ]
+}

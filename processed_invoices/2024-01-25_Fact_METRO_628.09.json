@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-01-25",
+  "invoiceNo": "0/0 (067) 0014/0029392",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "WH TOGOUCHI 9A 40D 70CL+ETUI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 27.44,
+      "totalPrice": 27.44
+    },
+    {
+      "name": "WH MEXIQUE ABASOLO 43D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.75,
+      "totalPrice": 16.75
+    },
+    {
+      "name": "GIN JUNE POIRE 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.1,
+      "totalPrice": 60.6
+    },
+    {
+      "name": "RH ARCANE 70CL 40D EXTRAROMAS",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 14.07,
+      "totalPrice": 42.21
+    },
+    {
+      "name": "RH CENTENARIO 20ANS 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.83,
+      "totalPrice": 21.83
+    },
+    {
+      "name": "RH DOS MADERAS 40D 70CL",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 15.67,
+      "totalPrice": 125.36
+    },
+    {
+      "name": "RH AMBRE TURQUOISE BAY40D70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.07,
+      "totalPrice": 22.14
+    },
+    {
+      "name": "RH 3RIVIERES BLC 55D 70CL",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 8.44,
+      "totalPrice": 42.2
+    },
+    {
+      "name": "BS TI ORANG CIT BIO* 21D 70CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 11.36,
+      "totalPrice": 34.08
+    },
+    {
+      "name": "RH MDR PARAGUAY B10* 45D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 8.11,
+      "totalPrice": 32.44
+    }
+  ]
+}

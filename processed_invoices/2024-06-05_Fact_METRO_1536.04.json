@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-06-05",
+  "invoiceNo": "0/0 (067) 0017/0019382",
+  "totalAmount": 831.03,
+  "items": [
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.66,
+      "totalPrice": 10.66
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.17,
+      "totalPrice": 22.6
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.57,
+      "totalPrice": 78.58
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.88,
+      "totalPrice": 68.21
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "CONCOMBRE PC 4/5 FR C1 FRANCE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 4.36
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.86,
+      "totalPrice": 9.86
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 9.29,
+      "totalPrice": 27.87
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.77,
+      "totalPrice": 17.54
+    },
+    {
+      "name": "COURG MC 14/21 5KG FR C1 20FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 7.09,
+      "totalPrice": 21.27
+    },
+    {
+      "name": "GET 27 17, 9D 70CL",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 11.54,
+      "totalPrice": 92.32
+    },
+    {
+      "name": "EXCEL BOULAOU RGE MIL75CL MA",
+      "quantity": 120.0,
+      "unit": "L",
+      "unitPrice": 3.533,
+      "totalPrice": 424.0
+    },
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.763,
+      "totalPrice": 18.32
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 5.0,
+      "unit": "kg",
+      "unitPrice": 11.16,
+      "totalPrice": 55.8
+    },
+    {
+      "name": "ARO JUS CITRON JAUNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.1,
+      "totalPrice": 3.1
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 5.0,
+      "unit": "L",
+      "unitPrice": 1.398,
+      "totalPrice": 6.99
+    },
+    {
+      "name": "SAUCE BEARNAISE 3L VLEMINCKX",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 17.58,
+      "totalPrice": 17.58
+    }
+  ]
+}

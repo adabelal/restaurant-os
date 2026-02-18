@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-07-06",
+  "invoiceNo": "4070500102",
+  "totalAmount": 31.75,
+  "items": [
+    {
+      "name": "6 X 1LT",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.168,
+      "totalPrice": 28.03
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-04-07",
+  "invoiceNo": "0/0 (067) 0014/012726",
+  "totalAmount": 72.86,
+  "items": [
+    {
+      "name": "OASIS POMME /CASSIS /FRAM 2L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.97,
+      "totalPrice": 11.82
+    },
+    {
+      "name": "LIPTON PECHE 1, 25L PET",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.56,
+      "totalPrice": 9.36
+    },
+    {
+      "name": "RED BULL BLUE BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 1.18,
+      "totalPrice": 28.32
+    },
+    {
+      "name": "COCA COLA REG PET 1.25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.63,
+      "totalPrice": 19.56
+    }
+  ]
+}

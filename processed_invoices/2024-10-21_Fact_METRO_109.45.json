@@ -1,0 +1,57 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-21",
+  "invoiceNo": "0/0 (067) 0014/0382322",
+  "totalAmount": 109.45,
+  "items": [
+    {
+      "name": "*SEMOUL PATES FRAICHE SAC 5K",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.76,
+      "totalPrice": 7.76
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.93,
+      "totalPrice": 1.93
+    },
+    {
+      "name": "ALLUMETTE FUM BOIS HETR 1KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.34,
+      "totalPrice": 6.34
+    },
+    {
+      "name": "VERITABLE CO BLEU PLT X6 900G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.24,
+      "totalPrice": 26.48
+    },
+    {
+      "name": "BAVETTE ALOY VBF PAD",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 19.99,
+      "totalPrice": 29.09
+    },
+    {
+      "name": "GIGOLETTE LAPIN *10 S/AT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.99,
+      "totalPrice": 13.11
+    },
+    {
+      "name": "CUISSE LAPIN *6 S/AT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.99,
+      "totalPrice": 19.03
+    }
+  ]
+}

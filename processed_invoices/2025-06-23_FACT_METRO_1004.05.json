@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-23",
+  "invoiceNo": "0/0 (067) 0014/0237022",
+  "totalAmount": 630.32,
+  "items": [
+    {
+      "name": "WH BELLEVOYE BLEU 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 29.36,
+      "totalPrice": 29.36
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 1.18,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 132.3
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.6,
+      "unit": "U",
+      "unitPrice": 11.05,
+      "totalPrice": 66.3
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.2,
+      "unit": "U",
+      "unitPrice": 9.642,
+      "totalPrice": 115.7
+    },
+    {
+      "name": "LIQ FLR SUREAU VEDRE 20D 70CL",
+      "quantity": 1.1,
+      "unit": "U",
+      "unitPrice": 12.9,
+      "totalPrice": 12.9
+    },
+    {
+      "name": "PICON BIERE 18D 1L",
+      "quantity": 1.6,
+      "unit": "U",
+      "unitPrice": 8.43,
+      "totalPrice": 50.58
+    },
+    {
+      "name": "LIQ JAGERMEISTER 35D 70CL+VER",
+      "quantity": 1.6,
+      "unit": "U",
+      "unitPrice": 14.17,
+      "totalPrice": 85.02
+    },
+    {
+      "name": "GET27 17,9D 70CL",
+      "quantity": 1.6,
+      "unit": "U",
+      "unitPrice": 10.06,
+      "totalPrice": 60.36
+    },
+    {
+      "name": "CH V. PELLETIER BRT 75CL",
+      "quantity": 6.1,
+      "unit": "U",
+      "unitPrice": 13.5,
+      "totalPrice": 81.0
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.2,
+      "unit": "U",
+      "unitPrice": 1.02,
+      "totalPrice": 48.96
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 1.7,
+      "unit": "U",
+      "unitPrice": 2.4,
+      "totalPrice": 16.8
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.2,
+      "unit": "U",
+      "unitPrice": 1.756,
+      "totalPrice": 42.14
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 6.8,
+      "unit": "U",
+      "unitPrice": 0.593,
+      "totalPrice": 28.48
+    }
+  ]
+}

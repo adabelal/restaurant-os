@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-07-22",
+  "invoiceNo": "2024-0719",
+  "totalAmount": 1254.0,
+  "items": [
+    {
+      "name": "Chalmeau, cuv\u00e9e Chitry rouge",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 11.5,
+      "totalPrice": 345.0
+    },
+    {
+      "name": "Richoux, cuv\u00e9e Irancy rouge",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 18.0,
+      "totalPrice": 540.0
+    },
+    {
+      "name": "Richaud, cuv\u00e9e Terre de Galets",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 14.5,
+      "totalPrice": 435.0
+    }
+  ]
+}

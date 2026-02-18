@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-12-31",
+  "invoiceNo": "4120100932",
+  "totalAmount": -1536.0,
+  "items": [
+    {
+      "name": "FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 10.6,
+      "unit": "L",
+      "unitPrice": 50.0,
+      "totalPrice": -530.0
+    },
+    {
+      "name": "FUT 30 L LOBURG",
+      "quantity": 15.0,
+      "unit": "L",
+      "unitPrice": 50.0,
+      "totalPrice": -750.0
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-12-07",
+  "invoiceNo": "0/0 (067) 0001/0090902",
+  "totalAmount": 90.38,
+  "items": [
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.088,
+      "totalPrice": 26.12
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.41,
+      "totalPrice": 7.23
+    },
+    {
+      "name": "COURG 14/21 METRO CHEF 5KG ES C1 20 ESPAGNE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 15.34,
+      "totalPrice": 46.02
+    },
+    {
+      "name": "TOM RDE 47+ 2.5K PITUFO MAR C1 MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    }
+  ]
+}

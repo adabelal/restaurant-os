@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-21",
+  "invoiceNo": "0/0 (067)0001/0008412",
+  "totalAmount": 255.72,
+  "items": [
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 3.84,
+      "totalPrice": 6.97
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.76,
+      "totalPrice": 16.76
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.8,
+      "totalPrice": 21.6
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 6.0,
+      "unit": "kg",
+      "unitPrice": 11.47,
+      "totalPrice": 68.82
+    },
+    {
+      "name": "MC ASSAIS COUSCOUS 500G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.24,
+      "totalPrice": 8.24
+    },
+    {
+      "name": "MC ASSAIS POULET ROTI 670G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.4,
+      "totalPrice": 4.4
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 1.5,
+      "totalPrice": 7.5
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.27,
+      "totalPrice": 17.27
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC ESP C1 ESPAGNE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 4.36
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 7.22,
+      "totalPrice": 14.44
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 5.44,
+      "totalPrice": 16.32
+    },
+    {
+      "name": "COURG 14/21 METRO CHEF 5KG ES C1 20 ESPAGNE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 15.34,
+      "totalPrice": 46.02
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 11.51,
+      "totalPrice": 23.02
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-12-22",
+  "invoiceNo": "3120100775",
+  "totalAmount": 396.18,
+  "items": [
+    {
+      "name": "2 MONIN GRENADINE SIROP 100 CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 9.43
+    },
+    {
+      "name": "1 MONIN HIBISCUS SIROP 70 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.954,
+      "totalPrice": 6.95
+    },
+    {
+      "name": "24 KWAK 24X33CL VC 8.4\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.387,
+      "totalPrice": 38.5
+    },
+    {
+      "name": "24 033DELIRIUM TREMENS 8\u00b05 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.481,
+      "totalPrice": 40.8
+    },
+    {
+      "name": "12 LIMONADE SOULTZY LT VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.05,
+      "totalPrice": 13.8
+    },
+    {
+      "name": "12 NORBERT ANANAS PET ABC6X1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.456,
+      "totalPrice": 29.47
+    },
+    {
+      "name": "2 BERGER BLANC 100 CL 45\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 14.907,
+      "totalPrice": 29.81
+    },
+    {
+      "name": "6 CHAMP.L.TOLLET ler CRU BT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.167,
+      "totalPrice": 109.0
+    },
+    {
+      "name": "24 DESPERADOS 5.9\u00b0 VP 24X33CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.811,
+      "totalPrice": 47.11
+    },
+    {
+      "name": "6 KG CAFE LAVAZZA GRAIN supCREMA PROMOTION",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.95,
+      "totalPrice": 131.7
+    },
+    {
+      "name": "FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 30.0,
+      "totalPrice": -21.95
+    }
+  ]
+}

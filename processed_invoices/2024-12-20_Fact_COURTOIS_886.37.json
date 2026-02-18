@@ -1,0 +1,120 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-12-20",
+  "invoiceNo": "4120100720",
+  "totalAmount": 886.37,
+  "items": [
+    {
+      "name": "60 FUT 20 L TRIPEL KARMELIET",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 5.463,
+      "totalPrice": 366.0
+    },
+    {
+      "name": "45 FUT 15L ROSE BLANCHE BRUXELLE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 5.021,
+      "totalPrice": 234.0
+    },
+    {
+      "name": "24 KWAK 24X33CL VC 8.4\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.429,
+      "totalPrice": 39.6
+    },
+    {
+      "name": "24 033LIMONADE LINESS 33cl VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.628,
+      "totalPrice": 16.08
+    },
+    {
+      "name": "24 LINESS ORANGE 33CLX24 VC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.794,
+      "totalPrice": 19.73
+    },
+    {
+      "name": "6 NORBERT NECTAR ORANGE PET6x1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.15,
+      "totalPrice": 7.2
+    },
+    {
+      "name": "24 PET SOLAL POMME ABC 6x1LT",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.76,
+      "totalPrice": 42.24
+    },
+    {
+      "name": "12 PET SOLAL ANANAS ABC 6x1LT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.64,
+      "totalPrice": 19.68
+    },
+    {
+      "name": "1 MONIN PAMPLEMOUSS.ROSE 70CL SP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.394,
+      "totalPrice": 6.39
+    },
+    {
+      "name": "1 MONIN ANIS SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.187,
+      "totalPrice": 5.19
+    },
+    {
+      "name": "4 MONIN GRENADINE SIROP 100 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 18.86
+    },
+    {
+      "name": "1 CREME MURE BRIOTTET 70 CL 18\u00b0",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 9.57,
+      "totalPrice": 9.57
+    },
+    {
+      "name": "1 CREME CASSIS 20\u00b0 BRIOTTET 70cl",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 9.165,
+      "totalPrice": 9.17
+    },
+    {
+      "name": "FUT 15 L SLASH MANGO",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "VILLERS GAZEIFIEE VC 12X100CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "ELSASS COLA 33CLX24 VC",
+      "quantity": 7.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    }
+  ]
+}

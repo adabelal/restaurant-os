@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-11-05",
+  "invoiceNo": "0/0 (067) 0051/0056482",
+  "totalAmount": 670.16,
+  "items": [
+    {
+      "name": "WH JACK DANIEL'S 40D 70CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 15.59,
+      "totalPrice": 187.08
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.91,
+      "totalPrice": 142.92
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 88.2
+    },
+    {
+      "name": "APEROL 12, 5D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.84,
+      "totalPrice": 71.04
+    },
+    {
+      "name": "GET27 17,9D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.06,
+      "totalPrice": 120.72
+    },
+    {
+      "name": "VCE RGE 11D 10L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.45,
+      "totalPrice": 14.5
+    },
+    {
+      "name": "*DESPERADOS 5, 9D 12X33CL VP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.106,
+      "totalPrice": 26.54
+    },
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.63,
+      "totalPrice": 15.12
+    },
+    {
+      "name": "CAPRISUN MANG PASSION 33CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.884,
+      "totalPrice": 13.26
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.035,
+      "totalPrice": 49.66
+    },
+    {
+      "name": "RIOBA SUCRE DE CANNE 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.89,
+      "totalPrice": 5.78
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.769,
+      "totalPrice": 127.38
+    },
+    {
+      "name": "CRISTALI 50CL PET",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.142,
+      "totalPrice": 3.4
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 0.61,
+      "totalPrice": 36.6
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.08,
+      "totalPrice": 55.4
+    }
+  ]
+}

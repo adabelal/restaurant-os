@@ -1,0 +1,22 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-08-11",
+  "invoiceNo": "4110100261",
+  "totalAmount": -204.61,
+  "items": [
+    {
+      "name": "-30 FUT 30 L LOBURG FUT DECONSIGNER PAR CHAUFFEUR SUR FACTURE",
+      "quantity": -1.0,
+      "unit": "U",
+      "unitPrice": 3.705,
+      "totalPrice": -124.77
+    },
+    {
+      "name": "-48 1/2 VILLERS LEG.PETILLAN VCx12 ERREUR DE COMMANDE",
+      "quantity": -4.0,
+      "unit": "U",
+      "unitPrice": 0.61,
+      "totalPrice": -29.28
+    }
+  ]
+}

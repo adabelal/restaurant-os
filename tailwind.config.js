@@ -16,6 +16,11 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-open-sans)", "sans-serif"],
+        oswald: ["var(--font-oswald)", "sans-serif"],
+        marker: ["var(--font-permanent-marker)", "cursive"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -50,6 +55,12 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Siwa specific aliases if needed, though we map to primary/accent usually
+        siwa: {
+          red: "#dc2626",
+          gold: "#f59e0b",
+          dark: "#18181b",
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,10 +76,28 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        shine: {
+          to: { backgroundPosition: "200% center" },
+        },
+        pulse: {
+          "0%, 100%": { transform: "scale(1)", opacity: 1 },
+          "50%": { transform: "scale(1.05)", opacity: 0.8 },
+        },
+        moveBackground: {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(1.15)" },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        shine: "shine 3s linear infinite",
+        pulse: "pulse 2s infinite",
+        "ken-burns": "moveBackground 20s linear infinite alternate",
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },

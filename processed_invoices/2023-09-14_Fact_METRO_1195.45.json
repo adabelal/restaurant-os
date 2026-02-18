@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-14",
+  "invoiceNo": "0/0 (067)0001/0069512",
+  "totalAmount": 1195.45,
+  "items": [
+    {
+      "name": "BAV ALOY PAD UE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.95,
+      "totalPrice": 26.92
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.62,
+      "totalPrice": 369.62
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.64,
+      "totalPrice": 106.92
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.09,
+      "totalPrice": 47.89
+    },
+    {
+      "name": "GIGOT AGNEAU S/OS S/V NZ",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.85,
+      "totalPrice": 284.48
+    },
+    {
+      "name": "FILET DND HAL 1.5KG SV FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.31,
+      "totalPrice": 185.65
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.67,
+      "totalPrice": 99.76
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.11,
+      "totalPrice": 11.89
+    }
+  ]
+}

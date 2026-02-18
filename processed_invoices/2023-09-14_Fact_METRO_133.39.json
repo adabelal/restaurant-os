@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-09-14",
+  "invoiceNo": "0/0 (067) 0014/0191712",
+  "totalAmount": 133.39,
+  "items": [
+    {
+      "name": "ALG RSE GRIS TLEMCEN 75CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.49,
+      "totalPrice": 29.88
+    },
+    {
+      "name": "EXCEL BOULAOU MIL RSE 75CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.59,
+      "totalPrice": 21.54
+    },
+    {
+      "name": "MAROC S. BRAHIM RSE M TIR 75CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 53.82
+    },
+    {
+      "name": "BICARDONATE DOYPACK 1,5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.54,
+      "totalPrice": 4.54
+    },
+    {
+      "name": "GROSEILLE RGE 125G FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 2.19
+    }
+  ]
+}

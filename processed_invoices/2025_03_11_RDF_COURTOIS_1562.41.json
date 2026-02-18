@@ -1,0 +1,57 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-03-11",
+  "invoiceNo": null,
+  "totalAmount": 1562.41,
+  "items": [
+    {
+      "name": "4120100932",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1536.0,
+      "totalPrice": 1536.0
+    },
+    {
+      "name": "4120100933",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 864.0,
+      "totalPrice": 864.0
+    },
+    {
+      "name": "5010100252",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1137.33,
+      "totalPrice": 1137.33
+    },
+    {
+      "name": "5010100682",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1094.55,
+      "totalPrice": 1094.55
+    },
+    {
+      "name": "5030181084",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1934.53,
+      "totalPrice": 1934.53
+    },
+    {
+      "name": "Avoirs Cave Doukian",
+      "quantity": -78.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": -78.0
+    },
+    {
+      "name": "Avoirs Cave Doukian",
+      "quantity": -126.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": -126.0
+    }
+  ]
+}

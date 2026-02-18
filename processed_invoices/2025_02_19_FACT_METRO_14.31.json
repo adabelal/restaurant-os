@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-02-19",
+  "invoiceNo": "0/0 (067) 0017/000632",
+  "totalAmount": 14.31,
+  "items": [
+    {
+      "name": "MASCARPONE 500G GRANAROLO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.52,
+      "totalPrice": 13.56
+    }
+  ]
+}

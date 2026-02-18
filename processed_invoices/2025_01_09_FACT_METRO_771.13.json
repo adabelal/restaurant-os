@@ -1,0 +1,134 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-01-09",
+  "invoiceNo": "067/045",
+  "totalAmount": 730.93,
+  "items": [
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.35,
+      "totalPrice": 149.13
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.27,
+      "totalPrice": 63.15
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1, 5KG+",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.86,
+      "totalPrice": 157.55
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.18,
+      "totalPrice": 138.67
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.52,
+      "totalPrice": 8.82
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.91,
+      "totalPrice": 21.82
+    },
+    {
+      "name": "PETIT CAMEMBERT AU FOUR 120GX6",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.36,
+      "totalPrice": 26.72
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.17,
+      "totalPrice": 20.33
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 65.1
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.01,
+      "totalPrice": 16.01
+    },
+    {
+      "name": "MC SAUCE SALADE BIDON 5L",
+      "quantity": 5.0,
+      "unit": "U",
+      "unitPrice": 1.552,
+      "totalPrice": 7.76
+    },
+    {
+      "name": "FLEUR DE MAIS 400G MAIZENA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.86,
+      "totalPrice": 1.86
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC ESP C1ESPAGNE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.42,
+      "totalPrice": 8.52
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 4.38
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG 56 MAROC C1MAROC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.15,
+      "totalPrice": 11.15
+    },
+    {
+      "name": "AIL PELE MC 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.09,
+      "totalPrice": 6.09
+    }
+  ]
+}

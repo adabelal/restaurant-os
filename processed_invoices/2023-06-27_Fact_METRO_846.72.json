@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-06-27",
+  "invoiceNo": "0/0 (113) 0194/0140442",
+  "totalAmount": 846.72,
+  "items": [
+    {
+      "name": "1357565 BROYEUR A GLACON N53",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 705.6,
+      "totalPrice": 705.6
+    }
+  ]
+}

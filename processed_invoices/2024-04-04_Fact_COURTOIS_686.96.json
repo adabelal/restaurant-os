@@ -1,0 +1,43 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-04-04",
+  "invoiceNo": "176230",
+  "totalAmount": 686.96,
+  "items": [
+    {
+      "name": "60 FUT 15 L BLANCHE BRUXELLE ROSE",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 4.821,
+      "totalPrice": 300.0
+    },
+    {
+      "name": "24 PECHER.LINDEMANS1.1\u00b0VC24X25CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.429,
+      "totalPrice": 34.56
+    },
+    {
+      "name": "12 MONIN MOJITO MINT 70 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.543,
+      "totalPrice": 78.52
+    },
+    {
+      "name": "24 BTE ORGANIC BIO TONIC WATER25C",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.228,
+      "totalPrice": 30.24
+    },
+    {
+      "name": "12 BOC CARAIBOS PINA COLADA 6X1LT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.352,
+      "totalPrice": 41.76
+    }
+  ]
+}

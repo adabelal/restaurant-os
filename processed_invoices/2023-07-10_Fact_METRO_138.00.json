@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-03",
+  "invoiceNo": "0/0 (113) 0194/014440",
+  "totalAmount": 138.0,
+  "items": [
+    {
+      "name": "POUBELLE PEDALE 100L UTILO BLC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 115.0,
+      "totalPrice": 115.0
+    }
+  ]
+}

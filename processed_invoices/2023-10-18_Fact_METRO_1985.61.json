@@ -1,0 +1,127 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-10-18",
+  "invoiceNo": "0/0 (067) 0002/011456",
+  "totalAmount": 188.16,
+  "items": [
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.24,
+      "totalPrice": 16.48
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 11.5,
+      "totalPrice": 23.0
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 2.48,
+      "totalPrice": 9.92
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.725,
+      "totalPrice": 20.7
+    },
+    {
+      "name": "TOM DUO CERISE RDE 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 25.24,
+      "totalPrice": 25.24
+    },
+    {
+      "name": "FENOUIL 5KG FRANCE FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.34,
+      "totalPrice": 15.34
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.088,
+      "totalPrice": 26.12
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC FR C1 FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.76,
+      "totalPrice": 4.56
+    },
+    {
+      "name": "TOM ALL. TORINO 47+ SAV. FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 23.01,
+      "totalPrice": 23.01
+    },
+    {
+      "name": "COURG 14/21 MC 5 KG C1 FR FRANCE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 10.38,
+      "totalPrice": 31.14
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 2.19,
+      "totalPrice": 4.38
+    },
+    {
+      "name": "CAROTTE MC 10KG 40+ GB18 FR C1FRANCE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 11.99,
+      "totalPrice": 23.98
+    },
+    {
+      "name": "PV VERT MC 80/100 2KG FR C1FRANCE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 7.67,
+      "totalPrice": 23.01
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 5.69,
+      "totalPrice": 11.38
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 12.677,
+      "totalPrice": 76.06
+    },
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 8.598,
+      "totalPrice": 51.59
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 12.297,
+      "totalPrice": 147.56
+    }
+  ]
+}

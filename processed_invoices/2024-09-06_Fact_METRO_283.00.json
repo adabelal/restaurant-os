@@ -1,0 +1,29 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-06",
+  "invoiceNo": "0/0 (016) 0019/0150392",
+  "totalAmount": 283.0,
+  "items": [
+    {
+      "name": "GOBELET BROADWAY FB 30CL",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 2.773,
+      "totalPrice": 133.12
+    },
+    {
+      "name": "MPRO 6 GOB FH TOTEM 37CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.74,
+      "totalPrice": 85.92
+    },
+    {
+      "name": "MP BAC GASTRO INOX GN1/1 H65",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.79,
+      "totalPrice": 16.79
+    }
+  ]
+}

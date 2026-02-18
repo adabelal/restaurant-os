@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-13",
+  "invoiceNo": "067/210",
+  "totalAmount": 96.35,
+  "items": [
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.49,
+      "totalPrice": 91.33
+    }
+  ]
+}

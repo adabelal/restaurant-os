@@ -1,0 +1,72 @@
+RELEVE N° 3 AU 31/07/2023
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE COMPTA | LIBELLE/REFERENCE | DATE OPERATION | DATE VALEUR | DEBIT EUROS | CREDIT EUROS  |
+| --- | --- | --- | --- | --- | --- |
+|  31/07 | REMISE CB 5401547011
+BRUT 602,70E - COM 1,89E
+- NB0036/108476 | 31/07 | 31/07 |  | 600,81  |
+|  31/07 | REMISE CB 5401547011
+BRUT 582,70E - COM 1,86E
+- NB0026/101409 | 31/07 | 31/07 |  | 580,84  |
+|  31/07 | REMISE CB 5401547011
+BRUT 2 148,80E - COM 6,90E
+- NB0026/199553 | 31/07 | 31/07 |  | 2 141,90  |
+|  31/07 | PRLV SEPA COURTOIS BOURG
+Prelevement Magnetique
+++COU03605C4287S34161 | 31/07 | 31/07 | 3 885,62 |   |
+|  31/07 | REMISE CB 5401547011
+BRUT 72,50E - COM 0,23E
+- NB0002/149992 | 31/07 | 31/07 |  | 72,27  |
+|  31/07 | REMISE CB 5401547011
+BRUT 461,40E - COM 1,49E
+- NB0006/150159 | 31/07 | 31/07 |  | 459,91  |
+|  |   |   |   |   |   |
+|   | TOTAL DES MOUVEMENTS
+SOLDE CREDITEUR AU 31/07/2023* |  |  | 38 838,76 | 48 292,50
+19 134,50  |
+
+(*) Sous réserve des opérations en cours d'enregistrement et d'une provision suffisante et disponible lors de l'arrêté du solde du compte réalisé en fin de journée.
+- Ce document ne justifie pas la déduction de la TVA ou de la charge en matière d'impôt direct -
+
+RELEVE N° 3 AU 31/07/2023
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE | DETAIL DES PRELEVEMENTS SEPA RECUS | DEBIT EUROS  |
+| --- | --- | --- |
+|  03/07/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111320518
+PRELEVEMENT | 292,45  |
+|  03/07/2023 | Orange SA FR18ZZZ002305
+M0063503064 3C896A037 C896A0373E521E
+Votre abonnement fibre (facture: XXXXX0373E5) - P | 48,59  |
+|  04/07/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111347819
+PRELEVEMENT | 132,46  |
+|  05/07/2023 | COURTOIS BOURGOGNE BOISSONS FR74ZZZ441774
+++COU03605C4287S34161 Prelevement Magnetique
+Prelevement Magnetique | 3 885,63  |
+|  05/07/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111386194
+PRELEVEMENT | 81,59  |
+|  05/07/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111405852
+PRELEVEMENT | 40,00  |
+|  05/07/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111386193
+PRELEVEMENT | 65,78  |
+|  10/07/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111477051
+PRELEVEMENT | 2 006,91  |
+|  12/07/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111531974
+PRELEVEMENT | 778,82  |
+|  19/07/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0111653167
+PRELEVEMENT | 2 480,20  |
+
+A la Banque Populaire Bourgogne Franche-Comté, l'assurance des personnes et des biens c'est aussi notre métier.
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPGJN N° Orlas Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 493 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWJB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts

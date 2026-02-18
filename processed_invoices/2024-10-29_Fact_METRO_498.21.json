@@ -1,0 +1,85 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-10-29",
+  "invoiceNo": "0/0 (067) 0014/039331",
+  "totalAmount": 498.21,
+  "items": [
+    {
+      "name": "VCE RGE 11D 10L",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 1.25,
+      "totalPrice": 25.0
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 9.0,
+      "unit": "L",
+      "unitPrice": 3.25,
+      "totalPrice": 175.5
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 5.0,
+      "unit": "L",
+      "unitPrice": 3.25,
+      "totalPrice": 97.5
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 2.36,
+      "totalPrice": 28.32
+    },
+    {
+      "name": "SIROP MONIN VANILLE 70CL",
+      "quantity": 3.0,
+      "unit": "L",
+      "unitPrice": 6.11,
+      "totalPrice": 18.33
+    },
+    {
+      "name": "MC POIVRE SECHOUAN 60G PO",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 6.92,
+      "totalPrice": 6.92
+    },
+    {
+      "name": "ARO BADIANE ENTIERE SAC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 19.7,
+      "totalPrice": 19.7
+    },
+    {
+      "name": "ARO CANNELLE ENTIER SAC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.69,
+      "totalPrice": 17.69
+    },
+    {
+      "name": "CLOU DE GIROFLE SAC 500G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.1,
+      "totalPrice": 12.1
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.46,
+      "totalPrice": 13.46
+    },
+    {
+      "name": "BAC GN 1/3H100 +COUV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.73,
+      "totalPrice": 14.73
+    }
+  ]
+}

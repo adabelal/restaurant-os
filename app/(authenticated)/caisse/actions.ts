@@ -8,6 +8,7 @@ import { requireAuth } from "@/lib/auth-utils"
 import { createCashTransactionSchema, createCashCategorySchema } from "@/lib/validations"
 import { z } from "zod"
 import { Resend } from 'resend'
+import { CAISSE_RULES } from "@/lib/finance-rules"
 
 // Initialisation lazy de Resend pour éviter les erreurs au build
 function getResendClient() {
@@ -267,6 +268,11 @@ export async function clearCaisseData() {
     return { success: true }
 }
 
+export async function importPopinaExcel(formData: FormData) {
+    'use server'
+    return { success: false, error: "Fonction obsolète, utiliser la page Fusion" }
+}
+
 export async function importCaisseFromExcel(formData: FormData) {
     await requireAuth()
 
@@ -293,18 +299,7 @@ export async function importCaisseFromExcel(formData: FormData) {
         const buffer = await file.arrayBuffer()
         const workbook = XLSX.read(buffer, { cellDates: true })
 
-        const catMapStrings: Record<string, string> = {
-            "METRO": "Achats",
-            "GRAND FRAIS": "Achats",
-            "PASCAULT": "Achats",
-            "RECETTE": "Recettes",
-            "DEPOT": "Banque",
-            "MONNAIE": "Monnaie",
-            "POURBOIRE": "Social",
-            "RETRAIT": "Banque",
-            "EDF": "Charges",
-            "LOYER": "Charges"
-        }
+        const catMapStrings = CAISSE_RULES.categoryMapping
 
         const transactionsToCreate: any[] = []
         const categoriesIn = new Set<string>()

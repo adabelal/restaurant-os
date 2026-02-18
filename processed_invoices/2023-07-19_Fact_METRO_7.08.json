@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2023-07-19",
+  "invoiceNo": "0/0 (067) 0002/0080022",
+  "totalAmount": 7.08,
+  "items": [
+    {
+      "name": "ARO 10 BOULE INOX 40G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.9,
+      "totalPrice": 5.9
+    }
+  ]
+}

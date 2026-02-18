@@ -1,0 +1,148 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-07-22",
+  "invoiceNo": "0/0 (067) 0014/0279272",
+  "totalAmount": 272.0,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.91,
+      "totalPrice": 142.92
+    },
+    {
+      "name": "GET27 17,9D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.05,
+      "totalPrice": 108.6
+    },
+    {
+      "name": "OASIS FRAIS/FRAMB SLIM33CLX6",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 3.755,
+      "totalPrice": 15.02
+    },
+    {
+      "name": "TROPICO TROPICAL BTE 33CL SLIM",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.468,
+      "totalPrice": 11.22
+    },
+    {
+      "name": "PULCO CITRONNADE SLIM 33CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.533,
+      "totalPrice": 6.39
+    },
+    {
+      "name": "COCACOLA BOITE SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.64,
+      "totalPrice": 15.36
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.756,
+      "totalPrice": 42.14
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.67,
+      "totalPrice": 11.34
+    },
+    {
+      "name": "LEVURE CHIMIQUE 2G X 50SC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.96,
+      "totalPrice": 5.96
+    },
+    {
+      "name": "BOUNTY BARRE 57G",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.483,
+      "totalPrice": 11.58
+    },
+    {
+      "name": "Y-FRUITS PANACHES 6X125G \u0392\u0391\u0399\u039a\u039f",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.12,
+      "totalPrice": 3.12
+    },
+    {
+      "name": "CREME DES VANIL125GX4 SAINTPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.05,
+      "totalPrice": 1.05
+    },
+    {
+      "name": "CREME DES CARAMEL 125GX4 STPER",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.05,
+      "totalPrice": 1.05
+    },
+    {
+      "name": "CANCOILLOTTE IGP NAT 250G ROCH",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.21,
+      "totalPrice": 4.42
+    },
+    {
+      "name": "VACHE QUI RIT 32 P 512G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.98,
+      "totalPrice": 4.98
+    },
+    {
+      "name": "CHAOURCE AOP 250G LINCET",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.36,
+      "totalPrice": 2.36
+    },
+    {
+      "name": "8 CROISSANTS 320G ROCHAMBEAU",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.73,
+      "totalPrice": 3.46
+    },
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.03,
+      "totalPrice": 16.72
+    },
+    {
+      "name": "FLT TRUITE 1, 2/1, 6 X10 EL/NO S/V. ONCORHYNCHUS MYKISS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 20.37
+    },
+    {
+      "name": "ABRICOT MC 2. 8K C. 55/60 PLT C1 FR FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.17,
+      "totalPrice": 11.17
+    }
+  ]
+}

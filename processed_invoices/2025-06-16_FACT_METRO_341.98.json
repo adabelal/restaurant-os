@@ -1,0 +1,176 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-16",
+  "invoiceNo": "067/049",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "RHUM CLEMENT VIEUX 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 18.65,
+      "totalPrice": 37.3
+    },
+    {
+      "name": "MX A ROMET 75CL BLC MET TRAD",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.8,
+      "totalPrice": 16.8
+    },
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.639,
+      "totalPrice": 15.34
+    },
+    {
+      "name": "PULCO CITRONNADE SLIM 33CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.533,
+      "totalPrice": 6.39
+    },
+    {
+      "name": "SCHWEPPES LEMON SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.508,
+      "totalPrice": 12.18
+    },
+    {
+      "name": "HAWAI TROPICAL BOITE 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.702,
+      "totalPrice": 16.85
+    },
+    {
+      "name": "COCA COLA PET 50CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.957,
+      "totalPrice": 22.96
+    },
+    {
+      "name": "ROCH.. DBLE CON TOMATE 1/6 X4",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 0.688,
+      "totalPrice": 2.75
+    },
+    {
+      "name": "HOVE ILIADA PDO KALAMATA 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.44,
+      "totalPrice": 15.44
+    },
+    {
+      "name": "CREM VINAIGRE BALSA 500G PONTI",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.7,
+      "totalPrice": 5.7
+    },
+    {
+      "name": "FLEUR DE SEL BT 125G CAMARGUE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.07,
+      "totalPrice": 4.14
+    },
+    {
+      "name": "FLEUR DE MAIS 400G MAIZENA",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.65,
+      "totalPrice": 3.3
+    },
+    {
+      "name": "MC CERNEAUX NOIX INV ARL 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.2,
+      "totalPrice": 12.2
+    },
+    {
+      "name": "MC GRAINE DE LIN 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.89,
+      "totalPrice": 4.89
+    },
+    {
+      "name": "NUTELLA 1 KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.67,
+      "totalPrice": 5.67
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 410G",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.99,
+      "totalPrice": 5.98
+    },
+    {
+      "name": "AROME FLEUR D'ORANGER 50CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.63,
+      "totalPrice": 6.52
+    },
+    {
+      "name": "SPECULOOS CONCASSE 750G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.39,
+      "totalPrice": 4.39
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.898,
+      "totalPrice": 14.49
+    },
+    {
+      "name": "LION PEANUT 41G",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.463,
+      "totalPrice": 11.11
+    },
+    {
+      "name": "LACTE PULPE 4X125G FRAISE E-V",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.02,
+      "totalPrice": 2.02
+    },
+    {
+      "name": "YAOURT A LA GRECQ 1KG BURGOS",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.17,
+      "totalPrice": 4.17
+    },
+    {
+      "name": "CREME FRAI EP 30% 50CL ROCHAM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.03,
+      "totalPrice": 4.06
+    },
+    {
+      "name": "BEURRE DX PLQ 250G ROCHAMBEAU",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.46,
+      "totalPrice": 4.92
+    }
+  ]
+}

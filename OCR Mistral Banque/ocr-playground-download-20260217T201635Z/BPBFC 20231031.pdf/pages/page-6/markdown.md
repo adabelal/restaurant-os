@@ -1,0 +1,75 @@
+RELEVE N° 6 AU 31/10/2023
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE COMPTA | LIBELLE/REFERENCE |   | DATE OPERATION | DATE VALEUR | DEBIT EUROS | CREDIT EUROS  |
+| --- | --- | --- | --- | --- | --- | --- |
+|  30/10 | REMISE CB 5401547011
+BRUT 2 318,00E - COM 9,59E
+- NB0025/111636 | 0161636 | 30/10 | 30/10 |  | 2 308,41  |
+|  30/10 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0DCU5V1 | 30/10 | 30/10 | 630,75 |   |
+|  30/10 | PRLV SEPA PREFILOC CAPIT
+F230421025
+PRE000101879 | 0DCFFQW | 30/10 | 30/10 | 89,22 |   |
+|  30/10 | PRLV SEPA EPISAVEURS EST
+/INV/8971470661 20.10.2023
+00007SS000016712 | 0DC3OV9 | 30/10 | 30/10 | 186,45 |   |
+|  30/10 | PRLV SEPA Butagaz SAS
+/INV/0008116108 18.10.2023
+ZB07638592 | 0DBWF8R | 30/10 | 30/10 | 460,20 |   |
+|  30/10 | ANNULATION
+REMISE EN DOUBLE
+AVEC NOS EXCUSES | 4773656 | 30/10 | 25/10 | 969,10 |   |
+|  30/10 | Adam Belal
+Virement de SARL SIWA
+Virement de SARL SIWA | 3174669 | 30/10 | 30/10 | 1 500,00 |   |
+|  30/10 | REMISE CB 5401547011
+BRUT 475,30E - COM 1,53E
+- NB0006/156379 | 0162379 | 30/10 | 30/10 |  | 473,77  |
+|  30/10 | 261023 CB***6839
+MAISON DE LA PRFR AILLANT SUR
+110,00EUR 1 EURO = 1,000000 | DY9PEAU | 30/10 | 30/10 | 110,00 |   |
+|  31/10 | COTIS RYTHMEO
+XCCNV240 2023103000027813000001
+CONTRAT CNV5041449827 | 0027813 | 30/10 | 30/10 | 30,64 |   |
+|  31/10 | PRLV SEPA METRO CASH CAR
+PRELEVEMENT
+CMR000084696901 | 0DD3JLH | 31/10 | 31/10 | 1 094,48 |   |
+|  31/10 | 281023 CB***7917
+BI1 FR MONTHOLON
+10,14EUR 1 EURO = 1,000000 | DZX45MH | 31/10 | 31/10 | 10,14 |   |
+|  31/10 | 291023 CB***7917
+BRASSERIE DES VFR JOIGNY
+317,40EUR 1 EURO = 1,000000 | DZX45MI | 31/10 | 31/10 | 317,40 |   |
+|   | TOTAL DES MOUVEMENTS
+SOLDE CREDITEUR AU 31/10/2023* |   |  |  | 27 810,10 | 38 469,48
+26 177,21  |
+|  |   |   |   |   |   |   |
+
+(*) Sous réserve des opérations en cours d'enregistrement et d'une provision suffisante et disponible lors de l'arrêté du solde du compte réalisé en fin de journée.
+- Ce document ne justifie pas la déduction de la TVA ou de la charge en matière d'impôt direct -
+
+RELEVE N° 6 AU 31/10/2023
+
+VOTRE COMPTE COURANT N° 32521140221
+
+|  DATE | DETAIL DES PRELEVEMENTS SEPA RECUS |   | DEBIT EUROS  |
+| --- | --- | --- | --- |
+|  02/10/2023 | METRO CASH CARRY France-METRO FRAN FR17ZZZ452888
+CMR000084696901 0113054908
+PRELEVEMENT |   | 1 479,70  |
+|  02/10/2023 | PREFILOC CAPITAL FR46ZZZ850260
+PRE000101879 PREFILOC/T000083514/3431899
+F230376492 |   | 89,22  |
+|  02/10/2023 | EPISAVEURS EST FR28ZZZ503518
+00007SS000016712 0900238426
+/INV/8971454336 21.9.2023/INV/8971454578 20.9.2023/INV/8971455204 22.9.2023 |   | 85,65  |
+|  02/10/2023 | Butagaz SAS FR27ZZZ100404
+ZB07638592 2900206544
+/INV/0008051505 20.9.2023 |   | 368,16  |
+
+A la Banque Populaire Bourgogne Franche-Comté, l'assurance des personnes et des biens c'est aussi notre métier.
+
+BANQUE POPULAIRE BOURGOGNE FRANCHE-COMTÉ, société Anonyme de Banque Populaire à capital variable - 542 820 352 RCS Dijon - Code NAF 6419 Z - N° TVA Intracommunautaire FR 42 542 820 352 - Siège Social : 14 Bd de la Trémouille - BP 20810 - 21008 Dijon Cedex - C.C.P. Dijon 1603 F 025 - Swift : CCBPFRPPGJN N° Orlas Courrier Assurances : 07 023 116. Entité du Groupe BPCE, représentée par BPCE S.A. (SIRET 400 455 042) titulaire de l'identifiant unique REP Papiers n° FR232581_03FWUB délivré par l'ADEME. Monsieur le Médiateur de la BPBFC, Boite Postale 70, 71602 Paray le Monial Cedex. Adresse du médiateur : https://www.mediateur-bpbfc.fr/Contacts

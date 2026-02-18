@@ -1,0 +1,120 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-24",
+  "invoiceNo": "0/0 (067) 0014/006875",
+  "totalAmount": 410.66,
+  "items": [
+    {
+      "name": "GET 27 17,9D 1L",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 13.67,
+      "totalPrice": 82.02
+    },
+    {
+      "name": "LAIT UHT 1/2ECR 50CL BT BRID",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.858,
+      "totalPrice": 5.15
+    },
+    {
+      "name": "LAIT ENT UHT BT1L MC ENGAGE",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 1.19,
+      "totalPrice": 7.14
+    },
+    {
+      "name": "CAMEMBERT 250GX3 CDL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 1.9,
+      "totalPrice": 5.7
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 21.81,
+      "totalPrice": 19.98
+    },
+    {
+      "name": "JB SERRANO 60T 8MOIS 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 14.37,
+      "totalPrice": 28.74
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 16.99,
+      "totalPrice": 81.47
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 20.73
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 19.44
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 17.07
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 16.3
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 17.16
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 20.8
+    },
+    {
+      "name": "FILET DND HAL S/V FR 1,5KG+",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.79,
+      "totalPrice": 17.21
+    },
+    {
+      "name": "PV VERT BQ 1.2KG 70/90 ESP C1 ESPAGNE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.79,
+      "totalPrice": 4.79
+    },
+    {
+      "name": "SAL BATAVIA X6 C1 FRANCE FRANCE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.19,
+      "totalPrice": 14.28
+    }
+  ]
+}

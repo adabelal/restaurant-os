@@ -1,0 +1,92 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-08-07",
+  "invoiceNo": "067/088",
+  "totalAmount": 729.53,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.91,
+      "totalPrice": 214.38
+    },
+    {
+      "name": "ARMAGNAC DELAITRE 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 12.5,
+      "totalPrice": 12.5
+    },
+    {
+      "name": "RH PLANTERAY DARK 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.98,
+      "totalPrice": 29.96
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 9.642,
+      "totalPrice": 173.55
+    },
+    {
+      "name": "BS PLANTER. PINEAPPLE 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.78,
+      "totalPrice": 22.78
+    },
+    {
+      "name": "APEROL 12.5D 6X1L + KIT",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 12.47,
+      "totalPrice": 149.64
+    },
+    {
+      "name": "GET27 17, 9D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 10.06,
+      "totalPrice": 60.36
+    },
+    {
+      "name": "MX A ROMET 75CL BLC MET TRAD",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 2.8,
+      "totalPrice": 16.8
+    },
+    {
+      "name": "DESPERAD 5. 9D 33CL VP //",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.99,
+      "totalPrice": 23.77
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.02,
+      "totalPrice": 73.44
+    },
+    {
+      "name": "RED BULL BLUE BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.23,
+      "totalPrice": 29.52
+    },
+    {
+      "name": "PULCO CITRON VERT 70CL VP",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.4,
+      "totalPrice": 28.8
+    }
+  ]
+}

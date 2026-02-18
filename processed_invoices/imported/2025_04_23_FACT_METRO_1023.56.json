@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-23",
+  "invoiceNo": "0/0 (067) 0013/0076332",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "WH ARDBEG ISLAY 10A 46D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 35.41,
+      "totalPrice": 35.41
+    },
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.94,
+      "totalPrice": 71.64
+    },
+    {
+      "name": "GIN LIONHEART DLT 37,5D 70CL",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 8.08,
+      "totalPrice": 24.24
+    },
+    {
+      "name": "COGNAC VS DELAITRE 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.63,
+      "totalPrice": 17.63
+    },
+    {
+      "name": "COGN MEUKOV BLACK VS 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.74,
+      "totalPrice": 22.74
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 13.0,
+      "totalPrice": 13.0
+    },
+    {
+      "name": "BS CAPTAIN MORGAN 35D 70CL",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 9.64,
+      "totalPrice": 231.36
+    },
+    {
+      "name": "ANGOSTURA BITTER 44.7D 20CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 15.97,
+      "totalPrice": 31.94
+    },
+    {
+      "name": "LIQUEUR CAFE DELAITRE 21D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.12,
+      "totalPrice": 8.12
+    },
+    {
+      "name": "AMARRETTO SAN PIETRO 18D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.9,
+      "totalPrice": 6.9
+    }
+  ]
+}

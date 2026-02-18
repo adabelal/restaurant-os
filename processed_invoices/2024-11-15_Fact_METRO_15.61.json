@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-15",
+  "invoiceNo": "067/045",
+  "totalAmount": 15.61,
+  "items": [
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.8,
+      "totalPrice": 14.8
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-03-22",
+  "invoiceNo": "0/0 (067)0001/0013992",
+  "totalAmount": 20.0,
+  "items": [
+    {
+      "name": "PALETTE EUROPE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 20.0,
+      "totalPrice": 20.0
+    }
+  ]
+}

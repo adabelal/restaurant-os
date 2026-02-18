@@ -1,0 +1,127 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-25",
+  "invoiceNo": "067/045",
+  "totalAmount": 393.5,
+  "items": [
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 8.01,
+      "totalPrice": 16.02
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.63,
+      "totalPrice": 13.63
+    },
+    {
+      "name": "EPOISSES AOP PERRIE BERTH 900G",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 24.17,
+      "totalPrice": 19.72
+    },
+    {
+      "name": "COCA COLA REG PET 1,25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.823,
+      "totalPrice": 218.8
+    },
+    {
+      "name": "PERRIER 33CL VC",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 1.148,
+      "totalPrice": 55.08
+    },
+    {
+      "name": "CAIS. PERSON. 24X33CL PLEIN",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 8.4
+    },
+    {
+      "name": "PERRIER 1L PET",
+      "quantity": 15.0,
+      "unit": "L",
+      "unitPrice": 0.837,
+      "totalPrice": 75.3
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 19.75,
+      "totalPrice": 19.75
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 26.34,
+      "totalPrice": 26.34
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC ESP C1ESPAGNE",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.03,
+      "totalPrice": 6.18
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG 56 BE CIBELGIQUE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 13.13,
+      "totalPrice": 13.13
+    },
+    {
+      "name": "RICARD 45D 1L",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 15.02,
+      "totalPrice": 60.08
+    },
+    {
+      "name": "BAILEYS IRISH CREME 17D 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 12.677,
+      "totalPrice": 76.06
+    },
+    {
+      "name": "MAROC RGE BOULA KHMIS 75CL",
+      "quantity": 10.0,
+      "unit": "L",
+      "unitPrice": 3.577,
+      "totalPrice": 214.6
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 10.0,
+      "unit": "L",
+      "unitPrice": 2.982,
+      "totalPrice": 178.9
+    },
+    {
+      "name": "ENTRECOTE 4/5KG VBF S/P",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 20.77,
+      "totalPrice": 82.04
+    }
+  ]
+}

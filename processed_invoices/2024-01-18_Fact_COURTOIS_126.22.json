@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-01-18",
+  "invoiceNo": "4010500180",
+  "totalAmount": 126.22,
+  "items": [
+    {
+      "name": "24 PERRIER PET 6 X 1LT",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 1.168,
+      "totalPrice": 4.67
+    },
+    {
+      "name": "2 MONIN MENTHE SIROP 100 CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 4.716,
+      "totalPrice": 9.43
+    },
+    {
+      "name": "2 RHUM PYRAT XO RESERVE 40\u00b0 BT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 33.537,
+      "totalPrice": 67.07
+    }
+  ]
+}

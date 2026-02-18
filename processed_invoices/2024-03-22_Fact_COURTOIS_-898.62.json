@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-03-22",
+  "invoiceNo": "4030100795",
+  "totalAmount": -898.62,
+  "items": [
+    {
+      "name": "LOBURG",
+      "quantity": -5.0,
+      "unit": "U",
+      "unitPrice": 3.705,
+      "totalPrice": -623.85
+    }
+  ]
+}

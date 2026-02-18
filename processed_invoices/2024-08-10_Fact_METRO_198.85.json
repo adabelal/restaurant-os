@@ -1,0 +1,64 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-08-10",
+  "invoiceNo": "067/049",
+  "totalAmount": 198.85,
+  "items": [
+    {
+      "name": "ANGOSTURA BITTER 44. 7D 20CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.71,
+      "totalPrice": 31.42
+    },
+    {
+      "name": "MAROC RSE BOULA KHMIS 75CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 3.25,
+      "totalPrice": 78.0
+    },
+    {
+      "name": "SIROP MONIN ORANGE SPRITZ 70CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 7.87,
+      "totalPrice": 7.87
+    },
+    {
+      "name": "CRISTALI 50CL PET",
+      "quantity": 24.0,
+      "unit": "L",
+      "unitPrice": 0.143,
+      "totalPrice": 3.43
+    },
+    {
+      "name": "NUTS BARRE 42G NESTLE",
+      "quantity": 24.0,
+      "unit": "kg",
+      "unitPrice": 0.671,
+      "totalPrice": 16.1
+    },
+    {
+      "name": "THE VERT TEMPLE DU CIEL 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.26,
+      "totalPrice": 7.26
+    },
+    {
+      "name": "LIME CAL 54/60 FILET 1KG BRESIL C1 BRESIL",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 4.99,
+      "totalPrice": 9.98
+    },
+    {
+      "name": "MPRO 500 PAILLE BLANC D8 20CM",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.55,
+      "totalPrice": 15.1
+    }
+  ]
+}

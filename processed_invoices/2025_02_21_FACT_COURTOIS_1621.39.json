@@ -1,0 +1,141 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-02-21",
+  "invoiceNo": "5020100661",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "60 FUT 15L ROSE BLANCHE BRUXELLE",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 5.022,
+      "totalPrice": 312.24
+    },
+    {
+      "name": "80 FUT 20 L TRIPEL KARMELIET 8\u00b0",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 5.464,
+      "totalPrice": 488.96
+    },
+    {
+      "name": "36 PET SOLAL ANANAS ABC 6x1LT",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 1.64,
+      "totalPrice": 59.04
+    },
+    {
+      "name": "12 PET SOLAL POMME ABC 6x1LT",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.76,
+      "totalPrice": 21.12
+    },
+    {
+      "name": "12 NORBERT NECTAR ORANGE PET6x1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.151,
+      "totalPrice": 14.44
+    },
+    {
+      "name": "2 MONIN FRAISE SIROP 100 CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 6.307,
+      "totalPrice": 12.61
+    },
+    {
+      "name": "4 MONIN GRENADINE SIROP 100 CL",
+      "quantity": 4.0,
+      "unit": "L",
+      "unitPrice": 4.716,
+      "totalPrice": 18.86
+    },
+    {
+      "name": "6 MONIN MOJITO MINT 70 CL",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 6.543,
+      "totalPrice": 39.26
+    },
+    {
+      "name": "2 MONIN PAMPLEMOUSS.ROSE 70CL SP",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 6.394,
+      "totalPrice": 12.79
+    },
+    {
+      "name": "2 MONIN GLASCO CITRON 100 CL",
+      "quantity": 2.0,
+      "unit": "L",
+      "unitPrice": 5.187,
+      "totalPrice": 10.37
+    },
+    {
+      "name": "12 RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 15.332,
+      "totalPrice": 183.98
+    },
+    {
+      "name": "48 LINESS MISS TONIC 33CLX24 VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.795,
+      "totalPrice": 39.55
+    },
+    {
+      "name": "24 PERRIER VC 24 x 33 CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.0,
+      "totalPrice": 24.0
+    },
+    {
+      "name": "24 KWAK 24X33CL VC 8.4\u00b0",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.429,
+      "totalPrice": 39.7
+    },
+    {
+      "name": "48 ELSASS COLA 33CLX24 VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.658,
+      "totalPrice": 33.7
+    },
+    {
+      "name": "FUT 15 L SLASH MANGO",
+      "quantity": 6.0,
+      "unit": "L",
+      "unitPrice": 0.0,
+      "totalPrice": -180.0
+    },
+    {
+      "name": "VILLERS MINERALE VC 12 X 100CL",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 0.0,
+      "totalPrice": -2.85
+    },
+    {
+      "name": "LIMONADE SOULTZY LT VC",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 0.0,
+      "totalPrice": -2.25
+    },
+    {
+      "name": "ELSASS COLA 33CLX24 VC",
+      "quantity": 4.0,
+      "unit": "U",
+      "unitPrice": 0.0,
+      "totalPrice": -16.8
+    }
+  ]
+}

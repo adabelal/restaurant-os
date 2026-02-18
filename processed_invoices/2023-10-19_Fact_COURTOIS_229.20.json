@@ -1,0 +1,29 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2023-10-19",
+  "invoiceNo": "3100500260",
+  "totalAmount": 229.2,
+  "items": [
+    {
+      "name": "72 ROMAN COLA 20CLX24 VC",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 0.627,
+      "totalPrice": 47.52
+    },
+    {
+      "name": "48 ROMAN COLA ZERO 20CLX24 VC",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 0.627,
+      "totalPrice": 31.68
+    },
+    {
+      "name": "6 RHUM SANLINO CARTA ORO 40\u00b070C",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.014,
+      "totalPrice": 90.9
+    }
+  ]
+}

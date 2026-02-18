@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-12-09",
+  "invoiceNo": "5120500121",
+  "totalAmount": 25.62,
+  "items": [
+    {
+      "name": "24 033LIMONADE LINESS 33cl",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 0.691,
+      "totalPrice": 18.24
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-04-24",
+  "invoiceNo": "0/0 (067) 0017/0010392",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 7.0,
+      "unit": "kg",
+      "unitPrice": 11.47,
+      "totalPrice": 80.29
+    },
+    {
+      "name": "MC POIS CHICHE 11MM 5KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 15.55,
+      "totalPrice": 15.55
+    },
+    {
+      "name": "MC BICARBONAT SOUD 330G PO",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.83,
+      "totalPrice": 1.83
+    },
+    {
+      "name": "MC PAPRIKA DOUX 550G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.3,
+      "totalPrice": 6.3
+    },
+    {
+      "name": "ARO JUS CITRON JAUNE 1L",
+      "quantity": 1.0,
+      "unit": "L",
+      "unitPrice": 3.0,
+      "totalPrice": 3.0
+    },
+    {
+      "name": "MC ASSAIS POULET ROTI 670G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 4.4,
+      "totalPrice": 4.4
+    },
+    {
+      "name": "FLEUR DE MAIS 400G MAIZENA",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.83,
+      "totalPrice": 1.83
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.72,
+      "totalPrice": 22.72
+    },
+    {
+      "name": "TOM DUO CERISE ALL. 4KG FR C1 FRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 24.15,
+      "totalPrice": 24.15
+    },
+    {
+      "name": "SAL BATAVIA X12 MC C1 FRANCE FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 1.088,
+      "totalPrice": 26.12
+    },
+    {
+      "name": "FENOUIL 5K IT ITALIE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 8.74,
+      "totalPrice": 17.48
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.52,
+      "totalPrice": 5.04
+    },
+    {
+      "name": "CAROTTE MC 5KG 20/40 GB40 FR C1france",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 9.29,
+      "totalPrice": 27.87
+    },
+    {
+      "name": "COURG 14/21 METRO CHEF 5KG ES C1 20 ESPAGNE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 9.84,
+      "totalPrice": 29.52
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 12.83,
+      "totalPrice": 25.66
+    },
+    {
+      "name": "TOM RDE MC 67+ 6KG 56 MAROC C1MAROC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 9.83,
+      "totalPrice": 9.83
+    },
+    {
+      "name": "AIL PELE BOCAL 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.53,
+      "totalPrice": 7.53
+    },
+    {
+      "name": "NESTLE DESSERT NOIR 5X205G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.64,
+      "totalPrice": 13.2
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 10.8,
+      "totalPrice": 21.6
+    },
+    {
+      "name": "GESIERS PLT CONFIT 2KG MC",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 17.3,
+      "totalPrice": 17.3
+    }
+  ]
+}

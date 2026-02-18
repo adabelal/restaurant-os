@@ -1,0 +1,15 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-08-08",
+  "invoiceNo": "0/0 (067) 0017/003295",
+  "totalAmount": 29.89,
+  "items": [
+    {
+      "name": "1632140 POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 10.43,
+      "totalPrice": 28.33
+    }
+  ]
+}

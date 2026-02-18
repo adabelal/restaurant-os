@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-02-12",
+  "invoiceNo": "INV-25-FR-014127",
+  "totalAmount": 66.1,
+  "items": [
+    {
+      "name": "METRO Professional Verre \u00e0 pied Mirano, verre, 33 cl, 6 pi\u00e8ces",
+      "quantity": 10.0,
+      "unit": "U",
+      "unitPrice": 5.86,
+      "totalPrice": 58.6
+    },
+    {
+      "name": "Frais de livraison",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 7.5,
+      "totalPrice": 7.5
+    }
+  ]
+}

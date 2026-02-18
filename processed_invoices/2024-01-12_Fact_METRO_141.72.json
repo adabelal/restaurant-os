@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-01-12",
+  "invoiceNo": "0/0 (067) 0016/0001812",
+  "totalAmount": 141.72,
+  "items": [
+    {
+      "name": "BAC GN 1/1H150 +COUV",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 29.25,
+      "totalPrice": 87.75
+    },
+    {
+      "name": "BAC GN 1/1 H200 + COUV",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 30.35,
+      "totalPrice": 30.35
+    }
+  ]
+}

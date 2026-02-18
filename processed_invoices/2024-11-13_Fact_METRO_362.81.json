@@ -1,0 +1,99 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-11-13",
+  "invoiceNo": "067/045",
+  "totalAmount": 362.81,
+  "items": [
+    {
+      "name": "POITRINE AGN S/OS HAL S/V UK",
+      "quantity": 3.756,
+      "unit": "kg",
+      "unitPrice": 11.27,
+      "totalPrice": 42.33
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 8.95,
+      "unit": "kg",
+      "unitPrice": 9.72,
+      "totalPrice": 86.99
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 2.062,
+      "unit": "kg",
+      "unitPrice": 4.03,
+      "totalPrice": 8.31
+    },
+    {
+      "name": "CHEVRE BUCHE 1KG DE BELLAY PP",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 10.91,
+      "totalPrice": 21.82
+    },
+    {
+      "name": "ZAKIA COUSCOUS FIN 5KG",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 10.85,
+      "totalPrice": 86.8
+    },
+    {
+      "name": "ARO SESAME DORE SAC 1KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.76,
+      "totalPrice": 8.76
+    },
+    {
+      "name": "LIME CAL 42/48F BRESIL C1 Colis BRESIL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 14.8,
+      "totalPrice": 14.8
+    },
+    {
+      "name": "CELERI BOTTE 10 C1 FRANCE FRANCE",
+      "quantity": 3.0,
+      "unit": "U",
+      "unitPrice": 2.19,
+      "totalPrice": 6.57
+    },
+    {
+      "name": "CONCOMBRE 4/5 PC ESP C1ESPAGNE",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 1.09,
+      "totalPrice": 8.72
+    },
+    {
+      "name": "FENOUIL 3K IT ITALIE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.52,
+      "totalPrice": 10.52
+    },
+    {
+      "name": "CELERI RAVE FR 6 FRANCE",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 2.52,
+      "totalPrice": 5.04
+    },
+    {
+      "name": "PV VERT MC 90/110 3KG ESP C1ESPAGNE",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 11.51,
+      "totalPrice": 34.53
+    },
+    {
+      "name": "OIG CHARC MC 7/10 8KG C1 FR 66FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 8.71,
+      "totalPrice": 8.71
+    }
+  ]
+}

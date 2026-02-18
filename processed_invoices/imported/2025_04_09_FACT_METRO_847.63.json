@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-09",
+  "invoiceNo": "0/0 (067) 0014/012615",
+  "totalAmount": 743.83,
+  "items": [
+    {
+      "name": "WHISKY BALLANTINE 40D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 11.94,
+      "totalPrice": 214.92
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.042,
+      "totalPrice": 126.75
+    },
+    {
+      "name": "GIN LIONHEART DLT 37, 5D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.08,
+      "totalPrice": 32.32
+    },
+    {
+      "name": "TEQ SAN JOSE SILVER 35D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.52,
+      "totalPrice": 23.04
+    },
+    {
+      "name": "RED BULL BOITE 25CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 1.027,
+      "totalPrice": 73.92
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 1.756,
+      "totalPrice": 147.49
+    },
+    {
+      "name": "4 VIENNOISES FENDUES 340G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.88,
+      "totalPrice": 1.88
+    },
+    {
+      "name": "1/2 POITRNE FUM N1 MC 1, 8KGENV",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 7.29,
+      "totalPrice": 8.97
+    },
+    {
+      "name": "COEUR RTK 2.5KG+ UE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 12.45,
+      "totalPrice": 35.61
+    },
+    {
+      "name": "FILET PLT BLC HAL 5KG UE SAT",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 42.25,
+      "totalPrice": 42.25
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-30",
+  "invoiceNo": "0/0 (067) 0014/024676",
+  "totalAmount": 89.61,
+  "items": [
+    {
+      "name": "OASIS POM/CASS/FRAM SLIM 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.639,
+      "totalPrice": 15.34
+    },
+    {
+      "name": "PULCO CITRONNADE SLIM 33CL",
+      "quantity": 12.0,
+      "unit": "U",
+      "unitPrice": 0.533,
+      "totalPrice": 6.39
+    },
+    {
+      "name": "ORANGINA SLIM BOITE JAUN 33CL",
+      "quantity": 24.0,
+      "unit": "U",
+      "unitPrice": 0.57,
+      "totalPrice": 13.68
+    },
+    {
+      "name": "CRISTALI 1.5L",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 0.18,
+      "totalPrice": 1.08
+    },
+    {
+      "name": "TRESOR CHOCOLAT/NOISETTES 1KG",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.8,
+      "totalPrice": 6.8
+    },
+    {
+      "name": "LAITIERE VANILL4X125G NESTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.02,
+      "totalPrice": 2.02
+    },
+    {
+      "name": "VIENNOIS CAFE 4X100G NESTLE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.52,
+      "totalPrice": 1.52
+    },
+    {
+      "name": "D. FRUIT SSA POMME/PECHE 4X100G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.6,
+      "totalPrice": 1.6
+    },
+    {
+      "name": "D. FRUIT SSA P/ ABRICOT 4X100G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.6,
+      "totalPrice": 1.6
+    },
+    {
+      "name": "D. FRUIT SSA POM/POIRE 4X100G",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 1.6,
+      "totalPrice": 1.6
+    },
+    {
+      "name": "COEUR NEUFCHATEL AOP 200G CATE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.11,
+      "totalPrice": 3.11
+    },
+    {
+      "name": "ST FELICIEN 180G MDF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.05,
+      "totalPrice": 2.05
+    },
+    {
+      "name": "PAIN SANDWICH COMPLET 600G LC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 2.49,
+      "totalPrice": 2.49
+    },
+    {
+      "name": "FILET PLT J 1.5K ENV FR MC",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.49,
+      "totalPrice": 13.88
+    },
+    {
+      "name": "PDT GRE MITRA 5K CF BOX24 C1 FRFRANCE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 16.45,
+      "totalPrice": 16.45
+    }
+  ]
+}

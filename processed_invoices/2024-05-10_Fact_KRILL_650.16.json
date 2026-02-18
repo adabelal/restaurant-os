@@ -1,0 +1,50 @@
+{
+  "supplierName": "KRILL",
+  "date": "2024-05-10",
+  "invoiceNo": "00752204",
+  "totalAmount": 650.16,
+  "items": [
+    {
+      "name": "POIRE VB PAD 1.5/2.5 KG S/V FRANCE MF VB F",
+      "quantity": 12.21,
+      "unit": "kg",
+      "unitPrice": 13.3,
+      "totalPrice": 162.39
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.0,
+      "unit": "kg",
+      "unitPrice": 0.097,
+      "totalPrice": 1.18
+    },
+    {
+      "name": "ENTRECOTE VB SEMI-PARE CHAROLAISE 4/7 KG S/V FRANCE MF VBF",
+      "quantity": 7.2,
+      "unit": "kg",
+      "unitPrice": 20.84,
+      "totalPrice": 150.05
+    },
+    {
+      "name": "INTERBEV SANS OS BOEUF",
+      "quantity": 0.0,
+      "unit": "kg",
+      "unitPrice": 0.097,
+      "totalPrice": 0.7
+    },
+    {
+      "name": "BROCHETTE AGNEAU GIGOT KIT 30/50 G X 30 S/V UK UE PTF",
+      "quantity": 18.154,
+      "unit": "kg",
+      "unitPrice": 14.8,
+      "totalPrice": 268.68
+    },
+    {
+      "name": "POITRINE AGNEAU S/OS 2.5 KG ENV S/V UK U E MF",
+      "quantity": 4.906,
+      "unit": "kg",
+      "unitPrice": 6.781,
+      "totalPrice": 33.27
+    }
+  ]
+}

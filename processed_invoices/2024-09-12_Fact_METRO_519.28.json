@@ -1,0 +1,43 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-09-12",
+  "invoiceNo": "067/045",
+  "totalAmount": 519.28,
+  "items": [
+    {
+      "name": "FX FILET 4.5KG+ S/P UE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 11.04,
+      "totalPrice": 64.89
+    },
+    {
+      "name": "POIRE PAD UE",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.2,
+      "totalPrice": 223.14
+    },
+    {
+      "name": "FILET DINDE HALAL S/V FR",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.54,
+      "totalPrice": 62.39
+    },
+    {
+      "name": "MERGUEZ BF/MTN HAL2. 3KGENV SAT",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 9.88,
+      "totalPrice": 134.13
+    },
+    {
+      "name": "PIEDS VEAU DEQUILLE SV X2 EAF",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 3.85,
+      "totalPrice": 7.66
+    }
+  ]
+}

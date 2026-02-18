@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souvenirs & Galeries | Le Siwa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@400;600&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        /* Mêmes couleurs que la page principale pour la cohérence */
+        :root {
+            --primary-color: #dc2626; 
+            --accent-gold: #f59e0b;
+            --dark-bg: #18181b;
+            --light-text: #f4f4f5;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .flyer-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Effet "Souvenir" : Noir et blanc vers Couleur */
+        .memory-card img {
+            filter: grayscale(100%) contrast(1.1);
+            transition: all 0.5s ease;
+        }
+        
+        .memory-card:hover img {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.05);
+        }
+
+        /* Polaroids */
+        .polaroid {
+            background: #fff;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.02);
+            z-index: 10;
+        }
+        .polaroid:nth-child(even) {
+            transform: rotate(2deg);
+        }
+        .polaroid:nth-child(even):hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Simple -->
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                     <!-- Lien retour Accueil -->
+                     <a href="index.html" class="text-white hover:text-red-500 transition-colors flex items-center gap-2 font-bold">
+                        <i data-lucide="arrow-left"></i> RETOUR ACCUEIL
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                   <span class="flyer-font text-xl text-zinc-500">HALL OF FAME</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Souvenirs -->
+    <section class="relative py-32 px-4 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover opacity-20 blur-sm">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#18181b] via-transparent to-[#18181b]"></div>
+        </div>
+        
+        <div class="relative z-10 text-center max-w-4xl mx-auto">
+            <h1 class="flyer-font text-5xl md:text-8xl mb-6 text-white leading-tight">
+                C'ÉTAIT LE <span class="text-red-600">FEU</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                Retrouvez les meilleurs moments des soirées au Siwa. <br>Vous y étiez ? On remet ça bientôt !
+            </p>
+        </div>
+    </section>
+
+    <!-- Galerie Grid -->
+    <section class="py-12 px-4 bg-[#18181b]">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- JUILLET 2025 (Exemple Passé) -->
+            <div class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <h2 class="text-3xl font-bold text-white">JUILLET 2025</h2>
+                    <div class="h-1 bg-zinc-800 flex-grow"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Souvenir 1 -->
+                    <div class="memory-card group relative overflow-hidden rounded-xl cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Concert Aozam" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
+                            <h3 class="text-xl font-bold text-white">AOZAM</h3>
+                            <p class="text-amber-500 text-sm font-bold">SOIRÉE REGGAE</p>
+                        </div>
+                    </div>
+
+                    <!-- Souvenir 2 -->
+                    <div class="memory-card group relative overflow-hidden rounded-xl cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Soirée Latino" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
+                            <h3 class="text-xl font-bold text-white">ICONA LATINA</h3>
+                            <p class="text-amber-500 text-sm font-bold">BACHATA NIGHT</p>
+                        </div>
+                    </div>
+
+                    <!-- Souvenir 3 (Polaroid style pour changer) -->
+                    <div class="polaroid text-black">
+                        <img src="https://images.unsplash.com/photo-1514525253440-b393452e2729?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ambiance Bar" class="w-full aspect-square object-cover mb-4 filter grayscale hover:grayscale-0 transition-all">
+                        <p class="font-handwriting text-center font-bold font-['Permanent_Marker'] text-xl">L'équipe au top ! ❤️</p>
+                    </div>
+
+                    <!-- Souvenir 4 -->
+                    <div class="memory-card group relative overflow-hidden rounded-xl cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1585647347483-22b66260dfff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Karaoké" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
+                            <h3 class="text-xl font-bold text-white">KARAOKÉ GÉANT</h3>
+                            <p class="text-amber-500 text-sm font-bold">VOUS AVEZ DU TALENT</p>
+                        </div>
+                    </div>
+
+                    <!-- Souvenir 5 -->
+                    <div class="memory-card group relative overflow-hidden rounded-xl cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Couscous" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
+                            <h3 class="text-xl font-bold text-white">LE FESTIN</h3>
+                            <p class="text-amber-500 text-sm font-bold">COUSCOUS PARTY</p>
+                        </div>
+                    </div>
+
+                     <!-- Souvenir 6 -->
+                     <div class="memory-card group relative overflow-hidden rounded-xl cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Concert Rock" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
+                            <h3 class="text-xl font-bold text-white">THE MOB'S</h3>
+                            <p class="text-amber-500 text-sm font-bold">GROS SON ROCK</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="bg-zinc-900 rounded-3xl p-12 text-center border border-zinc-800">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">NE RATEZ PAS LE PROCHAIN !</h2>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto">L'histoire continue de s'écrire ce mois-ci. Réservez votre table pour être sur la prochaine photo.</p>
+                <a href="index.html#agenda" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-black py-4 px-8 rounded-full transition-transform hover:scale-105">
+                    <i data-lucide="calendar"></i> VOIR L'AGENDA ACTUEL
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer Simple -->
+    <footer class="bg-black py-8 border-t border-white/5 text-center">
+        <p class="text-zinc-600 text-sm">© Le Siwa - La boîte à souvenirs</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+```

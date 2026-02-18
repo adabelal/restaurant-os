@@ -1,0 +1,22 @@
+{
+  "supplierName": "METRO",
+  "date": "2024-02-02",
+  "invoiceNo": "0/0 (067) 0015/0017322",
+  "totalAmount": 107.15,
+  "items": [
+    {
+      "name": "RH HAMPDEN 8A 46D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 21.53,
+      "totalPrice": 21.53
+    },
+    {
+      "name": "COCA COLA REG PET 1, 25L",
+      "quantity": 12.0,
+      "unit": "L",
+      "unitPrice": 1.56,
+      "totalPrice": 74.88
+    }
+  ]
+}

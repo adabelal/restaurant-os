@@ -1,0 +1,15 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2025-12-31",
+  "invoiceNo": "5120100913",
+  "totalAmount": 140.4,
+  "items": [
+    {
+      "name": "FUT 30L PRIMUS PILS BLONDE5\u00b02",
+      "quantity": 3.9,
+      "unit": "L",
+      "unitPrice": 30.0,
+      "totalPrice": 117.0
+    }
+  ]
+}

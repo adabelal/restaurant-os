@@ -38,6 +38,10 @@ model User {
   contractType     String? @default("CDI") // CDI, CDD
   contractDuration String? @default("FULL_TIME") // FULL_TIME, PART_TIME
 
+  // Reset Password
+  resetPasswordToken   String?   @unique
+  resetPasswordExpires DateTime?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   

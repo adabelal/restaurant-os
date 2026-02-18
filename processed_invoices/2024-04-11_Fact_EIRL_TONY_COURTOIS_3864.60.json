@@ -1,0 +1,64 @@
+{
+  "supplierName": "COURTOIS",
+  "date": "2024-04-11",
+  "invoiceNo": "2024-0330",
+  "totalAmount": 3864.6,
+  "items": [
+    {
+      "name": "Croix Gratiot, cuv\u00e9e Le Syndical, Piquepoul blanc",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 9.5,
+      "totalPrice": 342.0
+    },
+    {
+      "name": "Montahuc, cuv\u00e9e Chemin du Ch\u00eane blanc",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 14.5,
+      "totalPrice": 522.0
+    },
+    {
+      "name": "Montahuc, cuv\u00e9e Aurore Minervoise, ros\u00e9",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 12.5,
+      "totalPrice": 450.0
+    },
+    {
+      "name": "Chalmeau, cuv\u00e9e Chitry rouge",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 11.5,
+      "totalPrice": 414.0
+    },
+    {
+      "name": "Richoux, cuv\u00e9e Irancy rouge",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 18.0,
+      "totalPrice": 648.0
+    },
+    {
+      "name": "D\u00e9sertaux-Ferrand, cuv\u00e9e Ladoix rouge",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 20.0,
+      "totalPrice": 720.0
+    },
+    {
+      "name": "Richaud, cuv\u00e9e Terre de Galets",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 14.5,
+      "totalPrice": 522.0
+    },
+    {
+      "name": "Mont-Olivet, cuv\u00e9e Ros\u00e9",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 12.5,
+      "totalPrice": 450.0
+    }
+  ]
+}

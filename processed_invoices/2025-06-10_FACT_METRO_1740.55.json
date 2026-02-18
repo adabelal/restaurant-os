@@ -1,0 +1,78 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-06-10",
+  "invoiceNo": "0/0(067)0014/0218222",
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "WH GLENMORANGIE 10A 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 31.09,
+      "totalPrice": 31.09
+    },
+    {
+      "name": "WH ARDBEG ISLAY 10A 46D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 35.41,
+      "totalPrice": 35.41
+    },
+    {
+      "name": "WH GLENLIVET 12A 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 30.18,
+      "totalPrice": 30.18
+    },
+    {
+      "name": "VODKA FJOROWKA DLT 37,5D 70CL",
+      "quantity": 6.0,
+      "unit": "U",
+      "unitPrice": 7.35,
+      "totalPrice": 44.1
+    },
+    {
+      "name": "COGNAC VS DELAITRE 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.85,
+      "totalPrice": 17.85
+    },
+    {
+      "name": "COGN MEUKOV BLACK VS 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 22.74,
+      "totalPrice": 22.74
+    },
+    {
+      "name": "RHUM DAMOISEAU AGRI 50D 1L",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 13.0,
+      "totalPrice": 26.0
+    },
+    {
+      "name": "RHUM COLOMA 40D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 26.62,
+      "totalPrice": 53.24
+    },
+    {
+      "name": "RH PLANTERAY DARK 40D 70CL",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 17.62,
+      "totalPrice": 17.62
+    },
+    {
+      "name": "HAVANA CLUB 3ANS 37.5D 70CL",
+      "quantity": 2.0,
+      "unit": "U",
+      "unitPrice": 11.57,
+      "totalPrice": 138.84
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "supplierName": "KRILL",
+  "date": "2026-02-02",
+  "invoiceNo": null,
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "COEUR TENDE TRANCHE VB HALAL 4 KG ET + S/V UK UE MF",
+      "quantity": 4.0,
+      "unit": "kg",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "COEUR RUMSTEAK VB PAD 2 KG ET + HALAL S/V UK UE",
+      "quantity": 2.0,
+      "unit": "kg",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "FAUX FILET VB SEMI-PARE HALAL 5 KG ET + S/V UK UE MF",
+      "quantity": 5.0,
+      "unit": "kg",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    },
+    {
+      "name": "ENTRECOTE VB 2.5 KG HALAL S/V UK UE",
+      "quantity": 2.5,
+      "unit": "kg",
+      "unitPrice": 0.0,
+      "totalPrice": 0.0
+    }
+  ]
+}

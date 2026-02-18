@@ -1,0 +1,85 @@
+{
+  "supplierName": "KRILL",
+  "date": "2026-01-19",
+  "invoiceNo": null,
+  "totalAmount": 0.0,
+  "items": [
+    {
+      "name": "MOUSSE CANARD CONFIT D'OIGNON SAT 1.2 KG",
+      "quantity": 1.2,
+      "unit": "kg",
+      "unitPrice": 14.95,
+      "totalPrice": 17.94
+    },
+    {
+      "name": "TERRINE LAUZACH FOIE GRAS CANARD 100% MCX MI CUIT BARQUETTE 1 KG FRANCE",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 42.95,
+      "totalPrice": 42.95
+    },
+    {
+      "name": "BRETZEL PAC 95 G X 80",
+      "quantity": 80.0,
+      "unit": "U",
+      "unitPrice": 0.29,
+      "totalPrice": 23.2
+    },
+    {
+      "name": "EMINCE POIS ET BLE CUIT IQF SACHET 1 KG",
+      "quantity": 1.0,
+      "unit": "kg",
+      "unitPrice": 10.75,
+      "totalPrice": 10.75
+    },
+    {
+      "name": "CERVELLE AGNEAU 80/100 G IQF X 600 G NOUVELLE-ZELANDE",
+      "quantity": 0.6,
+      "unit": "kg",
+      "unitPrice": 11.95,
+      "totalPrice": 7.17
+    },
+    {
+      "name": "DOS THON ALBACORE S/A S/P 140/160 G X 3 KG OC IND E",
+      "quantity": 3.0,
+      "unit": "kg",
+      "unitPrice": 13.2,
+      "totalPrice": 39.6
+    },
+    {
+      "name": "FILET SARDINE PAPILLON A/P P/A ST IQF PAVILLON FRANCE 30/90 G ATL NE",
+      "quantity": 0.09,
+      "unit": "kg",
+      "unitPrice": 6.5,
+      "totalPrice": 0.59
+    },
+    {
+      "name": "MUFFIN FOURRE NUTELLA 86 G X 48",
+      "quantity": 48.0,
+      "unit": "U",
+      "unitPrice": 1.4,
+      "totalPrice": 67.2
+    },
+    {
+      "name": "DONUT FOURRE NUTELLA 60 G X 36",
+      "quantity": 36.0,
+      "unit": "U",
+      "unitPrice": 1.15,
+      "totalPrice": 41.4
+    },
+    {
+      "name": "MOELLEUX CHOCO COCO PLAQUE PREDECOUPE 60 G X 30",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 0.57,
+      "totalPrice": 17.1
+    },
+    {
+      "name": "POT GLACE 470 ML/230 G NUTELLA X8",
+      "quantity": 8.0,
+      "unit": "U",
+      "unitPrice": 4.2,
+      "totalPrice": 33.6
+    }
+  ]
+}

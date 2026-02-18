@@ -1,0 +1,106 @@
+{
+  "supplierName": "METRO",
+  "date": "2025-04-25",
+  "invoiceNo": "0/0 (067) 0013/007856",
+  "totalAmount": 394.56,
+  "items": [
+    {
+      "name": "KINDER BUENO",
+      "quantity": 30.0,
+      "unit": "U",
+      "unitPrice": 0.595,
+      "totalPrice": 17.84
+    },
+    {
+      "name": "OREO CHOCOLAT BLANC 246GX3",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 8.9,
+      "totalPrice": 8.9
+    },
+    {
+      "name": "BRIOCHE TRESSEE 800G LB",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 5.21,
+      "totalPrice": 5.21
+    },
+    {
+      "name": "FRY' N' DIP 2.5KG MCCAIN",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 6.08,
+      "totalPrice": 36.48
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 35.5
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 35.98
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 27.9
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 24.7
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 25.02
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 25.18
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 30.06
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 27.34
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 36.94
+    },
+    {
+      "name": "POIRE VBF PAD",
+      "quantity": 1.0,
+      "unit": "U",
+      "unitPrice": 15.99,
+      "totalPrice": 36.94
+    }
+  ]
+}
