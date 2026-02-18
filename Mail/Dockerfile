@@ -18,23 +18,29 @@ RUN pip install --no-cache-dir -r requirements.txt
 # COPY credentials.json .
 # COPY token.json .
 
+# Copier le code source Python
+COPY gmail_manager.py .
+COPY download_invoices_2026.py .
+COPY analyze_inbox.py .
+COPY smart_cleanup.py .
+
 # Créer un script de démarrage qui restaure les secrets depuis les variables d'environnement
 RUN echo '#!/bin/bash\n\
-if [ -n "$GMAIL_CREDENTIALS_BASE64" ]; then\n\
+  if [ -n "$GMAIL_CREDENTIALS_BASE64" ]; then\n\
   echo "$GMAIL_CREDENTIALS_BASE64" | base64 -d > credentials.json\n\
   echo "✅ credentials.json restauré depuis ENV"\n\
-fi\n\
-if [ -n "$GMAIL_TOKEN_BASE64" ]; then\n\
+  fi\n\
+  if [ -n "$GMAIL_TOKEN_BASE64" ]; then\n\
   echo "$GMAIL_TOKEN_BASE64" | base64 -d > token.json\n\
   echo "✅ token.json restauré depuis ENV"\n\
-fi\n\
-\n\
-while true; do\n\
+  fi\n\
+  \n\
+  while true; do\n\
   echo "--- Lancement du scan Gmail $(date) ---"\n\
   python download_invoices_2026.py\n\
   echo "--- Scan terminé. Prochain passage dans 12h ---"\n\
   sleep 43200\n\
-done' > /app/entrypoint.sh
+  done' > /app/entrypoint.sh
 
 RUN chmod +x /app/entrypoint.sh
 
