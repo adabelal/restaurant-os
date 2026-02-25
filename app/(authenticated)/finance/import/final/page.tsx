@@ -7,6 +7,8 @@ import fs from 'fs'
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
+export const dynamic = 'force-dynamic'
+
 const FINAL_FILE = process.cwd() + '/FINAL_IMPORT_READY.xlsx';
 
 function excelDateToJSDate(serial: any) {
@@ -115,7 +117,10 @@ export default async function FinalImportPage() {
                         <div className="mt-2 text-xl">{fileFound ? '✅ PRÊT' : '❌ MANQUANT'}</div>
                     </div>
 
-                    <form action={performFinalImport}>
+                    <form action={async () => {
+                        'use server';
+                        await performFinalImport();
+                    }}>
                         <Button size="lg" className="w-full bg-indigo-600 hover:bg-indigo-700 font-bold h-14 text-lg shadow-lg transition-transform active:scale-95" disabled={!fileFound}>
                             ⚡️ LANCER L'IMPORT
                         </Button>

@@ -6,6 +6,8 @@ import { AddEventDialog } from "./components/AddEventDialog"
 import { BandsList } from "./components/BandsList"
 import { EventsList } from "./components/EventsList"
 
+export const dynamic = 'force-dynamic'
+
 export default async function MusicPage() {
     const bands = await getBands()
     const events = await getEvents()

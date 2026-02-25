@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { revalidatePath } from "next/cache"
 import { requireAuth } from "@/lib/auth-utils"
 
+export const dynamic = 'force-dynamic'
+
 // --- SERVER ACTIONS ---
 
 async function cleanDuplicates() {
@@ -160,7 +162,10 @@ export default async function MaintenancePage() {
             {(bankDuplicates > 0 || cashDuplicates > 0) && (
                 <div className="bg-red-50 border border-red-200 p-6 rounded-xl">
                     <h3 className="text-lg font-bold text-red-900 mb-2">Nettoyage Requis</h3>
-                    <form action={cleanDuplicates}>
+                    <form action={async () => {
+                        'use server';
+                        await cleanDuplicates();
+                    }}>
                         <Button variant="destructive" size="lg" className="w-full font-bold">
                             🧹 SUPPRIMER LES {bankDuplicates + cashDuplicates} DOUBLONS
                         </Button>

@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
+export const dynamic = 'force-dynamic'
+
 async function performFix() {
     'use server'
     console.log("🚑 STARTING FINANCE REPAIR ACTION...")
