@@ -19,7 +19,7 @@ export function ImportExcelButton() {
         formData.append('file', file)
 
         try {
-            const result = await importCaisseFromExcel(formData)
+            const result = await importCaisseFromExcel(formData) as any
             if (result.success) {
                 toast.success(`Importation réussie : ${result.count} transactions ajoutées.`)
             } else {
@@ -44,7 +44,7 @@ export function ImportExcelButton() {
             />
             <Button
                 variant="outline"
-                className="text-xs h-10 border-dashed hover:bg-slate-50 dark:hover:bg-zinc-800"
+                className="text-xs h-10 border-dashed hover:bg-muted/50"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isImporting}
             >

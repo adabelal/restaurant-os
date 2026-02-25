@@ -49,10 +49,10 @@ export function AddTransactionDialog({ categories }: AddTransactionDialogProps) 
                     <Plus className="mr-2 h-4 w-4" /> Nouvelle Transaction
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md border-none shadow-2xl bg-card text-card-foreground">
+            <DialogContent className="sm:max-w-md border-border shadow-2xl bg-card text-card-foreground">
                 <DialogHeader>
-                    <DialogTitle className="text-xl flex items-center gap-2">
-                        <div className="h-8 w-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                    <DialogTitle className="text-xl flex items-center gap-2 text-foreground">
+                        <div className="h-8 w-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
                             <Wallet className="h-4 w-4" />
                         </div>
                         Ajouter un flux de caisse
@@ -120,9 +120,9 @@ export function AddTransactionDialog({ categories }: AddTransactionDialogProps) 
                         </div>
                     </div>
 
-                    <DialogFooter className="pt-4 border-t">
+                    <DialogFooter className="pt-4 border-t border-border">
                         <Button type="button" variant="ghost" onClick={() => setOpen(false)}>Annuler</Button>
-                        <Button type="submit" className={type === 'IN' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-rose-600 hover:bg-rose-700'}>
+                        <Button type="submit" className={type === 'IN' ? 'bg-emerald-500 text-white hover:bg-emerald-600' : 'bg-rose-500 text-white hover:bg-rose-600'}>
                             Confirmer {type === 'IN' ? 'l\'entrée' : 'la sortie'}
                         </Button>
                     </DialogFooter>

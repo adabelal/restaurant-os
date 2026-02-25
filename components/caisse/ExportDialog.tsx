@@ -149,7 +149,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
         setIsExporting(true)
         try {
             const excelBuffer = generateExcelBuffer(data);
-            const binaryString = Array.prototype.map.call(new Uint8Array(excelBuffer), function(ch) {
+            const binaryString = Array.prototype.map.call(new Uint8Array(excelBuffer), function (ch) {
                 return String.fromCharCode(ch);
             }).join('');
             const base64Content = btoa(binaryString);
@@ -174,7 +174,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline" className="gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border-blue-200 text-blue-700 font-bold">
+                <Button variant="outline" className="gap-2 bg-primary/10 hover:bg-primary/20 border-primary/20 text-primary font-bold">
                     <Download className="h-4 w-4" /> Export / Envoi Compta
                 </Button>
             </DialogTrigger>

@@ -64,14 +64,14 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
             <div className="grid gap-4 md:grid-cols-3">
-                <Card className="bg-blue-600 border-none text-white shadow-lg overflow-hidden relative">
+                <Card className="bg-primary border-none text-primary-foreground shadow-lg overflow-hidden relative">
                     <div className="absolute top-0 right-0 p-4 opacity-20"><Calculator className="h-12 w-12" /></div>
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-blue-100 uppercase tracking-wider">Total Brut à Verser</CardTitle>
+                        <CardTitle className="text-sm font-medium text-primary-foreground/80 uppercase tracking-wider">Total Brut à Verser</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="text-3xl font-black">{grandTotal.gross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €</div>
-                        <p className="text-xs text-blue-100 mt-1">Incluant 10% CP</p>
+                        <p className="text-xs text-primary-foreground/80 mt-1">Incluant 10% CP</p>
                     </CardContent>
                 </Card>
 
@@ -98,8 +98,8 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                 </Card>
             </div>
 
-            <Card className="border-none shadow-xl bg-card">
-                <CardHeader className="border-b dark:border-zinc-800">
+            <Card className="border-border shadow-xl bg-card">
+                <CardHeader className="border-b border-border bg-muted/20">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center gap-4">
                             <div>
@@ -112,7 +112,7 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => changeMonth(1)}><ChevronRight className="h-4 w-4" /></Button>
                             </div>
                         </div>
-                        <Badge variant="outline" className="px-4 py-1 text-sm font-bold border-blue-200 text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800">
+                        <Badge variant="outline" className="px-4 py-1 text-sm font-bold border-blue-500/20 text-blue-600 bg-blue-500/10 dark:text-blue-400">
                             PRÉVISIONNEL
                         </Badge>
                     </div>
@@ -121,23 +121,23 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                     <div className="overflow-x-auto">
                         <Table>
                             <TableHeader>
-                                <TableRow className="bg-slate-50/50 dark:bg-zinc-900/50 border-b dark:border-zinc-800">
-                                    <TableHead className="font-bold py-4 pl-6">Salarié</TableHead>
-                                    <TableHead className="font-bold">Contrat</TableHead>
-                                    <TableHead className="font-bold text-center">Total Heures</TableHead>
-                                    <TableHead className="font-bold text-center">Taux Horaire</TableHead>
-                                    <TableHead className="font-bold text-right">Salaire Base</TableHead>
-                                    <TableHead className="font-bold text-right text-blue-600 dark:text-blue-400">+ 10% CP</TableHead>
-                                    <TableHead className="font-bold text-right pr-6">TOTAL BRUT</TableHead>
+                                <TableRow className="bg-muted/50 border-b border-border">
+                                    <TableHead className="font-bold py-4 pl-6 text-muted-foreground">Salarié</TableHead>
+                                    <TableHead className="font-bold text-muted-foreground">Contrat</TableHead>
+                                    <TableHead className="font-bold text-center text-muted-foreground">Total Heures</TableHead>
+                                    <TableHead className="font-bold text-center text-muted-foreground">Taux Horaire</TableHead>
+                                    <TableHead className="font-bold text-right text-muted-foreground">Salaire Base</TableHead>
+                                    <TableHead className="font-bold text-right text-blue-500">+ 10% CP</TableHead>
+                                    <TableHead className="font-bold text-right pr-6 text-foreground">TOTAL BRUT</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {employees.map((emp) => {
                                     const { totalHours, baseGross, paidLeaveComplement, totalGross } = calculateStats(emp)
                                     return (
-                                        <TableRow key={emp.id} className="hover:bg-slate-50/50 dark:hover:bg-zinc-800/30 transition-colors border-b dark:border-zinc-800">
+                                        <TableRow key={emp.id} className="hover:bg-muted/50 transition-colors border-b border-border">
                                             <TableCell className="font-bold py-4 pl-6">
-                                                <Link href={`/rh/${emp.id}?tab=hours`} className="flex items-center gap-2 hover:text-blue-600 transition-colors group">
+                                                <Link href={`/rh/${emp.id}?tab=hours`} className="flex items-center gap-2 text-foreground hover:text-blue-500 transition-colors group">
                                                     <div className="w-2 h-2 rounded-full bg-blue-500 group-hover:scale-125 transition-transform"></div>
                                                     {emp.name}
                                                 </Link>
@@ -154,13 +154,13 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                             <TableCell className="text-center text-muted-foreground">
                                                 {Number(emp.hourlyRate).toFixed(2)}€
                                             </TableCell>
-                                            <TableCell className="text-right">
+                                            <TableCell className="text-right font-medium text-foreground">
                                                 {baseGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €
                                             </TableCell>
-                                            <TableCell className="text-right text-blue-600 dark:text-blue-400 font-medium">
+                                            <TableCell className="text-right text-blue-500 font-medium">
                                                 {paidLeaveComplement.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €
                                             </TableCell>
-                                            <TableCell className="text-right font-black pr-6">
+                                            <TableCell className="text-right font-black pr-6 text-foreground">
                                                 {totalGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €
                                             </TableCell>
                                         </TableRow>

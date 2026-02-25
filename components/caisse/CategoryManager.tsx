@@ -35,7 +35,7 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
             <Card className="md:col-span-1 border-none shadow-lg">
                 <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-2">
-                        <Plus className="h-5 w-5 text-blue-500" /> Nouvelle Catégorie
+                        <Plus className="h-5 w-5 text-primary" /> Nouvelle Catégorie
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -68,7 +68,7 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
                                 </button>
                             </div>
                         </div>
-                        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+                        <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                             Ajouter
                         </Button>
                     </form>
@@ -78,7 +78,7 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
             <Card className="md:col-span-2 border-none shadow-lg">
                 <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-2">
-                        <Settings2 className="h-5 w-5 text-blue-500" /> Catégories Existantes
+                        <Settings2 className="h-5 w-5 text-primary" /> Catégories Existantes
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">

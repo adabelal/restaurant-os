@@ -79,7 +79,7 @@ export function TransactionTable({ initialTransactions }: TransactionTableProps)
                                     </TableCell>
                                     <TableCell>
                                         {t.category ? (
-                                            <Badge variant="outline" className="bg-blue-50/50 dark:bg-blue-900/10 border-blue-200/50 text-blue-700 dark:text-blue-300">
+                                            <Badge variant="outline" className="bg-primary/10 border-primary/20 text-primary">
                                                 {t.category.name}
                                             </Badge>
                                         ) : (
@@ -103,7 +103,7 @@ export function TransactionTable({ initialTransactions }: TransactionTableProps)
                                                 }
                                             }
                                         }}>
-                                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/10">
+                                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-rose-500 hover:bg-rose-500/10">
                                                 <Trash2 className="h-4 w-4" />
                                             </Button>
                                         </form>

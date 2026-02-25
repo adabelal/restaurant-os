@@ -20,12 +20,11 @@ export async function getFinanceStats() {
     const today = new Date()
     const currentDay = today.getDate()
 
-    // 1. Calculate Current Balance from Bank Transactions
-    const transactions = await prisma.bankTransaction.findMany({
-        select: { amount: true }
+    // 1. Calculate Current Balance from Bank Transactions (SQL Optimization)
+    const resultBank = await prisma.bankTransaction.aggregate({
+        _sum: { amount: true }
     })
-    // Ensure we handle Decimal properly if using Prisma Decimal
-    const currentBalance = transactions.reduce((sum: number, t) => sum + Number(t.amount || 0), 0)
+    const currentBalance = Number(resultBank._sum.amount || 0)
 
     // 2. Fixed Costs
     const fixedCosts = await prisma.fixedCost.findMany()
@@ -44,18 +43,21 @@ export async function getFinanceStats() {
     // Remaining fixed costs for THIS month
     const remainingFixedCosts = fixedCosts
         .filter((cost) => cost.frequency === 'MONTHLY' && cost.dayOfMonth > currentDay && cost.isActive)
-        .reduce((sum: number, cost) => sum + Number(cost.amount || 0), 0)
+        .reduce((sum, cost) => sum + Number(cost.amount || 0), 0)
 
-    // 3. Unpaid Purchase Orders (Not reconciled with bank)
+    // 3. Unpaid Purchase Orders (SQL Optimization)
+    const resultUnpaid = await prisma.purchaseOrder.aggregate({
+        where: { bankTransactions: { none: {} } },
+        _sum: { totalAmount: true }
+    })
+    const totalUnpaidPOs = Number(resultUnpaid._sum.totalAmount || 0)
+
     const unpaidPOs = await prisma.purchaseOrder.findMany({
-        where: {
-            bankTransactions: {
-                none: {}
-            }
-        },
+        where: { bankTransactions: { none: {} } },
         select: { id: true, totalAmount: true }
     })
-    const totalUnpaidPOs = unpaidPOs.reduce((sum: number, po) => sum + Number(po.totalAmount || 0), 0)
+
+
 
     // 4. Projection Fin de Mois
     const eomForecast = currentBalance - remainingFixedCosts - totalUnpaidPOs
@@ -146,6 +148,8 @@ export async function getFixedCosts() {
     }
 }
 
+import { withAuth } from "@/lib/action-wrapper"
+
 export async function addFixedCost(data: {
     name: string
     amount: number
@@ -153,37 +157,41 @@ export async function addFixedCost(data: {
     frequency: 'MONTHLY' | 'QUARTERLY' | 'YEARLY'
     categoryId: string
 }) {
-    try {
-        const cost = await prisma.fixedCost.create({
-            data: {
-                name: data.name,
-                amount: data.amount,
-                dayOfMonth: data.dayOfMonth,
-                frequency: data.frequency,
-                category: {
-                    connect: { id: data.categoryId }
+    return withAuth(async () => {
+        try {
+            const cost = await prisma.fixedCost.create({
+                data: {
+                    name: data.name,
+                    amount: data.amount,
+                    dayOfMonth: data.dayOfMonth,
+                    frequency: data.frequency,
+                    category: {
+                        connect: { id: data.categoryId }
+                    }
                 }
-            }
-        })
-        revalidatePath('/finance/charges')
-        return { success: true, data: cost }
-    } catch (error) {
-        console.error("Error adding fixed cost:", error)
-        return { success: false, error }
-    }
+            })
+            revalidatePath('/finance/charges')
+            return { success: true, data: cost }
+        } catch (error) {
+            console.error("Error adding fixed cost:", error)
+            return { success: false, error }
+        }
+    })
 }
 
 export async function deleteFixedCost(id: string) {
-    try {
-        await prisma.fixedCost.delete({
-            where: { id }
-        })
-        revalidatePath('/finance/charges')
-        return { success: true }
-    } catch (error) {
-        console.error("Error deleting fixed cost:", error)
-        return { success: false, error }
-    }
+    return withAuth(async () => {
+        try {
+            await prisma.fixedCost.delete({
+                where: { id }
+            })
+            revalidatePath('/finance/charges')
+            return { success: true }
+        } catch (error) {
+            console.error("Error deleting fixed cost:", error)
+            return { success: false, error }
+        }
+    }, ['ADMIN', 'MANAGER']) // Sécurité supp. : seul Admin/Manager peut supprimer
 }
 
 // BANK TRANSACTIONS & CHART DATA

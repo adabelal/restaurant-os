@@ -19,9 +19,9 @@ export function EmployeeListContent({ activeEmployees, archivedEmployees, active
 
     if (list.length === 0) {
         return (
-            <div className="rounded-xl border border-dashed border-slate-300 dark:border-zinc-700 p-12 text-center bg-white/50 dark:bg-zinc-900/50">
-                <h3 className="mt-2 text-sm font-semibold text-slate-900 dark:text-zinc-100">Aucun employé</h3>
-                <p className="text-slate-500 dark:text-zinc-400 text-sm">La liste est vide pour le moment.</p>
+            <div className="rounded-xl border border-dashed border-border p-12 text-center bg-muted/50 backdrop-blur-sm">
+                <h3 className="mt-2 text-sm font-semibold text-foreground">Aucun employé</h3>
+                <p className="text-muted-foreground text-sm">La liste est vide pour le moment.</p>
             </div>
         )
     }
@@ -51,7 +51,7 @@ export function EmployeeListContent({ activeEmployees, archivedEmployees, active
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {list.map((emp: any) => (
                         <Link href={`/rh/${emp.id}`} key={emp.id} className="block h-full">
-                            <Card className="h-full group overflow-hidden border-slate-200 dark:border-zinc-800 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card cursor-pointer relative">
+                            <Card className="h-full group overflow-hidden border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-card cursor-pointer relative">
                                 <div className={`h-2 w-full ${emp.role === 'ADMIN' ? 'bg-purple-600' :
                                     emp.role === 'MANAGER' ? 'bg-blue-500' : 'bg-emerald-500'
                                     }`} />
@@ -59,7 +59,7 @@ export function EmployeeListContent({ activeEmployees, archivedEmployees, active
                                 <CardHeader className="pb-4">
                                     <div className="flex justify-between items-start">
                                         <div className="flex items-center gap-4">
-                                            <div className="h-12 w-12 rounded-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center text-xl border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-400 font-bold shadow-sm">
+                                            <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center text-xl border border-border text-muted-foreground font-bold shadow-sm">
                                                 {emp.name.charAt(0).toUpperCase()}
                                             </div>
                                             <div>
@@ -73,10 +73,10 @@ export function EmployeeListContent({ activeEmployees, archivedEmployees, active
                                 <CardContent>
                                     <div className="space-y-4">
                                         <div className="flex flex-wrap gap-2">
-                                            <Badge variant="secondary" className="text-[10px] uppercase font-bold text-slate-500 bg-slate-100">
+                                            <Badge variant="secondary" className="text-[10px] uppercase font-bold text-muted-foreground bg-muted border-border">
                                                 {emp.contractType || 'CDI'}
                                             </Badge>
-                                            <Badge variant="secondary" className="text-[10px] uppercase font-bold text-slate-500 bg-slate-100">
+                                            <Badge variant="secondary" className="text-[10px] uppercase font-bold text-muted-foreground bg-muted border-border">
                                                 {emp.contractDuration === 'PART_TIME' ? 'Temps Partiel' : 'Temps Plein'}
                                             </Badge>
                                         </div>
@@ -110,11 +110,11 @@ export function EmployeeListContent({ activeEmployees, archivedEmployees, active
                     ))}
                 </div>
             ) : (
-                <div className="bg-card border dark:border-zinc-800 rounded-xl overflow-hidden shadow-sm">
+                <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="bg-slate-50 dark:bg-zinc-900 border-b dark:border-zinc-800">
+                                <tr className="bg-muted border-b border-border">
                                     <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground">Employé</th>
                                     <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground">Rôle</th>
                                     <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground hide-mobile">Contact</th>
@@ -122,12 +122,12 @@ export function EmployeeListContent({ activeEmployees, archivedEmployees, active
                                     <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground text-right">Action</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y dark:divide-zinc-800">
+                            <tbody className="divide-y divide-border">
                                 {list.map((emp: any) => (
-                                    <tr key={emp.id} className="hover:bg-slate-50/50 dark:hover:bg-zinc-800/30 transition-colors">
+                                    <tr key={emp.id} className="hover:bg-muted/50 transition-colors">
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
-                                                <div className="h-8 w-8 rounded-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-zinc-400">
+                                                <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center text-xs font-bold text-muted-foreground border border-border">
                                                     {emp.name.charAt(0).toUpperCase()}
                                                 </div>
                                                 <span className="font-semibold text-foreground">{emp.name}</span>

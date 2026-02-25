@@ -45,26 +45,26 @@ export function CaisseStats({ transactions }: CaisseStatsProps) {
     return (
         <div className="space-y-8">
             {/* Period Selector */}
-            <Card className="border-none shadow-sm bg-slate-50/50">
+            <Card className="border-none shadow-sm bg-muted/30">
                 <CardContent className="py-4">
                     <div className="flex flex-col md:flex-row items-center gap-6">
                         <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4 text-slate-500" />
-                            <span className="text-sm font-bold text-slate-600">Période d'analyse :</span>
+                            <Calendar className="h-4 w-4 text-muted-foreground" />
+                            <span className="text-sm font-bold text-foreground">Période d'analyse :</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <Input
                                 type="date"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="w-[160px] bg-white"
+                                className="w-[160px] bg-background"
                             />
                             <span className="text-muted-foreground">au</span>
                             <Input
                                 type="date"
                                 value={endDate}
                                 onChange={(e) => setEndDate(e.target.value)}
-                                className="w-[160px] bg-white"
+                                className="w-[160px] bg-background"
                             />
                         </div>
                         <div className="hidden md:block flex-1" />

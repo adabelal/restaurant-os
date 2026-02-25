@@ -50,14 +50,14 @@ export function CreateEmployeeDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-md transition-all hover:scale-105">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md transition-all hover:scale-105">
                     <Plus className="mr-2 h-4 w-4" /> Nouvel Employé
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] border-none shadow-2xl bg-card text-card-foreground">
-                <DialogHeader className="pb-4 border-b dark:border-zinc-800">
-                    <DialogTitle className="text-xl flex items-center gap-2">
-                        <div className="h-8 w-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+            <DialogContent className="sm:max-w-[500px] border-border shadow-2xl bg-card text-card-foreground">
+                <DialogHeader className="pb-4 border-b border-border">
+                    <DialogTitle className="text-xl flex items-center gap-2 text-foreground">
+                        <div className="h-8 w-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500">
                             <User className="h-4 w-4" />
                         </div>
                         Ajouter un membre à l'équipe
@@ -154,11 +154,11 @@ export function CreateEmployeeDialog() {
                         </div>
                     </div>
 
-                    <DialogFooter className="pt-6 border-t dark:border-zinc-800">
+                    <DialogFooter className="pt-6 border-t border-border">
                         <Button type="button" variant="ghost" onClick={() => setOpen(false)} disabled={isLoading}>
                             Annuler
                         </Button>
-                        <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white min-w-[140px]" disabled={isLoading}>
+                        <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground min-w-[140px]" disabled={isLoading}>
                             {isLoading ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Création...

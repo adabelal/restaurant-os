@@ -30,15 +30,20 @@ export default async function CaissePage() {
     const entrees = transactions.filter((t: any) => t.type === 'IN')
     const sorties = transactions.filter((t: any) => t.type === 'OUT')
 
-    // Calculate quick stats
-    const totalIn = transactions
-        .filter((t: any) => Number(t.amount) > 0)
-        .reduce((acc: number, t: any) => acc + Number(t.amount), 0)
+    // Calculate quick stats with Prisma Aggregations for performance (Anti-OOM)
+    const [resultIn, resultOut] = await Promise.all([
+        prisma.cashTransaction.aggregate({
+            where: { amount: { gt: 0 } },
+            _sum: { amount: true }
+        }),
+        prisma.cashTransaction.aggregate({
+            where: { amount: { lt: 0 } },
+            _sum: { amount: true }
+        })
+    ])
 
-    const totalOut = transactions
-        .filter((t: any) => Number(t.amount) < 0)
-        .reduce((acc: number, t: any) => acc + Number(t.amount), 0)
-
+    const totalIn = Number(resultIn._sum.amount || 0)
+    const totalOut = Number(resultOut._sum.amount || 0)
     const balance = totalIn + totalOut
 
     return (

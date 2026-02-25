@@ -78,18 +78,18 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
             {months.map(month => (
                 <div key={month} className="space-y-4">
                     <div className="flex items-center gap-4">
-                        <h3 className="text-lg font-bold capitalize text-slate-700 dark:text-slate-300">
+                        <h3 className="text-lg font-bold capitalize text-foreground">
                             {month}
                         </h3>
                         <div className="h-px flex-1 bg-border/60" />
-                        <Badge variant="outline" className="bg-slate-50">
+                        <Badge variant="outline" className="bg-muted text-muted-foreground border-border">
                             {grouped[month].length} {grouped[month].length > 1 ? 'opérations' : 'opération'}
                         </Badge>
                     </div>
 
-                    <Card className="overflow-hidden border-slate-200 shadow-sm">
+                    <Card className="overflow-hidden border-border bg-card shadow-sm transition-all hover:shadow-md">
                         <Table>
-                            <TableHeader className="bg-slate-50/50">
+                            <TableHeader className="bg-muted/50">
                                 <TableRow>
                                     <TableHead className="w-[120px]">Date</TableHead>
                                     <TableHead>Description</TableHead>
@@ -100,8 +100,8 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                             </TableHeader>
                             <TableBody>
                                 {grouped[month].map((t: any) => (
-                                    <TableRow key={t.id} className="hover:bg-slate-50/50">
-                                        <TableCell className="font-medium">
+                                    <TableRow key={t.id} className="hover:bg-muted/50 transition-colors">
+                                        <TableCell className="font-medium text-foreground">
                                             {format(new Date(t.date), 'dd/MM/yyyy')}
                                             {sortBy === 'createdAt' && (
                                                 <div className="text-[10px] text-muted-foreground mt-0.5">
@@ -147,8 +147,8 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                                         </TableCell>
                                     </TableRow>
                                 ))}
-                                <TableRow className="bg-slate-50/30 font-bold">
-                                    <TableCell colSpan={3} className="text-right">Total {month}</TableCell>
+                                <TableRow className="bg-muted/30 font-bold border-t border-border">
+                                    <TableCell colSpan={3} className="text-right text-muted-foreground">Total {month}</TableCell>
                                     <TableCell className="text-right text-foreground font-bold">
                                         {grouped[month].reduce((sum: number, t: any) => sum + Number(t.amount), 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                     </TableCell>
@@ -161,8 +161,8 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
             ))}
 
             {months.length === 0 && (
-                <div className="text-center py-20 bg-slate-50/50 rounded-2xl border border-dashed">
-                    <p className="text-muted-foreground">Aucune transaction trouvée.</p>
+                <div className="text-center py-20 bg-muted/50 rounded-2xl border border-dashed border-border">
+                    <p className="text-muted-foreground font-medium">Aucune transaction trouvée.</p>
                 </div>
             )}
 

@@ -32,7 +32,7 @@ export function ImportPopinaButton() {
         formData.append("file", file)
 
         try {
-            const result = await importPopinaExcel(formData)
+            const result = await importPopinaExcel(formData) as any
             if (result.success) {
                 toast.success(`${result.count} transactions importées avec succès !`)
                 setIsOpen(false)
@@ -69,14 +69,14 @@ export function ImportPopinaButton() {
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline" className="gap-2 border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 transition-all">
+                <Button variant="outline" className="gap-2 border-primary/20 hover:bg-primary/10 hover:text-primary transition-all">
                     <FileSpreadsheet className="h-4 w-4" /> Import Popina
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[450px]">
                 <DialogHeader>
-                    <DialogTitle className="flex items-center gap-2">
-                        <Upload className="h-5 w-5 text-emerald-600" />
+                    <DialogTitle className="flex items-center gap-2 text-foreground">
+                        <Upload className="h-5 w-5 text-primary" />
                         Importation automatique Popina
                     </DialogTitle>
                     <DialogDescription>
@@ -85,7 +85,7 @@ export function ImportPopinaButton() {
                 </DialogHeader>
 
                 <div
-                    className={`mt-4 border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center transition-all ${dragActive ? "border-emerald-500 bg-emerald-50/50" : "border-slate-200"
+                    className={`mt-4 border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center transition-all ${dragActive ? "border-primary bg-primary/5" : "border-border"
                         } ${isLoading ? "opacity-50 pointer-events-none" : ""}`}
                     onDragEnter={handleDrag}
                     onDragLeave={handleDrag}
@@ -94,16 +94,16 @@ export function ImportPopinaButton() {
                 >
                     {isLoading ? (
                         <div className="flex flex-col items-center gap-3">
-                            <Loader2 className="h-10 w-10 text-emerald-600 animate-spin" />
-                            <p className="text-sm font-medium animate-pulse">Analyse du fichier en cours...</p>
+                            <Loader2 className="h-10 w-10 text-primary animate-spin" />
+                            <p className="text-sm font-medium animate-pulse text-foreground">Analyse du fichier en cours...</p>
                         </div>
                     ) : (
                         <>
-                            <div className="h-14 w-14 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
-                                <FileSpreadsheet className="h-7 w-7 text-emerald-600" />
+                            <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                                <FileSpreadsheet className="h-7 w-7 text-primary" />
                             </div>
-                            <p className="text-sm font-semibold text-slate-900">Cliquez ou glissez le fichier</p>
-                            <p className="text-xs text-slate-500 mt-1">Format accepté : .xlsx uniquement</p>
+                            <p className="text-sm font-semibold text-foreground">Cliquez ou glissez le fichier</p>
+                            <p className="text-xs text-muted-foreground mt-1">Format accepté : .xlsx uniquement</p>
                             <input
                                 type="file"
                                 className="hidden"
@@ -118,11 +118,11 @@ export function ImportPopinaButton() {
                     )}
                 </div>
 
-                <div className="mt-4 p-4 bg-slate-50 border rounded-xl space-y-2">
-                    <div className="flex items-center gap-2 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                        <CheckCircle2 className="h-3 w-3 text-emerald-500" /> Ce qui sera importé
+                <div className="mt-4 p-4 bg-muted/30 border border-border rounded-xl space-y-2">
+                    <div className="flex items-center gap-2 text-[11px] font-bold text-muted-foreground uppercase tracking-wider">
+                        <CheckCircle2 className="h-3 w-3 text-primary" /> Ce qui sera importé
                     </div>
-                    <ul className="text-xs text-slate-600 space-y-1 ml-5 list-disc">
+                    <ul className="text-xs text-muted-foreground space-y-1 ml-5 list-disc">
                         <li>Date de fin de shift (heure de clôture)</li>
                         <li>Montant total des <strong>Espèces</strong> (Recettes)</li>
                         <li>Les doublons (même date/montant) seront ignorés</li>

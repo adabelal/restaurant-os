@@ -223,6 +223,8 @@ model PurchaseOrder {
   
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  
+  @@index([date])
 }
 
 model InvoiceItem {
@@ -362,6 +364,8 @@ model BankTransaction {
   
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  
+  @@index([date])
 }
 
 model FixedCost {

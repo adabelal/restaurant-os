@@ -42,7 +42,7 @@ export function EditShiftDialog({ shift, userId }: EditShiftDialogProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-300 hover:text-blue-600">
+                <Button size="icon" variant="ghost" className="h-8 w-8 text-muted-foreground hover:text-primary">
                     <Pencil className="h-4 w-4" />
                 </Button>
             </DialogTrigger>
@@ -72,10 +72,10 @@ export function EditShiftDialog({ shift, userId }: EditShiftDialogProps) {
 
                     <div className="grid gap-2">
                         <Label htmlFor="breakMinutes">Pause (minutes)</Label>
-                        <Input id="breakMinutes" name="breakMinutes" type="number" defaultValue={shift.breakMinutes} />
+                        <Input id="breakMinutes" name="breakMinutes" type="number" defaultValue={shift.breakMinutes} className="bg-background" />
                     </div>
 
-                    <Button type="submit" className="mt-2">Enregistrer les modifications</Button>
+                    <Button type="submit" className="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground">Enregistrer les modifications</Button>
                 </form>
             </DialogContent>
         </Dialog>
