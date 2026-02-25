@@ -115,8 +115,8 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                                                 {t.category?.name || 'Sans catégorie'}
                                             </Badge>
                                         </TableCell>
-                                        <TableCell className={`text-right font-bold ${t.type === 'IN' ? 'text-emerald-600' : 'text-rose-600'}`}>
-                                            {t.type === 'IN' ? '+' : '-'}{Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                        <TableCell className={`text-right font-bold ${t.type === 'IN' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
+                                            {t.type === 'IN' ? '+' : ''}{Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                         </TableCell>
                                         <TableCell className="text-right flex items-center justify-end gap-1">
                                             <Button
@@ -149,8 +149,8 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                                 ))}
                                 <TableRow className="bg-slate-50/30 font-bold">
                                     <TableCell colSpan={3} className="text-right">Total {month}</TableCell>
-                                    <TableCell className="text-right text-foreground">
-                                        {grouped[month].reduce((sum: number, t: any) => sum + (t.type === 'IN' ? Number(t.amount) : -Number(t.amount)), 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                    <TableCell className="text-right text-foreground font-bold">
+                                        {grouped[month].reduce((sum: number, t: any) => sum + Number(t.amount), 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                     </TableCell>
                                     <TableCell />
                                 </TableRow>

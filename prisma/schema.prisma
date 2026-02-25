@@ -395,3 +395,38 @@ model BudgetGoal {
 
   @@unique([month, year, categoryId])
 }
+
+// --- EVENEMENTS & ANIMATIONS ---
+
+model MusicBand {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  genre     String?  // Jazz, Rock, Pop...
+  contact   String?  // Email / Tel
+
+  events    MusicEvent[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MusicEvent {
+  id        String   @id @default(cuid())
+  bandId    String
+  band      MusicBand @relation(fields: [bandId], references: [id])
+  
+  date      DateTime
+  startTime String?  // ex: 20:00
+  
+  // Paiement
+  amount        Decimal @db.Decimal(10, 2)
+  paymentMethod String  @default("TRANSFER") // TRANSFER, CASH, CHECK, GUSO
+  invoiceStatus String  @default("PENDING") // PENDING, RECEIVED, PAID
+  
+  status    String   @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
+  
+  notes     String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

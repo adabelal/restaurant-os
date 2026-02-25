@@ -24,13 +24,13 @@ except ImportError:
     print("Erreur: Module pypdf manquant.")
     sys.exit(1)
 
-# Import Google Generative AI
+# Import Google GenAI (Nouveau package)
 try:
-    import google.generativeai as genai
+    from google import genai
     HAS_GEMINI = True
 except ImportError:
     HAS_GEMINI = False
-    print("⚠️ Module google-generativeai manquant. Le mode AI sera désactivé.")
+    print("⚠️ Module google-genai manquant. Le mode AI sera désactivé.")
 
 # Configuration Drive
 DRIVE_PATH = ["01_ARCHIVES", "Factures", "2026"]
@@ -98,9 +98,7 @@ def analyze_with_ai(text_content, sender_info, subject_info):
     if not HAS_GEMINI or not api_key:
         return None
 
-    genai.configure(api_key=api_key)
-    # Using 'gemini-1.5-flash' for speed and efficiency
-    model = genai.GenerativeModel('gemini-pro')
+    client = genai.Client(api_key=api_key)
 
     prompt = f"""
     Tu es un assistant comptable expert. Analyse le texte suivant extrait d'une facture ou d'un email.
@@ -129,7 +127,10 @@ def analyze_with_ai(text_content, sender_info, subject_info):
     """
 
     try:
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt
+        )
         # Nettoyage du markdown json si présent
         cleaned_text = response.text.replace('```json', '').replace('```', '').strip()
         data = json.loads(cleaned_text)
@@ -191,9 +192,9 @@ def upload_to_drive(drive_service, folder_id, filename, data):
     return file.get('id')
 
 def sync_to_restaurant_os(data):
-    """Envoie les données au webhook de Restaurant-OS"""
+    """Envoie les données au webhook Interne de Restaurant-OS"""
     api_url = os.getenv("RESTAURANT_OS_API_URL")
-    api_key = os.getenv("RESTAURANT_OS_API_KEY") or os.getenv("N8N_API_KEY_LOCAL")
+    api_key = os.getenv("RESTAURANT_OS_API_KEY")
     
     if not api_url:
         print("⚠️  URL API manquante (RESTAURANT_OS_API_URL). Sync ignorée.")
@@ -201,15 +202,15 @@ def sync_to_restaurant_os(data):
 
     headers = {
         "Content-Type": "application/json",
-        "x-api-key": api_key or ""
+        "authorization": f"Bearer {api_key or ''}"
     }
     
     try:
         response = requests.post(api_url, json=data, headers=headers)
-        if response.status_code == 200:
+        if response.status_code == 200 or response.status_code == 201:
             print(f"🚀 Synchro Restaurant-OS OK")
         else:
-            print(f"❌ Erreur synchro: {response.text}")
+            print(f"❌ Erreur synchro: [{response.status_code}] {response.text}")
     except Exception as e:
         print(f"❌ Erreur réseau synchro: {e}")
 

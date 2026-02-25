@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Sparkles, Loader2, Database } from 'lucide-react'
-import { syncFinanceIntelligence, importFromJsonFile } from '@/app/(authenticated)/finance/actions'
+import { Sparkles, Loader2 } from 'lucide-react'
+import { syncFinanceIntelligence } from '@/app/(authenticated)/finance/actions'
 import { toast } from 'sonner'
 
 export function SyncIntelligenceButton() {
@@ -12,17 +12,12 @@ export function SyncIntelligenceButton() {
     const handleSyncAndImport = async () => {
         setIsLoading(true)
         try {
-            toast.info("Importation de l'historique complet...")
-            const importRes = await importFromJsonFile()
-
-            if (importRes.success) {
-                toast.success(`${importRes.count} transactions importées. Analyse en cours...`)
-                const syncRes = await syncFinanceIntelligence()
-                if (syncRes.success) {
-                    toast.success("Intelligence synchronisée : Solde et catégories OK !")
-                }
+            toast.info("Analyse intelligence en cours...")
+            const syncRes = await syncFinanceIntelligence()
+            if (syncRes.success) {
+                toast.success("Intelligence synchronisée : Solde et catégories OK !")
             } else {
-                toast.error("Erreur import : " + importRes.error)
+                toast.error("Erreur de synchronisation")
             }
         } catch (error) {
             toast.error("Erreur technique")
@@ -43,7 +38,7 @@ export function SyncIntelligenceButton() {
             ) : (
                 <Sparkles className="mr-2 h-4 w-4 text-emerald-300" />
             )}
-            {isLoading ? "Synchronisation..." : "Synchroniser Banque"}
+            {isLoading ? "Synchronisation..." : "Activer l'Intelligence AI"}
         </Button>
     )
 }

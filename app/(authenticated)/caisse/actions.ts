@@ -61,7 +61,7 @@ export async function createCashTransaction(data: {
 
     // Validation
     const result = createCashTransactionSchema.safeParse({
-        amount: data.amount,
+        amount: Math.abs(data.amount), // Validate magnitude
         type: data.type,
         description: data.description,
         categoryId: data.categoryId,
@@ -72,10 +72,12 @@ export async function createCashTransaction(data: {
         throw new Error(result.error.errors[0].message)
     }
 
+    const finalAmount = data.type === 'OUT' ? -Math.abs(data.amount) : Math.abs(data.amount)
+
     const transaction = await prisma.cashTransaction.create({
         data: {
             date: data.date,
-            amount: data.amount,
+            amount: finalAmount,
             type: data.type,
             description: data.description.trim(),
             categoryId: data.categoryId,
@@ -99,20 +101,27 @@ export async function updateCashTransaction(id: string, data: {
         throw new Error("ID invalide")
     }
 
-    // Validation partielle
-    if (data.amount !== undefined && data.amount <= 0) {
-        throw new Error("Le montant doit être positif")
-    }
-
     if (data.description !== undefined && data.description.trim().length === 0) {
         throw new Error("La description est requise")
     }
+
+    // Fetch current transaction
+    const currentTx = await prisma.cashTransaction.findUnique({ where: { id } })
+    if (!currentTx) {
+        throw new Error("Transaction introuvable")
+    }
+
+    const targetType = data.type || currentTx.type
+    // Use absolutes to ensure consistent logic regardless of how it was stored
+    const magnitude = data.amount !== undefined ? Math.abs(data.amount) : Math.abs(currentTx.amount)
+
+    const finalAmount = targetType === 'OUT' ? -magnitude : magnitude
 
     const transaction = await prisma.cashTransaction.update({
         where: { id },
         data: {
             date: data.date,
-            amount: data.amount,
+            amount: finalAmount,
             type: data.type,
             description: data.description?.trim(),
             categoryId: data.categoryId
@@ -330,10 +339,10 @@ export async function importCaisseFromExcel(formData: FormData) {
             let type: CashTransactionType = 'IN'
 
             if (entreesValue && (isNaN(parseFloat(sortiesValue)) || parseFloat(sortiesValue) === 0)) {
-                amount = parseFloat(entreesValue)
+                amount = Math.abs(parseFloat(entreesValue))
                 type = 'IN'
             } else if (sortiesValue) {
-                amount = parseFloat(sortiesValue)
+                amount = -Math.abs(parseFloat(sortiesValue))
                 type = 'OUT'
             }
 
@@ -384,7 +393,7 @@ export async function importCaisseFromExcel(formData: FormData) {
                 transactionsToCreate.push({
                     date: new Date(date),
                     description: String(libelle).substring(0, 255),
-                    amount,
+                    amount: -Math.abs(amount), // Force negative for OUT
                     type: 'OUT',
                     categoryName: category
                 })
