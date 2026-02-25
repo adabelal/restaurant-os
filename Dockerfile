@@ -14,8 +14,8 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 COPY prisma ./prisma/
 
-# Installer les dépendances
-RUN npm install
+# Installer les dépendances avec legacy-peer-deps pour les conflits de version React 19
+RUN npm install --legacy-peer-deps
 
 # Générer le client Prisma
 RUN npx prisma generate
