@@ -603,9 +603,7 @@ export async function syncBankTransactions() {
                 // Fetch transactions from Enable Banking
                 const data = await fetchTransactions(account.accountUid, account.enableBankingSessionId)
 
-                if (data.transactions) {
-                    throw new Error("DEBUG: " + JSON.stringify(data, null, 2).substring(0, 500));
-                }
+                throw new Error("DEBUG_DATA_STRUCT: " + JSON.stringify(data, null, 2).substring(0, 5000));
 
                 if (data.transactions && Array.isArray(data.transactions)) {
                     for (const tx of data.transactions) {
