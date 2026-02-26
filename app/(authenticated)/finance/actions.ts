@@ -449,6 +449,44 @@ export async function syncFinanceIntelligence() {
     }
 }
 
+export function analyzeTransactionData(description: string, amount: number) {
+    const desc = description.toUpperCase()
+
+    const transactionType = amount >= 0 ? 'INCOME' : 'EXPENSE'
+
+    let paymentMethod = 'OTHER'
+    if (desc.includes('CB ') || desc.includes('CB*') || desc.includes('CARTE') || desc.includes('ACHAT')) paymentMethod = 'CARD'
+    else if (desc.includes('VIR') || desc.includes('VIREMENT') || desc.includes('VMT')) paymentMethod = 'TRANSFER'
+    else if (desc.includes('PRLV') || desc.includes('PRELEVEMENT') || desc.includes('SEPA')) paymentMethod = 'DIRECT_DEBIT'
+    else if (desc.includes('CHEQUE') || desc.includes('CHQ')) paymentMethod = 'CHECK'
+    else if (desc.includes('RETRAIT') || desc.includes('ESPECES') || desc.includes('DAB')) paymentMethod = 'CASH'
+    else if (desc.includes('FRAIS') || desc.includes('COTISATION') || desc.includes('COMMISSION') || desc.includes('AGIOS')) paymentMethod = 'FEE'
+
+    let cleanDesc = desc
+        .replace(/PRLV( SEPA)?/g, '')
+        .replace(/PRELEVEMENT/g, '')
+        .replace(/VIR(EMENT)?( SEPA)?( RECU)?/g, '')
+        .replace(/CARTE|CB\*{0,4}\d{4}/g, '')
+        .replace(/PAIEMENT PAR CARTE/g, '')
+        .replace(/\b(FR|ES|GB|DE|IT)\b/g, '')
+        .replace(/MDT \w+/g, '')
+        .replace(/ID \w+/g, '')
+        .replace(/REF \w+/g, '')
+        .replace(/\d{2}\/\d{2}\/\d{4}/g, '')
+        .replace(/\d{2}\/\d{2}/g, '')
+        .replace(/ FACT(URE)? /g, ' ')
+        .replace(/[\d,-]+EUR/g, '')
+        .replace(/\b\d+\b/g, '') // remove numbers
+        .replace(/[^A-Z\s]/g, '') // remove special characters
+        .replace(/\s+/g, ' ')
+        .trim();
+
+    const parts = cleanDesc.split(' ').filter(p => p.length > 2); // Exclude small words
+    const thirdPartyName = parts.slice(0, 3).join(' '); // Heuristic
+
+    return { transactionType, paymentMethod, thirdPartyName }
+}
+
 export async function importHistoricalData(transactions: any[], options: { resetMode?: boolean } = {}) {
     try {
         if (options.resetMode) {
@@ -460,15 +498,20 @@ export async function importHistoricalData(transactions: any[], options: { reset
 
         console.log(`Starting import of ${transactions.length} entries...`)
 
-        // Batch import in chunks of 100
         const CHUNK_SIZE = 100
         for (let i = 0; i < transactions.length; i += CHUNK_SIZE) {
-            const chunk = transactions.slice(i, i + CHUNK_SIZE).map(tx => ({
-                date: new Date(tx.date),
-                amount: tx.amount,
-                description: tx.description,
-                status: 'PENDING'
-            }))
+            const chunk = transactions.slice(i, i + CHUNK_SIZE).map(tx => {
+                const analysis = analyzeTransactionData(tx.description, tx.amount);
+                return {
+                    date: new Date(tx.date),
+                    amount: tx.amount,
+                    description: tx.description,
+                    transactionType: analysis.transactionType,
+                    paymentMethod: analysis.paymentMethod,
+                    thirdPartyName: analysis.thirdPartyName,
+                    status: 'PENDING'
+                }
+            })
 
             await prisma.bankTransaction.createMany({
                 data: chunk
@@ -562,11 +605,16 @@ export async function importBankCsvAction(formData: FormData) {
             }
 
             // --- CREATE ---
+            const analysis = analyzeTransactionData(libelle, amount);
+
             await prisma.bankTransaction.create({
                 data: {
                     date: dateObj,
                     amount: amount,
                     description: libelle,
+                    transactionType: analysis.transactionType,
+                    paymentMethod: analysis.paymentMethod,
+                    thirdPartyName: analysis.thirdPartyName,
                     reference: 'CSV_IMPORT_' + new Date().toISOString().split('T')[0],
                     status: 'COMPLETED'
                 }
@@ -654,11 +702,16 @@ export async function syncBankTransactions() {
                         })
 
                         if (!existing) {
+                            const analysis = analyzeTransactionData(description, amount);
+
                             await prisma.bankTransaction.create({
                                 data: {
                                     date,
                                     amount,
                                     description,
+                                    transactionType: analysis.transactionType,
+                                    paymentMethod: analysis.paymentMethod,
+                                    thirdPartyName: analysis.thirdPartyName,
                                     reference: `ENABLE_BANKING_${account.aspspName}`,
                                     status: 'COMPLETED'
                                 }
@@ -689,8 +742,19 @@ export async function syncBankTransactions() {
                         });
 
                         if (!existing) {
+                            const analysis = analyzeTransactionData(description, amount);
+
                             await prisma.bankTransaction.create({
-                                data: { date, amount, description, reference: `ENABLE_BANKING_${account.aspspName}`, status: 'COMPLETED' }
+                                data: {
+                                    date,
+                                    amount,
+                                    description,
+                                    transactionType: analysis.transactionType,
+                                    paymentMethod: analysis.paymentMethod,
+                                    thirdPartyName: analysis.thirdPartyName,
+                                    reference: `ENABLE_BANKING_${account.aspspName}`,
+                                    status: 'COMPLETED'
+                                }
                             });
                             totalNew++;
                         } else {

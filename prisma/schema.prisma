@@ -350,8 +350,13 @@ model BankTransaction {
   id          String   @id @default(cuid())
   date        DateTime
   amount      Decimal  @db.Decimal(10, 2) // Positif = Recette, Négatif = Dépense
-  description String
-  reference   String?  // Libellé banque standardisé
+  description   String
+  reference     String?  // Libellé banque standardisé
+  
+  // Nouveaux champs pour l'analyse
+  transactionType String? // INCOME, EXPENSE, INTERNAL
+  paymentMethod   String? // CARD, TRANSFER, DIRECT_DEBIT, FEE, CASH, CHECK, OTHER
+  thirdPartyName  String? // Ex: "GRAND FRAIS", "URSSAF"
   
   status      String   @default("PENDING") // PENDING, RECONCILED, IGNORED
 
