@@ -602,22 +602,24 @@ export async function syncBankTransactions() {
 
                 // Fetch transactions from Enable Banking
                 const data = await fetchTransactions(account.accountUid, account.enableBankingSessionId)
-
-                throw new Error("DEBUG_DATA_STRUCT: " + JSON.stringify(data, null, 2).substring(0, 5000));
-
                 if (data.transactions && Array.isArray(data.transactions)) {
                     for (const tx of data.transactions) {
                         // Extract amount safely from various API standards (Berlin Group, STET, etc.)
-                        const amountObj = tx.transactionAmount || tx.amount || tx.instructedAmount;
+                        const amountObj = tx.transactionAmount || tx.amount || tx.instructedAmount || tx.transaction_amount;
                         const amountStr = amountObj?.amount || amountObj?.value || amountObj;
 
                         // Extract description safely
-                        const description = tx.remittanceInformationUnstructured
+                        let description = tx.remittanceInformationUnstructured
                             || tx.remittanceInformationStructured?.reference
                             || tx.additionalInformation
                             || tx.creditorName
                             || tx.debtorName
                             || "Transaction sans libellé";
+
+                        // STET format has remittance_information as Array of strings
+                        if (tx.remittance_information && Array.isArray(tx.remittance_information)) {
+                            description = tx.remittance_information.join(' ');
+                        }
 
                         if (amountStr === undefined || amountStr === null) {
                             console.warn("Ignored transaction due to missing amount:", tx);
@@ -633,14 +635,14 @@ export async function syncBankTransactions() {
                         }
 
                         // Certains connecteurs mettent les débits en positif avec un flag creditDebitIndicator
-                        const indicator = tx.creditDebitIndicator || tx.creditDebitInfo || '';
+                        const indicator = tx.creditDebitIndicator || tx.creditDebitInfo || tx.credit_debit_indicator || '';
                         if (amount > 0 && (indicator === 'DBIT' || indicator === 'DEBIT')) {
                             amount = -amount;
                         } else if (amount < 0 && (indicator === 'CRDT' || indicator === 'CREDIT')) {
                             amount = Math.abs(amount);
                         }
 
-                        const date = new Date(tx.bookingDate || tx.valueDate || tx.date);
+                        const date = new Date(tx.bookingDate || tx.valueDate || tx.date || tx.booking_date || tx.value_date);
 
                         // Check for duplicate
                         const existing = await prisma.bankTransaction.findFirst({
