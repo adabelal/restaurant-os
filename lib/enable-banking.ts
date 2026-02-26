@@ -62,11 +62,15 @@ function generateJWT() {
     return `${encodedHeader}.${encodedPayload}.${signature}`;
 }
 
-export async function getAuthUrl(bankId?: string) {
+export async function getAuthUrl(bankData?: { name: string, country: string }) {
     const token = generateJWT();
 
-    // Step 1: GET available ASPSPs if no bankId provided (not used here, we use redirect UI)
-    // Step 2: POST /auth to get the link
+    // EnableBanking requiert obligatoirement le nom et le pays de la banque
+    const aspsp = bankData || {
+        name: 'Banque Populaire Bourgogne Franche Comté',
+        country: 'FR'
+    };
+
     const response = await fetch('https://api.enablebanking.com/auth', {
         method: 'POST',
         headers: {
@@ -75,7 +79,7 @@ export async function getAuthUrl(bankId?: string) {
         },
         body: JSON.stringify({
             redirect_url: REDIRECT_URL,
-            aspsp: bankId, // If omitted, Enable Banking shows a bank selection UI
+            aspsp: aspsp,
             state: 'restaurant-os-auth',
             access: {
                 valid_until: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString() // 90 days
