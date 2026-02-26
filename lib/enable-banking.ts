@@ -36,6 +36,7 @@ function generateJWT() {
     const now = Math.floor(Date.now() / 1000);
     const payload = {
         iss: APP_ID,
+        aud: 'https://api.enablebanking.com',
         iat: now,
         exp: now + 3600 // 1 hour
     };
