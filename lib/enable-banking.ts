@@ -29,7 +29,8 @@ function generateJWT() {
 
     const header = {
         alg: 'RS256',
-        typ: 'JWT'
+        typ: 'JWT',
+        kid: APP_ID
     };
 
     const now = Math.floor(Date.now() / 1000);
