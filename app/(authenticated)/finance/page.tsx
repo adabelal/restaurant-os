@@ -10,12 +10,12 @@ import {
     Banknote,
     RefreshCcw,
     Calendar,
-    Settings
+    Settings,
+    Landmark
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { BalanceChart } from "@/components/finance/BalanceChart"
 import { ImportBankCsvDialog } from "@/components/finance/ImportBankCsvDialog"
-import { SyncBankButton } from "@/components/finance/SyncBankButton"
 import { getMonthlyTimeline, getFinanceStats } from "./actions"
 
 export const dynamic = 'force-dynamic'
@@ -47,7 +47,12 @@ export default async function FinancePage() {
                     </p>
                 </div>
                 <div className="flex items-center gap-3">
-                    <SyncBankButton />
+                    <Button asChild variant="default" className="gap-2">
+                        <Link href="/finance/bank">
+                            <Landmark className="w-4 h-4" />
+                            Ma Banque
+                        </Link>
+                    </Button>
                     <ImportBankCsvDialog />
                     <Button asChild variant="outline" size="icon" className="h-10 w-10 rounded-full border-border hover:bg-muted hover:text-foreground transition-colors shadow-sm">
                         <Link href="/finance/maintenance/bank" title="Maintenance & Imports">

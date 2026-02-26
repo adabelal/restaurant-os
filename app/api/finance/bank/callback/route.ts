@@ -15,33 +15,38 @@ export async function GET(req: NextRequest) {
     try {
         const session = await createSession(code);
 
-        // session contains: { session_id, accounts: [{ uid, aspsp: { name }, name, currency }] }
         if (session.accounts && session.accounts.length > 0) {
             for (const acc of session.accounts) {
+                // S'assurer de récupérer l'UID même si l'API retourne un format différent
+                const uid = acc.uid || acc.account_id?.iban || acc.id || String(acc);
+                const aspspName = acc.aspsp?.name || session.aspsp?.name || 'Banque Connectée';
+                const accountName = acc.name || `Compte ${uid.substring(uid.length - 4)}`;
+                const currency = acc.currency || 'EUR';
+
                 await prisma.bankAccount.upsert({
-                    where: { accountUid: acc.uid },
+                    where: { accountUid: uid },
                     update: {
-                        aspspName: acc.aspsp.name,
-                        accountName: acc.name,
-                        currency: acc.currency,
+                        aspspName: aspspName,
+                        accountName: accountName,
+                        currency: currency,
                         enableBankingSessionId: session.session_id
                     },
                     create: {
-                        accountUid: acc.uid,
-                        aspspName: acc.aspsp.name,
-                        accountName: acc.name,
-                        currency: acc.currency,
+                        accountUid: uid,
+                        aspspName: aspspName,
+                        accountName: accountName,
+                        currency: currency,
                         enableBankingSessionId: session.session_id
                     },
                 });
             }
         }
 
-        // Redirect with success message
-        return NextResponse.redirect(new URL('/finance?sync=success', baseUrl));
+        // Redirect to the new dedicated bank page
+        return NextResponse.redirect(new URL('/finance/bank?sync=success', baseUrl));
 
     } catch (error: any) {
         console.error('Bank Callback Error:', error);
-        return NextResponse.redirect(new URL(`/finance?error=session_failed&details=${encodeURIComponent(error.message)}`, baseUrl));
+        return NextResponse.redirect(new URL(`/finance/bank?error=session_failed&details=${encodeURIComponent(error.message)}`, baseUrl));
     }
 }
