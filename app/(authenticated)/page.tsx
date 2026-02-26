@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -32,26 +31,25 @@ export default async function DashboardPage() {
     const todayDate = new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
 
     return (
-        <main className="flex flex-col min-h-screen bg-background p-6 md:p-10 max-w-7xl mx-auto space-y-8 font-sans transition-colors duration-300">
-
-            {/* 1. HEADER SIMPLE & EFFICACE */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-6">
-                <div>
-                    <h1 className="text-3xl font-bold text-foreground tracking-tight flex items-center gap-3">
-                        <LayoutDashboard className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
+        <main className="flex flex-col min-h-screen p-6 md:p-10 max-w-7xl mx-auto space-y-10 font-sans transition-colors duration-300">
+            {/* 1. HEADER */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border/40 animate-in fade-in slide-in-from-top-4 duration-700">
+                <div className="space-y-1">
+                    <p className="text-sm font-oswald text-primary uppercase tracking-widest font-bold">Aperçu</p>
+                    <h1 className="text-4xl font-bold text-foreground tracking-tight flex items-center gap-3">
                         Tableau de Bord
                     </h1>
-                    <p className="text-muted-foreground font-medium mt-1 first-letter:uppercase">{todayDate}</p>
+                    <p className="text-muted-foreground font-medium first-letter:uppercase">{todayDate}</p>
                 </div>
                 <div className="flex gap-3">
-                    <Button asChild variant="default" className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-sm dark:bg-indigo-600 dark:hover:bg-indigo-500">
+                    <Button asChild variant="outline" className="font-semibold shadow-sm hover:shadow-md transition-shadow h-11 px-6 rounded-xl border-border/50 bg-background/50 backdrop-blur-sm">
                         <Link href="/achats/scanner">
-                            <ScanLine className="mr-2 h-4 w-4" /> Scanner Facture
+                            <ScanLine className="mr-2 h-4 w-4" /> Scanner
                         </Link>
                     </Button>
-                    <Button asChild variant="outline" className="font-semibold border-border text-foreground hover:bg-muted">
+                    <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/20 transition-all hover:scale-105 h-11 px-6 rounded-xl">
                         <Link href="/caisse">
-                            <Plus className="mr-2 h-4 w-4" /> Nouvelle Vente
+                            <Plus className="mr-2 h-5 w-5" /> Nouvelle Vente
                         </Link>
                     </Button>
                 </div>
@@ -60,81 +58,99 @@ export default async function DashboardPage() {
             {/* 2. KPI: LES CHIFFRES CLÉS DU JOUR */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* RECETTE DU JOUR */}
-                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                <Card className="border-0 shadow-lg shadow-black/5 bg-gradient-to-br from-background to-emerald-500/5 dark:to-emerald-500/10 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 relative group animate-in slide-in-from-bottom-6 fade-in duration-700 delay-100 fill-mode-both">
+                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Recette du Jour</CardTitle>
-                        <Banknote className="h-5 w-5 text-emerald-500" />
+                        <CardTitle className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Recette du Jour</CardTitle>
+                        <div className="h-10 w-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center">
+                            <Banknote className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                        </div>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                        <div className="text-4xl font-black tracking-tight text-emerald-600 dark:text-emerald-400">
                             {dailyRevenue > 0 ? '+' : ''}{dailyRevenue.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
-                        <p className="text-xs text-muted-foreground mt-1 font-medium">Entrées Caisse aujourd'hui</p>
+                        <p className="text-sm text-muted-foreground mt-2 font-medium">Entrées Caisse aujourd'hui</p>
                     </CardContent>
                 </Card>
 
                 {/* TRÉSORERIE TOTALE */}
-                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                <Card className="border-0 shadow-lg shadow-black/5 bg-gradient-to-br from-background to-primary/5 dark:to-primary/10 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 relative group animate-in slide-in-from-bottom-6 fade-in duration-700 delay-200 fill-mode-both">
+                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/50 to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Trésorerie Totale</CardTitle>
-                        <Wallet className="h-5 w-5 text-indigo-500" />
+                        <CardTitle className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Trésorerie Totale</CardTitle>
+                        <div className="h-10 w-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                            <Wallet className="h-5 w-5 text-primary" />
+                        </div>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold text-foreground">
+                        <div className="text-4xl font-black tracking-tight text-foreground">
                             {totalTreasury.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
-                        <p className="text-xs text-muted-foreground mt-1 font-medium">Banque + Caisse consolidés</p>
+                        <p className="text-sm text-muted-foreground mt-2 font-medium">Banque + Caisse consolidés</p>
                     </CardContent>
                 </Card>
 
                 {/* FACTURES À PAYER */}
-                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow cursor-pointer group hover:border-amber-500/30">
-                    <Link href="/achats">
+                <Link href="/achats" className="block outline-none animate-in slide-in-from-bottom-6 fade-in duration-700 delay-300 fill-mode-both">
+                    <Card className="border-0 shadow-lg shadow-black/5 bg-gradient-to-br from-background to-amber-500/5 dark:to-amber-500/10 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 relative group h-full">
+                        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-400 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Factures en Attente</CardTitle>
-                            <AlertCircle className="h-5 w-5 text-amber-500" />
+                            <CardTitle className="text-xs font-bold text-muted-foreground uppercase tracking-widest group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Factures en Attente</CardTitle>
+                            <div className="h-10 w-10 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center">
+                                <AlertCircle className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                            </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-3xl font-bold text-amber-600 dark:text-amber-400">
+                            <div className="text-4xl font-black tracking-tight text-amber-600 dark:text-amber-400">
                                 {pendingInvoicesCount}
                             </div>
-                            <p className="text-xs text-muted-foreground mt-1 font-medium group-hover:text-amber-600/70 dark:group-hover:text-amber-400/70 transition-colors">Documents à traiter</p>
+                            <p className="text-sm text-muted-foreground mt-2 font-medium group-hover:text-amber-600/70 dark:group-hover:text-amber-400/70 transition-colors">Documents à traiter dans les achats</p>
                         </CardContent>
-                    </Link>
-                </Card>
+                    </Card>
+                </Link>
             </div>
 
             {/* 3. ACTIVITÉ RÉCENTE & ACCÈS RAPIDES */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-12">
                 {/* COLONNE GAUCHE (2/3) : ACTIVITÉ */}
                 <div className="lg:col-span-2 space-y-6">
-                    <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden">
-                        <CardHeader className="border-b border-border bg-muted/30 px-6 py-4 flex flex-row items-center justify-between">
-                            <CardTitle className="text-lg font-semibold text-foreground">Activités Récentes</CardTitle>
-                            <Button variant="ghost" size="sm" className="text-xs font-semibold text-indigo-600 dark:text-indigo-400" asChild>
-                                <Link href="/finance">Voir Tout</Link>
+                    <Card className="border-0 shadow-lg shadow-black/5 bg-background rounded-2xl overflow-hidden animate-in slide-in-from-bottom-6 fade-in duration-700 delay-[400ms] fill-mode-both ring-1 ring-border/50">
+                        <CardHeader className="border-b border-border/40 px-6 py-5 flex flex-row items-center justify-between bg-muted/10">
+                            <div>
+                                <CardTitle className="text-xl font-bold text-foreground">Activités Récentes</CardTitle>
+                                <p className="text-xs text-muted-foreground mt-1">Derniers mouvements synchronisés</p>
+                            </div>
+                            <Button variant="ghost" size="sm" className="text-sm font-semibold text-primary hover:bg-primary/10" asChild>
+                                <Link href="/finance">Voir Tout <ArrowRight className="w-4 h-4 ml-1" /></Link>
                             </Button>
                         </CardHeader>
                         <CardContent className="p-0">
-                            <div className="divide-y divide-border">
+                            <div className="divide-y divide-border/40">
                                 {recentActivity.length === 0 ? (
-                                    <div className="p-8 text-center text-muted-foreground text-sm italic">Aucune activité récente.</div>
+                                    <div className="p-12 flex flex-col items-center justify-center text-center">
+                                        <div className="h-16 w-16 bg-muted rounded-full flex items-center justify-center mb-4">
+                                            <CalendarDays className="h-8 w-8 text-muted-foreground" />
+                                        </div>
+                                        <p className="text-muted-foreground font-medium">Aucune activité récente.</p>
+                                        <p className="text-xs text-muted-foreground mt-1">Les mouvements apparaîtront ici.</p>
+                                    </div>
                                 ) : (
                                     recentActivity.map((t) => (
-                                        <div key={t.id} className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors">
-                                            <div className="flex items-center gap-4">
-                                                <div className={`p-2 rounded-lg ${Number(t.amount) >= 0
-                                                    ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400'
-                                                    : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                                        <div key={t.id} className="group flex items-center justify-between p-5 hover:bg-muted/30 transition-colors">
+                                            <div className="flex items-center gap-5">
+                                                <div className={`h-12 w-12 rounded-xl flex items-center justify-center shadow-sm ${Number(t.amount) >= 0
+                                                    ? 'bg-emerald-100/80 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400'
+                                                    : 'bg-slate-100/80 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
                                                     }`}>
-                                                    {Number(t.amount) >= 0 ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
+                                                    {Number(t.amount) >= 0 ? <ArrowUpRight className="h-5 w-5" /> : <ArrowDownRight className="h-5 w-5" />}
                                                 </div>
                                                 <div>
-                                                    <p className="font-medium text-foreground text-sm truncate max-w-[200px] sm:max-w-md">{t.description}</p>
-                                                    <p className="text-xs text-muted-foreground">{new Date(t.date).toLocaleDateString('fr-FR')}</p>
+                                                    <p className="font-semibold text-foreground text-sm md:text-base truncate max-w-[180px] sm:max-w-xs md:max-w-md group-hover:text-primary transition-colors">{t.description}</p>
+                                                    <p className="text-xs font-medium text-muted-foreground mt-0.5">{new Date(t.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}</p>
                                                 </div>
                                             </div>
-                                            <div className={`text-sm font-bold ${Number(t.amount) >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-foreground'}`}>
+                                            <div className={`text-base md:text-lg font-black tracking-tight ${Number(t.amount) >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-foreground'}`}>
                                                 {Number(t.amount) > 0 ? '+' : ''}{Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                             </div>
                                         </div>
@@ -147,44 +163,50 @@ export default async function DashboardPage() {
 
                 {/* COLONNE DROITE (1/3) : MODULES */}
                 <div className="space-y-4">
-                    <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-wider px-1">Modules</h3>
+                    <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest px-2 mb-2 animate-in fade-in duration-700 delay-500 fill-mode-both">Modules Accessibles</h3>
 
-                    <Link href="/finance" className="block group">
-                        <Card className="border border-border shadow-sm bg-card rounded-xl p-4 hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-md transition-all flex items-center gap-4">
-                            <div className="h-12 w-12 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                                <Wallet className="h-6 w-6" />
+                    <Link href="/finance" className="block group outline-none animate-in slide-in-from-bottom-4 fade-in duration-700 delay-[550ms] fill-mode-both">
+                        <Card className="border-0 shadow-md shadow-black/5 bg-background rounded-2xl p-5 hover:ring-2 hover:ring-primary/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center gap-5">
+                            <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors shadow-inner">
+                                <Wallet className="h-7 w-7" />
                             </div>
-                            <div>
-                                <h4 className="font-bold text-foreground group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">Finance & Pilotage</h4>
-                                <p className="text-xs text-muted-foreground">Trésorerie, Charges, Banque</p>
+                            <div className="flex-1">
+                                <h4 className="font-bold text-foreground text-lg group-hover:text-primary transition-colors">Finance</h4>
+                                <p className="text-xs text-muted-foreground font-medium">Trésorerie, Charges</p>
                             </div>
-                            <ArrowRight className="h-4 w-4 text-border ml-auto group-hover:text-indigo-400 transition-colors" />
+                            <div className="h-8 w-8 rounded-full bg-muted/50 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                            </div>
                         </Card>
                     </Link>
 
-                    <Link href="/rh" className="block group">
-                        <Card className="border border-border shadow-sm bg-card rounded-xl p-4 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-md transition-all flex items-center gap-4">
-                            <div className="h-12 w-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                <Users className="h-6 w-6" />
+                    <Link href="/rh" className="block group outline-none animate-in slide-in-from-bottom-4 fade-in duration-700 delay-[600ms] fill-mode-both">
+                        <Card className="border-0 shadow-md shadow-black/5 bg-background rounded-2xl p-5 hover:ring-2 hover:ring-blue-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center gap-5">
+                            <div className="h-14 w-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors shadow-inner">
+                                <Users className="h-7 w-7" />
                             </div>
-                            <div>
-                                <h4 className="font-bold text-foreground group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">RH & Équipe</h4>
-                                <p className="text-xs text-muted-foreground">{employeeCount} collaborateurs actifs</p>
+                            <div className="flex-1">
+                                <h4 className="font-bold text-foreground text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Équipe</h4>
+                                <p className="text-xs text-muted-foreground font-medium">{employeeCount} collaborateurs</p>
                             </div>
-                            <ArrowRight className="h-4 w-4 text-border ml-auto group-hover:text-blue-400 transition-colors" />
+                            <div className="h-8 w-8 rounded-full bg-muted/50 flex items-center justify-center group-hover:bg-blue-500/10 transition-colors">
+                                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                            </div>
                         </Card>
                     </Link>
 
-                    <Link href="/achats" className="block group">
-                        <Card className="border border-border shadow-sm bg-card rounded-xl p-4 hover:border-amber-300 dark:hover:border-amber-700 hover:shadow-md transition-all flex items-center gap-4">
-                            <div className="h-12 w-12 rounded-lg bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                                <ScanLine className="h-6 w-6" />
+                    <Link href="/achats" className="block group outline-none animate-in slide-in-from-bottom-4 fade-in duration-700 delay-[650ms] fill-mode-both">
+                        <Card className="border-0 shadow-md shadow-black/5 bg-background rounded-2xl p-5 hover:ring-2 hover:ring-amber-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center gap-5">
+                            <div className="h-14 w-14 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:bg-amber-600 group-hover:text-white transition-colors shadow-inner">
+                                <ScanLine className="h-7 w-7" />
                             </div>
-                            <div>
-                                <h4 className="font-bold text-foreground group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">Achats & Factures</h4>
-                                <p className="text-xs text-muted-foreground">Fournisseurs, Stocks, Scans</p>
+                            <div className="flex-1">
+                                <h4 className="font-bold text-foreground text-lg group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Achats</h4>
+                                <p className="text-xs text-muted-foreground font-medium">Fournisseurs, Stocks</p>
                             </div>
-                            <ArrowRight className="h-4 w-4 text-border ml-auto group-hover:text-amber-400 transition-colors" />
+                            <div className="h-8 w-8 rounded-full bg-muted/50 flex items-center justify-center group-hover:bg-amber-500/10 transition-colors">
+                                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors" />
+                            </div>
                         </Card>
                     </Link>
                 </div>
