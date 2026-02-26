@@ -1,13 +1,18 @@
 
 "use client"
 
-import { useState } from "react"
+import { useState, ReactNode } from "react"
 import { Button } from "@/components/ui/button"
-import { RefreshCcw, Landmark, Link as LinkIcon, Loader2 } from "lucide-react"
+import { Landmark, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 
-export function SyncBankButton() {
+interface SyncBankButtonProps {
+    label?: string;
+    icon?: ReactNode;
+}
+
+export function SyncBankButton({ label = "Sync Banque", icon }: SyncBankButtonProps) {
     const [isLoading, setIsLoading] = useState(false)
     const router = useRouter()
 
@@ -37,8 +42,9 @@ export function SyncBankButton() {
             variant="outline"
             className="flex items-center gap-2 bg-indigo-50 dark:bg-indigo-950/30 border-indigo-100 dark:border-indigo-900 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 shadow-sm"
         >
-            {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Landmark className="h-4 w-4" />}
-            <span>Sync Banque</span>
+            {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : (icon || <Landmark className="h-4 w-4" />)}
+            <span>{label}</span>
         </Button>
     )
 }
+
