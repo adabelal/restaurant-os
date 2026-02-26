@@ -14,6 +14,19 @@ function generateJWT() {
         throw new Error('Enable Banking credentials missing in environment variables');
     }
 
+    // Sanitize the private key: handle cases where newlines are escaped or replaced by spaces
+    let cleanKey = PRIVATE_KEY.replace(/\\n/g, '\n');
+
+    // If the key is all on one line (common in some ENV systems), reconstruct it
+    if (!cleanKey.includes('\n')) {
+        const header = '-----BEGIN PRIVATE KEY-----';
+        const footer = '-----END PRIVATE KEY-----';
+        const body = cleanKey.replace(header, '').replace(footer, '').trim().replace(/\s/g, '');
+        // Split body into 64-character lines
+        const lines = body.match(/.{1,64}/g) || [];
+        cleanKey = `${header}\n${lines.join('\n')}\n${footer}`;
+    }
+
     const header = {
         alg: 'RS256',
         typ: 'JWT'
@@ -39,7 +52,7 @@ function generateJWT() {
 
     const signer = crypto.createSign('RSA-SHA256');
     signer.update(encodedHeader + '.' + encodedPayload);
-    const signature = signer.sign(PRIVATE_KEY, 'base64')
+    const signature = signer.sign(cleanKey, 'base64')
         .replace(/=/g, '')
         .replace(/\+/g, '-')
         .replace(/\//g, '_');
