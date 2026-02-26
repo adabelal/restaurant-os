@@ -162,7 +162,12 @@ export default async function FinancePage() {
                         <CardHeader className="border-b border-border bg-muted/30 px-6 py-4">
                             <div className="flex items-center justify-between">
                                 <CardTitle className="text-lg font-semibold text-foreground">Derniers Mouvements</CardTitle>
-                                <Badge variant="outline" className="font-normal text-muted-foreground bg-card">Banque</Badge>
+                                <div className="flex items-center gap-2">
+                                    <Button asChild variant="link" size="sm" className="hidden sm:inline-flex text-indigo-600 dark:text-indigo-400 h-auto p-0">
+                                        <Link href="/finance/transactions">Voir tout</Link>
+                                    </Button>
+                                    <Badge variant="outline" className="font-normal text-muted-foreground bg-card">Banque</Badge>
+                                </div>
                             </div>
                         </CardHeader>
                         <CardContent className="p-0">
