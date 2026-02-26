@@ -141,28 +141,31 @@ export async function updateEventStatus(eventId: string, status: string, invoice
 }
 
 /**
- * IMPORTATION DEPUIS CSV (VERSION 2)
- * Fonction temporaire pour contourner les problèmes de permissions du terminal.
- * À déclencher via un effet de bord ou un bouton caché en développement.
+ * IMPORTATION DEPUIS CSV (VERSION 2) - CORRECTIF ROBUSTE
+ * Gère les dates, les montants complexes et les règlements GIP/Asso.
  */
 export async function importMusicDataV2(csvContent: string) {
     try {
-        console.log("--- Début Importation Musique v2 ---");
+        console.log("--- Initialisation de la synchronisation v2 ---");
 
-        // Nettoyage
+        // 1. Nettoyage sécurisé
         await prisma.musicEvent.deleteMany();
         await prisma.musicBand.deleteMany();
 
         const lines = csvContent.split('\n');
-        const dataLines = lines.slice(1); // Sauter l'en-tête
+        const dataLines = lines.slice(1);
 
         let bandCount = 0;
         let eventCount = 0;
+        let skippedLines = 0;
 
         for (const line of dataLines) {
-            if (!line.trim()) continue;
+            if (!line.trim() || line.startsWith(',,')) {
+                skippedLines++;
+                continue;
+            }
 
-            // Parser CSV simple
+            // Parser CSV (gestion des guillemets)
             const parts: string[] = [];
             let current = '';
             let inQuotes = false;
@@ -175,30 +178,52 @@ export async function importMusicDataV2(csvContent: string) {
             }
             parts.push(current.trim());
 
-            if (parts.length < 2 || parts[0] === 'SUIVIE GROUPE') continue;
+            if (parts.length < 2 || !parts[0] || parts[0].includes('SUIVIE GROUPE')) {
+                skippedLines++;
+                continue;
+            }
 
-            const dateStr = parts[0]; // ven. 20 sept. 2024
+            const dateStr = parts[0];
             const bandName = parts[1];
             const isConfirmed = parts[2]?.toUpperCase() === 'TRUE';
-            const paymentMethodRaw = parts[3];
-            const recipient = parts[4];
-            const amountStr = parts[5]?.replace('€', '').replace('OO', '00').replace(',', '.').replace(' ', '');
+            const paymentMethodRaw = parts[3] || "";
+            const recipient = parts[4] || "";
+            const amountStr = parts[5]?.replace('€', '').replace('OO', '00').replace(',', '.').replace(/\s/g, '') || "0";
 
-            // Parsing Date manuel pour éviter dépendances de locale complexes dans l'action
-            // Format: "ven. 20 sept. 2024"
-            const dateParts = dateStr.match(/(\d+)\s+([a-zéû\.]+)\s+(\d{4})/i);
-            if (!dateParts) continue;
+            // Parsing Date robuste (ex: "ven. 20 sept. 2024")
+            const dateMatch = dateStr.match(/(\d+)\s+([a-zéû]+)\.?\s+(\d{4})/i);
+            if (!dateMatch) {
+                skippedLines++;
+                continue;
+            }
 
-            const day = parseInt(dateParts[1]);
-            const monthStr = dateParts[2].toLowerCase().replace('.', '');
-            const year = parseInt(dateParts[3]);
+            const day = parseInt(dateMatch[1]);
+            const monthRaw = dateMatch[2].toLowerCase();
+            const year = parseInt(dateMatch[3]);
 
             const months: Record<string, number> = {
-                'janv': 0, 'févr': 1, 'mars': 2, 'avr': 3, 'mai': 4, 'juin': 5,
-                'juil': 6, 'août': 7, 'sept': 8, 'oct': 9, 'nov': 10, 'déc': 11
+                'janv': 0, 'janvier': 0,
+                'f': 1, 'févr': 1, 'février': 1, // 'f' catch-all for fév
+                'mar': 2, 'mars': 2,
+                'avr': 3, 'avril': 3,
+                'mai': 4,
+                'juin': 5,
+                'juil': 6, 'juillet': 6,
+                'août': 7,
+                'sep': 8, 'sept': 8, 'septembre': 8,
+                'oct': 9, 'octobre': 9,
+                'nov': 10, 'novembre': 10,
+                'déc': 11, 'décembre': 11
             };
-            const month = months[monthStr] ?? 0;
+
+            const monthKey = Object.keys(months).find(k => monthRaw.startsWith(k)) || 'janv';
+            const month = months[monthKey];
             const date = new Date(year, month, day, 20, 30);
+
+            if (isNaN(date.getTime())) {
+                skippedLines++;
+                continue;
+            }
 
             // 1. Groupe
             let band = await prisma.musicBand.findUnique({ where: { name: bandName } });
@@ -209,22 +234,25 @@ export async function importMusicDataV2(csvContent: string) {
                 bandCount++;
             }
 
-            // 2. Mapping
+            // 2. Mapping Paiement
             let paymentMethod = "TRANSFER";
-            if (paymentMethodRaw?.includes("ESP")) paymentMethod = "CASH";
-            if (paymentMethodRaw?.includes("CHE")) paymentMethod = "CHECK";
+            if (paymentMethodRaw.toUpperCase().includes("ESP")) paymentMethod = "CASH";
+            if (paymentMethodRaw.toUpperCase().includes("CHE")) paymentMethod = "CHECK";
 
-            // Logique Spécifique du User : GIP = GUSO
-            if (recipient?.toUpperCase().includes("GIP") || recipient?.toUpperCase().includes("INTERMITTENT")) {
+            if (recipient.toUpperCase().includes("GIP") || recipient.toUpperCase().includes("INTERMITTENT")) {
                 paymentMethod = "GUSO";
             }
 
             let status = isConfirmed ? "SCHEDULED" : "TENTATIVE";
-            if (paymentMethodRaw?.includes("Annulé")) status = "CANCELLED";
-            if (date < new Date() && status === "SCHEDULED") status = "COMPLETED";
+            if (paymentMethodRaw.toUpperCase().includes("ANNUL")) status = "CANCELLED";
+            else if (date < new Date() && isConfirmed) status = "COMPLETED";
 
             let invoiceStatus = "PENDING";
-            if (recipient?.toUpperCase().includes("PAS DE FACT")) invoiceStatus = "RECEIVED";
+            if (recipient.toUpperCase().includes("PAS DE FACT") || recipient.toUpperCase().includes("NON REQUIS")) {
+                invoiceStatus = "RECEIVED";
+            } else if (status === "COMPLETED" && paymentMethod === "CASH") {
+                invoiceStatus = "PAID";
+            }
 
             const amount = parseFloat(amountStr) || 0;
 
@@ -236,7 +264,7 @@ export async function importMusicDataV2(csvContent: string) {
                     paymentMethod,
                     status,
                     invoiceStatus,
-                    notes: recipient ? `Règlement : ${recipient}` : null,
+                    notes: recipient ? `Destinataire : ${recipient}` : null,
                     startTime: "20:30"
                 }
             });
@@ -250,3 +278,4 @@ export async function importMusicDataV2(csvContent: string) {
         return { error: e.message };
     }
 }
+
