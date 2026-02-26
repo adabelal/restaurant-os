@@ -603,11 +603,42 @@ export async function syncBankTransactions() {
                 // Fetch transactions from Enable Banking
                 const data = await fetchTransactions(account.accountUid, account.enableBankingSessionId)
 
-                if (data.transactions && data.transactions.length > 0) {
+                if (data.transactions && Array.isArray(data.transactions)) {
                     for (const tx of data.transactions) {
-                        const amount = parseFloat(tx.transactionAmount.amount)
-                        const date = new Date(tx.bookingDate || tx.valueDate)
-                        const description = tx.remittanceInformationUnstructured || "Transaction sans libellé"
+                        // Extract amount safely from various API standards (Berlin Group, STET, etc.)
+                        const amountObj = tx.transactionAmount || tx.amount || tx.instructedAmount;
+                        const amountStr = amountObj?.amount || amountObj?.value || amountObj;
+
+                        // Extract description safely
+                        const description = tx.remittanceInformationUnstructured
+                            || tx.remittanceInformationStructured?.reference
+                            || tx.additionalInformation
+                            || tx.creditorName
+                            || tx.debtorName
+                            || "Transaction sans libellé";
+
+                        if (amountStr === undefined || amountStr === null) {
+                            console.warn("Ignored transaction due to missing amount:", tx);
+                            continue; // Skip invalid transaction
+                        }
+
+                        let amount = parseFloat(amountStr);
+                        if (isNaN(amount)) {
+                            // Si le format STET nous renvoie amount.amount
+                            if (typeof amountObj === 'object' && amountObj !== null && amountObj.amount === undefined) {
+                                continue; // Unknown format
+                            }
+                        }
+
+                        // Certains connecteurs mettent les débits en positif avec un flag creditDebitIndicator
+                        const indicator = tx.creditDebitIndicator || tx.creditDebitInfo || '';
+                        if (amount > 0 && (indicator === 'DBIT' || indicator === 'DEBIT')) {
+                            amount = -amount;
+                        } else if (amount < 0 && (indicator === 'CRDT' || indicator === 'CREDIT')) {
+                            amount = Math.abs(amount);
+                        }
+
+                        const date = new Date(tx.bookingDate || tx.valueDate || tx.date);
 
                         // Check for duplicate
                         const existing = await prisma.bankTransaction.findFirst({
@@ -631,6 +662,35 @@ export async function syncBankTransactions() {
                             totalNew++
                         } else {
                             totalDup++
+                        }
+                    }
+                } else if (data.transactions && typeof data.transactions === 'object') {
+                    // Certain APIs return { booked: [], pending: [] }
+                    const allTxs = [...(data.transactions.booked || []), ...(data.transactions.pending || [])];
+                    for (const tx of allTxs) {
+                        const amountObj = tx.transactionAmount || tx.amount || tx.instructedAmount;
+                        const amountStr = amountObj?.amount || amountObj?.value || amountObj;
+                        const description = tx.remittanceInformationUnstructured || tx.creditorName || "Transaction sans libellé";
+
+                        if (amountStr === undefined) continue;
+
+                        let amount = parseFloat(amountStr);
+                        const indicator = tx.creditDebitIndicator || '';
+                        if (amount > 0 && indicator === 'DBIT') amount = -amount;
+
+                        const date = new Date(tx.bookingDate || tx.valueDate);
+
+                        const existing = await prisma.bankTransaction.findFirst({
+                            where: { date, amount, description }
+                        });
+
+                        if (!existing) {
+                            await prisma.bankTransaction.create({
+                                data: { date, amount, description, reference: `ENABLE_BANKING_${account.aspspName}`, status: 'COMPLETED' }
+                            });
+                            totalNew++;
+                        } else {
+                            totalDup++;
                         }
                     }
                 }
