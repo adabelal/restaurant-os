@@ -165,6 +165,8 @@ export async function importMusicDataV2(csvContent: string) {
         await prisma.musicEvent.deleteMany();
         await prisma.musicBand.deleteMany();
 
+        // Détection automatique du délimiteur (virgule ou point-virgule)
+        const delimiter = csvContent.includes(';') ? ';' : ',';
         const lines = csvContent.split('\n');
         const dataLines = lines.slice(1);
 
@@ -173,18 +175,18 @@ export async function importMusicDataV2(csvContent: string) {
         let skippedLines = 0;
 
         for (const line of dataLines) {
-            if (!line.trim() || line.startsWith(',,')) {
+            if (!line.trim() || line.startsWith(delimiter + delimiter)) {
                 skippedLines++;
                 continue;
             }
 
-            // Parser CSV (gestion des guillemets)
+            // Parser CSV (gestion des guillemets et du délimiteur dynamique)
             const parts: string[] = [];
             let current = '';
             let inQuotes = false;
             for (let i = 0; i < line.length; i++) {
                 if (line[i] === '"') inQuotes = !inQuotes;
-                else if (line[i] === ',' && !inQuotes) {
+                else if (line[i] === delimiter && !inQuotes) {
                     parts.push(current.trim());
                     current = '';
                 } else current += line[i];
@@ -201,7 +203,7 @@ export async function importMusicDataV2(csvContent: string) {
             const isConfirmed = parts[2]?.toUpperCase() === 'TRUE';
             const paymentMethodRaw = parts[3] || "";
             const recipient = parts[4] || "";
-            const amountStr = parts[5]?.replace('€', '').replace('OO', '00').replace(',', '.').replace(/\s/g, '') || "0";
+            const amountStr = (parts[6] || parts[5] || "0").replace('€', '').replace('OO', '00').replace(',', '.').replace(/\s/g, '');
 
             // Parsing Date robuste (ex: "ven. 20 sept. 2024")
             const dateMatch = dateStr.match(/(\d+)\s+([a-zéû]+)\.?\s+(\d{4})/i);
