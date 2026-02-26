@@ -97,11 +97,19 @@ export async function getBands() {
             include: {
                 events: {
                     orderBy: { date: "desc" },
-                    take: 5, // Show last 5 events
+                    take: 5,
                 },
             },
         })
-        return bands
+
+        // Sérialisation des types Decimal pour React
+        return bands.map(band => ({
+            ...band,
+            events: band.events.map(event => ({
+                ...event,
+                amount: Number(event.amount)
+            }))
+        }))
     } catch (error) {
         console.error("Failed to fetch bands:", error)
         return []
@@ -116,7 +124,12 @@ export async function getEvents() {
                 band: true,
             },
         })
-        return events
+
+        // Sérialisation des types Decimal pour React
+        return events.map(event => ({
+            ...event,
+            amount: Number(event.amount)
+        }))
     } catch (error) {
         console.error("Failed to fetch events:", error)
         return []
@@ -225,11 +238,20 @@ export async function importMusicDataV2(csvContent: string) {
                 continue;
             }
 
-            // 1. Groupe
-            let band = await prisma.musicBand.findUnique({ where: { name: bandName } });
+            // 1. Groupe - Normalisation du nom (trim et recherche insensible à la casse)
+            const normalizedBandName = bandName.trim();
+            let band = await prisma.musicBand.findFirst({
+                where: {
+                    name: {
+                        equals: normalizedBandName,
+                        mode: 'insensitive'
+                    }
+                }
+            });
+
             if (!band) {
                 band = await prisma.musicBand.create({
-                    data: { name: bandName, genre: 'Live Music' }
+                    data: { name: normalizedBandName, genre: 'Live Music' }
                 });
                 bandCount++;
             }
