@@ -6,9 +6,10 @@ import { prisma } from '@/lib/prisma';
 export async function GET(req: NextRequest) {
     const searchParams = req.nextUrl.searchParams;
     const code = searchParams.get('code');
+    const baseUrl = process.env.NEXTAUTH_URL || 'https://app.siwa-bleury.fr';
 
     if (!code) {
-        return NextResponse.redirect(new URL('/finance?error=missing_code', req.nextUrl.origin));
+        return NextResponse.redirect(new URL('/finance?error=missing_code', baseUrl));
     }
 
     try {
@@ -37,10 +38,10 @@ export async function GET(req: NextRequest) {
         }
 
         // Redirect with success message
-        return NextResponse.redirect(new URL('/finance?sync=success', req.nextUrl.origin));
+        return NextResponse.redirect(new URL('/finance?sync=success', baseUrl));
 
-    } catch (error) {
+    } catch (error: any) {
         console.error('Bank Callback Error:', error);
-        return NextResponse.redirect(new URL('/finance?error=session_failed', req.nextUrl.origin));
+        return NextResponse.redirect(new URL(`/finance?error=session_failed&details=${encodeURIComponent(error.message)}`, baseUrl));
     }
 }

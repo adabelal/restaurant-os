@@ -114,7 +114,7 @@ export async function createSession(code: string) {
     if (!response.ok) {
         const err = await response.text();
         console.error('Enable Banking Session Error:', err);
-        throw new Error('Failed to create bank session');
+        throw new Error(`Failed to create bank session: ${err}`);
     }
 
     return await response.json();
