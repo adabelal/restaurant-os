@@ -583,3 +583,79 @@ export async function importBankCsvAction(formData: FormData) {
     }
 }
 
+
+import { fetchTransactions } from "@/lib/enable-banking"
+
+export async function syncBankTransactions() {
+    return withAuth(async () => {
+        try {
+            const accounts = await prisma.bankAccount.findMany()
+            if (accounts.length === 0) {
+                return { success: false, error: "Aucun compte bancaire connecté." }
+            }
+
+            let totalNew = 0
+            let totalDup = 0
+
+            for (const account of accounts) {
+                if (!account.enableBankingSessionId) continue
+
+                // Fetch transactions from Enable Banking
+                const data = await fetchTransactions(account.accountUid, account.enableBankingSessionId)
+
+                if (data.transactions && data.transactions.length > 0) {
+                    for (const tx of data.transactions) {
+                        const amount = parseFloat(tx.transactionAmount.amount)
+                        const date = new Date(tx.bookingDate || tx.valueDate)
+                        const description = tx.remittanceInformationUnstructured || "Transaction sans libellé"
+
+                        // Check for duplicate
+                        const existing = await prisma.bankTransaction.findFirst({
+                            where: {
+                                date: date,
+                                amount: amount,
+                                description: description
+                            }
+                        })
+
+                        if (!existing) {
+                            await prisma.bankTransaction.create({
+                                data: {
+                                    date,
+                                    amount,
+                                    description,
+                                    reference: `ENABLE_BANKING_${account.aspspName}`,
+                                    status: 'COMPLETED'
+                                }
+                            })
+                            totalNew++
+                        } else {
+                            totalDup++
+                        }
+                    }
+                }
+
+                // Update last synced date
+                await prisma.bankAccount.update({
+                    where: { id: account.id },
+                    data: { lastSyncedAt: new Date() }
+                })
+            }
+
+            // Trigger intelligence sync (categorization) if new transactions found
+            if (totalNew > 0) {
+                await syncFinanceIntelligence()
+            }
+
+            revalidatePath('/finance')
+            return { success: true, imported: totalNew, duplicates: totalDup }
+        } catch (error: any) {
+            console.error("Sync Bank Error:", error)
+            // If session expired, we might need to tell the user to reconnect
+            if (error.message?.includes('session')) {
+                return { success: false, error: "Session bancaire expirée. Veuillez vous reconnecter.", needsReconnect: true }
+            }
+            return { success: false, error: String(error) }
+        }
+    })
+}

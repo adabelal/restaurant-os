@@ -15,6 +15,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { BalanceChart } from "@/components/finance/BalanceChart"
 import { ImportBankCsvDialog } from "@/components/finance/ImportBankCsvDialog"
+import { SyncBankButton } from "@/components/finance/SyncBankButton"
 import { getMonthlyTimeline, getFinanceStats } from "./actions"
 
 export const dynamic = 'force-dynamic'
@@ -46,6 +47,7 @@ export default async function FinancePage() {
                     </p>
                 </div>
                 <div className="flex items-center gap-3">
+                    <SyncBankButton />
                     <ImportBankCsvDialog />
                     <Button asChild variant="outline" size="icon" className="h-10 w-10 rounded-full border-border hover:bg-muted hover:text-foreground transition-colors shadow-sm">
                         <Link href="/finance/maintenance/bank" title="Maintenance & Imports">
@@ -219,8 +221,8 @@ export default async function FinancePage() {
                                         <div key={item.id} className={`p-4 flex items-center justify-between group hover:bg-muted/50 transition-colors ${item.isPast ? 'opacity-50 grayscale' : ''}`}>
                                             <div className="flex items-center gap-3">
                                                 <div className={`h-10 w-10 rounded-lg flex flex-col items-center justify-center font-bold text-xs ring-1 ring-inset ${item.isPast
-                                                        ? 'bg-muted text-muted-foreground ring-border'
-                                                        : 'bg-card text-indigo-600 dark:text-indigo-400 ring-indigo-100 dark:ring-indigo-900 shadow-sm'
+                                                    ? 'bg-muted text-muted-foreground ring-border'
+                                                    : 'bg-card text-indigo-600 dark:text-indigo-400 ring-indigo-100 dark:ring-indigo-900 shadow-sm'
                                                     }`}>
                                                     <span className="uppercase text-[8px] opacity-70">{item.date.toLocaleDateString('fr-FR', { month: 'short' })}</span>
                                                     <span className="text-sm">{item.date.getDate()}</span>
