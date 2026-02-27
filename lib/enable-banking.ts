@@ -9,7 +9,7 @@ const REDIRECT_URL = process.env.ENABLE_BANKING_REDIRECT_URL || 'https://app.siw
  * Generates a JWT token for Enable Banking API (RS256)
  * We use the built-in crypto module to avoid external dependencies if npm install fails.
  */
-function generateJWT() {
+export function generateJWT() {
     if (!APP_ID || !PRIVATE_KEY) {
         throw new Error('Enable Banking credentials missing in environment variables');
     }
@@ -134,6 +134,25 @@ export async function fetchTransactions(accountUid: string, sessionId: string) {
         const err = await response.text();
         console.error('Enable Banking Transactions Error:', err);
         throw new Error('Failed to fetch transactions');
+    }
+
+    return await response.json();
+}
+
+export async function fetchBalances(accountUid: string, sessionId: string) {
+    const token = generateJWT();
+
+    const response = await fetch(`https://api.enablebanking.com/accounts/${accountUid}/balances`, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'X-Session-ID': sessionId
+        }
+    });
+
+    if (!response.ok) {
+        const err = await response.text();
+        console.error('Enable Banking Balances Error:', err);
+        throw new Error('Failed to fetch balances');
     }
 
     return await response.json();

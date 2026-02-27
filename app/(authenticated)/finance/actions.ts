@@ -449,7 +449,7 @@ export async function syncFinanceIntelligence() {
     }
 }
 
-export function analyzeTransactionData(description: string, amount: number) {
+function analyzeTransactionData(description: string, amount: number) {
     const desc = description.toUpperCase()
 
     const transactionType = amount >= 0 ? 'INCOME' : 'EXPENSE'
@@ -632,7 +632,7 @@ export async function importBankCsvAction(formData: FormData) {
 }
 
 
-import { fetchTransactions } from "@/lib/enable-banking"
+import { fetchTransactions, fetchBalances } from "@/lib/enable-banking"
 
 export async function syncBankTransactions() {
     return withAuth(async () => {
@@ -768,6 +768,50 @@ export async function syncBankTransactions() {
                     where: { id: account.id },
                     data: { lastSyncedAt: new Date() }
                 })
+
+                // AUTO-ALIGN BALANCE MAGIC
+                try {
+                    const balancesData = await fetchBalances(account.accountUid, account.enableBankingSessionId);
+                    let realBalance = 0;
+                    if (balancesData.balances && balancesData.balances.length > 0) {
+                        const bal = balancesData.balances.find((b: any) => b.balanceType === 'expected' || b.balanceType === 'closingBooked') || balancesData.balances[0];
+                        const amObj = bal.balanceAmount || bal.balance_amount;
+                        realBalance = parseFloat(amObj.amount || amObj.value);
+                    }
+
+                    if (realBalance !== 0) {
+                        const txs = await prisma.bankTransaction.findMany({ select: { amount: true, reference: true } });
+                        const calcSum = txs.reduce((sum, tx) => sum + Number(tx.amount), 0);
+                        const diff = realBalance - calcSum;
+
+                        if (Math.abs(diff) > 0.05) {
+                            const existingAdj = txs.find(t => t.reference === 'INITIAL_BALANCE_ADJUSTMENT');
+
+                            if (existingAdj) {
+                                const newAmount = Number(existingAdj.amount) + diff;
+                                await prisma.bankTransaction.updateMany({
+                                    where: { reference: 'INITIAL_BALANCE_ADJUSTMENT' },
+                                    data: { amount: newAmount }
+                                });
+                            } else {
+                                await prisma.bankTransaction.create({
+                                    data: {
+                                        date: new Date('2023-01-01T00:00:00Z'), // Far in the past to not pollute recent UI
+                                        amount: diff,
+                                        description: 'Ajustement Automatique (Solde de départ / CSV manquant)',
+                                        reference: 'INITIAL_BALANCE_ADJUSTMENT',
+                                        status: 'COMPLETED',
+                                        transactionType: 'INTERNAL',
+                                        paymentMethod: 'OTHER',
+                                        thirdPartyName: 'BANQUE'
+                                    }
+                                });
+                            }
+                        }
+                    }
+                } catch (balErr) {
+                    console.warn("Could not auto-align balance", balErr);
+                }
             }
 
             // Trigger intelligence sync (categorization) if new transactions found
