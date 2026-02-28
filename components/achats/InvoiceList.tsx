@@ -49,9 +49,9 @@ export function InvoiceList({ invoices }: InvoiceListProps) {
                         <TableRow className="bg-slate-50 hover:bg-slate-50">
                             <TableHead className="w-[120px]">Date</TableHead>
                             <TableHead>Fournisseur</TableHead>
-                            <TableHead>Référence</TableHead>
-                            <TableHead>Réception</TableHead>
-                            <TableHead>Paiement</TableHead>
+                            <TableHead className="hidden sm:table-cell">Référence</TableHead>
+                            <TableHead className="hidden md:table-cell">Réception</TableHead>
+                            <TableHead className="hidden lg:table-cell">Paiement</TableHead>
                             <TableHead className="text-right">Montant TTC</TableHead>
                             <TableHead className="w-[150px] text-center">Statut</TableHead>
                             <TableHead className="w-[80px] text-right">Actions</TableHead>
@@ -66,17 +66,17 @@ export function InvoiceList({ invoices }: InvoiceListProps) {
                                 <TableCell>
                                     <span className="font-bold text-slate-700">{invoice.supplier?.name || "Inconnu"}</span>
                                 </TableCell>
-                                <TableCell className="text-muted-foreground font-mono text-[10px]">
+                                <TableCell className="hidden sm:table-cell text-muted-foreground font-mono text-[10px]">
                                     {invoice.invoiceNo || "---"}
                                 </TableCell>
-                                <TableCell>
+                                <TableCell className="hidden md:table-cell">
                                     {invoice.deliveryMode ? (
                                         <Badge variant="outline" className="text-[10px] font-normal bg-blue-50/50 text-blue-600 border-blue-100">
                                             {invoice.deliveryMode}
                                         </Badge>
                                     ) : "---"}
                                 </TableCell>
-                                <TableCell>
+                                <TableCell className="hidden lg:table-cell">
                                     {invoice.paymentMethod ? (
                                         <div className="text-[11px] text-slate-500 font-medium italic">
                                             {invoice.paymentMethod}
@@ -98,7 +98,7 @@ export function InvoiceList({ invoices }: InvoiceListProps) {
                         ))}
                         {invoices.length === 0 && (
                             <TableRow>
-                                <TableCell colSpan={6} className="h-32 text-center text-muted-foreground">
+                                <TableCell colSpan={8} className="h-32 text-center text-muted-foreground">
                                     Aucune facture enregistrée pour le moment.
                                     <br />
                                     <span className="text-sm">Commencez par scanner ou importer vos factures.</span>

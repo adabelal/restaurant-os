@@ -24,8 +24,8 @@ export default async function RHPage() {
     return (
         <main className="flex flex-col animate-in fade-in duration-500">
             {/* Header Section */}
-            <div className="bg-card/50 backdrop-blur-md border-b px-6 py-8 md:px-10 sticky top-0 z-20 shadow-sm">
-                <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="bg-card/50 backdrop-blur-md border-b px-4 py-6 md:px-10 md:py-8 sticky top-0 z-20 shadow-sm">
+                <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
                     <div className="space-y-1">
                         <div className="flex items-center gap-3">
                             <div className="p-2 bg-primary/10 rounded-xl">
@@ -59,28 +59,28 @@ export default async function RHPage() {
                 </div>
             </div>
 
-            <div className="p-6 md:p-10 max-w-[1400px] mx-auto w-full space-y-10">
-                <Tabs defaultValue="active" className="w-full space-y-10">
+            <div className="p-4 md:p-10 max-w-[1400px] mx-auto w-full space-y-8 md:space-y-10">
+                <Tabs defaultValue="active" className="w-full space-y-6 md:space-y-10">
                     <div className="flex items-center justify-center sm:justify-start">
-                        <TabsList className="p-1.5 bg-muted/50 rounded-2xl w-full sm:w-auto flex shadow-inner border border-border/50 backdrop-blur-sm">
+                        <TabsList className="p-1.5 bg-muted/50 rounded-2xl w-full sm:w-auto flex shadow-inner border border-border/50 backdrop-blur-sm overflow-x-auto whitespace-nowrap">
                             <TabsTrigger
                                 value="active"
-                                className="flex-1 sm:flex-none px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
+                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
                             >
-                                <User className="h-4 w-4" /> Actifs
+                                <User className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Actifs</span>
                                 <span className="ml-1 text-[10px] bg-primary/10 px-2 py-0.5 rounded-full font-sans">{activeEmployees.length}</span>
                             </TabsTrigger>
                             <TabsTrigger
                                 value="summary"
-                                className="flex-1 sm:flex-none px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
+                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
                             >
-                                <BarChart4 className="h-4 w-4" /> Paie
+                                <BarChart4 className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Paie</span>
                             </TabsTrigger>
                             <TabsTrigger
                                 value="archived"
-                                className="flex-1 sm:flex-none px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
+                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
                             >
-                                <Archive className="h-4 w-4" /> Archives
+                                <Archive className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Archives</span>
                                 <span className="ml-1 text-[10px] bg-muted px-2 py-0.5 rounded-full font-sans">{archivedEmployees.length}</span>
                             </TabsTrigger>
                         </TabsList>

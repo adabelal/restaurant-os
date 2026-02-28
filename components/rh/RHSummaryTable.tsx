@@ -100,19 +100,19 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
 
             <Card className="border-border shadow-xl bg-card">
                 <CardHeader className="border-b border-border bg-muted/20">
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-4">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                             <div>
                                 <CardTitle className="text-xl">Récapitulatif de Paie</CardTitle>
                                 <CardDescription className="capitalize">{monthLabel}</CardDescription>
                             </div>
-                            <div className="flex items-center bg-muted rounded-lg p-1 border">
+                            <div className="flex justify-center items-center bg-muted rounded-lg p-1 border">
                                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => changeMonth(-1)}><ChevronLeft className="h-4 w-4" /></Button>
                                 <span className="text-xs font-bold px-3 min-w-[100px] text-center capitalize">{currentDate.toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' })}</span>
                                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => changeMonth(1)}><ChevronRight className="h-4 w-4" /></Button>
                             </div>
                         </div>
-                        <Badge variant="outline" className="px-4 py-1 text-sm font-bold border-blue-500/20 text-blue-600 bg-blue-500/10 dark:text-blue-400">
+                        <Badge variant="outline" className="w-fit px-4 py-1 text-sm font-bold border-blue-500/20 text-blue-600 bg-blue-500/10 dark:text-blue-400">
                             PRÉVISIONNEL
                         </Badge>
                     </div>

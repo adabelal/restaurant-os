@@ -35,7 +35,7 @@ export default async function FinancePage() {
     const cashBalance = chartData.length > 0 ? (chartData[chartData.length - 1].cash || 0) : 0
 
     return (
-        <div className="flex flex-col min-h-screen bg-background space-y-8 p-8 max-w-7xl mx-auto font-sans transition-colors duration-300">
+        <div className="flex flex-col min-h-screen bg-background space-y-6 md:space-y-8 p-4 md:p-8 max-w-7xl mx-auto font-sans transition-colors duration-300">
             {/* Header Section - Clean & Professional */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-2">
                 <div>
@@ -46,15 +46,16 @@ export default async function FinancePage() {
                         Vue d'ensemble de la trésorerie et des flux.
                     </p>
                 </div>
-                <div className="flex items-center gap-3">
-                    <Button asChild variant="default" className="gap-2">
+                <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+                    <Button asChild variant="default" className="gap-2 shrink-0">
                         <Link href="/finance/bank">
                             <Landmark className="w-4 h-4" />
-                            Ma Banque
+                            <span className="hidden sm:inline">Ma Banque</span>
+                            <span className="inline sm:hidden">Banque</span>
                         </Link>
                     </Button>
                     <ImportBankCsvDialog />
-                    <Button asChild variant="outline" size="icon" className="h-10 w-10 rounded-full border-border hover:bg-muted hover:text-foreground transition-colors shadow-sm">
+                    <Button asChild variant="outline" size="icon" className="h-10 w-10 shrink-0 rounded-full border-border hover:bg-muted hover:text-foreground transition-colors shadow-sm">
                         <Link href="/finance/maintenance/bank" title="Maintenance & Imports">
                             <span className="sr-only">Paramètres</span>
                             <Settings className="h-4 w-4" />
@@ -64,7 +65,7 @@ export default async function FinancePage() {
             </div>
 
             {/* Main KPIs Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {/* 1. SOLDE BANQUE */}
                 <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

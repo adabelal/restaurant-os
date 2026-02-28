@@ -111,7 +111,7 @@ export function TransactionListClient({ initialTransactions }: { initialTransact
             <Card className="shadow-sm border-border bg-card overflow-hidden">
                 {/* TOOLBAR */}
                 <div className="p-4 border-b border-border bg-muted/20 flex flex-col md:flex-row gap-4 items-center justify-between">
-                    <div className="relative w-full md:w-1/3">
+                    <div className="relative w-full md:w-auto flex-1">
                         <Search className="absolute left-3 top-2.5 w-4 h-4 text-muted-foreground" />
                         <Input
                             placeholder="Rechercher libellé, tiers, catégorie..."
@@ -120,9 +120,9 @@ export function TransactionListClient({ initialTransactions }: { initialTransact
                             className="pl-9 bg-background"
                         />
                     </div>
-                    <div className="flex w-full md:w-auto items-center gap-3">
+                    <div className="flex w-full md:w-auto items-center gap-2 md:gap-3 flex-wrap justify-stretch">
                         <Select value={typeFilter} onValueChange={setTypeFilter}>
-                            <SelectTrigger className="w-[140px] bg-background">
+                            <SelectTrigger className="w-full sm:w-[140px] flex-1 sm:flex-none bg-background">
                                 <SelectValue placeholder="Type" />
                             </SelectTrigger>
                             <SelectContent>
@@ -133,7 +133,7 @@ export function TransactionListClient({ initialTransactions }: { initialTransact
                         </Select>
 
                         <Select value={methodFilter} onValueChange={setMethodFilter}>
-                            <SelectTrigger className="w-[160px] bg-background">
+                            <SelectTrigger className="w-full sm:w-[160px] flex-1 sm:flex-none bg-background">
                                 <SelectValue placeholder="Moyen de paiement" />
                             </SelectTrigger>
                             <SelectContent>

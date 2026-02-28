@@ -31,7 +31,7 @@ export default async function DashboardPage() {
     const todayDate = new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
 
     return (
-        <main className="flex flex-col min-h-screen p-6 md:p-10 max-w-7xl mx-auto space-y-10 font-sans transition-colors duration-300">
+        <main className="flex flex-col flex-1 w-full p-4 md:p-8 lg:p-10 max-w-7xl mx-auto space-y-8 md:space-y-10 font-sans transition-colors duration-300">
             {/* 1. HEADER */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border/40 animate-in fade-in slide-in-from-top-4 duration-700">
                 <div className="space-y-1">
@@ -56,7 +56,7 @@ export default async function DashboardPage() {
             </div>
 
             {/* 2. KPI: LES CHIFFRES CLÉS DU JOUR */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {/* RECETTE DU JOUR */}
                 <Card className="border-0 shadow-lg shadow-black/5 bg-gradient-to-br from-background to-emerald-500/5 dark:to-emerald-500/10 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 relative group animate-in slide-in-from-bottom-6 fade-in duration-700 delay-100 fill-mode-both">
                     <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -112,9 +112,9 @@ export default async function DashboardPage() {
             </div>
 
             {/* 3. ACTIVITÉ RÉCENTE & ACCÈS RAPIDES */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-12">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8 pb-12">
                 {/* COLONNE GAUCHE (2/3) : ACTIVITÉ */}
-                <div className="lg:col-span-2 space-y-6">
+                <div className="xl:col-span-2 space-y-6">
                     <Card className="border-0 shadow-lg shadow-black/5 bg-background rounded-2xl overflow-hidden animate-in slide-in-from-bottom-6 fade-in duration-700 delay-[400ms] fill-mode-both ring-1 ring-border/50">
                         <CardHeader className="border-b border-border/40 px-6 py-5 flex flex-row items-center justify-between bg-muted/10">
                             <div>

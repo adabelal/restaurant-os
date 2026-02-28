@@ -19,9 +19,9 @@ export default async function FinanceChargesPage() {
     }, 0)
 
     return (
-        <div className="flex flex-col min-h-screen bg-slate-50/50 space-y-8 p-8 max-w-7xl mx-auto">
+        <div className="flex flex-col min-h-screen bg-slate-50/50 space-y-6 md:space-y-8 p-4 md:p-8 max-w-7xl mx-auto">
             {/* Header Section with Gradient */}
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 p-8 shadow-xl text-white">
+            <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 p-6 md:p-8 shadow-xl text-white">
                 <div className="absolute top-0 right-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
                 <div className="absolute bottom-0 left-0 -ml-16 -mb-16 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" />
 
@@ -98,11 +98,11 @@ export default async function FinanceChargesPage() {
                     <Table>
                         <TableHeader>
                             <TableRow className="bg-slate-50 border-b border-slate-100 hover:bg-slate-50">
-                                <TableHead className="w-[300px] pl-8 py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Libellé</TableHead>
-                                <TableHead className="py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Catégorie</TableHead>
+                                <TableHead className="w-[300px] pl-4 md:pl-8 py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Libellé</TableHead>
+                                <TableHead className="hidden md:table-cell py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Catégorie</TableHead>
                                 <TableHead className="py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Montant</TableHead>
-                                <TableHead className="py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Fréquence</TableHead>
-                                <TableHead className="py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Jour</TableHead>
+                                <TableHead className="hidden sm:table-cell py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Fréquence</TableHead>
+                                <TableHead className="hidden lg:table-cell py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Jour</TableHead>
                                 <TableHead className="text-right pr-8 py-5 text-xs uppercase font-bold text-slate-500 tracking-wider">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
@@ -120,31 +120,31 @@ export default async function FinanceChargesPage() {
                             ) : (
                                 charges.map((charge) => (
                                     <TableRow key={charge.id} className="hover:bg-blue-50/30 transition-colors group border-b border-slate-50">
-                                        <TableCell className="font-semibold text-slate-900 pl-8 py-6">
-                                            <div className="flex items-center gap-3">
-                                                <div className="h-2 w-2 rounded-full bg-blue-500" />
-                                                {charge.name}
+                                        <TableCell className="font-semibold text-slate-900 pl-4 md:pl-8 py-6">
+                                            <div className="flex items-center gap-2 md:gap-3">
+                                                <div className="h-2 w-2 rounded-full bg-blue-500 shrink-0" />
+                                                <span className="truncate max-w-[120px] sm:max-w-none">{charge.name}</span>
                                             </div>
                                         </TableCell>
-                                        <TableCell>
+                                        <TableCell className="hidden md:table-cell">
                                             <Badge variant="secondary" className="font-semibold bg-slate-100 text-slate-600 border border-slate-200 px-3 py-1 group-hover:bg-white transition-colors">
                                                 {charge.category?.name || 'Non catégorisé'}
                                             </Badge>
                                         </TableCell>
-                                        <TableCell className="font-bold text-slate-900 text-base">
+                                        <TableCell className="font-bold text-slate-900 text-sm md:text-base">
                                             {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(Number(charge.amount))}
                                         </TableCell>
-                                        <TableCell>
-                                            <span className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-md ${charge.frequency === 'MONTHLY' ? 'bg-emerald-100 text-emerald-700' :
-                                                    charge.frequency === 'QUARTERLY' ? 'bg-amber-100 text-amber-700' :
-                                                        'bg-purple-100 text-purple-700'
+                                        <TableCell className="hidden sm:table-cell">
+                                            <span className={`text-[10px] md:text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-md ${charge.frequency === 'MONTHLY' ? 'bg-emerald-100 text-emerald-700' :
+                                                charge.frequency === 'QUARTERLY' ? 'bg-amber-100 text-amber-700' :
+                                                    'bg-purple-100 text-purple-700'
                                                 }`}>
                                                 {charge.frequency === 'MONTHLY' && 'Mensuel'}
                                                 {charge.frequency === 'QUARTERLY' && 'Trimestriel'}
                                                 {charge.frequency === 'YEARLY' && 'Annuel'}
                                             </span>
                                         </TableCell>
-                                        <TableCell>
+                                        <TableCell className="hidden lg:table-cell">
                                             <div className="flex items-center gap-2 text-slate-500 font-medium">
                                                 <Calendar className="h-4 w-4 text-slate-400" />
                                                 <span>le {charge.dayOfMonth}</span>

@@ -43,7 +43,7 @@ export default async function AllTransactionsPage({
     }));
 
     return (
-        <div className="flex flex-col gap-8 max-w-7xl mx-auto p-8 font-sans">
+        <div className="flex flex-col gap-6 md:gap-8 max-w-7xl mx-auto p-4 md:p-8 font-sans">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight mb-1 flex items-center gap-2">
@@ -54,14 +54,14 @@ export default async function AllTransactionsPage({
                         Historique complet, recherches, filtres croisés et totaux calculés dynamiquement.
                     </p>
                 </div>
-                <div className="flex items-center gap-3">
-                    <Button variant="outline" asChild>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <Button variant="outline" asChild className="w-full sm:w-auto">
                         <Link href="/finance">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Tableau de Bord
                         </Link>
                     </Button>
-                    <Button variant="default" asChild>
+                    <Button variant="default" asChild className="w-full sm:w-auto">
                         <Link href="/finance/bank">
                             <Landmark className="mr-2 h-4 w-4" />
                             Gérer ma banque

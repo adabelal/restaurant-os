@@ -47,9 +47,9 @@ export function MobileHeader() {
                             variant="ghost"
                             size="icon"
                             onClick={() => setIsOpen(true)}
-                            className="mr-1 -ml-2 text-muted-foreground hover:text-primary transition-colors"
+                            className="mr-1 -ml-2 h-11 w-11 text-muted-foreground hover:text-primary transition-colors"
                         >
-                            <Menu className="h-6 w-6" />
+                            <Menu className="h-7 w-7" />
                         </Button>
                         <Link className="flex items-center gap-2 group" href="/">
                             <div className="h-8 w-8 bg-gradient-to-br from-primary via-primary/80 to-accent rounded-lg flex items-center justify-center text-white shadow-md shadow-primary/20 group-hover:rotate-3 transition-transform duration-300">
