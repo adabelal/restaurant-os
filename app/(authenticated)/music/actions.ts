@@ -1,5 +1,7 @@
 "use server"
 
+import { cache } from "react"
+
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
@@ -90,7 +92,7 @@ export async function createEvent(formData: FormData) {
     }
 }
 
-export async function getBands() {
+export const getBands = cache(async () => {
     try {
         const bands = await prisma.musicBand.findMany({
             orderBy: { name: "asc" },
@@ -114,9 +116,9 @@ export async function getBands() {
         console.error("Failed to fetch bands:", error)
         return []
     }
-}
+});
 
-export async function getEvents() {
+export const getEvents = cache(async () => {
     try {
         const events = await prisma.musicEvent.findMany({
             orderBy: { date: "desc" },
@@ -134,7 +136,7 @@ export async function getEvents() {
         console.error("Failed to fetch events:", error)
         return []
     }
-}
+});
 
 export async function updateEventStatus(eventId: string, status: string, invoiceStatus?: string) {
     try {
