@@ -55,12 +55,7 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Siwa specific aliases if needed, though we map to primary/accent usually
-        siwa: {
-          red: "#dc2626",
-          gold: "#f59e0b",
-          dark: "#18181b",
-        }
+        // Siwa specific aliases were here but have been removed for dark mode compatibility
       },
       borderRadius: {
         lg: "var(--radius)",
