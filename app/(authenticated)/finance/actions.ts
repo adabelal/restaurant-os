@@ -842,3 +842,21 @@ export async function syncBankTransactions() {
         return await syncBankTransactionsInternal();
     });
 }
+
+export async function assignTransactionCategory(transactionId: string, categoryId: string) {
+    return safeAction({ transactionId, categoryId }, async (input) => {
+        try {
+            await prisma.bankTransaction.update({
+                where: { id: input.transactionId },
+                data: { categoryId: input.categoryId }
+            })
+            revalidatePath('/finance/transactions')
+            revalidatePath('/finance/transactions/auto-categorisation')
+            revalidatePath('/finance')
+            return { success: true }
+        } catch (error) {
+            console.error("Assign category error:", error)
+            return { error: "Erreur lors de l'assignation de la catégorie" }
+        }
+    })
+}
