@@ -4,9 +4,11 @@ import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { BankTransaction, FixedCost, PurchaseOrder } from "@prisma/client"
 import { FINANCE_RULES } from "@/lib/finance-rules"
+import { safeAction } from "@/lib/safe-action"
+import { cache } from "react"
 
 // FINANCE STATS WITH AUTO-REPAIR
-export async function getFinanceStats() {
+export const getFinanceStats = cache(async () => {
     // AUTO-REPAIR: Feature disabled (Json Import removed)
     try {
         const count = await prisma.bankTransaction.count()
@@ -82,10 +84,10 @@ export async function getFinanceStats() {
         recentTransactions,
         chartData
     }
-}
+})
 
 // FINANCE CATEGORIES
-export async function getFinanceCategories() {
+export const getFinanceCategories = cache(async () => {
     try {
         const categories = await prisma.financeCategory.findMany({
             orderBy: { name: 'asc' }
@@ -95,26 +97,28 @@ export async function getFinanceCategories() {
         console.error("Error fetching finance categories:", error)
         return []
     }
-}
+})
 
 export async function createFinanceCategory(name: string, type: 'FIXED_COST' | 'VARIABLE_COST' | 'REVENUE' | 'TAX' | 'FINANCIAL' | 'INVESTMENT' | 'SALARY') {
-    try {
-        const category = await prisma.financeCategory.create({
-            data: {
-                name,
-                type
-            }
-        })
-        revalidatePath('/finance')
-        return { success: true, data: category }
-    } catch (error) {
-        console.error("Error creating finance category:", error)
-        return { success: false, error }
-    }
+    return safeAction({ name, type }, async (input) => {
+        try {
+            const category = await prisma.financeCategory.create({
+                data: {
+                    name,
+                    type
+                }
+            })
+            revalidatePath('/finance')
+            return { success: true, data: category }
+        } catch (error) {
+            console.error("Error creating finance category:", error)
+            return { error: "Erreur lors de la création." }
+        }
+    })
 }
 
 // FIXED COSTS
-export async function getFixedCosts() {
+export const getFixedCosts = cache(async () => {
     try {
         // Fetch costs and categories separately to avoid Relation errors if data is inconsistent
         const [costs, categories] = await Promise.all([
@@ -146,9 +150,7 @@ export async function getFixedCosts() {
         console.error("Error fetching fixed costs:", error)
         return []
     }
-}
-
-import { withAuth } from "@/lib/action-wrapper"
+})
 
 export async function addFixedCost(data: {
     name: string
@@ -157,16 +159,16 @@ export async function addFixedCost(data: {
     frequency: 'MONTHLY' | 'QUARTERLY' | 'YEARLY'
     categoryId: string
 }) {
-    return withAuth(async () => {
+    return safeAction(data, async (input) => {
         try {
             const cost = await prisma.fixedCost.create({
                 data: {
-                    name: data.name,
-                    amount: data.amount,
-                    dayOfMonth: data.dayOfMonth,
-                    frequency: data.frequency,
+                    name: input.name,
+                    amount: input.amount,
+                    dayOfMonth: input.dayOfMonth,
+                    frequency: input.frequency,
                     category: {
-                        connect: { id: data.categoryId }
+                        connect: { id: input.categoryId }
                     }
                 }
             })
@@ -174,32 +176,31 @@ export async function addFixedCost(data: {
             return { success: true, data: cost }
         } catch (error) {
             console.error("Error adding fixed cost:", error)
-            return { success: false, error }
+            return { error: "Erreur lors de l'ajout" }
         }
     })
 }
 
 export async function deleteFixedCost(id: string) {
-    return withAuth(async () => {
+    return safeAction(id, async (input) => {
         try {
             await prisma.fixedCost.delete({
-                where: { id }
+                where: { id: input }
             })
             revalidatePath('/finance/charges')
             return { success: true }
         } catch (error) {
             console.error("Error deleting fixed cost:", error)
-            return { success: false, error }
+            return { error: "Erreur lors de la suppression" }
         }
-    }, ['ADMIN', 'MANAGER']) // Sécurité supp. : seul Admin/Manager peut supprimer
+    })
 }
 
-// BANK TRANSACTIONS & CHART DATA
-export async function getBankTransactions(params?: {
+export const getBankTransactions = cache(async (params?: {
     page?: number,
     limit?: number,
     search?: string
-}) {
+}) => {
     const page = params?.page || 1
     const limit = params?.limit || 20
     const search = params?.search || ""
@@ -236,9 +237,9 @@ export async function getBankTransactions(params?: {
         console.error("Error fetching transactions:", error)
         return { transactions: [], totalPages: 0, totalCount: 0 }
     }
-}
+})
 
-export async function getBalanceChartData() {
+export const getBalanceChartData = cache(async () => {
     try {
         const [bankTxs, cashTxs] = await Promise.all([
             prisma.bankTransaction.findMany({
@@ -293,9 +294,9 @@ export async function getBalanceChartData() {
         console.error("Error generating chart data:", error)
         return []
     }
-}
+})
 
-export async function getMonthlyTimeline() {
+export const getMonthlyTimeline = cache(async () => {
     try {
         const fixedCosts = await prisma.fixedCost.findMany({
             where: { isActive: true },
@@ -324,129 +325,131 @@ export async function getMonthlyTimeline() {
         console.error("Error fetching timeline:", error)
         return []
     }
-}
+})
 
 export async function syncFinanceIntelligence() {
-    try {
-        console.log("Starting Smart Finance Intelligence...")
+    return safeAction(null, async () => {
+        try {
+            console.log("Starting Smart Finance Intelligence...")
 
-        // 1. Create/Get Categories
-        const catMap: Record<string, string> = {}
-        for (const c of FINANCE_RULES.categories) {
-            let cat = await prisma.financeCategory.findFirst({ where: { name: c.name } })
-            if (!cat) {
-                // @ts-ignore - Prisma enum type mismatch with string literal
-                cat = await prisma.financeCategory.create({
-                    data: { name: c.name, type: c.type as any }
-                })
-            }
-            catMap[c.name] = cat.id
-        }
-
-        // 3. Smart Categorization of Transactions
-        // We look for uncategorized transactions and try to match keywords
-        const uncategorized = await prisma.bankTransaction.findMany({
-            where: { categoryId: null }
-        })
-
-        for (const tx of uncategorized) {
-            const desc = tx.description.toUpperCase()
-            let matchedCatId = null
-
-            for (const cat of FINANCE_RULES.categories) {
-                if (cat.keywords.some(k => desc.includes(k))) {
-                    matchedCatId = catMap[cat.name]
-                    break
-                }
-            }
-
-            if (matchedCatId) {
-                await prisma.bankTransaction.update({
-                    where: { id: tx.id },
-                    data: { categoryId: matchedCatId }
-                })
-            }
-        }
-
-        // 4. Detect Recurring Fixed Costs (The "Expert" Logic)
-        // We look for transactions in specific categories that happen regularly
-        for (const target of FINANCE_RULES.detectionTargets) {
-            const catId = catMap[target.catName]
-            if (!catId) continue
-
-            // Find last 3 transactions for this category to estimate amount
-            const history = await prisma.bankTransaction.findMany({
-                where: { categoryId: catId, amount: { lt: 0 } }, // Only expenses
-                orderBy: { date: 'desc' },
-                take: 5
-            })
-
-            if (history.length >= 2) {
-                // Calculate average amount
-                const avgAmount = Math.abs(history.reduce((sum, t) => sum + Number(t.amount), 0) / history.length)
-                // Determine day of month (based on most recent)
-                const dayOfMonth = new Date(history[0].date).getDate()
-
-                // Upsert Fixed Cost
-                const existingCost = await prisma.fixedCost.findFirst({
-                    where: { name: target.name }
-                })
-
-                if (!existingCost) {
-                    await prisma.fixedCost.create({
-                        data: {
-                            name: target.name,
-                            amount: avgAmount,
-                            dayOfMonth: dayOfMonth,
-                            frequency: 'MONTHLY',
-                            isActive: true,
-                            categoryId: catId
-                        }
+            // 1. Create/Get Categories
+            const catMap: Record<string, string> = {}
+            for (const c of FINANCE_RULES.categories) {
+                let cat = await prisma.financeCategory.findFirst({ where: { name: c.name } })
+                if (!cat) {
+                    // @ts-ignore - Prisma enum type mismatch with string literal
+                    cat = await prisma.financeCategory.create({
+                        data: { name: c.name, type: c.type as any }
                     })
-                    console.log(`Detected and created fixed cost: ${target.name} - ${avgAmount}€`)
                 }
+                catMap[c.name] = cat.id
             }
-        }
 
-        // 5. Detect Salaries (Specific logic per person)
-        for (const nameKeyword of FINANCE_RULES.salaryKeywords) {
-            const salaryTx = await prisma.bankTransaction.findMany({
-                where: {
-                    description: { contains: nameKeyword, mode: 'insensitive' },
-                    amount: { lt: 0 }
-                },
-                orderBy: { date: 'desc' },
-                take: 5
+            // 3. Smart Categorization of Transactions
+            // We look for uncategorized transactions and try to match keywords
+            const uncategorized = await prisma.bankTransaction.findMany({
+                where: { categoryId: null }
             })
 
-            if (salaryTx.length >= 3) {
-                const avgSalary = Math.abs(salaryTx.reduce((sum, t) => sum + Number(t.amount), 0) / salaryTx.length)
-                const costName = `Salaire - ${nameKeyword.charAt(0).toUpperCase() + nameKeyword.slice(1).toLowerCase()}`
+            for (const tx of uncategorized) {
+                const desc = tx.description.toUpperCase()
+                let matchedCatId = null
 
-                const existingSalary = await prisma.fixedCost.findFirst({ where: { name: costName } })
-                if (!existingSalary) {
-                    await prisma.fixedCost.create({
-                        data: {
-                            name: costName,
-                            amount: avgSalary,
-                            dayOfMonth: 5, // Default for salaries usually
-                            frequency: 'MONTHLY',
-                            isActive: true,
-                            categoryId: catMap['Salaires & Rémunérations']
-                        }
+                for (const cat of FINANCE_RULES.categories) {
+                    if (cat.keywords.some(k => desc.includes(k))) {
+                        matchedCatId = catMap[cat.name]
+                        break
+                    }
+                }
+
+                if (matchedCatId) {
+                    await prisma.bankTransaction.update({
+                        where: { id: tx.id },
+                        data: { categoryId: matchedCatId }
                     })
                 }
             }
+
+            // 4. Detect Recurring Fixed Costs (The "Expert" Logic)
+            // We look for transactions in specific categories that happen regularly
+            for (const target of FINANCE_RULES.detectionTargets) {
+                const catId = catMap[target.catName]
+                if (!catId) continue
+
+                // Find last 3 transactions for this category to estimate amount
+                const history = await prisma.bankTransaction.findMany({
+                    where: { categoryId: catId, amount: { lt: 0 } }, // Only expenses
+                    orderBy: { date: 'desc' },
+                    take: 5
+                })
+
+                if (history.length >= 2) {
+                    // Calculate average amount
+                    const avgAmount = Math.abs(history.reduce((sum, t) => sum + Number(t.amount), 0) / history.length)
+                    // Determine day of month (based on most recent)
+                    const dayOfMonth = new Date(history[0].date).getDate()
+
+                    // Upsert Fixed Cost
+                    const existingCost = await prisma.fixedCost.findFirst({
+                        where: { name: target.name }
+                    })
+
+                    if (!existingCost) {
+                        await prisma.fixedCost.create({
+                            data: {
+                                name: target.name,
+                                amount: avgAmount,
+                                dayOfMonth: dayOfMonth,
+                                frequency: 'MONTHLY',
+                                isActive: true,
+                                categoryId: catId
+                            }
+                        })
+                        console.log(`Detected and created fixed cost: ${target.name} - ${avgAmount}€`)
+                    }
+                }
+            }
+
+            // 5. Detect Salaries (Specific logic per person)
+            for (const nameKeyword of FINANCE_RULES.salaryKeywords) {
+                const salaryTx = await prisma.bankTransaction.findMany({
+                    where: {
+                        description: { contains: nameKeyword, mode: 'insensitive' },
+                        amount: { lt: 0 }
+                    },
+                    orderBy: { date: 'desc' },
+                    take: 5
+                })
+
+                if (salaryTx.length >= 3) {
+                    const avgSalary = Math.abs(salaryTx.reduce((sum, t) => sum + Number(t.amount), 0) / salaryTx.length)
+                    const costName = `Salaire - ${nameKeyword.charAt(0).toUpperCase() + nameKeyword.slice(1).toLowerCase()}`
+
+                    const existingSalary = await prisma.fixedCost.findFirst({ where: { name: costName } })
+                    if (!existingSalary) {
+                        await prisma.fixedCost.create({
+                            data: {
+                                name: costName,
+                                amount: avgSalary,
+                                dayOfMonth: 5, // Default for salaries usually
+                                frequency: 'MONTHLY',
+                                isActive: true,
+                                categoryId: catMap['Salaires & Rémunérations']
+                            }
+                        })
+                    }
+                }
+            }
+
+            revalidatePath('/finance')
+            revalidatePath('/finance/charges')
+            return { success: true }
+
+        } catch (error) {
+            console.error("Sync error:", error)
+            return { error: String(error) }
         }
-
-        revalidatePath('/finance')
-        revalidatePath('/finance/charges')
-        return { success: true }
-
-    } catch (error) {
-        console.error("Sync error:", error)
-        return { success: false, error: String(error) }
-    }
+    })
 }
 
 function analyzeTransactionData(description: string, amount: number) {
@@ -488,147 +491,151 @@ function analyzeTransactionData(description: string, amount: number) {
 }
 
 export async function importHistoricalData(transactions: any[], options: { resetMode?: boolean } = {}) {
-    try {
-        if (options.resetMode) {
-            console.log("RESET MODE ENABLED: Wiping existing transactions...")
-            await prisma.bankTransaction.deleteMany({})
-        } else {
-            console.log("Importing without wipe...")
+    return safeAction({ transactions, options }, async (input) => {
+        try {
+            if (input.options.resetMode) {
+                console.log("RESET MODE ENABLED: Wiping existing transactions...")
+                await prisma.bankTransaction.deleteMany({})
+            } else {
+                console.log("Importing without wipe...")
+            }
+
+            console.log(`Starting import of ${input.transactions.length} entries...`)
+
+            const CHUNK_SIZE = 100
+            for (let i = 0; i < input.transactions.length; i += CHUNK_SIZE) {
+                const chunk = input.transactions.slice(i, i + CHUNK_SIZE).map((tx: any) => {
+                    const analysis = analyzeTransactionData(tx.description, tx.amount);
+                    return {
+                        date: new Date(tx.date),
+                        amount: tx.amount,
+                        description: tx.description,
+                        transactionType: analysis.transactionType,
+                        paymentMethod: analysis.paymentMethod,
+                        thirdPartyName: analysis.thirdPartyName,
+                        status: 'PENDING'
+                    }
+                })
+
+                await prisma.bankTransaction.createMany({
+                    data: chunk
+                })
+            }
+
+            revalidatePath('/finance')
+            return { success: true, count: input.transactions.length }
+        } catch (error) {
+            console.error("Import error:", error)
+            return { error: String(error) }
         }
-
-        console.log(`Starting import of ${transactions.length} entries...`)
-
-        const CHUNK_SIZE = 100
-        for (let i = 0; i < transactions.length; i += CHUNK_SIZE) {
-            const chunk = transactions.slice(i, i + CHUNK_SIZE).map(tx => {
-                const analysis = analyzeTransactionData(tx.description, tx.amount);
-                return {
-                    date: new Date(tx.date),
-                    amount: tx.amount,
-                    description: tx.description,
-                    transactionType: analysis.transactionType,
-                    paymentMethod: analysis.paymentMethod,
-                    thirdPartyName: analysis.thirdPartyName,
-                    status: 'PENDING'
-                }
-            })
-
-            await prisma.bankTransaction.createMany({
-                data: chunk
-            })
-        }
-
-        revalidatePath('/finance')
-        return { success: true, count: transactions.length }
-    } catch (error) {
-        console.error("Import error:", error)
-        return { success: false, error: String(error) }
-    }
+    })
 }
 
 
 export async function importBankCsvAction(formData: FormData) {
-    try {
-        const file = formData.get('file') as File
-        if (!file) return { success: false, error: "Aucun fichier reçu" }
+    return safeAction(formData, async (input) => {
+        try {
+            const file = input.get('file') as File
+            if (!file) return { error: "Aucun fichier reçu" }
 
-        const text = await file.text() // Read file content
-        const lines = text.split('\n')
+            const text = await file.text() // Read file content
+            const lines = text.split('\n')
 
-        let importedCount = 0
-        let duplicateCount = 0
+            let importedCount = 0
+            let duplicateCount = 0
 
-        // Format de Banque Populaire attendu :
-        // Compte;Date de comptabilisation;Date opération;Libellé;Référence;Date valeur;Montant
+            // Format de Banque Populaire attendu :
+            // Compte;Date de comptabilisation;Date opération;Libellé;Référence;Date valeur;Montant
 
-        // Detect CSV format (header check)
-        const header = lines[0].split(';')
-        const isValidFormat = header.some(h => h.includes('Date opération') || h.includes('Libellé') || h.includes('Montant'))
+            // Detect CSV format (header check)
+            const header = lines[0].split(';')
+            const isValidFormat = header.some(h => h.includes('Date opération') || h.includes('Libellé') || h.includes('Montant'))
 
-        if (!isValidFormat) {
-            // Try to find the header row
-            // Maybe it's not the first line
-        }
-
-        for (let i = 1; i < lines.length; i++) {
-            const line = lines[i].trim()
-            if (!line) continue
-
-            const cols = line.split(';')
-            if (cols.length < 5) continue
-
-            // Index mapping (based on previous manual parsing)
-            // 2: Date Opération (DD/MM/YYYY)
-            // 3: Libellé
-            // 6: Montant (French format: 1 234,56 or "-123,45" with quotes)
-
-            const dateStr = cols[2]?.replace(/"/g, '').trim()
-            const libelle = cols[3]?.replace(/"/g, '').trim()
-            let amountStr = cols[6]?.replace(/"/g, '').trim()
-
-            if (!dateStr || !amountStr) continue
-
-            // Parse Date
-            const [day, month, year] = dateStr.split('/')
-            const dateObj = new Date(Number(year), Number(month) - 1, Number(day))
-
-            if (isNaN(dateObj.getTime())) continue
-
-            // Check if future date (sometimes banks export 'future' lines)
-            // Actually we accept future lines if they are in the CSV
-
-            // Parse Amount (French to Float)
-            // Remove ' ' (thousands) and replace ',' with '.'
-            amountStr = amountStr.replace(/\s/g, '').replace(',', '.')
-            // Handle invisible chars
-            amountStr = amountStr.replace(/[^0-9.-]/g, '')
-            const amount = parseFloat(amountStr)
-
-            if (isNaN(amount) || amount === 0) continue
-
-            // --- ANTI-DUPLICATE CHECK ---
-            // We check for exact match on Date + Amount + Description (First 50 chars)
-            // We use a small tolerance on date (some banks change date slightly between pending/posted) ?? No, usually date operation is stable.
-            // Let's stick to strict date.
-
-            const existing = await prisma.bankTransaction.findFirst({
-                where: {
-                    date: dateObj,
-                    amount: amount,
-                    description: libelle
-                }
-            })
-
-            if (existing) {
-                duplicateCount++
-                continue
+            if (!isValidFormat) {
+                // Try to find the header row
+                // Maybe it's not the first line
             }
 
-            // --- CREATE ---
-            const analysis = analyzeTransactionData(libelle, amount);
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim()
+                if (!line) continue
 
-            await prisma.bankTransaction.create({
-                data: {
-                    date: dateObj,
-                    amount: amount,
-                    description: libelle,
-                    transactionType: analysis.transactionType,
-                    paymentMethod: analysis.paymentMethod,
-                    thirdPartyName: analysis.thirdPartyName,
-                    reference: 'CSV_IMPORT_' + new Date().toISOString().split('T')[0],
-                    status: 'COMPLETED'
+                const cols = line.split(';')
+                if (cols.length < 5) continue
+
+                // Index mapping (based on previous manual parsing)
+                // 2: Date Opération (DD/MM/YYYY)
+                // 3: Libellé
+                // 6: Montant (French format: 1 234,56 or "-123,45" with quotes)
+
+                const dateStr = cols[2]?.replace(/"/g, '').trim()
+                const libelle = cols[3]?.replace(/"/g, '').trim()
+                let amountStr = cols[6]?.replace(/"/g, '').trim()
+
+                if (!dateStr || !amountStr) continue
+
+                // Parse Date
+                const [day, month, year] = dateStr.split('/')
+                const dateObj = new Date(Number(year), Number(month) - 1, Number(day))
+
+                if (isNaN(dateObj.getTime())) continue
+
+                // Check if future date (sometimes banks export 'future' lines)
+                // Actually we accept future lines if they are in the CSV
+
+                // Parse Amount (French to Float)
+                // Remove ' ' (thousands) and replace ',' with '.'
+                amountStr = amountStr.replace(/\s/g, '').replace(',', '.')
+                // Handle invisible chars
+                amountStr = amountStr.replace(/[^0-9.-]/g, '')
+                const amount = parseFloat(amountStr)
+
+                if (isNaN(amount) || amount === 0) continue
+
+                // --- ANTI-DUPLICATE CHECK ---
+                // We check for exact match on Date + Amount + Description (First 50 chars)
+                // We use a small tolerance on date (some banks change date slightly between pending/posted) ?? No, usually date operation is stable.
+                // Let's stick to strict date.
+
+                const existing = await prisma.bankTransaction.findFirst({
+                    where: {
+                        date: dateObj,
+                        amount: amount,
+                        description: libelle
+                    }
+                })
+
+                if (existing) {
+                    duplicateCount++
+                    continue
                 }
-            })
-            importedCount++
+
+                // --- CREATE ---
+                const analysis = analyzeTransactionData(libelle, amount);
+
+                await prisma.bankTransaction.create({
+                    data: {
+                        date: dateObj,
+                        amount: amount,
+                        description: libelle,
+                        transactionType: analysis.transactionType,
+                        paymentMethod: analysis.paymentMethod,
+                        thirdPartyName: analysis.thirdPartyName,
+                        reference: 'CSV_IMPORT_' + new Date().toISOString().split('T')[0],
+                        status: 'COMPLETED'
+                    }
+                })
+                importedCount++
+            }
+
+            revalidatePath('/finance')
+            return { success: true, data: { imported: importedCount, duplicates: duplicateCount } }
+
+        } catch (error) {
+            console.error("CSV Import Error:", error)
+            return { error: String(error) }
         }
-
-        revalidatePath('/finance')
-        return { success: true, data: { imported: importedCount, duplicates: duplicateCount } }
-
-    } catch (error) {
-        console.error("CSV Import Error:", error)
-        return { success: false, error: String(error) }
-    }
+    })
 }
 
 
@@ -831,7 +838,7 @@ export async function syncBankTransactionsInternal() {
 }
 
 export async function syncBankTransactions() {
-    return withAuth(async () => {
+    return safeAction(null, async () => {
         return await syncBankTransactionsInternal();
     });
 }
