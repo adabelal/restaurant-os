@@ -65,8 +65,8 @@ export default async function AllTransactionsPage({
                 </div>
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 md:gap-3">
                     <Button variant="outline" asChild className="w-full sm:w-auto">
-                        <Link href="/finance/categories">
-                            Catégories
+                        <Link href="/finance/categorisation">
+                            Catégorisation
                         </Link>
                     </Button>
                     <Button variant="secondary" asChild className="w-full sm:w-auto bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/50">

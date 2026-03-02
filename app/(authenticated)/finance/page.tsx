@@ -44,14 +44,14 @@ export default async function FinancePage() {
                         Tableau de Bord Financier
                     </h1>
                     <p className="text-muted-foreground font-medium mt-1">
-                        Vue d'ensemble de la trésorerie et des flux.
+                        Vue d'overview de la trésorerie et des flux.
                     </p>
                 </div>
                 <div className="flex items-center gap-2 md:gap-3 flex-wrap">
                     <Button asChild variant="outline" className="gap-2 shrink-0">
-                        <Link href="/finance/categories">
+                        <Link href="/finance/categorisation">
                             <Tags className="w-4 h-4" />
-                            <span className="hidden sm:inline">Catégories</span>
+                            <span className="hidden sm:inline">Catégorisation</span>
                         </Link>
                     </Button>
                     <Button asChild variant="secondary" className="gap-2 shrink-0 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/50">

@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Brain, ArrowUpRight, ArrowDownRight, RefreshCw, CheckCircle2 } from 'lucide-react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import { syncFinanceIntelligence, assignTransactionCategory } from '../../actions'
+import { syncFinanceIntelligence, assignTransactionCategory } from '../actions'
 import { toast } from 'sonner'
 
 type AutoCatTx = {
