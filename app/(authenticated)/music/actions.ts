@@ -326,3 +326,34 @@ export async function importMusicDataV2(csvContent: string) {
     )
 }
 
+export async function deleteEvent(eventId: string) {
+    return safeAction(eventId, async (id) => {
+        try {
+            await prisma.musicEvent.delete({ where: { id } })
+            revalidatePath("/music")
+            return { success: true }
+        } catch (error) {
+            console.error("Failed to delete event:", error)
+            return { error: "Failed to delete event" }
+        }
+    })
+}
+
+export async function deleteBand(bandId: string) {
+    return safeAction(bandId, async (id) => {
+        try {
+            // First check if band has events
+            const events = await prisma.musicEvent.count({ where: { bandId: id } })
+            if (events > 0) {
+                return { error: "Veuillez d'abord supprimer les concerts de ce groupe." }
+            }
+
+            await prisma.musicBand.delete({ where: { id } })
+            revalidatePath("/music")
+            return { success: true }
+        } catch (error) {
+            console.error("Failed to delete band:", error)
+            return { error: "Erreur lors de la suppression." }
+        }
+    })
+}

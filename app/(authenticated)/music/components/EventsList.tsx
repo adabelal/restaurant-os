@@ -4,14 +4,28 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Calendar, List, LayoutGrid } from "lucide-react"
+import { Calendar, List, LayoutGrid, Trash2 } from "lucide-react"
 import { format } from "date-fns"
 import { fr } from "date-fns/locale"
 import { cn } from "@/lib/utils"
 import { EventsCalendar } from "./EventsCalendar"
+import { deleteEvent } from "../actions"
+import { toast } from "sonner"
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 export function EventsList({ initialEvents }: { initialEvents: any[] }) {
     const [view, setView] = useState<'calendar' | 'list' | 'grid'>('calendar')
+    const [isDeleting, setIsDeleting] = useState<string | null>(null)
 
     if (!initialEvents || initialEvents.length === 0) {
         return (
@@ -19,6 +33,17 @@ export function EventsList({ initialEvents }: { initialEvents: any[] }) {
                 <p className="text-muted-foreground">Aucun concert prévu pour le moment.</p>
             </div>
         )
+    }
+
+    async function handleDelete(id: string) {
+        setIsDeleting(id)
+        const result = await deleteEvent(id)
+        if (result && result.error) {
+            toast.error(result.error)
+        } else {
+            toast.success("Concert supprimé avec succès")
+        }
+        setIsDeleting(null)
     }
 
     return (
@@ -67,9 +92,40 @@ export function EventsList({ initialEvents }: { initialEvents: any[] }) {
                                             event.status === 'TENTATIVE' ? 'Option' :
                                                 event.status === 'COMPLETED' ? 'Terminé' : 'Annulé'}
                                     </Badge>
-                                    <span className="font-mono text-xs text-muted-foreground">
-                                        {event.startTime || "20:00"}
-                                    </span>
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-mono text-xs text-muted-foreground mr-2">
+                                            {event.startTime || "20:00"}
+                                        </span>
+                                        <AlertDialog>
+                                            <AlertDialogTrigger asChild>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="h-6 w-6 text-muted-foreground hover:text-destructive hover:bg-destructive/10 -me-2 -mt-1"
+                                                    disabled={isDeleting === event.id}
+                                                >
+                                                    <Trash2 className="h-3.5 w-3.5" />
+                                                </Button>
+                                            </AlertDialogTrigger>
+                                            <AlertDialogContent>
+                                                <AlertDialogHeader>
+                                                    <AlertDialogTitle>Êtes-vous sûr ?</AlertDialogTitle>
+                                                    <AlertDialogDescription>
+                                                        Cette action est irréversible. Cela supprimera le concert de "{event.band.name}" du {format(new Date(event.date), "d MMM yyyy", { locale: fr })}.
+                                                    </AlertDialogDescription>
+                                                </AlertDialogHeader>
+                                                <AlertDialogFooter>
+                                                    <AlertDialogCancel>Annuler</AlertDialogCancel>
+                                                    <AlertDialogAction
+                                                        onClick={() => handleDelete(event.id)}
+                                                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                                    >
+                                                        Supprimer
+                                                    </AlertDialogAction>
+                                                </AlertDialogFooter>
+                                            </AlertDialogContent>
+                                        </AlertDialog>
+                                    </div>
                                 </div>
                                 <CardTitle className="text-lg font-bold text-foreground">
                                     {event.band.name}
@@ -158,6 +214,38 @@ export function EventsList({ initialEvents }: { initialEvents: any[] }) {
                                         {event.invoiceStatus === 'PENDING' ? 'Fact. À recevoir' :
                                             event.invoiceStatus === 'RECEIVED' ? 'Fact. Reçue' : 'Fact. Payée'}
                                     </Badge>
+
+                                    <div className="ml-2 border-l border-border/50 pl-2">
+                                        <AlertDialog>
+                                            <AlertDialogTrigger asChild>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                                                    disabled={isDeleting === event.id}
+                                                >
+                                                    <Trash2 className="h-4 w-4" />
+                                                </Button>
+                                            </AlertDialogTrigger>
+                                            <AlertDialogContent>
+                                                <AlertDialogHeader>
+                                                    <AlertDialogTitle>Êtes-vous sûr ?</AlertDialogTitle>
+                                                    <AlertDialogDescription>
+                                                        Cette action est irréversible. Cela supprimera le concert de "{event.band.name}".
+                                                    </AlertDialogDescription>
+                                                </AlertDialogHeader>
+                                                <AlertDialogFooter>
+                                                    <AlertDialogCancel>Annuler</AlertDialogCancel>
+                                                    <AlertDialogAction
+                                                        onClick={() => handleDelete(event.id)}
+                                                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                                    >
+                                                        Supprimer
+                                                    </AlertDialogAction>
+                                                </AlertDialogFooter>
+                                            </AlertDialogContent>
+                                        </AlertDialog>
+                                    </div>
                                 </div>
                             </div>
                         </Card>

@@ -17,8 +17,16 @@ export function Sidebar() {
         { href: "/stock", label: "Stock & Ingrédients", icon: Package },
         { href: "/achats", label: "Achats & Factures", icon: ShoppingCart },
         { href: "/achats/scanner", label: "Scanner Intelligent", icon: Camera },
-        { href: "/finance", label: "Finance & Pilotage", icon: BarChart3 },
-        { href: "/caisse", label: "Caisse", icon: Wallet },
+        {
+            label: "Finances",
+            icon: BarChart3,
+            subItems: [
+                { href: "/caisse", label: "Caisse" },
+                { href: "/finance/transactions", label: "Banque (Transactions)" },
+                { href: "/finance/previsionnel", label: "Prévisionnel" }
+            ]
+        },
+        { href: "/mails", label: "Emails Traités", icon: Package },
         { href: "/music", label: "Musique & Live", icon: Music },
     ]
 
@@ -45,12 +53,51 @@ export function Sidebar() {
                     <nav className="space-y-1.5">
                         {navItems.map((item, index) => {
                             const Icon = item.icon
-                            const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href))
+
+                            if (item.subItems) {
+                                const isParentActive = pathname?.startsWith("/finance") || pathname?.startsWith("/caisse")
+                                return (
+                                    <div key={item.label} className="space-y-1" style={{ animationDelay: `${index * 50}ms` }}>
+                                        <div
+                                            className={cn(
+                                                "group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-oswald font-medium uppercase tracking-wide transition-all duration-300 relative overflow-hidden cursor-default",
+                                                isParentActive
+                                                    ? "bg-primary/10 text-primary font-bold shadow-sm"
+                                                    : "text-muted-foreground"
+                                            )}
+                                        >
+                                            <div className="flex items-center gap-3 relative z-10">
+                                                <Icon className={cn("h-5 w-5", isParentActive ? "text-primary" : "text-muted-foreground")} />
+                                                <span>{item.label}</span>
+                                            </div>
+                                        </div>
+                                        <div className="pl-12 flex flex-col gap-1 mt-1 animate-in slide-in-from-top-2">
+                                            {item.subItems.map((subItem) => {
+                                                const isSubActive = pathname === subItem.href || (subItem.href !== "/finance" && pathname?.startsWith(subItem.href))
+                                                return (
+                                                    <Link
+                                                        key={subItem.href}
+                                                        href={subItem.href}
+                                                        className={cn(
+                                                            "text-[12px] font-medium transition-colors px-3 py-2 rounded-lg font-oswald uppercase tracking-wider block",
+                                                            isSubActive ? "text-primary bg-primary/10 font-bold" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                                                        )}
+                                                    >
+                                                        {subItem.label}
+                                                    </Link>
+                                                )
+                                            })}
+                                        </div>
+                                    </div>
+                                )
+                            }
+
+                            const isActive = item.href ? (pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href))) : false
 
                             return (
                                 <Link
-                                    key={item.href}
-                                    href={item.href}
+                                    key={item.label}
+                                    href={item.href || "#"}
                                     className={cn(
                                         "group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-oswald font-medium uppercase tracking-wide transition-all duration-300 relative overflow-hidden",
                                         isActive

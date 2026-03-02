@@ -15,7 +15,6 @@ import {
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { BalanceChart } from "@/components/finance/BalanceChart"
-import { ImportBankCsvDialog } from "@/components/finance/ImportBankCsvDialog"
 import { getMonthlyTimeline, getFinanceStats } from "./actions"
 
 export const dynamic = 'force-dynamic'
@@ -54,13 +53,7 @@ export default async function FinancePage() {
                             <span className="inline sm:hidden">Banque</span>
                         </Link>
                     </Button>
-                    <ImportBankCsvDialog />
-                    <Button asChild variant="outline" size="icon" className="h-10 w-10 shrink-0 rounded-full border-border hover:bg-muted hover:text-foreground transition-colors shadow-sm">
-                        <Link href="/finance/maintenance/bank" title="Maintenance & Imports">
-                            <span className="sr-only">Paramètres</span>
-                            <Settings className="h-4 w-4" />
-                        </Link>
-                    </Button>
+
                 </div>
             </div>
 

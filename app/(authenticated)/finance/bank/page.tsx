@@ -129,6 +129,16 @@ export default async function BankSyncPage({
                                                 : <span className="text-amber-500">Jamais synchronisé</span>}
                                         </span>
                                     </div>
+                                    <form action={async () => {
+                                        "use server"
+                                        const { revalidatePath } = await import('next/cache')
+                                        await prisma.bankAccount.delete({ where: { id: account.id } })
+                                        revalidatePath('/finance/bank')
+                                    }} className="mt-4 pt-4 border-t border-border/50 flex justify-end">
+                                        <Button variant="outline" size="sm" className="text-rose-500 hover:bg-rose-50 hover:text-rose-600 border-rose-100">
+                                            Supprimer
+                                        </Button>
+                                    </form>
                                 </div>
                             </CardContent>
                         </Card>

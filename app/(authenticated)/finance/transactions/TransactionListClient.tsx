@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, HelpCircle, FileText, FilterX } from 'lucide-react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
+import Link from 'next/link'
 
 export type TransformedTx = {
     id: string
@@ -85,25 +86,22 @@ export function TransactionListClient({ initialTransactions }: { initialTransact
                         <div className="text-2xl font-bold">{filtered.length}</div>
                     </CardContent>
                 </Card>
-                <Card className="shadow-sm border-emerald-100 dark:border-emerald-900 bg-emerald-50/20 dark:bg-emerald-900/10">
+                <Card className="shadow-sm border-indigo-100 dark:border-indigo-900 bg-indigo-50/20 dark:bg-indigo-900/10">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-emerald-700 dark:text-emerald-400">Total des entrées affichées</CardTitle>
+                        <CardTitle className="text-sm font-medium text-indigo-700 dark:text-indigo-400">Solde de la sélection</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                            {totalIncome.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                        <div className={`text-2xl font-bold ${(totalIncome - totalExpense) >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
+                            {(totalIncome - totalExpense).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="shadow-sm border-rose-100 dark:border-rose-900 bg-rose-50/20 dark:bg-rose-900/10">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-rose-700 dark:text-rose-400">Total des sorties affichées</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold text-rose-600 dark:text-rose-400">
-                            {totalExpense.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                        </div>
-                    </CardContent>
+                <Card className="shadow-sm border-border bg-card flex items-center justify-center p-4">
+                    <Button asChild className="w-full font-bold">
+                        <Link href="/finance/transactions/auto-categorisation">
+                            Catégoriser (Auto)
+                        </Link>
+                    </Button>
                 </Card>
             </div>
 
@@ -189,10 +187,14 @@ export function TransactionListClient({ initialTransactions }: { initialTransact
                                                 {format(t.date, 'dd MMMM yyyy', { locale: fr })}
                                             </span>
 
-                                            {t.categoryName && (
+                                            {t.categoryName ? (
                                                 <Badge variant="secondary" className="text-[10px] h-5 px-2 bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 border-indigo-200/50 dark:border-indigo-900/50 font-medium">
                                                     {t.categoryName}
                                                 </Badge>
+                                            ) : (
+                                                <Button variant="outline" size="sm" className="h-5 px-2 text-[10px] py-0" onClick={() => alert("Catégorisation manuelle à développer")}>
+                                                    + Catégorie
+                                                </Button>
                                             )}
 
                                             {t.reference && t.reference.includes('ENABLE_BANKING') && (

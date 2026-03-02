@@ -2,9 +2,26 @@
 
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Users, Mail } from "lucide-react"
+import { Users, Mail, Trash2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { deleteBand } from "../actions"
+import { toast } from "sonner"
+import { useState } from "react"
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 export function BandsList({ initialBands }: { initialBands: any[] }) {
+    const [isDeleting, setIsDeleting] = useState<string | null>(null)
+
     if (!initialBands || initialBands.length === 0) {
         return (
             <div className="text-center p-12 border rounded-lg border-dashed bg-muted/10">
@@ -13,11 +30,22 @@ export function BandsList({ initialBands }: { initialBands: any[] }) {
         )
     }
 
+    async function handleDelete(id: string) {
+        setIsDeleting(id)
+        const result = await deleteBand(id)
+        if (result && result.error) {
+            toast.error(result.error)
+        } else {
+            toast.success("Groupe supprimé avec succès")
+        }
+        setIsDeleting(null)
+    }
+
     return (
         <div className="flex flex-col gap-3 animate-in fade-in duration-500">
             {initialBands.map((band) => (
-                <Card key={band.id} className="overflow-hidden group hover:shadow-md transition-all border-l-4 border-l-muted-foreground hover:border-l-primary">
-                    <div className="flex flex-col md:flex-row items-center p-4 gap-4">
+                <Card key={band.id} className="relative overflow-hidden group hover:shadow-md transition-all border-l-4 border-l-muted-foreground hover:border-l-primary/80">
+                    <div className="flex flex-col md:flex-row items-center p-4 gap-4 pr-12">
                         <div className="flex-shrink-0">
                             <div className="h-14 w-14 bg-primary/10 group-hover:bg-primary group-hover:text-primary-foreground transition-colors rounded-xl flex items-center justify-center text-primary font-bold text-2xl font-oswald shadow-inner">
                                 {band.name.charAt(0).toUpperCase()}
@@ -45,6 +73,37 @@ export function BandsList({ initialBands }: { initialBands: any[] }) {
                             </div>
                         </div>
                     </div>
+
+                    <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                                disabled={isDeleting === band.id}
+                            >
+                                <Trash2 className="h-4 w-4" />
+                            </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                            <AlertDialogHeader>
+                                <AlertDialogTitle>Êtes-vous sûr ?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                    Cette action est irréversible. Cela supprimera le groupe "{band.name}".
+                                    S'il y a des concerts liés, vous devez d'abord les supprimer.
+                                </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                                <AlertDialogCancel>Annuler</AlertDialogCancel>
+                                <AlertDialogAction
+                                    onClick={() => handleDelete(band.id)}
+                                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                >
+                                    Supprimer
+                                </AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
                 </Card>
             ))}
         </div>

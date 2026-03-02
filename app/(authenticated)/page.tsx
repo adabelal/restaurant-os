@@ -118,7 +118,7 @@ export default async function DashboardPage() {
                     <Card className="border-0 shadow-lg shadow-black/5 bg-background rounded-2xl overflow-hidden animate-in slide-in-from-bottom-6 fade-in duration-700 delay-[400ms] fill-mode-both ring-1 ring-border/50">
                         <CardHeader className="border-b border-border/40 px-6 py-5 flex flex-row items-center justify-between bg-muted/10">
                             <div>
-                                <CardTitle className="text-xl font-bold text-foreground">Activités Récentes</CardTitle>
+                                <CardTitle className="text-xl font-bold text-foreground">Derniers mouvements en Banque</CardTitle>
                                 <p className="text-xs text-muted-foreground mt-1">Derniers mouvements synchronisés</p>
                             </div>
                             <Button variant="ghost" size="sm" className="text-sm font-semibold text-primary hover:bg-primary/10" asChild>

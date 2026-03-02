@@ -48,7 +48,7 @@ export default async function AllTransactionsPage({
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight mb-1 flex items-center gap-2">
                         <FileText className="h-8 w-8 text-indigo-500" />
-                        Boîte à outils Transactions
+                        Transactions Banques
                     </h1>
                     <p className="text-muted-foreground">
                         Historique complet, recherches, filtres croisés et totaux calculés dynamiquement.
