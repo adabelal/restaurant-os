@@ -6,6 +6,7 @@ import { BankTransaction, FixedCost, PurchaseOrder } from "@prisma/client"
 import { FINANCE_RULES } from "@/lib/finance-rules"
 import { safeAction } from "@/lib/safe-action"
 import { cache } from "react"
+import { GoogleGenerativeAI } from "@google/generative-ai"
 
 // FINANCE STATS WITH AUTO-REPAIR
 export const getFinanceStats = cache(async () => {
@@ -346,15 +347,18 @@ export async function syncFinanceIntelligence() {
             }
 
             // 3. Smart Categorization of Transactions
-            // We look for uncategorized transactions and try to match keywords
+            // We look for uncategorized transactions and try to match keywords, then history, then AI
             const uncategorized = await prisma.bankTransaction.findMany({
                 where: { categoryId: null }
             })
+
+            const allCategories = await prisma.financeCategory.findMany()
 
             for (const tx of uncategorized) {
                 const desc = tx.description.toUpperCase()
                 let matchedCatId = null
 
+                // 3.1 Hardcoded rules
                 for (const cat of FINANCE_RULES.categories) {
                     if (cat.keywords.some(k => desc.includes(k))) {
                         matchedCatId = catMap[cat.name]
@@ -362,6 +366,56 @@ export async function syncFinanceIntelligence() {
                     }
                 }
 
+                // 3.2 Learned rules (History)
+                if (!matchedCatId) {
+                    const historicMatch = await prisma.bankTransaction.findFirst({
+                        where: {
+                            categoryId: { not: null },
+                            OR: [
+                                ...(tx.thirdPartyName ? [{ thirdPartyName: tx.thirdPartyName }] : []),
+                                { description: tx.description }
+                            ]
+                        },
+                        orderBy: { date: 'desc' },
+                        select: { categoryId: true }
+                    })
+                    if (historicMatch?.categoryId) {
+                        matchedCatId = historicMatch.categoryId
+                        console.log(`[ML] Learned category for: ${tx.description}`)
+                    }
+                }
+
+                // 3.3 AI Prediction (Gemini)
+                if (!matchedCatId && process.env.GEMINI_API_KEY) {
+                    try {
+                        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+                        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
+
+                        const prompt = `
+Tu es un expert financier pour un restaurant. Catégorise la transaction bancaire suivante.
+
+Description : "${tx.description}"
+Tiers : "${tx.thirdPartyName || 'Inconnu'}"
+Montant : ${Number(tx.amount)}€ (${Number(tx.amount) > 0 ? 'Recette' : 'Dépense'})
+
+Voici la liste stricte des catégories autorisées (ID - Nom) :
+${allCategories.map(c => `${c.id} - ${c.name}`).join('\n')}
+
+Renvoie UNIQUEMENT ET STRICTEMENT l'ID de la catégorie la plus pertinente, rien d'autre. Si aucune ne convient, renvoie "UNKNOWN".`
+
+                        const aiResult = await model.generateContent(prompt)
+                        const aiCategory = aiResult.response.text().trim()
+
+                        if (aiCategory && aiCategory !== "UNKNOWN" && allCategories.find(c => c.id === aiCategory)) {
+                            matchedCatId = aiCategory
+                            console.log(`[AI] Gemini predicted category for: ${tx.description}`)
+                        }
+                    } catch (aiErr) {
+                        console.error("AI Categorization error:", aiErr)
+                    }
+                }
+
+                // Apply assigned category
                 if (matchedCatId) {
                     await prisma.bankTransaction.update({
                         where: { id: tx.id },
@@ -846,10 +900,41 @@ export async function syncBankTransactions() {
 export async function assignTransactionCategory(transactionId: string, categoryId: string) {
     return safeAction({ transactionId, categoryId }, async (input) => {
         try {
+            // First fetch the transaction to 'learn' from it
+            const tx = await prisma.bankTransaction.findUnique({
+                where: { id: input.transactionId }
+            })
+
+            // Assign category to this specific transaction
             await prisma.bankTransaction.update({
                 where: { id: input.transactionId },
                 data: { categoryId: input.categoryId }
             })
+
+            // LEARNING BEHAVIOR: 
+            // Also assign the same category to other identical uncategorized transactions
+            if (tx) {
+                if (tx.thirdPartyName && tx.thirdPartyName.trim() !== '') {
+                    await prisma.bankTransaction.updateMany({
+                        where: {
+                            thirdPartyName: tx.thirdPartyName,
+                            categoryId: null,
+                            id: { not: tx.id }
+                        },
+                        data: { categoryId: input.categoryId }
+                    })
+                } else if (tx.description && tx.description.trim() !== '') {
+                    await prisma.bankTransaction.updateMany({
+                        where: {
+                            description: tx.description,
+                            categoryId: null,
+                            id: { not: tx.id }
+                        },
+                        data: { categoryId: input.categoryId }
+                    })
+                }
+            }
+
             revalidatePath('/finance/transactions')
             revalidatePath('/finance/transactions/auto-categorisation')
             revalidatePath('/finance')
