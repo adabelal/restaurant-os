@@ -36,6 +36,7 @@ export function TransactionListClient({
     const [search, setSearch] = useState('')
     const [typeFilter, setTypeFilter] = useState<string>('ALL')
     const [methodFilter, setMethodFilter] = useState<string>('ALL')
+    const [categoryFilter, setCategoryFilter] = useState<string>('ALL')
     const [isSyncing, setIsSyncing] = useState(false)
     const [loadingIds, setLoadingIds] = useState<Set<string>>(new Set())
 
@@ -112,9 +113,15 @@ export function TransactionListClient({
                 if (method !== methodFilter) return false
             }
 
+            // Category Filter
+            if (categoryFilter !== 'ALL') {
+                if (categoryFilter === 'UNCLASSIFIED' && tx.categoryId !== null) return false
+                if (categoryFilter !== 'UNCLASSIFIED' && tx.categoryId !== categoryFilter) return false
+            }
+
             return true
         })
-    }, [initialTransactions, search, typeFilter, methodFilter])
+    }, [initialTransactions, search, typeFilter, methodFilter, categoryFilter])
 
     const totalIncome = filtered.filter(t => t.amount > 0).reduce((acc, t) => acc + t.amount, 0)
     const totalExpense = filtered.filter(t => t.amount < 0).reduce((acc, t) => acc + Math.abs(t.amount), 0)
@@ -133,6 +140,7 @@ export function TransactionListClient({
         setSearch('')
         setTypeFilter('ALL')
         setMethodFilter('ALL')
+        setCategoryFilter('ALL')
     }
 
     return (
@@ -211,7 +219,27 @@ export function TransactionListClient({
                             </SelectContent>
                         </Select>
 
-                        {(search || typeFilter !== 'ALL' || methodFilter !== 'ALL') && (
+                        <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                            <SelectTrigger className="w-full sm:w-[160px] flex-1 sm:flex-none bg-background">
+                                <SelectValue placeholder="Catégorie" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="ALL">Toutes catégories</SelectItem>
+                                <SelectItem value="UNCLASSIFIED">Non catégorisé</SelectItem>
+                                {Object.entries(categoriesByType).map(([type, cats]) => (
+                                    <div key={type}>
+                                        <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{type}</div>
+                                        {cats.map(cat => (
+                                            <SelectItem key={cat.id} value={cat.id} className="text-xs">
+                                                {cat.name}
+                                            </SelectItem>
+                                        ))}
+                                    </div>
+                                ))}
+                            </SelectContent>
+                        </Select>
+
+                        {(search || typeFilter !== 'ALL' || methodFilter !== 'ALL' || categoryFilter !== 'ALL') && (
                             <Button variant="ghost" size="icon" onClick={resetFilters} title="Réinitialiser les filtres">
                                 <FilterX className="w-4 h-4 text-muted-foreground hover:text-rose-500" />
                             </Button>
