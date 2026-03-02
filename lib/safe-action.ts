@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 type ActionContext = {
     user: {
@@ -19,7 +20,7 @@ export async function safeAction<TInput, TOutput>(
     handler: SafeActionHandler<TInput, TOutput>
 ): Promise<TOutput | { error: string }> {
     try {
-        const session = await getServerSession();
+        const session = await getServerSession(authOptions);
 
         if (!session?.user) {
             return { error: "Non authentifié" };
