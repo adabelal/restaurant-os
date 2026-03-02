@@ -105,15 +105,57 @@ export async function createFinanceCategory(name: string, type: 'FIXED_COST' | '
         try {
             const category = await prisma.financeCategory.create({
                 data: {
-                    name,
-                    type
+                    name: input.name,
+                    type: input.type
                 }
             })
             revalidatePath('/finance')
+            revalidatePath('/finance/categories')
             return { success: true, data: category }
         } catch (error) {
             console.error("Error creating finance category:", error)
             return { error: "Erreur lors de la création." }
+        }
+    })
+}
+
+export async function updateFinanceCategory(id: string, name: string, type: 'FIXED_COST' | 'VARIABLE_COST' | 'REVENUE' | 'TAX' | 'FINANCIAL' | 'INVESTMENT' | 'SALARY') {
+    return safeAction({ id, name, type }, async (input) => {
+        try {
+            const category = await prisma.financeCategory.update({
+                where: { id: input.id },
+                data: {
+                    name: input.name,
+                    type: input.type
+                }
+            })
+            revalidatePath('/finance')
+            revalidatePath('/finance/categories')
+            revalidatePath('/finance/analysis')
+            revalidatePath('/finance/transactions/auto-categorisation')
+            return { success: true, data: category }
+        } catch (error) {
+            console.error("Error updating finance category:", error)
+            return { error: "Erreur lors de la mise à jour de la catégorie." }
+        }
+    })
+}
+
+export async function deleteFinanceCategory(id: string) {
+    return safeAction({ id }, async (input) => {
+        try {
+            await prisma.financeCategory.delete({
+                where: { id: input.id }
+            })
+            revalidatePath('/finance')
+            revalidatePath('/finance/categories')
+            revalidatePath('/finance/analysis')
+            revalidatePath('/finance/transactions/auto-categorisation')
+            return { success: true }
+        } catch (error) {
+            console.error("Error deleting finance category:", error)
+            // It fails if there are linked transactions or fixed costs
+            return { error: "Impossible de supprimer, cette catégorie est probablement utilisée." }
         }
     })
 }
