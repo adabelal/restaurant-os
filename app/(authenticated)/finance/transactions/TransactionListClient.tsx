@@ -6,10 +6,12 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
-import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, HelpCircle, FileText, FilterX } from 'lucide-react'
+import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, HelpCircle, FileText, FilterX, RefreshCw } from 'lucide-react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import Link from 'next/link'
+import { syncBankTransactions, assignTransactionCategory } from '../actions'
+import { toast } from 'sonner'
 
 export type TransformedTx = {
     id: string
@@ -21,12 +23,71 @@ export type TransformedTx = {
     paymentMethod: string | null
     thirdPartyName: string | null
     categoryName: string | null
+    categoryId: string | null
 }
 
-export function TransactionListClient({ initialTransactions }: { initialTransactions: TransformedTx[] }) {
+export function TransactionListClient({
+    initialTransactions,
+    categories
+}: {
+    initialTransactions: TransformedTx[],
+    categories: { id: string, name: string, type: string }[]
+}) {
     const [search, setSearch] = useState('')
     const [typeFilter, setTypeFilter] = useState<string>('ALL')
     const [methodFilter, setMethodFilter] = useState<string>('ALL')
+    const [isSyncing, setIsSyncing] = useState(false)
+    const [loadingIds, setLoadingIds] = useState<Set<string>>(new Set())
+
+    const handleSyncBank = async () => {
+        setIsSyncing(true)
+        const promise = syncBankTransactions()
+
+        toast.promise(promise, {
+            loading: "Synchronisation bancaire en cours...",
+            success: (res) => {
+                if (res?.error) throw new Error(res.error)
+                return "Banques synchronisées avec succès."
+            },
+            error: (e) => `Erreur : ${e.message}`
+        })
+
+        await promise
+        setIsSyncing(false)
+    }
+
+    const handleAssign = async (transactionId: string, categoryId: string, hasExistingCategory: boolean) => {
+        let applyToSimilar = false
+        if (hasExistingCategory) {
+            applyToSimilar = window.confirm("Voulez-vous aussi appliquer cette catégorie à toutes les transactions similaires (même tiers ou libellé) ?")
+        } else {
+            // Implicitly learning for uncategorized
+            applyToSimilar = true
+        }
+
+        setLoadingIds(prev => new Set(prev).add(transactionId))
+        try {
+            const res = await assignTransactionCategory(transactionId, categoryId, applyToSimilar)
+            if (res?.error) {
+                toast.error(res.error)
+            } else {
+                toast.success("Catégorie assignée.")
+            }
+        } catch (e) {
+            toast.error("Erreur de réseau.")
+        }
+        setLoadingIds(prev => {
+            const next = new Set(prev)
+            next.delete(transactionId)
+            return next
+        })
+    }
+
+    const categoriesByType = categories.reduce((acc, cat) => {
+        if (!acc[cat.type]) acc[cat.type] = []
+        acc[cat.type].push(cat)
+        return acc
+    }, {} as Record<string, typeof categories>)
 
     const filtered = useMemo(() => {
         return initialTransactions.filter((tx) => {
@@ -96,7 +157,11 @@ export function TransactionListClient({ initialTransactions }: { initialTransact
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="shadow-sm border-border bg-card flex items-center justify-center p-4">
+                <Card className="shadow-sm border-border bg-card flex flex-col items-center justify-center p-4 gap-3">
+                    <Button onClick={handleSyncBank} disabled={isSyncing} variant="outline" className="w-full font-bold">
+                        {isSyncing ? <RefreshCw className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
+                        Sync Banque
+                    </Button>
                     <Button asChild className="w-full font-bold">
                         <Link href="/finance/transactions/auto-categorisation">
                             Catégoriser (Auto)
@@ -187,15 +252,32 @@ export function TransactionListClient({ initialTransactions }: { initialTransact
                                                 {format(t.date, 'dd MMMM yyyy', { locale: fr })}
                                             </span>
 
-                                            {t.categoryName ? (
-                                                <Badge variant="secondary" className="text-[10px] h-5 px-2 bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 border-indigo-200/50 dark:border-indigo-900/50 font-medium">
-                                                    {t.categoryName}
-                                                </Badge>
-                                            ) : (
-                                                <Button variant="outline" size="sm" className="h-5 px-2 text-[10px] py-0" onClick={() => alert("Catégorisation manuelle à développer")}>
-                                                    + Catégorie
-                                                </Button>
-                                            )}
+                                            <Select
+                                                value={t.categoryId || "UNCLASSIFIED"}
+                                                onValueChange={(val) => {
+                                                    if (val !== "UNCLASSIFIED") {
+                                                        handleAssign(t.id, val, !!t.categoryId)
+                                                    }
+                                                }}
+                                                disabled={loadingIds.has(t.id)}
+                                            >
+                                                <SelectTrigger className={`h-6 text-[10px] px-2 font-medium w-[140px] focus:ring-0 ${t.categoryName ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 border-indigo-200/50 dark:border-indigo-900/50' : 'bg-background'}`}>
+                                                    <SelectValue placeholder="+ Catégorie" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {!t.categoryId && <SelectItem value="UNCLASSIFIED">+ Catégorie</SelectItem>}
+                                                    {Object.entries(categoriesByType).map(([type, cats]) => (
+                                                        <div key={type}>
+                                                            <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{type}</div>
+                                                            {cats.map(cat => (
+                                                                <SelectItem key={cat.id} value={cat.id} className="text-xs">
+                                                                    {cat.name}
+                                                                </SelectItem>
+                                                            ))}
+                                                        </div>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
 
                                             {t.reference && t.reference.includes('ENABLE_BANKING') && (
                                                 <Badge variant="outline" className="text-[10px] h-5 px-2 font-medium opacity-60">

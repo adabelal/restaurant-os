@@ -17,9 +17,11 @@ export default async function AllTransactionsPage({
 }: {
     searchParams: { q?: string }
 }) {
+    const categories = await prisma.financeCategory.findMany({
+        orderBy: { name: 'asc' }
+    });
+
     // Fetch transactions with related category information
-    // We intentionally grab a lot of them (e.g. up to 1000) so they can see all their history.
-    // We keep them permanently in the database so it goes beyond the bank's 90-day typical limit.
     const transactions = await prisma.bankTransaction.findMany({
         orderBy: { date: 'desc' },
         take: 1000,
@@ -38,8 +40,16 @@ export default async function AllTransactionsPage({
         reference: t.reference,
         transactionType: (t as any).transactionType || null,
         paymentMethod: (t as any).paymentMethod || null,
+        paymentMethod: (t as any).paymentMethod || null,
         thirdPartyName: (t as any).thirdPartyName || null,
-        categoryName: t.category?.name || null
+        categoryName: t.category?.name || null,
+        categoryId: t.categoryId || null
+    }));
+
+    const transformedCategories = categories.map(c => ({
+        id: c.id,
+        name: c.name,
+        type: c.type
     }));
 
     return (
@@ -70,7 +80,10 @@ export default async function AllTransactionsPage({
                 </div>
             </div>
 
-            <TransactionListClient initialTransactions={transformed} />
+            <TransactionListClient
+                initialTransactions={transformed}
+                categories={transformedCategories}
+            />
         </div>
     );
 }

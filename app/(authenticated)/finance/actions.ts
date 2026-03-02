@@ -897,8 +897,8 @@ export async function syncBankTransactions() {
     });
 }
 
-export async function assignTransactionCategory(transactionId: string, categoryId: string) {
-    return safeAction({ transactionId, categoryId }, async (input) => {
+export async function assignTransactionCategory(transactionId: string, categoryId: string, applyToSimilar: boolean = true) {
+    return safeAction({ transactionId, categoryId, applyToSimilar }, async (input) => {
         try {
             // First fetch the transaction to 'learn' from it
             const tx = await prisma.bankTransaction.findUnique({
@@ -912,13 +912,13 @@ export async function assignTransactionCategory(transactionId: string, categoryI
             })
 
             // LEARNING BEHAVIOR: 
-            // Also assign the same category to other identical uncategorized transactions
+            // Also assign the same category to other identical transactions
             if (tx) {
                 if (tx.thirdPartyName && tx.thirdPartyName.trim() !== '') {
                     await prisma.bankTransaction.updateMany({
                         where: {
                             thirdPartyName: tx.thirdPartyName,
-                            categoryId: null,
+                            ...(input.applyToSimilar ? {} : { categoryId: null }),
                             id: { not: tx.id }
                         },
                         data: { categoryId: input.categoryId }
@@ -927,7 +927,7 @@ export async function assignTransactionCategory(transactionId: string, categoryI
                     await prisma.bankTransaction.updateMany({
                         where: {
                             description: tx.description,
-                            categoryId: null,
+                            ...(input.applyToSimilar ? {} : { categoryId: null }),
                             id: { not: tx.id }
                         },
                         data: { categoryId: input.categoryId }
