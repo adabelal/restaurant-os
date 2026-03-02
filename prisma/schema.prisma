@@ -304,8 +304,6 @@ model CashCategory {
   type         CashTransactionType
   color        String?             // Pour le UI
   
-  transactions CashTransaction[]
-  
   createdAt    DateTime            @default(now())
   updatedAt    DateTime            @updatedAt
 
