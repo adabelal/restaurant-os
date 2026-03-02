@@ -11,7 +11,9 @@ import {
     RefreshCcw,
     Calendar,
     Settings,
-    Landmark
+    Landmark,
+    PieChart,
+    Tags
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { BalanceChart } from "@/components/finance/BalanceChart"
@@ -46,6 +48,18 @@ export default async function FinancePage() {
                     </p>
                 </div>
                 <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+                    <Button asChild variant="outline" className="gap-2 shrink-0">
+                        <Link href="/finance/categories">
+                            <Tags className="w-4 h-4" />
+                            <span className="hidden sm:inline">Catégories</span>
+                        </Link>
+                    </Button>
+                    <Button asChild variant="secondary" className="gap-2 shrink-0 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/50">
+                        <Link href="/finance/analysis">
+                            <PieChart className="w-4 h-4" />
+                            <span className="hidden sm:inline">Analyse</span>
+                        </Link>
+                    </Button>
                     <Button asChild variant="default" className="gap-2 shrink-0">
                         <Link href="/finance/bank">
                             <Landmark className="w-4 h-4" />
@@ -53,7 +67,6 @@ export default async function FinancePage() {
                             <span className="inline sm:hidden">Banque</span>
                         </Link>
                     </Button>
-
                 </div>
             </div>
 
