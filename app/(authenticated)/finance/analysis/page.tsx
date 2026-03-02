@@ -24,6 +24,26 @@ export default async function FinanceAnalysisPage() {
         include: { category: true }
     });
 
+    const cashTransactions = await prisma.cashTransaction.findMany({
+        where: { categoryId: { not: null } },
+        include: { category: true }
+    });
+
+    const allTx = [
+        ...transactions.map(t => ({
+            categoryId: t.categoryId,
+            category: t.category,
+            amount: Number(t.amount),
+            date: t.date
+        })),
+        ...cashTransactions.map(t => ({
+            categoryId: t.categoryId,
+            category: t.category as any, // Typecast since it might technically conflict strictly, but content is same
+            amount: t.type === 'OUT' ? -Number(t.amount) : Number(t.amount),
+            date: t.date
+        }))
+    ]
+
     const categoriesMap = new Map(categories.map(c => [c.id, c]))
 
     // Grouping by type (Revenue vs Expenses) and by Category
@@ -36,7 +56,7 @@ export default async function FinanceAnalysisPage() {
         return { label: d.toLocaleString('fr-FR', { month: 'short', year: '2-digit' }), raw: d };
     }).reverse();
 
-    transactions.forEach(t => {
+    allTx.forEach(t => {
         if (!t.categoryId || !t.category) return;
 
         const catId = t.categoryId;

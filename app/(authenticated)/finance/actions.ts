@@ -160,6 +160,58 @@ export async function deleteFinanceCategory(id: string) {
     })
 }
 
+// CATEGORIZATION RULES
+export const getCategorizationRules = cache(async () => {
+    try {
+        const rules = await prisma.categorizationRule.findMany({
+            include: { category: true },
+            orderBy: { keyword: 'asc' }
+        })
+        return rules
+    } catch (error) {
+        console.error("Error fetching rules:", error)
+        return []
+    }
+})
+
+export async function createCategorizationRule(keyword: string, categoryId: string, matchType: 'CONTAINS' | 'EXACT' = 'CONTAINS') {
+    return safeAction({ keyword, categoryId, matchType }, async (input) => {
+        try {
+            const rule = await prisma.categorizationRule.create({
+                data: {
+                    keyword: input.keyword.toUpperCase(),
+                    categoryId: input.categoryId,
+                    matchType: input.matchType
+                }
+            })
+            revalidatePath('/finance')
+            revalidatePath('/finance/categories')
+            revalidatePath('/finance/rules')
+            return { success: true, data: rule }
+        } catch (error) {
+            console.error("Error creating categorization rule:", error)
+            return { error: "Erreur lors de la création de la règle, vérifiez si elle n'existe pas déjà." }
+        }
+    })
+}
+
+export async function deleteCategorizationRule(id: string) {
+    return safeAction({ id }, async (input) => {
+        try {
+            await prisma.categorizationRule.delete({
+                where: { id: input.id }
+            })
+            revalidatePath('/finance')
+            revalidatePath('/finance/categories')
+            revalidatePath('/finance/rules')
+            return { success: true }
+        } catch (error) {
+            console.error("Error deleting categorization rule:", error)
+            return { error: "Impossible de supprimer la règle." }
+        }
+    })
+}
+
 // FIXED COSTS
 export const getFixedCosts = cache(async () => {
     try {
@@ -395,16 +447,31 @@ export async function syncFinanceIntelligence() {
             })
 
             const allCategories = await prisma.financeCategory.findMany()
+            const userRules = await prisma.categorizationRule.findMany()
 
             for (const tx of uncategorized) {
                 const desc = tx.description.toUpperCase()
                 let matchedCatId = null
 
-                // 3.1 Hardcoded rules
-                for (const cat of FINANCE_RULES.categories) {
-                    if (cat.keywords.some(k => desc.includes(k))) {
-                        matchedCatId = catMap[cat.name]
+                // 3.0 Custom User Rules
+                for (const rule of userRules) {
+                    const k = rule.keyword.toUpperCase()
+                    if (rule.matchType === 'CONTAINS' && (desc.includes(k) || (tx.thirdPartyName?.toUpperCase() || '').includes(k))) {
+                        matchedCatId = rule.categoryId
                         break
+                    } else if (rule.matchType === 'EXACT' && (desc === k || tx.thirdPartyName?.toUpperCase() === k)) {
+                        matchedCatId = rule.categoryId
+                        break
+                    }
+                }
+
+                // 3.1 Hardcoded rules
+                if (!matchedCatId) {
+                    for (const cat of FINANCE_RULES.categories) {
+                        if (cat.keywords.some(k => desc.includes(k))) {
+                            matchedCatId = catMap[cat.name]
+                            break
+                        }
                     }
                 }
 

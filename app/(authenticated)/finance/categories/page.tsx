@@ -54,11 +54,16 @@ export default async function FinanceCategoriesPage() {
                         Créez et modifiez les catégories pour vos transactions.
                     </p>
                 </div>
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 md:gap-3">
                     <Button variant="outline" asChild className="w-full sm:w-auto">
                         <Link href="/finance/transactions">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Retour
+                        </Link>
+                    </Button>
+                    <Button variant="default" asChild className="w-full sm:w-auto gap-2">
+                        <Link href="/finance/rules">
+                            Règles d'Intelligence
                         </Link>
                     </Button>
                 </div>

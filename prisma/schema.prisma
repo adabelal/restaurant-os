@@ -287,7 +287,7 @@ model CashTransaction {
   type        CashTransactionType
   description String
   categoryId  String?
-  category    CashCategory?       @relation(fields: [categoryId], references: [id])
+  category    FinanceCategory?    @relation(fields: [categoryId], references: [id])
   
   userId      String?
   user        User?               @relation(fields: [userId], references: [id])
@@ -339,11 +339,26 @@ model FinanceCategory {
   
   // Relations
   transactions BankTransaction[]
+  cashTransactions CashTransaction[]
   fixedCosts   FixedCost[]
   budgetGoals  BudgetGoal[]
+  categorizationRules CategorizationRule[]
 
   createdAt   DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
+}
+
+model CategorizationRule {
+  id          String   @id @default(cuid())
+  matchType   String   @default("CONTAINS") // CONTAINS, EXACT
+  keyword     String
+  categoryId  String
+  category    FinanceCategory @relation(fields: [categoryId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([keyword, matchType])
 }
 
 model BankTransaction {
