@@ -5,6 +5,8 @@ import { revalidatePath } from "next/cache"
 import { CashTransactionType } from "@prisma/client"
 import * as XLSX from "xlsx"
 import { requireAuth } from "@/lib/auth-utils"
+import { safeAction } from "@/lib/safe-action"
+import { cache } from "react"
 import { createCashTransactionSchema, createCashCategorySchema } from "@/lib/validations"
 import { z } from "zod"
 import { Resend } from 'resend'
@@ -19,13 +21,13 @@ function getResendClient() {
     return new Resend(apiKey)
 }
 
-export async function getCashTransactions(filters: {
+export const getCashTransactions = cache(async (filters: {
     startDate?: Date,
     endDate?: Date,
     categoryId?: string,
     type?: CashTransactionType,
     orderBy?: 'date' | 'createdAt'
-} = {}) {
+} = {}) => {
     await requireAuth()
 
     const { startDate, endDate, categoryId, type, orderBy = 'date' } = filters
@@ -47,7 +49,7 @@ export async function getCashTransactions(filters: {
         },
         orderBy: { [orderBy]: 'desc' }
     })
-}
+})
 
 export async function createCashTransaction(data: {
     date: Date,
@@ -57,35 +59,35 @@ export async function createCashTransaction(data: {
     categoryId?: string,
     userId?: string
 }) {
-    await requireAuth()
+    return safeAction(data, async (input) => {
+        // Validation
+        const result = createCashTransactionSchema.safeParse({
+            amount: Math.abs(input.amount), // Validate magnitude
+            type: input.type,
+            description: input.description,
+            categoryId: input.categoryId,
+            date: input.date,
+        })
 
-    // Validation
-    const result = createCashTransactionSchema.safeParse({
-        amount: Math.abs(data.amount), // Validate magnitude
-        type: data.type,
-        description: data.description,
-        categoryId: data.categoryId,
-        date: data.date,
-    })
-
-    if (!result.success) {
-        throw new Error(result.error.errors[0].message)
-    }
-
-    const finalAmount = data.type === 'OUT' ? -Math.abs(data.amount) : Math.abs(data.amount)
-
-    const transaction = await prisma.cashTransaction.create({
-        data: {
-            date: data.date,
-            amount: finalAmount,
-            type: data.type,
-            description: data.description.trim(),
-            categoryId: data.categoryId,
-            userId: data.userId
+        if (!result.success) {
+            return { error: result.error.errors[0].message }
         }
+
+        const finalAmount = input.type === 'OUT' ? -Math.abs(input.amount) : Math.abs(input.amount)
+
+        await prisma.cashTransaction.create({
+            data: {
+                date: input.date,
+                amount: finalAmount,
+                type: input.type,
+                description: input.description.trim(),
+                categoryId: input.categoryId,
+                userId: input.userId
+            }
+        })
+        revalidatePath('/caisse')
+        return { success: true }
     })
-    revalidatePath('/caisse')
-    return transaction
 }
 
 export async function updateCashTransaction(id: string, data: {
@@ -95,63 +97,62 @@ export async function updateCashTransaction(id: string, data: {
     description?: string,
     categoryId?: string
 }) {
-    await requireAuth()
-
-    if (!id || typeof id !== "string") {
-        throw new Error("ID invalide")
-    }
-
-    if (data.description !== undefined && data.description.trim().length === 0) {
-        throw new Error("La description est requise")
-    }
-
-    // Fetch current transaction
-    const currentTx = await prisma.cashTransaction.findUnique({ where: { id } })
-    if (!currentTx) {
-        throw new Error("Transaction introuvable")
-    }
-
-    const targetType = data.type || currentTx.type
-    // Use absolutes to ensure consistent logic regardless of how it was stored
-    const magnitude = data.amount !== undefined ? Math.abs(data.amount) : Math.abs(currentTx.amount)
-
-    const finalAmount = targetType === 'OUT' ? -magnitude : magnitude
-
-    const transaction = await prisma.cashTransaction.update({
-        where: { id },
-        data: {
-            date: data.date,
-            amount: finalAmount,
-            type: data.type,
-            description: data.description?.trim(),
-            categoryId: data.categoryId
+    return safeAction({ id, data }, async (input) => {
+        if (!input.id || typeof input.id !== "string") {
+            return { error: "ID invalide" }
         }
+
+        if (input.data.description !== undefined && input.data.description.trim().length === 0) {
+            return { error: "La description est requise" }
+        }
+
+        // Fetch current transaction
+        const currentTx = await prisma.cashTransaction.findUnique({ where: { id: input.id } })
+        if (!currentTx) {
+            return { error: "Transaction introuvable" }
+        }
+
+        const targetType = input.data.type || currentTx.type
+        // Use absolutes to ensure consistent logic regardless of how it was stored
+        const magnitude = input.data.amount !== undefined ? Math.abs(input.data.amount) : Math.abs(Number(currentTx.amount))
+
+        const finalAmount = targetType === 'OUT' ? -magnitude : magnitude
+
+        await prisma.cashTransaction.update({
+            where: { id: input.id },
+            data: {
+                date: input.data.date,
+                amount: finalAmount,
+                type: input.data.type,
+                description: input.data.description?.trim(),
+                categoryId: input.data.categoryId
+            }
+        })
+        revalidatePath('/caisse')
+        return { success: true }
     })
-    revalidatePath('/caisse')
-    return transaction
 }
 
 export async function deleteCashTransaction(id: string) {
-    await requireAuth()
-
-    if (!id || typeof id !== "string") {
-        return { success: false, message: "ID invalide" }
-    }
-
-    try {
-        await prisma.cashTransaction.delete({
-            where: { id }
-        })
-        revalidatePath('/caisse')
-        return { success: true, message: "Transaction supprimée." }
-    } catch (error: any) {
-        if (error.code === 'P2025') {
-            console.warn(`Attempted to delete non-existent transaction with ID: ${id}`)
-            return { success: false, message: "La transaction n'existe plus." }
+    return safeAction(id, async (input) => {
+        if (!input || typeof input !== "string") {
+            return { error: "ID invalide" }
         }
-        console.error("Error deleting cash transaction:", error)
-        return { success: false, message: "Erreur lors de la suppression de la transaction." }
-    }
+
+        try {
+            await prisma.cashTransaction.delete({
+                where: { id: input }
+            })
+            revalidatePath('/caisse')
+            return { success: true, message: "Transaction supprimée." }
+        } catch (error: any) {
+            if (error.code === 'P2025') {
+                return { error: "La transaction n'existe plus." }
+            }
+            console.error("Error deleting cash transaction:", error)
+            return { error: "Erreur lors de la suppression de la transaction." }
+        }
+    })
 }
 
 export async function getAppSettings() {
@@ -165,116 +166,117 @@ export async function getAppSettings() {
 }
 
 export async function updateAppSettings(data: { accountantEmail?: string }) {
-    await requireAuth()
-
-    // Validation email si fourni
-    if (data.accountantEmail) {
-        const emailSchema = z.string().email()
-        if (!emailSchema.safeParse(data.accountantEmail).success) {
-            throw new Error("Email invalide")
+    return safeAction(data, async (input) => {
+        // Validation email si fourni
+        if (input.accountantEmail) {
+            const emailSchema = z.string().email()
+            if (!emailSchema.safeParse(input.accountantEmail).success) {
+                return { error: "Email invalide" }
+            }
         }
-    }
 
-    const settings = await prisma.appSettings.update({
-        where: { id: 'global' },
-        data: {
-            accountantEmail: data.accountantEmail?.trim().toLowerCase()
-        }
+        const settings = await prisma.appSettings.update({
+            where: { id: 'global' },
+            data: {
+                accountantEmail: input.accountantEmail?.trim().toLowerCase()
+            }
+        })
+        revalidatePath('/caisse')
+        return { success: true, data: settings }
     })
-    revalidatePath('/caisse')
-    return settings
 }
 
 export async function sendExportEmail(to: string, subject: string, fileName: string, base64Content: string) {
-    await requireAuth()
-
-    // Validation email
-    const emailSchema = z.string().email()
-    if (!emailSchema.safeParse(to).success) {
-        return { success: false, error: "Email invalide" }
-    }
-
-    // Validation du nom de fichier
-    if (!fileName || fileName.length > 255) {
-        return { success: false, error: "Nom de fichier invalide" }
-    }
-
-    // Validation du contenu
-    if (!base64Content || base64Content.length > 10 * 1024 * 1024) { // Max 10MB
-        return { success: false, error: "Fichier trop volumineux" }
-    }
-
-    try {
-        const resend = getResendClient()
-        const { data, error } = await resend.emails.send({
-            from: 'Caisse Restaurant <onboarding@resend.dev>',
-            to: [to],
-            subject: subject.substring(0, 255), // Limiter la longueur du sujet
-            text: `Veuillez trouver ci-joint l'export de la caisse : ${fileName}`,
-            attachments: [
-                {
-                    filename: fileName,
-                    content: base64Content,
-                },
-            ],
-        })
-
-        if (error) {
-            console.error("Resend error:", error)
-            return { success: false, error: error.message }
+    return safeAction({ to, subject, fileName, base64Content }, async (input) => {
+        // Validation email
+        const emailSchema = z.string().email()
+        if (!emailSchema.safeParse(input.to).success) {
+            return { error: "Email invalide" }
         }
 
-        return { success: true, id: data?.id }
-    } catch (err) {
-        console.error("Email send failed:", err)
-        return { success: false, error: "Erreur lors de l'envoi" }
-    }
+        // Validation du nom de fichier
+        if (!input.fileName || input.fileName.length > 255) {
+            return { error: "Nom de fichier invalide" }
+        }
+
+        // Validation du contenu
+        if (!input.base64Content || input.base64Content.length > 10 * 1024 * 1024) { // Max 10MB
+            return { error: "Fichier trop volumineux" }
+        }
+
+        try {
+            const resend = getResendClient()
+            const { data, error } = await resend.emails.send({
+                from: 'Caisse Restaurant <onboarding@resend.dev>',
+                to: [input.to],
+                subject: input.subject.substring(0, 255), // Limiter la longueur du sujet
+                text: `Veuillez trouver ci-joint l'export de la caisse : ${input.fileName}`,
+                attachments: [
+                    {
+                        filename: input.fileName,
+                        content: input.base64Content,
+                    },
+                ],
+            })
+
+            if (error) {
+                console.error("Resend error:", error)
+                return { error: error.message }
+            }
+
+            return { success: true, id: data?.id }
+        } catch (err) {
+            console.error("Email send failed:", err)
+            return { error: "Erreur lors de l'envoi" }
+        }
+    })
 }
 
-export async function getCashCategories() {
+export const getCashCategories = cache(async () => {
     await requireAuth()
 
     return await prisma.cashCategory.findMany({
         orderBy: { name: 'asc' }
     })
-}
+})
 
 export async function createCashCategory(name: string, type: CashTransactionType, color?: string) {
-    await requireAuth()
+    return safeAction({ name, type, color }, async (input) => {
+        const result = createCashCategorySchema.safeParse(input)
+        if (!result.success) {
+            return { error: result.error.errors[0].message }
+        }
 
-    const result = createCashCategorySchema.safeParse({ name, type, color })
-    if (!result.success) {
-        throw new Error(result.error.errors[0].message)
-    }
-
-    const category = await prisma.cashCategory.upsert({
-        where: { name_type: { name: result.data.name.trim(), type } },
-        update: { color: result.data.color },
-        create: { name: result.data.name.trim(), type, color: result.data.color }
+        const category = await prisma.cashCategory.upsert({
+            where: { name_type: { name: result.data.name.trim(), type: input.type } },
+            update: { color: result.data.color },
+            create: { name: result.data.name.trim(), type: input.type, color: result.data.color }
+        })
+        revalidatePath('/caisse')
+        return { success: true, data: category }
     })
-    revalidatePath('/caisse')
-    return category
 }
 
 export async function deleteCashCategory(id: string) {
-    await requireAuth()
+    return safeAction(id, async (input) => {
+        if (!input || typeof input !== "string") {
+            return { error: "ID invalide" }
+        }
 
-    if (!id || typeof id !== "string") {
-        throw new Error("ID invalide")
-    }
-
-    await prisma.cashCategory.delete({
-        where: { id }
+        await prisma.cashCategory.delete({
+            where: { id: input }
+        })
+        revalidatePath('/caisse')
+        return { success: true }
     })
-    revalidatePath('/caisse')
 }
 
 export async function clearCaisseData() {
-    await requireAuth()
-
-    await prisma.cashTransaction.deleteMany({})
-    revalidatePath('/caisse')
-    return { success: true }
+    return safeAction(null, async () => {
+        await prisma.cashTransaction.deleteMany({})
+        revalidatePath('/caisse')
+        return { success: true }
+    })
 }
 
 export async function importPopinaExcel(formData: FormData) {
