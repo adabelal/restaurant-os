@@ -1,0 +1,87 @@
+0 verbose cli /Users/adambelal/.nvm/versions/node/v24.13.0/bin/node /Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@11.6.2
+2 info using node@v24.13.0
+3 silly config load:file:/Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/adambelal/Desktop/restaurant-os/.npmrc
+5 silly config load:file:/Users/adambelal/.npmrc
+6 silly config load:file:/Users/adambelal/.nvm/versions/node/v24.13.0/etc/npmrc
+7 verbose title npm exec prisma@5.22.0 db push --accept-data-loss
+8 verbose argv "exec" "--yes" "--cache" "./my-cache" "--" "prisma@5.22.0" "db" "push" "--accept-data-loss"
+9 verbose logfile logs-max:10 dir:/Users/adambelal/Desktop/restaurant-os/my-cache/_logs/2026-03-02T21_34_25_664Z-
+10 verbose logfile /Users/adambelal/Desktop/restaurant-os/my-cache/_logs/2026-03-02T21_34_25_664Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+13 verbose shrinkwrap failed to load node_modules/.package-lock.json EPERM: operation not permitted, stat '/Users/adambelal/Desktop/restaurant-os/node_modules'
+14 http fetch GET 200 https://registry.npmjs.org/prisma 174ms (cache revalidated)
+15 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+16 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+17 silly idealTree buildDeps
+18 silly fetch manifest prisma@5.22.0
+19 silly packumentCache full:https://registry.npmjs.org/prisma cache-miss
+20 http cache https://registry.npmjs.org/prisma 42ms (cache hit)
+21 silly packumentCache full:https://registry.npmjs.org/prisma set size:42693623 disposed:false
+22 silly placeDep ROOT prisma@5.22.0 OK for:  want: 5.22.0
+23 silly fetch manifest @prisma/engines@5.22.0
+24 silly packumentCache full:https://registry.npmjs.org/@prisma%2fengines cache-miss
+25 silly fetch manifest fsevents@2.3.3
+26 silly packumentCache full:https://registry.npmjs.org/fsevents cache-miss
+27 http cache https://registry.npmjs.org/@prisma%2fengines 24ms (cache hit)
+28 silly packumentCache full:https://registry.npmjs.org/@prisma%2fengines set size:21516046 disposed:false
+29 http fetch GET 200 https://registry.npmjs.org/fsevents 63ms (cache miss)
+30 silly packumentCache full:https://registry.npmjs.org/fsevents set size:undefined disposed:false
+31 silly placeDep ROOT @prisma/engines@5.22.0 OK for: prisma@5.22.0 want: 5.22.0
+32 silly placeDep ROOT fsevents@2.3.3 OK for: prisma@5.22.0 want: 2.3.3
+33 silly fetch manifest @prisma/debug@5.22.0
+34 silly packumentCache full:https://registry.npmjs.org/@prisma%2fdebug cache-miss
+35 silly fetch manifest @prisma/fetch-engine@5.22.0
+36 silly packumentCache full:https://registry.npmjs.org/@prisma%2ffetch-engine cache-miss
+37 silly fetch manifest @prisma/get-platform@5.22.0
+38 silly packumentCache full:https://registry.npmjs.org/@prisma%2fget-platform cache-miss
+39 silly fetch manifest @prisma/engines-version@5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2
+40 silly packumentCache full:https://registry.npmjs.org/@prisma%2fengines-version cache-miss
+41 http cache https://registry.npmjs.org/@prisma%2fengines-version 29ms (cache hit)
+42 silly packumentCache full:https://registry.npmjs.org/@prisma%2fengines-version set size:9890582 disposed:false
+43 http cache https://registry.npmjs.org/@prisma%2fdebug 69ms (cache hit)
+44 silly packumentCache full:https://registry.npmjs.org/@prisma%2fdebug set size:28477940 disposed:false
+45 http cache https://registry.npmjs.org/@prisma%2fget-platform 165ms (cache hit)
+46 silly packumentCache full:https://registry.npmjs.org/@prisma%2fget-platform set size:28149815 disposed:false
+47 http cache https://registry.npmjs.org/@prisma%2ffetch-engine 238ms (cache hit)
+48 silly packumentCache full:https://registry.npmjs.org/@prisma%2ffetch-engine set size:32016446 disposed:false
+49 silly placeDep ROOT @prisma/debug@5.22.0 OK for: @prisma/engines@5.22.0 want: 5.22.0
+50 silly placeDep ROOT @prisma/engines-version@5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2 OK for: @prisma/engines@5.22.0 want: 5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2
+51 silly placeDep ROOT @prisma/fetch-engine@5.22.0 OK for: @prisma/engines@5.22.0 want: 5.22.0
+52 silly placeDep ROOT @prisma/get-platform@5.22.0 OK for: @prisma/engines@5.22.0 want: 5.22.0
+53 silly reify moves {}
+54 verbose Error: EPERM: operation not permitted, mkdir '/Users/adambelal/Desktop/restaurant-os/my-cache/_npx/5bf80a9caed8039a/node_modules'
+    at async mkdir (node:internal/fs/promises:856:10)
+    at async /Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:576:20
+    at async Promise.allSettled (index 0)
+    at async [reifyPackages] (/Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:313:11)
+    at async Arborist.reify (/Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:125:5)
+    at async /Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/node_modules/libnpmexec/lib/with-lock.js:57:19
+55 verbose stack Error: EPERM: operation not permitted, mkdir '/Users/adambelal/Desktop/restaurant-os/my-cache/_npx/5bf80a9caed8039a/node_modules'
+55 verbose stack     at async mkdir (node:internal/fs/promises:856:10)
+55 verbose stack     at async /Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:576:20
+55 verbose stack     at async Promise.allSettled (index 0)
+55 verbose stack     at async [reifyPackages] (/Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:313:11)
+55 verbose stack     at async Arborist.reify (/Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:125:5)
+55 verbose stack     at async /Users/adambelal/.nvm/versions/node/v24.13.0/lib/node_modules/npm/node_modules/libnpmexec/lib/with-lock.js:57:19
+56 error code EPERM
+57 error syscall mkdir
+58 error path /Users/adambelal/Desktop/restaurant-os/my-cache/_npx/5bf80a9caed8039a/node_modules
+59 error errno -1
+60 error
+60 error Your cache folder contains root-owned files, due to a bug in
+60 error previous versions of npm which has since been addressed.
+60 error
+60 error To permanently fix this problem, please run:
+60 error   sudo chown -R 501:20 "/Users/adambelal/Desktop/restaurant-os/my-cache"
+61 silly unfinished npm timer reify 1772487266180
+62 silly unfinished npm timer reify:createSparse 1772487266724
+63 verbose cwd /Users/adambelal/Desktop/restaurant-os
+64 verbose os Darwin 25.2.0
+65 verbose node v24.13.0
+66 verbose npm  v11.6.2
+67 verbose exit -1
+68 verbose code -1
+69 error A complete log of this run can be found in: /Users/adambelal/Desktop/restaurant-os/my-cache/_logs/2026-03-02T21_34_25_664Z-debug-0.log
