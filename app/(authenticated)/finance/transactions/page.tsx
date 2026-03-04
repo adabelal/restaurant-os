@@ -24,7 +24,6 @@ export default async function AllTransactionsPage({
     // Fetch transactions with related category information
     const transactions = await prisma.bankTransaction.findMany({
         orderBy: { date: 'desc' },
-        take: 1000,
         include: {
             category: true,
             purchaseOrder: true
