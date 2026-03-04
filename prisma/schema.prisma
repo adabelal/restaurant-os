@@ -327,6 +327,8 @@ enum FinanceCategoryType {
   FINANCIAL       // Frais bancaires, Emprunts
   INVESTMENT      // Achat Matériel
   SALARY          // Salaires & Charges Sociales
+  INTERNAL_TRANSFER // Dépôt/Retrait Especes, Virement compte à compte
+  TRANSIT           // Pourboires, Sommes perçues pour le compte de tiers
 }
 
 model FinanceCategory {

@@ -100,7 +100,7 @@ export const getFinanceCategories = cache(async () => {
     }
 })
 
-export async function createFinanceCategory(name: string, type: 'FIXED_COST' | 'VARIABLE_COST' | 'REVENUE' | 'TAX' | 'FINANCIAL' | 'INVESTMENT' | 'SALARY') {
+export async function createFinanceCategory(name: string, type: 'FIXED_COST' | 'VARIABLE_COST' | 'REVENUE' | 'TAX' | 'FINANCIAL' | 'INVESTMENT' | 'SALARY' | 'INTERNAL_TRANSFER' | 'TRANSIT') {
     return safeAction({ name, type }, async (input) => {
         try {
             const category = await prisma.financeCategory.create({
@@ -119,7 +119,7 @@ export async function createFinanceCategory(name: string, type: 'FIXED_COST' | '
     })
 }
 
-export async function updateFinanceCategory(id: string, name: string, type: 'FIXED_COST' | 'VARIABLE_COST' | 'REVENUE' | 'TAX' | 'FINANCIAL' | 'INVESTMENT' | 'SALARY') {
+export async function updateFinanceCategory(id: string, name: string, type: 'FIXED_COST' | 'VARIABLE_COST' | 'REVENUE' | 'TAX' | 'FINANCIAL' | 'INVESTMENT' | 'SALARY' | 'INTERNAL_TRANSFER' | 'TRANSIT') {
     return safeAction({ id, name, type }, async (input) => {
         try {
             const category = await prisma.financeCategory.update({

@@ -25,7 +25,9 @@ const TYPE_LABELS: Record<string, string> = {
     TAX: 'Taxe / Impôt',
     FINANCIAL: 'Frais Bancaire',
     INVESTMENT: 'Investissement',
-    SALARY: 'Salaire'
+    SALARY: 'Salaire',
+    INTERNAL_TRANSFER: 'Dépôt/Retrait Especes',
+    TRANSIT: 'Pourboires / Transit'
 }
 
 export function CategoryListClient({

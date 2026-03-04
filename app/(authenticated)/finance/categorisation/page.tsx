@@ -91,7 +91,9 @@ export default async function FinanceCategorisationHubPage() {
         "TAX",
         "FINANCIAL",
         "INVESTMENT",
-        "SALARY"
+        "SALARY",
+        "INTERNAL_TRANSFER",
+        "TRANSIT"
     ]
 
     return (

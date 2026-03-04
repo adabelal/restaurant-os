@@ -98,18 +98,25 @@ export async function updateEmployee(formData: FormData) {
         }
 
         try {
+            const updateData: any = {
+                name: name.trim(),
+                email: email.trim().toLowerCase(),
+                phone: phone?.trim() || null,
+                role,
+                hourlyRate,
+                contractType,
+                contractDuration
+            }
+
+            // Important: On n'écrase address que si la valeur est présente dans le formulaire
+            // pour éviter d'écraser l'historique des taux stocké dans ce champ.
+            if (formData.has("address")) {
+                updateData.address = address?.trim() || null
+            }
+
             await prisma.user.update({
                 where: { id },
-                data: {
-                    name: name.trim(),
-                    email: email.trim().toLowerCase(),
-                    phone: phone?.trim() || null,
-                    address: address?.trim() || null,
-                    role,
-                    hourlyRate,
-                    contractType,
-                    contractDuration
-                }
+                data: updateData
             })
 
             revalidatePath("/rh")

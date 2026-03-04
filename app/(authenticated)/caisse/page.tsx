@@ -2,13 +2,15 @@
 import { prisma } from "@/lib/prisma"
 export const dynamic = 'force-dynamic'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Wallet, ArrowUpCircle, ArrowDownCircle, Settings, Calculator, TrendingUp } from "lucide-react"
+import { Wallet, ArrowUpCircle, ArrowDownCircle, Settings, Calculator, TrendingUp, Tags } from "lucide-react"
 import { AddTransactionDialog } from "@/components/caisse/AddTransactionDialog"
 import { CaisseStats } from "@/components/caisse/CaisseStats"
 import { MonthlyTransactionList } from "@/components/caisse/MonthlyTransactionList"
 import { ExportDialog } from "@/components/caisse/ExportDialog"
 import { getAppSettings } from "@/app/caisse/actions"
 import { ImportPopinaButton } from "@/components/caisse/ImportPopinaButton"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default async function CaissePage() {
     // Fetch initial data
@@ -59,7 +61,13 @@ export default async function CaissePage() {
                         <p className="text-muted-foreground mt-1 font-medium">Suivi des entrées et sorties de monnaie.</p>
                     </div>
 
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 flex-wrap">
+                        <Button asChild variant="outline" className="gap-2">
+                            <Link href="/finance/categorisation">
+                                <Tags className="w-4 h-4" />
+                                <span className="hidden sm:inline">Catégorisation</span>
+                            </Link>
+                        </Button>
                         <ImportPopinaButton />
                         <ExportDialog transactions={transactions} accountantEmail={settings?.accountantEmail} />
                         <AddTransactionDialog categories={categories} />

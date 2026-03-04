@@ -55,3 +55,22 @@ L'IA doit **toujours** respecter ces règles de sécurité et de logique métier
 
 ---
 *Ce fichier (`CONTEXT.md` ou CAG) doit être lu par l'IA au début de chaque session complexe pour s'imprégner des directives techniques et métier de Restaurant-OS.*
+
+## 🚨 7. Troubleshooting & Erreurs Connues (Directives IA)
+
+Afin d'économiser du temps et des tokens, l'IA doit appliquer ces correctifs connus face aux erreurs fréquentes :
+
+1. **Erreur Prisma "EPERM" ou "Operation not permitted"**
+   - *Symptôme :* Lors de l'exécution de `npx prisma migrate dev` ou `npx prisma db push`, npm/prisma crashe avec une erreur de permission sur le cache ou un blocage macOS.
+   - *Symptôme 2 :* `Error code: P1012` (La propriété `url` n'est plus supportée). Cela arrive quand npx lance Prisma v7 par défaut au lieu de la v5 du projet.
+   - *Solution (Contournement IA) :* 
+     - Toujours forcer la version locale du projet : **`npx prisma@5.22.0 db push`** ou **`npx prisma@5.22.0 generate`**.
+     - Ne jamais utiliser `migrate dev` si les permissions bloquent systématiquement la création du shadow database ou du dossier temp, privilégier `db push` ponctuellement en dev.
+
+2. **Erreur NPM Cache "root-owned files" (EPERM ~/.npm)**
+   - *Symptôme :* npm refuse d'installer ou d'exécuter un package car le dossier `~/.npm` appartient à `root` (dû à un ancien `sudo npm`).
+   - *Solution :* Il faut demander à l'utilisateur d'exécuter manuellement dans son terminal : `sudo chown -R $(id -u):$(id -g) ~/.npm ~/.cache`. *(L'IA ne peut pas le faire car cela requiert le mot de passe sudo).*
+
+3. **Environnement d'exécution macOS (Desktop vs Workspace)**
+   - *Problème :* Le projet est actuellement sur `/Users/adambelal/Desktop/restaurant-os`. Sur macOS, les dossiers Bureau (Desktop), Documents et Téléchargements sont protégés par le système (TCC - Transparency, Consent, and Control). Cela provoque des erreurs silencieuses de lecture/écriture pour les terminaux et les scripts (notamment EPERM sur `ls`, `fts_read`, ou l'exécution de binaires node_modules).
+   - *Recommandation Globale :* Déplacer le projet dans un dossier non restrictif comme `/Users/adambelal/Projects/restaurant-os` ou utiliser le dossier par défaut de l'agent Antigravity. Cela éliminera 90% des erreurs `"Operation not permitted"` liées à l'OS.
