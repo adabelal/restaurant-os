@@ -7,7 +7,6 @@ import { AddTransactionDialog } from "@/components/caisse/AddTransactionDialog"
 import { CaisseStats } from "@/components/caisse/CaisseStats"
 import { MonthlyTransactionList } from "@/components/caisse/MonthlyTransactionList"
 import { ExportDialog } from "@/components/caisse/ExportDialog"
-import { CaisseConfig } from "@/components/caisse/CaisseConfig"
 import { getAppSettings } from "@/app/caisse/actions"
 import { ImportPopinaButton } from "@/components/caisse/ImportPopinaButton"
 
@@ -107,9 +106,6 @@ export default async function CaissePage() {
                             <TabsTrigger value="stats" className="px-8 py-2.5 gap-2 rounded-xl data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-md transition-all font-bold">
                                 <TrendingUp className="h-4 w-4 text-blue-500" /> Analyses
                             </TabsTrigger>
-                            <TabsTrigger value="categories" className="px-8 py-2.5 gap-2 rounded-xl data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-md transition-all font-bold">
-                                <Settings className="h-4 w-4" /> Config
-                            </TabsTrigger>
                         </TabsList>
                     </div>
 
@@ -123,10 +119,6 @@ export default async function CaissePage() {
 
                     <TabsContent value="stats" className="mt-0 outline-none">
                         <CaisseStats transactions={transactions} />
-                    </TabsContent>
-
-                    <TabsContent value="categories" className="mt-0 animate-in fade-in-50 duration-500 outline-none">
-                        <CaisseConfig settings={settings} initialCategories={categories} />
                     </TabsContent>
                 </Tabs>
             </div>

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Edit2, ListFilter, Trash2 } from "lucide-react"
+
 import {
     Table,
     TableBody,
@@ -24,11 +25,77 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { deleteCashTransaction } from "@/app/caisse/actions"
 import { toast } from "sonner"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { assignCashTransactionCategory, findSimilarTransactions, applyCategoryToMultipleTx } from "@/app/(authenticated)/finance/actions"
+import { BatchAssignModal, BatchTx } from "@/app/(authenticated)/finance/components/BatchAssignModal"
+
 
 export function MonthlyTransactionList({ transactions, categories }: { transactions: any[], categories: any[] }) {
     const [sortBy, setSortBy] = useState<'date' | 'createdAt'>('date')
     const [editingTransaction, setEditingTransaction] = useState<any>(null)
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+    const [loadingIds, setLoadingIds] = useState<Set<string>>(new Set())
+    const [isSyncing, setIsSyncing] = useState(false)
+
+    const [modalOpen, setModalOpen] = useState(false)
+    const [modalTxs, setModalTxs] = useState<BatchTx[]>([])
+    const [pendingCategoryId, setPendingCategoryId] = useState<string | null>(null)
+
+    const handleAssign = async (transactionId: string, categoryId: string) => {
+        setLoadingIds(prev => new Set(prev).add(transactionId))
+        try {
+            const res = await assignCashTransactionCategory(transactionId, categoryId, false)
+            if (res?.error) {
+                toast.error(res.error)
+            } else {
+                toast.success("Catégorie assignée.")
+
+                const similars = await findSimilarTransactions(transactionId)
+                if (similars && 'data' in similars && similars.data && 'data' in similars.data) {
+                    const similarList = similars.data.data as BatchTx[];
+                    if (similarList.length > 0) {
+                        setModalTxs(similarList)
+                        setPendingCategoryId(categoryId)
+                        setModalOpen(true)
+                    }
+                }
+            }
+        } catch (e) {
+            toast.error("Erreur de réseau.")
+        }
+        setLoadingIds(prev => {
+            const next = new Set(prev)
+            next.delete(transactionId)
+            return next
+        })
+    }
+
+    const handleModalConfirm = async (selectedTx: BatchTx[]) => {
+        if (!pendingCategoryId || selectedTx.length === 0) {
+            setModalOpen(false)
+            return
+        }
+
+        setIsSyncing(true)
+        try {
+            const res = await applyCategoryToMultipleTx(selectedTx.map(t => ({ id: t.id, isCash: t.isCash })), pendingCategoryId)
+            if (res && 'data' in res && res.data && 'success' in (res.data as any)) {
+                toast.success(`Catégorie appliquée à ${selectedTx.length} transaction(s).`)
+                setModalOpen(false)
+            } else if (res && 'error' in res) {
+                toast.error(res.error || "Erreur, impossible d'appliquer le changement en lot.")
+            }
+        } catch (e) {
+            toast.error("Erreur réseau.")
+        }
+        setIsSyncing(false)
+    }
+
+    const categoriesByType = categories.reduce((acc: any, cat: any) => {
+        if (!acc[cat.type]) acc[cat.type] = []
+        acc[cat.type].push(cat)
+        return acc
+    }, {})
 
     // Sort transactions
     const sortedTransactions = [...transactions].sort((a, b) => {
@@ -111,9 +178,32 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                                         </TableCell>
                                         <TableCell>{t.description}</TableCell>
                                         <TableCell>
-                                            <Badge variant="outline" className="font-normal" style={{ borderColor: t.category?.color, color: t.category?.color }}>
-                                                {t.category?.name || 'Sans catégorie'}
-                                            </Badge>
+                                            <Select
+                                                value={t.categoryId || "UNCLASSIFIED"}
+                                                onValueChange={(val) => {
+                                                    if (val !== "UNCLASSIFIED") {
+                                                        handleAssign(t.id, val)
+                                                    }
+                                                }}
+                                                disabled={loadingIds.has(t.id)}
+                                            >
+                                                <SelectTrigger className={`h-8 text-xs font-medium w-[160px] focus:ring-0 ${t.category ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 border-indigo-200/50 dark:border-indigo-900/50' : 'bg-background'}`}>
+                                                    <SelectValue placeholder="+ Catégorie" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {!t.categoryId && <SelectItem value="UNCLASSIFIED">+ Catégorie</SelectItem>}
+                                                    {Object.keys(categoriesByType).map((type) => (
+                                                        <div key={type}>
+                                                            <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{type === 'IN' ? 'Entrées' : 'Sorties'}</div>
+                                                            {categoriesByType[type].map((cat: any) => (
+                                                                <SelectItem key={cat.id} value={cat.id} className="text-xs">
+                                                                    {cat.name}
+                                                                </SelectItem>
+                                                            ))}
+                                                        </div>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
                                         </TableCell>
                                         <TableCell className={`text-right font-bold ${t.type === 'IN' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
                                             {t.type === 'IN' ? '+' : ''}{Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
@@ -136,8 +226,9 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                                                 onClick={async () => {
                                                     if (confirm("Supprimer cette transaction ?")) {
                                                         const res = await deleteCashTransaction(t.id)
-                                                        if (res.success) toast.success("Transaction supprimée")
-                                                        else toast.error(res.message)
+                                                        if (res && 'success' in res && res.success) toast.success("Transaction supprimée")
+                                                        else if (res && 'message' in res) toast.error((res as any).message)
+                                                        else if (res && 'error' in res) toast.error((res as any).error)
                                                     }
                                                 }}
                                                 className="h-8 w-8 text-slate-300 hover:text-rose-600 hover:bg-rose-50"
@@ -171,6 +262,14 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                 categories={categories}
                 open={isEditDialogOpen}
                 onOpenChange={setIsEditDialogOpen}
+            />
+
+            <BatchAssignModal
+                isOpen={modalOpen}
+                onOpenChange={setModalOpen}
+                transactions={modalTxs}
+                onConfirm={handleModalConfirm}
+                isLoading={isSyncing}
             />
         </div>
     )
