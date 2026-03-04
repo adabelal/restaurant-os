@@ -20,6 +20,7 @@ import { ExportShiftsPDF } from "@/components/rh/ExportShiftsPDF"
 import { ShiftManager } from "@/components/rh/ShiftManager"
 import { RateHistoryManager } from "@/components/rh/RateHistoryManager"
 import { ContractManager } from "@/components/rh/ContractManager"
+import { DocumentAssistantCard } from "@/components/rh/DocumentAssistantCard"
 import { useRouter } from "next/navigation"
 
 interface EmployeeDetailClientProps {
@@ -379,232 +380,103 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                     </TabsContent>
 
                     {/* ONGLET 3: DOSSIER JURIDIQUE */}
-                    <TabsContent value="legal" className="grid md:grid-cols-3 gap-6">
-                        <div className="md:col-span-2 space-y-6">
-                            {/* Checklist Onboarding */}
-                            <Card className="border-border shadow-sm bg-indigo-500/5">
-                                <CardHeader className="pb-3">
-                                    <CardTitle className="text-base font-bold text-foreground flex items-center gap-2">
-                                        <ShieldCheck className="h-5 w-5 text-indigo-500" />
-                                        Conformité Onboarding
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                        {[
-                                            { label: "Contrat Signé", type: "CONTRACT" },
-                                            { label: "Pièce d'Identité / Titre Séjour", type: "ID_CARD" },
-                                            { label: "DPAE & Affiliations", type: "DPAE" },
-                                            { label: "Visite Médicale", type: "MEDICAL" }
-                                        ].map((item, i) => {
-                                            const isLikelyPresent = employee.documents.some((d: any) => {
-                                                if (d.type === item.type) return true;
-                                                const name = d.name.toLowerCase();
-                                                if (item.type === 'ID_CARD' && (d.type === 'RESIDENCE_PERMIT' || name.includes('identi') || name.includes('passeport') || name.includes('titre') || name.includes('séjour') || name.includes('sejour'))) return true;
-                                                if (item.type === 'CONTRACT' && name.includes('contrat')) return true;
-                                                if (item.type === 'DPAE' && (name.includes('dpae') || name.includes('urssaf'))) return true;
-                                                if (item.type === 'MEDICAL' && (name.includes('médical') || name.includes('medical') || name.includes('aptitude'))) return true;
-                                                return false;
-                                            });
+                    <TabsContent value="legal" className="space-y-8 animate-in slide-in-from-bottom-2 duration-500">
+                        <div>
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                                <div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="p-2 bg-indigo-500/10 rounded-lg">
+                                            <ShieldCheck className="h-5 w-5 text-indigo-500" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-foreground tracking-tight">Assistant RH & Conformité</h3>
+                                    </div>
+                                    <p className="text-sm text-muted-foreground mt-1.5 font-medium">
+                                        Gérez les documents obligatoires. Cliquez sur chaque dossier pour vérifier sa conformité ou déposer un fichier.
+                                    </p>
+                                </div>
+                            </div>
 
-                                            return (
-                                                <div key={i} className={`flex items-center gap-3 p-3 rounded-lg border ${isLikelyPresent ? 'bg-card border-emerald-500/50 shadow-sm' : 'bg-muted/30 border-border border-dashed opacity-70'}`}>
-                                                    <div className={`h-6 w-6 rounded-full flex items-center justify-center border ${isLikelyPresent ? 'bg-emerald-500 border-emerald-500 text-white' : 'bg-transparent border-border'}`}>
-                                                        {isLikelyPresent && <Check className="h-3 w-3" />}
-                                                    </div>
-                                                    <span className={`text-xs font-bold leading-tight ${isLikelyPresent ? 'text-foreground' : 'text-muted-foreground'}`}>{item.label}</span>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                </CardContent>
-                            </Card>
-                            <Card className="border-border shadow-sm bg-card">
-                                <CardHeader className="bg-muted/20 border-b border-border">
-                                    <div className="flex justify-between items-center">
-                                        <CardTitle className="text-lg text-foreground">Fiches de Paie</CardTitle>
-                                        <Badge className="bg-blue-600 text-white border-none">{employee.documents.filter((d: any) => d.type === "PAYSLIP").length}</Badge>
-                                    </div>
-                                </CardHeader>
-                                <CardContent className="p-0">
-                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-1 p-2">
-                                        {employee.documents.filter((d: any) => d.type === "PAYSLIP").length === 0 ? (
-                                            <div className="col-span-full p-8 text-center text-muted-foreground text-sm">Prêt pour import N8N...</div>
-                                        ) : (
-                                            employee.documents.filter((d: any) => d.type === "PAYSLIP").map((doc: any) => (
-                                                <div key={doc.id} className="relative group">
-                                                    <a href={doc.url} target="_blank" className="p-4 border border-border rounded-lg hover:border-blue-500/50 hover:bg-blue-500/5 transition-all flex flex-col items-center gap-2">
-                                                        <div className="h-10 w-10 bg-blue-500/10 text-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"><FileText className="h-5 w-5" /></div>
-                                                        <span className="text-[10px] font-bold text-center uppercase tracking-tighter text-foreground truncate w-full">{doc.month}/{doc.year || 'PAIE'}</span>
-                                                        <Download className="h-3 w-3 text-muted-foreground" />
-                                                    </a>
-                                                    <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                        <Button
-                                                            size="icon"
-                                                            variant="ghost"
-                                                            className="h-6 w-6 text-red-400 hover:text-red-500 bg-background shadow-sm border border-border"
-                                                            onClick={() => handleDeleteDocument(doc.id)}
-                                                        >
-                                                            <Trash2 className="h-3 w-3" />
-                                                        </Button>
-                                                    </div>
-                                                </div>
-                                            ))
-                                        )}
-                                    </div>
-                                </CardContent>
-                            </Card>
-
-                            {/* Contrats — composant dédié avec historique */}
-                            <ContractManager
-                                employeeId={employee.id}
-                                employeeName={employee.name}
-                                contractType={employee.contractType || 'CDI'}
-                                contractDuration={employee.contractDuration || 'FULL_TIME'}
-                                documents={employee.documents}
-                            />
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                <DocumentAssistantCard
+                                    employeeId={employee.id}
+                                    employeeName={employee.name}
+                                    documents={employee.documents}
+                                    onDeleteDoc={handleDeleteDocument}
+                                    docType="CONTRACT"
+                                    title="Contrat de Travail"
+                                    shortDesc="CDI, CDD, Extra..."
+                                    assistantHelp={"Le contrat de travail formalise l'embauche. Il doit être signé par les deux parties avant ou le jour de l'embauche.\n\nEn cas d'inspection de l'URSSAF ou du travail, l'original numérique ou papier certifié doit pouvoir être présenté immédiatement sur demande."}
+                                />
+                                <DocumentAssistantCard
+                                    employeeId={employee.id}
+                                    employeeName={employee.name}
+                                    documents={employee.documents}
+                                    onDeleteDoc={handleDeleteDocument}
+                                    docType="ID_CARD"
+                                    title="Identité / Séjour"
+                                    shortDesc="CNI, Passeport, Titre"
+                                    assistantHelp={"Une pièce d'identité en cours de validité (CNI ou Passeport) est obligatoire pour vérifier l'identité du salarié à l'embauche.\n\nS'il est de nationalité étrangère (hors UE), un Titre de Séjour valant autorisation de travail valide est strictement obligatoire (Amende pour emploi d'étranger en délicatesse)."}
+                                />
+                                <DocumentAssistantCard
+                                    employeeId={employee.id}
+                                    employeeName={employee.name}
+                                    documents={employee.documents}
+                                    onDeleteDoc={handleDeleteDocument}
+                                    docType="DPAE"
+                                    title="DPAE"
+                                    shortDesc="Accusé URSSAF"
+                                    assistantHelp={"La Déclaration Préalable À l'Embauche (DPAE) doit être transmise à l'URSSAF AVANT la prise de poste effective du salarié (au plus tôt 8 jours avant, et jusqu'à 30 secondes avant que le salarié commence à travailler).\n\nL'accusé de réception est l'unique preuve permettant d'éviter l'amende pour travail dissimulé !"}
+                                />
+                                <DocumentAssistantCard
+                                    employeeId={employee.id}
+                                    employeeName={employee.name}
+                                    documents={employee.documents}
+                                    onDeleteDoc={handleDeleteDocument}
+                                    docType="MEDICAL"
+                                    title="Visite Médicale"
+                                    shortDesc="Fiche d'aptitude"
+                                    assistantHelp={"La VIP (Visite d'Information et de Prévention) doit se faire au maximum 3 mois après l'embauche.\n\nLa fiche d'aptitude médicale atteste que le salarié est apte à travailler dans les conditions prévues sans danger pour sa santé. Un pilier en santé."}
+                                />
+                            </div>
                         </div>
 
-                        <div className="space-y-6">
-                            <Card className="border-blue-500/20 bg-blue-500/5 shadow-sm overflow-hidden">
-                                <CardHeader className="pb-3 border-b border-blue-500/10">
-                                    <CardTitle className="text-sm text-blue-500 flex items-center gap-2">
-                                        <Plus className="h-4 w-4" />
-                                        Uploader vers Google Drive
-                                    </CardTitle>
-                                    <p className="text-[10px] text-muted-foreground mt-0.5">
-                                        Rangement auto : <span className="font-semibold text-foreground">RH / {employee.name} / Type</span>
+                        {/* Fiches de paie et autres */}
+                        <div className="pt-8 border-t border-border">
+                            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+                                <div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="p-2 bg-blue-500/10 rounded-lg">
+                                            <FileText className="h-5 w-5 text-blue-500" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-foreground tracking-tight">Gestion Courante</h3>
+                                    </div>
+                                    <p className="text-sm text-muted-foreground mt-1.5 font-medium">
+                                        Retrouvez l'historique financier et les correspondances générales.
                                     </p>
-                                </CardHeader>
-                                <CardContent className="space-y-3 pt-4">
-
-                                    {/* Zone Drag & Drop */}
-                                    <div
-                                        onDragOver={handleDragOver}
-                                        onDragLeave={handleDragLeave}
-                                        onDrop={handleDrop}
-                                        onClick={() => fileInputRef.current?.click()}
-                                        className={`border-2 border-dashed rounded-xl p-6 flex flex-col items-center justify-center text-center backdrop-blur-sm transition-all cursor-pointer select-none ${droppedFile
-                                            ? 'border-emerald-500 bg-emerald-500/10'
-                                            : isDragging
-                                                ? 'border-blue-500 bg-blue-500/10 scale-[1.02]'
-                                                : 'border-blue-500/20 bg-background/50 hover:bg-background/80 hover:border-blue-500/40'
-                                            }`}
-                                    >
-                                        <input
-                                            ref={fileInputRef}
-                                            type="file"
-                                            accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx"
-                                            className="hidden"
-                                            onChange={handleFileChange}
-                                        />
-                                        {droppedFile ? (
-                                            <>
-                                                <div className="h-10 w-10 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mb-2">
-                                                    <FileText className="h-5 w-5" />
-                                                </div>
-                                                <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 truncate max-w-[180px]">{droppedFile.name}</p>
-                                                <p className="text-[9px] text-muted-foreground mt-0.5">{(droppedFile.size / 1024).toFixed(0)} Ko · Cliquez pour changer</p>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Plus className={`h-8 w-8 mb-2 transition-colors ${isDragging ? 'text-blue-600' : 'text-blue-400'}`} />
-                                                <p className="text-xs text-foreground font-medium">
-                                                    {isDragging ? 'Relâchez ici...' : 'Glissez un fichier ou cliquez'}
-                                                </p>
-                                                <p className="text-[9px] text-muted-foreground mt-1">PDF, JPG, PNG, DOCX · max 20 Mo</p>
-                                            </>
-                                        )}
-                                    </div>
-
-                                    {/* Formulaire */}
-                                    <div className="space-y-2">
-                                        <Input
-                                            placeholder="Nom du document"
-                                            className="text-xs h-8"
-                                            value={docName}
-                                            onChange={(e) => setDocName(e.target.value)}
-                                        />
-                                        <select
-                                            value={docType}
-                                            onChange={(e) => setDocType(e.target.value)}
-                                            className="w-full text-[10px] uppercase font-bold border border-input rounded p-1.5 h-8 bg-background text-foreground"
-                                        >
-                                            <option value="ID_CARD">🪪 Pièce d'Identité / Titre de Séjour</option>
-                                            <option value="CONTRACT">📋 Contrat de Travail</option>
-                                            <option value="PAYSLIP">💶 Fiche de Paie</option>
-                                            <option value="DPAE">📝 DPAE & URSSAF</option>
-                                            <option value="MEDICAL">🏥 Visite Médicale</option>
-                                            <option value="OTHER">📁 Autre document</option>
-                                        </select>
-                                        <div className="grid grid-cols-2 gap-2">
-                                            <Input
-                                                type="number" min="1" max="12"
-                                                placeholder="Mois (ex: 3)"
-                                                className="h-8 text-xs bg-background"
-                                                value={docMonth}
-                                                onChange={(e) => setDocMonth(e.target.value)}
-                                            />
-                                            <Input
-                                                type="number" min="2000" max="2100"
-                                                placeholder="Année (ex: 2026)"
-                                                className="h-8 text-xs bg-background"
-                                                value={docYear}
-                                                onChange={(e) => setDocYear(e.target.value)}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Barre de progression */}
-                                    {isUploading && (
-                                        <div className="space-y-1">
-                                            <div className="flex justify-between text-[10px] text-muted-foreground">
-                                                <span>Upload en cours…</span>
-                                                <span>{uploadProgress}%</span>
-                                            </div>
-                                            <div className="w-full bg-muted rounded-full h-1.5">
-                                                <div
-                                                    className="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
-                                                    style={{ width: `${uploadProgress}%` }}
-                                                />
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {/* Bouton upload */}
-                                    <Button
-                                        onClick={handleUpload}
-                                        disabled={isUploading || !droppedFile}
-                                        className="w-full h-9 text-xs font-bold gap-2 bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
-                                    >
-                                        {isUploading ? (
-                                            <>
-                                                <div className="h-3 w-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                                Upload vers Drive…
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Plus className="h-3.5 w-3.5" />
-                                                Envoyer vers Google Drive
-                                            </>
-                                        )}
-                                    </Button>
-
-                                    {/* Info rangement */}
-                                    {docType && (
-                                        <p className="text-[9px] text-muted-foreground text-center">
-                                            📂 Drive → <strong>RH - Restaurant OS</strong> / <strong>{employee.name}</strong> / <strong>{{
-                                                ID_CARD: 'Identité & Titre Séjour',
-                                                CONTRACT: 'Contrats',
-                                                PAYSLIP: 'Fiches de paie',
-                                                DPAE: 'DPAE & URSSAF',
-                                                MEDICAL: 'Visite Médicale',
-                                                OTHER: 'Autres documents',
-                                            }[docType] || docType}</strong>
-                                        </p>
-                                    )}
-                                </CardContent>
-                            </Card>
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                <DocumentAssistantCard
+                                    employeeId={employee.id}
+                                    employeeName={employee.name}
+                                    documents={employee.documents}
+                                    onDeleteDoc={handleDeleteDocument}
+                                    docType="PAYSLIP"
+                                    title="Fiches de Paie"
+                                    shortDesc="Historique mensuel"
+                                    assistantHelp={"Retrouvez ici toutes les fiches de paie du salarié. \n\nElles doivent être conservées et tenues à disposition des administrations ou en cas de demande du salarié (Droit à la conservation longue durée des documents sociaux)."}
+                                />
+                                <DocumentAssistantCard
+                                    employeeId={employee.id}
+                                    employeeName={employee.name}
+                                    documents={employee.documents}
+                                    onDeleteDoc={handleDeleteDocument}
+                                    docType="OTHER"
+                                    title="Autres documents"
+                                    shortDesc="RIB, Mutuelle, Arrêts..."
+                                    assistantHelp={"Déposez ici tout type de document annexe qui viendrait enrichir le dossier du salarié.\n\n- Rib (Pour virements).\n- Attestation Mutuelle HCR.\n- Justificatifs de domicile.\n- Arrêts maladie et IJSS.\n- Avertissements et courriers RH."}
+                                />
+                            </div>
                         </div>
                     </TabsContent>
 
