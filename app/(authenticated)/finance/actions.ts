@@ -784,7 +784,7 @@ export async function importBankCsvAction(formData: FormData) {
                         transactionType: analysis.transactionType,
                         paymentMethod: analysis.paymentMethod,
                         thirdPartyName: analysis.thirdPartyName,
-                        reference: 'CSV_IMPORT_' + new Date().toISOString().split('T')[0],
+                        reference: cols[4]?.replace(/"/g, '').trim() || 'CSV_IMPORT_' + new Date().toISOString().split('T')[0],
                         status: 'COMPLETED'
                     }
                 })
@@ -825,17 +825,23 @@ export async function syncBankTransactionsInternal() {
                     const amountObj = tx.transactionAmount || tx.amount || tx.instructedAmount || tx.transaction_amount;
                     const amountStr = amountObj?.amount || amountObj?.value || amountObj;
 
-                    // Extract description safely
-                    let description = tx.remittanceInformationUnstructured
-                        || tx.remittanceInformationStructured?.reference
-                        || tx.additionalInformation
-                        || tx.creditorName
-                        || tx.debtorName
-                        || "Transaction sans libellé";
+                    // Extract description safely and RICHER (Concatenation to avoid losing info)
+                    const unstructured = tx.remittanceInformationUnstructured || "";
+                    const structuredRef = tx.remittanceInformationStructured?.reference || "";
+                    const additional = tx.additionalInformation || "";
+                    const counterParty = tx.creditorName || tx.debtorName || "";
+                    const stetRemittance = (tx.remittance_information && Array.isArray(tx.remittance_information)) ? tx.remittance_information.join(' ') : "";
 
-                    // STET format has remittance_information as Array of strings
-                    if (tx.remittance_information && Array.isArray(tx.remittance_information)) {
-                        description = tx.remittance_information.join(' ');
+                    // Heuristic: Concatenate Counterparty + Remittance if they are distinct
+                    let description = [counterParty, unstructured, stetRemittance, additional].filter(Boolean).join(' - ').trim();
+
+                    if (!description) {
+                        description = structuredRef || "Transaction sans libellé";
+                    }
+
+                    // Remove redundant info (if counterParty is already at start of unstructured)
+                    if (counterParty && unstructured.startsWith(counterParty)) {
+                        description = unstructured + (additional ? ` - ${additional}` : "");
                     }
 
                     if (amountStr === undefined || amountStr === null) {
@@ -881,13 +887,13 @@ export async function syncBankTransactionsInternal() {
                                 transactionType: analysis.transactionType,
                                 paymentMethod: analysis.paymentMethod,
                                 thirdPartyName: analysis.thirdPartyName,
-                                reference: `ENABLE_BANKING_${account.aspspName}`,
+                                reference: tx.entryReference || tx.remittanceInformationStructured?.reference || `ENABLE_BANKING_${account.aspspName}`,
                                 status: 'COMPLETED'
                             }
-                        })
-                        totalNew++
+                        });
+                        totalNew++;
                     } else {
-                        totalDup++
+                        totalDup++;
                     }
                 }
             } else if (data.transactions && typeof data.transactions === 'object') {
@@ -1094,8 +1100,8 @@ export async function findRuleMatchingTransactions(keyword: string, matchType: '
     return safeAction({ keyword, matchType }, async (input) => {
         const k = input.keyword.toUpperCase()
 
-        let bankTx = []
-        let cashTx = []
+        let bankTx: any[] = []
+        let cashTx: any[] = []
 
         if (input.matchType === 'EXACT') {
             bankTx = await prisma.bankTransaction.findMany({
@@ -1130,8 +1136,8 @@ export async function findSimilarTransactions(transactionId: string) {
         let bankTx = await prisma.bankTransaction.findUnique({ where: { id: input.transactionId } })
         let cashTx = await prisma.cashTransaction.findUnique({ where: { id: input.transactionId } })
 
-        let similarBank = []
-        let similarCash = []
+        let similarBank: any[] = []
+        let similarCash: any[] = []
 
         if (bankTx) {
             if (bankTx.thirdPartyName && bankTx.thirdPartyName.trim() !== '') {

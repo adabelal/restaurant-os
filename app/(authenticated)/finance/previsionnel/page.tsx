@@ -16,7 +16,7 @@ export default async function PrevisionnelPage() {
     const forecastData = await getForecastData(3) // Average over last 3 months
 
     return (
-        <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-black p-4 md:p-12 space-y-12 max-w-7xl mx-auto font-sans transition-all duration-500">
+        <div className="flex flex-col min-h-screen bg-[#020617] p-4 md:p-12 space-y-12 max-w-7xl mx-auto font-sans transition-all duration-500">
             {/* Elegant Header Section */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-4">
                 <div className="space-y-2">

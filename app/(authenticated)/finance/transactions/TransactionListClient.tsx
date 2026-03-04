@@ -299,7 +299,7 @@ export function TransactionListClient({
                                                 <span className="text-indigo-600 dark:text-indigo-400 mr-2">{t.thirdPartyName}</span>
                                             ) : null}
                                             {t.thirdPartyName ? (
-                                                <span className="font-normal text-muted-foreground text-xs">{t.description}</span>
+                                                <span className="font-medium text-muted-foreground text-[11px] border-l border-border pl-2 border-dashed ml-1">{t.description}</span>
                                             ) : (
                                                 t.description
                                             )}
@@ -337,9 +337,9 @@ export function TransactionListClient({
                                                 </SelectContent>
                                             </Select>
 
-                                            {t.reference && t.reference.includes('ENABLE_BANKING') && (
-                                                <Badge variant="outline" className="text-[10px] h-5 px-2 font-medium opacity-60">
-                                                    Auto
+                                            {t.reference && (
+                                                <Badge variant="outline" className={`text-[10px] h-5 px-2 font-medium ${t.reference.includes('ENABLE_BANKING') ? 'opacity-40' : 'opacity-80 bg-slate-50'}`}>
+                                                    {t.reference.includes('ENABLE_BANKING') ? 'Auto' : t.reference}
                                                 </Badge>
                                             )}
                                         </div>

@@ -18,7 +18,9 @@ def clean_price(s):
 def process_month(path):
     reader = PdfReader(path)
     filename = os.path.basename(path)
-    year = filename.split('-')[0]
+    # Extract year: handle both '2026-01_Extrait...' and 'Extrait Septembre 2024...'
+    year_match = re.search(r'(20\d{2})', filename)
+    year = year_match.group(1) if year_match else "2024"
     
     full_text = ""
     for page in reader.pages: full_text += page.extract_text() + "\n"
@@ -48,13 +50,16 @@ def process_month(path):
         if "SOLDE" in line or "TOTAL" in line: continue
         if re.search(r'\d{2}/\d{2}/\d{4}', line): continue
         if re.search(r'\d{2}\.\d{2}\.\d{4}', line): continue
+        # Exclude SEPA detail section lines (format: FOURNISSEUR FR74ZZZ... montant €DD/MM)
+        if re.search(r'FR\d+ZZZ', line): continue
+        if re.search(r'DETAIL DE VOS', line): continue
 
-        if re.search(r'\d{2}/\d{2}', line):
+        if re.match(r'^\d{2}/\d{2}', line):
             matches = re.findall(r'(?:\s|^)(\d[\d\s]*,\d{2})', line)
             if matches:
                  val = clean_price(matches[-1])
                  if val > 0.01 and val < 60000:
-                     d_str = re.search(r'\d{2}/\d{2}', line).group()
+                     d_str = re.match(r'^\d{2}/\d{2}', line).group()
                      day, month = d_str.split('/')
                      
                      # Default Sign Heuristic
@@ -96,9 +101,22 @@ def process_month(path):
     return {"txs": candidates, "start": s_val}
 
 def main():
-    folder = "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/Comptes"
-    if not os.path.exists(folder): return
-    files = sorted([f for f in os.listdir(folder) if f.endswith('.pdf')])
+    # Try multiple possible folder locations (in priority order)
+    folders_to_try = [
+        "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/FINANCE/Banque",
+        "/Users/adambelal/Library/CloudStorage/GoogleDrive-siwa.bleury@gmail.com/Mon Drive/iCloud Siwa/Relevés bancaires/Comptes",
+    ]
+    folder = None
+    for f in folders_to_try:
+        if os.path.exists(f):
+            folder = f
+            break
+    if not folder:
+        print("ERROR: No bank statement folder found.")
+        return
+    print(f"Reading from: {folder}")
+    files = sorted([f for f in os.listdir(folder) if f.endswith('.pdf') and not f.startswith('.')])
+    print(f"Found {len(files)} PDF files.")
     
     history = []
     
@@ -113,9 +131,20 @@ def main():
         if res:
             history.extend(res['txs'])
 
+    # Global deduplication (same transaction can appear on boundary of 2 months)
+    seen_keys = set()
+    deduped = []
+    for t in history:
+        key = (t['date'][:10], round(t['amount'], 2), t['description'].strip())
+        if key not in seen_keys:
+            seen_keys.add(key)
+            deduped.append(t)
+    removed = len(history) - len(deduped)
+    print(f"Deduplication: removed {removed} exact duplicates → {len(deduped)} transactions remain.")
+
     with open('history_data.json', 'w') as jf:
-        json.dump(history, jf, indent=2)
-    print(f"TOTAL: {sum(t['amount'] for t in history):.2f}")
+        json.dump(deduped, jf, indent=2)
+    print(f"TOTAL: {sum(t['amount'] for t in deduped):.2f}")
 
 if __name__ == "__main__":
     main()

@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { User, Archive, BarChart4, Users, Database } from "lucide-react"
 import { EmployeeListContent } from "@/components/rh/EmployeeListContent"
 import { RHSummaryTable } from "@/components/rh/RHSummaryTable"
+import { PayslipBulkUpload } from "@/components/rh/PayslipBulkUpload"
 
 export default async function RHPage() {
     const employees = await prisma.user.findMany({
@@ -94,7 +95,8 @@ export default async function RHPage() {
                         />
                     </TabsContent>
 
-                    <TabsContent value="summary" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
+                    <TabsContent value="summary" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500 space-y-6">
+                        <PayslipBulkUpload employees={activeEmployees.map((e: any) => ({ id: e.id, name: e.name, isActive: e.isActive }))} />
                         <RHSummaryTable employees={activeEmployees} />
                     </TabsContent>
 

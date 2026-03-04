@@ -19,6 +19,7 @@ import { HistoryChart } from "@/components/rh/HistoryChart"
 import { ExportShiftsPDF } from "@/components/rh/ExportShiftsPDF"
 import { ShiftManager } from "@/components/rh/ShiftManager"
 import { RateHistoryManager } from "@/components/rh/RateHistoryManager"
+import { ContractManager } from "@/components/rh/ContractManager"
 import { useRouter } from "next/navigation"
 
 interface EmployeeDetailClientProps {
@@ -28,6 +29,17 @@ interface EmployeeDetailClientProps {
 
 export default function EmployeeDetailClient({ employee, searchParams }: EmployeeDetailClientProps) {
     const router = useRouter()
+
+    // États pour le drag & drop et l'upload Drive
+    const [isDragging, setIsDragging] = React.useState(false)
+    const [droppedFile, setDroppedFile] = React.useState<File | null>(null)
+    const [docName, setDocName] = React.useState("")
+    const [docType, setDocType] = React.useState("OTHER")
+    const [docMonth, setDocMonth] = React.useState("")
+    const [docYear, setDocYear] = React.useState("")
+    const [isUploading, setIsUploading] = React.useState(false)
+    const [uploadProgress, setUploadProgress] = React.useState(0)
+    const fileInputRef = React.useRef<HTMLInputElement>(null)
 
     // Gestion de l'onglet par défaut (si tab=hours passé en URL)
     const defaultTab = searchParams.tab || "stats"
@@ -98,17 +110,17 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
 
     const handleProfileUpdate = async (formData: FormData) => {
         const res = await updateEmployee(formData)
-        if (res.success) {
+        if (!('error' in res)) {
             toast.success("Profil employé mis à jour.")
             router.refresh()
         } else {
-            toast.error(res.error || "Erreur lors de la mise à jour du profil.")
+            toast.error((res as any).error || "Erreur lors de la mise à jour du profil.")
         }
     }
 
     const handleToggleStatus = async () => {
         const res = await toggleEmployeeStatus(employee.id, !employee.isActive)
-        if (res.success) {
+        if (!('error' in res)) {
             toast.success("Statut employé mis à jour.")
             router.refresh()
         } else {
@@ -118,23 +130,102 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
 
     const handleAddDocument = async (formData: FormData) => {
         const res = await addEmployeeDocument(formData)
-        if (res.success) {
+        if (!('error' in res)) {
             toast.success("Document ajouté avec succès.")
             const form = document.getElementById("add-document-form") as HTMLFormElement
             if (form) form.reset()
+            setDocName("")
             router.refresh()
         } else {
-            toast.error(res.error || "Erreur lors de l'ajout du document.")
+            toast.error((res as any).error || "Erreur lors de l'ajout du document.")
         }
     }
 
     const handleDeleteDocument = async (docId: string) => {
         const res = await deleteEmployeeDocument(docId, employee.id)
-        if (res.success) {
+        if (!('error' in res)) {
             toast.success("Document supprimé.")
             router.refresh()
         } else {
             toast.error("Erreur lors de la suppression du document.")
+        }
+    }
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragging(true)
+    }
+
+    const handleDragLeave = (e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragging(false)
+    }
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault()
+        setIsDragging(false)
+        const files = Array.from(e.dataTransfer.files)
+        if (files.length > 0) {
+            const file = files[0]
+            setDroppedFile(file)
+            if (!docName) setDocName(file.name.replace(/\.[^.]+$/, ''))
+        }
+    }
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (file) {
+            setDroppedFile(file)
+            if (!docName) setDocName(file.name.replace(/\.[^.]+$/, ''))
+        }
+    }
+
+    const handleUpload = async () => {
+        if (!droppedFile || !docName.trim()) {
+            toast.error('Veuillez sélectionner un fichier et nommer le document.')
+            return
+        }
+        setIsUploading(true)
+        setUploadProgress(10)
+
+        try {
+            const formData = new FormData()
+            formData.append('file', droppedFile)
+            formData.append('userId', employee.id)
+            formData.append('name', docName.trim())
+            formData.append('type', docType)
+            if (docMonth) formData.append('month', docMonth)
+            if (docYear) formData.append('year', docYear)
+
+            setUploadProgress(30)
+
+            const res = await fetch('/api/rh/upload', {
+                method: 'POST',
+                body: formData,
+            })
+
+            setUploadProgress(80)
+            const data = await res.json()
+
+            if (!res.ok || data.error) {
+                throw new Error(data.error || 'Erreur serveur')
+            }
+
+            setUploadProgress(100)
+            toast.success(`✅ ${data.message}`)
+
+            // Reset
+            setDroppedFile(null)
+            setDocName('')
+            setDocMonth('')
+            setDocYear('')
+            if (fileInputRef.current) fileInputRef.current.value = ''
+            router.refresh()
+        } catch (e: any) {
+            toast.error(e.message || 'Erreur lors de l\'upload')
+        } finally {
+            setIsUploading(false)
+            setUploadProgress(0)
         }
     }
 
@@ -357,64 +448,154 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                 </CardContent>
                             </Card>
 
-                            <Card className="border-border shadow-sm bg-card">
-                                <CardHeader className="bg-muted/20 border-b border-border">
-                                    <CardTitle className="text-lg text-foreground">Contrats & Identité</CardTitle>
-                                </CardHeader>
-                                <CardContent className="p-6 space-y-4">
-                                    {employee.documents.filter((d: any) => d.type === "CONTRACT" || d.type === "ID_CARD" || d.category === "JURIDIQUE").map((doc: any) => (
-                                        <div key={doc.id} className="flex items-center justify-between p-3 border-b border-border last:border-0 group">
-                                            <div className="flex items-center gap-4">
-                                                <ShieldCheck className="h-5 w-5 text-emerald-500" />
-                                                <div>
-                                                    <p className="text-sm font-bold leading-none text-foreground">{doc.name}</p>
-                                                    <p className="text-[10px] text-muted-foreground mt-1 uppercase">{doc.type}</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-center gap-1">
-                                                <Button size="sm" variant="ghost" asChild><a href={doc.url} target="_blank"><ExternalLink className="h-4 w-4" /></a></Button>
-                                                <Button
-                                                    size="icon"
-                                                    variant="ghost"
-                                                    className="h-8 w-8 text-muted-foreground hover:text-red-500"
-                                                    onClick={() => handleDeleteDocument(doc.id)}
-                                                >
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </CardContent>
-                            </Card>
+                            {/* Contrats — composant dédié avec historique */}
+                            <ContractManager
+                                employeeId={employee.id}
+                                employeeName={employee.name}
+                                contractType={employee.contractType || 'CDI'}
+                                contractDuration={employee.contractDuration || 'FULL_TIME'}
+                                documents={employee.documents}
+                            />
                         </div>
 
                         <div className="space-y-6">
                             <Card className="border-blue-500/20 bg-blue-500/5 shadow-sm overflow-hidden">
-                                <CardHeader className="pb-2">
-                                    <CardTitle className="text-sm text-blue-500">Ajouter / Drag-and-Drop</CardTitle>
+                                <CardHeader className="pb-3 border-b border-blue-500/10">
+                                    <CardTitle className="text-sm text-blue-500 flex items-center gap-2">
+                                        <Plus className="h-4 w-4" />
+                                        Uploader vers Google Drive
+                                    </CardTitle>
+                                    <p className="text-[10px] text-muted-foreground mt-0.5">
+                                        Rangement auto : <span className="font-semibold text-foreground">RH / {employee.name} / Type</span>
+                                    </p>
                                 </CardHeader>
-                                <CardContent className="space-y-4">
-                                    <div className="border-2 border-dashed border-blue-500/20 rounded-xl p-8 flex flex-col items-center justify-center text-center bg-background/50 backdrop-blur-sm transition-colors">
-                                        <Plus className="h-8 w-8 text-blue-500 mb-2" />
-                                        <p className="text-xs text-foreground font-medium">Collez votre lien ci-dessous</p>
-                                        <p className="text-[9px] text-muted-foreground mt-1">Google Drive, Dropbox, etc.</p>
+                                <CardContent className="space-y-3 pt-4">
+
+                                    {/* Zone Drag & Drop */}
+                                    <div
+                                        onDragOver={handleDragOver}
+                                        onDragLeave={handleDragLeave}
+                                        onDrop={handleDrop}
+                                        onClick={() => fileInputRef.current?.click()}
+                                        className={`border-2 border-dashed rounded-xl p-6 flex flex-col items-center justify-center text-center backdrop-blur-sm transition-all cursor-pointer select-none ${droppedFile
+                                            ? 'border-emerald-500 bg-emerald-500/10'
+                                            : isDragging
+                                                ? 'border-blue-500 bg-blue-500/10 scale-[1.02]'
+                                                : 'border-blue-500/20 bg-background/50 hover:bg-background/80 hover:border-blue-500/40'
+                                            }`}
+                                    >
+                                        <input
+                                            ref={fileInputRef}
+                                            type="file"
+                                            accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx"
+                                            className="hidden"
+                                            onChange={handleFileChange}
+                                        />
+                                        {droppedFile ? (
+                                            <>
+                                                <div className="h-10 w-10 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mb-2">
+                                                    <FileText className="h-5 w-5" />
+                                                </div>
+                                                <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 truncate max-w-[180px]">{droppedFile.name}</p>
+                                                <p className="text-[9px] text-muted-foreground mt-0.5">{(droppedFile.size / 1024).toFixed(0)} Ko · Cliquez pour changer</p>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Plus className={`h-8 w-8 mb-2 transition-colors ${isDragging ? 'text-blue-600' : 'text-blue-400'}`} />
+                                                <p className="text-xs text-foreground font-medium">
+                                                    {isDragging ? 'Relâchez ici...' : 'Glissez un fichier ou cliquez'}
+                                                </p>
+                                                <p className="text-[9px] text-muted-foreground mt-1">PDF, JPG, PNG, DOCX · max 20 Mo</p>
+                                            </>
+                                        )}
                                     </div>
-                                    <form action={handleAddDocument} id="add-document-form" className="space-y-3">
-                                        <input type="hidden" name="userId" value={employee.id} />
-                                        <Input name="name" placeholder="Nom du document" className="text-xs h-8" required />
-                                        <Input name="url" placeholder="Lien URL complet" className="text-xs h-8" required />
-                                        <select name="type" className="w-full text-[10px] uppercase font-bold border border-input rounded p-1.5 h-8 bg-background text-foreground">
-                                            <option value="ID_CARD">Carte Identité / Passeport</option>
-                                            <option value="CONTRACT">Contrat de Travail</option>
-                                            <option value="PAYSLIP">Fiche de Paie</option>
-                                            <option value="OTHER">Autre dossier</option>
+
+                                    {/* Formulaire */}
+                                    <div className="space-y-2">
+                                        <Input
+                                            placeholder="Nom du document"
+                                            className="text-xs h-8"
+                                            value={docName}
+                                            onChange={(e) => setDocName(e.target.value)}
+                                        />
+                                        <select
+                                            value={docType}
+                                            onChange={(e) => setDocType(e.target.value)}
+                                            className="w-full text-[10px] uppercase font-bold border border-input rounded p-1.5 h-8 bg-background text-foreground"
+                                        >
+                                            <option value="ID_CARD">🪪 Carte Identité / Passeport</option>
+                                            <option value="CONTRACT">📋 Contrat de Travail</option>
+                                            <option value="PAYSLIP">💶 Fiche de Paie</option>
+                                            <option value="RESIDENCE_PERMIT">📄 Titre de Séjour</option>
+                                            <option value="INSURANCE">🏥 Mutuelle / RIB</option>
+                                            <option value="OTHER">📁 Autre document</option>
                                         </select>
                                         <div className="grid grid-cols-2 gap-2">
-                                            <Input type="number" name="month" placeholder="Mois" className="h-8 text-xs bg-background" />
-                                            <Input type="number" name="year" placeholder="Année" className="h-8 text-xs bg-background" />
+                                            <Input
+                                                type="number" min="1" max="12"
+                                                placeholder="Mois (ex: 3)"
+                                                className="h-8 text-xs bg-background"
+                                                value={docMonth}
+                                                onChange={(e) => setDocMonth(e.target.value)}
+                                            />
+                                            <Input
+                                                type="number" min="2000" max="2100"
+                                                placeholder="Année (ex: 2026)"
+                                                className="h-8 text-xs bg-background"
+                                                value={docYear}
+                                                onChange={(e) => setDocYear(e.target.value)}
+                                            />
                                         </div>
-                                        <Button type="submit" className="w-full h-8 text-xs bg-primary text-primary-foreground hover:bg-primary/90">Lier au dossier</Button>
-                                    </form>
+                                    </div>
+
+                                    {/* Barre de progression */}
+                                    {isUploading && (
+                                        <div className="space-y-1">
+                                            <div className="flex justify-between text-[10px] text-muted-foreground">
+                                                <span>Upload en cours…</span>
+                                                <span>{uploadProgress}%</span>
+                                            </div>
+                                            <div className="w-full bg-muted rounded-full h-1.5">
+                                                <div
+                                                    className="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
+                                                    style={{ width: `${uploadProgress}%` }}
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Bouton upload */}
+                                    <Button
+                                        onClick={handleUpload}
+                                        disabled={isUploading || !droppedFile}
+                                        className="w-full h-9 text-xs font-bold gap-2 bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
+                                    >
+                                        {isUploading ? (
+                                            <>
+                                                <div className="h-3 w-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                                Upload vers Drive…
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Plus className="h-3.5 w-3.5" />
+                                                Envoyer vers Google Drive
+                                            </>
+                                        )}
+                                    </Button>
+
+                                    {/* Info rangement */}
+                                    {docType && (
+                                        <p className="text-[9px] text-muted-foreground text-center">
+                                            📂 Drive → <strong>RH - Restaurant OS</strong> / <strong>{employee.name}</strong> / <strong>{{
+                                                ID_CARD: 'Identité',
+                                                CONTRACT: 'Contrats',
+                                                PAYSLIP: 'Fiches de paie',
+                                                RESIDENCE_PERMIT: 'Titre de séjour',
+                                                INSURANCE: 'Mutuelle & RIB',
+                                                OTHER: 'Autres documents',
+                                            }[docType] || docType}</strong>
+                                        </p>
+                                    )}
                                 </CardContent>
                             </Card>
                         </div>
