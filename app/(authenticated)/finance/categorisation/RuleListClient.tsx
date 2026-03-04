@@ -60,8 +60,8 @@ export function RuleListClient({
                 }, ...prev])
                 // Check if similar txs exists to prompt the batch update
                 const similars = await findRuleMatchingTransactions(newKeyword.trim(), newMatch as 'CONTAINS' | 'EXACT')
-                if (similars && 'data' in similars && similars.data && 'data' in similars.data) {
-                    const similarList = similars.data.data as BatchTx[];
+                if (similars && 'data' in similars) {
+                    const similarList = (similars as any).data as BatchTx[];
                     if (similarList.length > 0) {
                         setModalTxs(similarList)
                         setPendingCategoryId(newCatId)
@@ -106,7 +106,7 @@ export function RuleListClient({
         setIsLoading(true)
         try {
             const res = await applyCategoryToMultipleTx(selectedTx.map(t => ({ id: t.id, isCash: t.isCash })), pendingCategoryId)
-            if (res && 'data' in res && res.data && 'success' in (res.data as any)) {
+            if (res && 'success' in res && res.success) {
                 toast.success(`Règle appliquée à ${selectedTx.length} transaction(s) existante(s).`)
                 setModalOpen(false)
             } else if (res && 'error' in res) {

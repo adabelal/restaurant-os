@@ -71,8 +71,8 @@ export function AutoCatClient({
 
                 // Find similars
                 const similars = await findSimilarTransactions(transactionId)
-                if (similars && 'data' in similars && similars.data && 'data' in (similars.data as any)) {
-                    const similarList = (similars.data as any).data as BatchTx[];
+                if (similars && 'data' in similars) {
+                    const similarList = (similars as any).data as BatchTx[];
                     if (similarList.length > 0) {
                         setModalTxs(similarList)
                         setPendingCategoryId(categoryId)
@@ -100,7 +100,7 @@ export function AutoCatClient({
         setIsSyncing(true)
         try {
             const res = await applyCategoryToMultipleTx(selectedTx.map(t => ({ id: t.id, isCash: t.isCash })), pendingCategoryId)
-            if (res && 'data' in res && res.data && 'success' in (res.data as any)) {
+            if (res && 'success' in res && res.success) {
                 toast.success(`Catégorie appliquée à ${selectedTx.length} transaction(s).`)
 
                 // remove them from UI
