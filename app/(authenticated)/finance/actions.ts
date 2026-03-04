@@ -867,6 +867,15 @@ export async function syncBankTransactionsInternal() {
 
                     const date = new Date(tx.bookingDate || tx.valueDate || tx.date || tx.booking_date || tx.value_date);
 
+                    // ⚠️ Anti-doublon PDF : ignorer les TX déjà couvertes par l'historique PDF (avant Feb 2026)
+                    // Exception : l'ajustement de solde d'ouverture est toujours importé
+                    const PDF_CUTOFF = new Date('2026-02-01T00:00:00Z')
+                    const isOpeningAdjustment = description.toLowerCase().includes('ajustement') || description.toLowerCase().includes('solde de d')
+                    if (date < PDF_CUTOFF && !isOpeningAdjustment) {
+                        totalDup++
+                        continue
+                    }
+
                     // Check for duplicate
                     const existing = await prisma.bankTransaction.findFirst({
                         where: {
