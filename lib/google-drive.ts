@@ -29,17 +29,44 @@ async function getAccessToken(): Promise<string> {
         return cachedToken.access_token
     }
 
-    const tokenData = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf-8'))
-    const credData = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf-8'))
-    const creds = credData.installed || credData.web
+    let clientId = process.env.GOOGLE_DRIVE_CLIENT_ID
+    let clientSecret = process.env.GOOGLE_DRIVE_CLIENT_SECRET
+    let refreshToken = process.env.GOOGLE_DRIVE_REFRESH_TOKEN
+
+    let tokenFileExists = false
+
+    // Fallback aux fichiers locaux si variables d'environnement manquantes
+    if (!clientId || !clientSecret || !refreshToken) {
+        try {
+            if (fs.existsSync(TOKEN_PATH) && fs.existsSync(CREDENTIALS_PATH)) {
+                const tokenData = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf-8'))
+                const credData = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf-8'))
+                const creds = credData.installed || credData.web
+
+                clientId = clientId || creds.client_id
+                clientSecret = clientSecret || creds.client_secret
+                refreshToken = refreshToken || tokenData.refresh_token
+                tokenFileExists = true
+            } else {
+                throw new Error("Missing Mail/ files and env vars")
+            }
+        } catch (e) {
+            console.error("Erreur de lecture des credentials Google Drive :", e)
+            throw new Error("Identifiants Google Drive introuvables. Configurez les variables d'environnement.")
+        }
+    }
+
+    if (!clientId || !clientSecret || !refreshToken) {
+        throw new Error("Missing Google Drive OAuth credentials")
+    }
 
     const res = await fetch('https://oauth2.googleapis.com/token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
-            client_id: creds.client_id,
-            client_secret: creds.client_secret,
-            refresh_token: tokenData.refresh_token,
+            client_id: clientId,
+            client_secret: clientSecret,
+            refresh_token: refreshToken,
             grant_type: 'refresh_token',
         }),
     })
@@ -51,15 +78,22 @@ async function getAccessToken(): Promise<string> {
 
     const { access_token, expires_in } = await res.json()
 
-    // Persist new access token
+    // Persist new access token en mémoire
     cachedToken = {
         access_token,
         expiry: Date.now() + expires_in * 1000,
     }
 
-    // Update file with new token for other scripts
-    const updated = { ...tokenData, token: access_token, expiry: new Date(cachedToken.expiry).toISOString() }
-    fs.writeFileSync(TOKEN_PATH, JSON.stringify(updated))
+    // Update file UNIQUEMENT si le fichier existait déjà (local dev)
+    if (tokenFileExists) {
+        try {
+            const tokenData = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf-8'))
+            const updated = { ...tokenData, token: access_token, expiry: new Date(cachedToken.expiry).toISOString() }
+            fs.writeFileSync(TOKEN_PATH, JSON.stringify(updated))
+        } catch (e) {
+            console.warn("Impossible d'écrire dans token.json, mais le token est en mémoire.", e)
+        }
+    }
 
     return access_token
 }
