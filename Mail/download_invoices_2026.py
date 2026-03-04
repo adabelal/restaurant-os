@@ -204,7 +204,7 @@ def sync_to_restaurant_os(data):
     
     if not api_url:
         print("⚠️  URL API manquante (RESTAURANT_OS_API_URL). Sync ignorée.")
-        return
+        return False
 
     headers = {
         "Content-Type": "application/json",
@@ -215,10 +215,13 @@ def sync_to_restaurant_os(data):
         response = requests.post(api_url, json=data, headers=headers)
         if response.status_code == 200 or response.status_code == 201:
             print(f"🚀 Synchro Restaurant-OS OK")
+            return True
         else:
             print(f"❌ Erreur synchro: [{response.status_code}] {response.text}")
+            return False
     except Exception as e:
         print(f"❌ Erreur réseau synchro: {e}")
+        return False
 
 def sync_popina_to_restaurant_os(data):
     """Envoie les données de caisse Popina au webhook dédié"""
@@ -233,7 +236,7 @@ def sync_popina_to_restaurant_os(data):
     
     if not api_url:
         print("⚠️ URL API Popina manquante. Sync ignorée.")
-        return
+        return False
 
     headers = {
         "Content-Type": "application/json",
@@ -244,10 +247,13 @@ def sync_popina_to_restaurant_os(data):
         response = requests.post(api_url, json=data, headers=headers)
         if response.status_code == 200 or response.status_code == 201:
             print(f"🚀 Synchro Popina OK")
+            return True
         else:
             print(f"❌ Erreur synchro Popina: [{response.status_code}] {response.text}")
+            return False
     except Exception as e:
         print(f"❌ Erreur réseau synchro Popina: {e}")
+        return False
 
 def mark_as_processed(service, msg_id):
     """Ajoute le label 'Archive_AI' au message pour ne plus le traiter."""
@@ -277,8 +283,8 @@ def mark_as_processed(service, msg_id):
 
 def process_popina_reports(service):
     """Recherche et traite les rapports de fin de caisse Popina."""
-    print("🔍 Recherche Gmail (Rapports Popina)...")
-    query = 'label:INBOX -label:Archive_AI subject:"Rapport de fin de caisse"'
+    print("🔍 Recherche Gmail (Rapports Popina sans restriction de l'INBOX)...")
+    query = '-label:Archive_AI subject:"Rapport de fin de caisse"'
     
     try:
         results = service.users().messages().list(userId='me', q=query).execute()
@@ -352,10 +358,13 @@ def process_popina_reports(service):
                     "subject": subject,
                     "type": "POPINA_REPORT"
                 }
-                sync_popina_to_restaurant_os(sync_data)
+                success = sync_popina_to_restaurant_os(sync_data)
                 
                 # Archivage
-                mark_as_processed(service, msg_info['id'])
+                if success:
+                    mark_as_processed(service, msg_info['id'])
+                else:
+                    print(f"⚠️  Echec sync pour ID: {msg_info['id']}, non marqué comme traité.")
             else:
                 print(f"⚠️  Rapport Popina trouvé (ID: {msg_info['id']}) mais montant Espèces non détecté.")
 
@@ -375,9 +384,9 @@ def download_and_upload_invoices():
     # NOUVEAU: Traitement Popina
     process_popina_reports(gmail_service)
 
-    print("🔍 Recherche Gmail (Nouveaux messages 2026+)...")
+    print("🔍 Recherche Gmail (Nouveaux messages 2026+ sans restriction INBOX)...")
     # Recherche large pour être sûr de ne rien rater
-    query = 'label:INBOX -label:Archive_AI after:2025/12/31 has:attachment filename:pdf'
+    query = '-label:Archive_AI after:2025/12/31 has:attachment filename:pdf'
     
     messages = []
     next_page = None
@@ -422,6 +431,7 @@ def download_and_upload_invoices():
 
             attachments = get_attachments(parts)
             
+            all_success = True
             for part in attachments:
                 filename_orig = part['filename'].lower()
                 att_id = part['body']['attachmentId']
@@ -488,14 +498,18 @@ def download_and_upload_invoices():
                                 "type": "INVOICE"
                             }
                         }
-                        sync_to_restaurant_os(sync_data)
+                        if not sync_to_restaurant_os(sync_data):
+                            all_success = False
                 else:
                     print(f"⏭️  Déjà présent : {new_filename}")
                 
             # Archivage après traitement (si au moins une PJ trouvée)
-            if attachments:
+            if attachments and all_success:
                 mark_as_processed(gmail_service, msg_info['id'])
                 processed_count += 1
+            elif attachments and not all_success:
+                print(f"⚠️  Echec sync pour facture(s) du msg {msg_info['id']}, non marqué.")
+
 
         except Exception as e:
             print(f"❌ Erreur critique message {msg_info['id']}: {e}")
