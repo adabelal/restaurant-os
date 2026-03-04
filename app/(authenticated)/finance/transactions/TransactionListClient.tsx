@@ -10,8 +10,9 @@ import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, 
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import Link from 'next/link'
-import { syncBankTransactions, assignTransactionCategory } from '../actions'
+import { syncBankTransactions, assignTransactionCategory, findSimilarTransactions, applyCategoryToMultipleTx } from '../actions'
 import { toast } from 'sonner'
+import { BatchAssignModal, BatchTx } from '../components/BatchAssignModal'
 
 export type TransformedTx = {
     id: string
@@ -40,6 +41,10 @@ export function TransactionListClient({
     const [isSyncing, setIsSyncing] = useState(false)
     const [loadingIds, setLoadingIds] = useState<Set<string>>(new Set())
 
+    const [modalOpen, setModalOpen] = useState(false)
+    const [modalTxs, setModalTxs] = useState<BatchTx[]>([])
+    const [pendingCategoryId, setPendingCategoryId] = useState<string | null>(null)
+
     const handleSyncBank = async () => {
         setIsSyncing(true)
         const promise = syncBankTransactions()
@@ -58,21 +63,25 @@ export function TransactionListClient({
     }
 
     const handleAssign = async (transactionId: string, categoryId: string, hasExistingCategory: boolean) => {
-        let applyToSimilar = false
-        if (hasExistingCategory) {
-            applyToSimilar = window.confirm("Voulez-vous aussi appliquer cette catégorie à toutes les transactions similaires (même tiers ou libellé) ?")
-        } else {
-            // Implicitly learning for uncategorized
-            applyToSimilar = true
-        }
-
         setLoadingIds(prev => new Set(prev).add(transactionId))
         try {
-            const res = await assignTransactionCategory(transactionId, categoryId, applyToSimilar)
+            // First apply directly to the clicked row
+            const res = await assignTransactionCategory(transactionId, categoryId, false)
             if (res?.error) {
                 toast.error(res.error)
             } else {
                 toast.success("Catégorie assignée.")
+
+                // Then check for similar items without blocking the UI
+                const similars = await findSimilarTransactions(transactionId)
+                if (similars && 'data' in similars && similars.data && 'data' in similars.data) {
+                    const similarList = similars.data.data as BatchTx[];
+                    if (similarList.length > 0) {
+                        setModalTxs(similarList)
+                        setPendingCategoryId(categoryId)
+                        setModalOpen(true)
+                    }
+                }
             }
         } catch (e) {
             toast.error("Erreur de réseau.")
@@ -82,6 +91,27 @@ export function TransactionListClient({
             next.delete(transactionId)
             return next
         })
+    }
+
+    const handleModalConfirm = async (selectedTx: BatchTx[]) => {
+        if (!pendingCategoryId || selectedTx.length === 0) {
+            setModalOpen(false)
+            return
+        }
+
+        setIsSyncing(true) // we reuse it to show a loading state on the button
+        try {
+            const res = await applyCategoryToMultipleTx(selectedTx.map(t => ({ id: t.id, isCash: t.isCash })), pendingCategoryId)
+            if (res && 'data' in res && res.data && 'success' in (res.data as any)) {
+                toast.success(`Catégorie appliquée à ${selectedTx.length} transaction(s).`)
+                setModalOpen(false)
+            } else if (res && 'error' in res) {
+                toast.error(res.error || "Erreur, impossible d'appliquer le changement en lot.")
+            }
+        } catch (e) {
+            toast.error("Erreur réseau.")
+        }
+        setIsSyncing(false)
     }
 
     const categoriesByType = categories.reduce((acc, cat) => {
@@ -328,6 +358,14 @@ export function TransactionListClient({
                     )}
                 </div>
             </Card>
+
+            <BatchAssignModal
+                isOpen={modalOpen}
+                onOpenChange={setModalOpen}
+                transactions={modalTxs}
+                onConfirm={handleModalConfirm}
+                isLoading={isSyncing}
+            />
         </div>
     )
 }

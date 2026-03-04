@@ -1039,18 +1039,117 @@ export async function assignTransactionCategory(transactionId: string, categoryI
                             ...(input.applyToSimilar ? {} : { categoryId: null }),
                             id: { not: tx.id }
                         },
-                        data: { categoryId: input.categoryId }
                     })
                 }
             }
 
+            revalidatePath('/finance')
             revalidatePath('/finance/transactions')
             revalidatePath('/finance/transactions/auto-categorisation')
-            revalidatePath('/finance')
             return { success: true }
         } catch (error) {
             console.error("Assign category error:", error)
             return { error: "Erreur lors de l'assignation de la catégorie" }
+        }
+    })
+}
+
+export async function findRuleMatchingTransactions(keyword: string, matchType: 'CONTAINS' | 'EXACT') {
+    return safeAction({ keyword, matchType }, async (input) => {
+        const k = input.keyword.toUpperCase()
+
+        let bankTx = []
+        let cashTx = []
+
+        if (input.matchType === 'EXACT') {
+            bankTx = await prisma.bankTransaction.findMany({
+                where: { OR: [{ description: { equals: k, mode: 'insensitive' } }, { thirdPartyName: { equals: k, mode: 'insensitive' } }] },
+                include: { category: true }
+            })
+            cashTx = await prisma.cashTransaction.findMany({
+                where: { description: { equals: k, mode: 'insensitive' } },
+                include: { category: true }
+            })
+        } else {
+            bankTx = await prisma.bankTransaction.findMany({
+                where: { OR: [{ description: { contains: k, mode: 'insensitive' } }, { thirdPartyName: { contains: k, mode: 'insensitive' } }] },
+                include: { category: true }
+            })
+            cashTx = await prisma.cashTransaction.findMany({
+                where: { description: { contains: k, mode: 'insensitive' } },
+                include: { category: true }
+            })
+        }
+
+        const formatted = [
+            ...bankTx.map(t => ({ id: t.id, isCash: false, description: t.description, date: t.date, amount: Number(t.amount), currentCategoryName: t.category?.name || null })),
+            ...cashTx.map(t => ({ id: t.id, isCash: true, description: t.description, date: t.date, amount: t.type === 'OUT' ? -Number(t.amount) : Number(t.amount), currentCategoryName: t.category?.name || null }))
+        ]
+        return { data: formatted.sort((a, b) => b.date.getTime() - a.date.getTime()) }
+    })
+}
+
+export async function findSimilarTransactions(transactionId: string) {
+    return safeAction({ transactionId }, async (input) => {
+        const refTx = await prisma.bankTransaction.findUnique({ where: { id: input.transactionId } })
+        if (!refTx) {
+            // maybe it's a cash transaction? Right now similar is mostly for bank tx based on thirdPartyName
+            return { data: [] }
+        }
+
+        let similar = []
+        if (refTx.thirdPartyName && refTx.thirdPartyName.trim() !== '') {
+            similar = await prisma.bankTransaction.findMany({
+                where: { thirdPartyName: refTx.thirdPartyName, id: { not: refTx.id } },
+                include: { category: true }
+            })
+        } else if (refTx.description && refTx.description.trim() !== '') {
+            similar = await prisma.bankTransaction.findMany({
+                where: { description: refTx.description, id: { not: refTx.id } },
+                include: { category: true }
+            })
+        }
+
+        const formatted = similar.map(t => ({
+            id: t.id,
+            isCash: false,
+            description: t.description,
+            date: t.date,
+            amount: Number(t.amount),
+            currentCategoryName: t.category?.name || null
+        }))
+
+        return { data: formatted.sort((a, b) => b.date.getTime() - a.date.getTime()) }
+    })
+}
+
+export async function applyCategoryToMultipleTx(selections: { id: string, isCash: boolean }[], categoryId: string) {
+    return safeAction({ selections, categoryId }, async (input) => {
+        try {
+            const bankIds = input.selections.filter(s => !s.isCash).map(s => s.id)
+            const cashIds = input.selections.filter(s => s.isCash).map(s => s.id)
+
+            if (bankIds.length > 0) {
+                await prisma.bankTransaction.updateMany({
+                    where: { id: { in: bankIds } },
+                    data: { categoryId: input.categoryId }
+                })
+            }
+
+            if (cashIds.length > 0) {
+                await prisma.cashTransaction.updateMany({
+                    where: { id: { in: cashIds } },
+                    data: { categoryId: input.categoryId }
+                })
+            }
+
+            revalidatePath('/finance')
+            revalidatePath('/finance/transactions')
+            revalidatePath('/finance/categorisation')
+            return { success: true }
+        } catch (error) {
+            console.error(error)
+            return { error: 'Erreur lors de la mise à jour par lot.' }
         }
     })
 }

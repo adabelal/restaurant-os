@@ -6,9 +6,10 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Plus, Trash2, Check, X, BookKey } from 'lucide-react'
-import { createCategorizationRule, deleteCategorizationRule } from '../actions'
+import { createCategorizationRule, deleteCategorizationRule, findRuleMatchingTransactions, applyCategoryToMultipleTx } from '../actions'
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
+import { BatchAssignModal, BatchTx } from '../components/BatchAssignModal'
 
 type Rule = {
     id: string
@@ -35,6 +36,10 @@ export function RuleListClient({
     const [newCatId, setNewCatId] = useState<string>('')
     const [isLoading, setIsLoading] = useState(false)
 
+    const [modalOpen, setModalOpen] = useState(false)
+    const [modalTxs, setModalTxs] = useState<BatchTx[]>([])
+    const [pendingCategoryId, setPendingCategoryId] = useState<string | null>(null)
+
     const handleCreate = async () => {
         if (!newKeyword.trim() || !newCatId) return toast.error("Le mot-clé et la catégorie sont requis.")
         setIsLoading(true)
@@ -53,6 +58,17 @@ export function RuleListClient({
                     categoryName: catInfo?.name || 'Inconnu',
                     categoryType: catInfo?.type || 'UNKNOWN'
                 }, ...prev])
+                // Check if similar txs exists to prompt the batch update
+                const similars = await findRuleMatchingTransactions(newKeyword.trim(), newMatch as 'CONTAINS' | 'EXACT')
+                if (similars && 'data' in similars && similars.data && 'data' in similars.data) {
+                    const similarList = similars.data.data as BatchTx[];
+                    if (similarList.length > 0) {
+                        setModalTxs(similarList)
+                        setPendingCategoryId(newCatId)
+                        setModalOpen(true)
+                    }
+                }
+
                 setIsCreating(false)
                 setNewKeyword('')
                 setNewCatId('')
@@ -77,6 +93,27 @@ export function RuleListClient({
             }
         } catch (e) {
             toast.error("Erreur serveur.")
+        }
+        setIsLoading(false)
+    }
+
+    const handleModalConfirm = async (selectedTx: BatchTx[]) => {
+        if (!pendingCategoryId || selectedTx.length === 0) {
+            setModalOpen(false)
+            return
+        }
+
+        setIsLoading(true)
+        try {
+            const res = await applyCategoryToMultipleTx(selectedTx.map(t => ({ id: t.id, isCash: t.isCash })), pendingCategoryId)
+            if (res && 'data' in res && res.data && 'success' in (res.data as any)) {
+                toast.success(`Règle appliquée à ${selectedTx.length} transaction(s) existante(s).`)
+                setModalOpen(false)
+            } else if (res && 'error' in res) {
+                toast.error(res.error || "Erreur, impossible d'appliquer le changement en lot.")
+            }
+        } catch (e) {
+            toast.error("Erreur réseau.")
         }
         setIsLoading(false)
     }
@@ -192,6 +229,14 @@ export function RuleListClient({
                     )}
                 </div>
             </div>
+
+            <BatchAssignModal
+                isOpen={modalOpen}
+                onOpenChange={setModalOpen}
+                transactions={modalTxs}
+                onConfirm={handleModalConfirm}
+                isLoading={isLoading}
+            />
         </div>
     )
 }

@@ -7,8 +7,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Brain, ArrowUpRight, ArrowDownRight, RefreshCw, CheckCircle2 } from 'lucide-react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import { syncFinanceIntelligence, assignTransactionCategory } from '../actions'
+import { syncFinanceIntelligence, assignTransactionCategory, findSimilarTransactions, applyCategoryToMultipleTx } from '../actions'
 import { toast } from 'sonner'
+import { BatchAssignModal, BatchTx } from '../components/BatchAssignModal'
 
 type AutoCatTx = {
     id: string
@@ -53,16 +54,31 @@ export function AutoCatClient({
         setIsSyncing(false)
     }
 
+    const [modalOpen, setModalOpen] = useState(false)
+    const [modalTxs, setModalTxs] = useState<BatchTx[]>([])
+    const [pendingCategoryId, setPendingCategoryId] = useState<string | null>(null)
+
     const handleAssign = async (transactionId: string, categoryId: string) => {
         setLoadingIds(prev => new Set(prev).add(transactionId))
 
         try {
-            const res = await assignTransactionCategory(transactionId, categoryId)
+            const res = await assignTransactionCategory(transactionId, categoryId, false)
             if (res?.error) {
                 toast.error(res.error)
             } else {
                 toast.success("Catégorie assignée.")
                 setTransactions(prev => prev.filter(t => t.id !== transactionId))
+
+                // Find similars
+                const similars = await findSimilarTransactions(transactionId)
+                if (similars && 'data' in similars && similars.data && 'data' in (similars.data as any)) {
+                    const similarList = (similars.data as any).data as BatchTx[];
+                    if (similarList.length > 0) {
+                        setModalTxs(similarList)
+                        setPendingCategoryId(categoryId)
+                        setModalOpen(true)
+                    }
+                }
             }
         } catch (e) {
             toast.error("Erreur de réseau.")
@@ -73,6 +89,32 @@ export function AutoCatClient({
             next.delete(transactionId)
             return next
         })
+    }
+
+    const handleModalConfirm = async (selectedTx: BatchTx[]) => {
+        if (!pendingCategoryId || selectedTx.length === 0) {
+            setModalOpen(false)
+            return
+        }
+
+        setIsSyncing(true)
+        try {
+            const res = await applyCategoryToMultipleTx(selectedTx.map(t => ({ id: t.id, isCash: t.isCash })), pendingCategoryId)
+            if (res && 'data' in res && res.data && 'success' in (res.data as any)) {
+                toast.success(`Catégorie appliquée à ${selectedTx.length} transaction(s).`)
+
+                // remove them from UI
+                const idsToRemove = new Set(selectedTx.map(t => t.id))
+                setTransactions(prev => prev.filter(t => !idsToRemove.has(t.id)))
+
+                setModalOpen(false)
+            } else if (res && 'error' in res) {
+                toast.error(res.error || "Erreur, impossible d'appliquer le changement en lot.")
+            }
+        } catch (e) {
+            toast.error("Erreur réseau.")
+        }
+        setIsSyncing(false)
     }
 
     // Group categories by type for the Select
@@ -184,6 +226,14 @@ export function AutoCatClient({
                     )}
                 </div>
             </Card>
+
+            <BatchAssignModal
+                isOpen={modalOpen}
+                onOpenChange={setModalOpen}
+                transactions={modalTxs}
+                onConfirm={handleModalConfirm}
+                isLoading={isSyncing}
+            />
         </div>
     )
 }
