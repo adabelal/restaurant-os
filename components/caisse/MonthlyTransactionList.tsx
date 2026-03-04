@@ -6,16 +6,8 @@ import { fr } from "date-fns/locale"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Edit2, ListFilter, Trash2 } from "lucide-react"
+import { Edit2, ListFilter, Trash2, ArrowUpRight, ArrowDownRight, Banknote } from "lucide-react"
 
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow
-} from "@/components/ui/table"
 import { EditTransactionDialog } from "./EditTransactionDialog"
 import {
     DropdownMenu,
@@ -155,60 +147,69 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                     </div>
 
                     <Card className="overflow-hidden border-border bg-card shadow-sm transition-all hover:shadow-md">
-                        <Table>
-                            <TableHeader className="bg-muted/50">
-                                <TableRow>
-                                    <TableHead className="w-[120px]">Date</TableHead>
-                                    <TableHead>Description</TableHead>
-                                    <TableHead>Catégorie</TableHead>
-                                    <TableHead className="text-right">Montant</TableHead>
-                                    <TableHead className="w-[100px] text-right">Action</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {grouped[month].map((t: any) => (
-                                    <TableRow key={t.id} className="hover:bg-muted/50 transition-colors">
-                                        <TableCell className="font-medium text-foreground">
-                                            {format(new Date(t.date), 'dd/MM/yyyy')}
-                                            {sortBy === 'createdAt' && (
-                                                <div className="text-[10px] text-muted-foreground mt-0.5">
-                                                    Saisi le {format(new Date(t.createdAt), 'dd/MM HH:mm')}
-                                                </div>
-                                            )}
-                                        </TableCell>
-                                        <TableCell>{t.description}</TableCell>
-                                        <TableCell>
-                                            <Select
-                                                value={t.categoryId || "UNCLASSIFIED"}
-                                                onValueChange={(val) => {
-                                                    if (val !== "UNCLASSIFIED") {
-                                                        handleAssign(t.id, val)
-                                                    }
-                                                }}
-                                                disabled={loadingIds.has(t.id)}
-                                            >
-                                                <SelectTrigger className={`h-8 text-xs font-medium w-[160px] focus:ring-0 ${t.category ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 border-indigo-200/50 dark:border-indigo-900/50' : 'bg-background'}`}>
-                                                    <SelectValue placeholder="+ Catégorie" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    {!t.categoryId && <SelectItem value="UNCLASSIFIED">+ Catégorie</SelectItem>}
-                                                    {Object.keys(categoriesByType).map((type) => (
-                                                        <div key={type}>
-                                                            <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{type === 'IN' ? 'Entrées' : 'Sorties'}</div>
-                                                            {categoriesByType[type].map((cat: any) => (
-                                                                <SelectItem key={cat.id} value={cat.id} className="text-xs">
-                                                                    {cat.name}
-                                                                </SelectItem>
-                                                            ))}
-                                                        </div>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-                                        </TableCell>
-                                        <TableCell className={`text-right font-bold ${t.type === 'IN' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
+                        <div className="divide-y divide-border">
+                            {grouped[month].map((t: any) => (
+                                <div key={t.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 hover:bg-muted/50 transition-colors gap-4">
+                                    <div className="flex items-start sm:items-center gap-4 flex-1">
+                                        <div className={`mt-1 sm:mt-0 p-3 rounded-xl shadow-sm ${t.type === 'IN'
+                                            ? 'bg-gradient-to-br from-emerald-100 to-emerald-50 text-emerald-600 dark:from-emerald-900/40 dark:to-emerald-900/10 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50'
+                                            : 'bg-gradient-to-br from-slate-100 to-slate-50 text-slate-600 dark:from-slate-800 dark:to-slate-900 dark:text-slate-400 border border-slate-200 dark:border-slate-800'
+                                            }`}>
+                                            {t.type === 'IN' ? <ArrowUpRight className="h-5 w-5" /> : <ArrowDownRight className="h-5 w-5" />}
+                                        </div>
+                                        <div className="space-y-1">
+                                            <p className="font-semibold text-foreground text-sm leading-tight max-w-xl line-clamp-2">
+                                                {t.description}
+                                            </p>
+                                            <div className="flex flex-wrap items-center gap-2 mt-1">
+                                                <span className="text-xs text-muted-foreground font-medium flex items-center gap-1.5" title="Espèces">
+                                                    <Banknote className="w-3 h-3" />
+                                                    {format(new Date(t.date), 'dd MMMM yyyy', { locale: fr })}
+                                                </span>
+
+                                                <Select
+                                                    value={t.categoryId || "UNCLASSIFIED"}
+                                                    onValueChange={(val) => {
+                                                        if (val !== "UNCLASSIFIED") {
+                                                            handleAssign(t.id, val)
+                                                        }
+                                                    }}
+                                                    disabled={loadingIds.has(t.id)}
+                                                >
+                                                    <SelectTrigger className={`h-6 text-[10px] px-2 font-medium w-[140px] focus:ring-0 ${t.category ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 border-indigo-200/50 dark:border-indigo-900/50' : 'bg-background'}`}>
+                                                        <SelectValue placeholder="+ Catégorie" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {!t.categoryId && <SelectItem value="UNCLASSIFIED">+ Catégorie</SelectItem>}
+                                                        {Object.keys(categoriesByType).map((type) => (
+                                                            <div key={type}>
+                                                                <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{type}</div>
+                                                                {categoriesByType[type].map((cat: any) => (
+                                                                    <SelectItem key={cat.id} value={cat.id} className="text-xs">
+                                                                        {cat.name}
+                                                                    </SelectItem>
+                                                                ))}
+                                                            </div>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
+
+                                                {sortBy === 'createdAt' && (
+                                                    <span className="text-[10px] text-muted-foreground/60 ml-2">
+                                                        (Saisi le {format(new Date(t.createdAt), 'dd/MM HH:mm')})
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-4 justify-end">
+                                        <div className={`text-base font-bold px-3 py-1 rounded-md ${t.type === 'IN'
+                                            ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30'
+                                            : 'text-foreground'
+                                            }`}>
                                             {t.type === 'IN' ? '+' : ''}{Number(t.amount).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                                        </TableCell>
-                                        <TableCell className="text-right flex items-center justify-end gap-1">
+                                        </div>
+                                        <div className="flex items-center gap-1">
                                             <Button
                                                 variant="ghost"
                                                 size="icon"
@@ -235,18 +236,17 @@ export function MonthlyTransactionList({ transactions, categories }: { transacti
                                             >
                                                 <Trash2 className="h-3.5 w-3.5" />
                                             </Button>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                                <TableRow className="bg-muted/30 font-bold border-t border-border">
-                                    <TableCell colSpan={3} className="text-right text-muted-foreground">Total {month}</TableCell>
-                                    <TableCell className="text-right text-foreground font-bold">
-                                        {grouped[month].reduce((sum: number, t: any) => sum + Number(t.amount), 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                                    </TableCell>
-                                    <TableCell />
-                                </TableRow>
-                            </TableBody>
-                        </Table>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                            <div className="p-4 bg-muted/30 flex items-center justify-between border-t border-border">
+                                <span className="text-sm text-muted-foreground font-medium">Total {month}</span>
+                                <span className="font-bold text-foreground">
+                                    {grouped[month].reduce((sum: number, t: any) => sum + (t.type === 'IN' ? Number(t.amount) : -Number(t.amount)), 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                </span>
+                            </div>
+                        </div>
                     </Card>
                 </div>
             ))}

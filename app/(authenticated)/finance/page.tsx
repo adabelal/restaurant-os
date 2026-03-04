@@ -13,7 +13,8 @@ import {
     Settings,
     Landmark,
     PieChart,
-    Tags
+    Tags,
+    Sparkles
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { BalanceChart } from "@/components/finance/BalanceChart"
@@ -58,6 +59,12 @@ export default async function FinancePage() {
                         <Link href="/finance/analysis">
                             <PieChart className="w-4 h-4" />
                             <span className="hidden sm:inline">Analyse</span>
+                        </Link>
+                    </Button>
+                    <Button asChild variant="secondary" className="gap-2 shrink-0 bg-amber-50 text-amber-700 hover:bg-amber-100 dark:bg-amber-950/50 dark:text-amber-300 dark:hover:bg-amber-900/50">
+                        <Link href="/finance/previsionnel">
+                            <Sparkles className="w-4 h-4 text-amber-500" />
+                            <span className="hidden sm:inline">Prévisionnel</span>
                         </Link>
                     </Button>
                     <Button asChild variant="default" className="gap-2 shrink-0">
@@ -132,22 +139,27 @@ export default async function FinancePage() {
                 </Link>
 
                 {/* 4. FORECAST */}
-                <Card className="border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-emerald-50/50 dark:bg-emerald-950/30 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-semibold text-emerald-700/70 dark:text-emerald-400/70 uppercase tracking-wider">
-                            Prévision Fin de Mois
-                        </CardTitle>
-                        <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
-                            {eomForecast.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                <Link href="/finance/previsionnel" className="group">
+                    <Card className="border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-emerald-50/50 dark:bg-emerald-950/30 rounded-xl overflow-hidden hover:shadow-md transition-all cursor-pointer relative h-full">
+                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <ArrowUpRight className="h-4 w-4 text-emerald-400" />
                         </div>
-                        <p className="text-xs text-emerald-600/60 dark:text-emerald-400/60 mt-1 font-medium">
-                            Projection hors CA futur
-                        </p>
-                    </CardContent>
-                </Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-semibold text-emerald-700/70 dark:text-emerald-400/70 uppercase tracking-wider group-hover:text-emerald-600 transition-colors">
+                                Prévision Fin de Mois
+                            </CardTitle>
+                            <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
+                                {eomForecast.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                            </div>
+                            <p className="text-xs text-emerald-600/60 dark:text-emerald-400/60 mt-1 font-medium">
+                                Projection hors CA futur
+                            </p>
+                        </CardContent>
+                    </Card>
+                </Link>
             </div>
 
             {/* Secondary Row: Chart & Timeline */}

@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Plus, Wallet, Calendar as CalendarIcon, ArrowUpCircle, ArrowDownCircle, Info, Tag } from "lucide-react"
 import { createCashTransaction } from "@/app/caisse/actions"
-import { CashTransactionType } from "@prisma/client"
+type CashTransactionType = 'IN' | 'OUT'
 
 interface AddTransactionDialogProps {
     categories: any[]
@@ -25,7 +25,9 @@ export function AddTransactionDialog({ categories }: AddTransactionDialogProps) 
     const [open, setOpen] = useState(false)
     const [type, setType] = useState<CashTransactionType>('OUT')
 
-    async function handleSubmit(formData: FormData) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
         const amount = parseFloat(formData.get('amount') as string)
         const dateStr = formData.get('date') as string
         const description = formData.get('description') as string
@@ -77,7 +79,7 @@ export function AddTransactionDialog({ categories }: AddTransactionDialogProps) 
                     </button>
                 </div>
 
-                <form action={handleSubmit} className="grid gap-5 py-2">
+                <form onSubmit={handleSubmit} className="grid gap-5 py-2">
                     <div className="grid gap-2">
                         <Label htmlFor="date">Date</Label>
                         <div className="relative">
@@ -112,8 +114,18 @@ export function AddTransactionDialog({ categories }: AddTransactionDialogProps) 
                                     className="flex h-10 w-full rounded-md border border-input bg-background pl-9 pr-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
                                 >
                                     <option value="none">Aucune</option>
-                                    {categories.filter(c => c.type === type).map(c => (
-                                        <option key={c.id} value={c.id}>{c.name}</option>
+                                    {Object.entries(
+                                        categories.reduce((acc: any, c: any) => {
+                                            if (!acc[c.type]) acc[c.type] = [];
+                                            acc[c.type].push(c);
+                                            return acc;
+                                        }, {})
+                                    ).map(([catType, cats]: [string, any]) => (
+                                        <optgroup label={catType} key={catType}>
+                                            {(cats as any[]).map(c => (
+                                                <option key={c.id} value={c.id}>{c.name}</option>
+                                            ))}
+                                        </optgroup>
                                     ))}
                                 </select>
                             </div>

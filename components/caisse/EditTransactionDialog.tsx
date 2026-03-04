@@ -56,11 +56,13 @@ export function EditTransactionDialog({ transaction, categories, open, onOpenCha
         setLoading(true)
         try {
             const res = await deleteCashTransaction(transaction.id)
-            if (res.success) {
+            if (res && 'success' in res && res.success) {
                 toast.success("Transaction supprimée")
                 onOpenChange(false)
-            } else {
-                toast.error(res.message)
+            } else if (res && 'message' in res) {
+                toast.error((res as any).message)
+            } else if (res && 'error' in res) {
+                toast.error((res as any).error)
             }
         } catch (error) {
             toast.error("Erreur lors de la suppression")
@@ -157,13 +159,20 @@ export function EditTransactionDialog({ transaction, categories, open, onOpenCha
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="none">Sans catégorie</SelectItem>
-                                {categories
-                                    .filter(c => c.type === formData.type)
-                                    .map((category) => (
-                                        <SelectItem key={category.id} value={category.id}>
-                                            {category.name}
-                                        </SelectItem>
-                                    ))}
+                                {Object.entries(
+                                    categories.reduce((acc: any, c: any) => {
+                                        if (!acc[c.type]) acc[c.type] = [];
+                                        acc[c.type].push(c);
+                                        return acc;
+                                    }, {})
+                                ).map(([catType, cats]: [string, any]) => (
+                                    <div key={catType}>
+                                        <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{catType}</div>
+                                        {(cats as any[]).map(c => (
+                                            <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                                        ))}
+                                    </div>
+                                ))}
                             </SelectContent>
                         </Select>
                     </div>

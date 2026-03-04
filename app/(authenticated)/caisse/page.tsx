@@ -20,7 +20,7 @@ export default async function CaissePage() {
         }
     })
 
-    const categories = await prisma.cashCategory.findMany({
+    const categories = await prisma.financeCategory.findMany({
         orderBy: { name: 'asc' }
     })
 
