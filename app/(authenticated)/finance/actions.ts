@@ -1024,44 +1024,70 @@ export async function syncBankTransactions() {
 export async function assignTransactionCategory(transactionId: string, categoryId: string, applyToSimilar: boolean = true) {
     return safeAction({ transactionId, categoryId, applyToSimilar }, async (input) => {
         try {
-            // First fetch the transaction to 'learn' from it
-            const tx = await prisma.bankTransaction.findUnique({
+            // Check BankTransaction first
+            const bankTx = await prisma.bankTransaction.findUnique({
                 where: { id: input.transactionId }
             })
 
-            // Assign category to this specific transaction
-            await prisma.bankTransaction.update({
-                where: { id: input.transactionId },
-                data: { categoryId: input.categoryId }
-            })
+            if (bankTx) {
+                // Assign category to this specific transaction
+                await prisma.bankTransaction.update({
+                    where: { id: input.transactionId },
+                    data: { categoryId: input.categoryId }
+                })
 
-            // LEARNING BEHAVIOR: 
-            // Also assign the same category to other identical transactions
-            if (tx) {
-                if (tx.thirdPartyName && tx.thirdPartyName.trim() !== '') {
+                // LEARNING BEHAVIOR: Also assign the same category to other identical transactions
+                if (bankTx.thirdPartyName && bankTx.thirdPartyName.trim() !== '') {
                     await prisma.bankTransaction.updateMany({
                         where: {
-                            thirdPartyName: tx.thirdPartyName,
+                            thirdPartyName: bankTx.thirdPartyName,
                             ...(input.applyToSimilar ? {} : { categoryId: null }),
-                            id: { not: tx.id }
+                            id: { not: bankTx.id }
                         },
                         data: { categoryId: input.categoryId }
                     })
-                } else if (tx.description && tx.description.trim() !== '') {
+                } else if (bankTx.description && bankTx.description.trim() !== '') {
                     await prisma.bankTransaction.updateMany({
                         where: {
-                            description: tx.description,
+                            description: bankTx.description,
                             ...(input.applyToSimilar ? {} : { categoryId: null }),
-                            id: { not: tx.id }
+                            id: { not: bankTx.id }
                         },
                         data: { categoryId: input.categoryId }
                     })
+                }
+            } else {
+                // TRY CASH TRANSACTION
+                const cashTx = await prisma.cashTransaction.findUnique({
+                    where: { id: input.transactionId }
+                })
+
+                if (cashTx) {
+                    await prisma.cashTransaction.update({
+                        where: { id: input.transactionId },
+                        data: { categoryId: input.categoryId }
+                    })
+
+                    // LEARNING BEHAVIOR
+                    if (cashTx.description && cashTx.description.trim() !== '') {
+                        await prisma.cashTransaction.updateMany({
+                            where: {
+                                description: cashTx.description,
+                                ...(input.applyToSimilar ? {} : { categoryId: null }),
+                                id: { not: cashTx.id }
+                            },
+                            data: { categoryId: input.categoryId }
+                        })
+                    }
+                } else {
+                    return { success: false, error: "Transaction introuvable." }
                 }
             }
 
             revalidatePath('/finance')
             revalidatePath('/finance/transactions')
             revalidatePath('/finance/categorisation')
+            revalidatePath('/caisse')
             return { success: true }
         } catch (error) {
             console.error("Assign category error:", error)
