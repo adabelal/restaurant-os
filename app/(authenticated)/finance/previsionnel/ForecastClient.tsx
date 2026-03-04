@@ -10,7 +10,8 @@ import {
 } from "lucide-react"
 import {
     AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid,
-    Tooltip, ResponsiveContainer, Cell, ReferenceLine, Legend
+    Tooltip, ResponsiveContainer, Cell, ReferenceLine, Legend,
+    ComposedChart, Line
 } from 'recharts'
 import { ForecastData } from "./actions"
 
@@ -106,6 +107,23 @@ export default function ForecastClient({ data }: ForecastClientProps) {
     const revenueCategories = categories.filter(c => c.type === 'REVENUE')
     const expenseCategories = categories.filter(c => c.type !== 'REVENUE')
 
+    const projectionMonths = Array.from({ length: 6 }, (_, i) => {
+        const mIncome = monthlyAverageRevenue;
+        const mFixed = avgFixedCosts;
+        const mVar = avgVariableCosts;
+        const mNet = mIncome - mFixed - mVar;
+        const startBal = currentBalance + (mNet * i);
+        const endBal = startBal + mNet;
+        return {
+            name: `M+${i + 1}`,
+            revenue: mIncome,
+            fixed: mFixed,
+            variable: mVar,
+            net: mNet,
+            balance: endBal
+        };
+    });
+
     return (
         <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
 
@@ -125,9 +143,9 @@ export default function ForecastClient({ data }: ForecastClientProps) {
                         <div className="grid grid-cols-2 gap-3 w-full mt-4">
                             {[
                                 { label: 'Marge Brute', value: pct(grossMarginPercentage), ok: grossMarginPercentage >= 0.5 },
-                                { label: 'vs Break-even', value: `${((monthlyAverageRevenue / Math.max(1, breakEvenPoint)) * 100).toFixed(0)}%`, ok: monthlyAverageRevenue >= breakEvenPoint },
-                                { label: 'Résultat Net', value: pct(expectedNetResult / Math.max(1, monthlyAverageRevenue)), ok: expectedNetResult >= 0 },
-                                { label: 'Tréso (mois)', value: `${(currentBalance / Math.max(1, monthlyAverageExpenses)).toFixed(1)}m`, ok: currentBalance >= monthlyAverageExpenses },
+                                { label: 'Point Mort (Break-even)', value: `${((monthlyAverageRevenue / Math.max(1, breakEvenPoint)) * 100).toFixed(0)}%`, ok: monthlyAverageRevenue >= breakEvenPoint },
+                                { label: 'Marge Nette', value: pct(expectedNetResult / Math.max(1, monthlyAverageRevenue)), ok: expectedNetResult >= 0 },
+                                { label: 'Couverture Tréso', value: `${(currentBalance / Math.max(1, monthlyAverageExpenses)).toFixed(1)} mois`, ok: currentBalance >= monthlyAverageExpenses },
                             ].map(kpi => (
                                 <div key={kpi.label} className={`p-2.5 rounded-xl text-center flex flex-col gap-1 ${kpi.ok ? 'bg-emerald-500/10' : 'bg-rose-500/10'}`}>
                                     <span className="text-[9px] font-black text-muted-foreground uppercase tracking-wider">{kpi.label}</span>
@@ -293,9 +311,81 @@ export default function ForecastClient({ data }: ForecastClientProps) {
             </div>
 
             {/* ═══════════════════════════════════════════════════════════
-                SECTION 3 — GRAPHIQUES
+                SECTION 3 — GRAPHIQUES ET PROJECTION TRESORERIE
             ═══════════════════════════════════════════════════════════ */}
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+            {/* Nouveau: Projection du BFR (Fonds de roulement) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <Card className="shadow-xl bg-card rounded-3xl overflow-hidden border border-border">
+                    <CardHeader className="px-6 pt-6 pb-4 border-b border-border/50">
+                        <CardTitle className="text-base font-black text-foreground flex items-center gap-2">
+                            <Wallet className="h-4 w-4 text-emerald-400" /> Besoin en Fonds de Roulement
+                        </CardTitle>
+                        <CardDescription className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                            Couverture de vos charges d'exploitation
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                        <div className="space-y-6">
+                            <div>
+                                <h4 className="text-[10px] font-black uppercase text-muted-foreground tracking-widest mb-3">Poids de vos dépenses mensuelles</h4>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="p-4 bg-rose-500/10 rounded-2xl border border-rose-500/20">
+                                        <div className="text-[10px] font-black text-rose-500 uppercase tracking-widest mb-1">Charges Fixes (Structure)</div>
+                                        <div className="text-2xl font-black text-rose-600 dark:text-rose-400">{fmt(avgFixedCosts)} <span className="text-xs font-bold opacity-70">/m</span></div>
+                                    </div>
+                                    <div className="p-4 bg-orange-500/10 rounded-2xl border border-orange-500/20">
+                                        <div className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-1">Charges Variables (Matières)</div>
+                                        <div className="text-2xl font-black text-orange-600 dark:text-orange-400">{fmt(avgVariableCosts)} <span className="text-xs font-bold opacity-70">/m</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="text-[10px] font-black uppercase text-muted-foreground tracking-widest mb-3">Résilience (Trésorerie Actuelle : {fmt(currentBalance)})</h4>
+                                <div className="space-y-3">
+                                    <div className="flex items-center justify-between p-3.5 rounded-xl bg-muted/50 border border-border">
+                                        <span className="text-sm font-bold text-foreground">Survie aux Charges Fixes Seules</span>
+                                        <span className="text-lg font-black text-emerald-500">{currentBalance > 0 ? (currentBalance / Math.max(1, avgFixedCosts)).toFixed(1) : 0} <span className="text-xs">mois</span></span>
+                                    </div>
+                                    <div className="flex items-center justify-between p-3.5 rounded-xl bg-muted/50 border border-border">
+                                        <span className="text-sm font-bold text-foreground">Survie Totale (Fixes + Variables)</span>
+                                        <span className="text-lg font-black text-amber-500">{currentBalance > 0 ? (currentBalance / Math.max(1, avgFixedCosts + avgVariableCosts)).toFixed(1) : 0} <span className="text-xs">mois</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card className="shadow-xl bg-card rounded-3xl overflow-hidden border border-border">
+                    <CardHeader className="px-6 pt-6 pb-4 border-b border-border/50">
+                        <CardTitle className="text-base font-black text-foreground flex items-center gap-2">
+                            <TrendingUp className="h-4 w-4 text-indigo-400" /> Projection sur 6 mois
+                        </CardTitle>
+                        <CardDescription className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                            Évolution estimée de la trésorerie disponible
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="px-2 pt-6 pb-4">
+                        <div className="h-[280px]">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <ComposedChart data={projectionMonths} margin={{ top: 10, right: 20, left: 10, bottom: 0 }}>
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#1e293b" />
+                                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#475569', fontSize: 10, fontWeight: 700 }} />
+                                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#475569', fontSize: 10, fontWeight: 700 }} tickFormatter={v => fmt(v, true)} width={60} />
+                                    <Tooltip content={<CustomTooltip />} />
+
+                                    <Bar dataKey="variable" name="Charges Variables" stackId="a" fill="#f97316" radius={[0, 0, 4, 4]} opacity={0.6} barSize={32} />
+                                    <Bar dataKey="fixed" name="Charges Fixes" stackId="a" fill="#f43f5e" radius={[4, 4, 0, 0]} opacity={0.7} />
+                                    <Line type="monotone" dataKey="balance" name="Tréso Projetée" stroke="#10b981" strokeWidth={3} dot={{ r: 5, strokeWidth: 2, fill: "#10b981", stroke: "#fff" }} activeDot={{ r: 7 }} />
+                                </ComposedChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-10">
                 {/* Time-Series Area Chart (3/5) */}
                 <Card className="lg:col-span-3  shadow-xl bg-card rounded-3xl overflow-hidden border border-border shadow-sm">
                     <CardHeader className="px-6 pt-6 pb-4">
@@ -444,50 +534,76 @@ export default function ForecastClient({ data }: ForecastClientProps) {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-border">
-                                {categories.sort((a, b) => Math.abs(b.avgMonthly) - Math.abs(a.avgMonthly)).map(cat => {
-                                    const isExpense = cat.type !== 'REVENUE'
-                                    const isGood = isExpense
-                                        ? Math.abs(cat.currentMonth) <= Math.abs(cat.avgMonthly)
-                                        : Math.abs(cat.currentMonth) >= Math.abs(cat.avgMonthly)
-                                    const progress = Math.min(100, (Math.abs(cat.currentMonth) / Math.max(1, Math.abs(cat.avgMonthly))) * 100)
-                                    const caPercent = (Math.abs(cat.avgMonthly) / Math.max(1, monthlyAverageRevenue) * 100).toFixed(1)
+                                {(() => {
+                                    const revenues = categories.filter(c => c.type === 'REVENUE');
+                                    const fixed = categories.filter(c => c.type === 'FIXED_COST' || c.type === 'SALARY' || c.type === 'FINANCIAL' || c.type === 'TAX');
+                                    const variable = categories.filter(c => c.type === 'VARIABLE_COST' || (!revenues.includes(c) && !fixed.includes(c)));
+
+                                    const renderGroup = (title: string, cats: typeof categories, colorClass: string) => {
+                                        if (cats.length === 0) return null;
+                                        return (
+                                            <React.Fragment key={title}>
+                                                <tr className="bg-muted/30">
+                                                    <td colSpan={6} className="px-8 py-4">
+                                                        <h3 className={`text-xs font-black uppercase tracking-wider ${colorClass}`}>{title}</h3>
+                                                    </td>
+                                                </tr>
+                                                {cats.sort((a, b) => Math.abs(b.avgMonthly) - Math.abs(a.avgMonthly)).map(cat => {
+                                                    const isExpense = cat.type !== 'REVENUE'
+                                                    const isGood = isExpense
+                                                        ? Math.abs(cat.currentMonth) <= Math.abs(cat.avgMonthly)
+                                                        : Math.abs(cat.currentMonth) >= Math.abs(cat.avgMonthly)
+                                                    const progress = Math.min(100, (Math.abs(cat.currentMonth) / Math.max(1, Math.abs(cat.avgMonthly))) * 100)
+                                                    const caPercent = (Math.abs(cat.avgMonthly) / Math.max(1, monthlyAverageRevenue) * 100).toFixed(1)
+
+                                                    return (
+                                                        <tr key={cat.categoryId} className="hover:bg-muted/30 transition-colors group">
+                                                            <td className="px-8 py-5">
+                                                                <div className={`h-2 w-2 rounded-full ${isGood ? 'bg-emerald-500 shadow-[0_0_8px_#10b981]' : 'bg-rose-500 shadow-[0_0_8px_#f43f5e]'}`} />
+                                                            </td>
+                                                            <td className="px-4 py-5">
+                                                                <p className="text-sm font-black text-foreground">{cat.name}</p>
+                                                                <span className="text-[9px] font-bold text-muted-foreground opacity-70 uppercase tracking-wider">{cat.type}</span>
+                                                            </td>
+                                                            <td className="px-4 py-5 text-right">
+                                                                <span className="text-sm font-bold text-muted-foreground">{fmt(cat.avgMonthly)}</span>
+                                                            </td>
+                                                            <td className="px-4 py-5 text-right">
+                                                                <span className="text-[10px] font-black text-muted-foreground bg-muted-foreground/20 px-2 py-0.5 rounded-full">{caPercent}%</span>
+                                                            </td>
+                                                            <td className="px-4 py-5 text-right">
+                                                                <div className="flex flex-col items-end gap-1.5">
+                                                                    <span className={`text-sm font-black ${cat.currentMonth > 0 ? 'text-emerald-400' : 'text-slate-200'}`}>
+                                                                        {fmt(cat.currentMonth)}
+                                                                    </span>
+                                                                    <div className="h-1 w-20 bg-muted-foreground/20 rounded-full overflow-hidden">
+                                                                        <div
+                                                                            className={`h-full rounded-full transition-all duration-700 ${isGood ? 'bg-indigo-500' : 'bg-rose-500'}`}
+                                                                            style={{ width: `${progress}%` }}
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td className="px-4 py-5 text-right">
+                                                                <span className={`text-sm font-black ${cat.remainingPlanned === 0 ? 'text-muted-foreground opacity-70' : cat.remainingPlanned > 0 ? (isExpense ? 'text-rose-400' : 'text-emerald-400') : (!isExpense ? 'text-rose-400' : 'text-emerald-400')}`}>
+                                                                    {cat.remainingPlanned > 0 ? '+' : ''}{fmt(cat.remainingPlanned)}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })}
+                                            </React.Fragment>
+                                        )
+                                    };
 
                                     return (
-                                        <tr key={cat.categoryId} className="hover:bg-muted/30 transition-colors group">
-                                            <td className="px-8 py-5">
-                                                <div className={`h-2 w-2 rounded-full ${isGood ? 'bg-emerald-500 shadow-[0_0_8px_#10b981]' : 'bg-rose-500 shadow-[0_0_8px_#f43f5e]'}`} />
-                                            </td>
-                                            <td className="px-4 py-5">
-                                                <p className="text-sm font-black text-foreground">{cat.name}</p>
-                                                <span className="text-[9px] font-bold text-muted-foreground opacity-70 uppercase tracking-wider">{cat.type}</span>
-                                            </td>
-                                            <td className="px-4 py-5 text-right">
-                                                <span className="text-sm font-bold text-muted-foreground">{fmt(cat.avgMonthly)}</span>
-                                            </td>
-                                            <td className="px-4 py-5 text-right">
-                                                <span className="text-[10px] font-black text-muted-foreground bg-muted-foreground/20 px-2 py-0.5 rounded-full">{caPercent}%</span>
-                                            </td>
-                                            <td className="px-4 py-5 text-right">
-                                                <div className="flex flex-col items-end gap-1.5">
-                                                    <span className={`text-sm font-black ${cat.currentMonth > 0 ? 'text-emerald-400' : 'text-slate-200'}`}>
-                                                        {fmt(cat.currentMonth)}
-                                                    </span>
-                                                    <div className="h-1 w-20 bg-muted-foreground/20 rounded-full overflow-hidden">
-                                                        <div
-                                                            className={`h-full rounded-full transition-all duration-700 ${isGood ? 'bg-indigo-500' : 'bg-rose-500'}`}
-                                                            style={{ width: `${progress}%` }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-4 py-5 text-right">
-                                                <span className={`text-sm font-black ${cat.remainingPlanned === 0 ? 'text-muted-foreground opacity-70' : cat.remainingPlanned > 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
-                                                    {cat.remainingPlanned > 0 ? '+' : ''}{fmt(cat.remainingPlanned)}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
+                                        <>
+                                            {renderGroup('Recettes (Chiffre d\'Affaires)', revenues, 'text-indigo-400')}
+                                            {renderGroup('Charges Fixes (Structure & Salaires)', fixed, 'text-rose-400')}
+                                            {renderGroup('Charges Variables (Matières & Frais)', variable, 'text-orange-400')}
+                                        </>
+                                    );
+                                })()}
                             </tbody>
                         </table>
                     </div>
