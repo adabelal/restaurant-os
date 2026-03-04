@@ -174,6 +174,7 @@ export function TransactionListClient({
 
     const totalIncome = filtered.filter(t => t.amount > 0).reduce((acc, t) => acc + t.amount, 0)
     const totalExpense = filtered.filter(t => t.amount < 0).reduce((acc, t) => acc + Math.abs(t.amount), 0)
+    const globalBalance = initialTransactions.reduce((acc, t) => acc + t.amount, 0)
 
     const getMethodIcon = (method: string | null) => {
         switch (method) {
@@ -196,10 +197,10 @@ export function TransactionListClient({
     return (
         <div className="space-y-6">
             {/* KPI Cards (Dynamic) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 <Card className="shadow-sm border-border bg-card">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Transactions trouvées</CardTitle>
+                        <CardTitle className="text-sm font-medium text-muted-foreground">Transactions (Filtre)</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{filtered.length}</div>
@@ -207,11 +208,21 @@ export function TransactionListClient({
                 </Card>
                 <Card className="shadow-sm border-indigo-100 dark:border-indigo-900 bg-indigo-50/20 dark:bg-indigo-900/10">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-indigo-700 dark:text-indigo-400">Solde de la sélection</CardTitle>
+                        <CardTitle className="text-sm font-medium text-indigo-700 dark:text-indigo-400">Solde filtré</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className={`text-2xl font-bold ${(totalIncome - totalExpense) >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
                             {(totalIncome - totalExpense).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                        </div>
+                    </CardContent>
+                </Card>
+                <Card className="shadow-sm border-emerald-100 dark:border-emerald-900/50 bg-emerald-50/30 dark:bg-emerald-900/10">
+                    <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium text-emerald-700 dark:text-emerald-400">Solde Global (Actuel)</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className={`text-2xl font-bold ${globalBalance >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
+                            {globalBalance.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
                     </CardContent>
                 </Card>
