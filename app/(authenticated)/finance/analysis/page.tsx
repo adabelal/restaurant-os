@@ -39,7 +39,7 @@ export default async function FinanceAnalysisPage() {
         ...cashTransactions.map(t => ({
             categoryId: t.categoryId,
             category: t.category as any, // Typecast since it might technically conflict strictly, but content is same
-            amount: t.type === 'OUT' ? -Number(t.amount) : Number(t.amount),
+            amount: Number(t.amount),
             date: t.date
         }))
     ]

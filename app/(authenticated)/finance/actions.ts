@@ -1160,7 +1160,7 @@ export async function findRuleMatchingTransactions(keyword: string, matchType: '
 
         const formatted = [
             ...bankTx.map(t => ({ id: t.id, isCash: false, description: t.description, date: t.date, amount: Number(t.amount), currentCategoryName: t.category?.name || null })),
-            ...cashTx.map(t => ({ id: t.id, isCash: true, description: t.description, date: t.date, amount: t.type === 'OUT' ? -Number(t.amount) : Number(t.amount), currentCategoryName: t.category?.name || null }))
+            ...cashTx.map(t => ({ id: t.id, isCash: true, description: t.description, date: t.date, amount: Number(t.amount), currentCategoryName: t.category?.name || null }))
         ]
         return { data: formatted.sort((a, b) => b.date.getTime() - a.date.getTime()) }
     })
@@ -1197,7 +1197,7 @@ export async function findSimilarTransactions(transactionId: string) {
 
         const formatted = [
             ...similarBank.map(t => ({ id: t.id, isCash: false, description: t.description, date: t.date, amount: Number(t.amount), currentCategoryName: t.category?.name || null })),
-            ...similarCash.map(t => ({ id: t.id, isCash: true, description: t.description, date: t.date, amount: t.type === 'OUT' ? -Number(t.amount) : Number(t.amount), currentCategoryName: t.category?.name || null }))
+            ...similarCash.map(t => ({ id: t.id, isCash: true, description: t.description, date: t.date, amount: Number(t.amount), currentCategoryName: t.category?.name || null }))
         ]
 
         return { data: formatted.sort((a, b) => b.date.getTime() - a.date.getTime()) }

@@ -76,7 +76,7 @@ export default async function FinanceCategorisationHubPage() {
         ...uncategorizedCash.map(c => ({
             id: c.id,
             date: c.date,
-            amount: c.type === 'OUT' ? -Number(c.amount) : Number(c.amount),
+            amount: Number(c.amount),
             description: c.description,
             transactionType: 'CAISSE',
             paymentMethod: 'CASH',
