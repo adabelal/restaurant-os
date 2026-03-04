@@ -393,12 +393,19 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                                         {[
                                             { label: "Contrat Signé", type: "CONTRACT" },
-                                            { label: "Carte Identité / Passeport", type: "ID_CARD" },
-                                            { label: "Titre de Séjour / Autoris.", type: "RESIDENCE_PERMIT" },
-                                            { label: "Mutuelle / RIB", type: "INSURANCE" }
+                                            { label: "Pièce d'Identité / Titre Séjour", type: "ID_CARD" },
+                                            { label: "DPAE & Affiliations", type: "DPAE" },
+                                            { label: "Visite Médicale", type: "MEDICAL" }
                                         ].map((item, i) => {
-                                            const isPresent = employee.documents.some((d: any) => d.type === item.type);
-                                            const isLikelyPresent = isPresent || employee.documents.some((d: any) => d.name.toLowerCase().includes(item.type === 'ID_CARD' ? 'identi' : item.type === 'CONTRACT' ? 'contrat' : 'titre'));
+                                            const isLikelyPresent = employee.documents.some((d: any) => {
+                                                if (d.type === item.type) return true;
+                                                const name = d.name.toLowerCase();
+                                                if (item.type === 'ID_CARD' && (d.type === 'RESIDENCE_PERMIT' || name.includes('identi') || name.includes('passeport') || name.includes('titre') || name.includes('séjour') || name.includes('sejour'))) return true;
+                                                if (item.type === 'CONTRACT' && name.includes('contrat')) return true;
+                                                if (item.type === 'DPAE' && (name.includes('dpae') || name.includes('urssaf'))) return true;
+                                                if (item.type === 'MEDICAL' && (name.includes('médical') || name.includes('medical') || name.includes('aptitude'))) return true;
+                                                return false;
+                                            });
 
                                             return (
                                                 <div key={i} className={`flex items-center gap-3 p-3 rounded-lg border ${isLikelyPresent ? 'bg-card border-emerald-500/50 shadow-sm' : 'bg-muted/30 border-border border-dashed opacity-70'}`}>
@@ -523,11 +530,11 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                             onChange={(e) => setDocType(e.target.value)}
                                             className="w-full text-[10px] uppercase font-bold border border-input rounded p-1.5 h-8 bg-background text-foreground"
                                         >
-                                            <option value="ID_CARD">🪪 Carte Identité / Passeport</option>
+                                            <option value="ID_CARD">🪪 Pièce d'Identité / Titre de Séjour</option>
                                             <option value="CONTRACT">📋 Contrat de Travail</option>
                                             <option value="PAYSLIP">💶 Fiche de Paie</option>
-                                            <option value="RESIDENCE_PERMIT">📄 Titre de Séjour</option>
-                                            <option value="INSURANCE">🏥 Mutuelle / RIB</option>
+                                            <option value="DPAE">📝 DPAE & URSSAF</option>
+                                            <option value="MEDICAL">🏥 Visite Médicale</option>
                                             <option value="OTHER">📁 Autre document</option>
                                         </select>
                                         <div className="grid grid-cols-2 gap-2">
@@ -587,11 +594,11 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                     {docType && (
                                         <p className="text-[9px] text-muted-foreground text-center">
                                             📂 Drive → <strong>RH - Restaurant OS</strong> / <strong>{employee.name}</strong> / <strong>{{
-                                                ID_CARD: 'Identité',
+                                                ID_CARD: 'Identité & Titre Séjour',
                                                 CONTRACT: 'Contrats',
                                                 PAYSLIP: 'Fiches de paie',
-                                                RESIDENCE_PERMIT: 'Titre de séjour',
-                                                INSURANCE: 'Mutuelle & RIB',
+                                                DPAE: 'DPAE & URSSAF',
+                                                MEDICAL: 'Visite Médicale',
                                                 OTHER: 'Autres documents',
                                             }[docType] || docType}</strong>
                                         </p>

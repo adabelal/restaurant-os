@@ -5,10 +5,11 @@ import { prisma } from "@/lib/prisma"
 import { Button } from "@/components/ui/button"
 import { CreateEmployeeDialog } from "@/components/rh/CreateEmployeeDialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { User, Archive, BarChart4, Users, Database } from "lucide-react"
+import { User, Archive, BarChart4, Users, Database, ShieldCheck } from "lucide-react"
 import { EmployeeListContent } from "@/components/rh/EmployeeListContent"
 import { RHSummaryTable } from "@/components/rh/RHSummaryTable"
 import { PayslipBulkUpload } from "@/components/rh/PayslipBulkUpload"
+import { ComplianceTab } from "@/components/rh/ComplianceTab"
 
 export default async function RHPage() {
     const employees = await prisma.user.findMany({
@@ -78,6 +79,12 @@ export default async function RHPage() {
                                 <BarChart4 className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Paie</span>
                             </TabsTrigger>
                             <TabsTrigger
+                                value="legal"
+                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-emerald-500 data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
+                            >
+                                <ShieldCheck className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Conformité</span>
+                            </TabsTrigger>
+                            <TabsTrigger
                                 value="archived"
                                 className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
                             >
@@ -98,6 +105,10 @@ export default async function RHPage() {
                     <TabsContent value="summary" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500 space-y-6">
                         <PayslipBulkUpload employees={activeEmployees.map((e: any) => ({ id: e.id, name: e.name, isActive: e.isActive }))} />
                         <RHSummaryTable employees={activeEmployees} />
+                    </TabsContent>
+
+                    <TabsContent value="legal" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
+                        <ComplianceTab employees={employees} />
                     </TabsContent>
 
                     <TabsContent value="archived" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">

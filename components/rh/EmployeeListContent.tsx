@@ -90,16 +90,16 @@ export function EmployeeListContent({ activeEmployees, archivedEmployees, active
                                             </div>
                                             <div className="flex items-center justify-between text-sm">
                                                 <span className="text-muted-foreground text-xs uppercase font-medium">Documents</span>
-                                                <span className={`text-xs font-bold px-2 py-0.5 rounded-md ${(emp._count?.documents || 0) < 3 ? 'bg-amber-50 text-amber-700' : 'bg-blue-50 text-blue-700'
+                                                <span className={`text-xs font-bold px-2 py-0.5 rounded-md ${(emp._count?.documents || 0) < 4 ? 'bg-amber-50 text-amber-700' : 'bg-blue-50 text-blue-700'
                                                     }`}>
-                                                    {emp._count?.documents || 0} / 3 requis
+                                                    {emp._count?.documents || 0} / 4 requis
                                                 </span>
                                             </div>
                                         </div>
 
                                         <div className="pt-3 border-t border-dashed flex justify-between items-center text-xs">
-                                            <span className={(emp._count?.documents || 0) < 3 ? "text-amber-600 font-medium flex items-center gap-1" : "text-emerald-600 font-medium flex items-center gap-1"}>
-                                                {(emp._count?.documents || 0) < 3 ? '⚠️ Dossier incomplet' : '✅ Dossier à jour'}
+                                            <span className={(emp._count?.documents || 0) < 4 ? "text-amber-600 font-medium flex items-center gap-1" : "text-emerald-600 font-medium flex items-center gap-1"}>
+                                                {(emp._count?.documents || 0) < 4 ? '⚠️ Dossier incomplet' : '✅ Dossier à jour'}
                                             </span>
                                             <span className="text-primary font-bold group-hover:translate-x-1 transition-transform">Gérer →</span>
                                         </div>

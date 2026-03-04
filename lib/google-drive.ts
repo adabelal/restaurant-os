@@ -13,9 +13,11 @@ const CREDENTIALS_PATH = path.join(process.cwd(), 'Mail', 'credentials.json')
 export const DOC_TYPE_LABELS: Record<string, string> = {
     CONTRACT: 'Contrats',
     PAYSLIP: 'Fiches de paie',
-    ID_CARD: 'Identité',
+    ID_CARD: 'Identité & Titre Séjour',
     RESIDENCE_PERMIT: 'Titre de séjour',
     INSURANCE: 'Mutuelle & RIB',
+    DPAE: 'DPAE & Affiliations',
+    MEDICAL: 'Visite Médicale',
     OTHER: 'Autres documents',
 }
 
