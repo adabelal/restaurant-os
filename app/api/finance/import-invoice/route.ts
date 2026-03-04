@@ -51,6 +51,28 @@ export async function POST(req: NextRequest) {
                 } : undefined
             }
         })
+        // 4. Enregistrer dans ProcessedMail
+        if (data.emailMetadata) {
+            await (prisma as any).processedMail.upsert({
+                where: { messageId: data.emailMetadata.messageId },
+                update: {
+                    status: 'SUCCESS',
+                    amount: Number(totalAmount),
+                    targetId: purchaseOrder.id
+                },
+                create: {
+                    messageId: data.emailMetadata.messageId,
+                    subject: data.emailMetadata.subject || "Facture Fournisseur",
+                    sender: data.emailMetadata.sender || "Inconnu",
+                    date: new Date(date),
+                    type: "INVOICE",
+                    status: 'SUCCESS',
+                    amount: Number(totalAmount),
+                    targetId: purchaseOrder.id,
+                    fileUrl: scannedUrl
+                }
+            })
+        }
 
         return NextResponse.json({ success: true, data: purchaseOrder }, { status: 201 })
     } catch (error: any) {

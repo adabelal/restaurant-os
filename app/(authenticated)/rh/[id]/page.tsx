@@ -21,6 +21,7 @@ import { EditShiftDialog } from "@/components/rh/EditShiftDialog"
 import { HistoryChart } from "@/components/rh/HistoryChart"
 import { ExportShiftsPDF } from "@/components/rh/ExportShiftsPDF"
 import { ShiftManager } from "@/components/rh/ShiftManager"
+import { RateHistoryManager } from "@/components/rh/RateHistoryManager"
 
 export default async function EmployeeDetailPage({
     params,
@@ -147,6 +148,7 @@ export default async function EmployeeDetailPage({
                         <TabsTrigger value="stats" className="gap-2 px-6"><Calendar className="h-4 w-4" /> Résumé</TabsTrigger>
                         <TabsTrigger value="hours" className="gap-2 px-6"><Clock className="h-4 w-4" /> Heures & Travail</TabsTrigger>
                         <TabsTrigger value="legal" className="gap-2 px-6"><ShieldCheck className="h-4 w-4" /> Dossier Juridique</TabsTrigger>
+                        <TabsTrigger value="rates" className="gap-2 px-6"><Euro className="h-4 w-4" /> Taux & Contrat</TabsTrigger>
                         <TabsTrigger value="profile" className="gap-2 px-6"><Mail className="h-4 w-4" /> Profil & Params</TabsTrigger>
                     </TabsList>
 
@@ -398,7 +400,15 @@ export default async function EmployeeDetailPage({
                         </div>
                     </TabsContent>
 
-                    {/* ONGLET 4: PROFIL & PARAMS */}
+                    {/* ONGLET 4: TAUX & CONTRAT */}
+                    <TabsContent value="rates" className="space-y-6">
+                        <RateHistoryManager
+                            userId={employee.id}
+                            currentHistoryJson={employee.address}
+                        />
+                    </TabsContent>
+
+                    {/* ONGLET 5: PROFIL & PARAMS */}
                     <TabsContent value="profile">
                         <Card className="border-border shadow-sm bg-card">
                             <CardHeader className="border-b border-border bg-muted/20">

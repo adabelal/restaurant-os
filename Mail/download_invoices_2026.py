@@ -24,6 +24,12 @@ except ImportError:
     print("Erreur: Module pypdf manquant.")
     sys.exit(1)
 
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    print("Erreur: Module beautifulsoup4 manquant.")
+    sys.exit(1)
+
 # Import Google GenAI (Nouveau package)
 try:
     from google import genai
@@ -214,6 +220,35 @@ def sync_to_restaurant_os(data):
     except Exception as e:
         print(f"❌ Erreur réseau synchro: {e}")
 
+def sync_popina_to_restaurant_os(data):
+    """Envoie les données de caisse Popina au webhook dédié"""
+    raw_api_url = os.getenv("RESTAURANT_OS_API_URL") or "http://localhost:3000/api/webhooks/invoices"
+    # Extraction de la base (ex: http://localhost:3000)
+    import urllib.parse
+    parsed = urllib.parse.urlparse(raw_api_url)
+    base_url = f"{parsed.scheme}://{parsed.netloc}"
+    
+    api_url = os.getenv("RESTAURANT_OS_POPINA_URL") or f"{base_url}/api/webhooks/popina"
+    api_key = os.getenv("RESTAURANT_OS_API_KEY")
+    
+    if not api_url:
+        print("⚠️ URL API Popina manquante. Sync ignorée.")
+        return
+
+    headers = {
+        "Content-Type": "application/json",
+        "x-api-key": f"{api_key or ''}"
+    }
+    
+    try:
+        response = requests.post(api_url, json=data, headers=headers)
+        if response.status_code == 200 or response.status_code == 201:
+            print(f"🚀 Synchro Popina OK")
+        else:
+            print(f"❌ Erreur synchro Popina: [{response.status_code}] {response.text}")
+    except Exception as e:
+        print(f"❌ Erreur réseau synchro Popina: {e}")
+
 def mark_as_processed(service, msg_id):
     """Ajoute le label 'Archive_AI' au message pour ne plus le traiter."""
     label_name = "Archive_AI"
@@ -240,6 +275,93 @@ def mark_as_processed(service, msg_id):
     except Exception as e:
         print(f"⚠️ Erreur archivage Gmail: {e}")
 
+def process_popina_reports(service):
+    """Recherche et traite les rapports de fin de caisse Popina."""
+    print("🔍 Recherche Gmail (Rapports Popina)...")
+    query = 'label:INBOX -label:Archive_AI subject:"Rapport de fin de caisse"'
+    
+    try:
+        results = service.users().messages().list(userId='me', q=query).execute()
+        messages = results.get('messages', [])
+        
+        if not messages:
+            print("--> Aucun nouveau rapport Popina trouvé.")
+            return
+            
+        print(f"--> {len(messages)} rapports Popina trouvés.")
+        
+        for msg_info in messages:
+            msg = service.users().messages().get(userId='me', id=msg_info['id']).execute()
+            payload = msg.get('payload', {})
+            
+            headers = payload.get('headers', [])
+            email_date_str = next((h['value'] for h in headers if h['name'] == 'Date'), None)
+            sender = next((h['value'] for h in headers if h['name'] == 'From'), "Popina")
+            subject = next((h['value'] for h in headers if h['name'] == 'Subject'), "Rapport de fin de caisse")
+            
+            target_date = datetime.now()
+            if email_date_str:
+                target_date = email.utils.parsedate_to_datetime(email_date_str)
+
+            html_content = ""
+            parts = payload.get('parts', [])
+            if not parts:
+                parts = [payload]
+            
+            for part in parts:
+                if part.get('mimeType') == 'text/html':
+                    data = part.get('body', {}).get('data')
+                    if data:
+                        html_content = base64.urlsafe_b64decode(data).decode('utf-8', errors='replace')
+                        break
+            
+            if not html_content:
+                continue
+
+            soup = BeautifulSoup(html_content, 'html.parser')
+            text = soup.get_text(' ', strip=True) # Utiliser des espaces pour garder les données sur la même ligne logique
+            
+            # 1. Extraction du montant Espèces
+            # Cherche "Espèces" suivi du montant principal et des centimes séparés par n'importe quoi (souvent virgule ou espace)
+            especes_match = re.search(r'Esp.ces\s+([\d\s]+)[^\d]*(\d{2})', text, re.IGNORECASE)
+            
+            if especes_match:
+                integer_part = especes_match.group(1).replace(' ', '')
+                decimal_part = especes_match.group(2)
+                amount = float(f"{integer_part}.{decimal_part}")
+                
+                # 2. Extraction de la date "Fin de service" dans le texte
+                # Cherche un format DD/MM/YYYY HH:MM
+                date_matches = re.findall(r'(\d{2}/\d{2}/\d{4} \d{2}:\d{2})', text)
+                if date_matches:
+                    # On prend généralement la dernière date (Fin de service)
+                    try:
+                        target_date = datetime.strptime(date_matches[-1], '%d/%m/%Y %H:%M')
+                    except:
+                        pass
+
+                print(f"💰 Rapport Popina détecté : {target_date.strftime('%d/%m/%Y')} -> {amount}€")
+                
+                # Synchro
+                sync_data = {
+                    "date": target_date.isoformat(),
+                    "amount": amount,
+                    "description": f"Recette Popina Espèces ({target_date.strftime('%d/%m/%Y')})",
+                    "messageId": msg_info['id'],
+                    "sender": sender,
+                    "subject": subject,
+                    "type": "POPINA_REPORT"
+                }
+                sync_popina_to_restaurant_os(sync_data)
+                
+                # Archivage
+                mark_as_processed(service, msg_info['id'])
+            else:
+                print(f"⚠️  Rapport Popina trouvé (ID: {msg_info['id']}) mais montant Espèces non détecté.")
+
+    except Exception as e:
+        print(f"❌ Erreur traitement Popina: {e}")
+
 def download_and_upload_invoices():
     gmail_service = get_gmail_service()
     drive_service = get_drive_service()
@@ -249,6 +371,9 @@ def download_and_upload_invoices():
     print("🔍 Récupération de l'arborescence Drive...")
     root_folder_id = get_folder_id_from_path(drive_service, DRIVE_PATH)
     autres_folder_id = get_or_create_folder(drive_service, "Autres", root_folder_id)
+
+    # NOUVEAU: Traitement Popina
+    process_popina_reports(gmail_service)
 
     print("🔍 Recherche Gmail (Nouveaux messages 2026+)...")
     # Recherche large pour être sûr de ne rien rater
@@ -355,7 +480,13 @@ def download_and_upload_invoices():
                             "invoiceNo": ai_data.get("invoiceNo") if ai_data else None,
                             "totalAmount": float(amount),
                             "scannedUrl": f"https://drive.google.com/file/d/{file_id}/view",
-                            "items": []
+                            "items": [],
+                            "emailMetadata": {
+                                "messageId": msg_info['id'],
+                                "subject": subject,
+                                "sender": sender,
+                                "type": "INVOICE"
+                            }
                         }
                         sync_to_restaurant_os(sync_data)
                 else:

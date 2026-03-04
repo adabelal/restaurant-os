@@ -51,8 +51,19 @@ model User {
   stockLogs        StockMovement[]
   documents        EmployeeDocument[]
   cashTransactions CashTransaction[]
+  hourlyRateHistory HourlyRateHistory[]
 }
 
+model HourlyRateHistory {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rate      Decimal  @db.Decimal(10, 2)
+  startDate DateTime // Date à partir de laquelle ce taux s'applique
+  createdAt DateTime @default(now())
+
+  @@index([userId, startDate])
+}
 
 model EmployeeDocument {
   id        String   @id @default(cuid())
@@ -465,22 +476,4 @@ model BankAccount {
   
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-}
-
-model ProcessedMail {
-  id          String   @id @default(cuid())
-  messageId   String   @unique
-  subject     String
-  sender      String
-  date        DateTime
-  type        String   // "INVOICE", "POPINA_REPORT"
-  status      String   @default("SUCCESS")
-  amount      Decimal? @db.Decimal(10, 2)
-  targetId    String?  // ID de la transaction ou facture créée
-  fileUrl     String?  // Lien vers le fichier Drive si applicable
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@index([date])
 }

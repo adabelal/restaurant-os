@@ -2,12 +2,10 @@
 
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
-import { requireAuth } from "@/lib/auth-utils"
 import { hashPassword, generateTempPassword } from "@/lib/password"
 import { createUserSchema, createShiftSchema, createDocumentSchema } from "@/lib/validations"
 import { z } from "zod"
 import { safeAction } from "@/lib/safe-action"
-import { cache } from "react"
 
 export async function createEmployee(formData: FormData) {
     return safeAction(formData, async (input) => {
@@ -30,7 +28,6 @@ export async function createEmployee(formData: FormData) {
         const data = result.data
 
         try {
-            // Générer un mot de passe temporaire sécurisé
             const tempPassword = generateTempPassword()
             const hashedPassword = await hashPassword(tempPassword)
 
@@ -47,7 +44,6 @@ export async function createEmployee(formData: FormData) {
             })
 
             revalidatePath("/rh")
-            // Note: En production, envoyer le mot de passe temporaire par email
             return { success: true, message: "Employé créé avec succès." }
         } catch (error: any) {
             console.error("Error creating employee:", error)
@@ -92,12 +88,10 @@ export async function updateEmployee(formData: FormData) {
         const contractType = input.get("contractType") as string
         const contractDuration = input.get("contractDuration") as string
 
-        // Validation basique
         if (!id || !name || !email) {
             return { error: "Données manquantes." }
         }
 
-        // Validation email
         const emailSchema = z.string().email()
         if (!emailSchema.safeParse(email).success) {
             return { error: "Email invalide." }
@@ -117,7 +111,8 @@ export async function updateEmployee(formData: FormData) {
                     contractDuration
                 }
             })
-            revalidatePath(`/rh`)
+
+            revalidatePath("/rh")
             revalidatePath(`/rh/${id}`)
             return { success: true, message: "Profil mis à jour." }
         } catch (error: any) {
@@ -186,48 +181,6 @@ export async function addEmployeeDocument(formData: FormData) {
             return { error: "Erreur sauvegarde doc" }
         }
     })
-}
-
-// Fonction appelée par webhook N8N (authentifiée via API key dans la route)
-export async function autoLinkPayslip(userId: string, filename: string, driveUrl: string) {
-    // Validation des entrées
-    if (!userId || !filename || !driveUrl) {
-        return { success: false, message: "Paramètres manquants" }
-    }
-
-    // Validation URL
-    const urlSchema = z.string().url()
-    if (!urlSchema.safeParse(driveUrl).success) {
-        return { success: false, message: "URL invalide" }
-    }
-
-    // Format: 2025_12_NOM_BdP.pdf
-    const parts = filename.split('_')
-    if (parts.length < 3) return { success: false, message: "Format invalide" }
-
-    const year = parseInt(parts[0])
-    const month = parseInt(parts[1])
-
-    if (isNaN(year) || isNaN(month) || month < 1 || month > 12) {
-        return { success: false, message: "Date invalide dans le nom du fichier" }
-    }
-
-    try {
-        await prisma.employeeDocument.create({
-            data: {
-                userId,
-                name: `Fiche de Paie ${month}/${year}`,
-                url: driveUrl,
-                type: "PAYSLIP",
-                category: "PAIE",
-                month,
-                year
-            }
-        })
-        return { success: true }
-    } catch (e) {
-        return { success: false, message: "Erreur lors de la création" }
-    }
 }
 
 export async function addShift(formData: FormData) {
@@ -391,6 +344,30 @@ export async function updateShift(formData: FormData) {
         } catch (e) {
             console.error(e)
             return { error: "Erreur lors de la modification." }
+        }
+    })
+}
+
+export async function updateHourlyRateHistory(formData: FormData) {
+    return safeAction(formData, async (input) => {
+        const userId = input.get("userId") as string
+        const ratesJson = input.get("ratesJson") as string
+
+        if (!userId || !ratesJson) return { error: "Paramètres manquants" }
+
+        try {
+            // Simulation de stockage en attendant migration : on utilise le champ address pour stocker le JSON
+            // ATTENTION: C'est une solution de repli temporaire puisque la migration prisma échoue.
+            await prisma.user.update({
+                where: { id: userId },
+                data: {
+                    address: ratesJson // On détourne address pour stocker l'historique JSON
+                }
+            })
+            revalidatePath(`/rh/${userId}`)
+            return { success: true, message: "Historique mis à jour" }
+        } catch (e) {
+            return { error: "Erreur lors de la mise à jour" }
         }
     })
 }

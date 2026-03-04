@@ -2,8 +2,8 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 export async function POST(req: Request) {
-    // Sécurité: Vérification de la clé API
-    const apiKey = req.headers.get("x-api-key")
+    // Sécurité: Vérification de la clé API (Accepte x-api-key ou Authorization: Bearer)
+    const apiKey = req.headers.get("x-api-key") || req.headers.get("authorization")?.replace("Bearer ", "")
     const validKey = process.env.RESTAURANT_OS_API_KEY || process.env.N8N_API_KEY
 
     if (!validKey || apiKey !== validKey) {
@@ -94,11 +94,28 @@ export async function POST(req: Request) {
             data: invoiceItemsData
         })
 
-        // 4. Mettre à jour le statut final
-        await (prisma as any).purchaseOrder.update({
-            where: { id: purchaseOrder.id },
-            data: { status: hasAlert ? 'ALERT' : 'VALIDATED' }
-        })
+        // 4. Enregistrer dans ProcessedMail (pour le suivi dans l'interface)
+        if (body.emailMetadata) {
+            await (prisma as any).processedMail.upsert({
+                where: { messageId: body.emailMetadata.messageId },
+                update: {
+                    status: hasAlert ? 'ALERT' : 'SUCCESS',
+                    amount: totalAmount,
+                    targetId: purchaseOrder.id
+                },
+                create: {
+                    messageId: body.emailMetadata.messageId,
+                    subject: body.emailMetadata.subject || "Sans objet",
+                    sender: body.emailMetadata.sender || "Inconnu",
+                    date: date ? new Date(date) : new Date(),
+                    type: "INVOICE",
+                    status: hasAlert ? 'ALERT' : 'SUCCESS',
+                    amount: totalAmount,
+                    targetId: purchaseOrder.id,
+                    fileUrl: scannedUrl
+                }
+            })
+        }
 
         return NextResponse.json({ success: true, id: purchaseOrder.id, alert: hasAlert })
     } catch (error: any) {

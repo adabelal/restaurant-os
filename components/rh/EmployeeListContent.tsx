@@ -14,7 +14,7 @@ interface EmployeeListContentProps {
 }
 
 export function EmployeeListContent({ activeEmployees, archivedEmployees, activeTab }: EmployeeListContentProps) {
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('list')
     const list = activeTab === 'active' ? activeEmployees : archivedEmployees
 
     if (list.length === 0) {
