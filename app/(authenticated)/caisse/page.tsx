@@ -1,16 +1,14 @@
 
 import { prisma } from "@/lib/prisma"
 export const dynamic = 'force-dynamic'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Wallet, ArrowUpCircle, ArrowDownCircle, Settings, Calculator, TrendingUp, Tags } from "lucide-react"
+import { Wallet, ArrowUpCircle, ArrowDownCircle, Calculator, Tags } from "lucide-react"
 import { AddTransactionDialog } from "@/components/caisse/AddTransactionDialog"
-import { CaisseStats } from "@/components/caisse/CaisseStats"
-import { MonthlyTransactionList } from "@/components/caisse/MonthlyTransactionList"
 import { ExportDialog } from "@/components/caisse/ExportDialog"
 import { getAppSettings } from "@/app/caisse/actions"
 import { ImportPopinaButton } from "@/components/caisse/ImportPopinaButton"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { CaisseTransactionListClient, TransformedTx } from "./CaisseTransactionListClient"
 
 export default async function CaissePage() {
     // Fetch initial data
@@ -28,9 +26,6 @@ export default async function CaissePage() {
 
     const settings = await getAppSettings()
 
-    const entrees = transactions.filter((t: any) => t.type === 'IN')
-    const sorties = transactions.filter((t: any) => t.type === 'OUT')
-
     // Calculate quick stats with Prisma Aggregations for performance (Anti-OOM)
     const [resultIn, resultOut] = await Promise.all([
         prisma.cashTransaction.aggregate({
@@ -46,6 +41,25 @@ export default async function CaissePage() {
     const totalIn = Number(resultIn._sum.amount || 0)
     const totalOut = Number(resultOut._sum.amount || 0)
     const balance = totalIn + totalOut
+
+    const transformedTransactions: TransformedTx[] = transactions.map((t: any) => ({
+        id: t.id,
+        date: t.date,
+        amount: Number(t.amount),
+        description: t.description,
+        reference: t.reference || null,
+        transactionType: t.type,
+        paymentMethod: 'CASH',
+        thirdPartyName: t.user ? t.user.name : null,
+        categoryName: t.category?.name || null,
+        categoryId: t.categoryId || null
+    }))
+
+    const transformedCategories = categories.map(c => ({
+        id: c.id,
+        name: c.name,
+        type: c.type
+    }))
 
     return (
         <main className="flex min-h-screen flex-col bg-background transition-colors duration-300 font-sans">
@@ -110,33 +124,10 @@ export default async function CaissePage() {
                     </div>
                 </div>
 
-                <Tabs defaultValue="entrees" className="w-full space-y-8">
-                    <div className="flex justify-center md:justify-start">
-                        <TabsList className="p-1 bg-muted rounded-2xl w-auto inline-flex shadow-inner border border-border/50">
-                            <TabsTrigger value="entrees" className="px-8 py-2.5 gap-2 rounded-xl data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-md transition-all font-bold">
-                                <ArrowUpCircle className="h-4 w-4 text-emerald-500" /> Entrées
-                            </TabsTrigger>
-                            <TabsTrigger value="sorties" className="px-8 py-2.5 gap-2 rounded-xl data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-md transition-all font-bold">
-                                <ArrowDownCircle className="h-4 w-4 text-rose-500" /> Sorties
-                            </TabsTrigger>
-                            <TabsTrigger value="stats" className="px-8 py-2.5 gap-2 rounded-xl data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-md transition-all font-bold">
-                                <TrendingUp className="h-4 w-4 text-blue-500" /> Analyses
-                            </TabsTrigger>
-                        </TabsList>
-                    </div>
-
-                    <TabsContent value="entrees" className="mt-0 animate-in fade-in-50 duration-500 outline-none">
-                        <MonthlyTransactionList transactions={entrees} categories={categories} />
-                    </TabsContent>
-
-                    <TabsContent value="sorties" className="mt-0 animate-in fade-in-50 duration-500 outline-none">
-                        <MonthlyTransactionList transactions={sorties} categories={categories} />
-                    </TabsContent>
-
-                    <TabsContent value="stats" className="mt-0 outline-none">
-                        <CaisseStats transactions={transactions} />
-                    </TabsContent>
-                </Tabs>
+                <CaisseTransactionListClient
+                    initialTransactions={transformedTransactions}
+                    categories={transformedCategories}
+                />
             </div>
         </main>
     )
