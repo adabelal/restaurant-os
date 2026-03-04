@@ -39,35 +39,40 @@ export default async function FinancePage() {
     return (
         <div className="flex flex-col min-h-screen bg-background space-y-6 md:space-y-8 p-4 md:p-8 max-w-7xl mx-auto font-sans transition-colors duration-300">
             {/* Header Section - Clean & Professional */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-2">
-                <div>
-                    <h1 className="text-3xl font-bold text-foreground tracking-tight">
-                        Tableau de Bord Financier
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-4">
+                <div className="space-y-2">
+                    <div className="flex items-center gap-2 mb-1">
+                        <div className="h-2 w-8 bg-indigo-500 rounded-full" />
+                        <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.3em]">Module Principal</span>
+                    </div>
+                    <h1 className="text-5xl font-black text-foreground tracking-tighter flex items-center gap-4">
+                        Tableau de Bord
+                        <Landmark className="h-8 w-8 text-indigo-500" />
                     </h1>
-                    <p className="text-muted-foreground font-medium mt-1">
+                    <p className="text-muted-foreground font-bold text-lg max-w-md leading-tight">
                         Vue d'overview de la trésorerie et des flux.
                     </p>
                 </div>
-                <div className="flex items-center gap-2 md:gap-3 flex-wrap">
-                    <Button asChild variant="outline" className="gap-2 shrink-0">
+                <div className="flex items-center gap-2 md:gap-3 flex-wrap mt-4 md:mt-0">
+                    <Button asChild variant="outline" className="h-14 px-6 rounded-2xl border-2 border-border font-black uppercase tracking-widest text-xs hover:bg-foreground hover:text-background transition-all duration-300 gap-2 shrink-0">
                         <Link href="/finance/categorisation">
                             <Tags className="w-4 h-4" />
                             <span className="hidden sm:inline">Catégorisation</span>
                         </Link>
                     </Button>
-                    <Button asChild variant="secondary" className="gap-2 shrink-0 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/50">
+                    <Button asChild variant="secondary" className="h-14 px-6 rounded-2xl font-black uppercase tracking-widest text-xs gap-2 shrink-0 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/50 transition-all duration-300 shadow-sm border border-indigo-100 dark:border-indigo-900/50">
                         <Link href="/finance/analysis">
                             <PieChart className="w-4 h-4" />
                             <span className="hidden sm:inline">Analyse</span>
                         </Link>
                     </Button>
-                    <Button asChild variant="secondary" className="gap-2 shrink-0 bg-amber-50 text-amber-700 hover:bg-amber-100 dark:bg-amber-950/50 dark:text-amber-300 dark:hover:bg-amber-900/50">
+                    <Button asChild variant="secondary" className="h-14 px-6 rounded-2xl font-black uppercase tracking-widest text-xs gap-2 shrink-0 bg-amber-50 text-amber-700 hover:bg-amber-100 dark:bg-amber-950/50 dark:text-amber-300 dark:hover:bg-amber-900/50 transition-all duration-300 shadow-sm border border-amber-100 dark:border-amber-900/50">
                         <Link href="/finance/previsionnel">
                             <Sparkles className="w-4 h-4 text-amber-500" />
                             <span className="hidden sm:inline">Prévisionnel</span>
                         </Link>
                     </Button>
-                    <Button asChild variant="default" className="gap-2 shrink-0">
+                    <Button asChild variant="default" className="h-14 px-6 rounded-2xl font-black uppercase tracking-widest text-xs gap-2 shrink-0 transition-all duration-300 bg-indigo-600 text-white hover:bg-indigo-700 shadow-[0_10px_30px_rgba(79,70,229,0.3)]">
                         <Link href="/finance/bank">
                             <Landmark className="w-4 h-4" />
                             <span className="hidden sm:inline">Ma Banque</span>
@@ -80,15 +85,16 @@ export default async function FinancePage() {
             {/* Main KPIs Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {/* 1. SOLDE BANQUE */}
-                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                <Card className="border-none ring-1 ring-border shadow-2xl bg-card rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 relative group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                        <CardTitle className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">
                             Solde Banque
                         </CardTitle>
                         <Wallet className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
                     </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold text-foreground">
+                    <CardContent className="relative">
+                        <div className="text-3xl font-black text-foreground">
                             {currentBalance.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
                         <p className="text-xs text-muted-foreground mt-1 font-medium">
@@ -98,15 +104,16 @@ export default async function FinancePage() {
                 </Card>
 
                 {/* 2. SOLDE CAISSE */}
-                <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                <Card className="border-none ring-1 ring-border shadow-2xl bg-card rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 relative group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                        <CardTitle className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">
                             Solde Caisse
                         </CardTitle>
                         <Banknote className="h-4 w-4 text-amber-500" />
                     </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold text-foreground">
+                    <CardContent className="relative">
+                        <div className="text-3xl font-black text-foreground">
                             {cashBalance.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                         </div>
                         <p className="text-xs text-muted-foreground mt-1 font-medium">
@@ -117,18 +124,19 @@ export default async function FinancePage() {
 
                 {/* 3. CHARGES FIXES (Clickable) */}
                 <Link href="/finance/charges" className="group">
-                    <Card className="border border-border shadow-sm bg-card rounded-xl overflow-hidden hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-md transition-all h-full cursor-pointer relative">
+                    <Card className="border-none ring-1 ring-border shadow-2xl bg-card rounded-3xl overflow-hidden hover:shadow-xl hover:ring-indigo-500/30 transition-all duration-300 h-full cursor-pointer relative group">
+                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                             <ArrowUpRight className="h-4 w-4 text-indigo-400" />
                         </div>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                            <CardTitle className="text-[10px] font-black text-muted-foreground uppercase tracking-widest group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                                 Prélèvements
                             </CardTitle>
                             <RefreshCcw className="h-4 w-4 text-blue-500" />
                         </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold text-foreground">
+                        <CardContent className="relative">
+                            <div className="text-3xl font-black text-foreground">
                                 {remainingFixedCosts.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                             </div>
                             <p className="text-xs text-blue-600 dark:text-blue-400 font-medium mt-1">
@@ -140,18 +148,19 @@ export default async function FinancePage() {
 
                 {/* 4. FORECAST */}
                 <Link href="/finance/previsionnel" className="group">
-                    <Card className="border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-emerald-50/50 dark:bg-emerald-950/30 rounded-xl overflow-hidden hover:shadow-md transition-all cursor-pointer relative h-full">
+                    <Card className="border-none shadow-2xl ring-1 ring-emerald-500/20 bg-emerald-50/50 dark:bg-emerald-950/20 rounded-3xl overflow-hidden hover:shadow-xl transition-all cursor-pointer relative h-full group hover:ring-emerald-500/50">
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                             <ArrowUpRight className="h-4 w-4 text-emerald-400" />
                         </div>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-semibold text-emerald-700/70 dark:text-emerald-400/70 uppercase tracking-wider group-hover:text-emerald-600 transition-colors">
+                            <CardTitle className="text-[10px] font-black text-emerald-700/70 dark:text-emerald-400/70 uppercase tracking-widest group-hover:text-emerald-600 transition-colors">
                                 Prévision Fin de Mois
                             </CardTitle>
                             <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                         </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
+                        <CardContent className="relative">
+                            <div className="text-3xl font-black text-emerald-700 dark:text-emerald-400">
                                 {eomForecast.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                             </div>
                             <p className="text-xs text-emerald-600/60 dark:text-emerald-400/60 mt-1 font-medium">
