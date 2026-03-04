@@ -38,6 +38,20 @@ export function TransactionListClient({
     const [typeFilter, setTypeFilter] = useState<string>('ALL')
     const [methodFilter, setMethodFilter] = useState<string>('ALL')
     const [categoryFilter, setCategoryFilter] = useState<string>('ALL')
+
+    const availableMonths = useMemo(() => {
+        const months = new Set<string>()
+        initialTransactions.forEach(tx => {
+            months.add(format(tx.date, 'yyyy-MM'))
+        })
+        return Array.from(months).sort().reverse()
+    }, [initialTransactions])
+
+    // Par défaut on affiche le mois le plus récent
+    const [monthFilter, setMonthFilter] = useState<string>(
+        availableMonths.length > 0 ? availableMonths[0] : 'ALL'
+    )
+
     const [isSyncing, setIsSyncing] = useState(false)
     const [loadingIds, setLoadingIds] = useState<Set<string>>(new Set())
 
@@ -149,9 +163,14 @@ export function TransactionListClient({
                 if (categoryFilter !== 'UNCLASSIFIED' && tx.categoryId !== categoryFilter) return false
             }
 
+            // Month Filter
+            if (monthFilter !== 'ALL') {
+                if (format(tx.date, 'yyyy-MM') !== monthFilter) return false
+            }
+
             return true
         })
-    }, [initialTransactions, search, typeFilter, methodFilter, categoryFilter])
+    }, [initialTransactions, search, typeFilter, methodFilter, categoryFilter, monthFilter])
 
     const totalIncome = filtered.filter(t => t.amount > 0).reduce((acc, t) => acc + t.amount, 0)
     const totalExpense = filtered.filter(t => t.amount < 0).reduce((acc, t) => acc + Math.abs(t.amount), 0)
@@ -171,6 +190,7 @@ export function TransactionListClient({
         setTypeFilter('ALL')
         setMethodFilter('ALL')
         setCategoryFilter('ALL')
+        setMonthFilter(availableMonths.length > 0 ? availableMonths[0] : 'ALL')
     }
 
     return (
@@ -222,8 +242,25 @@ export function TransactionListClient({
                         />
                     </div>
                     <div className="flex w-full md:w-auto items-center gap-2 md:gap-3 flex-wrap justify-stretch">
+                        <Select value={monthFilter} onValueChange={setMonthFilter}>
+                            <SelectTrigger className="w-full sm:w-[150px] flex-1 sm:flex-none bg-background capitalize">
+                                <SelectValue placeholder="Mois" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="ALL">Tous les mois</SelectItem>
+                                {availableMonths.map(m => {
+                                    const dateObj = new Date(`${m}-01T12:00:00Z`);
+                                    return (
+                                        <SelectItem key={m} value={m} className="capitalize">
+                                            {format(dateObj, 'MMMM yyyy', { locale: fr })}
+                                        </SelectItem>
+                                    )
+                                })}
+                            </SelectContent>
+                        </Select>
+
                         <Select value={typeFilter} onValueChange={setTypeFilter}>
-                            <SelectTrigger className="w-full sm:w-[140px] flex-1 sm:flex-none bg-background">
+                            <SelectTrigger className="w-full sm:w-[130px] flex-1 sm:flex-none bg-background">
                                 <SelectValue placeholder="Type" />
                             </SelectTrigger>
                             <SelectContent>
@@ -269,7 +306,7 @@ export function TransactionListClient({
                             </SelectContent>
                         </Select>
 
-                        {(search || typeFilter !== 'ALL' || methodFilter !== 'ALL' || categoryFilter !== 'ALL') && (
+                        {(search || typeFilter !== 'ALL' || methodFilter !== 'ALL' || categoryFilter !== 'ALL' || monthFilter !== (availableMonths.length > 0 ? availableMonths[0] : 'ALL')) && (
                             <Button variant="ghost" size="icon" onClick={resetFilters} title="Réinitialiser les filtres">
                                 <FilterX className="w-4 h-4 text-muted-foreground hover:text-rose-500" />
                             </Button>
