@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -19,27 +19,26 @@ import {
 } from 'date-fns'
 import { fr } from 'date-fns/locale'
 
+import { toast } from "sonner"
+import { moveShift } from "@/app/(authenticated)/rh/actions"
+
 interface GlobalShiftCalendarProps {
     employees: any[]
 }
 
 // Fonction utilitaire pour attribuer une couleur selon le "supposé" poste du salarié
-// (basé sur l'historique de tes salariés)
 function getRoleColor(name: string) {
     const n = name.toLowerCase()
-    // Priorité aux rôles spécifiques
     if (n.includes('sylvain')) return 'bg-slate-500/10 text-slate-600 border-slate-500/20 dark:text-slate-400' // Sécurité
-    if (n.includes('xavier')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400' // Plonge (confirmé par l'utilisateur)
+    if (n.includes('xavier')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400' // Plonge
 
-    // Détection par nom
     if (n.includes('laura') || n.includes('laetitia')) return 'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400' // Cuisine
     if (n.includes('amelie') || n.includes('noélie') || n.includes('noelie') || n.includes('virginie') || n.includes('lysea')) return 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400' // Salle
     if (n.includes('sarah') || n.includes('jules') || n.includes('prudencia') || n.includes('marie') || n.includes('manon')) return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400' // Bar
     if (n.includes('florence') || n.includes('jenifer') || n.includes('jennifer') || n.includes('micheline') || n.includes('julien')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400' // Plonge
-    return 'bg-muted text-muted-foreground border-border' // Défaut
+    return 'bg-muted text-muted-foreground border-border'
 }
 
-// Abréviation du prénom + Initiale Nom (ex: "Laur. S")
 function formatName(fullName: string) {
     const parts = fullName.trim().split(/\s+/)
     if (parts.length === 1) return parts[0]
@@ -51,44 +50,94 @@ function formatName(fullName: string) {
 
 export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     const [currentDate, setCurrentDate] = useState(new Date())
+    const [localShifts, setLocalShifts] = useState<any[]>([])
+    const [isDragging, setIsDragging] = useState<string | null>(null)
+
+    useEffect(() => {
+        const allShifts = employees.flatMap(emp =>
+            (emp.shifts || []).map((s: any) => ({ ...s, employee: emp }))
+        )
+        setLocalShifts(allShifts)
+    }, [employees])
 
     const nextMonth = () => setCurrentDate(addMonths(currentDate, 1))
     const prevMonth = () => setCurrentDate(subMonths(currentDate, 1))
 
-    // Construire la grille du mois (incluant les jours des mois adjacents pour compléter les semaines)
     const days = useMemo(() => {
-        const start = startOfWeek(startOfMonth(currentDate), { weekStartsOn: 1 }) // Commence Lundi
+        const start = startOfWeek(startOfMonth(currentDate), { weekStartsOn: 1 })
         const end = endOfWeek(endOfMonth(currentDate), { weekStartsOn: 1 })
         return eachDayOfInterval({ start, end })
     }, [currentDate])
 
-    // Mapper tous les shifts de tous les employés actifs
-    // Structure: Record<FormatDate (yyyy-MM-dd), Array<{employee, shift}>>
     const shiftsByDay = useMemo(() => {
         const map: Record<string, any[]> = {}
-        employees.forEach(emp => {
-            emp.shifts?.forEach((shift: any) => {
-                const d = new Date(shift.startTime)
-                const dateKey = format(d, 'yyyy-MM-dd')
-                if (!map[dateKey]) map[dateKey] = []
-                map[dateKey].push({
-                    employee: emp,
-                    shift: shift
-                })
-            })
+        localShifts.forEach(item => {
+            const dateKey = format(new Date(item.startTime), 'yyyy-MM-dd')
+            if (!map[dateKey]) map[dateKey] = []
+            map[dateKey].push(item)
         })
 
-        // Trier les shifts de chaque jour (par heure de début puis par poste supposé)
         Object.keys(map).forEach(key => {
-            map[key].sort((a, b) => {
-                const timeA = new Date(a.shift.startTime).getTime()
-                const timeB = new Date(b.shift.startTime).getTime()
-                return timeA - timeB
-            })
+            map[key].sort((a, b) =>
+                new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
+            )
         })
-
         return map
-    }, [employees])
+    }, [localShifts])
+
+    const onDragStart = (e: React.DragEvent, shiftId: string) => {
+        e.dataTransfer.setData("shiftId", shiftId)
+        setIsDragging(shiftId)
+        e.dataTransfer.effectAllowed = "move"
+    }
+
+    const onDragOver = (e: React.DragEvent) => {
+        e.preventDefault()
+        e.dataTransfer.dropEffect = "move"
+    }
+
+    const onDrop = async (e: React.DragEvent, targetDate: Date) => {
+        e.preventDefault()
+        const shiftId = e.dataTransfer.getData("shiftId")
+        setIsDragging(null)
+
+        const targetDateStr = format(targetDate, 'yyyy-MM-dd')
+        const shiftToMove = localShifts.find(s => s.id === shiftId)
+
+        if (!shiftToMove) return
+        if (format(new Date(shiftToMove.startTime), 'yyyy-MM-dd') === targetDateStr) return
+
+        const originalShifts = [...localShifts]
+
+        const newStart = new Date(targetDate)
+        const oldStart = new Date(shiftToMove.startTime)
+        const oldEnd = new Date(shiftToMove.endTime)
+        const duration = oldEnd.getTime() - oldStart.getTime()
+
+        newStart.setHours(oldStart.getHours(), oldStart.getMinutes(), 0, 0)
+        const newEnd = new Date(newStart.getTime() + duration)
+
+        setLocalShifts(prev => prev.map(s =>
+            s.id === shiftId
+                ? { ...s, startTime: newStart.toISOString(), endTime: newEnd.toISOString() }
+                : s
+        ))
+
+        toast.info("Mise à jour du planning...")
+
+        try {
+            const result = await moveShift(shiftId, targetDateStr)
+            if (result?.error) {
+                toast.error(result.error)
+                setLocalShifts(originalShifts)
+            } else {
+                toast.success("Planning mis à jour")
+            }
+        } catch (err) {
+            toast.error("Erreur de connexion")
+            setLocalShifts(originalShifts)
+        }
+    }
 
     const weekDays = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
 
@@ -102,7 +151,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 <CalendarIcon className="h-5 w-5 text-primary" />
                                 Planning des Équipes
                             </CardTitle>
-                            <CardDescription className="capitalize">Vue globale</CardDescription>
+                            <CardDescription className="capitalize">Vue globale (Drag & Drop activé)</CardDescription>
                         </div>
                         <div className="flex justify-center items-center bg-muted rounded-lg p-1 border">
                             <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={prevMonth}>
@@ -116,7 +165,6 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             </Button>
                         </div>
                     </div>
-                    {/* Légende */}
                     <div className="flex flex-wrap gap-2 text-[10px] font-bold uppercase">
                         <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-500/20">Cuisine</Badge>
                         <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20">Salle</Badge>
@@ -145,6 +193,8 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                         return (
                             <div
                                 key={day.toISOString()}
+                                onDragOver={onDragOver}
+                                onDrop={(e) => onDrop(e, day)}
                                 className={`
                                     min-h-[120px] p-2 border-r border-b border-border/50 flex flex-col gap-1 transition-colors
                                     ${!isCurrentMonth ? 'bg-muted/10 opacity-60' : 'bg-card hover:bg-muted/30'}
@@ -163,16 +213,23 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                     )}
                                 </div>
 
-                                <div className="flex flex-col gap-1 flex-1 overflow-y-auto max-h-[180px] custom-scrollbar pr-1">
+                                <div className="flex flex-col gap-1 flex-1 overflow-y-auto max-h-[220px] custom-scrollbar pr-1">
                                     {dayShifts.map((s, i) => {
-                                        const startStr = format(new Date(s.shift.startTime), 'HH:mm')
-                                        const endStr = s.shift.endTime ? format(new Date(s.shift.endTime), 'HH:mm') : '?'
+                                        const startStr = format(new Date(s.startTime), 'HH:mm')
+                                        const endStr = s.endTime ? format(new Date(s.endTime), 'HH:mm') : '?'
                                         const colorClass = getRoleColor(s.employee.name)
 
                                         return (
                                             <div
-                                                key={s.shift.id || i}
-                                                className={`text-[10px] px-1.5 py-1 rounded truncate border ${colorClass}`}
+                                                key={s.id || i}
+                                                draggable
+                                                onDragStart={(e) => onDragStart(e, s.id)}
+                                                className={`
+                                                    text-[10px] px-1.5 py-1 rounded truncate border cursor-move transition-all
+                                                    active:opacity-50 active:scale-95 hover:shadow-md
+                                                    ${colorClass}
+                                                    ${isDragging === s.id ? 'opacity-20 border-dashed scale-90' : ''}
+                                                `}
                                                 title={`${s.employee.name} : ${startStr} - ${endStr}`}
                                             >
                                                 <span className="font-bold">{formatName(s.employee.name)}</span>

@@ -363,18 +363,61 @@ export async function updateHourlyRateHistory(formData: FormData) {
         if (!userId || !ratesJson) return { error: "Paramètres manquants" }
 
         try {
-            // Simulation de stockage en attendant migration : on utilise le champ address pour stocker le JSON
-            // ATTENTION: C'est une solution de repli temporaire puisque la migration prisma échoue.
             await prisma.user.update({
                 where: { id: userId },
                 data: {
-                    address: ratesJson // On détourne address pour stocker l'historique JSON
+                    address: ratesJson
                 }
             })
             revalidatePath(`/rh/${userId}`)
             return { success: true, message: "Historique mis à jour" }
         } catch (e) {
             return { error: "Erreur lors de la mise à jour" }
+        }
+    })
+}
+
+export async function moveShift(shiftId: string, newDateStr: string) {
+    return safeAction({ shiftId, newDateStr }, async (input) => {
+        if (!input.shiftId || !input.newDateStr) {
+            return { error: "Paramètres manquants" }
+        }
+
+        try {
+            const shift = await prisma.shift.findUnique({
+                where: { id: input.shiftId }
+            })
+
+            if (!shift || !shift.startTime || !shift.endTime) return { error: "Shift non trouvé ou données invalides" }
+
+            const newDay = new Date(input.newDateStr)
+
+            // Calcul du décalage
+            const originalStart = new Date(shift.startTime)
+            const originalEnd = new Date(shift.endTime)
+            const durationMs = originalEnd.getTime() - originalStart.getTime()
+
+            // Nouvelle date de début (conserve l'heure originale)
+            const newStart = new Date(newDay)
+            newStart.setHours(originalStart.getHours(), originalStart.getMinutes(), 0, 0)
+
+            // Nouvelle date de fin (conserve la durée originale)
+            const newEnd = new Date(newStart.getTime() + durationMs)
+
+            await prisma.shift.update({
+                where: { id: input.shiftId },
+                data: {
+                    startTime: newStart,
+                    endTime: newEnd,
+                    isSunday: newStart.getDay() === 0
+                }
+            })
+
+            revalidatePath("/rh")
+            return { success: true }
+        } catch (e) {
+            console.error(e)
+            return { error: "Erreur lors du déplacement du shift" }
         }
     })
 }
