@@ -12,8 +12,16 @@ from googleapiclient.http import MediaIoBaseUpload
 import requests
 from dotenv import load_dotenv
 
-# Charger les variables d'environnement depuis la racine (../.env)
-load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+# Charger les variables d'environnement
+# On tente d'abord le dossier local (cas du dossier standalone sur le Bureau)
+local_env = os.path.join(os.path.dirname(__file__), '.env')
+# Puis le dossier parent (cas de la structure du repo Desktop/restaurant-os/Mail)
+parent_env = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
+
+if os.path.exists(local_env):
+    load_dotenv(local_env)
+else:
+    load_dotenv(parent_env)
 
 from gmail_manager import get_gmail_service, get_drive_service
 

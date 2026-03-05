@@ -12,8 +12,8 @@ echo "Date: $(date)"
 cd "$SCRIPT_DIR" || exit
 source venv/bin/activate
 
-# Lancement du script d'automatisation direct
-python download_invoices_2026.py
+# Lancement du script d'automatisation direct avec logs
+python download_invoices_2026.py >> cron.log 2>&1
 
 echo "==================================================="
 echo "✅ TERMINÉ"
