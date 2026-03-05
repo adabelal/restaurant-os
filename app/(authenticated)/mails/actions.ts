@@ -69,3 +69,29 @@ export async function acceptProposal(id: string) {
         return { error: "Erreur lors de l'acceptation." };
     }
 }
+
+export async function triggerHistoricalScan() {
+    const webhookUrl = process.env.GMAIL_SYNC_WEBHOOK_URL;
+    if (!webhookUrl) {
+        return { error: "L'URL de synchronisation Gmail n'est pas configurée dans le fichier .env (GMAIL_SYNC_WEBHOOK_URL)." };
+    }
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'scanHistorical' })
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            return { success: true, message: "La synchronisation historique a été lancée côté Gmail. Les groupes apparaîtront ici d'ici quelques secondes." };
+        } else {
+            return { error: data.error || "Le script Gmail a retourné une erreur." };
+        }
+    } catch (error) {
+        console.error("Failed to trigger Gmail sync:", error);
+        return { error: "Impossible de contacter le script Gmail. Vérifiez l'URL dans votre .env." };
+    }
+}
+
