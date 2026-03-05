@@ -72,7 +72,14 @@ export async function acceptProposal(id: string) {
 
 export async function triggerHistoricalScan() {
     // 1. Définir les URLs à tester (interne Easypanel)
-    const internalHostnames = ["restaurant-os-bot", "mail-bot", "restaurant-os-mail-bot"];
+    const internalHostnames = [
+        "mail-automation",
+        "restaurant-os-bot",
+        "restaurant-os-mail-bot",
+        "mail-bot",
+        "mail",
+        "bot"
+    ];
     let webhookUrl = process.env.GMAIL_SYNC_WEBHOOK_URL;
     const apiKey = process.env.RESTAURANT_OS_API_KEY || process.env.N8N_API_KEY;
 
@@ -80,10 +87,17 @@ export async function triggerHistoricalScan() {
     const urlsToTry = webhookUrl ? [webhookUrl] : internalHostnames.map(h => `http://${h}:5000/webhook`);
 
     let lastError = null;
+    let attemptedUrls: string[] = [];
 
     for (const url of urlsToTry) {
         try {
+            attemptedUrls.push(url);
             console.log(`Tentative de synchro via : ${url}`);
+
+            // On utilise une approche compatible avec les versions de Node qui n'ont pas encore AbortSignal.timeout
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 3000);
+
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -91,8 +105,10 @@ export async function triggerHistoricalScan() {
                     'x-api-key': apiKey || ''
                 },
                 body: JSON.stringify({ action: 'sync' }),
-                signal: AbortSignal.timeout(3000) // Timeout court pour switcher vite
+                signal: controller.signal
             });
+
+            clearTimeout(timeout);
 
             if (!response.ok) {
                 lastError = `Erreur HTTP ${response.status}`;
@@ -112,8 +128,8 @@ export async function triggerHistoricalScan() {
 
     // Si on arrive ici, aucun test n'a fonctionné
     return {
-        error: `Le robot n'est pas détecté. Vérifiez que le service est lancé sur Easypanel. ` +
-            `(Détail technique: ${lastError || "Délai d'attente dépassé"})`
+        error: `Le robot n'est pas détecté. Vérifiez le nom du service sur Easypanel. ` +
+            `(Détail: ${lastError.includes('AbortError') ? "Délai dépassé (3s)" : lastError}. URLs testées: ${attemptedUrls.join(', ')})`
     };
 }
 
