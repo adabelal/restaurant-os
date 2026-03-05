@@ -27,10 +27,15 @@ interface GlobalShiftCalendarProps {
 // (basé sur l'historique de tes salariés)
 function getRoleColor(name: string) {
     const n = name.toLowerCase()
+    // Priorité aux rôles spécifiques
+    if (n.includes('sylvain')) return 'bg-slate-500/10 text-slate-600 border-slate-500/20 dark:text-slate-400' // Sécurité
+    if (n.includes('xavier')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400' // Plonge (confirmé par l'utilisateur)
+
+    // Détection par nom
     if (n.includes('laura') || n.includes('laetitia')) return 'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400' // Cuisine
-    if (n.includes('amelie') || n.includes('noélie') || n.includes('noelie') || n.includes('virginie')) return 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400' // Salle
-    if (n.includes('sarah') || n.includes('jules') || n.includes('prudencia')) return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400' // Bar
-    if (n.includes('florence') || n.includes('jenifer') || n.includes('jennifer') || n.includes('micheline')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400' // Plonge
+    if (n.includes('amelie') || n.includes('noélie') || n.includes('noelie') || n.includes('virginie') || n.includes('lysea')) return 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400' // Salle
+    if (n.includes('sarah') || n.includes('jules') || n.includes('prudencia') || n.includes('marie') || n.includes('manon')) return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400' // Bar
+    if (n.includes('florence') || n.includes('jenifer') || n.includes('jennifer') || n.includes('micheline') || n.includes('julien')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400' // Plonge
     return 'bg-muted text-muted-foreground border-border' // Défaut
 }
 
@@ -40,7 +45,7 @@ function formatName(fullName: string) {
     if (parts.length === 1) return parts[0]
     const first = parts[0]
     const last = parts[parts.length - 1]
-    const shortenedFirst = first.length > 4 ? first.substring(0, 4) + '.' : first
+    const shortenedFirst = first.length > 5 ? first.substring(0, 5) + '.' : first
     return `${shortenedFirst} ${last.charAt(0)}.`
 }
 
@@ -117,6 +122,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                         <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20">Salle</Badge>
                         <Badge variant="outline" className="bg-purple-500/10 text-purple-600 border-purple-500/20">Bar</Badge>
                         <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20">Plonge</Badge>
+                        <Badge variant="outline" className="bg-slate-500/10 text-slate-600 border-slate-500/20">Sécurité</Badge>
                     </div>
                 </div>
             </CardHeader>
