@@ -8,7 +8,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MusicProposalsTable } from './components/MusicProposalsTable';
-import { getBandProposals } from './actions';
+import { SyncButton } from './components/SyncButton';
+import { getBandProposals, triggerHistoricalScan } from './actions';
 
 export const metadata: Metadata = {
     title: 'Mails Traités | Restaurant-OS',
@@ -97,6 +98,7 @@ export default async function MailsPage() {
                     </p>
                 </div>
                 <div className="flex items-center gap-2">
+                    <SyncButton />
                     <Badge variant="outline" className="flex items-center gap-1 py-1 px-3">
                         <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                         Bot Actif

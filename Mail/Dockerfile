@@ -1,5 +1,6 @@
 # Utiliser une image Python légère
 FROM python:3.11-slim
+EXPOSE 5000
 
 # Définir le répertoire de travail
 WORKDIR /app

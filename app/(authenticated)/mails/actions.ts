@@ -72,6 +72,8 @@ export async function acceptProposal(id: string) {
 
 export async function triggerHistoricalScan() {
     const webhookUrl = process.env.GMAIL_SYNC_WEBHOOK_URL;
+    const apiKey = process.env.RESTAURANT_OS_API_KEY || process.env.N8N_API_KEY;
+
     if (!webhookUrl) {
         return { error: "L'URL de synchronisation Gmail n'est pas configurée dans le fichier .env (GMAIL_SYNC_WEBHOOK_URL)." };
     }
@@ -79,19 +81,22 @@ export async function triggerHistoricalScan() {
     try {
         const response = await fetch(webhookUrl, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'scanHistorical' })
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': apiKey || ''
+            },
+            body: JSON.stringify({ action: 'sync' })
         });
 
         const data = await response.json();
         if (data.success) {
-            return { success: true, message: "La synchronisation historique a été lancée côté Gmail. Les groupes apparaîtront ici d'ici quelques secondes." };
+            return { success: true, message: data.message || "La synchronisation a été lancée. Les données apparaîtront d'ici quelques minutes." };
         } else {
-            return { error: data.error || "Le script Gmail a retourné une erreur." };
+            return { error: data.error || "Le robot de synchronisation a retourné une erreur." };
         }
     } catch (error) {
         console.error("Failed to trigger Gmail sync:", error);
-        return { error: "Impossible de contacter le script Gmail. Vérifiez l'URL dans votre .env." };
+        return { error: "Impossible de contacter le robot de synchronisation. Vérifiez l'URL dans votre .env." };
     }
 }
 
