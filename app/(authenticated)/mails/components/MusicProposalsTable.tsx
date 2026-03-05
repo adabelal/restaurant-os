@@ -178,5 +178,6 @@ export function MusicProposalsTable({ initialProposals }: MusicProposalsTablePro
                     </tbody>
                 </table>
             </div>
-            )
+        </div>
+    )
 }
