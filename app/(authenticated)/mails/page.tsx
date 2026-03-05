@@ -1,11 +1,14 @@
 import { Metadata } from 'next';
-import { Mail, Download, MailOpen, Receipt, Info, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Mail, Download, MailOpen, Receipt, Info, ShieldCheck, Music, ListFilter } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { prisma } from '@/lib/prisma';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MusicProposalsTable } from './components/MusicProposalsTable';
+import { getBandProposals } from './actions';
 
 export const metadata: Metadata = {
     title: 'Mails Traités | Restaurant-OS',
@@ -15,7 +18,7 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function MailsPage() {
-    // 1. Récupérer les mails explicitement enregistrés dans ProcessedMail (avec sécurité si table absente)
+    // 1. Récupérer les mails explicitement enregistrés dans ProcessedMail
     let explicitMails = [];
     try {
         explicitMails = await (prisma as any).processedMail.findMany({
@@ -26,14 +29,14 @@ export default async function MailsPage() {
         console.warn("Table ProcessedMail non trouvée, exécutez prisma db push.");
     }
 
-    // 2. Récupérer les factures (PurchaseOrder) pour compatibilité
+    // 2. Récupérer les factures (PurchaseOrder)
     const invoices = await prisma.purchaseOrder.findMany({
         take: 50,
         orderBy: { date: 'desc' },
         include: { supplier: true }
     });
 
-    // 3. Récupérer les rapports Popina (CashTransaction) pour compatibilité
+    // 3. Récupérer les rapports Popina
     const popinaReports = await prisma.cashTransaction.findMany({
         where: {
             description: { contains: 'Popina' }
@@ -42,8 +45,10 @@ export default async function MailsPage() {
         orderBy: { date: 'desc' }
     });
 
-    // 4. Fusionner et dédoublonner (par messageId ou par targetId)
-    // On privilégie ProcessedMail si disponible
+    // 4. Récupérer les propositions de groupes
+    const bandProposals = await getBandProposals();
+
+    // 5. Fusionner et dédoublonner pour l'onglet principal
     const processedIds = new Set(explicitMails.map((m: any) => m.targetId).filter(Boolean));
 
     const allProcessed = [
@@ -88,7 +93,7 @@ export default async function MailsPage() {
                         Emails et Automates
                     </h1>
                     <p className="text-muted-foreground">
-                        Historique des données extraites automatiquement de vos emails (Popina, Factures).
+                        Gestion centralisée des données extraites de vos emails.
                     </p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -99,99 +104,133 @@ export default async function MailsPage() {
                 </div>
             </div>
 
-            <Card className="shadow-sm border-border">
-                <CardHeader className="flex flex-row items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <MailOpen className="h-5 w-5 text-blue-500" />
-                        <CardTitle className="text-xl">Flux de traitement récent</CardTitle>
-                    </div>
-                </CardHeader>
-                <CardContent className="p-0">
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-sm">
-                            <thead>
-                                <tr className="border-b border-border bg-muted/30 text-muted-foreground font-medium">
-                                    <th className="text-left py-3 px-4">Date</th>
-                                    <th className="text-left py-3 px-4">Type</th>
-                                    <th className="text-left py-3 px-4">Origine</th>
-                                    <th className="text-left py-3 px-4">Montant</th>
-                                    <th className="text-left py-3 px-4">Statut</th>
-                                    <th className="text-right py-3 px-4">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border">
-                                {allProcessed.length === 0 ? (
-                                    <tr>
-                                        <td colSpan={6} className="py-12 text-center text-muted-foreground italic">
-                                            Aucun email traité récemment.
-                                        </td>
-                                    </tr>
-                                ) : (
-                                    allProcessed.map((item) => (
-                                        <tr key={`${item.type}-${item.id}`} className="hover:bg-muted/30 transition-colors group">
-                                            <td className="py-3 px-4 whitespace-nowrap">
-                                                <div className="font-medium">
-                                                    {format(item.date, 'dd MMM yyyy', { locale: fr })}
-                                                </div>
-                                                <div className="text-[10px] text-muted-foreground">
-                                                    {format(item.date, 'HH:mm')}
-                                                </div>
-                                            </td>
-                                            <td className="py-3 px-4">
-                                                <div className="flex items-center gap-2">
-                                                    {item.type === 'Facture' ? (
-                                                        <div className="p-1.5 rounded-md bg-indigo-50 text-indigo-600 dark:bg-indigo-950/30 dark:text-indigo-400">
-                                                            <Receipt className="h-4 w-4" />
-                                                        </div>
-                                                    ) : (
-                                                        <div className="p-1.5 rounded-md bg-amber-50 text-amber-600 dark:bg-amber-950/30 dark:text-amber-400">
-                                                            <MailOpen className="h-4 w-4" />
-                                                        </div>
-                                                    )}
-                                                    <span className="font-medium">{item.type}</span>
-                                                </div>
-                                            </td>
-                                            <td className="py-3 px-4">
-                                                <div className="font-medium text-foreground">{item.source}</div>
-                                                <div className="text-xs text-muted-foreground truncate max-w-[200px]">
-                                                    {item.description}
-                                                </div>
-                                            </td>
-                                            <td className="py-3 px-4 font-bold">
-                                                {item.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                                            </td>
-                                            <td className="py-3 px-4">
-                                                <Badge
-                                                    variant={item.status === 'ALERT' ? 'destructive' : 'secondary'}
-                                                    className={item.status === 'VALIDATED' ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800' : ''}
-                                                >
-                                                    {item.status === 'VALIDATED' ? 'Succès' :
-                                                        item.status === 'ALERT' ? 'Alerte' :
-                                                            item.status === 'PROCESSING' ? 'En cours' : item.status}
-                                                </Badge>
-                                            </td>
-                                            <td className="py-3 px-4 text-right">
-                                                <div className="flex items-center justify-end gap-1">
-                                                    {item.fileUrl && (
-                                                        <Button variant="ghost" size="icon" asChild className="h-8 w-8 text-indigo-500">
-                                                            <a href={item.fileUrl} target="_blank" rel="noopener noreferrer" title="Voir le document">
-                                                                <Download className="h-4 w-4" />
-                                                            </a>
-                                                        </Button>
-                                                    )}
-                                                    <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground">
-                                                        <Info className="h-4 w-4" />
-                                                    </Button>
-                                                </div>
-                                            </td>
+            <Tabs defaultValue="processing" className="space-y-6">
+                <TabsList className="bg-muted/50 p-1">
+                    <TabsTrigger value="processing" className="flex items-center gap-2 py-2 px-4">
+                        <Receipt className="h-4 w-4" />
+                        Factures & Rapports
+                    </TabsTrigger>
+                    <TabsTrigger value="music" className="flex items-center gap-2 py-2 px-4">
+                        <div className="relative">
+                            <Music className="h-4 w-4" />
+                            {bandProposals.length > 0 && (
+                                <span className="absolute -top-1.5 -right-1.5 h-3 w-3 bg-red-500 rounded-full border-2 border-background animate-pulse" />
+                            )}
+                        </div>
+                        Propositions Groupes
+                    </TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="processing" className="space-y-6">
+                    <Card className="shadow-sm border-border">
+                        <CardHeader className="flex flex-row items-center justify-between">
+                            <div className="flex items-center gap-2">
+                                <MailOpen className="h-5 w-5 text-blue-500" />
+                                <CardTitle className="text-xl">Flux de traitement récent</CardTitle>
+                            </div>
+                        </CardHeader>
+                        <CardContent className="p-0">
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-sm">
+                                    <thead>
+                                        <tr className="border-b border-border bg-muted/30 text-muted-foreground font-medium">
+                                            <th className="text-left py-3 px-4">Date</th>
+                                            <th className="text-left py-3 px-4">Type</th>
+                                            <th className="text-left py-3 px-4">Origine</th>
+                                            <th className="text-left py-3 px-4">Montant</th>
+                                            <th className="text-left py-3 px-4">Statut</th>
+                                            <th className="text-right py-3 px-4">Actions</th>
                                         </tr>
-                                    ))
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </CardContent>
-            </Card>
+                                    </thead>
+                                    <tbody className="divide-y divide-border">
+                                        {allProcessed.length === 0 ? (
+                                            <tr>
+                                                <td colSpan={6} className="py-12 text-center text-muted-foreground italic">
+                                                    Aucun email traité récemment.
+                                                </td>
+                                            </tr>
+                                        ) : (
+                                            allProcessed.map((item) => (
+                                                <tr key={`${item.type}-${item.id}`} className="hover:bg-muted/30 transition-colors group">
+                                                    <td className="py-3 px-4 whitespace-nowrap">
+                                                        <div className="font-medium">
+                                                            {format(item.date, 'dd MMM yyyy', { locale: fr })}
+                                                        </div>
+                                                        <div className="text-[10px] text-muted-foreground">
+                                                            {format(item.date, 'HH:mm')}
+                                                        </div>
+                                                    </td>
+                                                    <td className="py-3 px-4">
+                                                        <div className="flex items-center gap-2">
+                                                            {item.type === 'Facture' ? (
+                                                                <div className="p-1.5 rounded-md bg-indigo-50 text-indigo-600 dark:bg-indigo-950/30 dark:text-indigo-400">
+                                                                    <Receipt className="h-4 w-4" />
+                                                                </div>
+                                                            ) : (
+                                                                <div className="p-1.5 rounded-md bg-amber-50 text-amber-600 dark:bg-amber-950/30 dark:text-amber-400">
+                                                                    <MailOpen className="h-4 w-4" />
+                                                                </div>
+                                                            )}
+                                                            <span className="font-medium">{item.type}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td className="py-3 px-4">
+                                                        <div className="font-medium text-foreground">{item.source}</div>
+                                                        <div className="text-xs text-muted-foreground truncate max-w-[200px]">
+                                                            {item.description}
+                                                        </div>
+                                                    </td>
+                                                    <td className="py-3 px-4 font-bold">
+                                                        {item.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                                    </td>
+                                                    <td className="py-3 px-4">
+                                                        <Badge
+                                                            variant={item.status === 'ALERT' ? 'destructive' : 'secondary'}
+                                                            className={item.status === 'VALIDATED' ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800' : ''}
+                                                        >
+                                                            {item.status === 'VALIDATED' ? 'Succès' :
+                                                                item.status === 'ALERT' ? 'Alerte' :
+                                                                    item.status === 'PROCESSING' ? 'En cours' : item.status}
+                                                        </Badge>
+                                                    </td>
+                                                    <td className="py-3 px-4 text-right">
+                                                        <div className="flex items-center justify-end gap-1">
+                                                            {item.fileUrl && (
+                                                                <Button variant="ghost" size="icon" asChild className="h-8 w-8 text-indigo-500">
+                                                                    <a href={item.fileUrl} target="_blank" rel="noopener noreferrer" title="Voir le document">
+                                                                        <Download className="h-4 w-4" />
+                                                                    </a>
+                                                                </Button>
+                                                            )}
+                                                            <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground">
+                                                                <Info className="h-4 w-4" />
+                                                            </Button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                <TabsContent value="music" className="space-y-6">
+                    <Card className="shadow-sm border-border">
+                        <CardHeader className="flex flex-row items-center justify-between">
+                            <div className="flex items-center gap-2">
+                                <Music className="h-5 w-5 text-purple-500" />
+                                <CardTitle className="text-xl">Propositions de Groupes</CardTitle>
+                            </div>
+                        </CardHeader>
+                        <CardContent className="p-0">
+                            <MusicProposalsTable initialProposals={bandProposals as any} />
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+            </Tabs>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Card className="shadow-sm border-blue-100 bg-blue-50/20 dark:border-blue-900/30 dark:bg-blue-950/10">
@@ -205,7 +244,7 @@ export default async function MailsPage() {
                         <p>
                             Tous les éléments de cette liste ont été créés automatiquement depuis vos emails.
                             Les Factures sont ajoutées à l'économat et les Rapports Popina sont ajoutés à la caisse.
-                            En cas d'erreur de montant, vous pouvez modifier l'entrée directement dans la section correspondante (Finance → Banque ou Finance → Caisse).
+                            Les propositions de groupes peuvent être validées pour devenir des groupes officiels.
                         </p>
                     </CardContent>
                 </Card>
@@ -219,8 +258,8 @@ export default async function MailsPage() {
                     </CardHeader>
                     <CardContent className="text-xs text-muted-foreground leading-relaxed">
                         <p>
-                            Le bot analyse les emails archivés sous le dossier <strong>Google Drive / 01_ARCHIVES / Factures / 2026</strong>.
-                            Les rapports Popina sont lus directement pour extraire la ligne "Espèces" et synchroniser le cash-flow journalier de manière transparente.
+                            Le bot analyse les emails archivés et les nouvelles propositions reçues sur vos deux boîtes mail.
+                            L'IA Gemini résume automatiquement les styles de musique pour plus de clarté.
                         </p>
                     </CardContent>
                 </Card>

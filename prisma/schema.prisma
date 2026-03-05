@@ -482,8 +482,24 @@ model ProcessedMail {
   targetId    String?  // ID de la transaction ou facture créée
   fileUrl     String?  // Lien vers le fichier Drive si applicable
   
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
   @@index([date])
 }
+
+model MusicBandProposal {
+  id              String   @id @default(cuid())
+  bandName        String
+  style           String?  // Short summary (AI-generated if long)
+  contactName     String?
+  contactEmail    String?
+  contactPhone    String?
+  fullDescription String?  @db.Text
+  emailDate       DateTime
+  messageId       String   @unique // For deduplication
+  status          String   @default("PENDING") // PENDING, ACCEPTED, REJECTED
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([emailDate])
+}
+
