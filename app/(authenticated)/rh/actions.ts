@@ -443,3 +443,35 @@ export async function updateShiftPosition(shiftId: string, position: string) {
         }
     })
 }
+
+export async function addManagerShift(userId: string, date: string, position: string) {
+    return safeAction({ userId, date, position }, async (input) => {
+        if (!input.userId || !input.date || !input.position) {
+            return { error: "Paramètres manquants" }
+        }
+
+        try {
+            const startTime = new Date(input.date)
+            startTime.setHours(18, 0, 0, 0) // Par défaut 18h
+            const endTime = new Date(input.date)
+            endTime.setHours(23, 30, 0, 0) // Par défaut 23h30
+
+            await (prisma.shift as any).create({
+                data: {
+                    userId: input.userId,
+                    startTime,
+                    endTime,
+                    position: input.position.toUpperCase(),
+                    hourlyRate: 0, // Les gérants ne sont pas payés au shift ici
+                    status: "COMPLETED"
+                }
+            })
+
+            revalidatePath("/rh")
+            return { success: true }
+        } catch (e) {
+            console.error(e)
+            return { error: "Erreur lors de la création du shift gérant" }
+        }
+    })
+}

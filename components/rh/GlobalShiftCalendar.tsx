@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreVertical } from "lucide-react"
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreVertical, Plus, UserPlus } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -28,7 +28,7 @@ import {
 import { fr } from 'date-fns/locale'
 
 import { toast } from "sonner"
-import { moveShift, updateShiftPosition } from "@/app/(authenticated)/rh/actions"
+import { moveShift, updateShiftPosition, addManagerShift } from "@/app/(authenticated)/rh/actions"
 
 interface GlobalShiftCalendarProps {
     employees: any[]
@@ -46,19 +46,20 @@ function getRoleColor(name: string, position?: string) {
     const pos = position?.toUpperCase()
 
     // Priorité au poste assigné au shift
-    if (pos === 'CUISINE') return 'bg-amber-500/10 text-amber-600 border-amber-500/20'
-    if (pos === 'SALLE') return 'bg-blue-500/10 text-blue-600 border-blue-500/20'
-    if (pos === 'BAR') return 'bg-purple-500/10 text-purple-600 border-purple-500/20'
-    if (pos === 'PLONGE') return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
-    if (pos === 'SECURITE') return 'bg-slate-500/10 text-slate-600 border-slate-500/20'
+    if (pos === 'CUISINE') return 'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400'
+    if (pos === 'SALLE') return 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400'
+    if (pos === 'BAR') return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400'
+    if (pos === 'PLONGE') return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400'
+    if (pos === 'SECURITE') return 'bg-slate-500/10 text-slate-600 border-slate-500/20 dark:text-slate-400'
 
     // Repli sur le nom (détection automatique)
     const n = name.toLowerCase()
-    if (n.includes('sylvain')) return 'bg-slate-500/10 text-slate-600 border-slate-500/20'
-    if (n.includes('laura') || n.includes('laetitia')) return 'bg-amber-500/10 text-amber-600 border-amber-500/20'
-    if (n.includes('amelie') || n.includes('noélie') || n.includes('noelie') || n.includes('virginie') || n.includes('lysea')) return 'bg-blue-500/10 text-blue-600 border-blue-500/20'
-    if (n.includes('sarah') || n.includes('jules') || n.includes('prudencia') || n.includes('marie') || n.includes('manon')) return 'bg-purple-500/10 text-purple-600 border-purple-500/20'
-    if (n.includes('florence') || n.includes('jenifer') || n.includes('jennifer') || n.includes('micheline') || n.includes('julien') || n.includes('xavier')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
+    if (n.includes('adam') || n.includes('benjamin')) return 'bg-primary/10 text-primary border-primary/20' // Gérants
+    if (n.includes('sylvain')) return 'bg-slate-500/10 text-slate-600 border-slate-500/20 dark:text-slate-400'
+    if (n.includes('laura') || n.includes('laetitia')) return 'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400'
+    if (n.includes('amelie') || n.includes('noélie') || n.includes('noelie') || n.includes('virginie') || n.includes('lysea')) return 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400'
+    if (n.includes('sarah') || n.includes('jules') || n.includes('prudencia') || n.includes('marie') || n.includes('manon')) return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400'
+    if (n.includes('florence') || n.includes('jenifer') || n.includes('jennifer') || n.includes('micheline') || n.includes('julien') || n.includes('xavier')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400'
 
     return 'bg-muted text-muted-foreground border-border'
 }
@@ -76,6 +77,9 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     const [currentDate, setCurrentDate] = useState(new Date())
     const [localShifts, setLocalShifts] = useState<any[]>([])
     const [isDragging, setIsDragging] = useState<string | null>(null)
+
+    // Filtrer les gérants pour l'ajout rapide
+    const managers = useMemo(() => employees.filter(e => e.role === 'ADMIN' && (e.name.includes('Adam') || e.name.includes('Benjamin'))), [employees])
 
     useEffect(() => {
         const allShifts = employees.flatMap(emp =>
@@ -177,11 +181,28 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                 toast.error(result.error)
                 setLocalShifts(originalShifts)
             } else {
-                toast.success(`Posté mis à jour : ${newPos}`)
+                toast.success(`Poste mis à jour : ${newPos}`)
             }
         } catch (err) {
             toast.error("Erreur de connexion")
             setLocalShifts(originalShifts)
+        }
+    }
+
+    const handleQuickManagerShift = async (managerId: string, date: Date, position: string) => {
+        toast.info("Ajout du shift gérant...")
+        try {
+            const dateStr = format(date, 'yyyy-MM-dd')
+            const result = await addManagerShift(managerId, dateStr, position)
+            if (result?.error) {
+                toast.error(result.error)
+            } else {
+                toast.success("Shift gérant ajouté. Rechargez la page pour voir les gérants.")
+                // Note: Revalidation will handle the sync usually, but localShifts doesn't have the new full object 
+                // easily since it's created on server. Revalidation in Next.js 15 is good.
+            }
+        } catch (err) {
+            toast.error("Erreur de connexion")
         }
     }
 
@@ -197,7 +218,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 <CalendarIcon className="h-5 w-5 text-primary" />
                                 Planning des Équipes
                             </CardTitle>
-                            <CardDescription className="capitalize">Vue globale (Drag & Drop + Rôles)</CardDescription>
+                            <CardDescription className="capitalize">Vue globale (Gérants inclus)</CardDescription>
                         </div>
                         <div className="flex justify-center items-center bg-muted rounded-lg p-1 border">
                             <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={prevMonth}>
@@ -217,6 +238,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                         <Badge variant="outline" className="bg-purple-500/10 text-purple-600 border-purple-500/20">Bar</Badge>
                         <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20">Plonge</Badge>
                         <Badge variant="outline" className="bg-slate-500/10 text-slate-600 border-slate-500/20">Sécurité</Badge>
+                        <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">Gérants</Badge>
                     </div>
                 </div>
             </CardHeader>
@@ -242,16 +264,55 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 onDragOver={onDragOver}
                                 onDrop={(e) => onDrop(e, day)}
                                 className={`
-                                    min-h-[120px] p-2 border-r border-b border-border/50 flex flex-col gap-1 transition-colors
+                                    min-h-[120px] p-2 border-r border-b border-border/50 flex flex-col gap-1 transition-colors group/day
                                     ${!isCurrentMonth ? 'bg-muted/10 opacity-60' : 'bg-card hover:bg-muted/30'}
                                     ${idx % 7 === 6 ? 'border-r-0' : ''}
                                 `}
                             >
                                 <div className="flex justify-between items-start mb-1">
-                                    <span className={`text-sm font-bold w-7 h-7 flex items-center justify-center rounded-full
-                                        ${today ? 'bg-primary text-primary-foreground' : 'text-foreground'}`}>
-                                        {format(day, 'd')}
-                                    </span>
+                                    <div className="flex flex-col gap-1">
+                                        <span className={`text-sm font-bold w-7 h-7 flex items-center justify-center rounded-full
+                                            ${today ? 'bg-primary text-primary-foreground' : 'text-foreground'}`}>
+                                            {format(day, 'd')}
+                                        </span>
+
+                                        {/* Bouton rapide d'ajout de gérant */}
+                                        {isCurrentMonth && managers.length > 0 && (
+                                            <DropdownMenu>
+                                                <DropdownMenuTrigger asChild>
+                                                    <Button variant="outline" size="icon" className="h-6 w-6 rounded-md opacity-0 group-hover/day:opacity-100 transition-opacity">
+                                                        <Plus className="h-3 w-3" />
+                                                    </Button>
+                                                </DropdownMenuTrigger>
+                                                <DropdownMenuContent align="start" className="w-48">
+                                                    <DropdownMenuLabel className="text-[10px] uppercase text-muted-foreground">Ajouter un Gérant</DropdownMenuLabel>
+                                                    <DropdownMenuSeparator />
+                                                    {managers.map(m => (
+                                                        <DropdownMenu key={m.id}>
+                                                            <DropdownMenuTrigger className="w-full">
+                                                                <DropdownMenuItem className="text-xs flex items-center gap-2 cursor-pointer w-full">
+                                                                    <UserPlus className="h-3 w-3" /> {m.name}
+                                                                </DropdownMenuItem>
+                                                            </DropdownMenuTrigger>
+                                                            <DropdownMenuContent side="right">
+                                                                {POSITIONS.map(p => (
+                                                                    <DropdownMenuItem
+                                                                        key={p.id}
+                                                                        className="text-xs flex items-center gap-2 cursor-pointer"
+                                                                        onClick={() => handleQuickManagerShift(m.id, day, p.id)}
+                                                                    >
+                                                                        <div className={`h-2 w-2 rounded-full ${p.color}`} />
+                                                                        {p.label}
+                                                                    </DropdownMenuItem>
+                                                                ))}
+                                                            </DropdownMenuContent>
+                                                        </DropdownMenu>
+                                                    ))}
+                                                </DropdownMenuContent>
+                                            </DropdownMenu>
+                                        )}
+                                    </div>
+
                                     {dayShifts.length > 0 && (
                                         <span className="text-[9px] font-bold text-muted-foreground bg-muted px-1.5 py-0.5 rounded-sm">
                                             {dayShifts.length}
@@ -274,7 +335,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                                     draggable
                                                     onDragStart={(e) => onDragStart(e, s.id)}
                                                     className="flex-1 py-1 px-1.5 cursor-move overflow-hidden"
-                                                    title={`${s.employee.name} : ${startStr} - ${endStr}`}
+                                                    title={`${s.employee.name} ${s.position ? `(${s.position})` : ''} : ${startStr} - ${endStr}`}
                                                 >
                                                     <div className="text-[10px] font-bold truncate">{formatName(s.employee.name)}</div>
                                                     <div className="text-[9px] opacity-70 truncate">{startStr}-{endStr}</div>
