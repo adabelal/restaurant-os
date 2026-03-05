@@ -16,12 +16,48 @@ export default async function RHPage() {
         orderBy: { createdAt: 'desc' },
         include: {
             _count: { select: { documents: true } },
+            documents: true,
             shifts: true
         }
     })
 
-    const activeEmployees = employees.filter((e: any) => e.isActive)
-    const archivedEmployees = employees.filter((e: any) => !e.isActive)
+    const now = new Date()
+    const sortedEmployees = [...employees].sort((a: any, b: any) => {
+        // 1. Analyse du contrat actif (basé sur la logique ShiftManager)
+        const hasActiveA = a.documents?.some((doc: any) => {
+            if (doc.type !== 'CONTRACT') return false
+            if (!doc.year) return true
+            if (doc.year < now.getFullYear()) return false
+            if (doc.year === now.getFullYear() && doc.month && doc.month < now.getMonth() + 1) return false
+            return true
+        }) || false
+
+        const hasActiveB = b.documents?.some((doc: any) => {
+            if (doc.type !== 'CONTRACT') return false
+            if (!doc.year) return true
+            if (doc.year < now.getFullYear()) return false
+            if (doc.year === now.getFullYear() && doc.month && doc.month < now.getMonth() + 1) return false
+            return true
+        }) || false
+
+        // Tri par contrat actif d'abord (ceux avec contrat en haut)
+        if (hasActiveA && !hasActiveB) return -1
+        if (!hasActiveA && hasActiveB) return 1
+
+        // 2. Tri par nom de famille (dernier mot du nom complet)
+        const getLastName = (fullName: string) => {
+            const parts = fullName.trim().split(/\s+/)
+            return parts.length > 1 ? parts[parts.length - 1].toLowerCase() : parts[0].toLowerCase()
+        }
+
+        const lastNameA = getLastName(a.name)
+        const lastNameB = getLastName(b.name)
+
+        return lastNameA.localeCompare(lastNameB)
+    })
+
+    const activeEmployees = sortedEmployees.filter((e: any) => e.isActive)
+    const archivedEmployees = sortedEmployees.filter((e: any) => !e.isActive)
 
     return (
         <main className="flex flex-col animate-in fade-in duration-500">
