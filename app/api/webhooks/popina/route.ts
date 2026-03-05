@@ -19,13 +19,15 @@ export async function POST(req: Request) {
 
         // 1. Trouver ou créer la catégorie "Recettes" dans FinanceCategory
         const categoryName = "Recettes"
-        const categoryType = "REVENUE" // Utiliser le type global REVENUE
+        const categoryType = "REVENUE"
 
+        console.log(`[Popina Webhook] Recherche de la catégorie: ${categoryName}`);
         let category = await prisma.financeCategory.findUnique({
             where: { name: categoryName }
         })
 
         if (!category) {
+            console.log(`[Popina Webhook] Catégorie non trouvée, création...`);
             category = await prisma.financeCategory.create({
                 data: {
                     name: categoryName,
@@ -34,6 +36,8 @@ export async function POST(req: Request) {
                 }
             })
         }
+
+        console.log(`[Popina Webhook] Catégorie ID utilisée: ${category.id}`);
 
         // 2. Vérifier si une transaction identique existe déjà (par messageId ou date/montant)
         if (messageId) {
