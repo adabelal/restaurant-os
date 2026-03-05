@@ -98,14 +98,16 @@ export function EventsCalendar({ events, bands }: { events: any[], bands: any[] 
                                         trigger={
                                             <div
                                                 className={cn(
-                                                    "text-[10px] md:text-xs p-1 rounded border border-border/50 truncate flex items-center gap-1 shadow-sm hover:border-primary/50 cursor-pointer transition-all",
-                                                    evt.status === 'CANCELLED' ? 'bg-destructive/10 text-destructive border-destructive/20' :
-                                                        evt.status === 'COMPLETED' ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20' :
-                                                            evt.status === 'TENTATIVE' ? 'bg-amber-500/10 text-amber-700 border-amber-500/20' :
-                                                                'bg-primary/10 text-primary border-primary/20',
-                                                    evt.invoiceStatus === 'PENDING' && evt.status === 'COMPLETED' && !evt.isFree && "border-l-2 border-l-destructive animate-pulse"
+                                                    "text-[10px] md:text-xs p-1 rounded border-l-4 truncate flex items-center gap-1 shadow-sm cursor-pointer transition-all",
+                                                    // Bordure = Paiement
+                                                    (evt.isFree || evt.paymentMethod === 'CASH' || evt.invoiceStatus === 'PAID') ? "border-l-emerald-500" :
+                                                        evt.paymentMethod === 'TRANSFER' ? "border-l-blue-500" :
+                                                            evt.paymentMethod === 'TBD' ? "border-l-orange-500" : "border-l-muted-foreground",
+                                                    // Fond = Facture
+                                                    (evt.invoiceStatus === 'RECEIVED' || evt.invoiceStatus === 'PAID' || evt.isFree) ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400" :
+                                                        (evt.status === 'COMPLETED') ? "bg-destructive/10 text-destructive animate-pulse" : "bg-muted/30 text-muted-foreground"
                                                 )}
-                                                title={`${evt.band.name} - ${evt.startTime}${evt.invoiceStatus === 'PENDING' ? ' (Facture manquante !)' : ''}`}
+                                                title={`${evt.band.name} - ${evt.startTime}${evt.invoiceStatus === 'PENDING' ? ' (Facture attendue)' : ''}`}
                                             >
                                                 <Music className="w-2.5 h-2.5 shrink-0" />
                                                 <span className="font-semibold truncate">{evt.band.name}</span>
@@ -130,25 +132,23 @@ export function EventsCalendar({ events, bands }: { events: any[], bands: any[] 
                     <Info className="w-3 h-3 text-muted-foreground" />
                     <span className="font-bold text-muted-foreground uppercase">Légende :</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-primary" />
-                    <span>Confirmé</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-amber-500" />
-                    <span>Option</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                    <span>Terminé</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-destructive" />
-                    <span>Annulé</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full border border-destructive animate-pulse" />
-                    <span className="text-destructive font-bold">Facture attendue</span>
+                <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-1.5 h-3 bg-emerald-500 rounded-sm" />
+                        <span className="text-muted-foreground">Bordure : Paiement OK</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-1.5 h-3 bg-blue-500 rounded-sm" />
+                        <span className="text-muted-foreground">Virement</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-3 h-3 rounded bg-emerald-500/20 border border-emerald-500/30" />
+                        <span className="text-muted-foreground">Fond : Facture OK</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-3 h-3 rounded bg-destructive/10 border border-destructive/20 animate-pulse" />
+                        <span className="text-destructive font-bold">Relance Facture</span>
+                    </div>
                 </div>
             </div>
         </div>

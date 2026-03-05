@@ -54,25 +54,29 @@ export function EventsList({ initialEvents, bands }: { initialEvents: any[], ban
                 <Info className="w-3 h-3" /> Nouveau Code Couleur :
             </span>
             <div className="flex items-center gap-3 border-r pr-4 border-border/40">
-                <span className="text-muted-foreground font-medium">Côté Gauche (Paiement) :</span>
+                <span className="text-muted-foreground font-medium">Contour (Paiement) :</span>
                 <div className="flex items-center gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded bg-emerald-500/20 border border-emerald-500/30" />
+                    <div className="w-2.5 h-4 bg-emerald-500 rounded-sm" />
                     <span>Payé / Gratuit</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded bg-transparent border border-border" />
-                    <span>Non payé / À déterminer</span>
+                    <div className="w-2.5 h-4 bg-blue-500 rounded-sm" />
+                    <span>Virement</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                    <div className="w-2.5 h-4 bg-orange-500 rounded-sm" />
+                    <span>À déterminer</span>
                 </div>
             </div>
             <div className="flex items-center gap-3">
-                <span className="text-muted-foreground font-medium">Côté Droit (Facture) :</span>
+                <span className="text-muted-foreground font-medium">Fond (Facture) :</span>
                 <div className="flex items-center gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded bg-emerald-500/20 border border-emerald-500/30" />
+                    <div className="w-4 h-4 rounded bg-emerald-500/10 border border-emerald-500/20" />
                     <span>Reçue</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded bg-destructive/10 border border-destructive/20 animate-pulse" />
-                    <span>Attendue (Relance possible)</span>
+                    <div className="w-4 h-4 rounded bg-destructive/10 border border-destructive/20 animate-pulse" />
+                    <span>À recevoir (Attente)</span>
                 </div>
             </div>
         </div>
@@ -172,22 +176,19 @@ export function EventsList({ initialEvents, bands }: { initialEvents: any[], ban
                         const isInvoiceReceived = event.invoiceStatus === 'RECEIVED' || event.invoiceStatus === 'PAID' || event.isFree
                         const needsInvoice = !isInvoiceReceived && event.status === 'COMPLETED'
 
-                        return (
-                            <Card key={event.id} className="overflow-hidden border-border hover:shadow-lg transition-all group relative">
-                                {/* Split Background */}
-                                <div className="absolute inset-0 flex pointer-events-none opacity-40">
-                                    <div className={cn(
-                                        "w-1/2 h-full transition-colors duration-500",
-                                        isPaid ? "bg-emerald-500/20" : "bg-transparent"
-                                    )} />
-                                    <div className={cn(
-                                        "w-1/2 h-full transition-colors duration-500",
-                                        isInvoiceReceived ? "bg-emerald-500/20" :
-                                            needsInvoice ? "bg-destructive/10 animate-pulse" : "bg-transparent"
-                                    )} />
-                                </div>
+                        // Couleur de la bordure (Paiement)
+                        const borderColor = isPaid ? "border-l-emerald-500" :
+                            event.paymentMethod === 'TRANSFER' ? "border-l-blue-500" :
+                                event.paymentMethod === 'TBD' ? "border-l-orange-500" : "border-l-muted-foreground"
 
-                                <CardHeader className="relative bg-transparent pb-3">
+                        return (
+                            <Card key={event.id} className={cn(
+                                "overflow-hidden border-l-4 hover:shadow-lg transition-all group relative",
+                                borderColor,
+                                isInvoiceReceived ? "bg-emerald-500/5" :
+                                    needsInvoice ? "bg-destructive/5 animate-pulse" : "bg-card"
+                            )}>
+                                <CardHeader className="relative pb-3">
                                     <div className="flex justify-between items-start mb-1">
                                         <div className="flex gap-2">
                                             <Badge variant={
@@ -289,21 +290,19 @@ export function EventsList({ initialEvents, bands }: { initialEvents: any[], ban
                         const isInvoiceReceived = event.invoiceStatus === 'RECEIVED' || event.invoiceStatus === 'PAID' || event.isFree
                         const needsInvoice = !isInvoiceReceived && event.status === 'COMPLETED'
 
+                        // Couleur de la bordure (Paiement)
+                        const borderColor = isPaid ? "border-l-emerald-500" :
+                            event.paymentMethod === 'TRANSFER' ? "border-l-blue-500" :
+                                event.paymentMethod === 'TBD' ? "border-l-orange-500" : "border-l-muted-foreground"
+
                         return (
-                            <Card key={event.id} className="overflow-hidden group hover:shadow-md transition-all border-border relative">
-                                {/* Split Background for List View */}
-                                <div className="absolute inset-0 flex pointer-events-none opacity-30">
-                                    <div className={cn(
-                                        "w-1/2 h-full",
-                                        isPaid ? "bg-emerald-500/20" : "bg-transparent"
-                                    )} />
-                                    <div className={cn(
-                                        "w-1/2 h-full",
-                                        isInvoiceReceived ? "bg-emerald-500/20" :
-                                            needsInvoice ? "bg-destructive/10 animate-pulse" : "bg-transparent"
-                                    )} />
-                                </div>
-                                <div className="flex flex-col md:flex-row items-center p-4 gap-4 relative bg-transparent">
+                            <Card key={event.id} className={cn(
+                                "overflow-hidden group hover:shadow-md transition-all border-l-4 relative",
+                                borderColor,
+                                isInvoiceReceived ? "bg-emerald-500/5" :
+                                    needsInvoice ? "bg-destructive/5 animate-pulse" : "bg-card"
+                            )}>
+                                <div className="flex flex-col md:flex-row items-center p-4 gap-4 relative">
                                     <div className="flex-shrink-0 w-32 md:w-48">
                                         <p className="font-bold text-primary font-oswald text-lg md:text-xl capitalize leading-tight">
                                             {format(new Date(event.date), "d MMM yyyy", { locale: fr })}
