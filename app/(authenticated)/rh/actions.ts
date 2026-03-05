@@ -421,3 +421,25 @@ export async function moveShift(shiftId: string, newDateStr: string) {
         }
     })
 }
+
+export async function updateShiftPosition(shiftId: string, position: string) {
+    return safeAction({ shiftId, position }, async (input) => {
+        if (!input.shiftId || !input.position) {
+            return { error: "Paramètres manquants" }
+        }
+
+        try {
+            // Utilisation d'un cast 'any' pour contourner le délai de génération Prisma si nécessaire
+            await (prisma.shift as any).update({
+                where: { id: input.shiftId },
+                data: { position: input.position.toUpperCase() }
+            })
+
+            revalidatePath("/rh")
+            return { success: true }
+        } catch (e) {
+            console.error(e)
+            return { error: "Erreur lors de la mise à jour du poste" }
+        }
+    })
+}

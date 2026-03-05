@@ -87,6 +87,7 @@ model Shift {
   
   status      String   @default("COMPLETED") // SCHEDULED, COMPLETED, ABSENT
   notes       String?
+  position    String?  // NOUVEAU : Poste spécifique pour ce shift (CUISINE, SALLE, BAR, PLONGE, SECURITE)
 }
 
 // --- ECONOMAT & STOCK ---

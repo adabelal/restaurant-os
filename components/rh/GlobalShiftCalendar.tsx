@@ -4,7 +4,15 @@ import React, { useState, useMemo, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react"
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreVertical } from "lucide-react"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+    DropdownMenuSeparator,
+    DropdownMenuLabel,
+} from "@/components/ui/dropdown-menu"
 import {
     format,
     addMonths,
@@ -20,22 +28,38 @@ import {
 import { fr } from 'date-fns/locale'
 
 import { toast } from "sonner"
-import { moveShift } from "@/app/(authenticated)/rh/actions"
+import { moveShift, updateShiftPosition } from "@/app/(authenticated)/rh/actions"
 
 interface GlobalShiftCalendarProps {
     employees: any[]
 }
 
-// Fonction utilitaire pour attribuer une couleur selon le "supposé" poste du salarié
-function getRoleColor(name: string) {
-    const n = name.toLowerCase()
-    if (n.includes('sylvain')) return 'bg-slate-500/10 text-slate-600 border-slate-500/20 dark:text-slate-400' // Sécurité
-    if (n.includes('xavier')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400' // Plonge
+const POSITIONS = [
+    { id: 'CUISINE', label: 'Cuisine', color: 'bg-amber-500' },
+    { id: 'SALLE', label: 'Salle', color: 'bg-blue-500' },
+    { id: 'BAR', label: 'Bar', color: 'bg-purple-500' },
+    { id: 'PLONGE', label: 'Plonge', color: 'bg-emerald-500' },
+    { id: 'SECURITE', label: 'Sécurité', color: 'bg-slate-500' },
+]
 
-    if (n.includes('laura') || n.includes('laetitia')) return 'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400' // Cuisine
-    if (n.includes('amelie') || n.includes('noélie') || n.includes('noelie') || n.includes('virginie') || n.includes('lysea')) return 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400' // Salle
-    if (n.includes('sarah') || n.includes('jules') || n.includes('prudencia') || n.includes('marie') || n.includes('manon')) return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400' // Bar
-    if (n.includes('florence') || n.includes('jenifer') || n.includes('jennifer') || n.includes('micheline') || n.includes('julien')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400' // Plonge
+function getRoleColor(name: string, position?: string) {
+    const pos = position?.toUpperCase()
+
+    // Priorité au poste assigné au shift
+    if (pos === 'CUISINE') return 'bg-amber-500/10 text-amber-600 border-amber-500/20'
+    if (pos === 'SALLE') return 'bg-blue-500/10 text-blue-600 border-blue-500/20'
+    if (pos === 'BAR') return 'bg-purple-500/10 text-purple-600 border-purple-500/20'
+    if (pos === 'PLONGE') return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
+    if (pos === 'SECURITE') return 'bg-slate-500/10 text-slate-600 border-slate-500/20'
+
+    // Repli sur le nom (détection automatique)
+    const n = name.toLowerCase()
+    if (n.includes('sylvain')) return 'bg-slate-500/10 text-slate-600 border-slate-500/20'
+    if (n.includes('laura') || n.includes('laetitia')) return 'bg-amber-500/10 text-amber-600 border-amber-500/20'
+    if (n.includes('amelie') || n.includes('noélie') || n.includes('noelie') || n.includes('virginie') || n.includes('lysea')) return 'bg-blue-500/10 text-blue-600 border-blue-500/20'
+    if (n.includes('sarah') || n.includes('jules') || n.includes('prudencia') || n.includes('marie') || n.includes('manon')) return 'bg-purple-500/10 text-purple-600 border-purple-500/20'
+    if (n.includes('florence') || n.includes('jenifer') || n.includes('jennifer') || n.includes('micheline') || n.includes('julien') || n.includes('xavier')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
+
     return 'bg-muted text-muted-foreground border-border'
 }
 
@@ -123,7 +147,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                 : s
         ))
 
-        toast.info("Mise à jour du planning...")
+        toast.info("Déplacement du shift...")
 
         try {
             const result = await moveShift(shiftId, targetDateStr)
@@ -131,7 +155,29 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                 toast.error(result.error)
                 setLocalShifts(originalShifts)
             } else {
-                toast.success("Planning mis à jour")
+                toast.success("Shift déplacé")
+            }
+        } catch (err) {
+            toast.error("Erreur de connexion")
+            setLocalShifts(originalShifts)
+        }
+    }
+
+    const handleUpdatePosition = async (shiftId: string, newPos: string) => {
+        const originalShifts = [...localShifts]
+
+        // Optimistic UI
+        setLocalShifts(prev => prev.map(s =>
+            s.id === shiftId ? { ...s, position: newPos } : s
+        ))
+
+        try {
+            const result = await updateShiftPosition(shiftId, newPos)
+            if (result?.error) {
+                toast.error(result.error)
+                setLocalShifts(originalShifts)
+            } else {
+                toast.success(`Posté mis à jour : ${newPos}`)
             }
         } catch (err) {
             toast.error("Erreur de connexion")
@@ -151,7 +197,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 <CalendarIcon className="h-5 w-5 text-primary" />
                                 Planning des Équipes
                             </CardTitle>
-                            <CardDescription className="capitalize">Vue globale (Drag & Drop activé)</CardDescription>
+                            <CardDescription className="capitalize">Vue globale (Drag & Drop + Rôles)</CardDescription>
                         </div>
                         <div className="flex justify-center items-center bg-muted rounded-lg p-1 border">
                             <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={prevMonth}>
@@ -217,23 +263,44 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                     {dayShifts.map((s, i) => {
                                         const startStr = format(new Date(s.startTime), 'HH:mm')
                                         const endStr = s.endTime ? format(new Date(s.endTime), 'HH:mm') : '?'
-                                        const colorClass = getRoleColor(s.employee.name)
+                                        const colorClass = getRoleColor(s.employee.name, s.position)
 
                                         return (
                                             <div
                                                 key={s.id || i}
-                                                draggable
-                                                onDragStart={(e) => onDragStart(e, s.id)}
-                                                className={`
-                                                    text-[10px] px-1.5 py-1 rounded truncate border cursor-move transition-all
-                                                    active:opacity-50 active:scale-95 hover:shadow-md
-                                                    ${colorClass}
-                                                    ${isDragging === s.id ? 'opacity-20 border-dashed scale-90' : ''}
-                                                `}
-                                                title={`${s.employee.name} : ${startStr} - ${endStr}`}
+                                                className={`group relative flex items-center justify-between rounded border transition-all cursor-default ${colorClass} ${isDragging === s.id ? 'opacity-20 grayscale' : ''}`}
                                             >
-                                                <span className="font-bold">{formatName(s.employee.name)}</span>
-                                                <span className="opacity-70 ml-1 block xs:inline">{startStr}-{endStr}</span>
+                                                <div
+                                                    draggable
+                                                    onDragStart={(e) => onDragStart(e, s.id)}
+                                                    className="flex-1 py-1 px-1.5 cursor-move overflow-hidden"
+                                                    title={`${s.employee.name} : ${startStr} - ${endStr}`}
+                                                >
+                                                    <div className="text-[10px] font-bold truncate">{formatName(s.employee.name)}</div>
+                                                    <div className="text-[9px] opacity-70 truncate">{startStr}-{endStr}</div>
+                                                </div>
+
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger asChild>
+                                                        <Button variant="ghost" className="h-full px-1 py-0 hover:bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                            <MoreVertical className="h-3 w-3" />
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align="end" className="w-36">
+                                                        <DropdownMenuLabel className="text-[10px] uppercase text-muted-foreground">Assigner Poste</DropdownMenuLabel>
+                                                        <DropdownMenuSeparator />
+                                                        {POSITIONS.map(p => (
+                                                            <DropdownMenuItem
+                                                                key={p.id}
+                                                                className="text-xs flex items-center gap-2 cursor-pointer"
+                                                                onClick={() => handleUpdatePosition(s.id, p.id)}
+                                                            >
+                                                                <div className={`h-2 w-2 rounded-full ${p.color}`} />
+                                                                {p.label}
+                                                            </DropdownMenuItem>
+                                                        ))}
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
                                             </div>
                                         )
                                     })}
