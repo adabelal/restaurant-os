@@ -84,6 +84,10 @@ export async function createEvent(formData: FormData) {
             }
 
             try {
+                // Pour ESP, on force PAID d'office
+                const isCash = result.data.paymentMethod === "CASH"
+                const finalInvoiceStatus = isCash ? "PAID" : result.data.invoiceStatus
+
                 const event = await prisma.musicEvent.create({
                     data: {
                         bandId: result.data.bandId,
@@ -91,16 +95,17 @@ export async function createEvent(formData: FormData) {
                         startTime: result.data.startTime,
                         amount: result.data.isFree ? 0 : result.data.amount,
                         isFree: result.data.isFree,
-                        paymentMethod: result.data.paymentMethod,
-                        invoiceStatus: result.data.invoiceStatus,
+                        paymentMethod: result.data.paymentMethod || "TBD",
+                        invoiceStatus: finalInvoiceStatus,
                         status: result.data.status,
                         notes: result.data.notes,
                     },
                     include: { band: true }
                 })
 
-                // Automatisation Caisse si CASH et COMPLETED
-                if (event.status === "COMPLETED" && event.paymentMethod === "CASH" && !event.isFree) {
+                // Automatisation Caisse si CASH et COMPLETED et montant > 0
+                const amountValue = Number(event.amount)
+                if (event.status === "COMPLETED" && isCash && !event.isFree && amountValue > 0) {
                     await handleMusicCashTransaction(event)
                 }
 
@@ -144,6 +149,10 @@ export async function updateEvent(formData: FormData) {
             try {
                 const oldEvent = await prisma.musicEvent.findUnique({ where: { id } })
 
+                // Pour ESP, on force PAID d'office
+                const isCash = result.data.paymentMethod === "CASH"
+                const finalInvoiceStatus = isCash ? "PAID" : result.data.invoiceStatus
+
                 const event = await prisma.musicEvent.update({
                     where: { id },
                     data: {
@@ -152,8 +161,8 @@ export async function updateEvent(formData: FormData) {
                         startTime: result.data.startTime,
                         amount: result.data.isFree ? 0 : result.data.amount,
                         isFree: result.data.isFree,
-                        paymentMethod: result.data.paymentMethod,
-                        invoiceStatus: result.data.invoiceStatus,
+                        paymentMethod: result.data.paymentMethod || "TBD",
+                        invoiceStatus: finalInvoiceStatus,
                         status: result.data.status,
                         notes: result.data.notes,
                     },
@@ -162,12 +171,12 @@ export async function updateEvent(formData: FormData) {
 
                 // Automatisation Caisse : Logique Robuste
                 const isCompleted = event.status === "COMPLETED"
-                const isCash = event.paymentMethod === "CASH"
+                const amountValue = Number(event.amount)
 
-                if (isCompleted && isCash && !event.isFree) {
+                if (isCompleted && isCash && !event.isFree && amountValue > 0) {
                     await handleMusicCashTransaction(event)
                 } else {
-                    // Si on n'est plus en CASH/COMPLETED, on supprime la transaction de caisse liée si elle existe
+                    // Si on n'est plus en CASH/COMPLETED/MONTANT, on supprime la transaction de caisse liée si elle existe
                     await removeMusicCashTransaction(event.id)
                 }
 
@@ -296,11 +305,25 @@ export const getEvents = cache(async () => {
             },
         })
 
-        // Sérialisation des types Decimal pour React
-        return events.map(event => ({
-            ...event,
-            amount: Number(event.amount)
-        }))
+        // Sérialisation et Statut Automatique
+        const now = new Date()
+        now.setHours(0, 0, 0, 0)
+
+        return events.map(event => {
+            let status = event.status
+            const eventDate = new Date(event.date)
+
+            // Si la date est passée et que ce n'est pas annulé, c'est COMPLETED d'office
+            if (eventDate < now && status !== "CANCELLED" && status !== "TENTATIVE") {
+                status = "COMPLETED"
+            }
+
+            return {
+                ...event,
+                amount: Number(event.amount),
+                status
+            }
+        })
     } catch (error) {
         console.error("Failed to fetch events:", error)
         return []
@@ -514,6 +537,32 @@ export async function deleteBand(bandId: string) {
         } catch (error) {
             console.error("Failed to delete band:", error)
             return { error: "Erreur lors de la suppression." }
+        }
+    })
+}
+
+/**
+ * Simule l'envoi d'un mail de relance pour une facture
+ */
+export async function sendInvoiceReminder(eventId: string) {
+    return safeAction(eventId, async (id) => {
+        try {
+            const event = await prisma.musicEvent.findUnique({
+                where: { id },
+                include: { band: true }
+            })
+
+            if (!event || !event.band) return { error: "Concert non trouvé" }
+
+            // Logique simulée d'envoi de mail
+            console.log(`[MAIL] Envoi relance à ${event.band.name} pour le concert du ${event.date.toLocaleDateString()}`)
+
+            // Dans une vraie app, on utiliserait un transporteur mail ici
+            // await sendEmail({ to: event.band.contact, subject: "Relance Facture...", ... })
+
+            return { success: true, message: `Mail de relance envoyé à ${event.band.name}` }
+        } catch (e) {
+            return { error: "Erreur lors de l'envoi du mail" }
         }
     })
 }

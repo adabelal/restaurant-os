@@ -21,11 +21,22 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { createEvent, updateEvent } from "../actions"
+import { createEvent, updateEvent, deleteEvent } from "../actions"
 import { useState, useEffect } from "react"
 import { toast } from "sonner"
-import { CalendarIcon, Edit2, Plus } from "lucide-react"
+import { CalendarIcon, Edit2, Plus, Trash2 } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 interface Band {
     id: string
@@ -41,6 +52,7 @@ interface AddEventDialogProps {
 export function AddEventDialog({ bands, eventToEdit, trigger }: AddEventDialogProps) {
     const [open, setOpen] = useState(false)
     const [isFree, setIsFree] = useState(eventToEdit?.isFree || false)
+    const [isDeleting, setIsDeleting] = useState(false)
 
     // Reset isFree when eventToEdit changes (for reuse)
     useEffect(() => {
@@ -61,6 +73,20 @@ export function AddEventDialog({ bands, eventToEdit, trigger }: AddEventDialogPr
             toast.error(typeof result.error === 'string' ? result.error : "Erreur lors de l'enregistrement")
         } else {
             toast.success(eventToEdit ? "Concert mis à jour" : "Événement programmé")
+            setOpen(false)
+        }
+    }
+
+    async function onDelete() {
+        if (!eventToEdit?.id) return
+        setIsDeleting(true)
+        const result = await deleteEvent(eventToEdit.id)
+        setIsDeleting(false)
+
+        if (result && result.error) {
+            toast.error(result.error)
+        } else {
+            toast.success("Concert supprimé")
             setOpen(false)
         }
     }
@@ -168,11 +194,12 @@ export function AddEventDialog({ bands, eventToEdit, trigger }: AddEventDialogPr
                             Paiement
                         </Label>
                         <div className="col-span-3">
-                            <Select name="paymentMethod" defaultValue={eventToEdit?.paymentMethod || "TRANSFER"}>
+                            <Select name="paymentMethod" defaultValue={eventToEdit?.paymentMethod || "TBD"}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Moyen de paiement" />
                                 </SelectTrigger>
                                 <SelectContent>
+                                    <SelectItem value="TBD">À déterminer</SelectItem>
                                     <SelectItem value="TRANSFER">Virement</SelectItem>
                                     <SelectItem value="CASH">Espèces</SelectItem>
                                     <SelectItem value="CHECK">Chèque</SelectItem>
@@ -231,7 +258,30 @@ export function AddEventDialog({ bands, eventToEdit, trigger }: AddEventDialogPr
                         />
                     </div>
 
-                    <DialogFooter>
+                    <DialogFooter className="flex justify-between items-center sm:justify-between w-full">
+                        {eventToEdit ? (
+                            <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                    <Button type="button" variant="ghost" size="icon" className="text-destructive hover:text-destructive hover:bg-destructive/10" disabled={isDeleting}>
+                                        <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>Supprimer ce concert ?</AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                            Cette action est irréversible. La transaction de caisse associée sera également supprimée si elle existe.
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>Annuler</AlertDialogCancel>
+                                        <AlertDialogAction onClick={onDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                                            Supprimer définitivement
+                                        </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+                        ) : <div />}
                         <Button type="submit">{eventToEdit ? "Enregistrer les modifications" : "Enregistrer"}</Button>
                     </DialogFooter>
                 </form>

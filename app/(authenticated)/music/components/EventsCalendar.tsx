@@ -15,7 +15,7 @@ import {
     subMonths
 } from "date-fns"
 import { fr } from "date-fns/locale"
-import { ChevronLeft, ChevronRight, Music } from "lucide-react"
+import { ChevronLeft, ChevronRight, Music, Info } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
@@ -122,6 +122,34 @@ export function EventsCalendar({ events, bands }: { events: any[], bands: any[] 
                         </div>
                     )
                 })}
+            </div>
+
+            {/* Legend footer */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 px-6 py-3 bg-muted/5 border-t border-border/40 text-[10px]">
+                <div className="flex items-center gap-1.5 mr-2">
+                    <Info className="w-3 h-3 text-muted-foreground" />
+                    <span className="font-bold text-muted-foreground uppercase">Légende :</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                    <span>Confirmé</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-amber-500" />
+                    <span>Option</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <span>Terminé</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-destructive" />
+                    <span>Annulé</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 rounded-full border border-destructive animate-pulse" />
+                    <span className="text-destructive font-bold">Facture attendue</span>
+                </div>
             </div>
         </div>
     )
