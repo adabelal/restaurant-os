@@ -71,12 +71,11 @@ export async function acceptProposal(id: string) {
 }
 
 export async function triggerHistoricalScan() {
-    const webhookUrl = process.env.GMAIL_SYNC_WEBHOOK_URL;
+    // 1. Chercher l'URL dans le .env ou tenter l'URL réseau interne Easypanel
+    // Dans Easypanel, si le service s'appelle 'restaurant-os-bot', 
+    // il est accessible en interne via http://restaurant-os-bot:5000
+    const webhookUrl = process.env.GMAIL_SYNC_WEBHOOK_URL || "http://restaurant-os-bot:5000/webhook";
     const apiKey = process.env.RESTAURANT_OS_API_KEY || process.env.N8N_API_KEY;
-
-    if (!webhookUrl) {
-        return { error: "L'URL de synchronisation Gmail n'est pas configurée dans le fichier .env (GMAIL_SYNC_WEBHOOK_URL)." };
-    }
 
     try {
         const response = await fetch(webhookUrl, {
@@ -85,7 +84,9 @@ export async function triggerHistoricalScan() {
                 'Content-Type': 'application/json',
                 'x-api-key': apiKey || ''
             },
-            body: JSON.stringify({ action: 'sync' })
+            body: JSON.stringify({ action: 'sync' }),
+            // Timeout court pour le test interne
+            signal: AbortSignal.timeout(5000)
         });
 
         const data = await response.json();
@@ -96,6 +97,11 @@ export async function triggerHistoricalScan() {
         }
     } catch (error) {
         console.error("Failed to trigger Gmail sync:", error);
+
+        if (!process.env.GMAIL_SYNC_WEBHOOK_URL) {
+            return { error: "Le robot n'est pas détecté. Assurez-vous que le service 'restaurant-os-bot' est bien lancé sur Easypanel ou configurez GMAIL_SYNC_WEBHOOK_URL." };
+        }
+
         return { error: "Impossible de contacter le robot de synchronisation. Vérifiez l'URL dans votre .env." };
     }
 }
