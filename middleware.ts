@@ -6,7 +6,7 @@ import type { NextRequest } from "next/server"
 const publicRoutes = ["/login", "/forgot-password", "/reset-password", "/privacy", "/terms"]
 
 // Routes API publiques
-const publicApiRoutes = ["/api/auth", "/api/public-test-bank", "/api/public-debug", "/api/debug-tx"]
+const publicApiRoutes = ["/api/auth", "/api/public-test-bank", "/api/public-debug", "/api/debug-tx", "/api/rh/bulk-shifts"]
 
 export async function middleware(req: NextRequest) {
     const { nextUrl } = req
