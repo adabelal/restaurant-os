@@ -88,7 +88,7 @@ export async function createEvent(formData: FormData) {
                 const isCash = result.data.paymentMethod === "CASH"
                 const finalInvoiceStatus = isCash ? "PAID" : result.data.invoiceStatus
 
-                const event = await prisma.musicEvent.create({
+                const event = await (prisma.musicEvent as any).create({
                     data: {
                         bandId: result.data.bandId,
                         date: new Date(result.data.date),
@@ -153,7 +153,7 @@ export async function updateEvent(formData: FormData) {
                 const isCash = result.data.paymentMethod === "CASH"
                 const finalInvoiceStatus = isCash ? "PAID" : result.data.invoiceStatus
 
-                const event = await prisma.musicEvent.update({
+                const event = await (prisma.musicEvent as any).update({
                     where: { id },
                     data: {
                         bandId: result.data.bandId,

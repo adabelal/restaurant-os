@@ -53,13 +53,15 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
         }
     }
 
-    const grandTotal = employees.reduce((acc, emp) => {
-        const stats = calculateStats(emp)
-        return {
-            hours: acc.hours + stats.totalHours,
-            gross: acc.gross + stats.totalGross
-        }
-    }, { hours: 0, gross: 0 })
+    const grandTotal = employees
+        .filter(emp => emp.role !== 'ADMIN') // Les gérants ne comptent pas dans la paie effective
+        .reduce((acc, emp) => {
+            const stats = calculateStats(emp)
+            return {
+                hours: acc.hours + stats.totalHours,
+                gross: acc.gross + stats.totalGross
+            }
+        }, { hours: 0, gross: 0 })
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -134,34 +136,39 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                             <TableBody>
                                 {employees.map((emp) => {
                                     const { totalHours, baseGross, paidLeaveComplement, totalGross } = calculateStats(emp)
+                                    const isManager = emp.role === 'ADMIN'
+
                                     return (
-                                        <TableRow key={emp.id} className="hover:bg-muted/50 transition-colors border-b border-border">
+                                        <TableRow key={emp.id} className={`hover:bg-muted/50 transition-colors border-b border-border ${isManager ? 'bg-muted/30 opacity-70' : ''}`}>
                                             <TableCell className="font-bold py-4 pl-6">
-                                                <Link href={`/rh/${emp.id}?tab=hours&month=${selectedMonth + 1}&year=${selectedYear}`} className="flex items-center gap-2 text-foreground hover:text-blue-500 transition-colors group">
-                                                    <div className="w-2 h-2 rounded-full bg-blue-500 group-hover:scale-125 transition-transform"></div>
-                                                    {emp.name}
-                                                </Link>
+                                                <div className="flex items-center gap-2">
+                                                    <Link href={`/rh/${emp.id}?tab=hours&month=${selectedMonth + 1}&year=${selectedYear}`} className="flex items-center gap-2 text-foreground hover:text-blue-500 transition-colors group">
+                                                        <div className={`w-2 h-2 rounded-full ${isManager ? 'bg-slate-400' : 'bg-blue-500'} group-hover:scale-125 transition-transform`}></div>
+                                                        {emp.name}
+                                                    </Link>
+                                                    {isManager && <Badge variant="outline" className="text-[9px] h-4 uppercase">Gérant</Badge>}
+                                                </div>
                                             </TableCell>
                                             <TableCell>
                                                 <div className="flex flex-col gap-1">
-                                                    <Badge variant="secondary" className="w-fit text-[10px] uppercase font-black">{emp.contractType || 'CDI'}</Badge>
-                                                    <span className="text-[10px] text-muted-foreground">{emp.contractDuration === 'PART_TIME' ? 'Temps Partiel' : 'Temps Plein'}</span>
+                                                    <Badge variant="secondary" className="w-fit text-[10px] uppercase font-black">{isManager ? 'BÉNÉVOLE' : (emp.contractType || 'CDI')}</Badge>
+                                                    <span className="text-[10px] text-muted-foreground">{isManager ? 'Gérance' : (emp.contractDuration === 'PART_TIME' ? 'Temps Partiel' : 'Temps Plein')}</span>
                                                 </div>
                                             </TableCell>
                                             <TableCell className="text-center font-medium">
                                                 {totalHours.toFixed(1)} h
                                             </TableCell>
                                             <TableCell className="text-center text-muted-foreground">
-                                                {Number(emp.hourlyRate).toFixed(2)}€
+                                                {isManager ? '-' : `${Number(emp.hourlyRate).toFixed(2)}€`}
                                             </TableCell>
                                             <TableCell className="text-right font-medium text-foreground">
-                                                {baseGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €
+                                                {isManager ? '-' : `${baseGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
                                             </TableCell>
                                             <TableCell className="text-right text-blue-500 font-medium">
-                                                {paidLeaveComplement.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €
+                                                {isManager ? '-' : `${paidLeaveComplement.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
                                             </TableCell>
                                             <TableCell className="text-right font-black pr-6 text-foreground">
-                                                {totalGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €
+                                                {isManager ? '-' : `${totalGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
                                             </TableCell>
                                         </TableRow>
                                     )
