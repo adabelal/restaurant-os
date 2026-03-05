@@ -129,8 +129,14 @@ export function ShiftManager({
                                             <span className="text-foreground text-lg leading-tight">{s.startTime.getDate()}</span>
                                         </div>
                                         <div>
-                                            <p className="text-sm font-semibold text-foreground">{s.startTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - {s.endTime?.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</p>
-                                            <p className="text-xs text-muted-foreground">Pause: {s.breakMinutes}m • {h.toFixed(1)}h effectives</p>
+                                            {!(employee.name.toLowerCase().includes('adam') || employee.name.toLowerCase().includes('benjamin')) ? (
+                                                <>
+                                                    <p className="text-sm font-semibold text-foreground">{s.startTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - {s.endTime?.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</p>
+                                                    <p className="text-xs text-muted-foreground">Pause: {s.breakMinutes}m • {h.toFixed(1)}h effectives</p>
+                                                </>
+                                            ) : (
+                                                <p className="text-sm font-semibold text-foreground">Service assuré</p>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2">

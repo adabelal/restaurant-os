@@ -28,7 +28,7 @@ import {
 import { fr } from 'date-fns/locale'
 
 import { toast } from "sonner"
-import { moveShift, updateShiftPosition, addManagerShift } from "@/app/(authenticated)/rh/actions"
+import { moveShift, updateShiftPosition, addManagerShift, autoFillManagerShifts } from "@/app/(authenticated)/rh/actions"
 
 interface GlobalShiftCalendarProps {
     employees: any[]
@@ -206,6 +206,21 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
         }
     }
 
+    const handleAutoFill = async () => {
+        toast.info("Remplissage automatique en cours...")
+        try {
+            const result = await autoFillManagerShifts() as any
+            if (result?.error) {
+                toast.error(result.error)
+            } else {
+                toast.success(`Terminé ! ${result.createdCount || 0} shifts créés.`)
+                window.location.reload() // On force la recharge pour voir les nouveaux shifts RSC
+            }
+        } catch (err) {
+            toast.error("Erreur de connexion")
+        }
+    }
+
     const weekDays = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
 
     return (
@@ -232,13 +247,24 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             </Button>
                         </div>
                     </div>
-                    <div className="flex flex-wrap gap-2 text-[10px] font-bold uppercase">
-                        <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-500/20">Cuisine</Badge>
-                        <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20">Salle</Badge>
-                        <Badge variant="outline" className="bg-purple-500/10 text-purple-600 border-purple-500/20">Bar</Badge>
-                        <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20">Plonge</Badge>
-                        <Badge variant="outline" className="bg-slate-500/10 text-slate-600 border-slate-500/20">Sécurité</Badge>
-                        <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">Gérants</Badge>
+                    <div className="flex flex-wrap items-center gap-3">
+                        <Button
+                            variant="default"
+                            size="sm"
+                            onClick={handleAutoFill}
+                            className="rounded-full shadow-lg shadow-primary/20 bg-primary hover:bg-primary/90 font-bold uppercase text-[10px] tracking-wider px-4"
+                        >
+                            <UserPlus className="h-3.5 w-3.5 mr-2" />
+                            Remplissage Auto
+                        </Button>
+                        <div className="flex flex-wrap gap-2 text-[10px] font-bold uppercase">
+                            <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-500/20">Cuisine</Badge>
+                            <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20">Salle</Badge>
+                            <Badge variant="outline" className="bg-purple-500/10 text-purple-600 border-purple-500/20">Bar</Badge>
+                            <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20">Plonge</Badge>
+                            <Badge variant="outline" className="bg-slate-500/10 text-slate-600 border-slate-500/20">Sécurité</Badge>
+                            <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">Gérants</Badge>
+                        </div>
                     </div>
                 </div>
             </CardHeader>
@@ -335,10 +361,12 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                                     draggable
                                                     onDragStart={(e) => onDragStart(e, s.id)}
                                                     className="flex-1 py-1 px-1.5 cursor-move overflow-hidden"
-                                                    title={`${s.employee.name} ${s.position ? `(${s.position})` : ''} : ${startStr} - ${endStr}`}
+                                                    title={`${s.employee.name} ${s.position ? `(${s.position})` : ''}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
                                                 >
                                                     <div className="text-[10px] font-bold truncate">{formatName(s.employee.name)}</div>
-                                                    <div className="text-[9px] opacity-70 truncate">{startStr}-{endStr}</div>
+                                                    {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
+                                                        <div className="text-[9px] opacity-70 truncate">{startStr}-{endStr}</div>
+                                                    )}
                                                 </div>
 
                                                 <DropdownMenu>

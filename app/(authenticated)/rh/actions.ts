@@ -456,13 +456,26 @@ export async function addManagerShift(userId: string, date: string, position: st
             const endTime = new Date(input.date)
             endTime.setHours(23, 30, 0, 0) // Par défaut 23h30
 
+            // Vérifier si un shift existe déjà pour cet utilisateur et ce jour
+            const existing = await prisma.shift.findFirst({
+                where: {
+                    userId: input.userId,
+                    startTime: {
+                        gte: new Date(new Date(input.date).setHours(0, 0, 0, 0)),
+                        lt: new Date(new Date(input.date).setHours(23, 59, 59, 999))
+                    }
+                }
+            })
+
+            if (existing) return { success: true, message: "Déjà présent" }
+
             await (prisma.shift as any).create({
                 data: {
                     userId: input.userId,
                     startTime,
                     endTime,
                     position: input.position.toUpperCase(),
-                    hourlyRate: 0, // Les gérants ne sont pas payés au shift ici
+                    hourlyRate: 0,
                     status: "COMPLETED"
                 }
             })
@@ -472,6 +485,81 @@ export async function addManagerShift(userId: string, date: string, position: st
         } catch (e) {
             console.error(e)
             return { error: "Erreur lors de la création du shift gérant" }
+        }
+    })
+}
+
+export async function autoFillManagerShifts() {
+    return safeAction(null, async () => {
+        try {
+            // 1. Trouver Adam et Benjamin
+            const managers = await prisma.user.findMany({
+                where: {
+                    role: "ADMIN",
+                    OR: [
+                        { name: { contains: "Adam", mode: "insensitive" } },
+                        { name: { contains: "Benjamin", mode: "insensitive" } }
+                    ]
+                }
+            })
+
+            if (managers.length === 0) return { error: "Aucun gérant trouvé." }
+
+            const today = new Date()
+            today.setHours(23, 59, 59, 999)
+
+            // On remonte sur les 30 derniers jours par exemple (ou depuis le début de l'année si besoin)
+            // L'utilisateur ne veut pas de préremplissage long terme, donc on s'arrête à aujourd'hui.
+            const startDate = new Date()
+            startDate.setDate(startDate.getDate() - 30) // 30 jours glissants
+
+            let createdCount = 0
+
+            for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
+                const dayOfWeek = d.getDay() // 0=Dim, 4=Jeu, 5=Ven, 6=Sam
+
+                if ([4, 5, 6].includes(dayOfWeek)) {
+                    const dateStr = d.toISOString().split('T')[0]
+
+                    for (const manager of managers) {
+                        // On utilise addManagerShift indirectement ou on recode la logique pour éviter les appels multiples de safeAction
+                        const dateStart = new Date(d)
+                        dateStart.setHours(18, 0, 0, 0)
+                        const dateEnd = new Date(d)
+                        dateEnd.setHours(23, 30, 0, 0)
+
+                        const existing = await prisma.shift.findFirst({
+                            where: {
+                                userId: manager.id,
+                                startTime: {
+                                    gte: new Date(new Date(d).setHours(0, 0, 0, 0)),
+                                    lt: new Date(new Date(d).setHours(23, 59, 59, 999))
+                                }
+                            }
+                        })
+
+                        if (!existing) {
+                            await (prisma.shift as any).create({
+                                data: {
+                                    userId: manager.id,
+                                    startTime: dateStart,
+                                    endTime: dateEnd,
+                                    position: "SALLE",
+                                    hourlyRate: 0,
+                                    status: "COMPLETED"
+                                }
+                            })
+                            createdCount++
+                        }
+                    }
+                }
+            }
+
+            revalidatePath("/rh")
+            return { success: true, createdCount }
+        } catch (e) {
+            console.error(e)
+            return { error: "Erreur lors de l'auto-remplissage." }
         }
     })
 }
