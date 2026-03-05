@@ -336,14 +336,34 @@ def process_popina_reports(service):
             text = soup.get_text(' ', strip=True) # Utiliser des espaces pour garder les données sur la même ligne logique
             
             # 1. Extraction du montant Espèces
-            # Cherche "Espèces" suivi du montant principal et des centimes séparés par n'importe quoi (souvent virgule ou espace)
-            especes_match = re.search(r'Esp.ces\s+([\d\s]+)[^\d]*(\d{2})', text, re.IGNORECASE)
+            # On tente plusieurs patterns car le format peut varier (Espèces, Cash, etc.)
+            amount = None
             
-            if especes_match:
-                integer_part = especes_match.group(1).replace(' ', '')
-                decimal_part = especes_match.group(2)
-                amount = float(f"{integer_part}.{decimal_part}")
-                
+            # Pattern 1: Espèces [Gros montant] [Espace/virgule/rien] [Centimes]
+            especes_patterns = [
+                r'Esp.ces\s+([\d\s]+)[^\d]*(\d{2})', # Standard Popina
+                r'Esp.ces[:\s]*(\d+[\.,]\d{2})',      # Format simple avec ponctuation
+                r'RELEMENT\s+Esp.ces\s+([\d\s]+)[^\d]*(\d{2})', # Dans le tableau recap
+                r'Total\s+Esp.ces\s+([\d\s]+)[^\d]*(\d{2})'
+            ]
+            
+            for pattern in especes_patterns:
+                match = re.search(pattern, text, re.IGNORECASE)
+                if match:
+                    if len(match.groups()) == 2:
+                        integer_part = match.group(1).replace(' ', '').replace(',', '')
+                        decimal_part = match.group(2)
+                        try:
+                            amount = float(f"{integer_part}.{decimal_part}")
+                            break
+                        except: continue
+                    else:
+                        try:
+                            amount = float(match.group(1).replace(' ', '').replace(',', '.'))
+                            break
+                        except: continue
+
+            if amount is not None:
                 # 2. Extraction de la date "Fin de service" dans le texte
                 # Cherche un format DD/MM/YYYY HH:MM
                 date_matches = re.findall(r'(\d{2}/\d{2}/\d{4} \d{2}:\d{2})', text)
@@ -374,7 +394,9 @@ def process_popina_reports(service):
                 else:
                     print(f"⚠️  Echec sync pour ID: {msg_info['id']}, non marqué comme traité.")
             else:
+                # Si vraiment rien n'est trouvé, on log pour debug
                 print(f"⚠️  Rapport Popina trouvé (ID: {msg_info['id']}) mais montant Espèces non détecté.")
+                # print(f"DEBUG TEXT: {text[:500]}...") # Optionnel pour debug
 
     except Exception as e:
         print(f"❌ Erreur traitement Popina: {e}")

@@ -66,15 +66,31 @@ export async function POST(req: Request) {
         }
 
         // 3. Créer la transaction
-        const transaction = await prisma.cashTransaction.create({
-            data: {
-                date: new Date(date),
-                amount: amount,
-                type: "IN",
-                description: description || "Recette Popina (Espèces)",
-                categoryId: category.id
-            }
-        })
+        let transaction;
+        try {
+            transaction = await prisma.cashTransaction.create({
+                data: {
+                    date: new Date(date),
+                    amount: amount,
+                    type: "IN",
+                    description: description || "Recette Popina (Espèces)",
+                    categoryId: category.id
+                }
+            })
+        } catch (e: any) {
+            console.error("[Popina Webhook] Erreur lors de la création avec catégorie:", e.message);
+            console.log("[Popina Webhook] Tentative de création SANS catégorie pour sauver les données...");
+
+            // Tentative de secours sans categoryId (si c'est bien la FK qui bloque)
+            transaction = await prisma.cashTransaction.create({
+                data: {
+                    date: new Date(date),
+                    amount: amount,
+                    type: "IN",
+                    description: (description || "Recette Popina (Espèces)") + " [Erreur Catégorie]"
+                }
+            });
+        }
 
         // 4. Enregistrer dans ProcessedMail pour l'historique
         if (messageId) {
