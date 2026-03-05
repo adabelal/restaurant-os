@@ -71,38 +71,49 @@ export async function acceptProposal(id: string) {
 }
 
 export async function triggerHistoricalScan() {
-    // 1. Chercher l'URL dans le .env ou tenter l'URL réseau interne Easypanel
-    // Dans Easypanel, si le service s'appelle 'restaurant-os-bot', 
-    // il est accessible en interne via http://restaurant-os-bot:5000
-    const webhookUrl = process.env.GMAIL_SYNC_WEBHOOK_URL || "http://restaurant-os-bot:5000/webhook";
+    // 1. Définir les URLs à tester (interne Easypanel)
+    const internalHostnames = ["restaurant-os-bot", "mail-bot", "restaurant-os-mail-bot"];
+    let webhookUrl = process.env.GMAIL_SYNC_WEBHOOK_URL;
     const apiKey = process.env.RESTAURANT_OS_API_KEY || process.env.N8N_API_KEY;
 
-    try {
-        const response = await fetch(webhookUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': apiKey || ''
-            },
-            body: JSON.stringify({ action: 'sync' }),
-            // Timeout court pour le test interne
-            signal: AbortSignal.timeout(5000)
-        });
+    // Si pas d'URL forcée dans le .env, on essaiera les noms internes
+    const urlsToTry = webhookUrl ? [webhookUrl] : internalHostnames.map(h => `http://${h}:5000/webhook`);
 
-        const data = await response.json();
-        if (data.success) {
-            return { success: true, message: data.message || "La synchronisation a été lancée. Les données apparaîtront d'ici quelques minutes." };
-        } else {
-            return { error: data.error || "Le robot de synchronisation a retourné une erreur." };
+    let lastError = null;
+
+    for (const url of urlsToTry) {
+        try {
+            console.log(`Tentative de synchro via : ${url}`);
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': apiKey || ''
+                },
+                body: JSON.stringify({ action: 'sync' }),
+                signal: AbortSignal.timeout(3000) // Timeout court pour switcher vite
+            });
+
+            if (!response.ok) {
+                lastError = `Erreur HTTP ${response.status}`;
+                continue;
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                return { success: true, message: data.message || "La synchronisation a été lancée." };
+            }
+            lastError = data.error || "Réponse invalide du robot.";
+        } catch (error: any) {
+            console.warn(`Echec test URL ${url}:`, error.message);
+            lastError = error.message;
         }
-    } catch (error) {
-        console.error("Failed to trigger Gmail sync:", error);
-
-        if (!process.env.GMAIL_SYNC_WEBHOOK_URL) {
-            return { error: "Le robot n'est pas détecté. Assurez-vous que le service 'restaurant-os-bot' est bien lancé sur Easypanel ou configurez GMAIL_SYNC_WEBHOOK_URL." };
-        }
-
-        return { error: "Impossible de contacter le robot de synchronisation. Vérifiez l'URL dans votre .env." };
     }
+
+    // Si on arrive ici, aucun test n'a fonctionné
+    return {
+        error: `Le robot n'est pas détecté. Vérifiez que le service est lancé sur Easypanel. ` +
+            `(Détail technique: ${lastError || "Délai d'attente dépassé"})`
+    };
 }
 
