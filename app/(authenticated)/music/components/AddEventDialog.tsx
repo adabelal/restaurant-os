@@ -21,51 +21,80 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { createEvent } from "../actions"
-import { useState } from "react"
+import { createEvent, updateEvent } from "../actions"
+import { useState, useEffect } from "react"
 import { toast } from "sonner"
-import { CalendarIcon, Plus } from "lucide-react"
+import { CalendarIcon, Edit2, Plus } from "lucide-react"
+import { Checkbox } from "@/components/ui/checkbox"
 
 interface Band {
     id: string
     name: string
 }
 
-export function AddEventDialog({ bands }: { bands: Band[] }) {
+interface AddEventDialogProps {
+    bands: Band[]
+    eventToEdit?: any // Si présent, on passe en mode édition
+    trigger?: React.ReactNode
+}
+
+export function AddEventDialog({ bands, eventToEdit, trigger }: AddEventDialogProps) {
     const [open, setOpen] = useState(false)
+    const [isFree, setIsFree] = useState(eventToEdit?.isFree || false)
+
+    // Reset isFree when eventToEdit changes (for reuse)
+    useEffect(() => {
+        if (eventToEdit) {
+            setIsFree(eventToEdit.isFree || false)
+        }
+    }, [eventToEdit])
 
     async function onSubmit(formData: FormData) {
-        const result = await createEvent(formData)
+        // Ajouter isFree explicitement car les FormData ne gèrent pas bien les checkboxes non cochées
+        formData.append("isFree", String(isFree))
+
+        const result = eventToEdit
+            ? await updateEvent(formData)
+            : await createEvent(formData)
+
         if (result && result.error) {
-            toast.error("Erreur lors de la création")
+            toast.error(typeof result.error === 'string' ? result.error : "Erreur lors de l'enregistrement")
         } else {
-            toast.success("Événement programmé")
+            toast.success(eventToEdit ? "Concert mis à jour" : "Événement programmé")
             setOpen(false)
         }
     }
 
+    const defaultDate = eventToEdit?.date
+        ? new Date(eventToEdit.date).toISOString().split('T')[0]
+        : ""
+
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button>
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    Nouvelle Date
-                </Button>
+                {trigger || (
+                    <Button>
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        Nouvelle Date
+                    </Button>
+                )}
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
-                    <DialogTitle>Programmer un concert</DialogTitle>
+                    <DialogTitle>{eventToEdit ? "Modifier le concert" : "Programmer un concert"}</DialogTitle>
                     <DialogDescription>
-                        Ajoutez une nouvelle date de concert au calendrier.
+                        {eventToEdit ? "Modifiez les informations du concert sélectionné." : "Ajoutez une nouvelle date de concert au calendrier."}
                     </DialogDescription>
                 </DialogHeader>
                 <form action={onSubmit} className="grid gap-4 py-4">
+                    {eventToEdit && <input type="hidden" name="id" value={eventToEdit.id} />}
+
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="bandId" className="text-right">
                             Groupe
                         </Label>
                         <div className="col-span-3">
-                            <Select name="bandId" required>
+                            <Select name="bandId" defaultValue={eventToEdit?.bandId} required>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Choisir un groupe" />
                                 </SelectTrigger>
@@ -88,6 +117,7 @@ export function AddEventDialog({ bands }: { bands: Band[] }) {
                             type="date"
                             name="date"
                             className="col-span-3"
+                            defaultValue={defaultDate}
                             required
                         />
                     </div>
@@ -100,8 +130,22 @@ export function AddEventDialog({ bands }: { bands: Band[] }) {
                             type="time"
                             name="startTime"
                             className="col-span-3"
-                            defaultValue="20:00"
+                            defaultValue={eventToEdit?.startTime || "20:00"}
                         />
+                    </div>
+
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label className="text-right">Options</Label>
+                        <div className="col-span-3 flex items-center space-x-2">
+                            <Checkbox
+                                id="isFree"
+                                checked={isFree}
+                                onCheckedChange={(checked) => setIsFree(!!checked)}
+                            />
+                            <Label htmlFor="isFree" className="text-sm font-medium leading-none cursor-pointer">
+                                Concert Gratuit (pas de cachet)
+                            </Label>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -113,7 +157,9 @@ export function AddEventDialog({ bands }: { bands: Band[] }) {
                             step="0.01"
                             name="amount"
                             className="col-span-3"
-                            required
+                            defaultValue={eventToEdit?.amount || 0}
+                            disabled={isFree}
+                            required={!isFree}
                         />
                     </div>
 
@@ -122,7 +168,7 @@ export function AddEventDialog({ bands }: { bands: Band[] }) {
                             Paiement
                         </Label>
                         <div className="col-span-3">
-                            <Select name="paymentMethod" defaultValue="TRANSFER">
+                            <Select name="paymentMethod" defaultValue={eventToEdit?.paymentMethod || "TRANSFER"}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Moyen de paiement" />
                                 </SelectTrigger>
@@ -141,7 +187,7 @@ export function AddEventDialog({ bands }: { bands: Band[] }) {
                             Facture
                         </Label>
                         <div className="col-span-3">
-                            <Select name="invoiceStatus" defaultValue="PENDING">
+                            <Select name="invoiceStatus" defaultValue={eventToEdit?.invoiceStatus || "PENDING"}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Statut facture" />
                                 </SelectTrigger>
@@ -159,7 +205,7 @@ export function AddEventDialog({ bands }: { bands: Band[] }) {
                             Statut
                         </Label>
                         <div className="col-span-3">
-                            <Select name="status" defaultValue="SCHEDULED">
+                            <Select name="status" defaultValue={eventToEdit?.status || "SCHEDULED"}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="État du concert" />
                                 </SelectTrigger>
@@ -181,11 +227,12 @@ export function AddEventDialog({ bands }: { bands: Band[] }) {
                             name="notes"
                             placeholder="Détails techniques, repas staff..."
                             className="col-span-3"
+                            defaultValue={eventToEdit?.notes || ""}
                         />
                     </div>
 
                     <DialogFooter>
-                        <Button type="submit">Enregistrer</Button>
+                        <Button type="submit">{eventToEdit ? "Enregistrer les modifications" : "Enregistrer"}</Button>
                     </DialogFooter>
                 </form>
             </DialogContent>

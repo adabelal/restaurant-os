@@ -446,6 +446,7 @@ model MusicEvent {
   
   // Paiement
   amount        Decimal @db.Decimal(10, 2)
+  isFree        Boolean @default(false)
   paymentMethod String  @default("TRANSFER") // TRANSFER, CASH, CHECK, GUSO
   invoiceStatus String  @default("PENDING") // PENDING, RECEIVED, PAID
   

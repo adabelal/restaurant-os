@@ -15,10 +15,12 @@ const BandSchema = z.object({
 })
 
 const EventSchema = z.object({
+    id: z.string().optional(),
     bandId: z.string().min(1, "Le groupe est requis"),
-    date: z.string().min(1, "La date est requise"), // Will be parsed to Date
+    date: z.string().min(1, "La date est requise"),
     startTime: z.string().optional(),
     amount: z.coerce.number().min(0, "Le montant doit être positif"),
+    isFree: z.boolean().default(false),
     paymentMethod: z.string().min(1, "Le mode de paiement est requis"),
     invoiceStatus: z.string().min(1, "Le statut de facture est requis"),
     status: z.string().default("SCHEDULED"),
@@ -68,6 +70,7 @@ export async function createEvent(formData: FormData) {
                 date: input.get("date"),
                 startTime: input.get("startTime"),
                 amount: input.get("amount"),
+                isFree: input.get("isFree") === "true",
                 paymentMethod: input.get("paymentMethod"),
                 invoiceStatus: input.get("invoiceStatus"),
                 status: input.get("status") || "SCHEDULED",
@@ -81,18 +84,26 @@ export async function createEvent(formData: FormData) {
             }
 
             try {
-                await prisma.musicEvent.create({
+                const event = await prisma.musicEvent.create({
                     data: {
                         bandId: result.data.bandId,
                         date: new Date(result.data.date),
                         startTime: result.data.startTime,
-                        amount: result.data.amount,
+                        amount: result.data.isFree ? 0 : result.data.amount,
+                        isFree: result.data.isFree,
                         paymentMethod: result.data.paymentMethod,
                         invoiceStatus: result.data.invoiceStatus,
                         status: result.data.status,
                         notes: result.data.notes,
                     },
+                    include: { band: true }
                 })
+
+                // Automatisation Caisse si CASH et COMPLETED
+                if (event.status === "COMPLETED" && event.paymentMethod === "CASH" && !event.isFree) {
+                    await handleMusicCashTransaction(event)
+                }
+
                 revalidatePath("/music")
                 return { success: true }
             } catch (error) {
@@ -101,6 +112,153 @@ export async function createEvent(formData: FormData) {
             }
         }
     )
+}
+
+/**
+ * Met à jour un concert existant
+ */
+export async function updateEvent(formData: FormData) {
+    return safeAction(
+        formData,
+        async (input, context) => {
+            const id = input.get("id") as string
+            if (!id) return { error: "ID manquant" }
+
+            const rawData = {
+                bandId: input.get("bandId"),
+                date: input.get("date"),
+                startTime: input.get("startTime"),
+                amount: input.get("amount"),
+                isFree: input.get("isFree") === "true",
+                paymentMethod: input.get("paymentMethod"),
+                invoiceStatus: input.get("invoiceStatus"),
+                status: input.get("status"),
+                notes: input.get("notes"),
+            }
+
+            const result = EventSchema.safeParse(rawData)
+            if (!result.success) {
+                return { error: result.error.flatten().fieldErrors }
+            }
+
+            try {
+                const oldEvent = await prisma.musicEvent.findUnique({ where: { id } })
+
+                const event = await prisma.musicEvent.update({
+                    where: { id },
+                    data: {
+                        bandId: result.data.bandId,
+                        date: new Date(result.data.date),
+                        startTime: result.data.startTime,
+                        amount: result.data.isFree ? 0 : result.data.amount,
+                        isFree: result.data.isFree,
+                        paymentMethod: result.data.paymentMethod,
+                        invoiceStatus: result.data.invoiceStatus,
+                        status: result.data.status,
+                        notes: result.data.notes,
+                    },
+                    include: { band: true }
+                })
+
+                // Automatisation Caisse : Logique Robuste
+                const isCompleted = event.status === "COMPLETED"
+                const isCash = event.paymentMethod === "CASH"
+
+                if (isCompleted && isCash && !event.isFree) {
+                    await handleMusicCashTransaction(event)
+                } else {
+                    // Si on n'est plus en CASH/COMPLETED, on supprime la transaction de caisse liée si elle existe
+                    await removeMusicCashTransaction(event.id)
+                }
+
+                revalidatePath("/music")
+                revalidatePath("/caisse")
+                return { success: true }
+            } catch (error) {
+                console.error("Failed to update event:", error)
+                return { error: "Erreur lors de la mise à jour" }
+            }
+        }
+    )
+}
+
+/**
+ * Helper pour créer une transaction de caisse pour un concert
+ */
+async function handleMusicCashTransaction(event: any) {
+    try {
+        const tag = `[MUSIQUE_REF:${event.id}]`
+        const description = `Paiement ESP - Concert ${event.band.name} ${tag}`
+
+        // Chercher ou créer la catégorie "Animations"
+        let category = await prisma.financeCategory.findFirst({
+            where: { name: "Animations", type: "VARIABLE_COST" }
+        })
+
+        if (!category) {
+            category = await prisma.financeCategory.create({
+                data: {
+                    name: "Animations",
+                    type: "VARIABLE_COST",
+                    color: "purple",
+                    description: "Frais liés aux concerts et animations"
+                }
+            })
+        }
+
+        // Vérifier si une transaction existe déjà pour ce concert
+        const existing = await prisma.cashTransaction.findFirst({
+            where: { description: { contains: tag } }
+        })
+
+        const amount = -Math.abs(Number(event.amount))
+
+        if (existing) {
+            // Mise à jour si le montant ou la date a changé
+            await prisma.cashTransaction.update({
+                where: { id: existing.id },
+                data: {
+                    amount,
+                    date: event.date,
+                    description,
+                    categoryId: category.id
+                }
+            })
+            console.log(`[Caisse] Transaction mise à jour pour ${event.band.name}`)
+        } else {
+            // Création si nouvelle
+            await prisma.cashTransaction.create({
+                data: {
+                    date: event.date,
+                    amount,
+                    type: "OUT",
+                    description,
+                    categoryId: category.id
+                }
+            })
+            console.log(`[Caisse] Nouvelle transaction créée pour ${event.band.name}`)
+        }
+    } catch (e) {
+        console.error("Error handling music cash transaction:", e)
+    }
+}
+
+/**
+ * Supprime une transaction de caisse liée à un concert
+ */
+async function removeMusicCashTransaction(eventId: string) {
+    try {
+        const tag = `[MUSIQUE_REF:${eventId}]`
+        const transactions = await prisma.cashTransaction.findMany({
+            where: { description: { contains: tag } }
+        })
+
+        for (const tx of transactions) {
+            await prisma.cashTransaction.delete({ where: { id: tx.id } })
+        }
+    } catch (e) {
+        console.error("Error removing music cash transaction:", e)
+    }
 }
 
 export const getBands = cache(async () => {
@@ -329,8 +487,10 @@ export async function importMusicDataV2(csvContent: string) {
 export async function deleteEvent(eventId: string) {
     return safeAction(eventId, async (id) => {
         try {
+            await removeMusicCashTransaction(id)
             await prisma.musicEvent.delete({ where: { id } })
             revalidatePath("/music")
+            revalidatePath("/caisse")
             return { success: true }
         } catch (error) {
             console.error("Failed to delete event:", error)

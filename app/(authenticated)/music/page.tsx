@@ -138,7 +138,7 @@ ven. 25 oct. 2024;ZKey M;TRUE;ESP;;;300
                 </TabsList>
 
                 <TabsContent value="events" className="space-y-4">
-                    <EventsList initialEvents={events} />
+                    <EventsList initialEvents={events} bands={bands} />
                 </TabsContent>
 
                 <TabsContent value="bands" className="space-y-4">

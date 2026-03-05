@@ -20,7 +20,9 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
-export function EventsCalendar({ events }: { events: any[] }) {
+import { AddEventDialog } from "./AddEventDialog"
+
+export function EventsCalendar({ events, bands }: { events: any[], bands: any[] }) {
     const [currentMonth, setCurrentMonth] = useState(new Date())
 
     const monthStart = startOfMonth(currentMonth)
@@ -89,22 +91,33 @@ export function EventsCalendar({ events }: { events: any[] }) {
 
                             <div className="mt-2 space-y-1.5 overflow-y-auto max-h-[75px] custom-scrollbar pr-1">
                                 {dayEvents.map((evt) => (
-                                    <div
+                                    <AddEventDialog
                                         key={evt.id}
-                                        className={cn(
-                                            "text-xs p-1.5 rounded border border-border/50 truncate flex items-center gap-1.5 shadow-sm group-hover:border-primary/30 transition-colors",
-                                            evt.status === 'SCHEDULED' ? 'bg-primary/10 text-primary-foreground dark:text-primary' :
-                                                evt.status === 'TENTATIVE' ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400' :
-                                                    evt.status === 'COMPLETED' ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400' :
-                                                        'bg-destructive/10 text-destructive'
-                                        )}
-                                        title={`${evt.band.name} - ${evt.startTime}`}
-                                    >
-                                        <Music className="w-3 h-3 shrink-0" />
-                                        <span className="font-semibold truncate">{evt.band.name}</span>
-                                        <span className="ml-auto opacity-70 text-[10px] shrink-0">{evt.startTime}</span>
-                                    </div>
+                                        bands={bands}
+                                        eventToEdit={evt}
+                                        trigger={
+                                            <div
+                                                className={cn(
+                                                    "text-[10px] md:text-xs p-1 rounded border border-border/50 truncate flex items-center gap-1 shadow-sm hover:border-primary/50 cursor-pointer transition-all",
+                                                    evt.status === 'CANCELLED' ? 'bg-destructive/10 text-destructive border-destructive/20' :
+                                                        evt.status === 'COMPLETED' ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20' :
+                                                            evt.status === 'TENTATIVE' ? 'bg-amber-500/10 text-amber-700 border-amber-500/20' :
+                                                                'bg-primary/10 text-primary border-primary/20',
+                                                    evt.invoiceStatus === 'PENDING' && evt.status === 'COMPLETED' && !evt.isFree && "border-l-2 border-l-destructive animate-pulse"
+                                                )}
+                                                title={`${evt.band.name} - ${evt.startTime}${evt.invoiceStatus === 'PENDING' ? ' (Facture manquante !)' : ''}`}
+                                            >
+                                                <Music className="w-2.5 h-2.5 shrink-0" />
+                                                <span className="font-semibold truncate">{evt.band.name}</span>
+                                            </div>
+                                        }
+                                    />
                                 ))}
+                                {dayEvents.length > 2 && (
+                                    <div className="text-[9px] text-muted-foreground text-center pt-1 font-medium">
+                                        + {dayEvents.length - 2} autres
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )
