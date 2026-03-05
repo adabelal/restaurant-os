@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
 import {
-    Clock, Trash2, ChevronLeft, ChevronRight, Edit2
+    Clock, Trash2, ChevronLeft, ChevronRight, Edit2, AlertCircle
 } from "lucide-react"
 import { addShift, deleteShift } from "@/app/rh/actions"
 import { EditShiftDialog } from "@/components/rh/EditShiftDialog"
@@ -38,12 +38,12 @@ export function ShiftManager({
     async function handleSubmit(formData: FormData) {
         setIsLoading(true)
         try {
-            const res = await addShift(formData)
+            const res = await addShift(formData) as any
             if (res.success) {
                 toast.success("Shift ajouté avec succès.")
                 // Le revalidatePath dans l'action rafraîchira la page
             } else {
-                toast.error(res.message || "Erreur lors de l'ajout.")
+                toast.error(res.message || res.error || "Erreur lors de l'ajout.")
             }
         } catch (e) {
             toast.error("Une erreur est survenue.")
@@ -51,6 +51,20 @@ export function ShiftManager({
             setIsLoading(false)
         }
     }
+
+    const hasActiveContract = employee.documents?.some((doc: any) => {
+        if (doc.type !== 'CONTRACT') return false
+        if (!doc.year) return true
+        const now = new Date()
+        if (doc.year < now.getFullYear()) return false
+        if (doc.year === now.getFullYear() && doc.month && doc.month < now.getMonth() + 1) return false
+        return true
+    }) ?? false
+
+    const totalHoursMonth = shifts.reduce((acc, s) => {
+        const diff = s.endTime ? s.endTime.getTime() - s.startTime.getTime() : 0
+        return acc + Math.max(0, (diff / 1000 / 3600) - ((s.breakMinutes || 0) / 60))
+    }, 0)
 
     return (
         <Card className="border-none shadow-sm">
@@ -60,14 +74,23 @@ export function ShiftManager({
                     <Link href={`/rh/${employee.id}?month=${prevMonth}&year=${prevYear}&tab=hours`}>
                         <Button variant="outline" size="sm" className="gap-2"><ChevronLeft className="h-4 w-4" /> Précédent</Button>
                     </Link>
-                    <Badge className="px-4 py-1 text-sm bg-primary text-primary-foreground border-none">{monthLabel}</Badge>
+                    <div className="flex flex-col items-center">
+                        <Badge className="px-4 py-1 text-sm bg-primary text-primary-foreground border-none shadow-sm">{monthLabel}</Badge>
+                        <span className="text-xs font-bold text-muted-foreground mt-1">Total: {totalHoursMonth.toFixed(1)}h</span>
+                    </div>
                     <Link href={`/rh/${employee.id}?month=${nextMonth}&year=${nextYear}&tab=hours`}>
                         <Button variant="outline" size="sm" className="gap-2">Suivant <ChevronRight className="h-4 w-4" /></Button>
                     </Link>
                 </div>
             </CardHeader>
             <CardContent className="p-0">
-                <div className="p-6 bg-muted/30 border-b border-border">
+                <div className={`p-6 bg-muted/30 border-b border-border relative transition-opacity ${!hasActiveContract ? 'opacity-50 pointer-events-none' : ''}`}>
+                    {!hasActiveContract && (
+                        <div className="absolute top-2 right-2 flex items-center gap-1.5 text-[10px] font-bold text-amber-700 bg-amber-50 dark:bg-amber-500/10 px-2 py-1 rounded-md border border-amber-500/20">
+                            <AlertCircle className="h-3 w-3" />
+                            Contrat actif requis
+                        </div>
+                    )}
                     <form action={handleSubmit} className="grid md:grid-cols-5 gap-4 items-end">
                         <input type="hidden" name="userId" value={employee.id} />
                         <div className="space-y-1">
@@ -123,7 +146,7 @@ export function ShiftManager({
                                                 className="h-8 w-8 text-muted-foreground hover:text-red-500"
                                                 onClick={async () => {
                                                     if (confirm("Supprimer ce shift ?")) {
-                                                        const res = await deleteShift(s.id, employee.id)
+                                                        const res = await deleteShift(s.id, employee.id) as any
                                                         if (res.success) toast.success("Shift supprimé")
                                                         else toast.error("Erreur")
                                                     }

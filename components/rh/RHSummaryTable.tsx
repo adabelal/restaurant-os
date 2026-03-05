@@ -137,7 +137,7 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                     return (
                                         <TableRow key={emp.id} className="hover:bg-muted/50 transition-colors border-b border-border">
                                             <TableCell className="font-bold py-4 pl-6">
-                                                <Link href={`/rh/${emp.id}?tab=hours`} className="flex items-center gap-2 text-foreground hover:text-blue-500 transition-colors group">
+                                                <Link href={`/rh/${emp.id}?tab=hours&month=${selectedMonth + 1}&year=${selectedYear}`} className="flex items-center gap-2 text-foreground hover:text-blue-500 transition-colors group">
                                                     <div className="w-2 h-2 rounded-full bg-blue-500 group-hover:scale-125 transition-transform"></div>
                                                     {emp.name}
                                                 </Link>
