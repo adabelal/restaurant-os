@@ -19,8 +19,14 @@ export async function middleware(req: NextRequest) {
     )
     const isApiRoute = nextUrl.pathname.startsWith("/api")
 
+    // Permettre les routes API si une clé API valide est présente
+    const apiKeyHeader = req.headers.get("x-api-key") || req.headers.get("authorization")?.replace("Bearer ", "")
+    const validApiKey = process.env.RESTAURANT_OS_API_KEY || process.env.N8N_API_KEY
+
+    const hasValidApiKey = validApiKey && apiKeyHeader === validApiKey
+
     // Permettre les routes API publiques
-    if (isPublicApiRoute) {
+    if (isPublicApiRoute || hasValidApiKey) {
         return NextResponse.next()
     }
 
