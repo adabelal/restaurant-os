@@ -133,3 +133,38 @@ export async function triggerHistoricalScan() {
     };
 }
 
+export async function cleanupPopinaData() {
+    try {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        console.log("🚀 Starting cleanup of Caisse data created today...");
+
+        // 1. Supprimer les transactions de caisse qui contiennent "Popina" créées aujourd'hui
+        const deletedTransactions = await prisma.cashTransaction.deleteMany({
+            where: {
+                createdAt: { gte: today },
+                description: { contains: "Popina" }
+            }
+        });
+
+        // 2. Supprimer les logs de mails traités correspondants
+        const deletedMails = await (prisma as any).processedMail.deleteMany({
+            where: {
+                date: { gte: today },
+                type: "POPINA_REPORT"
+            }
+        });
+
+        revalidatePath("/mails");
+        revalidatePath("/caisse");
+
+        return {
+            success: true,
+            message: `${deletedTransactions.count} transactions et ${deletedMails.count} logs de mails ont été supprimés.`
+        };
+    } catch (error: any) {
+        console.error("Cleanup error:", error);
+        return { error: "Erreur lors du nettoyage : " + error.message };
+    }
+}

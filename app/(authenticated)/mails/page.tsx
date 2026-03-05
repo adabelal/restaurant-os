@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MusicProposalsTable } from './components/MusicProposalsTable';
 import { SyncButton } from './components/SyncButton';
+import { CleanupPopinaButton } from './components/CleanupPopinaButton';
 import { getBandProposals, triggerHistoricalScan } from './actions';
 
 export const metadata: Metadata = {
@@ -98,6 +99,7 @@ export default async function MailsPage() {
                     </p>
                 </div>
                 <div className="flex items-center gap-2">
+                    <CleanupPopinaButton />
                     <SyncButton />
                     <Badge variant="outline" className="flex items-center gap-1 py-1 px-3">
                         <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
