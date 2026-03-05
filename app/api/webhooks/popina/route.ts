@@ -17,21 +17,16 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Missing date or amount" }, { status: 400 })
         }
 
-        // 1. Trouver ou créer la catégorie "Recettes" pour les entrées (IN)
+        // 1. Trouver ou créer la catégorie "Recettes" dans FinanceCategory
         const categoryName = "Recettes"
-        const categoryType = "IN"
+        const categoryType = "REVENUE" // Utiliser le type global REVENUE
 
-        let category = await prisma.cashCategory.findUnique({
-            where: {
-                name_type: {
-                    name: categoryName,
-                    type: categoryType
-                }
-            }
+        let category = await prisma.financeCategory.findUnique({
+            where: { name: categoryName }
         })
 
         if (!category) {
-            category = await prisma.cashCategory.create({
+            category = await prisma.financeCategory.create({
                 data: {
                     name: categoryName,
                     type: categoryType,
