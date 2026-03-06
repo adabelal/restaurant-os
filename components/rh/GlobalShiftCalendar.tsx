@@ -391,26 +391,25 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             </Button>
                         </div>
                     </div>
-                        <div className="flex flex-wrap items-center gap-3">
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setIsCompactWeek(!isCompactWeek)}
-                                className="h-8 gap-1.5 border-primary/20 hover:border-primary/40"
-                            >
-                                <ChevronRight className={`h-4 w-4 transition-transform ${isCompactWeek ? 'rotate-180' : ''}`} />
-                                <span className="hidden sm:inline">{isCompactWeek ? "Semaine complète" : "Focus Fin de semaine"}</span>
-                            </Button>
-                            <Button
-                                variant="default"
-                                size="sm"
-                                onClick={handleAutoFill}
-                                className="rounded-full shadow-lg shadow-primary/20 bg-primary hover:bg-primary/90 font-bold uppercase text-[10px] tracking-wider px-4"
-                            >
-                                <UserPlus className="h-3.5 w-3.5 mr-2" />
-                                Remplissage Auto Gérants
-                            </Button>
-                        </div>
+                    <div className="flex flex-wrap items-center gap-3">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setIsCompactWeek(!isCompactWeek)}
+                            className="h-8 gap-1.5 border-primary/20 hover:border-primary/40"
+                        >
+                            <ChevronRight className={`h-4 w-4 transition-transform ${isCompactWeek ? 'rotate-180' : ''}`} />
+                            <span className="hidden sm:inline">{isCompactWeek ? "Semaine complète" : "Focus Fin de semaine"}</span>
+                        </Button>
+                        <Button
+                            variant="default"
+                            size="sm"
+                            onClick={handleAutoFill}
+                            className="rounded-full shadow-lg shadow-primary/20 bg-primary hover:bg-primary/90 font-bold uppercase text-[10px] tracking-wider px-4"
+                        >
+                            <UserPlus className="h-3.5 w-3.5 mr-2" />
+                            Remplissage Auto Gérants
+                        </Button>
                     </div>
                 </div>
             </CardHeader>
@@ -560,29 +559,29 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                                             onDragStart(e, s.id)
                                                         }}
                                                         className="flex-1 py-1 px-1.5 cursor-move overflow-hidden flex items-center gap-1.5"
-                                                            title={`${s.employee.name}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
-                                                        >
-                                                            <div className={`shrink-0 w-2 h-2 rounded-full ${getEmployeeDotColor(s.employee.id, s.employee.name)}`} />
-                                                            <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-x-1.5">
-                                                                <div className="text-[10px] font-bold truncate leading-tight flex-1">{formatName(s.employee.name)}</div>
-                                                                <div className="flex items-center gap-1">
-                                                                    {s.position && (() => {
-                                                                        const pos = POSITIONS.find(p => p.id === s.position)
-                                                                        if (pos) {
-                                                                            const Icon = pos.icon
-                                                                            return <span title={pos.label}><Icon className="h-3 w-3 shrink-0 opacity-70" /></span>
-                                                                        }
-                                                                        return null
-                                                                    })()}
-                                                                    {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
-                                                                        <div className="text-[8.5px] opacity-80 shrink-0 leading-tight hidden sm:block font-mono">{startStr}-{endStr}</div>
-                                                                    )}
-                                                                </div>
+                                                        title={`${s.employee.name}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
+                                                    >
+                                                        <div className={`shrink-0 w-2 h-2 rounded-full ${getEmployeeDotColor(s.employee.id, s.employee.name)}`} />
+                                                        <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-x-1.5">
+                                                            <div className="text-[10px] font-bold truncate leading-tight flex-1">{formatName(s.employee.name)}</div>
+                                                            <div className="flex items-center gap-1">
+                                                                {s.position && (() => {
+                                                                    const pos = POSITIONS.find(p => p.id === s.position)
+                                                                    if (pos) {
+                                                                        const Icon = pos.icon
+                                                                        return <span title={pos.label}><Icon className="h-3 w-3 shrink-0 opacity-70" /></span>
+                                                                    }
+                                                                    return null
+                                                                })()}
                                                                 {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
-                                                                    <div className="text-[8.5px] opacity-80 shrink-0 leading-tight sm:hidden font-mono mt-0.5">{startStr}-{endStr}</div>
+                                                                    <div className="text-[8.5px] opacity-80 shrink-0 leading-tight hidden sm:block font-mono">{startStr}-{endStr}</div>
                                                                 )}
                                                             </div>
+                                                            {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
+                                                                <div className="text-[8.5px] opacity-80 shrink-0 leading-tight sm:hidden font-mono mt-0.5">{startStr}-{endStr}</div>
+                                                            )}
                                                         </div>
+                                                    </div>
 
                                                     <DropdownMenu>
                                                         <DropdownMenuTrigger asChild>
@@ -619,142 +618,142 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                 </div>
             </CardContent>
 
-            {/* Dialog d'ajout rapide */ }
-    <Dialog open={!!selectedDateForShift} onOpenChange={(open) => !open && setSelectedDateForShift(null)}>
-        <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-                <DialogTitle>Ajouter un shift</DialogTitle>
-                <CardDescription>
-                    {selectedDateForShift && format(selectedDateForShift, 'EEEE d MMMM yyyy', { locale: fr })}
-                </CardDescription>
-            </DialogHeader>
+            {/* Dialog d'ajout rapide */}
+            <Dialog open={!!selectedDateForShift} onOpenChange={(open) => !open && setSelectedDateForShift(null)}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Ajouter un shift</DialogTitle>
+                        <CardDescription>
+                            {selectedDateForShift && format(selectedDateForShift, 'EEEE d MMMM yyyy', { locale: fr })}
+                        </CardDescription>
+                    </DialogHeader>
 
-            <form onSubmit={handleAddShiftSubmit} className="grid gap-4 py-4">
-                <div className="grid gap-2">
-                    <Label htmlFor="userId">Employé</Label>
-                    <select
-                        name="userId"
-                        id="userId"
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        required
-                        value={selectedUserIdForAdd}
-                        onChange={(e) => setSelectedUserIdForAdd(e.target.value)}
-                    >
-                        <option value="">Sélectionner un employé...</option>
-                        {employees.map(emp => (
-                            <option key={emp.id} value={emp.id}>{emp.name}</option>
-                        ))}
-                    </select>
-                </div>
-
-                {/* Masquer les horaires si Gérant */}
-                {(!selectedUserIdForAdd || !employees.find(e => e.id === selectedUserIdForAdd)?.name.toLowerCase().includes('adam') && !employees.find(e => e.id === selectedUserIdForAdd)?.name.toLowerCase().includes('benjamin')) && (
-                    <>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="grid gap-2">
-                                <Label htmlFor="startTime">Début</Label>
-                                <Input type="time" id="startTime" name="startTime" defaultValue="18:00" step={900} required />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="endTime">Fin</Label>
-                                <Input type="time" id="endTime" name="endTime" defaultValue="23:30" step={900} required />
-                            </div>
-                        </div>
-
+                    <form onSubmit={handleAddShiftSubmit} className="grid gap-4 py-4">
                         <div className="grid gap-2">
-                            <Label htmlFor="breakMinutes">Temps de pause (en minutes) - non payé</Label>
-                            <Input type="number" id="breakMinutes" name="breakMinutes" defaultValue={0} step={10} min={0} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="position">Poste (optionnel)</Label>
+                            <Label htmlFor="userId">Employé</Label>
                             <select
-                                id="position"
-                                name="position"
-                                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                defaultValue=""
+                                name="userId"
+                                id="userId"
+                                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                required
+                                value={selectedUserIdForAdd}
+                                onChange={(e) => setSelectedUserIdForAdd(e.target.value)}
                             >
-                                <option value="">-- Sans poste spécifique --</option>
-                                {POSITIONS.map(p => (
-                                    <option key={p.id} value={p.id}>{p.label}</option>
+                                <option value="">Sélectionner un employé...</option>
+                                {employees.map(emp => (
+                                    <option key={emp.id} value={emp.id}>{emp.name}</option>
                                 ))}
                             </select>
                         </div>
-                    </>
-                )}
 
-                <DialogFooter className="mt-4">
-                    <Button type="button" variant="outline" onClick={() => setSelectedDateForShift(null)}>
-                        Annuler
-                    </Button>
-                    <Button type="submit" disabled={isAddingShift}>
-                        {isAddingShift ? "Ajout..." : "Ajouter le shift"}
-                    </Button>
-                </DialogFooter>
-            </form>
-        </DialogContent>
-    </Dialog>
+                        {/* Masquer les horaires si Gérant */}
+                        {(!selectedUserIdForAdd || !employees.find(e => e.id === selectedUserIdForAdd)?.name.toLowerCase().includes('adam') && !employees.find(e => e.id === selectedUserIdForAdd)?.name.toLowerCase().includes('benjamin')) && (
+                            <>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="startTime">Début</Label>
+                                        <Input type="time" id="startTime" name="startTime" defaultValue="18:00" step={900} required />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="endTime">Fin</Label>
+                                        <Input type="time" id="endTime" name="endTime" defaultValue="23:30" step={900} required />
+                                    </div>
+                                </div>
 
-    {/* Dialog d'édition rapide */ }
-    <Dialog open={!!editingShift} onOpenChange={(open) => !open && setEditingShift(null)}>
-        <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-                <DialogTitle>Modifier le shift</DialogTitle>
-                <CardDescription>
-                    {editingShift?.employee?.name} - {editingShift && format(new Date(editingShift.startTime), 'EEEE d MMMM yyyy', { locale: fr })}
-                </CardDescription>
-            </DialogHeader>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="breakMinutes">Temps de pause (en minutes) - non payé</Label>
+                                    <Input type="number" id="breakMinutes" name="breakMinutes" defaultValue={0} step={10} min={0} />
+                                </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="position">Poste (optionnel)</Label>
+                                    <select
+                                        id="position"
+                                        name="position"
+                                        className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        defaultValue=""
+                                    >
+                                        <option value="">-- Sans poste spécifique --</option>
+                                        {POSITIONS.map(p => (
+                                            <option key={p.id} value={p.id}>{p.label}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </>
+                        )}
 
-            <form onSubmit={handleEditShiftSubmit} className="grid gap-4 py-4">
-                {/* Masquer les horaires si Gérant */}
-                {editingShift && !(editingShift.employee.name.toLowerCase().includes('adam') || editingShift.employee.name.toLowerCase().includes('benjamin')) ? (
-                    <>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="grid gap-2">
-                                <Label htmlFor="editStartTime">Début</Label>
-                                <Input type="time" id="editStartTime" name="startTime" defaultValue={format(new Date(editingShift.startTime), 'HH:mm')} step={900} required />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="editEndTime">Fin</Label>
-                                <Input type="time" id="editEndTime" name="endTime" defaultValue={editingShift.endTime ? format(new Date(editingShift.endTime), 'HH:mm') : '23:30'} step={900} required />
-                            </div>
-                        </div>
+                        <DialogFooter className="mt-4">
+                            <Button type="button" variant="outline" onClick={() => setSelectedDateForShift(null)}>
+                                Annuler
+                            </Button>
+                            <Button type="submit" disabled={isAddingShift}>
+                                {isAddingShift ? "Ajout..." : "Ajouter le shift"}
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
 
-                        <div className="grid gap-2">
-                            <Label htmlFor="editBreakMinutes">Temps de pause (en minutes) - non payé</Label>
-                            <Input type="number" id="editBreakMinutes" name="breakMinutes" defaultValue={editingShift.breakMinutes || 0} step={10} min={0} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="editPosition">Poste (optionnel)</Label>
-                            <select
-                                id="editPosition"
-                                name="position"
-                                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                defaultValue={editingShift.position || ""}
-                            >
-                                <option value="">-- Sans poste spécifique --</option>
-                                {POSITIONS.map(p => (
-                                    <option key={p.id} value={p.id}>{p.label}</option>
-                                ))}
-                            </select>
-                        </div>
-                    </>
-                ) : (
-                    <p className="text-sm text-center text-muted-foreground my-4">Les options horaires sont masquées pour les gérants.</p>
-                )}
+            {/* Dialog d'édition rapide */}
+            <Dialog open={!!editingShift} onOpenChange={(open) => !open && setEditingShift(null)}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Modifier le shift</DialogTitle>
+                        <CardDescription>
+                            {editingShift?.employee?.name} - {editingShift && format(new Date(editingShift.startTime), 'EEEE d MMMM yyyy', { locale: fr })}
+                        </CardDescription>
+                    </DialogHeader>
 
-                <DialogFooter className="mt-4">
-                    <Button type="button" variant="outline" onClick={() => setEditingShift(null)}>
-                        Annuler
-                    </Button>
-                    {editingShift && !(editingShift.employee.name.toLowerCase().includes('adam') || editingShift.employee.name.toLowerCase().includes('benjamin')) && (
-                        <Button type="submit" disabled={isEditingShift}>
-                            {isEditingShift ? "Modification..." : "Enregistrer"}
-                        </Button>
-                    )}
-                </DialogFooter>
-            </form>
-        </DialogContent>
-    </Dialog>
+                    <form onSubmit={handleEditShiftSubmit} className="grid gap-4 py-4">
+                        {/* Masquer les horaires si Gérant */}
+                        {editingShift && !(editingShift.employee.name.toLowerCase().includes('adam') || editingShift.employee.name.toLowerCase().includes('benjamin')) ? (
+                            <>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="editStartTime">Début</Label>
+                                        <Input type="time" id="editStartTime" name="startTime" defaultValue={format(new Date(editingShift.startTime), 'HH:mm')} step={900} required />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="editEndTime">Fin</Label>
+                                        <Input type="time" id="editEndTime" name="endTime" defaultValue={editingShift.endTime ? format(new Date(editingShift.endTime), 'HH:mm') : '23:30'} step={900} required />
+                                    </div>
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <Label htmlFor="editBreakMinutes">Temps de pause (en minutes) - non payé</Label>
+                                    <Input type="number" id="editBreakMinutes" name="breakMinutes" defaultValue={editingShift.breakMinutes || 0} step={10} min={0} />
+                                </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="editPosition">Poste (optionnel)</Label>
+                                    <select
+                                        id="editPosition"
+                                        name="position"
+                                        className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        defaultValue={editingShift.position || ""}
+                                    >
+                                        <option value="">-- Sans poste spécifique --</option>
+                                        {POSITIONS.map(p => (
+                                            <option key={p.id} value={p.id}>{p.label}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </>
+                        ) : (
+                            <p className="text-sm text-center text-muted-foreground my-4">Les options horaires sont masquées pour les gérants.</p>
+                        )}
+
+                        <DialogFooter className="mt-4">
+                            <Button type="button" variant="outline" onClick={() => setEditingShift(null)}>
+                                Annuler
+                            </Button>
+                            {editingShift && !(editingShift.employee.name.toLowerCase().includes('adam') || editingShift.employee.name.toLowerCase().includes('benjamin')) && (
+                                <Button type="submit" disabled={isEditingShift}>
+                                    {isEditingShift ? "Modification..." : "Enregistrer"}
+                                </Button>
+                            )}
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
         </Card >
     )
 }
