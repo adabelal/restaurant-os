@@ -1,10 +1,13 @@
 'use client'
 
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo, useEffect, FormEvent } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreVertical, Plus, UserPlus } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreVertical, Plus, UserPlus, Clock } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -28,7 +31,7 @@ import {
 import { fr } from 'date-fns/locale'
 
 import { toast } from "sonner"
-import { moveShift, updateShiftPosition, addManagerShift, autoFillManagerShifts } from "@/app/(authenticated)/rh/actions"
+import { moveShift, updateShiftPosition, autoFillManagerShifts, addShift } from "@/app/(authenticated)/rh/actions"
 
 interface GlobalShiftCalendarProps {
     employees: any[]
@@ -42,26 +45,35 @@ const POSITIONS = [
     { id: 'SECURITE', label: 'Sécurité', color: 'bg-slate-500' },
 ]
 
-function getRoleColor(name: string, position?: string) {
-    const pos = position?.toUpperCase()
+const EMPLOYEE_COLORS = [
+    'bg-red-500/10 text-red-600 border-red-500/20 dark:text-red-400',
+    'bg-orange-500/10 text-orange-600 border-orange-500/20 dark:text-orange-400',
+    'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400',
+    'bg-green-500/10 text-green-600 border-green-500/20 dark:text-green-400',
+    'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400',
+    'bg-teal-500/10 text-teal-600 border-teal-500/20 dark:text-teal-400',
+    'bg-cyan-500/10 text-cyan-600 border-cyan-500/20 dark:text-cyan-400',
+    'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400',
+    'bg-indigo-500/10 text-indigo-600 border-indigo-500/20 dark:text-indigo-400',
+    'bg-violet-500/10 text-violet-600 border-violet-500/20 dark:text-violet-400',
+    'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400',
+    'bg-fuchsia-500/10 text-fuchsia-600 border-fuchsia-500/20 dark:text-fuchsia-400',
+    'bg-pink-500/10 text-pink-600 border-pink-500/20 dark:text-pink-400',
+    'bg-rose-500/10 text-rose-600 border-rose-500/20 dark:text-rose-400',
+]
 
-    // Priorité au poste assigné au shift
-    if (pos === 'CUISINE') return 'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400'
-    if (pos === 'SALLE') return 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400'
-    if (pos === 'BAR') return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400'
-    if (pos === 'PLONGE') return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400'
-    if (pos === 'SECURITE') return 'bg-slate-500/10 text-slate-600 border-slate-500/20 dark:text-slate-400'
+function getEmployeeColorClass(id: string) {
+    let hash = 0
+    for (let i = 0; i < id.length; i++) {
+        hash = id.charCodeAt(i) + ((hash << 5) - hash)
+    }
+    const index = Math.abs(hash) % EMPLOYEE_COLORS.length
+    return EMPLOYEE_COLORS[index]
+}
 
-    // Repli sur le nom (détection automatique)
-    const n = name.toLowerCase()
-    if (n.includes('adam') || n.includes('benjamin')) return 'bg-primary/10 text-primary border-primary/20' // Gérants
-    if (n.includes('sylvain')) return 'bg-slate-500/10 text-slate-600 border-slate-500/20 dark:text-slate-400'
-    if (n.includes('laura') || n.includes('laetitia')) return 'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400'
-    if (n.includes('amelie') || n.includes('noélie') || n.includes('noelie') || n.includes('virginie') || n.includes('lysea')) return 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400'
-    if (n.includes('sarah') || n.includes('jules') || n.includes('prudencia') || n.includes('marie') || n.includes('manon')) return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400'
-    if (n.includes('florence') || n.includes('jenifer') || n.includes('jennifer') || n.includes('micheline') || n.includes('julien') || n.includes('xavier')) return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400'
-
-    return 'bg-muted text-muted-foreground border-border'
+function getEmployeeDotColor(id: string) {
+    const colorClass = getEmployeeColorClass(id)
+    return colorClass.split(' ')[1].replace('text-', 'bg-').replace('-400', '-500').replace('-600', '-500')
 }
 
 function formatName(fullName: string) {
@@ -78,8 +90,8 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     const [localShifts, setLocalShifts] = useState<any[]>([])
     const [isDragging, setIsDragging] = useState<string | null>(null)
 
-    // Filtrer les gérants pour l'ajout rapide
-    const managers = useMemo(() => employees.filter(e => e.role === 'ADMIN' && (e.name.includes('Adam') || e.name.includes('Benjamin'))), [employees])
+    const [selectedDateForShift, setSelectedDateForShift] = useState<Date | null>(null)
+    const [isAddingShift, setIsAddingShift] = useState(false)
 
     useEffect(() => {
         const allShifts = employees.flatMap(emp =>
@@ -112,6 +124,29 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
         })
         return map
     }, [localShifts])
+
+    const employeeHours = useMemo(() => {
+        const result = employees.map(emp => {
+            const empShifts = localShifts.filter(s =>
+                s.userId === emp.id &&
+                isSameMonth(new Date(s.startTime), currentDate)
+            )
+            const totalHours = empShifts.reduce((acc, s) => {
+                if (!s.endTime) return acc
+                const diff = new Date(s.endTime).getTime() - new Date(s.startTime).getTime()
+                return acc + Math.max(0, (diff / 1000 / 3600) - ((s.breakMinutes || 0) / 60))
+            }, 0)
+            return {
+                ...emp,
+                totalHours
+            }
+        }).filter(emp => emp.totalHours > 0 || emp.name.toLowerCase().includes('adam') || emp.name.toLowerCase().includes('benjamin'))
+
+        result.sort((a, b) => b.totalHours - a.totalHours)
+        return result
+    }, [localShifts, currentDate, employees])
+
+    console.log("localshifts", localShifts)
 
     const onDragStart = (e: React.DragEvent, shiftId: string) => {
         e.dataTransfer.setData("shiftId", shiftId)
@@ -189,20 +224,52 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
         }
     }
 
-    const handleQuickManagerShift = async (managerId: string, date: Date, position: string) => {
-        toast.info("Ajout du shift gérant...")
+    const handleAddShiftSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        if (!selectedDateForShift) return
+
+        const formData = new FormData(e.currentTarget)
+        const userId = formData.get("userId") as string
+        const startTimeStr = formData.get("startTime") as string
+        const endTimeStr = formData.get("endTime") as string
+        const breakMinutes = parseInt(formData.get("breakMinutes") as string) || 0
+
+        setIsAddingShift(true)
+
         try {
-            const dateStr = format(date, 'yyyy-MM-dd')
-            const result = await addManagerShift(managerId, dateStr, position)
+            const dateStr = format(selectedDateForShift, 'yyyy-MM-dd')
+            formData.set("date", dateStr)
+
+            const result = await addShift(formData) as any
             if (result?.error) {
                 toast.error(result.error)
             } else {
-                toast.success("Shift gérant ajouté. Rechargez la page pour voir les gérants.")
-                // Note: Revalidation will handle the sync usually, but localShifts doesn't have the new full object 
-                // easily since it's created on server. Revalidation in Next.js 15 is good.
+                toast.success("Shift ajouté avec succès")
+
+                // Optimistic UI update
+                const employee = employees.find(emp => emp.id === userId)
+
+                let start = new Date(`${dateStr}T${startTimeStr}:00`)
+                let end = new Date(`${dateStr}T${endTimeStr}:00`)
+                if (end <= start) end.setDate(end.getDate() + 1)
+
+                const newShift = {
+                    id: Math.random().toString(), // fake ID until refresh
+                    userId,
+                    startTime: start.toISOString(),
+                    endTime: end.toISOString(),
+                    breakMinutes,
+                    position: null,
+                    employee
+                }
+
+                setLocalShifts(prev => [...prev, newShift])
+                setSelectedDateForShift(null)
             }
         } catch (err) {
-            toast.error("Erreur de connexion")
+            toast.error("Erreur lors de l'ajout")
+        } finally {
+            setIsAddingShift(false)
         }
     }
 
@@ -214,7 +281,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                 toast.error(result.error)
             } else {
                 toast.success(`Terminé ! ${result.createdCount || 0} shifts créés.`)
-                window.location.reload() // On force la recharge pour voir les nouveaux shifts RSC
+                window.location.reload()
             }
         } catch (err) {
             toast.error("Erreur de connexion")
@@ -255,150 +322,210 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             className="rounded-full shadow-lg shadow-primary/20 bg-primary hover:bg-primary/90 font-bold uppercase text-[10px] tracking-wider px-4"
                         >
                             <UserPlus className="h-3.5 w-3.5 mr-2" />
-                            Remplissage Auto
+                            Remplissage Auto Gérants
                         </Button>
-                        <div className="flex flex-wrap gap-2 text-[10px] font-bold uppercase">
-                            <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-500/20">Cuisine</Badge>
-                            <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20">Salle</Badge>
-                            <Badge variant="outline" className="bg-purple-500/10 text-purple-600 border-purple-500/20">Bar</Badge>
-                            <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20">Plonge</Badge>
-                            <Badge variant="outline" className="bg-slate-500/10 text-slate-600 border-slate-500/20">Sécurité</Badge>
-                            <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">Gérants</Badge>
-                        </div>
                     </div>
                 </div>
             </CardHeader>
-            <CardContent className="p-0">
-                <div className="grid grid-cols-7 border-b border-border bg-muted/30">
-                    {weekDays.map(day => (
-                        <div key={day} className="py-3 text-center text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                            {day}
-                        </div>
-                    ))}
+
+            <CardContent className="p-0 flex flex-col xl:flex-row">
+                {/* Sidebar des Heures */}
+                <div className="w-full xl:w-64 shrink-0 border-b xl:border-b-0 xl:border-r border-border bg-muted/10 p-4">
+                    <div className="flex items-center gap-2 mb-4 text-muted-foreground">
+                        <Clock className="h-4 w-4" />
+                        <h3 className="font-bold text-xs uppercase tracking-wider">Heures du mois</h3>
+                    </div>
+
+                    <div className="flex flex-col gap-2 max-h-[300px] xl:max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+                        {employeeHours.map(emp => {
+                            const isGerant = emp.name.toLowerCase().includes('adam') || emp.name.toLowerCase().includes('benjamin')
+                            const displayHours = isGerant ? "Gérant" : `${emp.totalHours.toFixed(1)}h`
+
+                            return (
+                                <div key={emp.id} className="flex items-center justify-between p-2 rounded-lg bg-card border border-border shadow-sm">
+                                    <div className="flex items-center gap-2 overflow-hidden">
+                                        <div className={`shrink-0 w-3 h-3 rounded-full ${getEmployeeDotColor(emp.id)} shadow-sm`} />
+                                        <span className="text-xs font-semibold truncate" title={emp.name}>{formatName(emp.name)}</span>
+                                    </div>
+                                    <Badge variant={isGerant ? "outline" : "secondary"} className={`text-[10px] ${isGerant ? 'font-normal border-primary/20 text-primary' : 'font-bold'}`}>
+                                        {displayHours}
+                                    </Badge>
+                                </div>
+                            )
+                        })}
+                        {employeeHours.length === 0 && (
+                            <p className="text-xs text-muted-foreground italic text-center py-4">Aucune heure enregistrée ce mois-ci.</p>
+                        )}
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-7 auto-rows-[minmax(120px,auto)]">
-                    {days.map((day, idx) => {
-                        const dateKey = format(day, 'yyyy-MM-dd')
-                        const isCurrentMonth = isSameMonth(day, currentDate)
-                        const today = isToday(day)
-                        const dayShifts = shiftsByDay[dateKey] || []
+                {/* Calendrier */}
+                <div className="flex-1 min-w-0">
+                    <div className="grid grid-cols-7 border-b border-border bg-muted/30">
+                        {weekDays.map(day => (
+                            <div key={day} className="py-3 text-center text-xs font-bold text-muted-foreground uppercase tracking-wider border-r border-border/50 last:border-r-0">
+                                {day}
+                            </div>
+                        ))}
+                    </div>
 
-                        return (
-                            <div
-                                key={day.toISOString()}
-                                onDragOver={onDragOver}
-                                onDrop={(e) => onDrop(e, day)}
-                                className={`
-                                    min-h-[120px] p-2 border-r border-b border-border/50 flex flex-col gap-1 transition-colors group/day
-                                    ${!isCurrentMonth ? 'bg-muted/10 opacity-60' : 'bg-card hover:bg-muted/30'}
-                                    ${idx % 7 === 6 ? 'border-r-0' : ''}
-                                `}
-                            >
-                                <div className="flex justify-between items-start mb-1">
-                                    <div className="flex flex-col gap-1">
-                                        <span className={`text-sm font-bold w-7 h-7 flex items-center justify-center rounded-full
-                                            ${today ? 'bg-primary text-primary-foreground' : 'text-foreground'}`}>
-                                            {format(day, 'd')}
-                                        </span>
+                    <div className="grid grid-cols-7 auto-rows-[minmax(120px,auto)]">
+                        {days.map((day, idx) => {
+                            const dateKey = format(day, 'yyyy-MM-dd')
+                            const isCurrentMonth = isSameMonth(day, currentDate)
+                            const today = isToday(day)
+                            const dayShifts = shiftsByDay[dateKey] || []
 
-                                        {/* Bouton rapide d'ajout de gérant */}
-                                        {isCurrentMonth && managers.length > 0 && (
-                                            <DropdownMenu>
-                                                <DropdownMenuTrigger asChild>
-                                                    <Button variant="outline" size="icon" className="h-6 w-6 rounded-md opacity-0 group-hover/day:opacity-100 transition-opacity">
-                                                        <Plus className="h-3 w-3" />
-                                                    </Button>
-                                                </DropdownMenuTrigger>
-                                                <DropdownMenuContent align="start" className="w-48">
-                                                    <DropdownMenuLabel className="text-[10px] uppercase text-muted-foreground">Ajouter un Gérant</DropdownMenuLabel>
-                                                    <DropdownMenuSeparator />
-                                                    {managers.map(m => (
-                                                        <DropdownMenu key={m.id}>
-                                                            <DropdownMenuTrigger className="w-full">
-                                                                <DropdownMenuItem className="text-xs flex items-center gap-2 cursor-pointer w-full">
-                                                                    <UserPlus className="h-3 w-3" /> {m.name}
-                                                                </DropdownMenuItem>
-                                                            </DropdownMenuTrigger>
-                                                            <DropdownMenuContent side="right">
-                                                                {POSITIONS.map(p => (
-                                                                    <DropdownMenuItem
-                                                                        key={p.id}
-                                                                        className="text-xs flex items-center gap-2 cursor-pointer"
-                                                                        onClick={() => handleQuickManagerShift(m.id, day, p.id)}
-                                                                    >
-                                                                        <div className={`h-2 w-2 rounded-full ${p.color}`} />
-                                                                        {p.label}
-                                                                    </DropdownMenuItem>
-                                                                ))}
-                                                            </DropdownMenuContent>
-                                                        </DropdownMenu>
-                                                    ))}
-                                                </DropdownMenuContent>
-                                            </DropdownMenu>
+                            return (
+                                <div
+                                    key={day.toISOString()}
+                                    onDragOver={onDragOver}
+                                    onDrop={(e) => onDrop(e, day)}
+                                    className={`
+                                        min-h-[120px] p-2 border-r border-b border-border/50 flex flex-col gap-1 transition-colors group/day
+                                        ${!isCurrentMonth ? 'bg-muted/10 opacity-60' : 'bg-card hover:bg-muted/30'}
+                                        ${idx % 7 === 6 ? 'border-r-0' : ''}
+                                    `}
+                                >
+                                    <div className="flex justify-between items-start mb-1">
+                                        <div className="flex flex-col gap-1">
+                                            <span className={`text-sm font-bold w-7 h-7 flex items-center justify-center rounded-full
+                                                ${today ? 'bg-primary text-primary-foreground' : 'text-foreground'}`}>
+                                                {format(day, 'd')}
+                                            </span>
+
+                                            {/* Bouton rapide d'ajout de shift via Dialog */}
+                                            {isCurrentMonth && (
+                                                <Button
+                                                    variant="outline"
+                                                    size="icon"
+                                                    className="h-6 w-6 rounded-md opacity-0 group-hover/day:opacity-100 transition-opacity"
+                                                    onClick={() => setSelectedDateForShift(day)}
+                                                    title="Ajouter un shift"
+                                                >
+                                                    <Plus className="h-3 w-3" />
+                                                </Button>
+                                            )}
+                                        </div>
+
+                                        {dayShifts.length > 0 && (
+                                            <span className="text-[9px] font-bold text-muted-foreground bg-muted px-1.5 py-0.5 rounded-sm">
+                                                {dayShifts.length}
+                                            </span>
                                         )}
                                     </div>
 
-                                    {dayShifts.length > 0 && (
-                                        <span className="text-[9px] font-bold text-muted-foreground bg-muted px-1.5 py-0.5 rounded-sm">
-                                            {dayShifts.length}
-                                        </span>
-                                    )}
-                                </div>
+                                    <div className="flex flex-col gap-1 flex-1 overflow-y-auto max-h-[220px] custom-scrollbar pr-1">
+                                        {dayShifts.map((s, i) => {
+                                            const startStr = format(new Date(s.startTime), 'HH:mm')
+                                            const endStr = s.endTime ? format(new Date(s.endTime), 'HH:mm') : '?'
+                                            const colorClass = getEmployeeColorClass(s.employee.id)
 
-                                <div className="flex flex-col gap-1 flex-1 overflow-y-auto max-h-[220px] custom-scrollbar pr-1">
-                                    {dayShifts.map((s, i) => {
-                                        const startStr = format(new Date(s.startTime), 'HH:mm')
-                                        const endStr = s.endTime ? format(new Date(s.endTime), 'HH:mm') : '?'
-                                        const colorClass = getRoleColor(s.employee.name, s.position)
-
-                                        return (
-                                            <div
-                                                key={s.id || i}
-                                                className={`group relative flex items-center justify-between rounded border transition-all cursor-default ${colorClass} ${isDragging === s.id ? 'opacity-20 grayscale' : ''}`}
-                                            >
+                                            return (
                                                 <div
-                                                    draggable
-                                                    onDragStart={(e) => onDragStart(e, s.id)}
-                                                    className="flex-1 py-1 px-1.5 cursor-move overflow-hidden"
-                                                    title={`${s.employee.name} ${s.position ? `(${s.position})` : ''}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
+                                                    key={s.id || i}
+                                                    className={`group relative flex items-center justify-between rounded border transition-all cursor-default ${colorClass} ${isDragging === s.id ? 'opacity-20 grayscale' : ''}`}
                                                 >
-                                                    <div className="text-[10px] font-bold truncate">{formatName(s.employee.name)}</div>
-                                                    {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
-                                                        <div className="text-[9px] opacity-70 truncate">{startStr}-{endStr}</div>
-                                                    )}
-                                                </div>
+                                                    <div
+                                                        draggable
+                                                        onDragStart={(e) => onDragStart(e, s.id)}
+                                                        className="flex-1 py-1 px-1.5 cursor-move overflow-hidden flex items-center gap-1.5"
+                                                        title={`${s.employee.name} ${s.position ? `(${s.position})` : ''}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
+                                                    >
+                                                        <div className={`shrink-0 w-2 h-2 rounded-full ${getEmployeeDotColor(s.employee.id)}`} />
+                                                        <div className="flex-1 min-w-0">
+                                                            <div className="text-[10px] font-bold truncate leading-tight">{formatName(s.employee.name)}</div>
+                                                            {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
+                                                                <div className="text-[8.5px] opacity-80 truncate leading-tight">{startStr}-{endStr}</div>
+                                                            )}
+                                                        </div>
+                                                    </div>
 
-                                                <DropdownMenu>
-                                                    <DropdownMenuTrigger asChild>
-                                                        <Button variant="ghost" className="h-full px-1 py-0 hover:bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                            <MoreVertical className="h-3 w-3" />
-                                                        </Button>
-                                                    </DropdownMenuTrigger>
-                                                    <DropdownMenuContent align="end" className="w-36">
-                                                        <DropdownMenuLabel className="text-[10px] uppercase text-muted-foreground">Assigner Poste</DropdownMenuLabel>
-                                                        <DropdownMenuSeparator />
-                                                        {POSITIONS.map(p => (
-                                                            <DropdownMenuItem
-                                                                key={p.id}
-                                                                className="text-xs flex items-center gap-2 cursor-pointer"
-                                                                onClick={() => handleUpdatePosition(s.id, p.id)}
-                                                            >
-                                                                <div className={`h-2 w-2 rounded-full ${p.color}`} />
-                                                                {p.label}
-                                                            </DropdownMenuItem>
-                                                        ))}
-                                                    </DropdownMenuContent>
-                                                </DropdownMenu>
-                                            </div>
-                                        )
-                                    })}
+                                                    <DropdownMenu>
+                                                        <DropdownMenuTrigger asChild>
+                                                            <Button variant="ghost" className="h-full px-1 py-0 hover:bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                                <MoreVertical className="h-3 w-3" />
+                                                            </Button>
+                                                        </DropdownMenuTrigger>
+                                                        <DropdownMenuContent align="end" className="w-36">
+                                                            <DropdownMenuLabel className="text-[10px] uppercase text-muted-foreground">Assigner Poste</DropdownMenuLabel>
+                                                            <DropdownMenuSeparator />
+                                                            {POSITIONS.map(p => (
+                                                                <DropdownMenuItem
+                                                                    key={p.id}
+                                                                    className="text-xs flex items-center gap-2 cursor-pointer"
+                                                                    onClick={() => handleUpdatePosition(s.id, p.id)}
+                                                                >
+                                                                    <div className={`h-2 w-2 rounded-full ${p.color}`} />
+                                                                    {p.label}
+                                                                </DropdownMenuItem>
+                                                            ))}
+                                                        </DropdownMenuContent>
+                                                    </DropdownMenu>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                 </div>
             </CardContent>
+
+            {/* Dialog d'ajout rapide */}
+            <Dialog open={!!selectedDateForShift} onOpenChange={(open) => !open && setSelectedDateForShift(null)}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Ajouter un shift</DialogTitle>
+                        <CardDescription>
+                            {selectedDateForShift && format(selectedDateForShift, 'EEEE d MMMM yyyy', { locale: fr })}
+                        </CardDescription>
+                    </DialogHeader>
+
+                    <form onSubmit={handleAddShiftSubmit} className="grid gap-4 py-4">
+                        <div className="grid gap-2">
+                            <Label htmlFor="userId">Employé</Label>
+                            <select
+                                name="userId"
+                                id="userId"
+                                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                required
+                            >
+                                <option value="">Sélectionner un employé...</option>
+                                {employees.map(emp => (
+                                    <option key={emp.id} value={emp.id}>{emp.name}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="startTime">Début</Label>
+                                <Input type="time" id="startTime" name="startTime" defaultValue="18:00" required />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="endTime">Fin</Label>
+                                <Input type="time" id="endTime" name="endTime" defaultValue="23:30" required />
+                            </div>
+                        </div>
+
+                        <div className="grid gap-2">
+                            <Label htmlFor="breakMinutes">Temps de pause (en minutes) - non payé</Label>
+                            <Input type="number" id="breakMinutes" name="breakMinutes" defaultValue={30} min={0} />
+                        </div>
+
+                        <DialogFooter className="mt-4">
+                            <Button type="button" variant="outline" onClick={() => setSelectedDateForShift(null)}>
+                                Annuler
+                            </Button>
+                            <Button type="submit" disabled={isAddingShift}>
+                                {isAddingShift ? "Ajout..." : "Ajouter le shift"}
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
         </Card>
     )
 }
