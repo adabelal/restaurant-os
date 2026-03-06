@@ -90,8 +90,14 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     const [localShifts, setLocalShifts] = useState<any[]>([])
     const [isDragging, setIsDragging] = useState<string | null>(null)
 
+    // Ajout d'un shift
     const [selectedDateForShift, setSelectedDateForShift] = useState<Date | null>(null)
     const [isAddingShift, setIsAddingShift] = useState(false)
+    const [selectedUserIdForAdd, setSelectedUserIdForAdd] = useState<string>("")
+
+    // Édition d'un shift existant
+    const [editingShift, setEditingShift] = useState<any | null>(null)
+    const [isEditingShift, setIsEditingShift] = useState(false)
 
     useEffect(() => {
         const allShifts = employees.flatMap(emp =>
@@ -273,6 +279,52 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
         }
     }
 
+    const handleEditShiftSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        if (!editingShift) return
+
+        const formData = new FormData(e.currentTarget)
+        const startTimeStr = formData.get("startTime") as string
+        const endTimeStr = formData.get("endTime") as string
+        const breakMinutes = parseInt(formData.get("breakMinutes") as string) || 0
+
+        setIsEditingShift(true)
+
+        try {
+            const dateStr = format(new Date(editingShift.startTime), 'yyyy-MM-dd')
+            formData.set("shiftId", editingShift.id)
+            formData.set("userId", editingShift.userId)
+            formData.set("date", dateStr)
+
+            // L'action server updateShift est utilisée, nous supposons qu'elle est bien exportée depuis actions.ts
+            toast.info("Modification du shift...")
+            const { updateShift } = await import("@/app/(authenticated)/rh/actions")
+            const result = await updateShift(formData) as any
+
+            if (result?.error) {
+                toast.error(result.error)
+            } else {
+                toast.success("Shift modifié avec succès")
+
+                // Optimistic UI update
+                let start = new Date(`${dateStr}T${startTimeStr}:00`)
+                let end = new Date(`${dateStr}T${endTimeStr}:00`)
+                if (end <= start) end.setDate(end.getDate() + 1)
+
+                setLocalShifts(prev => prev.map(s =>
+                    s.id === editingShift.id
+                        ? { ...s, startTime: start.toISOString(), endTime: end.toISOString(), breakMinutes }
+                        : s
+                ))
+                setEditingShift(null)
+            }
+        } catch (err) {
+            toast.error("Erreur lors de la modification")
+        } finally {
+            setIsEditingShift(false)
+        }
+    }
+
     const handleAutoFill = async () => {
         toast.info("Remplissage automatique en cours...")
         try {
@@ -424,11 +476,15 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                             return (
                                                 <div
                                                     key={s.id || i}
-                                                    className={`group relative flex items-center justify-between rounded border transition-all cursor-default ${colorClass} ${isDragging === s.id ? 'opacity-20 grayscale' : ''}`}
+                                                    onClick={() => setEditingShift(s)}
+                                                    className={`group relative flex items-center justify-between rounded border transition-all cursor-pointer ${colorClass} ${isDragging === s.id ? 'opacity-20 grayscale' : ''} hover:brightness-95`}
                                                 >
                                                     <div
                                                         draggable
-                                                        onDragStart={(e) => onDragStart(e, s.id)}
+                                                        onDragStart={(e) => {
+                                                            e.stopPropagation()
+                                                            onDragStart(e, s.id)
+                                                        }}
                                                         className="flex-1 py-1 px-1.5 cursor-move overflow-hidden flex items-center gap-1.5"
                                                         title={`${s.employee.name} ${s.position ? `(${s.position})` : ''}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
                                                     >
@@ -491,6 +547,8 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 id="userId"
                                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                 required
+                                value={selectedUserIdForAdd}
+                                onChange={(e) => setSelectedUserIdForAdd(e.target.value)}
                             >
                                 <option value="">Sélectionner un employé...</option>
                                 {employees.map(emp => (
@@ -499,21 +557,26 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             </select>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="grid gap-2">
-                                <Label htmlFor="startTime">Début</Label>
-                                <Input type="time" id="startTime" name="startTime" defaultValue="18:00" required />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="endTime">Fin</Label>
-                                <Input type="time" id="endTime" name="endTime" defaultValue="23:30" required />
-                            </div>
-                        </div>
+                        {/* Masquer les horaires si Gérant */}
+                        {(!selectedUserIdForAdd || !employees.find(e => e.id === selectedUserIdForAdd)?.name.toLowerCase().includes('adam') && !employees.find(e => e.id === selectedUserIdForAdd)?.name.toLowerCase().includes('benjamin')) && (
+                            <>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="startTime">Début</Label>
+                                        <Input type="time" id="startTime" name="startTime" defaultValue="18:00" step={900} required />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="endTime">Fin</Label>
+                                        <Input type="time" id="endTime" name="endTime" defaultValue="23:30" step={900} required />
+                                    </div>
+                                </div>
 
-                        <div className="grid gap-2">
-                            <Label htmlFor="breakMinutes">Temps de pause (en minutes) - non payé</Label>
-                            <Input type="number" id="breakMinutes" name="breakMinutes" defaultValue={30} min={0} />
-                        </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="breakMinutes">Temps de pause (en minutes) - non payé</Label>
+                                    <Input type="number" id="breakMinutes" name="breakMinutes" defaultValue={0} step={15} min={0} />
+                                </div>
+                            </>
+                        )}
 
                         <DialogFooter className="mt-4">
                             <Button type="button" variant="outline" onClick={() => setSelectedDateForShift(null)}>
@@ -522,6 +585,54 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             <Button type="submit" disabled={isAddingShift}>
                                 {isAddingShift ? "Ajout..." : "Ajouter le shift"}
                             </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
+
+            {/* Dialog d'édition rapide */}
+            <Dialog open={!!editingShift} onOpenChange={(open) => !open && setEditingShift(null)}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Modifier le shift</DialogTitle>
+                        <CardDescription>
+                            {editingShift?.employee?.name} - {editingShift && format(new Date(editingShift.startTime), 'EEEE d MMMM yyyy', { locale: fr })}
+                        </CardDescription>
+                    </DialogHeader>
+
+                    <form onSubmit={handleEditShiftSubmit} className="grid gap-4 py-4">
+                        {/* Masquer les horaires si Gérant */}
+                        {editingShift && !(editingShift.employee.name.toLowerCase().includes('adam') || editingShift.employee.name.toLowerCase().includes('benjamin')) ? (
+                            <>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="editStartTime">Début</Label>
+                                        <Input type="time" id="editStartTime" name="startTime" defaultValue={format(new Date(editingShift.startTime), 'HH:mm')} step={900} required />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="editEndTime">Fin</Label>
+                                        <Input type="time" id="editEndTime" name="endTime" defaultValue={editingShift.endTime ? format(new Date(editingShift.endTime), 'HH:mm') : '23:30'} step={900} required />
+                                    </div>
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <Label htmlFor="editBreakMinutes">Temps de pause (en minutes) - non payé</Label>
+                                    <Input type="number" id="editBreakMinutes" name="breakMinutes" defaultValue={editingShift.breakMinutes || 0} step={15} min={0} />
+                                </div>
+                            </>
+                        ) : (
+                            <p className="text-sm text-center text-muted-foreground my-4">Les options horaires sont masquées pour les gérants.</p>
+                        )}
+
+                        <DialogFooter className="mt-4">
+                            <Button type="button" variant="outline" onClick={() => setEditingShift(null)}>
+                                Annuler
+                            </Button>
+                            {editingShift && !(editingShift.employee.name.toLowerCase().includes('adam') || editingShift.employee.name.toLowerCase().includes('benjamin')) && (
+                                <Button type="submit" disabled={isEditingShift}>
+                                    {isEditingShift ? "Modification..." : "Enregistrer"}
+                                </Button>
+                            )}
                         </DialogFooter>
                     </form>
                 </DialogContent>
