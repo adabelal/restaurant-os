@@ -27,6 +27,16 @@ const EventSchema = z.object({
     notes: z.string().optional(),
 })
 
+const BandProfileSchema = z.object({
+    id: z.string(),
+    name: z.string().min(1, "Le nom est requis"),
+    genre: z.string().optional(),
+    contact: z.string().optional(),
+    email: z.string().email("Email invalide").or(z.literal("")).optional(),
+    phone: z.string().optional(),
+    description: z.string().optional(),
+})
+
 export async function createBand(formData: FormData) {
     return safeAction(
         formData,
@@ -56,6 +66,48 @@ export async function createBand(formData: FormData) {
             } catch (error) {
                 console.error("Failed to create band:", error)
                 return { error: "Failed to create band" }
+            }
+        }
+    )
+}
+
+export async function updateBandProfile(formData: FormData) {
+    return safeAction(
+        formData,
+        async (input, context) => {
+            const rawData = {
+                id: input.get("id"),
+                name: input.get("name"),
+                genre: input.get("genre"),
+                email: input.get("email"),
+                phone: input.get("phone"),
+                description: input.get("description"),
+            }
+
+            const result = BandProfileSchema.safeParse(rawData)
+
+            if (!result.success) {
+                return { error: result.error.flatten().fieldErrors }
+            }
+
+            try {
+                // Workaround pour être sûr que le type est pris en compte après ajout DB direct
+                await (prisma.musicBand as any).update({
+                    where: { id: result.data.id },
+                    data: {
+                        name: result.data.name,
+                        genre: result.data.genre,
+                        email: result.data.email,
+                        phone: result.data.phone,
+                        description: result.data.description,
+                    },
+                })
+                revalidatePath("/music")
+                revalidatePath(`/music/bands/${result.data.id}`)
+                return { success: true }
+            } catch (error) {
+                console.error("Failed to update band details:", error)
+                return { error: "Erreur lors de la mise à jour des infos du groupe" }
             }
         }
     )
@@ -350,6 +402,25 @@ export async function updateEventStatus(eventId: string, status: string, invoice
             }
         }
     )
+}
+
+export async function linkInvoiceToEvent(eventId: string, invoiceUrl: string) {
+    return safeAction({ eventId, invoiceUrl }, async (input) => {
+        try {
+            await (prisma.musicEvent as any).update({
+                where: { id: input.eventId },
+                data: {
+                    invoiceUrl: input.invoiceUrl,
+                    invoiceStatus: "RECEIVED" // On marque automatiquement comme reçu
+                }
+            })
+            revalidatePath("/music")
+            return { success: true }
+        } catch (error) {
+            console.error("Failed to link invoice to event:", error)
+            return { error: "Erreur lors de la liaison de la facture" }
+        }
+    })
 }
 
 /**

@@ -37,6 +37,20 @@ export function ShiftManager({
 
     async function handleSubmit(formData: FormData) {
         setIsLoading(true)
+
+        const dateStr = formData.get("date") as string
+        const startTimeStr = formData.get("startTime") as string
+        const endTimeStr = formData.get("endTime") as string
+
+        if (dateStr && startTimeStr && endTimeStr) {
+            let start = new Date(`${dateStr}T${startTimeStr}:00`)
+            let end = new Date(`${dateStr}T${endTimeStr}:00`)
+            if (end <= start) end.setDate(end.getDate() + 1)
+
+            formData.set("isoStart", start.toISOString())
+            formData.set("isoEnd", end.toISOString())
+        }
+
         try {
             const res = await addShift(formData) as any
             if (res.success) {

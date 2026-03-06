@@ -30,12 +30,25 @@ export function EditShiftDialog({ shift, userId }: EditShiftDialogProps) {
         : ""
 
     async function handleSubmit(formData: FormData) {
-        const res = await updateShift(formData)
+        const dateStrForm = formData.get("date") as string
+        const startTimeStrForm = formData.get("startTime") as string
+        const endTimeStrForm = formData.get("endTime") as string
+
+        if (dateStrForm && startTimeStrForm && endTimeStrForm) {
+            let start = new Date(`${dateStrForm}T${startTimeStrForm}:00`)
+            let end = new Date(`${dateStrForm}T${endTimeStrForm}:00`)
+            if (end <= start) end.setDate(end.getDate() + 1)
+
+            formData.set("isoStart", start.toISOString())
+            formData.set("isoEnd", end.toISOString())
+        }
+
+        const res = await updateShift(formData) as any
         if (res.success) {
             toast.success(res.message || "Shift mis à jour avec succès.")
             setOpen(false)
         } else {
-            toast.error(res.message || "Erreur lors de la mise à jour du shift.")
+            toast.error(res.message || res.error || "Erreur lors de la mise à jour du shift.")
         }
     }
 

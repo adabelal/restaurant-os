@@ -207,11 +207,14 @@ export async function addShift(formData: FormData) {
 
         const data = result.data
 
-        try {
-            const start = new Date(`${data.date}T${data.startTime}:00`)
-            const end = new Date(`${data.date}T${data.endTime}:00`)
+        const isoStart = input.get("isoStart") as string
+        const isoEnd = input.get("isoEnd") as string
 
-            if (end <= start) {
+        try {
+            const start = isoStart ? new Date(isoStart) : new Date(`${data.date}T${data.startTime}:00`)
+            const end = isoEnd ? new Date(isoEnd) : new Date(`${data.date}T${data.endTime}:00`)
+
+            if (end <= start && !isoEnd) {
                 end.setDate(end.getDate() + 1)
             }
 
@@ -325,15 +328,18 @@ export async function updateShift(formData: FormData) {
         const endTimeStr = input.get("endTime") as string
         const breakMinutes = parseInt(input.get("breakMinutes") as string) || 0
 
+        const isoStart = input.get("isoStart") as string
+        const isoEnd = input.get("isoEnd") as string
+
         if (!shiftId || !userId || !date || !startTimeStr || !endTimeStr) {
             return { error: "Champs requis." }
         }
 
         try {
-            const start = new Date(`${date}T${startTimeStr}:00`)
-            const end = new Date(`${date}T${endTimeStr}:00`)
+            const start = isoStart ? new Date(isoStart) : new Date(`${date}T${startTimeStr}:00`)
+            const end = isoEnd ? new Date(isoEnd) : new Date(`${date}T${endTimeStr}:00`)
 
-            if (end <= start) {
+            if (end <= start && !isoEnd) {
                 end.setDate(end.getDate() + 1)
             }
 

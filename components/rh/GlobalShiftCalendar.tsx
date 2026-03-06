@@ -246,6 +246,13 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
             const dateStr = format(selectedDateForShift, 'yyyy-MM-dd')
             formData.set("date", dateStr)
 
+            let start = new Date(`${dateStr}T${startTimeStr}:00`)
+            let end = new Date(`${dateStr}T${endTimeStr}:00`)
+            if (end <= start) end.setDate(end.getDate() + 1)
+
+            formData.set("isoStart", start.toISOString())
+            formData.set("isoEnd", end.toISOString())
+
             const result = await addShift(formData) as any
             if (result?.error) {
                 toast.error(result.error)
@@ -254,10 +261,6 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
 
                 // Optimistic UI update
                 const employee = employees.find(emp => emp.id === userId)
-
-                let start = new Date(`${dateStr}T${startTimeStr}:00`)
-                let end = new Date(`${dateStr}T${endTimeStr}:00`)
-                if (end <= start) end.setDate(end.getDate() + 1)
 
                 const newShift = {
                     id: Math.random().toString(), // fake ID until refresh
@@ -296,6 +299,13 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
             formData.set("userId", editingShift.userId)
             formData.set("date", dateStr)
 
+            let start = new Date(`${dateStr}T${startTimeStr}:00`)
+            let end = new Date(`${dateStr}T${endTimeStr}:00`)
+            if (end <= start) end.setDate(end.getDate() + 1)
+
+            formData.set("isoStart", start.toISOString())
+            formData.set("isoEnd", end.toISOString())
+
             // L'action server updateShift est utilisée, nous supposons qu'elle est bien exportée depuis actions.ts
             toast.info("Modification du shift...")
             const { updateShift } = await import("@/app/(authenticated)/rh/actions")
@@ -307,9 +317,6 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                 toast.success("Shift modifié avec succès")
 
                 // Optimistic UI update
-                let start = new Date(`${dateStr}T${startTimeStr}:00`)
-                let end = new Date(`${dateStr}T${endTimeStr}:00`)
-                if (end <= start) end.setDate(end.getDate() + 1)
 
                 setLocalShifts(prev => prev.map(s =>
                     s.id === editingShift.id

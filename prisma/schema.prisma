@@ -425,12 +425,15 @@ model BudgetGoal {
 // --- EVENEMENTS & ANIMATIONS ---
 
 model MusicBand {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  genre     String?  // Jazz, Rock, Pop...
-  contact   String?  // Email / Tel
-
-  events    MusicEvent[]
+  id          String   @id @default(cuid())
+  name        String   @unique
+  genre       String?  // Jazz, Rock, Pop... (Style)
+  contact     String?  // Legacy contact field
+  email       String?
+  phone       String?
+  description String?  @db.Text
+  
+  events      MusicEvent[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -449,6 +452,7 @@ model MusicEvent {
   isFree        Boolean @default(false)
   paymentMethod String  @default("TRANSFER") // TRANSFER, CASH, CHECK, GUSO
   invoiceStatus String  @default("PENDING") // PENDING, RECEIVED, PAID
+  invoiceUrl    String? // Lien vers la facture uploadée
   
   status    String   @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
   
