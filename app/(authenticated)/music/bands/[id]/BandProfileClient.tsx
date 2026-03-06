@@ -239,6 +239,8 @@ export function BandProfileClient({ band }: { band: any }) {
                                                 <p className="text-sm font-bold group-hover:text-primary transition-colors">Concert du {new Date(ev.date).toLocaleDateString('fr-FR')}</p>
                                                 <p className="text-xs text-muted-foreground flex items-center gap-1">
                                                     <CheckCircle2 className="w-3 h-3 text-emerald-500" /> Montant : {ev.amount}€
+                                                    <span className="mx-1">•</span>
+                                                    <span>Règlement : {ev.paymentMethod === 'TRANSFER' ? 'Virement' : ev.paymentMethod === 'CASH' ? 'Espèces' : ev.paymentMethod === 'CHECK' ? 'Chèque' : ev.paymentMethod === 'GUSO' ? 'Guso' : ev.paymentMethod}</span>
                                                 </p>
                                             </div>
                                         </a>
