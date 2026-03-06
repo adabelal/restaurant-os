@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { writeFile } from "fs/promises"
+import { writeFile, mkdir } from "fs/promises"
 import { join } from "path"
 import crypto from "crypto"
 
@@ -24,6 +24,10 @@ export async function POST(req: NextRequest) {
 
         // Cible le dossier public/uploads/invoices
         const uploadDir = join(process.cwd(), "public/uploads/invoices")
+
+        // S'assurer que le dossier existe
+        await mkdir(uploadDir, { recursive: true })
+
         const filePath = join(uploadDir, fileName)
 
         // Sauvegarder le fichier
