@@ -85,7 +85,7 @@ export function EditShiftDialog({ shift, userId }: EditShiftDialogProps) {
 
                     <div className="grid gap-2">
                         <Label htmlFor="breakMinutes">Pause (minutes)</Label>
-                        <Input id="breakMinutes" name="breakMinutes" type="number" defaultValue={shift.breakMinutes} className="bg-background" />
+                        <Input id="breakMinutes" name="breakMinutes" type="number" defaultValue={shift.breakMinutes} step={10} min={0} className="bg-background" />
                     </div>
 
                     <Button type="submit" className="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground">Enregistrer les modifications</Button>

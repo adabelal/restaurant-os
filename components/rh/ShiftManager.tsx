@@ -121,7 +121,7 @@ export function ShiftManager({
                         </div>
                         <div className="space-y-1">
                             <Label className="text-[10px] uppercase font-bold text-muted-foreground">Pause (min)</Label>
-                            <Input type="number" name="breakMinutes" defaultValue="30" className="bg-background" />
+                            <Input type="number" name="breakMinutes" defaultValue="30" step={10} min={0} className="bg-background" />
                         </div>
                         <Button type="submit" disabled={isLoading} className="bg-primary text-primary-foreground hover:bg-primary/90 h-10">
                             {isLoading ? "Ajout..." : "Ajouter"}

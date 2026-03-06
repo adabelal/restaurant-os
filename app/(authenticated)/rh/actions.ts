@@ -223,12 +223,25 @@ export async function addShift(formData: FormData) {
                 return { error: "Utilisateur non trouvé" }
             }
 
+            let actualBreakMinutes = data.breakMinutes;
+            const isManager = user.name.toLowerCase().includes('adam') || user.name.toLowerCase().includes('benjamin')
+
+            if (!isManager) {
+                const diffMs = end.getTime() - start.getTime()
+                const diffHours = diffMs / (1000 * 60 * 60)
+                if (diffHours > 6 && actualBreakMinutes < 20) {
+                    const missingBreak = 20 - actualBreakMinutes
+                    actualBreakMinutes = 20
+                    end.setMinutes(end.getMinutes() + missingBreak)
+                }
+            }
+
             await prisma.shift.create({
                 data: {
                     userId: data.userId,
                     startTime: start,
                     endTime: end,
-                    breakMinutes: data.breakMinutes,
+                    breakMinutes: actualBreakMinutes,
                     hourlyRate: user.hourlyRate,
                     isSunday: start.getDay() === 0,
                     status: "COMPLETED"
@@ -343,12 +356,28 @@ export async function updateShift(formData: FormData) {
                 end.setDate(end.getDate() + 1)
             }
 
+            const user = await prisma.user.findUnique({ where: { id: userId } })
+            if (!user) return { error: "Utilisateur non trouvé" }
+
+            let actualBreakMinutes = breakMinutes;
+            const isManager = user.name.toLowerCase().includes('adam') || user.name.toLowerCase().includes('benjamin')
+
+            if (!isManager) {
+                const diffMs = end.getTime() - start.getTime()
+                const diffHours = diffMs / (1000 * 60 * 60)
+                if (diffHours > 6 && actualBreakMinutes < 20) {
+                    const missingBreak = 20 - actualBreakMinutes
+                    actualBreakMinutes = 20
+                    end.setMinutes(end.getMinutes() + missingBreak)
+                }
+            }
+
             await prisma.shift.update({
                 where: { id: shiftId },
                 data: {
                     startTime: start,
                     endTime: end,
-                    breakMinutes,
+                    breakMinutes: actualBreakMinutes,
                 }
             })
 
