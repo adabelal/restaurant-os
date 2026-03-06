@@ -8,11 +8,15 @@ import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
 import {
-    Clock, Trash2, ChevronLeft, ChevronRight, Edit2, AlertCircle
+    Clock, Trash2, ChevronLeft, ChevronRight, Edit2, AlertCircle,
+    ChefHat, UtensilsCrossed, Wine, Droplets, ShieldCheck
 } from "lucide-react"
 import { addShift, deleteShift } from "@/app/rh/actions"
 import { EditShiftDialog } from "@/components/rh/EditShiftDialog"
 import Link from 'next/link'
+import { POSITIONS } from "./GlobalShiftCalendar"
+import { format } from "date-fns"
+import { fr } from "date-fns/locale"
 
 interface ShiftManagerProps {
     employee: any
@@ -123,6 +127,19 @@ export function ShiftManager({
                             <Label className="text-[10px] uppercase font-bold text-muted-foreground">Pause (min)</Label>
                             <Input type="number" name="breakMinutes" defaultValue="30" step={10} min={0} className="bg-background" />
                         </div>
+                        <div className="space-y-1">
+                            <Label className="text-[10px] uppercase font-bold text-muted-foreground">Poste</Label>
+                            <select
+                                name="position"
+                                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                defaultValue=""
+                            >
+                                <option value="">-(Optionnel)-</option>
+                                {POSITIONS.map((p: any) => (
+                                    <option key={p.id} value={p.id}>{p.label}</option>
+                                ))}
+                            </select>
+                        </div>
                         <Button type="submit" disabled={isLoading} className="bg-primary text-primary-foreground hover:bg-primary/90 h-10">
                             {isLoading ? "Ajout..." : "Ajouter"}
                         </Button>
@@ -145,11 +162,31 @@ export function ShiftManager({
                                         <div>
                                             {!(employee.name.toLowerCase().includes('adam') || employee.name.toLowerCase().includes('benjamin')) ? (
                                                 <>
-                                                    <p className="text-sm font-semibold text-foreground">{s.startTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - {s.endTime?.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</p>
+                                                    <p className="text-sm font-semibold text-foreground flex items-center gap-2">
+                                                        {s.startTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - {s.endTime?.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                                                        {s.position && (() => {
+                                                            const pos: any = POSITIONS.find((p: any) => p.id === s.position)
+                                                            if (pos) {
+                                                                const Icon = pos.icon
+                                                                return <span title={pos.label}><Icon className="h-4 w-4 shrink-0 opacity-70" /></span>
+                                                            }
+                                                            return null
+                                                        })()}
+                                                    </p>
                                                     <p className="text-xs text-muted-foreground">Pause: {s.breakMinutes}m • {h.toFixed(1)}h effectives</p>
                                                 </>
                                             ) : (
-                                                <p className="text-sm font-semibold text-foreground">Service assuré</p>
+                                                <p className="text-sm font-semibold text-foreground flex items-center gap-2">
+                                                    Service assuré
+                                                    {s.position && (() => {
+                                                        const pos: any = POSITIONS.find((p: any) => p.id === s.position)
+                                                        if (pos) {
+                                                            const Icon = pos.icon
+                                                            return <span title={pos.label}><Icon className="h-4 w-4 shrink-0 opacity-70" /></span>
+                                                        }
+                                                        return null
+                                                    })()}
+                                                </p>
                                             )}
                                         </div>
                                     </div>

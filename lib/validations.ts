@@ -24,6 +24,7 @@ export const createShiftSchema = z.object({
     endTime: z.string().regex(/^\d{2}:\d{2}$/, "Format d'heure invalide (HH:MM)"),
     breakMinutes: z.coerce.number().min(0).max(480).default(0),
     notes: z.string().max(500).optional().nullable(),
+    position: z.string().optional().nullable(),
 })
 
 export const updateShiftSchema = createShiftSchema.partial().extend({

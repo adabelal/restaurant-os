@@ -198,6 +198,7 @@ export async function addShift(formData: FormData) {
             startTime: input.get("startTime"),
             endTime: input.get("endTime"),
             breakMinutes: input.get("breakMinutes") || 0,
+            position: input.get("position") || null,
         }
 
         const result = createShiftSchema.safeParse(rawData)
@@ -244,7 +245,8 @@ export async function addShift(formData: FormData) {
                     breakMinutes: actualBreakMinutes,
                     hourlyRate: user.hourlyRate,
                     isSunday: start.getDay() === 0,
-                    status: "COMPLETED"
+                    status: "COMPLETED",
+                    position: data.position
                 }
             })
 
@@ -340,6 +342,7 @@ export async function updateShift(formData: FormData) {
         const startTimeStr = input.get("startTime") as string
         const endTimeStr = input.get("endTime") as string
         const breakMinutes = parseInt(input.get("breakMinutes") as string) || 0
+        const position = (input.get("position") as string) || null
 
         const isoStart = input.get("isoStart") as string
         const isoEnd = input.get("isoEnd") as string
@@ -378,6 +381,7 @@ export async function updateShift(formData: FormData) {
                     startTime: start,
                     endTime: end,
                     breakMinutes: actualBreakMinutes,
+                    position,
                 }
             })
 

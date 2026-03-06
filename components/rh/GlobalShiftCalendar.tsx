@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreVertical, Plus, UserPlus, Clock } from "lucide-react"
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreVertical, Plus, UserPlus, Clock, ChefHat, UtensilsCrossed, Wine, Droplets, ShieldCheck } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -37,12 +37,12 @@ interface GlobalShiftCalendarProps {
     employees: any[]
 }
 
-const POSITIONS = [
-    { id: 'CUISINE', label: 'Cuisine', color: 'bg-amber-500' },
-    { id: 'SALLE', label: 'Salle', color: 'bg-blue-500' },
-    { id: 'BAR', label: 'Bar', color: 'bg-purple-500' },
-    { id: 'PLONGE', label: 'Plonge', color: 'bg-emerald-500' },
-    { id: 'SECURITE', label: 'Sécurité', color: 'bg-slate-500' },
+export const POSITIONS = [
+    { id: 'CUISINE', label: 'Cuisine', icon: ChefHat },
+    { id: 'SALLE', label: 'Salle', icon: UtensilsCrossed },
+    { id: 'BAR', label: 'Bar', icon: Wine },
+    { id: 'PLONGE', label: 'Plonge', icon: Droplets },
+    { id: 'SECURITE', label: 'Sécurité', icon: ShieldCheck },
 ]
 
 const EMPLOYEE_COLORS = [
@@ -498,14 +498,19 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                                             onDragStart(e, s.id)
                                                         }}
                                                         className="flex-1 py-1 px-1.5 cursor-move overflow-hidden flex items-center gap-1.5"
-                                                        title={`${s.employee.name} ${s.position ? `(${s.position})` : ''}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
+                                                        title={`${s.employee.name}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
                                                     >
                                                         <div className={`shrink-0 w-2 h-2 rounded-full ${getEmployeeDotColor(s.employee.id)}`} />
-                                                        <div className="flex-1 min-w-0">
-                                                            <div className="text-[10px] font-bold truncate leading-tight">{formatName(s.employee.name)}</div>
-                                                            {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
-                                                                <div className="text-[8.5px] opacity-80 truncate leading-tight">{startStr}-{endStr}</div>
-                                                            )}
+                                                        <div className="flex-1 min-w-0 flex items-center gap-1">
+                                                            <div className="text-[10px] font-bold truncate leading-tight flex-1">{formatName(s.employee.name)}</div>
+                                                            {s.position && (() => {
+                                                                const pos = POSITIONS.find(p => p.id === s.position)
+                                                                if (pos) {
+                                                                    const Icon = pos.icon
+                                                                    return <Icon className="h-3 w-3 shrink-0 opacity-70" title={pos.label} />
+                                                                }
+                                                                return null
+                                                            })()}
                                                         </div>
                                                     </div>
 
@@ -518,16 +523,19 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                                         <DropdownMenuContent align="end" className="w-36">
                                                             <DropdownMenuLabel className="text-[10px] uppercase text-muted-foreground">Assigner Poste</DropdownMenuLabel>
                                                             <DropdownMenuSeparator />
-                                                            {POSITIONS.map(p => (
-                                                                <DropdownMenuItem
-                                                                    key={p.id}
-                                                                    className="text-xs flex items-center gap-2 cursor-pointer"
-                                                                    onClick={() => handleUpdatePosition(s.id, p.id)}
-                                                                >
-                                                                    <div className={`h-2 w-2 rounded-full ${p.color}`} />
-                                                                    {p.label}
-                                                                </DropdownMenuItem>
-                                                            ))}
+                                                            {POSITIONS.map(p => {
+                                                                const Icon = p.icon
+                                                                return (
+                                                                    <DropdownMenuItem
+                                                                        key={p.id}
+                                                                        className="text-xs flex items-center gap-2 cursor-pointer"
+                                                                        onClick={() => handleUpdatePosition(s.id, p.id)}
+                                                                    >
+                                                                        <Icon className="h-3 w-3 text-muted-foreground" />
+                                                                        {p.label}
+                                                                    </DropdownMenuItem>
+                                                                )
+                                                            })}
                                                         </DropdownMenuContent>
                                                     </DropdownMenu>
                                                 </div>
@@ -587,6 +595,20 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                     <Label htmlFor="breakMinutes">Temps de pause (en minutes) - non payé</Label>
                                     <Input type="number" id="breakMinutes" name="breakMinutes" defaultValue={0} step={10} min={0} />
                                 </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="position">Poste (optionnel)</Label>
+                                    <select
+                                        id="position"
+                                        name="position"
+                                        className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        defaultValue=""
+                                    >
+                                        <option value="">-- Sans poste spécifique --</option>
+                                        {POSITIONS.map(p => (
+                                            <option key={p.id} value={p.id}>{p.label}</option>
+                                        ))}
+                                    </select>
+                                </div>
                             </>
                         )}
 
@@ -630,6 +652,20 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 <div className="grid gap-2">
                                     <Label htmlFor="editBreakMinutes">Temps de pause (en minutes) - non payé</Label>
                                     <Input type="number" id="editBreakMinutes" name="breakMinutes" defaultValue={editingShift.breakMinutes || 0} step={10} min={0} />
+                                </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="editPosition">Poste (optionnel)</Label>
+                                    <select
+                                        id="editPosition"
+                                        name="position"
+                                        className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        defaultValue={editingShift.position || ""}
+                                    >
+                                        <option value="">-- Sans poste spécifique --</option>
+                                        {POSITIONS.map(p => (
+                                            <option key={p.id} value={p.id}>{p.label}</option>
+                                        ))}
+                                    </select>
                                 </div>
                             </>
                         ) : (

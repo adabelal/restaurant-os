@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Pencil } from "lucide-react"
 import { updateShift } from "@/app/rh/actions"
 import { toast } from "sonner"
+import { POSITIONS } from "./GlobalShiftCalendar"
 
 interface EditShiftDialogProps {
     shift: {
@@ -15,6 +16,7 @@ interface EditShiftDialogProps {
         startTime: Date
         endTime: Date | null
         breakMinutes: number
+        position?: string | null
     }
     userId: string
 }
@@ -86,6 +88,21 @@ export function EditShiftDialog({ shift, userId }: EditShiftDialogProps) {
                     <div className="grid gap-2">
                         <Label htmlFor="breakMinutes">Pause (minutes)</Label>
                         <Input id="breakMinutes" name="breakMinutes" type="number" defaultValue={shift.breakMinutes} step={10} min={0} className="bg-background" />
+                    </div>
+
+                    <div className="grid gap-2">
+                        <Label htmlFor="position">Poste (optionnel)</Label>
+                        <select
+                            id="position"
+                            name="position"
+                            className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            defaultValue={shift.position || ""}
+                        >
+                            <option value="">-- Sans poste spécifique --</option>
+                            {POSITIONS.map((p: any) => (
+                                <option key={p.id} value={p.id}>{p.label}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <Button type="submit" className="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground">Enregistrer les modifications</Button>
