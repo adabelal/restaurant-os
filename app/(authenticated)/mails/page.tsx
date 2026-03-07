@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MusicProposalsTable } from './components/MusicProposalsTable';
+import { ProcessedMailsTable } from './components/ProcessedMailsTable';
 import { SyncButton } from './components/SyncButton';
 import { CleanupPopinaButton } from './components/CleanupPopinaButton';
 import { getBandProposals, triggerHistoricalScan } from './actions';
@@ -53,16 +54,17 @@ export default async function MailsPage() {
     // 5. Fusionner et dédoublonner pour l'onglet principal
     const processedIds = new Set(explicitMails.map((m: any) => m.targetId).filter(Boolean));
 
-    const allProcessed = [
+    const allProcessed: any[] = [
         ...explicitMails.map((m: any) => ({
             id: m.id,
             date: m.date,
-            type: (m.type === 'INVOICE' ? 'Facture' : 'Rapport Popina') as 'Facture' | 'Rapport Popina',
+            type: (m.type === 'INVOICE' ? 'Facture' : (m.type === 'POPINA_REPORT' ? 'Rapport Popina' : 'Document')) as any,
             source: m.sender,
             amount: Number(m.amount || 0),
             status: m.status,
             fileUrl: m.fileUrl,
-            description: m.subject
+            description: m.subject,
+            fileName: m.fileName
         })),
         ...invoices.filter((inv: any) => !processedIds.has(inv.id)).map((inv: any) => ({
             id: inv.id,
@@ -72,7 +74,8 @@ export default async function MailsPage() {
             amount: Number(inv.totalAmount),
             status: inv.status,
             fileUrl: inv.scannedUrl,
-            description: inv.invoiceNo ? `Facture N° ${inv.invoiceNo}` : 'Achat fournisseur'
+            description: inv.invoiceNo ? `Facture N° ${inv.invoiceNo}` : 'Achat fournisseur',
+            fileName: null
         })),
         ...popinaReports.filter((pop: any) => !processedIds.has(pop.id)).map((pop: any) => ({
             id: pop.id,
@@ -82,7 +85,8 @@ export default async function MailsPage() {
             amount: Number(pop.amount),
             status: 'VALIDATED',
             fileUrl: null,
-            description: pop.description
+            description: pop.description,
+            fileName: null
         }))
     ].sort((a, b) => b.date.getTime() - a.date.getTime());
 
@@ -134,89 +138,7 @@ export default async function MailsPage() {
                             </div>
                         </CardHeader>
                         <CardContent className="p-0">
-                            <div className="overflow-x-auto">
-                                <table className="w-full text-sm">
-                                    <thead>
-                                        <tr className="border-b border-border bg-muted/30 text-muted-foreground font-medium">
-                                            <th className="text-left py-3 px-4">Date</th>
-                                            <th className="text-left py-3 px-4">Type</th>
-                                            <th className="text-left py-3 px-4">Origine</th>
-                                            <th className="text-left py-3 px-4">Montant</th>
-                                            <th className="text-left py-3 px-4">Statut</th>
-                                            <th className="text-right py-3 px-4">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-border">
-                                        {allProcessed.length === 0 ? (
-                                            <tr>
-                                                <td colSpan={6} className="py-12 text-center text-muted-foreground italic">
-                                                    Aucun email traité récemment.
-                                                </td>
-                                            </tr>
-                                        ) : (
-                                            allProcessed.map((item) => (
-                                                <tr key={`${item.type}-${item.id}`} className="hover:bg-muted/30 transition-colors group">
-                                                    <td className="py-3 px-4 whitespace-nowrap">
-                                                        <div className="font-medium">
-                                                            {format(item.date, 'dd MMM yyyy', { locale: fr })}
-                                                        </div>
-                                                        <div className="text-[10px] text-muted-foreground">
-                                                            {format(item.date, 'HH:mm')}
-                                                        </div>
-                                                    </td>
-                                                    <td className="py-3 px-4">
-                                                        <div className="flex items-center gap-2">
-                                                            {item.type === 'Facture' ? (
-                                                                <div className="p-1.5 rounded-md bg-indigo-50 text-indigo-600 dark:bg-indigo-950/30 dark:text-indigo-400">
-                                                                    <Receipt className="h-4 w-4" />
-                                                                </div>
-                                                            ) : (
-                                                                <div className="p-1.5 rounded-md bg-amber-50 text-amber-600 dark:bg-amber-950/30 dark:text-amber-400">
-                                                                    <MailOpen className="h-4 w-4" />
-                                                                </div>
-                                                            )}
-                                                            <span className="font-medium">{item.type}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td className="py-3 px-4">
-                                                        <div className="font-medium text-foreground">{item.source}</div>
-                                                        <div className="text-xs text-muted-foreground truncate max-w-[200px]">
-                                                            {item.description}
-                                                        </div>
-                                                    </td>
-                                                    <td className="py-3 px-4 font-bold">
-                                                        {item.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                                                    </td>
-                                                    <td className="py-3 px-4">
-                                                        <Badge
-                                                            variant={item.status === 'ALERT' ? 'destructive' : 'secondary'}
-                                                            className={item.status === 'VALIDATED' ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800' : ''}
-                                                        >
-                                                            {item.status === 'VALIDATED' ? 'Succès' :
-                                                                item.status === 'ALERT' ? 'Alerte' :
-                                                                    item.status === 'PROCESSING' ? 'En cours' : item.status}
-                                                        </Badge>
-                                                    </td>
-                                                    <td className="py-3 px-4 text-right">
-                                                        <div className="flex items-center justify-end gap-1">
-                                                            {item.fileUrl && (
-                                                                <Button variant="ghost" size="icon" asChild className="h-8 w-8 text-indigo-500">
-                                                                    <a href={item.fileUrl} target="_blank" rel="noopener noreferrer" title="Voir le document">
-                                                                        <Download className="h-4 w-4" />
-                                                                    </a>
-                                                                </Button>
-                                                            )}
-                                                            <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground">
-                                                                <Info className="h-4 w-4" />
-                                                            </Button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            ))
-                                        )}
-                                    </tbody>
-                                </table>
-                            </div>
+                            <ProcessedMailsTable initialItems={allProcessed} />
                         </CardContent>
                     </Card>
                 </TabsContent>

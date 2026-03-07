@@ -1,60 +1,73 @@
-import { NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
-import { summarizeBandProposal } from "@/lib/gemini"
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
-export async function POST(req: Request) {
-    const apiKey = req.headers.get("x-api-key") || req.headers.get("authorization")?.replace("Bearer ", "")
-    const validKey = process.env.RESTAURANT_OS_API_KEY || process.env.N8N_API_KEY
-
-    if (!validKey || apiKey !== validKey) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
+export async function POST(req: NextRequest) {
     try {
-        const body = await req.json()
+        const apiKey = req.headers.get("authorization")?.replace("Bearer ", "");
+        const expectedKey = process.env.RESTAURANT_OS_API_KEY;
+
+        if (!apiKey || apiKey !== expectedKey) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        const data = await req.json();
+
         const {
             bandName,
             style,
             contactName,
             contactEmail,
             contactPhone,
+            videoLinks,
+            fullDescription,
+            emailDate,
             messageId,
-            emailDate
-        } = body
+        } = data;
 
         if (!bandName || !messageId) {
-            return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+            return NextResponse.json(
+                { error: "Missing required fields (bandName, messageId)" },
+                { status: 400 }
+            );
         }
 
-        // Résumé AI si le style est trop long
-        const summarizedStyle = await summarizeBandProposal(style || "");
-
-        const proposal = await (prisma as any).musicBandProposal.upsert({
+        // Upsert to handle potential re-syncs or updates
+        const proposal = await prisma.musicBandProposal.upsert({
             where: { messageId },
             update: {
                 bandName,
-                style: summarizedStyle,
+                style,
                 contactName,
                 contactEmail,
                 contactPhone,
-                fullDescription: style,
-                emailDate: emailDate ? new Date(emailDate) : new Date()
+                videoLinks,
+                fullDescription,
+                emailDate: new Date(emailDate),
             },
             create: {
                 bandName,
-                style: summarizedStyle,
+                style,
                 contactName,
                 contactEmail,
                 contactPhone,
-                fullDescription: style,
+                videoLinks,
+                fullDescription,
+                emailDate: new Date(emailDate),
                 messageId,
-                emailDate: emailDate ? new Date(emailDate) : new Date()
-            }
-        })
+            },
+        });
 
-        return NextResponse.json({ success: true, id: proposal.id })
-    } catch (error: any) {
-        console.error("Webook Music Error:", error)
-        return NextResponse.json({ success: false, error: error.message }, { status: 500 })
+        console.log(`🎸 Proposition musicale enregistrée : ${bandName}`);
+
+        return NextResponse.json({
+            success: true,
+            id: proposal.id,
+        });
+    } catch (error) {
+        console.error("❌ Erreur webhook music-proposals:", error);
+        return NextResponse.json(
+            { error: "Internal Server Error" },
+            { status: 500 }
+        );
     }
 }

@@ -13,9 +13,7 @@ import requests
 from dotenv import load_dotenv
 
 # Charger les variables d'environnement
-# On tente d'abord le dossier local (cas du dossier standalone sur le Bureau)
 local_env = os.path.join(os.path.dirname(__file__), '.env')
-# Puis le dossier parent (cas de la structure du repo Desktop/restaurant-os/Mail)
 parent_env = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
 
 if os.path.exists(local_env):
@@ -142,10 +140,9 @@ def analyze_with_ai(text_content, sender_info, subject_info):
 
     try:
         response = client.models.generate_content(
-            model='gemini-2.5-flash',
+            model='gemini-2.0-flash',
             contents=prompt
         )
-        # Nettoyage du markdown json si présent
         cleaned_text = response.text.replace('```json', '').replace('```', '').strip()
         data = json.loads(cleaned_text)
         return data
@@ -153,12 +150,62 @@ def analyze_with_ai(text_content, sender_info, subject_info):
         print(f"⚠️ Erreur AI: {e}")
         return None
 
+def analyze_music_proposal_with_ai(text_content, sender_info, subject_info):
+    """Utilise Gemini pour extraire les données d'un groupe de musique."""
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not HAS_GEMINI or not api_key:
+        return None
+
+    client = genai.Client(api_key=api_key)
+
+    prompt = f"""
+    Tu es un agent artistique chargé de qualifier les propositions de groupes de musique.
+    Analyse le texte suivant qui est une proposition de concert.
+    
+    Contexte:
+    - Expéditeur: {sender_info}
+    - Sujet: {subject_info}
+    
+    Texte de l'email:
+    {text_content[:15000]}
+
+    Instructions:
+    1. Identifie le NOM du groupe ou de l'artiste.
+    2. Identifie le STYLE de musique (ex: Pop/Rock, Jazz, DJ Set, etc.). Sois concis.
+    3. Extrait les CONTACTS : Nom, Email, Téléphone.
+    4. Extrait TOUS les LIENS vidéos (Youtube, Vimeo, etc.).
+    5. Fais un résumé TRÈS court (1 phrase) de la proposition.
+    
+    Réponds UNIQUEMENT avec un objet JSON valide.
+    Format attendu:
+    {{
+        "bandName": "NOM",
+        "style": "STYLE",
+        "contactName": "NOM_CONTACT",
+        "contactEmail": "EMAIL",
+        "contactPhone": "TEL",
+        "videoLinks": ["URL1", "URL2"],
+        "summary": "RESUME"
+    }}
+    """
+
+    try:
+        response = client.models.generate_content(
+            model='gemini-2.0-flash',
+            contents=prompt
+        )
+        cleaned_text = response.text.replace('```json', '').replace('```', '').strip()
+        return json.loads(cleaned_text)
+    except Exception as e:
+        print(f"⚠️ Erreur AI Musique: {e}")
+        return None
+
 def extract_text_from_pdf(pdf_data):
     try:
         reader = PdfReader(BytesIO(pdf_data))
         text = ""
         for i, page in enumerate(reader.pages):
-            if i > 2: break # On lit un peu plus de pages pour l'AI
+            if i > 2: break
             text += page.extract_text() or ""
         return text
     except Exception:
@@ -221,7 +268,7 @@ def sync_to_restaurant_os(data):
     
     try:
         response = requests.post(api_url, json=data, headers=headers)
-        if response.status_code == 200 or response.status_code == 201:
+        if response.status_code in [200, 201]:
             print(f"🚀 Synchro Restaurant-OS OK")
             return True
         else:
@@ -231,21 +278,45 @@ def sync_to_restaurant_os(data):
         print(f"❌ Erreur réseau synchro: {e}")
         return False
 
-def sync_popina_to_restaurant_os(data):
-    """Envoie les données de caisse Popina au webhook dédié"""
-    raw_api_url = os.getenv("RESTAURANT_OS_API_URL") or "http://localhost:3000/api/webhooks/invoices"
-    # Extraction de la base (ex: http://localhost:3000)
+def sync_music_proposal_to_restaurant_os(data):
+    """Envoie une proposition de groupe au webhook dédié."""
+    raw_api_url = os.getenv("RESTAURANT_OS_API_URL")
+    if not raw_api_url:
+        return False
+
     import urllib.parse
     parsed = urllib.parse.urlparse(raw_api_url)
     base_url = f"{parsed.scheme}://{parsed.netloc}"
+    api_url = f"{base_url}/api/webhooks/music-proposals"
     
+    api_key = os.getenv("RESTAURANT_OS_API_KEY")
+
+    headers = {
+        "Content-Type": "application/json",
+        "authorization": f"Bearer {api_key or ''}"
+    }
+    
+    try:
+        response = requests.post(api_url, json=data, headers=headers)
+        if response.status_code in [200, 201]:
+            print(f"🎸 Synchro Musique OK")
+            return True
+        else:
+            print(f"❌ Erreur synchro Musique: {response.text}")
+            return False
+    except Exception as e:
+        print(f"❌ Erreur réseau Musique: {e}")
+        return False
+
+def sync_popina_to_restaurant_os(data):
+    """Envoie les données de caisse Popina au webhook dédié"""
+    raw_api_url = os.getenv("RESTAURANT_OS_API_URL")
+    import urllib.parse
+    parsed = urllib.parse.urlparse(raw_api_url)
+    base_url = f"{parsed.scheme}://{parsed.netloc}"
     api_url = os.getenv("RESTAURANT_OS_POPINA_URL") or f"{base_url}/api/webhooks/popina"
     api_key = os.getenv("RESTAURANT_OS_API_KEY")
     
-    if not api_url:
-        print("⚠️ URL API Popina manquante. Sync ignorée.")
-        return False
-
     headers = {
         "Content-Type": "application/json",
         "x-api-key": f"{api_key or ''}"
@@ -253,21 +324,20 @@ def sync_popina_to_restaurant_os(data):
     
     try:
         response = requests.post(api_url, json=data, headers=headers)
-        if response.status_code == 200 or response.status_code == 201:
+        if response.status_code in [200, 201]:
             print(f"🚀 Synchro Popina OK")
             return True
         else:
-            print(f"❌ Erreur synchro Popina: [{response.status_code}] {response.text}")
+            print(f"❌ Erreur synchro Popina: {response.text}")
             return False
     except Exception as e:
-        print(f"❌ Erreur réseau synchro Popina: {e}")
+        print(f"❌ Erreur réseau Popina: {e}")
         return False
 
 def mark_as_processed(service, msg_id):
     """Ajoute le label 'Archive_AI' au message pour ne plus le traiter."""
     label_name = "Archive_AI"
     try:
-        # Trouver ou créer le label
         results = service.users().labels().list(userId='me').execute()
         labels = results.get('labels', [])
         label_id = next((l['id'] for l in labels if l['name'] == label_name), None)
@@ -277,36 +347,41 @@ def mark_as_processed(service, msg_id):
             label = service.users().labels().create(userId='me', body=label_body).execute()
             label_id = label['id']
         
-        # Appliquer le label
         service.users().messages().batchModify(
             userId='me',
             body={
                 'ids': [msg_id],
                 'addLabelIds': [label_id],
-                'removeLabelIds': ['INBOX'] # On l'archive de la boîte de réception
+                'removeLabelIds': ['INBOX']
             }
         ).execute()
     except Exception as e:
         print(f"⚠️ Erreur archivage Gmail: {e}")
 
+def download_and_upload_invoices():
+    gmail_service = get_gmail_service()
+    drive_service = get_drive_service()
+    if not gmail_service or not drive_service:
+        return
+
     print("🔍 Récupération de l'arborescence Drive...")
     root_folder_id = get_folder_id_from_path(drive_service, DRIVE_PATH)
     autres_folder_id = get_or_create_folder(drive_service, "Autres", root_folder_id)
 
-    print("🔍 Recherche Gmail (Nouveaux messages 2026+ sans restriction INBOX)...")
-    # Recherche large pour être sûr de ne rien rater
-    query = '-label:Archive_AI after:2025/12/31 has:attachment filename:pdf'
+    # 1. SCAN DES FACTURES ET DOCUMENTS
+    print("\n--- 📝 SCAN FACTURES & DOCUMENTS ---")
+    query_docs = '-label:Archive_AI after:2025/12/31 has:attachment filename:pdf'
     
     messages = []
     next_page = None
     while True:
-        results = gmail_service.users().messages().list(userId='me', q=query, pageToken=next_page).execute()
+        results = gmail_service.users().messages().list(userId='me', q=query_docs, pageToken=next_page).execute()
         batch = results.get('messages', [])
         messages.extend(batch)
         next_page = results.get('nextPageToken')
         if not next_page: break
             
-    print(f"--> {len(messages)} emails avec PDF trouvés. Analyse et Upload...")
+    print(f"--> {len(messages)} emails de facturation trouvés.")
     
     processed_count = 0
     uploaded_count = 0
@@ -321,110 +396,120 @@ def mark_as_processed(service, msg_id):
             sender = next((h['value'] for h in headers if h['name'] == 'From'), 'Inconnu')
             email_date_str = next((h['value'] for h in headers if h['name'] == 'Date'), None)
             
-            formatted_date = datetime.now().strftime('%Y_%m_%d')
+            dt = datetime.now()
             if email_date_str:
                 dt = email.utils.parsedate_to_datetime(email_date_str)
-                formatted_date = dt.strftime('%Y_%m_%d')
-
+            
+            formatted_date = dt.strftime('%Y_%m_%d')
             parts = payload.get('parts', [])
             
             def get_attachments(parts_list):
                 found = []
                 for p in parts_list:
-                    if p.get('parts'):
-                        found.extend(get_attachments(p['parts']))
+                    if p.get('parts'): found.extend(get_attachments(p['parts']))
                     if p.get('filename') and p.get('body') and p.get('body').get('attachmentId'):
-                        if p['filename'].lower().endswith('.pdf'):
-                            found.append(p)
+                        if p['filename'].lower().endswith('.pdf'): found.append(p)
                 return found
 
             attachments = get_attachments(parts)
-            
             all_success = True
             for part in attachments:
-                filename_orig = part['filename'].lower()
                 att_id = part['body']['attachmentId']
                 attachment = gmail_service.users().messages().attachments().get(
                     userId='me', messageId=msg_info['id'], id=att_id).execute()
                 data = base64.urlsafe_b64decode(attachment['data'].encode('UTF-8'))
                 
                 pdf_text = extract_text_from_pdf(data)
-                
-                # --- INTELLIGENCE ARTIFICIELLE ---
                 ai_data = analyze_with_ai(pdf_text, sender, subject)
                 
                 if ai_data:
-                    # Utilisation des données AI
                     tier = ai_data.get('supplier', 'INCONNU').upper().replace(' ', '_')
                     amount = str(ai_data.get('amount', '0.00'))
                     doc_type = ai_data.get('type', 'DOC')
-                    invoice_date = ai_data.get('date', formatted_date).replace('-', '_')
-                    print(f"🤖 AI Success: {tier} - {amount}€ ({doc_type})")
+                    invoice_date = ai_data.get('date', dt.strftime('%Y-%m-%d')).replace('-', '_')
                 else:
-                    # Fallback Regex / Legacy
-                    print("⚠️ AI Failed/Skipped, using Regex fallback")
                     tier = predict_tier_regex(sender, subject, pdf_text)
-                    amount = extract_amount_regex(subject)
-                    if amount == "0.00":
-                        amount = extract_amount_regex(pdf_text)
-                    
+                    amount = extract_amount_regex(subject) or extract_amount_regex(pdf_text)
                     doc_type = "DOC"
-                    if "avoir" in subject.lower() or "credit note" in pdf_text.lower():
-                        doc_type = "AVOIR"
-                    elif "facture" in subject.lower() or "invoice" in pdf_text.lower():
-                        doc_type = "FACT"
-                    elif "relevé" in subject.lower() or "releve" in pdf_text.lower():
-                        doc_type = "RELEVE"
-                    
                     invoice_date = formatted_date
 
-                # Construction du nom de fichier final
                 new_filename = f"{invoice_date}_{doc_type}_{tier}_{amount}.pdf"
-                
-                # Dossier cible
                 is_financial = doc_type in ['FACT', 'AVOIR', 'RELEVE']
                 target_folder = root_folder_id if is_financial else autres_folder_id
                 
-                # Upload si nouveau
                 if not file_exists_on_drive(drive_service, target_folder, new_filename):
                     file_id = upload_to_drive(drive_service, target_folder, new_filename, data)
-                    print(f"✅ Uploadé : {new_filename}")
                     uploaded_count += 1
-
-                    # Synchro Restaurant-OS
-                    if is_financial:
-                        sync_data = {
-                            "supplierName": tier,
-                            "date": invoice_date.replace("_", "-"),
-                            "invoiceNo": ai_data.get("invoiceNo") if ai_data else None,
-                            "totalAmount": float(amount),
-                            "scannedUrl": f"https://drive.google.com/file/d/{file_id}/view",
-                            "items": [],
-                            "emailMetadata": {
-                                "messageId": msg_info['id'],
-                                "subject": subject,
-                                "sender": sender,
-                                "type": "INVOICE"
-                            }
-                        }
-                        if not sync_to_restaurant_os(sync_data):
-                            all_success = False
-                else:
-                    print(f"⏭️  Déjà présent : {new_filename}")
-                
-            # Archivage après traitement (si au moins une PJ trouvée)
+                    sync_data = {
+                        "supplierName": tier,
+                        "date": invoice_date.replace("_", "-"),
+                        "totalAmount": float(amount),
+                        "scannedUrl": f"https://drive.google.com/file/d/{file_id}/view",
+                        "fileName": new_filename,
+                        "isFinancial": is_financial,
+                        "emailMetadata": {"messageId": msg_info['id'], "subject": subject, "sender": sender}
+                    }
+                    if not sync_to_restaurant_os(sync_data): all_success = False
+            
             if attachments and all_success:
                 mark_as_processed(gmail_service, msg_info['id'])
                 processed_count += 1
-            elif attachments and not all_success:
-                print(f"⚠️  Echec sync pour facture(s) du msg {msg_info['id']}, non marqué.")
-
-
         except Exception as e:
-            print(f"❌ Erreur critique message {msg_info['id']}: {e}")
+            print(f"❌ Erreur document: {e}")
 
-    print("\n" + "="*30)
-    print(f"Terminé : {processed_count} emails traités, {uploaded_count} fichiers envoyés.")
+    # 2. SCAN DES PROPOSITIONS MUSICALES
+    print("\n--- 🎸 SCAN PROPOSITIONS MUSICALES ---")
+    query_music = '-label:Archive_AI after:2025/12/31 (concert OR groupe OR booking OR musique OR musicien OR "proposition musicale")'
+    
+    results = gmail_service.users().messages().list(userId='me', q=query_music).execute()
+    music_messages = results.get('messages', [])
+    
+    for msg_info in music_messages:
+        try:
+            msg = gmail_service.users().messages().get(userId='me', id=msg_info['id'], format='full').execute()
+            headers = msg.get('payload', {}).get('headers', [])
+            subject = next((h['value'] for h in headers if h['name'] == 'Subject'), 'Sans objet')
+            sender = next((h['value'] for h in headers if h['name'] == 'From'), 'Inconnu')
+            date_str = next((h['value'] for h in headers if h['name'] == 'Date'), None)
+            dt = email.utils.parsedate_to_datetime(date_str) if date_str else datetime.now()
+
+            def get_body(payload):
+                text = ""
+                if 'body' in payload and 'data' in payload['body']:
+                    text += base64.urlsafe_b64decode(payload['body']['data']).decode('utf-8')
+                if 'parts' in payload:
+                    for part in payload['parts']:
+                        text += get_body(part)
+                return text
+
+            body_raw = get_body(msg.get('payload', {}))
+            if "<html" in body_raw.lower():
+                body_text = BeautifulSoup(body_raw, 'html.parser').get_text(separator='\n')
+            else:
+                body_text = body_raw
+            
+            print(f"🎸 Analyse proposition: {subject}")
+            band_info = analyze_music_proposal_with_ai(body_text, sender, subject)
+            
+            if band_info:
+                sync_data = {
+                    "bandName": band_info.get("bandName"),
+                    "style": band_info.get("style"),
+                    "contactName": band_info.get("contactName"),
+                    "contactEmail": band_info.get("contactEmail"),
+                    "contactPhone": band_info.get("contactPhone"),
+                    "videoLinks": band_info.get("videoLinks", []),
+                    "fullDescription": body_text,
+                    "emailDate": dt.isoformat(),
+                    "messageId": msg_info['id']
+                }
+                if sync_music_proposal_to_restaurant_os(sync_data):
+                    mark_as_processed(gmail_service, msg_info['id'])
+                    print(f"✅ Proposition sync: {band_info.get('bandName')}")
+        except Exception as e:
+            print(f"❌ Erreur musique: {e}")
+
+    print(f"\nTerminé : {processed_count} factures, {uploaded_count} uploads.")
 
 if __name__ == '__main__':
     download_and_upload_invoices()

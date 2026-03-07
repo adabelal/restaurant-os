@@ -43,12 +43,18 @@ export async function acceptProposal(id: string) {
             where: { name: proposal.bandName },
             update: {
                 genre: proposal.style,
-                contact: `${proposal.contactName ? proposal.contactName + ' - ' : ''}${proposal.contactEmail || ''} ${proposal.contactPhone || ''}`.trim()
+                email: proposal.contactEmail,
+                phone: proposal.contactPhone,
+                contact: proposal.contactName,
+                description: proposal.fullDescription
             },
             create: {
                 name: proposal.bandName,
                 genre: proposal.style,
-                contact: `${proposal.contactName ? proposal.contactName + ' - ' : ''}${proposal.contactEmail || ''} ${proposal.contactPhone || ''}`.trim()
+                email: proposal.contactEmail,
+                phone: proposal.contactPhone,
+                contact: proposal.contactName,
+                description: proposal.fullDescription
             }
         });
 

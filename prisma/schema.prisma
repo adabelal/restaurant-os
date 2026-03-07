@@ -486,6 +486,7 @@ model ProcessedMail {
   amount      Decimal? @db.Decimal(10, 2)
   targetId    String?  // ID de la transaction ou facture créée
   fileUrl     String?  // Lien vers le fichier Drive si applicable
+  fileName    String?  // Nom du fichier renonmmé (ex: 2026_01_01_FACT_METRO_10.20.pdf)
   
   @@index([date])
 }
@@ -498,6 +499,7 @@ model MusicBandProposal {
   contactEmail    String?
   contactPhone    String?
   fullDescription String?  @db.Text
+  videoLinks      String[] @default([]) // Extraits par l'AI
   emailDate       DateTime
   messageId       String   @unique // For deduplication
   status          String   @default("PENDING") // PENDING, ACCEPTED, REJECTED

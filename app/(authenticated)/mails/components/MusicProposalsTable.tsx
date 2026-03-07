@@ -16,6 +16,7 @@ interface MusicBandProposal {
     contactName: string | null
     contactEmail: string | null
     contactPhone: string | null
+    videoLinks: string[]
     fullDescription: string | null
     emailDate: Date
     status: string
@@ -34,7 +35,6 @@ export function MusicProposalsTable({ initialProposals }: MusicProposalsTablePro
         const result = await triggerHistoricalScan()
         if (result.success) {
             toast.success(result.message)
-            // L'actualisation se fera par l'arrivée des webhooks
         } else {
             toast.error(result.error)
         }
@@ -85,7 +85,7 @@ export function MusicProposalsTable({ initialProposals }: MusicProposalsTablePro
                     <thead>
                         <tr className="border-b border-border bg-muted/30 text-muted-foreground font-medium">
                             <th className="text-left py-3 px-4 w-[120px]">Date</th>
-                            <th className="text-left py-3 px-4 min-w-[150px]">Groupe / Style</th>
+                            <th className="text-left py-3 px-4 min-w-[200px]">Groupe / Style / Vidéos</th>
                             <th className="text-left py-3 px-4">Contacts</th>
                             <th className="text-right py-3 px-4">Actions</th>
                         </tr>
@@ -101,53 +101,72 @@ export function MusicProposalsTable({ initialProposals }: MusicProposalsTablePro
                             proposals.map((item) => (
                                 <tr key={item.id} className="hover:bg-muted/10 transition-colors group">
                                     <td className="py-4 px-4 whitespace-nowrap align-top">
-                                        <div className="font-medium">
+                                        <div className="font-medium text-slate-900 dark:text-slate-100 italic">
                                             {format(new Date(item.emailDate), 'dd MMM yyyy', { locale: fr })}
                                         </div>
-                                        <div className="text-[10px] text-muted-foreground uppercase tracking-tight">
-                                            Reçu
+                                        <div className="text-[10px] text-muted-foreground uppercase tracking-tight mt-1 flex items-center gap-1">
+                                            <Mail className="h-2.5 w-2.5 text-indigo-400" />
+                                            Email reçu
                                         </div>
                                     </td>
                                     <td className="py-4 px-4 align-top">
-                                        <div className="flex flex-col gap-1">
-                                            <div className="font-bold text-base flex items-center gap-2">
-                                                <Music className="h-4 w-4 text-purple-500" />
+                                        <div className="flex flex-col gap-2">
+                                            <div className="font-bold text-lg flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
+                                                <Music className="h-4 w-4" />
                                                 {item.bandName}
                                             </div>
                                             {item.style && (
-                                                <div className="text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 px-2 py-0.5 rounded-full w-fit max-w-[250px] leading-tight">
+                                                <div className="text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 px-2.5 py-1 rounded-md w-fit font-medium border border-indigo-100 dark:border-indigo-900/50">
                                                     {item.style}
                                                 </div>
                                             )}
+
+                                            {item.videoLinks && item.videoLinks.length > 0 && (
+                                                <div className="flex flex-wrap gap-2 mt-1">
+                                                    {item.videoLinks.map((link, idx) => (
+                                                        <a
+                                                            key={idx}
+                                                            href={link}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-1 text-[11px] bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400 px-2 py-0.5 rounded border border-red-100 dark:border-red-900/40 hover:bg-red-100 transition-colors"
+                                                        >
+                                                            <ExternalLink className="h-3 w-3" />
+                                                            Vidéo {idx + 1}
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                            )}
+
                                             {item.fullDescription && (
-                                                <div className="text-[11px] text-muted-foreground mt-1 line-clamp-2 italic">
-                                                    "{item.fullDescription.substring(0, 100)}..."
+                                                <div className="text-[11px] text-muted-foreground mt-1 line-clamp-3 bg-muted/20 p-2 rounded border border-dotted border-border italic leading-relaxed">
+                                                    "{item.fullDescription.substring(0, 200)}..."
                                                 </div>
                                             )}
                                         </div>
                                     </td>
                                     <td className="py-4 px-4 align-top">
-                                        <div className="flex flex-col gap-1.5 text-xs">
+                                        <div className="flex flex-col gap-2 text-xs">
                                             {item.contactName && (
-                                                <div className="flex items-center gap-2 text-foreground font-medium">
-                                                    <UserIcon className="h-3 w-3 text-muted-foreground" />
+                                                <div className="flex items-center gap-2 text-foreground font-semibold">
+                                                    <UserIcon className="h-3.5 w-3.5 text-indigo-500" />
                                                     {item.contactName}
                                                 </div>
                                             )}
                                             {item.contactEmail && (
-                                                <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
-                                                    <Mail className="h-3 w-3 text-muted-foreground" />
+                                                <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:underline">
+                                                    <Mail className="h-3.5 w-3.5 text-slate-400" />
                                                     <a href={`mailto:${item.contactEmail}`}>{item.contactEmail}</a>
                                                 </div>
                                             )}
                                             {item.contactPhone && (
-                                                <div className="flex items-center gap-2 text-muted-foreground">
-                                                    <Phone className="h-3 w-3" />
+                                                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+                                                    <Phone className="h-3.5 w-3.5 text-slate-400" />
                                                     {item.contactPhone}
                                                 </div>
                                             )}
                                             {!item.contactEmail && !item.contactPhone && !item.contactName && (
-                                                <span className="text-muted-foreground italic">Non spécifié</span>
+                                                <span className="text-muted-foreground italic">Coordonnées non extraites</span>
                                             )}
                                         </div>
                                     </td>
@@ -157,18 +176,18 @@ export function MusicProposalsTable({ initialProposals }: MusicProposalsTablePro
                                                 variant="outline"
                                                 size="sm"
                                                 onClick={() => handleAccept(item.id)}
-                                                className="h-8 gap-1.5 text-emerald-600 border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 dark:text-emerald-400 dark:border-emerald-800 dark:hover:bg-emerald-900/20"
+                                                className="h-9 gap-1.5 text-emerald-600 border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 dark:text-emerald-400 dark:border-emerald-800 dark:hover:bg-emerald-900/20 font-bold"
                                             >
-                                                <Check className="h-3.5 w-3.5" />
+                                                <Check className="h-4 w-4" />
                                                 Accepter
                                             </Button>
                                             <Button
                                                 variant="ghost"
                                                 size="icon"
                                                 onClick={() => handleDelete(item.id)}
-                                                className="h-8 w-8 text-destructive hover:bg-destructive/10"
+                                                className="h-9 w-9 text-destructive hover:bg-destructive/10"
                                             >
-                                                <Trash2 className="h-3.5 w-3.5" />
+                                                <Trash2 className="h-4 w-4" />
                                             </Button>
                                         </div>
                                     </td>
