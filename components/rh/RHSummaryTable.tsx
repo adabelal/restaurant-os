@@ -6,7 +6,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Calculator, Euro, Clock, ChevronLeft, ChevronRight } from "lucide-react"
+import { Calculator, Euro, Clock, ChevronLeft, ChevronRight, Loader2 } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { updateEmployeeNet } from "@/app/(authenticated)/rh/actions"
+import { toast } from "sonner"
 
 interface RHSummaryTableProps {
     employees: any[]
@@ -19,6 +22,8 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
     const selectedYear = currentDate.getFullYear()
 
     const monthLabel = currentDate.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+
+    const [savingId, setSavingId] = React.useState<string | null>(null)
 
     const changeMonth = (delta: number) => {
         const nextDate = new Date(selectedYear, selectedMonth + delta, 1)
@@ -187,8 +192,42 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                             <TableCell className="text-right font-black text-foreground">
                                                 {isManager ? '-' : `${totalGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
                                             </TableCell>
-                                            <TableCell className="text-right font-black pr-6 text-emerald-600">
-                                                {isManager ? '-' : `${(totalNet || 0).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
+                                            <TableCell className="text-right font-black pr-6 text-emerald-600 min-w-[140px]">
+                                                {isManager ? (
+                                                    <div className="flex justify-end pr-4 text-muted-foreground">-</div>
+                                                ) : (
+                                                    <div className="relative group flex items-center justify-end">
+                                                        <Input
+                                                            type="number"
+                                                            step="0.01"
+                                                            placeholder="0.00 €"
+                                                            defaultValue={emp.netRemuneration ? Number(emp.netRemuneration) : ""}
+                                                            className="h-8 w-24 text-right font-bold bg-emerald-500/5 border-emerald-500/20 focus:border-emerald-500 focus:ring-emerald-500/20 transition-all pr-1"
+                                                            onBlur={async (e) => {
+                                                                const val = e.target.value
+                                                                const numVal = val === "" ? null : parseFloat(val)
+
+                                                                // Ne rien faire si la valeur n'a pas changé
+                                                                if (numVal === (emp.netRemuneration ? Number(emp.netRemuneration) : null)) return
+
+                                                                setSavingId(emp.id)
+                                                                const res = await updateEmployeeNet(emp.id, numVal)
+                                                                setSavingId(null)
+
+                                                                if (res.success) {
+                                                                    toast.success(`${emp.name} mis à jour`)
+                                                                } else {
+                                                                    toast.error("Erreur mise à jour")
+                                                                }
+                                                            }}
+                                                        />
+                                                        {savingId === emp.id && (
+                                                            <div className="absolute -left-6">
+                                                                <Loader2 className="h-4 w-4 animate-spin text-emerald-500" />
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
                                             </TableCell>
                                         </TableRow>
                                     )

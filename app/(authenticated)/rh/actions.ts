@@ -607,3 +607,19 @@ export async function autoFillManagerShifts() {
         }
     })
 }
+
+export async function updateEmployeeNet(employeeId: string, netRemuneration: number | null) {
+    try {
+        await prisma.user.update({
+            where: { id: employeeId },
+            data: {
+                netRemuneration
+            }
+        })
+        revalidatePath("/rh")
+        return { success: true }
+    } catch (e) {
+        console.error(e)
+        return { success: false, message: "Erreur lors de la mise à jour" }
+    }
+}
