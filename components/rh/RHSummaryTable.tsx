@@ -17,6 +17,7 @@ interface RHSummaryTableProps {
 
 export function RHSummaryTable({ employees }: RHSummaryTableProps) {
     const [currentDate, setCurrentDate] = React.useState(new Date())
+    const [sortOrder, setSortOrder] = React.useState<'asc' | 'desc'>('asc')
 
     const selectedMonth = currentDate.getMonth()
     const selectedYear = currentDate.getFullYear()
@@ -50,19 +51,49 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
         const paidLeaveComplement = baseGross * 0.10 // 10% congés payés
         const totalGross = baseGross + paidLeaveComplement
 
-        // Utilisation de la rémunération nette saisie manuellement
-        const totalNet = employee.netRemuneration ? Number(employee.netRemuneration) : null
+        // Récupérer la rémunération nette pour le mois/année sélectionné
+        const monthlySalary = employee.monthlySalaries?.find((s: any) =>
+            s.month === selectedMonth + 1 && s.year === selectedYear
+        )
+        const totalNet = monthlySalary?.netRemuneration ? Number(monthlySalary.netRemuneration) : null
+
+        // Vérifier si un contrat est actif pour le mois sélectionné
+        const hasActiveContract = employee.documents?.some((doc: any) => {
+            if (doc.type !== 'CONTRACT') return false
+            if (!doc.year) return true
+
+            // Si le contrat a une date, il doit être dans le futur ou en cours
+            const docDate = new Date(doc.year, (doc.month || 1) - 1, 1)
+            const viewDate = new Date(selectedYear, selectedMonth, 1)
+
+            // On considère actif si l'année du contrat <= année affichée
+            // (Logique simplifiée : un contrat CDI de 2024 est toujours actif en 2026)
+            if (doc.year < selectedYear) return true
+            if (doc.year === selectedYear && (doc.month || 1) <= selectedMonth + 1) return true
+            return false
+        }) || false
 
         return {
             totalHours,
             baseGross,
             paidLeaveComplement,
             totalGross,
-            totalNet
+            totalNet,
+            hasActiveContract
         }
     }
 
-    const grandTotal = employees
+    const sortedEmployees = [...employees].sort((a, b) => {
+        const getLastName = (name: string) => {
+            const parts = name.trim().split(/\s+/)
+            return parts.length > 1 ? parts[parts.length - 1].toLowerCase() : parts[0].toLowerCase()
+        }
+        const nameA = getLastName(a.name)
+        const nameB = getLastName(b.name)
+        return sortOrder === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA)
+    })
+
+    const grandTotal = sortedEmployees
         .filter(emp => emp.role !== 'ADMIN') // Les gérants ne comptent pas dans la paie effective
         .reduce((acc, emp) => {
             const stats = calculateStats(emp)
@@ -145,7 +176,12 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                         <Table>
                             <TableHeader>
                                 <TableRow className="bg-muted/50 border-b border-border">
-                                    <TableHead className="font-bold py-4 pl-6 text-muted-foreground">Salarié</TableHead>
+                                    <TableHead
+                                        className="font-bold py-4 pl-6 text-muted-foreground cursor-pointer hover:text-primary transition-colors flex items-center gap-1 select-none"
+                                        onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+                                    >
+                                        Salarié {sortOrder === 'asc' ? '↑' : '↓'}
+                                    </TableHead>
                                     <TableHead className="font-bold text-muted-foreground">Contrat</TableHead>
                                     <TableHead className="font-bold text-center text-muted-foreground">Total Heures</TableHead>
                                     <TableHead className="font-bold text-center text-muted-foreground">Taux Horaire</TableHead>
@@ -156,12 +192,17 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {employees.map((emp) => {
-                                    const { totalHours, baseGross, paidLeaveComplement, totalGross, totalNet } = calculateStats(emp)
+                                {sortedEmployees.map((emp) => {
+                                    const { totalHours, baseGross, paidLeaveComplement, totalGross, totalNet, hasActiveContract } = calculateStats(emp)
                                     const isManager = emp.role === 'ADMIN'
+                                    const isGrayedOut = !isManager && !hasActiveContract
 
                                     return (
-                                        <TableRow key={emp.id} className={`hover:bg-muted/50 transition-colors border-b border-border ${isManager ? 'bg-muted/30 opacity-70' : ''}`}>
+                                        <TableRow
+                                            key={emp.id}
+                                            className={`hover:bg-muted/50 transition-colors border-b border-border ${isManager ? 'bg-muted/30 opacity-70' : ''} ${isGrayedOut ? 'grayscale opacity-40' : ''}`}
+                                            title={isGrayedOut ? "Pas de contrat actif pour ce mois" : ""}
+                                        >
                                             <TableCell className="font-bold py-4 pl-6">
                                                 <div className="flex items-center gap-2">
                                                     <Link href={`/rh/${emp.id}?tab=hours&month=${selectedMonth + 1}&year=${selectedYear}`} className="flex items-center gap-2 text-foreground hover:text-blue-500 transition-colors group">
@@ -201,17 +242,17 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                                             type="number"
                                                             step="0.01"
                                                             placeholder="0.00 €"
-                                                            defaultValue={emp.netRemuneration ? Number(emp.netRemuneration) : ""}
+                                                            defaultValue={totalNet !== null ? Number(totalNet) : ""}
                                                             className="h-8 w-24 text-right font-bold bg-emerald-500/5 border-emerald-500/20 focus:border-emerald-500 focus:ring-emerald-500/20 transition-all pr-1"
                                                             onBlur={async (e) => {
                                                                 const val = e.target.value
                                                                 const numVal = val === "" ? null : parseFloat(val)
 
                                                                 // Ne rien faire si la valeur n'a pas changé
-                                                                if (numVal === (emp.netRemuneration ? Number(emp.netRemuneration) : null)) return
+                                                                if (numVal === totalNet) return
 
                                                                 setSavingId(emp.id)
-                                                                const res = await updateEmployeeNet(emp.id, numVal)
+                                                                const res = await updateEmployeeNet(emp.id, numVal, selectedMonth + 1, selectedYear)
                                                                 setSavingId(null)
 
                                                                 if (res.success) {

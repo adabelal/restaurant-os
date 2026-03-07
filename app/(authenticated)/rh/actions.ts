@@ -38,7 +38,6 @@ export async function createEmployee(formData: FormData) {
                     email: data.email,
                     role: data.role,
                     hourlyRate: data.hourlyRate ?? 11.65,
-                    netRemuneration: (data as any).netRemuneration,
                     contractType: data.contractType,
                     contractDuration: data.contractDuration,
                     password: hashedPassword,
@@ -87,8 +86,6 @@ export async function updateEmployee(formData: FormData) {
         const role = input.get("role") as "ADMIN" | "MANAGER" | "STAFF"
         const hourlyRateStr = input.get("hourlyRate")
         const hourlyRate = hourlyRateStr ? parseFloat(hourlyRateStr as string) : 11.65
-        const netRemStr = input.get("netRemuneration")
-        const netRemuneration = netRemStr ? parseFloat(netRemStr as string) : null
         const contractType = input.get("contractType") as string
         const contractDuration = input.get("contractDuration") as string
 
@@ -108,7 +105,6 @@ export async function updateEmployee(formData: FormData) {
                 phone: phone?.trim() || null,
                 role,
                 hourlyRate,
-                netRemuneration,
                 contractType,
                 contractDuration
             }
@@ -608,11 +604,23 @@ export async function autoFillManagerShifts() {
     })
 }
 
-export async function updateEmployeeNet(employeeId: string, netRemuneration: number | null) {
+export async function updateEmployeeNet(employeeId: string, netRemuneration: number | null, month: number, year: number) {
     try {
-        await prisma.user.update({
-            where: { id: employeeId },
-            data: {
+        await (prisma as any).monthlySalary.upsert({
+            where: {
+                userId_month_year: {
+                    userId: employeeId,
+                    month,
+                    year
+                }
+            },
+            update: {
+                netRemuneration
+            },
+            create: {
+                userId: employeeId,
+                month,
+                year,
                 netRemuneration
             }
         })

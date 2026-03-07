@@ -18,7 +18,10 @@ export default async function RHPage() {
         include: {
             _count: { select: { documents: true } },
             documents: true,
-            shifts: true
+            shifts: {
+                orderBy: { startTime: 'desc' }
+            },
+            monthlySalaries: true
         }
     })
 

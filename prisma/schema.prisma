@@ -15,7 +15,6 @@ model User {
   name                 String
   role                 Role               @default(STAFF)
   hourlyRate           Decimal            @default(11.52) @db.Decimal(10, 2)
-  netRemuneration      Decimal?           @db.Decimal(10, 2)
   phone                String?
   address              String?
   isActive             Boolean            @default(true)
@@ -30,6 +29,18 @@ model User {
   haccpLogs            HaccpLog[]
   shifts               Shift[]
   stockLogs            StockMovement[]
+  monthlySalaries      MonthlySalary[]
+}
+
+model MonthlySalary {
+  id              String   @id @default(cuid())
+  userId          String
+  month           Int
+  year            Int
+  netRemuneration Decimal? @db.Decimal(10, 2)
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, month, year])
 }
 
 model EmployeeDocument {
