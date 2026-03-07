@@ -29,6 +29,20 @@ export async function deleteProposal(id: string) {
     }
 }
 
+export async function updateProposalStyle(id: string, newStyle: string) {
+    try {
+        await (prisma as any).musicBandProposal.update({
+            where: { id },
+            data: { style: newStyle }
+        });
+        revalidatePath("/mails");
+        return { success: true };
+    } catch (error) {
+        console.error("Failed to update proposal style:", error);
+        return { error: "Erreur lors de la mise à jour du style." };
+    }
+}
+
 export async function acceptProposal(id: string) {
     try {
         const proposal = await (prisma as any).musicBandProposal.findUnique({

@@ -47,6 +47,15 @@ except ImportError:
 # Configuration Drive
 DRIVE_PATH = ["01_ARCHIVES", "Factures", "2026"]
 
+# --- REGLES D'EXCLUSION (Filtres anti-bruit) ---
+SKIP_KEYWORDS = [
+    "offre d'emploi", "recrutement", "newsletter", "publicité", 
+    "facture impayée", "votre commande", "confirmation d'inscription"
+]
+SKIP_SENDERS = [
+    "no-reply@", "noreply@", "newsletter@", "spam@", "marketing@"
+]
+
 # Mapping des Tiers (Fallback manuel)
 TIERS_MAPPING_FALLBACK = {
     'metro': 'METRO',
@@ -171,20 +180,21 @@ def analyze_music_proposal_with_ai(text_content, sender_info, subject_info):
 
     Instructions:
     1. Identifie le NOM du groupe ou de l'artiste.
-    2. Identifie le STYLE de musique (ex: Pop/Rock, Jazz, DJ Set, etc.). Sois concis.
+    2. Identifie le STYLE de musique de manière TRÈS simplifiée (ex: Pop/Rock, Rock, Jazz, Reggae, DJ Set, Electro, Inconnu). 
+       Si c'est un mélange, choisis les 1 ou 2 catégories dominantes séparées par un slash.
     3. Extrait les CONTACTS : Nom, Email, Téléphone.
-    4. Extrait TOUS les LIENS vidéos (Youtube, Vimeo, etc.).
+    4. Extrait TOUS les LIENS de présentation (Youtube, Spotify, Instagram, Vimeo, Soundcloud, etc.).
     5. Fais un résumé TRÈS court (1 phrase) de la proposition.
     
     Réponds UNIQUEMENT avec un objet JSON valide.
     Format attendu:
     {{
         "bandName": "NOM",
-        "style": "STYLE",
+        "style": "STYLE_SIMPLIFIE",
         "contactName": "NOM_CONTACT",
         "contactEmail": "EMAIL",
         "contactPhone": "TEL",
-        "videoLinks": ["URL1", "URL2"],
+        "socialLinks": ["URL1", "URL2"],
         "summary": "RESUME"
     }}
     """
@@ -473,6 +483,28 @@ def download_and_upload_invoices():
             date_str = next((h['value'] for h in headers if h['name'] == 'Date'), None)
             dt = email.utils.parsedate_to_datetime(date_str) if date_str else datetime.now()
 
+            # --- APPLICATION DES REGLES D'EXCLUSION ---
+            skip_mail = False
+            full_content_for_skip = (subject + " " + sender).lower()
+            
+            # Vérifier l'expéditeur
+            for s in SKIP_SENDERS:
+                if s.lower() in sender.lower():
+                    skip_mail = True
+                    break
+            
+            # Vérifier les mots-clés dans l'objet
+            if not skip_mail:
+                for k in SKIP_KEYWORDS:
+                    if k.lower() in subject.lower():
+                        skip_mail = True
+                        break
+            
+            if skip_mail:
+                print(f"⏭️  Email ignoré (filtre) : {subject}")
+                mark_as_processed(gmail_service, msg_info['id'])
+                continue
+
             def get_body(payload):
                 text = ""
                 if 'body' in payload and 'data' in payload['body']:
@@ -498,7 +530,7 @@ def download_and_upload_invoices():
                     "contactName": band_info.get("contactName"),
                     "contactEmail": band_info.get("contactEmail"),
                     "contactPhone": band_info.get("contactPhone"),
-                    "videoLinks": band_info.get("videoLinks", []),
+                    "videoLinks": band_info.get("socialLinks", []), # On garde le nom du champ pour la compat DB
                     "fullDescription": body_text,
                     "emailDate": dt.isoformat(),
                     "messageId": msg_info['id']

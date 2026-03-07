@@ -24,6 +24,7 @@ import { AddEventDialog } from "./AddEventDialog"
 
 export function EventsCalendar({ events, bands }: { events: any[], bands: any[] }) {
     const [currentMonth, setCurrentMonth] = useState(new Date())
+    const [isCompactWeek, setIsCompactWeek] = useState(false)
 
     const monthStart = startOfMonth(currentMonth)
     const monthEnd = endOfMonth(monthStart)
@@ -43,31 +44,62 @@ export function EventsCalendar({ events, bands }: { events: any[], bands: any[] 
         <div className="bg-card rounded-xl border border-border/40 shadow-sm overflow-hidden">
             {/* Calendar Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-border/40 bg-muted/10">
-                <Button variant="outline" size="icon" onClick={prevMonth}>
-                    <ChevronLeft className="h-4 w-4" />
-                </Button>
-                <h2 className="text-xl font-bold font-oswald uppercase tracking-wide text-primary capitalize">
-                    {format(currentMonth, dateFormat, { locale: fr })}
-                </h2>
-                <Button variant="outline" size="icon" onClick={nextMonth}>
-                    <ChevronRight className="h-4 w-4" />
+                <div className="flex items-center gap-4">
+                    <Button variant="outline" size="icon" onClick={prevMonth}>
+                        <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <h2 className="text-xl font-bold font-oswald uppercase tracking-wide text-primary capitalize">
+                        {format(currentMonth, dateFormat, { locale: fr })}
+                    </h2>
+                    <Button variant="outline" size="icon" onClick={nextMonth}>
+                        <ChevronRight className="h-4 w-4" />
+                    </Button>
+                </div>
+
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsCompactWeek(!isCompactWeek)}
+                    className="h-9 gap-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 hidden sm:flex"
+                >
+                    <ChevronRight className={cn("h-4 w-4 transition-transform", isCompactWeek ? "rotate-180" : "")} />
+                    <span className="font-bold uppercase text-[10px] tracking-wider">
+                        {isCompactWeek ? "Semaine complète" : "Focus Weekend"}
+                    </span>
                 </Button>
             </div>
 
             {/* Calendar Days Header */}
-            <div className="grid grid-cols-7 border-b border-border/40 bg-muted/5">
-                {eachDayOfInterval({ start: startOfWeek(new Date(), { weekStartsOn: 1 }), end: endOfWeek(new Date(), { weekStartsOn: 1 }) }).map((day) => (
-                    <div key={day.toString()} className="py-2 text-center text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                        {format(day, weekDaysFormat, { locale: fr }).substring(0, 3)}
-                    </div>
-                ))}
+            <div className={cn(
+                "grid border-b border-border/40 bg-muted/5",
+                isCompactWeek ? "grid-cols-[repeat(3,0.6fr)_repeat(4,2fr)]" : "grid-cols-7"
+            )}>
+                {eachDayOfInterval({ start: startOfWeek(new Date(), { weekStartsOn: 1 }), end: endOfWeek(new Date(), { weekStartsOn: 1 }) }).map((day, idx) => {
+                    const isHotDay = idx >= 3; // Jeudi à Dimanche
+                    return (
+                        <div
+                            key={day.toString()}
+                            className={cn(
+                                "py-2 text-center text-[10px] font-bold uppercase tracking-wider",
+                                isCompactWeek && !isHotDay ? "text-muted-foreground/40" : "text-muted-foreground"
+                            )}
+                        >
+                            {format(day, weekDaysFormat, { locale: fr }).substring(0, 3)}
+                        </div>
+                    )
+                })}
             </div>
 
             {/* Calendar Grid */}
-            <div className="grid grid-cols-7 auto-rows-[120px]">
+            <div className={cn(
+                "grid auto-rows-[120px]",
+                isCompactWeek ? "grid-cols-[repeat(3,minmax(0,1fr))_repeat(4,minmax(0,2.5fr))]" : "grid-cols-7"
+            )}>
                 {days.map((day, dayIdx) => {
                     const dayEvents = events.filter((e) => isSameDay(new Date(e.date), day))
                     const isSelectedMonth = isSameMonth(day, monthStart)
+                    const dayOfWeekIdx = dayIdx % 7
+                    const isHotDay = dayOfWeekIdx >= 3 // Jeudi à Dimanche
 
                     return (
                         <div
@@ -76,7 +108,8 @@ export function EventsCalendar({ events, bands }: { events: any[], bands: any[] 
                                 "border-b border-r border-border/40 p-2 transition-colors hover:bg-muted/5 relative group",
                                 !isSelectedMonth && "bg-muted/10 text-muted-foreground",
                                 isToday(day) && "bg-primary/5",
-                                dayIdx % 7 === 6 && "border-r-0"
+                                dayIdx % 7 === 6 && "border-r-0",
+                                isCompactWeek && !isHotDay && "brightness-95 saturate-50 contrast-75 overflow-hidden"
                             )}
                         >
                             <div className="flex justify-between items-start">

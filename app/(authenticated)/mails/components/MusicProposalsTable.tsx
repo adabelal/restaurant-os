@@ -2,11 +2,12 @@
 
 import { format } from "date-fns"
 import { fr } from "date-fns/locale"
-import { Music, Check, Trash2, Mail, Phone, User as UserIcon, ExternalLink, RefreshCw } from "lucide-react"
+import { Music, Trash2, Mail, Phone, User as UserIcon, ExternalLink, RefreshCw, Edit2, Check, X, Youtube, Instagram, Music2 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
-import { deleteProposal, acceptProposal, triggerHistoricalScan } from "../actions"
+import { deleteProposal, updateProposalStyle, triggerHistoricalScan } from "../actions"
 import { useState } from "react"
 
 interface MusicBandProposal {
@@ -20,6 +21,7 @@ interface MusicBandProposal {
     fullDescription: string | null
     emailDate: Date
     status: string
+    messageId: string
 }
 
 interface MusicProposalsTableProps {
@@ -29,6 +31,8 @@ interface MusicProposalsTableProps {
 export function MusicProposalsTable({ initialProposals }: MusicProposalsTableProps) {
     const [proposals, setProposals] = useState(initialProposals)
     const [isSyncing, setIsSyncing] = useState(false)
+    const [editingId, setEditingId] = useState<string | null>(null)
+    const [editValue, setEditValue] = useState("")
 
     const handleSync = async () => {
         setIsSyncing(true)
@@ -53,14 +57,37 @@ export function MusicProposalsTable({ initialProposals }: MusicProposalsTablePro
         }
     }
 
-    const handleAccept = async (id: string) => {
-        const result = await acceptProposal(id)
+    const handleStartEdit = (id: string, currentStyle: string | null) => {
+        setEditingId(id)
+        setEditValue(currentStyle || "")
+    }
+
+    const handleSaveStyle = async (id: string) => {
+        const result = await updateProposalStyle(id, editValue)
         if (result.success) {
-            setProposals(proposals.filter(p => p.id !== id))
-            toast.success("Groupe ajouté à la programmation !")
+            setProposals(proposals.map(p => p.id === id ? { ...p, style: editValue } : p))
+            setEditingId(null)
+            toast.success("Style mis à jour")
         } else {
-            toast.error(result.error || "Erreur lors de l'acceptation")
+            toast.error(result.error)
         }
+    }
+
+    const getLinkIcon = (url: string) => {
+        const u = url.toLowerCase()
+        if (u.includes('youtube') || u.includes('youtu.be')) return <Youtube className="h-3 w-3" />
+        if (u.includes('instagram')) return <Instagram className="h-3 w-3" />
+        if (u.includes('spotify')) return <Music2 className="h-3 w-3" />
+        return <ExternalLink className="h-3 w-3" />
+    }
+
+    const getLinkLabel = (url: string) => {
+        const u = url.toLowerCase()
+        if (u.includes('youtube') || u.includes('youtu.be')) return "Youtube"
+        if (u.includes('instagram')) return "Instagram"
+        if (u.includes('spotify')) return "Spotify"
+        if (u.includes('soundcloud')) return "Soundcloud"
+        return "Lien"
     }
 
     return (
@@ -115,11 +142,41 @@ export function MusicProposalsTable({ initialProposals }: MusicProposalsTablePro
                                                 <Music className="h-4 w-4" />
                                                 {item.bandName}
                                             </div>
-                                            {item.style && (
-                                                <div className="text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 px-2.5 py-1 rounded-md w-fit font-medium border border-indigo-100 dark:border-indigo-900/50">
-                                                    {item.style}
-                                                </div>
-                                            )}
+
+                                            {/* Style section with inline editing */}
+                                            <div className="flex items-center gap-2">
+                                                {editingId === item.id ? (
+                                                    <div className="flex items-center gap-1 w-full max-w-[200px]">
+                                                        <Input
+                                                            value={editValue}
+                                                            onChange={(e) => setEditValue(e.target.value)}
+                                                            className="h-7 text-xs px-2"
+                                                            placeholder="Style (ex: Pop/Rock)"
+                                                            autoFocus
+                                                        />
+                                                        <Button size="icon" variant="ghost" className="h-7 w-7 text-emerald-600" onClick={() => handleSaveStyle(item.id)}>
+                                                            <Check className="h-4 w-4" />
+                                                        </Button>
+                                                        <Button size="icon" variant="ghost" className="h-7 w-7 text-destructive" onClick={() => setEditingId(null)}>
+                                                            <X className="h-4 w-4" />
+                                                        </Button>
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex items-center gap-2 group/style">
+                                                        <div className="text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 px-2.5 py-1 rounded-md w-fit font-medium border border-indigo-100 dark:border-indigo-900/50">
+                                                            {item.style || "Style inconnu"}
+                                                        </div>
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            className="h-6 w-6 opacity-0 group-hover/style:opacity-100 transition-opacity"
+                                                            onClick={() => handleStartEdit(item.id, item.style)}
+                                                        >
+                                                            <Edit2 className="h-3 w-3" />
+                                                        </Button>
+                                                    </div>
+                                                )}
+                                            </div>
 
                                             {item.videoLinks && item.videoLinks.length > 0 && (
                                                 <div className="flex flex-wrap gap-2 mt-1">
@@ -129,10 +186,10 @@ export function MusicProposalsTable({ initialProposals }: MusicProposalsTablePro
                                                             href={link}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex items-center gap-1 text-[11px] bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400 px-2 py-0.5 rounded border border-red-100 dark:border-red-900/40 hover:bg-red-100 transition-colors"
+                                                            className="flex items-center gap-1 text-[11px] bg-muted/50 text-muted-foreground dark:bg-muted/10 px-2 py-0.5 rounded border border-border hover:bg-muted transition-colors"
                                                         >
-                                                            <ExternalLink className="h-3 w-3" />
-                                                            Vidéo {idx + 1}
+                                                            {getLinkIcon(link)}
+                                                            {getLinkLabel(link)}
                                                         </a>
                                                     ))}
                                                 </div>
@@ -173,13 +230,15 @@ export function MusicProposalsTable({ initialProposals }: MusicProposalsTablePro
                                     <td className="py-4 px-4 text-right align-top">
                                         <div className="flex items-center justify-end gap-2">
                                             <Button
+                                                asChild
                                                 variant="outline"
                                                 size="sm"
-                                                onClick={() => handleAccept(item.id)}
-                                                className="h-9 gap-1.5 text-emerald-600 border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 dark:text-emerald-400 dark:border-emerald-800 dark:hover:bg-emerald-900/20 font-bold"
+                                                className="h-9 gap-1.5 text-indigo-600 border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700 dark:text-indigo-400 dark:border-indigo-800 dark:hover:bg-indigo-900/20"
                                             >
-                                                <Check className="h-4 w-4" />
-                                                Accepter
+                                                <a href={`https://mail.google.com/mail/u/0/#search/id%3A${item.messageId}`} target="_blank" rel="noopener noreferrer">
+                                                    <ExternalLink className="h-4 w-4" />
+                                                    Voir l'email
+                                                </a>
                                             </Button>
                                             <Button
                                                 variant="ghost"

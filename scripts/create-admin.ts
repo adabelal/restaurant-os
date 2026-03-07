@@ -41,9 +41,12 @@ async function main() {
             const hashedPassword = await bcrypt.hash(password, 12)
             await prisma.user.update({
                 where: { email },
-                data: { password: hashedPassword }
+                data: {
+                    password: hashedPassword,
+                    isActive: true // Force reactivation
+                }
             })
-            console.log('✅ Mot de passe mis à jour')
+            console.log('✅ Mot de passe mis à jour et compte activé')
         }
         return
     }
