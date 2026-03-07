@@ -554,6 +554,13 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                                 <Input name="hourlyRate" type="number" step="0.01" defaultValue={Number(employee.hourlyRate)} className="pl-9 bg-background" />
                                             </div>
                                         </div>
+                                        <div className="space-y-2">
+                                            <Label>Rémunération Net (€)</Label>
+                                            <div className="relative">
+                                                <Euro className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                                                <Input name="netRemuneration" type="number" step="0.01" defaultValue={Number(employee.netRemuneration || '')} placeholder="Saisie manuelle" className="pl-9 bg-background" />
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="col-span-full pt-6 border-t border-border flex justify-end">
                                         <Button type="submit" className="bg-primary text-primary-foreground gap-2 px-8 hover:bg-primary/90"><Save className="h-4 w-4" /> Sauvegarder</Button>

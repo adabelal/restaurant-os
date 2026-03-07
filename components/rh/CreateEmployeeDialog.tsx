@@ -142,6 +142,18 @@ export function CreateEmployeeDialog() {
                         </div>
 
                         <div className="grid gap-2">
+                            <Label htmlFor="netRemuneration">Rémunération Net (€)</Label>
+                            <Input
+                                id="netRemuneration"
+                                name="netRemuneration"
+                                type="number"
+                                step="0.01"
+                                placeholder="Saisie manuelle"
+                                className="bg-background"
+                            />
+                        </div>
+
+                        <div className="grid gap-2">
                             <Label htmlFor="contractDuration">Temps de travail</Label>
                             <select
                                 id="contractDuration"

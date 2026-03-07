@@ -1,9 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
-  // AJOUT CRUCIAL POUR DOCKER (ALPINE)
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
@@ -12,95 +8,354 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// --- UTILISATEURS & AUTH ---
-enum Role {
-  ADMIN     // Gérant
-  MANAGER   // Chef de cuisine / Maître d'hôtel
-  STAFF     // Serveur / Cuisinier / Extra
-}
-
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  name      String
-  role      Role     @default(STAFF)
-  
-  // NOUVEAU : Taux horaire de base
-  hourlyRate Decimal @default(11.52) @db.Decimal(10, 2)
-  
-  // Infos Personnelles étendues
-  phone      String?
-  address    String?
-  isActive   Boolean @default(true) // Pour gérer les anciens salariés (archivés)
-  
-  // Nouveau : Type de contrat
-  contractType     String? @default("CDI") // CDI, CDD
-  contractDuration String? @default("FULL_TIME") // FULL_TIME, PART_TIME
-
-  // Reset Password
-  resetPasswordToken   String?   @unique
+  id                   String             @id @default(cuid())
+  email                String             @unique
+  password             String
+  name                 String
+  role                 Role               @default(STAFF)
+  hourlyRate           Decimal            @default(11.52) @db.Decimal(10, 2)
+  netRemuneration      Decimal?           @db.Decimal(10, 2)
+  phone                String?
+  address              String?
+  isActive             Boolean            @default(true)
+  contractType         String?            @default("CDI")
+  contractDuration     String?            @default("FULL_TIME")
+  resetPasswordToken   String?            @unique
   resetPasswordExpires DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
-  // Relations
-  shifts           Shift[]
-  haccpLogs        HaccpLog[]
-  stockLogs        StockMovement[]
-  documents        EmployeeDocument[]
-  cashTransactions CashTransaction[]
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  cashTransactions     CashTransaction[]
+  documents            EmployeeDocument[]
+  haccpLogs            HaccpLog[]
+  shifts               Shift[]
+  stockLogs            StockMovement[]
 }
-
 
 model EmployeeDocument {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  
-  name      String   // Ex: "Contrat CDD", "Fiche Paie Janvier"
-  type      String   // "CONTRACT", "PAYSLIP", "ID_CARD", "OTHER"
-  category  String   @default("OTHER") // "JURIDIQUE", "PAIE", "RH"
-  url       String   // Lien Google Drive ou autre
-  
-  // Pour les fiches de paie notamment
+  name      String
+  type      String
+  category  String   @default("OTHER")
+  url       String
   month     Int?
   year      Int?
-  
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 }
 
-// --- RH & PLANNING ---
 model Shift {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
-  startTime   DateTime
-  endTime     DateTime?
-  breakMinutes Int     @default(0) // Pause en minutes
-  
-  // Variables de paie (snapshot au moment du shift)
-  isSunday    Boolean  @default(false)
-  isNight     Boolean  @default(false)
-  hourlyRate  Decimal  @db.Decimal(10, 2)
-  
-  status      String   @default("COMPLETED") // SCHEDULED, COMPLETED, ABSENT
-  notes       String?
-  position    String?  // NOUVEAU : Poste spécifique pour ce shift (CUISINE, SALLE, BAR, PLONGE, SECURITE)
+  id           String    @id @default(cuid())
+  userId       String
+  startTime    DateTime
+  endTime      DateTime?
+  breakMinutes Int       @default(0)
+  isSunday     Boolean   @default(false)
+  isNight      Boolean   @default(false)
+  hourlyRate   Decimal   @db.Decimal(10, 2)
+  status       String    @default("COMPLETED")
+  notes        String?
+  position     String?
+  user         User      @relation(fields: [userId], references: [id])
 }
 
-// --- ECONOMAT & STOCK ---
 model Supplier {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  email     String?
-  phone     String?
-  address   String?
-  
-  // Relations
+  id          String          @id @default(cuid())
+  name        String          @unique
+  email       String?
+  phone       String?
+  address     String?
   ingredients Ingredient[]
   purchases   PurchaseOrder[]
+}
+
+model Ingredient {
+  id           String             @id @default(cuid())
+  name         String
+  category     String
+  currentStock Decimal            @default(0)
+  unit         Unit               @default(KG)
+  minStock     Decimal            @default(0)
+  pricePerUnit Decimal            @db.Decimal(10, 4)
+  supplierId   String?
+  allergens    String[]
+  lastBatchNo  String?
+  lastDLC      DateTime?
+  updatedAt    DateTime           @updatedAt
+  supplier     Supplier?          @relation(fields: [supplierId], references: [id])
+  invoiceItems InvoiceItem[]
+  inRecipes    RecipeIngredient[]
+  movements    StockMovement[]
+}
+
+model Recipe {
+  id           String             @id @default(cuid())
+  name         String
+  category     String
+  salePrice    Decimal            @db.Decimal(10, 2)
+  vatRate      Decimal            @default(10.0)
+  instructions String?
+  foodCost     Decimal?           @db.Decimal(10, 2)
+  margin       Decimal?           @db.Decimal(10, 2)
+  isActive     Boolean            @default(true)
+  ingredients  RecipeIngredient[]
+}
+
+model RecipeIngredient {
+  id           String     @id @default(cuid())
+  recipeId     String
+  ingredientId String
+  quantity     Decimal    @db.Decimal(10, 3)
+  unit         Unit
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
+}
+
+model StockMovement {
+  id           String       @id @default(cuid())
+  ingredientId String
+  userId       String
+  type         MovementType
+  quantity     Decimal
+  reason       String?
+  createdAt    DateTime     @default(now())
+  ingredient   Ingredient   @relation(fields: [ingredientId], references: [id])
+  user         User         @relation(fields: [userId], references: [id])
+}
+
+model PurchaseOrder {
+  id               String            @id @default(cuid())
+  supplierId       String?
+  date             DateTime          @default(now())
+  invoiceNo        String?
+  totalAmount      Decimal           @default(0) @db.Decimal(10, 2)
+  status           InvoiceStatus     @default(DRAFT)
+  scannedUrl       String?
+  paymentMethod    String?
+  deliveryMode     String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  bankTransactions BankTransaction[]
+  items            InvoiceItem[]
+  supplier         Supplier?         @relation(fields: [supplierId], references: [id])
+
+  @@index([date])
+}
+
+model InvoiceItem {
+  id              String        @id @default(cuid())
+  purchaseOrderId String
+  rawLabel        String
+  ingredientId    String?
+  quantity        Decimal       @db.Decimal(10, 3)
+  unitPrice       Decimal       @db.Decimal(10, 4)
+  totalPrice      Decimal       @db.Decimal(10, 2)
+  priceVariation  Decimal?      @db.Decimal(5, 2)
+  packaging       String?
+  createdAt       DateTime      @default(now())
+  ingredient      Ingredient?   @relation(fields: [ingredientId], references: [id])
+  purchaseOrder   PurchaseOrder @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+}
+
+model HaccpLog {
+  id          String   @id @default(cuid())
+  userId      String
+  type        LogType
+  value       String?
+  targetName  String
+  isCompliant Boolean  @default(true)
+  photoUrl    String?
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model CashTransaction {
+  id          String              @id @default(cuid())
+  date        DateTime            @default(now())
+  amount      Decimal             @db.Decimal(10, 2)
+  type        CashTransactionType
+  description String
+  categoryId  String?
+  userId      String?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  category    FinanceCategory?    @relation(fields: [categoryId], references: [id])
+  user        User?               @relation(fields: [userId], references: [id])
+
+  @@index([date])
+}
+
+model CashCategory {
+  id        String              @id @default(cuid())
+  name      String
+  type      CashTransactionType
+  color     String?
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  @@unique([name, type])
+}
+
+model AppSettings {
+  id              String   @id @default("global")
+  accountantEmail String?
+  updatedAt       DateTime @updatedAt
+}
+
+model FinanceCategory {
+  id                  String               @id @default(cuid())
+  name                String               @unique
+  type                FinanceCategoryType
+  description         String?
+  color               String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  transactions        BankTransaction[]
+  budgetGoals         BudgetGoal[]
+  cashTransactions    CashTransaction[]
+  categorizationRules CategorizationRule[]
+  fixedCosts          FixedCost[]
+}
+
+model CategorizationRule {
+  id         String          @id @default(cuid())
+  matchType  String          @default("CONTAINS")
+  keyword    String
+  categoryId String
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  category   FinanceCategory @relation(fields: [categoryId], references: [id])
+
+  @@unique([keyword, matchType])
+}
+
+model BankTransaction {
+  id              String           @id @default(cuid())
+  date            DateTime
+  amount          Decimal          @db.Decimal(10, 2)
+  description     String
+  reference       String?
+  status          String           @default("PENDING")
+  purchaseOrderId String?
+  categoryId      String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  paymentMethod   String?
+  thirdPartyName  String?
+  transactionType String?
+  category        FinanceCategory? @relation(fields: [categoryId], references: [id])
+  purchaseOrder   PurchaseOrder?   @relation(fields: [purchaseOrderId], references: [id])
+
+  @@index([date])
+}
+
+model FixedCost {
+  id         String          @id @default(cuid())
+  name       String
+  amount     Decimal         @db.Decimal(10, 2)
+  dayOfMonth Int
+  frequency  String          @default("MONTHLY")
+  categoryId String
+  isActive   Boolean         @default(true)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  category   FinanceCategory @relation(fields: [categoryId], references: [id])
+}
+
+model BudgetGoal {
+  id           String          @id @default(cuid())
+  month        Int
+  year         Int
+  categoryId   String
+  targetAmount Decimal         @db.Decimal(10, 2)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  category     FinanceCategory @relation(fields: [categoryId], references: [id])
+
+  @@unique([month, year, categoryId])
+}
+
+model MusicBand {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  genre       String?
+  contact     String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  description String?
+  email       String?
+  phone       String?
+  events      MusicEvent[]
+}
+
+model MusicEvent {
+  id            String    @id @default(cuid())
+  bandId        String
+  date          DateTime
+  startTime     String?
+  amount        Decimal   @db.Decimal(10, 2)
+  paymentMethod String    @default("TRANSFER")
+  invoiceStatus String    @default("PENDING")
+  status        String    @default("SCHEDULED")
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  isFree        Boolean   @default(false)
+  invoiceUrl    String?
+  band          MusicBand @relation(fields: [bandId], references: [id])
+}
+
+model BankAccount {
+  id                     String    @id @default(cuid())
+  accountUid             String    @unique
+  aspspName              String?
+  accountName            String?
+  currency               String    @default("EUR")
+  enableBankingSessionId String?
+  lastSyncedAt           DateTime?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+}
+
+model ProcessedMail {
+  id        String   @id @default(cuid())
+  messageId String   @unique
+  subject   String
+  sender    String
+  date      DateTime
+  type      String
+  status    String   @default("SUCCESS")
+  amount    Decimal? @db.Decimal(10, 2)
+  targetId  String?
+  fileUrl   String?
+  fileName  String?
+
+  @@index([date])
+}
+
+model MusicBandProposal {
+  id              String   @id @default(cuid())
+  bandName        String
+  style           String?
+  contactName     String?
+  contactEmail    String?
+  contactPhone    String?
+  fullDescription String?
+  emailDate       DateTime
+  messageId       String   @unique
+  status          String   @default("PENDING")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  videoLinks      String[] @default([])
+
+  @@index([emailDate])
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  STAFF
 }
 
 enum Unit {
@@ -112,148 +367,20 @@ enum Unit {
   PIECE
 }
 
-model Ingredient {
-  id          String   @id @default(cuid())
-  name        String
-  category    String   // Viande, Légume, Sec...
-  
-  // Stock
-  currentStock Decimal @default(0) // En unité de base (ex: grammes)
-  unit         Unit    @default(KG)
-  minStock     Decimal @default(0) // Seuil d'alerte
-  
-  // Prix & Fournisseur
-  pricePerUnit Decimal @db.Decimal(10, 4) // Prix au KG/L
-  supplierId   String?
-  supplier     Supplier? @relation(fields: [supplierId], references: [id])
-  
-  // Allergènes & Traceability
-  allergens    String[] // ["Gluten", "Lactose"]
-  lastBatchNo  String?  // Dernier numéro de lot reçu
-  lastDLC      DateTime?
-  
-  updatedAt    DateTime @updatedAt
-  
-  // Relations
-  inRecipes    RecipeIngredient[]
-  movements    StockMovement[]
-  invoiceItems InvoiceItem[]
-}
-
-// --- FICHES TECHNIQUES (RECIPES) ---
-model Recipe {
-  id          String   @id @default(cuid())
-  name        String
-  category    String   // Entrée, Plat, Dessert, Cocktail
-  salePrice   Decimal  @db.Decimal(10, 2) // Prix carte TTC
-  vatRate     Decimal  @default(10.0)     // TVA
-  
-  instructions String?  @db.Text
-  
-  // Calculs auto
-  foodCost    Decimal? @db.Decimal(10, 2) // Coût matière calculé
-  margin      Decimal? @db.Decimal(10, 2) // Marge brute
-  
-  isActive    Boolean  @default(true)
-  
-  // Relations
-  ingredients RecipeIngredient[]
-}
-
-model RecipeIngredient {
-  id           String     @id @default(cuid())
-  recipeId     String
-  recipe       Recipe     @relation(fields: [recipeId], references: [id])
-  ingredientId String
-  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
-  
-  quantity     Decimal    @db.Decimal(10, 3) // Quantité nécessiare
-  unit         Unit
-}
-
-// --- STOCK MOVEMENTS (Historique) ---
 enum MovementType {
-  PURCHASE     // Achat fournisseur
-  USAGE        // Vente / Utilisation
-  WASTE        // Perte / Casse
-  ADJUSTMENT   // Inventaire
+  PURCHASE
+  USAGE
+  WASTE
+  ADJUSTMENT
 }
 
-model StockMovement {
-  id           String       @id @default(cuid())
-  ingredientId String
-  ingredient   Ingredient   @relation(fields: [ingredientId], references: [id])
-  userId       String
-  user         User         @relation(fields: [userId], references: [id])
-  
-  type         MovementType
-  quantity     Decimal
-  reason       String?      // Ex: "Tombé par terre", "Périmé"
-  
-  createdAt    DateTime     @default(now())
-}
-
-// --- ACHATS & FACTURES ---
 enum InvoiceStatus {
   DRAFT
   PROCESSING
   VALIDATED
-  ALERT       // Prix anormal détecté
+  ALERT
 }
 
-model PurchaseOrder {
-  id          String   @id @default(cuid())
-  supplierId  String?
-  supplier    Supplier? @relation(fields: [supplierId], references: [id])
-  
-  date        DateTime @default(now())
-  invoiceNo   String?
-  totalAmount Decimal  @default(0) @db.Decimal(10, 2)
-  status      InvoiceStatus @default(DRAFT)
-  
-  // URL du fichier (PDF/Image)
-  scannedUrl  String?
-  
-  // NOUVEAUX CHAMPS DE GESTION
-  paymentMethod String?   // CB, Virement, Espèces, Prélèvement
-  deliveryMode  String?   // Livraison, Enlèvement
-  
-  items       InvoiceItem[]
-  
-  // Relations Finance
-  bankTransactions BankTransaction[]
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  @@index([date])
-}
-
-model InvoiceItem {
-  id              String         @id @default(cuid())
-  purchaseOrderId String
-  purchaseOrder   PurchaseOrder  @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
-  
-  // Description brute issue de l'OCR
-  rawLabel        String
-  
-  // Lien vers ingrédient (si mappé)
-  ingredientId    String?
-  ingredient      Ingredient?    @relation(fields: [ingredientId], references: [id])
-  
-  quantity        Decimal        @db.Decimal(10, 3)
-  unitPrice       Decimal        @db.Decimal(10, 4) // Prix unitaire
-  totalPrice      Decimal        @db.Decimal(10, 2)
-  
-  // Écarts de prix
-  priceVariation  Decimal?       @db.Decimal(5, 2) // Pourcentage d'augmentation/baisse
-  
-  packaging       String?        // Ex: "Carton 6x1L"
-  
-  createdAt       DateTime       @default(now())
-}
-
-// --- HACCP & HYGIENE ---
 enum LogType {
   TEMPERATURE_FRIDGE
   TEMPERATURE_FREEZER
@@ -262,251 +389,19 @@ enum LogType {
   OIL_CHANGE
 }
 
-model HaccpLog {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
-  
-  type        LogType
-  value       String?  // Ex: "4.2°C"
-  targetName  String   // Ex: "Frigo Positif 1"
-  isCompliant Boolean  @default(true)
-  photoUrl    String?  // Preuve photo
-  
-  createdAt   DateTime @default(now())
-}
-
-// --- CAISSE & CASH FLOW ---
 enum CashTransactionType {
   IN
   OUT
 }
 
-model CashTransaction {
-  id          String              @id @default(cuid())
-  date        DateTime            @default(now())
-  amount      Decimal             @db.Decimal(10, 2)
-  type        CashTransactionType
-  description String
-  categoryId  String?
-  category    FinanceCategory?    @relation(fields: [categoryId], references: [id])
-  
-  userId      String?
-  user        User?               @relation(fields: [userId], references: [id])
-  
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
-
-  @@index([date])
-}
-
-model CashCategory {
-  id           String              @id @default(cuid())
-  name         String
-  type         CashTransactionType
-  color        String?             // Pour le UI
-  
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
-
-  @@unique([name, type])
-}
-
-model AppSettings {
-  id              String   @id @default("global")
-  accountantEmail String?
-  updatedAt       DateTime @updatedAt
-}
-
-// --- FINANCE & CONTROLE DE GESTION ---
-
 enum FinanceCategoryType {
-  FIXED_COST      // Charges Fixes (Loyer, Assurance, Abonnements...)
-  VARIABLE_COST   // Charges Variables (Matières 1ères, Extras...)
-  REVENUE         // Chiffre d'Affaires
-  TAX             // TVA, Impôts
-  FINANCIAL       // Frais bancaires, Emprunts
-  INVESTMENT      // Achat Matériel
-  SALARY          // Salaires & Charges Sociales
-  INTERNAL_TRANSFER // Dépôt/Retrait Especes, Virement compte à compte
-  TRANSIT           // Pourboires, Sommes perçues pour le compte de tiers
+  FIXED_COST
+  VARIABLE_COST
+  REVENUE
+  TAX
+  FINANCIAL
+  INVESTMENT
+  SALARY
+  INTERNAL_TRANSFER
+  TRANSIT
 }
-
-model FinanceCategory {
-  id          String              @id @default(cuid())
-  name        String              @unique
-  type        FinanceCategoryType
-  description String?
-  color       String?             // Pour le UI
-  
-  // Relations
-  transactions BankTransaction[]
-  cashTransactions CashTransaction[]
-  fixedCosts   FixedCost[]
-  budgetGoals  BudgetGoal[]
-  categorizationRules CategorizationRule[]
-
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
-}
-
-model CategorizationRule {
-  id          String   @id @default(cuid())
-  matchType   String   @default("CONTAINS") // CONTAINS, EXACT
-  keyword     String
-  categoryId  String
-  category    FinanceCategory @relation(fields: [categoryId], references: [id])
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@unique([keyword, matchType])
-}
-
-model BankTransaction {
-  id          String   @id @default(cuid())
-  date        DateTime
-  amount      Decimal  @db.Decimal(10, 2) // Positif = Recette, Négatif = Dépense
-  description   String
-  reference     String?  // Libellé banque standardisé
-  
-  // Nouveaux champs pour l'analyse
-  transactionType String? // INCOME, EXPENSE, INTERNAL
-  paymentMethod   String? // CARD, TRANSFER, DIRECT_DEBIT, FEE, CASH, CHECK, OTHER
-  thirdPartyName  String? // Ex: "GRAND FRAIS", "URSSAF"
-  
-  status      String   @default("PENDING") // PENDING, RECONCILED, IGNORED
-
-  // Liens pour réconciliation
-  purchaseOrderId String?
-  purchaseOrder   PurchaseOrder? @relation(fields: [purchaseOrderId], references: [id])
-  
-  categoryId  String?
-  category    FinanceCategory? @relation(fields: [categoryId], references: [id])
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
-  @@index([date])
-}
-
-model FixedCost {
-  id          String   @id @default(cuid())
-  name        String   // Ex: "Loyer", "Assurance"
-  amount      Decimal  @db.Decimal(10, 2)
-  dayOfMonth  Int      // Jour de prélèvement (ex: 5)
-  frequency   String   @default("MONTHLY") // MONTHLY, QUARTERLY, YEARLY
-  
-  categoryId  String
-  category    FinanceCategory @relation(fields: [categoryId], references: [id])
-  
-  isActive    Boolean  @default(true)
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model BudgetGoal {
-  id          String   @id @default(cuid())
-  month       Int
-  year        Int
-  
-  categoryId  String
-  category    FinanceCategory @relation(fields: [categoryId], references: [id])
-  
-  targetAmount Decimal @db.Decimal(10, 2)
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@unique([month, year, categoryId])
-}
-
-// --- EVENEMENTS & ANIMATIONS ---
-
-model MusicBand {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  genre       String?  // Jazz, Rock, Pop... (Style)
-  contact     String?  // Legacy contact field
-  email       String?
-  phone       String?
-  description String?  @db.Text
-  
-  events      MusicEvent[]
-  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model MusicEvent {
-  id        String   @id @default(cuid())
-  bandId    String
-  band      MusicBand @relation(fields: [bandId], references: [id])
-  
-  date      DateTime
-  startTime String?  // ex: 20:00
-  
-  // Paiement
-  amount        Decimal @db.Decimal(10, 2)
-  isFree        Boolean @default(false)
-  paymentMethod String  @default("TRANSFER") // TRANSFER, CASH, CHECK, GUSO
-  invoiceStatus String  @default("PENDING") // PENDING, RECEIVED, PAID
-  invoiceUrl    String? // Lien vers la facture uploadée
-  
-  status    String   @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
-  
-  notes     String?
-  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model BankAccount {
-  id           String   @id @default(cuid())
-  accountUid   String   @unique // UID EnableBanking
-  aspspName    String?  // Nom de la banque (ex: Qonto, BNP)
-  accountName  String?  // Nom du compte (ex: Compte Courant)
-  currency     String   @default("EUR")
-  enableBankingSessionId String?
-  lastSyncedAt DateTime?
-  
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
-
-model ProcessedMail {
-  id          String   @id @default(cuid())
-  messageId   String   @unique
-  subject     String
-  sender      String
-  date        DateTime
-  type        String   // "INVOICE", "POPINA_REPORT"
-  status      String   @default("SUCCESS")
-  amount      Decimal? @db.Decimal(10, 2)
-  targetId    String?  // ID de la transaction ou facture créée
-  fileUrl     String?  // Lien vers le fichier Drive si applicable
-  fileName    String?  // Nom du fichier renonmmé (ex: 2026_01_01_FACT_METRO_10.20.pdf)
-  
-  @@index([date])
-}
-
-model MusicBandProposal {
-  id              String   @id @default(cuid())
-  bandName        String
-  style           String?  // Short summary (AI-generated if long)
-  contactName     String?
-  contactEmail    String?
-  contactPhone    String?
-  fullDescription String?  @db.Text
-  videoLinks      String[] @default([]) // Extraits par l'AI
-  emailDate       DateTime
-  messageId       String   @unique // For deduplication
-  status          String   @default("PENDING") // PENDING, ACCEPTED, REJECTED
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  @@index([emailDate])
-}
-

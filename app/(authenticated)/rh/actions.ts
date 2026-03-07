@@ -15,6 +15,7 @@ export async function createEmployee(formData: FormData) {
             email: formData.get("email"),
             role: formData.get("role") || "STAFF",
             hourlyRate: formData.get("hourlyRate") || 11.65,
+            netRemuneration: formData.get("netRemuneration") ? parseFloat(formData.get("netRemuneration") as string) : null,
             contractType: formData.get("contractType") || "CDI",
             contractDuration: formData.get("contractDuration") || "FULL_TIME",
         }
@@ -37,6 +38,7 @@ export async function createEmployee(formData: FormData) {
                     email: data.email,
                     role: data.role,
                     hourlyRate: data.hourlyRate ?? 11.65,
+                    netRemuneration: (data as any).netRemuneration,
                     contractType: data.contractType,
                     contractDuration: data.contractDuration,
                     password: hashedPassword,
@@ -85,6 +87,8 @@ export async function updateEmployee(formData: FormData) {
         const role = input.get("role") as "ADMIN" | "MANAGER" | "STAFF"
         const hourlyRateStr = input.get("hourlyRate")
         const hourlyRate = hourlyRateStr ? parseFloat(hourlyRateStr as string) : 11.65
+        const netRemStr = input.get("netRemuneration")
+        const netRemuneration = netRemStr ? parseFloat(netRemStr as string) : null
         const contractType = input.get("contractType") as string
         const contractDuration = input.get("contractDuration") as string
 
@@ -104,6 +108,7 @@ export async function updateEmployee(formData: FormData) {
                 phone: phone?.trim() || null,
                 role,
                 hourlyRate,
+                netRemuneration,
                 contractType,
                 contractDuration
             }

@@ -45,11 +45,15 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
         const paidLeaveComplement = baseGross * 0.10 // 10% congés payés
         const totalGross = baseGross + paidLeaveComplement
 
+        // Utilisation de la rémunération nette saisie manuellement
+        const totalNet = employee.netRemuneration ? Number(employee.netRemuneration) : null
+
         return {
             totalHours,
             baseGross,
             paidLeaveComplement,
-            totalGross
+            totalGross,
+            totalNet
         }
     }
 
@@ -59,9 +63,10 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
             const stats = calculateStats(emp)
             return {
                 hours: acc.hours + stats.totalHours,
-                gross: acc.gross + stats.totalGross
+                gross: acc.gross + stats.totalGross,
+                net: stats.totalNet !== null ? acc.net + stats.totalNet : acc.net
             }
-        }, { hours: 0, gross: 0 })
+        }, { hours: 0, gross: 0, net: 0 })
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -69,11 +74,22 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                 <Card className="bg-primary border-none text-primary-foreground shadow-lg overflow-hidden relative">
                     <div className="absolute top-0 right-0 p-4 opacity-20"><Calculator className="h-12 w-12" /></div>
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-primary-foreground/80 uppercase tracking-wider">Total Brut à Verser</CardTitle>
+                        <CardTitle className="text-sm font-medium text-primary-foreground/80 uppercase tracking-wider">Total Brut (avec CP)</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="text-3xl font-black">{grandTotal.gross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €</div>
-                        <p className="text-xs text-primary-foreground/80 mt-1">Incluant 10% CP</p>
+                        <p className="text-xs text-primary-foreground/80 mt-1">Prévisionnel équipe</p>
+                    </CardContent>
+                </Card>
+
+                <Card className="bg-emerald-600 border-none text-white shadow-lg overflow-hidden relative">
+                    <div className="absolute top-0 right-0 p-4 opacity-20"><Euro className="h-12 w-12" /></div>
+                    <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium text-emerald-100 uppercase tracking-wider">Total Net à Verser</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-3xl font-black">{grandTotal.net.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €</div>
+                        <p className="text-xs text-emerald-100/80 mt-1">Estimation net à payer</p>
                     </CardContent>
                 </Card>
 
@@ -130,12 +146,13 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                     <TableHead className="font-bold text-center text-muted-foreground">Taux Horaire</TableHead>
                                     <TableHead className="font-bold text-right text-muted-foreground">Salaire Base</TableHead>
                                     <TableHead className="font-bold text-right text-blue-500">+ 10% CP</TableHead>
-                                    <TableHead className="font-bold text-right pr-6 text-foreground">TOTAL BRUT</TableHead>
+                                    <TableHead className="font-bold text-right text-foreground">REM BRUT</TableHead>
+                                    <TableHead className="font-bold text-right pr-6 text-emerald-600">REM NET</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {employees.map((emp) => {
-                                    const { totalHours, baseGross, paidLeaveComplement, totalGross } = calculateStats(emp)
+                                    const { totalHours, baseGross, paidLeaveComplement, totalGross, totalNet } = calculateStats(emp)
                                     const isManager = emp.role === 'ADMIN'
 
                                     return (
@@ -167,8 +184,11 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                             <TableCell className="text-right text-blue-500 font-medium">
                                                 {isManager ? '-' : `${paidLeaveComplement.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
                                             </TableCell>
-                                            <TableCell className="text-right font-black pr-6 text-foreground">
+                                            <TableCell className="text-right font-black text-foreground">
                                                 {isManager ? '-' : `${totalGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
+                                            </TableCell>
+                                            <TableCell className="text-right font-black pr-6 text-emerald-600">
+                                                {isManager ? '-' : `${(totalNet || 0).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
                                             </TableCell>
                                         </TableRow>
                                     )
