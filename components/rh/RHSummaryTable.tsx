@@ -11,6 +11,87 @@ import { Input } from "@/components/ui/input"
 import { updateEmployeeNet } from "@/app/(authenticated)/rh/actions"
 import { toast } from "sonner"
 
+const EMPLOYEE_COLORS_MAP = [
+    { id: 'rose', bg: 'bg-rose-500/20', text: 'text-rose-700', border: 'border-rose-200', dot: 'bg-rose-500' },
+    { id: 'sky', bg: 'bg-sky-500/20', text: 'text-sky-700', border: 'border-sky-200', dot: 'bg-sky-500' },
+    { id: 'emerald', bg: 'bg-emerald-500/20', text: 'text-emerald-700', border: 'border-emerald-200', dot: 'bg-emerald-500' },
+    { id: 'amber', bg: 'bg-amber-500/20', text: 'text-amber-700', border: 'border-amber-200', dot: 'bg-amber-500' },
+    { id: 'indigo', bg: 'bg-indigo-500/20', text: 'text-indigo-700', border: 'border-indigo-200', dot: 'bg-indigo-500' },
+    { id: 'orange', bg: 'bg-orange-500/20', text: 'text-orange-700', border: 'border-orange-200', dot: 'bg-orange-500' },
+    { id: 'teal', bg: 'bg-teal-500/20', text: 'text-teal-700', border: 'border-teal-200', dot: 'bg-teal-500' },
+    { id: 'purple', bg: 'bg-purple-500/20', text: 'text-purple-700', border: 'border-purple-200', dot: 'bg-purple-500' },
+    { id: 'lime', bg: 'bg-lime-500/20', text: 'text-lime-700', border: 'border-lime-200', dot: 'bg-lime-500' },
+    { id: 'pink', bg: 'bg-pink-500/20', text: 'text-pink-700', border: 'border-pink-200', dot: 'bg-pink-500' },
+    { id: 'cyan', bg: 'bg-cyan-500/20', text: 'text-cyan-700', border: 'border-cyan-200', dot: 'bg-cyan-500' },
+    { id: 'red', bg: 'bg-red-500/20', text: 'text-red-700', border: 'border-red-200', dot: 'bg-red-500' },
+    { id: 'violet', bg: 'bg-violet-500/20', text: 'text-violet-700', border: 'border-violet-200', dot: 'bg-violet-500' },
+    { id: 'yellow', bg: 'bg-yellow-500/20', text: 'text-yellow-700', border: 'border-yellow-200', dot: 'bg-yellow-500' },
+    { id: 'blue', bg: 'bg-blue-500/20', text: 'text-blue-700', border: 'border-blue-200', dot: 'bg-blue-500' },
+    { id: 'fuchsia', bg: 'bg-fuchsia-500/20', text: 'text-fuchsia-700', border: 'border-fuchsia-200', dot: 'bg-fuchsia-500' },
+    { id: 'slate', bg: 'bg-slate-500/20', text: 'text-slate-700', border: 'border-slate-200', dot: 'bg-slate-500' },
+]
+
+function getEmployeeColorData(id: string, name: string = "") {
+    if (name.toLowerCase().includes('benjamin')) return EMPLOYEE_COLORS_MAP[7] // Purple
+    if (name.toLowerCase().includes('adam')) return EMPLOYEE_COLORS_MAP[4] // Indigo
+
+    let hash = 0
+    for (let i = 0; i < id.length; i++) {
+        hash = id.charCodeAt(i) + ((hash << 5) - hash)
+    }
+    const index = Math.abs(hash) % EMPLOYEE_COLORS_MAP.length
+    return EMPLOYEE_COLORS_MAP[index]
+}
+
+function getEmployeeDotColor(id: string, name: string = "") {
+    const data = getEmployeeColorData(id, name)
+    return data.dot
+}
+
+function NetRemunerationInput({ emp, totalNet, selectedMonth, selectedYear }: any) {
+    const [saving, setSaving] = React.useState(false)
+    const timeoutRef = React.useRef<NodeJS.Timeout | undefined>(undefined)
+    const [value, setValue] = React.useState(totalNet !== null ? String(totalNet) : "")
+
+    React.useEffect(() => {
+        setValue(totalNet !== null ? String(totalNet) : "")
+    }, [totalNet])
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value
+        setValue(val)
+
+        if (timeoutRef.current) clearTimeout(timeoutRef.current)
+        timeoutRef.current = setTimeout(async () => {
+            const numVal = val === "" ? null : parseFloat(val)
+            if (numVal === totalNet) return
+            setSaving(true)
+            const res = await updateEmployeeNet(emp.id, numVal, selectedMonth + 1, selectedYear)
+            setSaving(false)
+            if (res.success) toast.success(`${emp.name} mis à jour`)
+            else toast.error("Erreur mise à jour")
+        }, 800)
+    }
+
+    return (
+        <div className="relative group flex items-center justify-end">
+            <Input
+                type="number"
+                step="0.01"
+                placeholder="0.00 €"
+                value={value}
+                onChange={handleChange}
+                className="h-8 w-24 text-right font-bold bg-emerald-500/5 border-emerald-500/20 focus:border-emerald-500 focus:ring-emerald-500/20 transition-all pr-1"
+            />
+            {saving && (
+                <div className="absolute -left-6">
+                    <Loader2 className="h-4 w-4 animate-spin text-emerald-500" />
+                </div>
+            )}
+        </div>
+    )
+}
+
 interface RHSummaryTableProps {
     employees: any[]
 }
@@ -22,7 +103,7 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
     const selectedMonth = currentDate.getMonth()
     const selectedYear = currentDate.getFullYear()
 
-    const monthLabel = currentDate.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+    const currentDateLabel = currentDate.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
 
     const [savingId, setSavingId] = React.useState<string | null>(null)
 
@@ -114,7 +195,7 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                     </CardHeader>
                     <CardContent>
                         <div className="text-3xl font-black">{grandTotal.gross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €</div>
-                        <p className="text-xs text-primary-foreground/80 mt-1">Prévisionnel équipe</p>
+                        <p className="text-xs text-primary-foreground/80 mt-1">Total calculé</p>
                     </CardContent>
                 </Card>
 
@@ -158,7 +239,7 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                         <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                             <div>
                                 <CardTitle className="text-xl">Récapitulatif de Paie</CardTitle>
-                                <CardDescription className="capitalize">{monthLabel}</CardDescription>
+                                <CardDescription className="capitalize">{currentDateLabel}</CardDescription>
                             </div>
                             <div className="flex justify-center items-center bg-muted rounded-lg p-1 border">
                                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => changeMonth(-1)}><ChevronLeft className="h-4 w-4" /></Button>
@@ -166,9 +247,6 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => changeMonth(1)}><ChevronRight className="h-4 w-4" /></Button>
                             </div>
                         </div>
-                        <Badge variant="outline" className="w-fit px-4 py-1 text-sm font-bold border-blue-500/20 text-blue-600 bg-blue-500/10 dark:text-blue-400">
-                            PRÉVISIONNEL
-                        </Badge>
                     </div>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -206,10 +284,20 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                             <TableCell className="font-bold py-4 pl-6">
                                                 <div className="flex items-center gap-2">
                                                     <Link href={`/rh/${emp.id}?tab=hours&month=${selectedMonth + 1}&year=${selectedYear}`} className="flex items-center gap-2 text-foreground hover:text-blue-500 transition-colors group">
-                                                        <div className={`w-2 h-2 rounded-full ${isManager ? 'bg-slate-400' : 'bg-blue-500'} group-hover:scale-125 transition-transform`}></div>
-                                                        {emp.name}
+                                                        <div className={`w-2.5 h-2.5 rounded-full ${isManager ? 'bg-slate-400' : getEmployeeDotColor(emp.id, emp.name)} group-hover:scale-125 transition-transform`}></div>
+                                                        {(() => {
+                                                            const parts = emp.name.trim().split(/\s+/)
+                                                            const last = parts.length > 1 ? parts[parts.length - 1] : ""
+                                                            const first = parts.length > 1 ? parts.slice(0, -1).join(' ') : emp.name
+                                                            return (
+                                                                <span className="whitespace-nowrap">
+                                                                    <span className="uppercase font-black text-xs mr-1">{last}</span>
+                                                                    <span className="font-semibold text-xs">{first}</span>
+                                                                </span>
+                                                            )
+                                                        })()}
                                                     </Link>
-                                                    {isManager && <Badge variant="outline" className="text-[9px] h-4 uppercase">Gérant</Badge>}
+                                                    {isManager && <Badge variant="outline" className="text-[9px] h-4 uppercase scale-90 -ml-1">Gérant</Badge>}
                                                 </div>
                                             </TableCell>
                                             <TableCell>
@@ -237,37 +325,12 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                                 {isManager ? (
                                                     <div className="flex justify-end pr-4 text-muted-foreground">-</div>
                                                 ) : (
-                                                    <div className="relative group flex items-center justify-end">
-                                                        <Input
-                                                            type="number"
-                                                            step="0.01"
-                                                            placeholder="0.00 €"
-                                                            defaultValue={totalNet !== null ? Number(totalNet) : ""}
-                                                            className="h-8 w-24 text-right font-bold bg-emerald-500/5 border-emerald-500/20 focus:border-emerald-500 focus:ring-emerald-500/20 transition-all pr-1"
-                                                            onBlur={async (e) => {
-                                                                const val = e.target.value
-                                                                const numVal = val === "" ? null : parseFloat(val)
-
-                                                                // Ne rien faire si la valeur n'a pas changé
-                                                                if (numVal === totalNet) return
-
-                                                                setSavingId(emp.id)
-                                                                const res = await updateEmployeeNet(emp.id, numVal, selectedMonth + 1, selectedYear)
-                                                                setSavingId(null)
-
-                                                                if (res.success) {
-                                                                    toast.success(`${emp.name} mis à jour`)
-                                                                } else {
-                                                                    toast.error("Erreur mise à jour")
-                                                                }
-                                                            }}
-                                                        />
-                                                        {savingId === emp.id && (
-                                                            <div className="absolute -left-6">
-                                                                <Loader2 className="h-4 w-4 animate-spin text-emerald-500" />
-                                                            </div>
-                                                        )}
-                                                    </div>
+                                                    <NetRemunerationInput
+                                                        emp={emp}
+                                                        totalNet={totalNet}
+                                                        selectedMonth={selectedMonth}
+                                                        selectedYear={selectedYear}
+                                                    />
                                                 )}
                                             </TableCell>
                                         </TableRow>

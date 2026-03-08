@@ -105,6 +105,8 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     // Ajout d'un shift
     const [selectedDateForShift, setSelectedDateForShift] = useState<Date | null>(null)
     const [isAddingShift, setIsAddingShift] = useState(false)
+    // Navigation et Affichage
+    const [viewMode, setViewMode] = useState<'month' | 'week'>('month')
     const [selectedUserIdForAdd, setSelectedUserIdForAdd] = useState<string>("")
     const [selectedEmployeeIds, setSelectedEmployeeIds] = useState<Set<string>>(new Set())
     const [isCompactWeek, setIsCompactWeek] = useState(false)
@@ -120,14 +122,34 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
         setLocalShifts(allShifts)
     }, [employees])
 
-    const nextMonth = () => setCurrentDate(addMonths(currentDate, 1))
-    const prevMonth = () => setCurrentDate(subMonths(currentDate, 1))
+    const nextPeriod = () => {
+        if (viewMode === 'month') setCurrentDate(addMonths(currentDate, 1))
+        else {
+            const nextWeek = new Date(currentDate)
+            nextWeek.setDate(nextWeek.getDate() + 7)
+            setCurrentDate(nextWeek)
+        }
+    }
+    const prevPeriod = () => {
+        if (viewMode === 'month') setCurrentDate(subMonths(currentDate, 1))
+        else {
+            const lastWeek = new Date(currentDate)
+            lastWeek.setDate(lastWeek.getDate() - 7)
+            setCurrentDate(lastWeek)
+        }
+    }
 
     const days = useMemo(() => {
-        const start = startOfWeek(startOfMonth(currentDate), { weekStartsOn: 1 })
-        const end = endOfWeek(endOfMonth(currentDate), { weekStartsOn: 1 })
-        return eachDayOfInterval({ start, end })
-    }, [currentDate])
+        if (viewMode === 'month') {
+            const start = startOfWeek(startOfMonth(currentDate), { weekStartsOn: 1 })
+            const end = endOfWeek(endOfMonth(currentDate), { weekStartsOn: 1 })
+            return eachDayOfInterval({ start, end })
+        } else {
+            const start = startOfWeek(currentDate, { weekStartsOn: 1 })
+            const end = endOfWeek(currentDate, { weekStartsOn: 1 })
+            return eachDayOfInterval({ start, end })
+        }
+    }, [currentDate, viewMode])
 
     const shiftsByDay = useMemo(() => {
         const map: Record<string, any[]> = {}
@@ -375,40 +397,61 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                         <div>
                             <CardTitle className="text-xl flex items-center gap-2">
                                 <CalendarIcon className="h-5 w-5 text-primary" />
-                                Planning des Équipes
+                                Planning {viewMode === 'month' ? 'Mensuel' : 'Hebdo'}
                             </CardTitle>
-                            <CardDescription className="capitalize">Vue globale (Gérants inclus)</CardDescription>
+                            <CardDescription className="hidden sm:block">Vue globale (Gérants inclus)</CardDescription>
                         </div>
-                        <div className="flex justify-center items-center bg-muted rounded-lg p-1 border">
-                            <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={prevMonth}>
+                        <div className="flex items-center justify-between sm:justify-center bg-muted rounded-lg p-1 border">
+                            <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={prevPeriod}>
                                 <ChevronLeft className="h-4 w-4" />
                             </Button>
-                            <span className="text-sm font-bold px-4 min-w-[140px] text-center capitalize">
-                                {format(currentDate, 'MMMM yyyy', { locale: fr })}
+                            <span className="text-xs sm:text-sm font-bold px-2 sm:px-4 min-w-[120px] sm:min-w-[140px] text-center capitalize">
+                                {viewMode === 'month'
+                                    ? format(currentDate, 'MMMM yyyy', { locale: fr })
+                                    : `Sem. ${format(currentDate, 'w')} - ${format(currentDate, 'MMM', { locale: fr })}`
+                                }
                             </span>
-                            <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={nextMonth}>
+                            <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={nextPeriod}>
                                 <ChevronRight className="h-4 w-4" />
                             </Button>
                         </div>
                     </div>
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+                        <div className="flex bg-muted rounded-full p-1 border shadow-inner">
+                            <Button
+                                variant={viewMode === 'month' ? 'secondary' : 'ghost'}
+                                size="sm"
+                                className="rounded-full h-7 sm:h-8 px-3 sm:px-4 text-[10px] sm:text-xs font-bold"
+                                onClick={() => setViewMode('month')}
+                            >
+                                Mois
+                            </Button>
+                            <Button
+                                variant={viewMode === 'week' ? 'secondary' : 'ghost'}
+                                size="sm"
+                                className="rounded-full h-7 sm:h-8 px-3 sm:px-4 text-[10px] sm:text-xs font-bold"
+                                onClick={() => setViewMode('week')}
+                            >
+                                Semaine
+                            </Button>
+                        </div>
                         <Button
                             variant="outline"
                             size="sm"
                             onClick={() => setIsCompactWeek(!isCompactWeek)}
-                            className="h-8 gap-1.5 border-primary/20 hover:border-primary/40"
+                            className="h-7 sm:h-8 gap-1.5 border-primary/20 hover:border-primary/40 text-[10px] sm:text-xs"
                         >
-                            <ChevronRight className={`h-4 w-4 transition-transform ${isCompactWeek ? 'rotate-180' : ''}`} />
-                            <span className="hidden sm:inline">{isCompactWeek ? "Semaine complète" : "Focus Fin de semaine"}</span>
+                            <ChevronRight className={`h-3 w-3 sm:h-4 sm:w-4 transition-transform ${isCompactWeek ? 'rotate-180' : ''}`} />
+                            <span className="hidden lg:inline">{isCompactWeek ? "Semaine complète" : "Focus WE"}</span>
                         </Button>
                         <Button
                             variant="default"
                             size="sm"
                             onClick={handleAutoFill}
-                            className="rounded-full shadow-lg shadow-primary/20 bg-primary hover:bg-primary/90 font-bold uppercase text-[10px] tracking-wider px-4"
+                            className="h-7 sm:h-8 rounded-full shadow-lg shadow-primary/20 bg-primary hover:bg-primary/90 font-bold uppercase text-[9px] sm:text-[10px] tracking-wider px-3 sm:px-4 shrink-0"
                         >
-                            <UserPlus className="h-3.5 w-3.5 mr-2" />
-                            Remplissage Auto Gérants
+                            <span className="hidden sm:inline">Remplissage Gérants</span>
+                            <UserPlus className="h-3.5 w-3.5 sm:hidden" />
                         </Button>
                     </div>
                 </div>
@@ -514,17 +557,22 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 >
                                     <div className="flex justify-between items-start mb-1">
                                         <div className="flex flex-col gap-1">
-                                            <span className={`text-sm font-bold w-7 h-7 flex items-center justify-center rounded-full
-                                                ${today ? 'bg-primary text-primary-foreground' : 'text-foreground'}`}>
-                                                {format(day, 'd')}
-                                            </span>
+                                            <div className="flex items-center gap-1.5">
+                                                <span className={`text-xs sm:text-sm font-bold w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full
+                                                    ${today ? 'bg-primary text-primary-foreground' : 'text-foreground'}`}>
+                                                    {format(day, 'd')}
+                                                </span>
+                                                {viewMode === 'week' && (
+                                                    <span className="text-[10px] font-bold text-muted-foreground uppercase">{format(day, 'EEE', { locale: fr })}</span>
+                                                )}
+                                            </div>
 
                                             {/* Bouton rapide d'ajout de shift via Dialog */}
                                             {isCurrentMonth && (
                                                 <Button
                                                     variant="outline"
                                                     size="icon"
-                                                    className="h-6 w-6 rounded-md opacity-0 group-hover/day:opacity-100 transition-opacity"
+                                                    className="h-6 w-6 rounded-md opacity-100 sm:opacity-0 group-hover/day:opacity-100 transition-opacity"
                                                     onClick={() => setSelectedDateForShift(day)}
                                                     title="Ajouter un shift"
                                                 >
@@ -620,7 +668,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
 
             {/* Dialog d'ajout rapide */}
             <Dialog open={!!selectedDateForShift} onOpenChange={(open) => !open && setSelectedDateForShift(null)}>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="w-[95vw] sm:max-w-[425px] p-4 sm:p-6 rounded-xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle>Ajouter un shift</DialogTitle>
                         <CardDescription>
@@ -695,7 +743,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
 
             {/* Dialog d'édition rapide */}
             <Dialog open={!!editingShift} onOpenChange={(open) => !open && setEditingShift(null)}>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="w-[95vw] sm:max-w-[425px] p-4 sm:p-6 rounded-xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle>Modifier le shift</DialogTitle>
                         <CardDescription>

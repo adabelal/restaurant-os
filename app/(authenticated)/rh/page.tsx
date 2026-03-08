@@ -83,19 +83,6 @@ export default async function RHPage() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                        <form action={async () => {
-                            'use server'
-                            const { seedEmployees } = await import("./actions")
-                            await seedEmployees()
-                        }}>
-                            <Button
-                                variant="outline"
-                                className="rounded-full px-5 border-2 hover:bg-muted font-oswald font-semibold transition-all active:scale-95 group"
-                            >
-                                <Database className="mr-2 h-4 w-4 text-primary group-hover:rotate-12 transition-transform" />
-                                Initialiser
-                            </Button>
-                        </form>
                         <CreateEmployeeDialog />
                     </div>
                 </div>
