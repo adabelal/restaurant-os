@@ -172,6 +172,98 @@ function ShiftItem({ s, isDragging, onDragStart, onEdit, onUpdatePosition }: any
     )
 }
 
+function MobileShiftItem({ s, onEdit, onDelete }: any) {
+    const [startX, setStartX] = useState(0)
+    const [offsetX, setOffsetX] = useState(0)
+    const [isSwiping, setIsSwiping] = useState(false)
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        setStartX(e.touches[0].clientX)
+        setIsSwiping(true)
+    }
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        if (!isSwiping) return
+        const currentX = e.touches[0].clientX
+        const diff = currentX - startX
+        // Limiter le swipe
+        if (Math.abs(diff) < 120) {
+            setOffsetX(diff)
+        }
+    }
+
+    const handleTouchEnd = () => {
+        setIsSwiping(false)
+        if (offsetX > 60) {
+            onEdit()
+        } else if (offsetX < -60) {
+            onDelete()
+        }
+        setOffsetX(0)
+    }
+
+    const colorClass = getEmployeeColorClass(s.employee.id, s.employee.name)
+    const dotColor = getEmployeeDotColor(s.employee.id, s.employee.name)
+    const isGerant = s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')
+
+    return (
+        <div className="relative overflow-hidden rounded-2xl h-[72px]">
+            {/* Background Actions */}
+            <div className="absolute inset-0 flex items-center justify-between px-4">
+                <div className="flex items-center gap-2 text-emerald-600 font-bold text-xs">
+                    <Plus className="h-4 w-4" /> Modifier
+                </div>
+                <div className="flex items-center gap-2 text-red-600 font-bold text-xs uppercase">
+                    Supprimer <MoreVertical className="h-4 w-4 rotate-90" />
+                </div>
+            </div>
+
+            {/* Foreground Content */}
+            <div
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                style={{ transform: `translateX(${offsetX}px)` }}
+                className={`
+                    absolute inset-0 z-10 flex items-center justify-between p-3 border bg-card shadow-sm transition-transform duration-200
+                    ${colorClass}
+                `}
+            >
+                <div className="flex items-center gap-3">
+                    <div className={`w-2 h-8 rounded-full ${dotColor} opacity-50`} />
+                    <div>
+                        <div className="flex items-center gap-2">
+                            <span className="text-xs font-black uppercase">{s.employee.name}</span>
+                            {s.position && (() => {
+                                const pos = POSITIONS.find(p => p.id === s.position)
+                                if (pos) {
+                                    const Icon = pos.icon
+                                    return <Icon className="h-3 w-3 opacity-60" />
+                                }
+                                return null
+                            })()}
+                        </div>
+                        {!isGerant && (
+                            <div className="flex items-center gap-1.5 mt-0.5 opacity-70">
+                                <Clock className="h-2.5 w-2.5" />
+                                <span className="text-[10px] font-bold font-mono tracking-tighter">
+                                    {format(new Date(s.startTime), 'HH:mm')} - {s.endTime ? format(new Date(s.endTime), 'HH:mm') : '?'}
+                                </span>
+                            </div>
+                        )}
+                        {isGerant && (
+                            <Badge variant="outline" className="text-[8px] h-3.5 px-1 uppercase tracking-tighter mt-1 border-current opacity-40">Gérant</Badge>
+                        )}
+                    </div>
+                </div>
+                <div className="opacity-30">
+                    <ChevronRight className="h-4 w-4" />
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     const [currentDate, setCurrentDate] = useState(new Date())
     const [localShifts, setLocalShifts] = useState<any[]>([])
@@ -189,6 +281,13 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     // Édition d'un shift existant
     const [editingShift, setEditingShift] = useState<any | null>(null)
     const [isEditingShift, setIsEditingShift] = useState(false)
+
+    // Suppression d'un shift
+    const [deletingShiftId, setDeletingShiftId] = useState<string | null>(null)
+    const [isDeletingShift, setIsDeletingShift] = useState(false)
+
+    // Sidebar State
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
     useEffect(() => {
         const allShifts = employees.flatMap(emp =>
@@ -447,6 +546,32 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
         }
     }
 
+    const handleDeleteShift = async () => {
+        if (!deletingShiftId) return
+        const shiftToDelete = localShifts.find(s => s.id === deletingShiftId)
+        if (!shiftToDelete) return
+
+        setIsDeletingShift(true)
+        toast.info("Suppression du shift...")
+
+        try {
+            const { deleteShift } = await import("@/app/(authenticated)/rh/actions")
+            const result = await deleteShift(deletingShiftId, shiftToDelete.userId) as any
+
+            if (result?.error) {
+                toast.error(result.error)
+            } else {
+                toast.success("Shift supprimé")
+                setLocalShifts(prev => prev.filter(s => s.id !== deletingShiftId))
+                setDeletingShiftId(null)
+            }
+        } catch (err) {
+            toast.error("Erreur lors de la suppression")
+        } finally {
+            setIsDeletingShift(false)
+        }
+    }
+
     const handleAutoFill = async () => {
         toast.info("Remplissage automatique en cours...")
         try {
@@ -491,12 +616,12 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             </Button>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
-                        <div className="flex bg-muted rounded-full p-1 border shadow-inner">
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                        <div className="flex bg-muted rounded-xl p-1 border shadow-inner w-full sm:w-auto">
                             <Button
                                 variant={viewMode === 'month' ? 'secondary' : 'ghost'}
                                 size="sm"
-                                className="rounded-full h-7 sm:h-8 px-3 sm:px-4 text-[10px] sm:text-xs font-bold"
+                                className="flex-1 sm:flex-none rounded-lg h-8 px-4 text-[11px] font-bold uppercase"
                                 onClick={() => setViewMode('month')}
                             >
                                 Mois
@@ -504,29 +629,21 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             <Button
                                 variant={viewMode === 'week' ? 'secondary' : 'ghost'}
                                 size="sm"
-                                className="rounded-full h-7 sm:h-8 px-3 sm:px-4 text-[10px] sm:text-xs font-bold"
+                                className="flex-1 sm:flex-none rounded-lg h-8 px-4 text-[11px] font-bold uppercase"
                                 onClick={() => setViewMode('week')}
                             >
                                 Semaine
                             </Button>
                         </div>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setIsCompactWeek(!isCompactWeek)}
-                            className="h-7 sm:h-8 gap-1.5 border-primary/20 hover:border-primary/40 text-[10px] sm:text-xs"
-                        >
-                            <ChevronRight className={`h-3 w-3 sm:h-4 sm:w-4 transition-transform ${isCompactWeek ? 'rotate-180' : ''}`} />
-                            <span className="hidden lg:inline">{isCompactWeek ? "Semaine complète" : "Focus WE"}</span>
-                        </Button>
+
                         <Button
                             variant="default"
                             size="sm"
                             onClick={handleAutoFill}
-                            className="h-7 sm:h-8 rounded-full shadow-lg shadow-primary/20 bg-primary hover:bg-primary/90 font-bold uppercase text-[9px] sm:text-[10px] tracking-wider px-3 sm:px-4 shrink-0"
+                            className="h-9 sm:h-10 rounded-xl shadow-lg shadow-primary/20 bg-primary hover:bg-primary/90 font-bold uppercase text-[10px] tracking-wider px-4 shrink-0"
                         >
+                            <UserPlus className="h-4 w-4 sm:mr-2" />
                             <span className="hidden sm:inline">Remplissage Gérants</span>
-                            <UserPlus className="h-3.5 w-3.5 sm:hidden" />
                         </Button>
                     </div>
                 </div>
@@ -534,64 +651,79 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
 
             <CardContent className="p-0 flex flex-col xl:flex-row">
                 {/* Sidebar des Heures */}
-                <div className="w-full xl:w-64 shrink-0 border-b xl:border-b-0 xl:border-r border-border bg-muted/10 p-4">
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                            <Clock className="h-4 w-4" />
-                            <h3 className="font-bold text-xs uppercase tracking-wider">Heures du mois</h3>
-                        </div>
-                        {selectedEmployeeIds.size > 0 && (
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => setSelectedEmployeeIds(new Set())}
-                                className="h-6 text-[10px] px-2 text-primary"
-                            >
-                                Tout voir
-                            </Button>
-                        )}
-                    </div>
-
-                    <div className="flex flex-col gap-2 max-h-[300px] xl:max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
-                        {employeeHours.map(emp => {
-                            const isGerant = emp.name.toLowerCase().includes('adam') || emp.name.toLowerCase().includes('benjamin')
-                            const displayHours = isGerant ? "Gérant" : `${emp.totalHours.toFixed(1)}h`
-                            const isSelected = selectedEmployeeIds.has(emp.id)
-
-                            const toggleFilter = () => {
-                                const newSet = new Set(selectedEmployeeIds)
-                                if (newSet.has(emp.id)) newSet.delete(emp.id)
-                                else newSet.add(emp.id)
-                                setSelectedEmployeeIds(newSet)
-                            }
-
-                            return (
-                                <div
-                                    key={emp.id}
-                                    onClick={toggleFilter}
-                                    className={`
-                                        flex items-center justify-between p-2 rounded-lg cursor-pointer border transition-all shadow-sm
-                                        ${isSelected ? 'bg-primary/10 border-primary ring-1 ring-primary/20' : 'bg-card border-border hover:border-primary/30'}
-                                    `}
+                <div className={`
+                    shrink-0 border-b xl:border-b-0 xl:border-r border-border bg-muted/10 transition-all duration-300 overflow-hidden
+                    ${isSidebarOpen ? 'w-full xl:w-64 opacity-100' : 'w-full xl:w-0 opacity-0 xl:p-0'}
+                `}>
+                    <div className="p-4 min-w-[240px]">
+                        <div className="flex items-center justify-between gap-2 mb-4">
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                                <Clock className="h-4 w-4" />
+                                <h3 className="font-bold text-xs uppercase tracking-wider">Heures du mois</h3>
+                            </div>
+                            {selectedEmployeeIds.size > 0 && (
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => setSelectedEmployeeIds(new Set())}
+                                    className="h-6 text-[10px] px-2 text-primary"
                                 >
-                                    <div className="flex items-center gap-2 overflow-hidden">
-                                        <div className={`shrink-0 w-3 h-3 rounded-full ${getEmployeeDotColor(emp.id, emp.name)} shadow-sm`} />
-                                        <span className={`text-xs truncate ${isSelected ? 'font-bold' : 'font-semibold'}`} title={emp.name}>{formatName(emp.name)}</span>
+                                    Tout voir
+                                </Button>
+                            )}
+                        </div>
+
+                        <div className="flex flex-col gap-2 max-h-[300px] xl:max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+                            {employeeHours.map(emp => {
+                                const isGerant = emp.name.toLowerCase().includes('adam') || emp.name.toLowerCase().includes('benjamin')
+                                const displayHours = isGerant ? "Gérant" : `${emp.totalHours.toFixed(1)}h`
+                                const isSelected = selectedEmployeeIds.has(emp.id)
+
+                                const toggleFilter = () => {
+                                    const newSet = new Set(selectedEmployeeIds)
+                                    if (newSet.has(emp.id)) newSet.delete(emp.id)
+                                    else newSet.add(emp.id)
+                                    setSelectedEmployeeIds(newSet)
+                                }
+
+                                return (
+                                    <div
+                                        key={emp.id}
+                                        onClick={toggleFilter}
+                                        className={`
+                                            flex items-center justify-between p-2 rounded-lg cursor-pointer border transition-all shadow-sm
+                                            ${isSelected ? 'bg-primary/10 border-primary ring-1 ring-primary/20' : 'bg-card border-border hover:border-primary/30'}
+                                        `}
+                                    >
+                                        <div className="flex items-center gap-2 overflow-hidden">
+                                            <div className={`shrink-0 w-3 h-3 rounded-full ${getEmployeeDotColor(emp.id, emp.name)} shadow-sm`} />
+                                            <span className={`text-xs truncate ${isSelected ? 'font-bold' : 'font-semibold'}`} title={emp.name}>{formatName(emp.name)}</span>
+                                        </div>
+                                        <Badge variant={isGerant ? "outline" : (isSelected ? "default" : "secondary")} className={`text-[10px] ${isGerant ? 'font-normal border-primary/20 text-primary' : 'font-bold'}`}>
+                                            {displayHours}
+                                        </Badge>
                                     </div>
-                                    <Badge variant={isGerant ? "outline" : (isSelected ? "default" : "secondary")} className={`text-[10px] ${isGerant ? 'font-normal border-primary/20 text-primary' : 'font-bold'}`}>
-                                        {displayHours}
-                                    </Badge>
-                                </div>
-                            )
-                        })}
-                        {employeeHours.length === 0 && (
-                            <p className="text-xs text-muted-foreground italic text-center py-4">Aucune heure enregistrée ce mois-ci.</p>
-                        )}
+                                )
+                            })}
+                            {employeeHours.length === 0 && (
+                                <p className="text-xs text-muted-foreground italic text-center py-4">Aucune heure enregistrée ce mois-ci.</p>
+                            )}
+                        </div>
                     </div>
                 </div>
 
                 {/* Calendrier / Contenu Principal */}
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 relative">
+                    {/* Toggle Sidebar Button (Desktop only, positioned absolute) */}
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                        className={`hidden xl:flex absolute top-1/2 -left-3 z-30 h-6 w-6 rounded-full bg-background border shadow-md transition-transform duration-300 hover:bg-muted ${!isSidebarOpen ? 'rotate-180' : ''}`}
+                    >
+                        <ChevronLeft className="h-4 w-4" />
+                    </Button>
+
                     {/* Header des Jours (Desktop uniquement) */}
                     <div className={`hidden md:grid border-b border-border bg-muted/30 ${isCompactWeek ? 'grid-cols-[repeat(3,0.6fr)_repeat(4,2fr)]' : 'grid-cols-7'} text-[10px] sm:text-xs`}>
                         {weekDays.map((day, dIdx) => {
@@ -717,43 +849,12 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                             <p className="text-[10px] font-medium text-muted-foreground italic pl-1.5 opacity-60">Aucun shift planifié</p>
                                         ) : (
                                             dayShifts.map((s, i) => (
-                                                <div
+                                                <MobileShiftItem
                                                     key={s.id || i}
-                                                    onClick={() => setEditingShift(s)}
-                                                    className={`
-                                                        flex items-center justify-between p-3 rounded-2xl border bg-card shadow-sm active:scale-[0.98] transition-all
-                                                        ${getEmployeeColorClass(s.employee.id, s.employee.name)}
-                                                    `}
-                                                >
-                                                    <div className="flex items-center gap-3">
-                                                        <div className={`w-2 h-8 rounded-full ${getEmployeeDotColor(s.employee.id, s.employee.name)} opacity-50`} />
-                                                        <div>
-                                                            <div className="flex items-center gap-2">
-                                                                <span className="text-xs font-black uppercase">{s.employee.name}</span>
-                                                                {s.position && (() => {
-                                                                    const pos = POSITIONS.find(p => p.id === s.position)
-                                                                    if (pos) {
-                                                                        const Icon = pos.icon
-                                                                        return <Icon className="h-3 w-3 opacity-60" />
-                                                                    }
-                                                                    return null
-                                                                })()}
-                                                            </div>
-                                                            {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
-                                                                <div className="flex items-center gap-1.5 mt-0.5 opacity-70">
-                                                                    <Clock className="h-2.5 w-2.5" />
-                                                                    <span className="text-[10px] font-bold font-mono tracking-tighter">
-                                                                        {format(new Date(s.startTime), 'HH:mm')} - {s.endTime ? format(new Date(s.endTime), 'HH:mm') : '?'}
-                                                                    </span>
-                                                                </div>
-                                                            )}
-                                                            {(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
-                                                                <Badge variant="outline" className="text-[8px] h-3.5 px-1 uppercase tracking-tighter mt-1 border-current opacity-40">Gérant</Badge>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                    <ChevronRight className="h-4 w-4 opacity-30" />
-                                                </div>
+                                                    s={s}
+                                                    onEdit={() => setEditingShift(s)}
+                                                    onDelete={() => setDeletingShiftId(s.id)}
+                                                />
                                             ))
                                         )}
                                     </div>

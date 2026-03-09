@@ -77,13 +77,9 @@ export default async function RHPage() {
                                 Équipe & RH
                             </h1>
                         </div>
-                        <p className="text-muted-foreground text-lg font-medium opacity-80 pl-1">
+                        <p className="text-muted-foreground text-sm font-medium opacity-80 pl-1">
                             Gérez les talents qui font vivre votre établissement.
                         </p>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                        <CreateEmployeeDialog />
                     </div>
                 </div>
             </div>
