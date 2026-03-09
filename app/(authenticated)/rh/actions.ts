@@ -943,41 +943,53 @@ async function extractRemunerationWithAI(fileBuffer: Buffer) {
 export async function syncEmployeePayslips(userId: string) {
     return safeAction({ userId }, async (input) => {
         try {
-            const employee = await prisma.user.findUnique({
+            const employee = await (prisma as any).user.findUnique({
                 where: { id: input.userId },
-                include: { documents: { where: { type: 'PAYSLIP' } } }
-            })
+                include: {
+                    documents: { where: { type: 'PAYSLIP' } },
+                    monthlySalaries: true
+                }
+            }) as any
 
             if (!employee) return { error: "Salarié non trouvé" }
 
-            const existingFiles = new Set(employee.documents.map(d => d.name))
+            const existingFiles = new Set((employee.documents || []).map((d: any) => d.name))
             let syncCount = 0
 
             // 1. Essai de scan local (Mac Adam)
             if (fs.existsSync(DRIVE_PAIE_ROOT)) {
                 console.log("RH Sync: Using local DRIVE_PAIE_ROOT path.")
-                const foundFiles: { path: string, name: string }[] = []
+                const foundFiles: { path: string, name: string, month: number, year: number, docExists: boolean, salaryExists: boolean }[] = []
 
                 const walkLocal = (dir: string) => {
                     const list = fs.readdirSync(dir)
                     for (const file of list) {
                         const fullPath = path.join(dir, file)
-                        const stat = fs.statSync(fullPath)
-                        if (stat && stat.isDirectory()) walkLocal(fullPath)
-                        else if (file.toLowerCase().endsWith('.pdf')) {
-                            // Nettoyage robuste pour comparaison (accents, tirets, etc)
-                            const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
-                            const cleanFile = file.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+                        try {
+                            const stat = fs.statSync(fullPath)
+                            if (stat && stat.isDirectory()) walkLocal(fullPath)
+                            else if (file.toLowerCase().endsWith('.pdf')) {
+                                const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+                                const cleanFile = file.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+                                const nameParts = cleanName.split(/\s+/).filter(p => p.length > 1)
+                                const matches = nameParts.length > 0 && nameParts.every(part => cleanFile.includes(part))
 
-                            const nameParts = cleanName.split(/\s+/).filter(p => p.length > 1)
+                                if (matches) {
+                                    // Extract potential date from name
+                                    const dateMatch = file.match(/(\d{4})[_-]?(\d{2})/)
+                                    const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
+                                    const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
 
-                            // On vérifie que les mots importants du nom sont présents dans le fichier
-                            const matches = nameParts.length > 0 && nameParts.every(part => cleanFile.includes(part))
+                                    // Check if we need to sync file or just catch up on salary
+                                    const docExists = existingFiles.has(file)
+                                    const salaryExists = (employee.monthlySalaries || []).some((s: any) => s.month === month && s.year === year && s.netRemuneration)
 
-                            if (matches && !existingFiles.has(file)) {
-                                foundFiles.push({ path: fullPath, name: file })
+                                    if (!docExists || !salaryExists) {
+                                        foundFiles.push({ path: fullPath, name: file, month, year, docExists, salaryExists })
+                                    }
+                                }
                             }
-                        }
+                        } catch (err) { /* ignore individual file errors */ }
                     }
                 }
                 walkLocal(DRIVE_PAIE_ROOT)
@@ -985,38 +997,39 @@ export async function syncEmployeePayslips(userId: string) {
                 for (const f of foundFiles) {
                     try {
                         const fileBuffer = fs.readFileSync(f.path)
-                        const folderId = await getOrCreateRhFolder(employee.name, 'PAYSLIP')
 
-                        // Regex plus flexible pour la date (ex: 2026-02, 2026_02, ou même 202602)
-                        const dateMatch = f.name.match(/(\d{4})[_-]?(\d{2})/)
-                        const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
-                        const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
+                        // 1. Sync File if missing
+                        if (!f.docExists) {
+                            const folderId = await getOrCreateRhFolder(employee.name, 'PAYSLIP')
+                            const driveFile = await uploadFileToDrive(fileBuffer, f.name, 'application/pdf', folderId)
 
-                        const driveFile = await uploadFileToDrive(fileBuffer, f.name, 'application/pdf', folderId)
-
-                        await prisma.employeeDocument.create({
-                            data: {
-                                userId: employee.id,
-                                name: f.name,
-                                url: driveFile.webViewLink,
-                                type: 'PAYSLIP',
-                                category: 'PAIE',
-                                month,
-                                year
-                            }
-                        })
-
-                        // Extract net amount using AI
-                        const netAmount = await extractRemunerationWithAI(fileBuffer)
-                        if (netAmount) {
-                            await (prisma as any).monthlySalary.upsert({
-                                where: { userId_month_year: { userId: employee.id, month, year } },
-                                update: { netRemuneration: netAmount },
-                                create: { userId: employee.id, month, year, netRemuneration: netAmount }
+                            await prisma.employeeDocument.create({
+                                data: {
+                                    userId: employee.id,
+                                    name: f.name,
+                                    url: driveFile.webViewLink,
+                                    type: 'PAYSLIP',
+                                    category: 'PAIE',
+                                    month: f.month,
+                                    year: f.year
+                                }
                             })
+                            syncCount++
                         }
 
-                        syncCount++
+                        // 2. Sync Salary if missing
+                        if (!f.salaryExists) {
+                            const netAmount = await extractRemunerationWithAI(fileBuffer)
+                            if (netAmount) {
+                                await (prisma as any).monthlySalary.upsert({
+                                    where: { userId_month_year: { userId: employee.id, month: f.month, year: f.year } },
+                                    update: { netRemuneration: netAmount },
+                                    create: { userId: employee.id, month: f.month, year: f.year, netRemuneration: netAmount }
+                                })
+                                // If we only synced salary, it's still a success action
+                                if (f.docExists) syncCount++
+                            }
+                        }
                     } catch (fileErr) {
                         console.error(`Local Sync failed for file ${f.name}:`, fileErr)
                     }
@@ -1031,45 +1044,55 @@ export async function syncEmployeePayslips(userId: string) {
 
                 for (const f of allCloudPdf) {
                     if (!f.name.toLowerCase().endsWith('.pdf')) continue
-                    if (existingFiles.has(f.name)) continue
 
                     const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
                     const cleanFile = f.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
-                    const nameParts = cleanName.split(/\s+/).filter(p => p.length > 1)
+                    const nameParts = cleanName.split(/\s+/).filter((p: string) => p.length > 1)
 
-                    if (nameParts.length > 0 && nameParts.every(part => cleanFile.includes(part))) {
+                    if (nameParts.length > 0 && nameParts.every((part: string) => cleanFile.includes(part))) {
                         const dateMatch = f.name.match(/(\d{4})[_-]?(\d{2})/)
                         const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
                         const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
 
-                        await prisma.employeeDocument.create({
-                            data: {
-                                userId: employee.id,
-                                name: f.name,
-                                url: f.webViewLink,
-                                type: 'PAYSLIP',
-                                category: 'PAIE',
-                                month,
-                                year
-                            }
-                        })
+                        const docExists = existingFiles.has(f.name)
+                        const salaryExists = (employee.monthlySalaries || []).some((s: any) => s.month === month && s.year === year && s.netRemuneration)
 
-                        // AI Extraction for Cloud files
+                        if (docExists && salaryExists) continue
+
                         try {
                             const fileBuffer = await downloadFileFromDrive(f.id)
-                            const netAmount = await extractRemunerationWithAI(fileBuffer)
-                            if (netAmount) {
-                                await (prisma as any).monthlySalary.upsert({
-                                    where: { userId_month_year: { userId: employee.id, month, year } },
-                                    update: { netRemuneration: netAmount },
-                                    create: { userId: employee.id, month, year, netRemuneration: netAmount }
+
+                            // 1. Sync File if missing
+                            if (!docExists) {
+                                await prisma.employeeDocument.create({
+                                    data: {
+                                        userId: employee.id,
+                                        name: f.name,
+                                        url: f.webViewLink,
+                                        type: 'PAYSLIP',
+                                        category: 'PAIE',
+                                        month,
+                                        year
+                                    }
                                 })
+                                syncCount++
+                            }
+
+                            // 2. Sync Salary if missing
+                            if (!salaryExists) {
+                                const netAmount = await extractRemunerationWithAI(fileBuffer)
+                                if (netAmount) {
+                                    await (prisma as any).monthlySalary.upsert({
+                                        where: { userId_month_year: { userId: employee.id, month, year } },
+                                        update: { netRemuneration: netAmount },
+                                        create: { userId: employee.id, month, year, netRemuneration: netAmount }
+                                    })
+                                    if (docExists) syncCount++
+                                }
                             }
                         } catch (err) {
-                            console.error(`Cloud AI Extract failed for ${f.name}:`, err)
+                            console.error(`Cloud Sync failed for ${f.name}:`, err)
                         }
-
-                        syncCount++
                     }
                 }
             }
