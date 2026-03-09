@@ -4,30 +4,34 @@ import bcrypt from "bcryptjs"
 
 export async function GET() {
     try {
-        const email = "admin@siwa-bleury.fr" // Email de l'admin
-        const newPassword = "admin" // Mot de passe temporaire
+        const emails = ["admin@siwa-bleury.fr", "a.belal@siwa-bleury.fr", "admin@restaurant-os.com"]
+        const newPassword = "admin"
         const hashedPassword = await bcrypt.hash(newPassword, 12)
 
-        const user = await prisma.user.upsert({
-            where: { email: email.toLowerCase() },
-            update: {
-                password: hashedPassword,
-                isActive: true,
-                role: "ADMIN"
-            },
-            create: {
-                email: email.toLowerCase(),
-                name: "Admin",
-                password: hashedPassword,
-                role: "ADMIN",
-                isActive: true
-            }
-        })
+        const results = []
+        for (const email of emails) {
+            const user = await prisma.user.upsert({
+                where: { email: email.toLowerCase() },
+                update: {
+                    password: hashedPassword,
+                    isActive: true,
+                    role: "ADMIN"
+                },
+                create: {
+                    email: email.toLowerCase(),
+                    name: "Admin " + email.split("@")[0],
+                    password: hashedPassword,
+                    role: "ADMIN",
+                    isActive: true
+                }
+            })
+            results.push(user.email)
+        }
 
         return NextResponse.json({
             success: true,
-            message: `Mot de passe réinitialisé pour ${user.email}`,
-            tips: "Connectez-vous avec 'admin@siwa-bleury.fr' et 'admin'"
+            message: `Mot de passe réinitialisé pour ${results.join(", ")}`,
+            tips: "Connectez-vous avec un de ces emails et le mot de passe 'admin'"
         })
     } catch (error: any) {
         console.error("Reset error:", error)
