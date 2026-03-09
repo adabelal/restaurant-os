@@ -3,16 +3,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { moveFileToFolder } from '@/lib/google-drive'
-
-// This is a temporary route for migration. It should be deleted after use.
+import { moveFileToFolder, getOrCreateRhFolder } from '@/lib/google-drive'
 
 export const runtime = 'nodejs'
 export const maxDuration = 300 // 5 minutes
 
 async function getAccessToken() {
-    // Re-implementing simplified access token logic to avoid dependency issues in this temp script
-    // Or we can import it if lib/google-drive.ts exports it
     const clientId = process.env.GOOGLE_DRIVE_CLIENT_ID
     const clientSecret = process.env.GOOGLE_DRIVE_CLIENT_SECRET
     const refreshToken = process.env.GOOGLE_DRIVE_REFRESH_TOKEN
@@ -36,6 +32,7 @@ async function listFiles(token: string, query: string) {
         headers: { Authorization: `Bearer ${token}` }
     })
     const data = await res.json()
+    if (!res.ok) throw new Error(`Drive list failed: ${JSON.stringify(data)}`)
     return data.files || []
 }
 
@@ -80,60 +77,97 @@ export async function GET(req: NextRequest) {
             return NextResponse.json({ error: "Dossier 'RESSOURCES_HUMAINES' non trouvé. Veuillez d'abord uploader un document pour le créer." }, { status: 400 })
         }
 
-        // 1. Move from old RH folder
+        const employees = await prisma.user.findMany({ select: { id: true, name: true } })
+
+        // Helper to match employee by name (loose match)
+        const findEmployee = (fileName: string) => {
+            const cleanFile = fileName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            return employees.find(e => {
+                const parts = e.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').split(/\s+/)
+                // Every part of employee name (e.g., "Laura", "Souchet") must be in filename
+                return parts.every(p => cleanFile.includes(p))
+            })
+        }
+
+        // 1. Source: RH - Restaurant OS (Old structure)
         const oldRhId = await findFolderId(token, 'RH - Restaurant OS')
         if (oldRhId) {
-            log(`Migrating 'RH - Restaurant OS' (${oldRhId})...`)
+            log(`- Scan Source: 'RH - Restaurant OS'...`)
             const empFolders = await listFiles(token, `'${oldRhId}' in parents and mimeType='application/vnd.google-apps.folder'`)
-
             for (const empF of empFolders) {
-                log(`Processing: ${empF.name}`)
-                const newEmpFolderId = await findFolderId(token, empF.name, rootId) || await createFolder(token, empF.name, rootId)
-
-                const typeFolders = await listFiles(token, `'${empF.id}' in parents and mimeType='application/vnd.google-apps.folder'`)
-                for (const typeF of typeFolders) {
-                    const newTypeFolderId = await findFolderId(token, typeF.name, newEmpFolderId) || await createFolder(token, typeF.name, newEmpFolderId)
-                    const files = await listFiles(token, `'${typeF.id}' in parents and trashed=false`)
+                log(`  - Employé: ${empF.name}`)
+                const subFolders = await listFiles(token, `'${empF.id}' in parents and mimeType='application/vnd.google-apps.folder'`)
+                for (const subF of subFolders) {
+                    const files = await listFiles(token, `'${subF.id}' in parents and trashed=false`)
                     for (const file of files) {
-                        log(`  Moving ${file.name} to ${empF.name}/${typeF.name}`)
-                        await moveFileToFolder(file.id, newTypeFolderId)
+                        // Map old folder name to category
+                        let category = 'OTHER'
+                        const lowerSub = subF.name.toLowerCase()
+                        if (lowerSub.includes('identit')) category = 'ID_CARD'
+                        if (lowerSub.includes('dpae')) category = 'DPAE'
+                        if (lowerSub.includes('paie')) category = 'PAYSLIP'
+                        if (lowerSub.includes('contrat')) category = 'CONTRACT'
+
+                        const targetFolderId = await getOrCreateRhFolder(empF.name, category)
+                        log(`    -> Moving ${file.name} to ${empF.name}/${category}`)
+                        await moveFileToFolder(file.id, targetFolderId)
                     }
                 }
             }
         }
 
-        // 2. Move Contracts from ADMINISTRATION
+        // 2. Source: ADMINISTRATION / Contrats
         const adminId = await findFolderId(token, 'ADMINISTRATION')
         if (adminId) {
-            const contractsId = await findFolderId(token, 'Contrats', adminId)
-            if (contractsId) {
-                log(`Migrating 'ADMINISTRATION/Contrats'...`)
-                const yearFolders = await listFiles(token, `'${contractsId}' in parents and mimeType='application/vnd.google-apps.folder'`)
-
-                const employees = await prisma.user.findMany({ select: { id: true, name: true } })
-
+            const contratsId = await findFolderId(token, 'Contrats', adminId)
+            if (contratsId) {
+                log(`- Scan Source: 'ADMINISTRATION / Contrats'...`)
+                const yearFolders = await listFiles(token, `'${contratsId}' in parents and mimeType='application/vnd.google-apps.folder'`)
                 for (const yearF of yearFolders) {
                     const files = await listFiles(token, `'${yearF.id}' in parents and trashed=false`)
                     for (const file of files) {
-                        const nameMatch = file.name.match(/Contrat_(.+)\.pdf/i)
-                        if (nameMatch) {
-                            const shortName = nameMatch[1].toUpperCase()
-                            const employee = employees.find(e => {
-                                const clean = e.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                                return clean.includes(shortName.toLowerCase())
-                            })
-
-                            if (employee) {
-                                const newEmpFolderId = await findFolderId(token, employee.name, rootId) || await createFolder(token, employee.name, rootId)
-                                const contractFolderId = await findFolderId(token, 'Contrats', newEmpFolderId) || await createFolder(token, 'Contrats', newEmpFolderId)
-                                log(`  Moving contract ${file.name} to ${employee.name}/Contrats`)
-                                await moveFileToFolder(file.id, contractFolderId)
-                            } else {
-                                log(`  Warning: No employee match for ${file.name}`)
-                            }
+                        const employee = findEmployee(file.name)
+                        if (employee) {
+                            const targetFolderId = await getOrCreateRhFolder(employee.name, 'CONTRACT')
+                            log(`    -> Moving contract ${file.name} to ${employee.name}/Contrats`)
+                            await moveFileToFolder(file.id, targetFolderId)
+                        } else {
+                            log(`    x No match found for contract: ${file.name}`)
                         }
                     }
                 }
+            }
+        }
+
+        // 3. Source: RESSOURCES_HUMAINES / Paie (restructuring current root)
+        const paieId = await findFolderId(token, 'Paie', rootId)
+        if (paieId) {
+            log(`- Scan Source: 'RESSOURCES_HUMAINES / Paie'...`)
+            const yearFolders = await listFiles(token, `'${paieId}' in parents and mimeType='application/vnd.google-apps.folder'`)
+            for (const yearF of yearFolders) {
+                const files = await listFiles(token, `'${yearF.id}' in parents and trashed=false`)
+                for (const file of files) {
+                    const employee = findEmployee(file.name)
+                    if (employee) {
+                        const targetFolderId = await getOrCreateRhFolder(employee.name, 'PAYSLIP')
+                        log(`    -> Moving payslip ${file.name} to ${employee.name}/Fiches de paie`)
+                        await moveFileToFolder(file.id, targetFolderId)
+                    } else {
+                        log(`    x No match found for payslip: ${file.name}`)
+                    }
+                }
+            }
+        }
+
+        // 4. Source: RESSOURCES_HUMAINES / Gestion
+        const gestionId = await findFolderId(token, 'Gestion', rootId)
+        if (gestionId) {
+            log(`- Scan Source: 'RESSOURCES_HUMAINES / Gestion'...`)
+            const adminFolderId = await findFolderId(token, 'Administration', rootId) || await createFolder(token, 'Administration', rootId)
+            const files = await listFiles(token, `'${gestionId}' in parents and trashed=false`)
+            for (const file of files) {
+                log(`    -> Moving ${file.name} to Administration`)
+                await moveFileToFolder(file.id, adminFolderId)
             }
         }
 

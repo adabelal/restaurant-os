@@ -660,7 +660,7 @@ export async function updateEmployeeNet(employeeId: string, netRemuneration: num
 
 // ─── SYNC & EMAIL ACTIONS ───────────────────────────────────────────────────
 
-const DRIVE_PAIE_ROOT = "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/RESSOURCES_HUMAINES/Paie"
+const DRIVE_PAIE_ROOT = "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/RESSOURCES_HUMAINES"
 
 /**
  * Scanne récursivement le dossier local Google Drive pour trouver les fiches de paie d'un salarié

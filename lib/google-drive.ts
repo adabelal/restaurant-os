@@ -14,7 +14,7 @@ export const DOC_TYPE_LABELS: Record<string, string> = {
     CONTRACT: 'Contrats',
     PAYSLIP: 'Fiches de paie',
     ID_CARD: 'Identité & Titre Séjour',
-    RESIDENCE_PERMIT: 'Titre de séjour',
+    RESIDENCE_PERMIT: 'Identité & Titre Séjour',
     INSURANCE: 'Mutuelle & RIB',
     DPAE: 'DPAE & Affiliations',
     MEDICAL: 'Visite Médicale',
