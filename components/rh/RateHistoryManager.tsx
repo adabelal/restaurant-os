@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Trash2, Calendar, Euro } from "lucide-react"
+import { Plus, Trash2, Calendar, Euro, Sparkles, Info } from "lucide-react"
 import { toast } from "sonner"
 import { updateHourlyRateHistory } from "@/app/rh/actions"
+import { SMIC_HISTORY, getApplicableRate } from "@/lib/rh-utils"
 
 interface RateEntry {
     rate: number
@@ -18,9 +19,11 @@ interface RateEntry {
 interface RateHistoryManagerProps {
     userId: string
     currentHistoryJson?: string
+    selectedMonth?: number
+    selectedYear?: number
 }
 
-export function RateHistoryManager({ userId, currentHistoryJson }: RateHistoryManagerProps) {
+export function RateHistoryManager({ userId, currentHistoryJson, selectedMonth = new Date().getMonth(), selectedYear = new Date().getFullYear() }: RateHistoryManagerProps) {
     const [rates, setRates] = useState<RateEntry[]>(() => {
         try {
             return currentHistoryJson ? JSON.parse(currentHistoryJson) : []
@@ -31,35 +34,50 @@ export function RateHistoryManager({ userId, currentHistoryJson }: RateHistoryMa
     const [newRate, setNewRate] = useState('')
     const [newDate, setNewDate] = useState('')
 
+    const currentApplicableRate = getApplicableRate(JSON.stringify(rates), 0, selectedMonth, selectedYear)
+
+    const saveHistory = async (newRates: RateEntry[]) => {
+        const formData = new FormData()
+        formData.append('userId', userId)
+        formData.append('ratesJson', JSON.stringify(newRates))
+
+        const res = await updateHourlyRateHistory(formData) as any
+        if (res && res.success) {
+            toast.success("Historique mis à jour")
+            return true
+        }
+        toast.error("Erreur mise à jour")
+        return false
+    }
+
+    const applySmicPresets = async () => {
+        const smicRates = SMIC_HISTORY.map(s => ({ rate: s.rate, startDate: s.startDate }))
+        // Fusionner avec l'existant en évitant les doublons de date
+        const existingDates = new Set(rates.map(r => r.startDate))
+        const combined = [...rates]
+        smicRates.forEach(s => {
+            if (!existingDates.has(s.startDate)) combined.push(s)
+        })
+
+        const sorted = combined.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())
+        setRates(sorted)
+        await saveHistory(sorted)
+    }
+
     const addRate = async () => {
         if (!newRate || !newDate) return
-
         const updatedRates = [...rates, { rate: parseFloat(newRate), startDate: newDate }]
             .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())
-
         setRates(updatedRates)
         setNewRate('')
         setNewDate('')
-
-        const formData = new FormData()
-        formData.append('userId', userId)
-        formData.append('ratesJson', JSON.stringify(updatedRates))
-
-        const res = await updateHourlyRateHistory(formData) as any
-        if (res && res.success) toast.success("Historique mis à jour")
-        else toast.error("Erreur mise à jour")
+        await saveHistory(updatedRates)
     }
 
     const removeRate = async (index: number) => {
         const updatedRates = rates.filter((_, i) => i !== index)
         setRates(updatedRates)
-
-        const formData = new FormData()
-        formData.append('userId', userId)
-        formData.append('ratesJson', JSON.stringify(updatedRates))
-
-        const res = await updateHourlyRateHistory(formData) as any
-        if (res && res.success) toast.success("Historique mis à jour")
+        await saveHistory(updatedRates)
     }
 
     return (
@@ -103,29 +121,47 @@ export function RateHistoryManager({ userId, currentHistoryJson }: RateHistoryMa
                     </Button>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-4">
+                    <div className="flex flex-col gap-2">
+                        <Label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground/60">Raccourcis rapides (SMIC)</Label>
+                        <div className="flex flex-wrap gap-2">
+                            <Button variant="outline" size="sm" onClick={applySmicPresets} className="gap-2 rounded-lg border-emerald-200 bg-emerald-50/30 text-emerald-700 hover:bg-emerald-50 text-[10px] font-black uppercase tracking-tighter h-8">
+                                <Sparkles className="h-3 w-3" /> Appliquer SMIC Historique
+                            </Button>
+                        </div>
+                    </div>
                     {rates.length === 0 ? (
                         <p className="text-center text-xs text-muted-foreground italic py-12 font-medium">Aucun historique planifié. Le taux de base est utilisé.</p>
                     ) : (
-                        rates.map((r, i) => (
-                            <div key={i} className="flex items-center justify-between p-4 border border-border/40 rounded-2xl bg-card shadow-sm hover:shadow-md hover:border-primary/20 transition-all group">
-                                <div className="flex items-center gap-4">
-                                    <div className="size-11 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 border border-emerald-500/20 group-hover:scale-110 transition-transform">
-                                        <Euro className="h-5 w-5" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-black text-foreground">{r.rate.toFixed(2)} € / h</p>
-                                        <div className="flex items-center gap-1 text-[10px] text-muted-foreground font-black uppercase tracking-tight mt-0.5">
-                                            <Calendar className="h-3 w-3 text-primary/50" />
-                                            {new Date(r.startDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        rates.map((r, i) => {
+                            const isCurrentlyActive = r.rate === currentApplicableRate
+                            return (
+                                <div key={i} className={`flex items-center justify-between p-4 border rounded-2xl bg-card shadow-sm hover:shadow-md transition-all group ${isCurrentlyActive ? 'border-primary ring-1 ring-primary/20' : 'border-border/40'}`}>
+                                    <div className="flex items-center gap-4">
+                                        <div className={`size-11 rounded-xl flex items-center justify-center border transition-transform group-hover:scale-110 ${isCurrentlyActive ? 'bg-primary text-white border-primary/20' : 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'}`}>
+                                            <Euro className="h-5 w-5" />
+                                        </div>
+                                        <div>
+                                            <div className="flex items-center gap-2">
+                                                <p className="text-sm font-black text-foreground">{r.rate.toFixed(2)} € / h</p>
+                                                {isCurrentlyActive && (
+                                                    <span className="text-[8px] bg-primary text-white px-1.5 py-0.5 rounded-full font-black uppercase tracking-tighter flex items-center gap-0.5">
+                                                        <Info className="h-2 w-2" /> Actif ce mois
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <div className="flex items-center gap-1 text-[10px] text-muted-foreground font-black uppercase tracking-tight mt-0.5">
+                                                <Calendar className="h-3 w-3 text-primary/50" />
+                                                {new Date(r.startDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                            </div>
                                         </div>
                                     </div>
+                                    <Button variant="ghost" size="icon" onClick={() => removeRate(i)} className="text-muted-foreground hover:text-red-500 hover:bg-red-50 size-9 rounded-xl active:scale-90 transition-all">
+                                        <Trash2 className="h-4 w-4" />
+                                    </Button>
                                 </div>
-                                <Button variant="ghost" size="icon" onClick={() => removeRate(i)} className="text-muted-foreground hover:text-red-500 hover:bg-red-50 size-9 rounded-xl active:scale-90 transition-all">
-                                    <Trash2 className="h-4 w-4" />
-                                </Button>
-                            </div>
-                        ))
+                            )
+                        })
                     )}
                 </div>
             </CardContent>

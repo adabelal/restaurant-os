@@ -29,6 +29,7 @@ import { ShiftManager } from "@/components/rh/ShiftManager"
 import { RateHistoryManager } from "@/components/rh/RateHistoryManager"
 import { ContractManager } from "@/components/rh/ContractManager"
 import { DocumentAssistantCard } from "@/components/rh/DocumentAssistantCard"
+import { getApplicableRate } from "@/lib/rh-utils"
 import {
     Accordion,
     AccordionContent,
@@ -132,7 +133,10 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
         const end = new Date(s.endTime)
         const diffMs = end.getTime() - start.getTime()
         const diffHours = (diffMs / 1000 / 60 / 60) - (s.breakMinutes / 60)
-        return acc + (diffHours * Number(s.hourlyRate))
+
+        // Use historical rate for each shift if applicable, or fallback to employee.hourlyRate
+        const applicableRate = getApplicableRate(employee.address, Number(employee.hourlyRate), start.getMonth(), start.getFullYear())
+        return acc + (diffHours * applicableRate)
     }, 0)
 
     // Navigation mois
@@ -808,12 +812,22 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                                 <option value="ADMIN">Admin (Complet)</option>
                                             </select>
                                         </div>
-                                        <div className="space-y-2">
-                                            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Taux Brut (€/h)</Label>
-                                            <div className="relative">
-                                                <Euro className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                                                <Input name="hourlyRate" type="number" step="0.01" defaultValue={Number(employee.hourlyRate)} className="pl-10 h-10 bg-muted/20 border-border/50 rounded-xl font-bold" />
+                                        <div className="space-y-4">
+                                            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Rémunération & Historique</Label>
+                                            <div className="space-y-2">
+                                                <Label className="text-[10px] font-bold text-muted-foreground uppercase">Taux horaire de base (Actuel)</Label>
+                                                <div className="relative">
+                                                    <Euro className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                    <Input name="hourlyRate" type="number" step="0.01" defaultValue={Number(employee.hourlyRate)} className="pl-10 h-10 bg-muted/20 border-border/50 rounded-xl font-bold" />
+                                                </div>
                                             </div>
+
+                                            <RateHistoryManager
+                                                userId={employee.id}
+                                                currentHistoryJson={employee.address}
+                                                selectedMonth={selectedMonth}
+                                                selectedYear={selectedYear}
+                                            />
                                         </div>
                                     </div>
 

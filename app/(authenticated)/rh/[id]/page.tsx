@@ -16,7 +16,8 @@ export default async function EmployeeDetailPage({
         where: { id: params.id },
         include: {
             documents: { orderBy: { createdAt: 'desc' } },
-            shifts: { orderBy: { startTime: 'desc' } }
+            shifts: { orderBy: { startTime: 'desc' } },
+            monthlySalaries: true
         }
     })
 

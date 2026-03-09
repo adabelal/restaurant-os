@@ -10,6 +10,8 @@ import { Calculator, Euro, Clock, ChevronLeft, ChevronRight, Loader2 } from "luc
 import { Input } from "@/components/ui/input"
 import { updateEmployeeNet } from "@/app/(authenticated)/rh/actions"
 import { toast } from "sonner"
+import { getApplicableRate } from "@/lib/rh-utils"
+import { Info } from "lucide-react"
 
 const EMPLOYEE_COLORS_MAP = [
     { id: 'rose', bg: 'bg-rose-500/20', text: 'text-rose-700', border: 'border-rose-200', dot: 'bg-rose-500' },
@@ -128,7 +130,8 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
             return acc + (hours - shift.breakMinutes / 60)
         }, 0)
 
-        const baseGross = totalHours * Number(employee.hourlyRate)
+        const applicableRate = getApplicableRate(employee.address, Number(employee.hourlyRate), selectedMonth, selectedYear)
+        const baseGross = totalHours * applicableRate
         const paidLeaveComplement = baseGross * 0.10 // 10% congés payés
         const totalGross = baseGross + paidLeaveComplement
 
@@ -160,7 +163,8 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
             paidLeaveComplement,
             totalGross,
             totalNet,
-            hasActiveContract
+            hasActiveContract,
+            applicableRate
         }
     }
 
@@ -275,9 +279,10 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                             </TableHeader>
                             <TableBody>
                                 {sortedEmployees.map((emp) => {
-                                    const { totalHours, baseGross, paidLeaveComplement, totalGross, totalNet, hasActiveContract } = calculateStats(emp)
+                                    const { totalHours, baseGross, paidLeaveComplement, totalGross, totalNet, hasActiveContract, applicableRate } = calculateStats(emp)
                                     const isManager = emp.role === 'ADMIN'
                                     const isGrayedOut = !isManager && !hasActiveContract
+                                    const isHistorical = applicableRate !== Number(emp.hourlyRate)
 
                                     return (
                                         <TableRow
@@ -313,7 +318,18 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                                 {totalHours.toFixed(1)}h
                                             </TableCell>
                                             <TableCell className="text-center text-[10px] font-bold text-muted-foreground uppercase">
-                                                {isManager ? '-' : `${Number(emp.hourlyRate).toFixed(2)}€`}
+                                                {isManager ? '-' : (
+                                                    <div className="flex flex-col items-center justify-center gap-0.5">
+                                                        <span className={isHistorical ? "text-amber-600 font-black" : ""}>
+                                                            {applicableRate.toFixed(2)}€
+                                                        </span>
+                                                        {isHistorical && (
+                                                            <span className="text-[8px] bg-amber-100 text-amber-700 px-1 rounded flex items-center gap-0.5 font-black">
+                                                                <Info className="h-2 w-2" /> AJUSTÉ
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                )}
                                             </TableCell>
                                             <TableCell className="text-right font-bold text-xs">
                                                 {isManager ? '-' : `${baseGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })}€`}
