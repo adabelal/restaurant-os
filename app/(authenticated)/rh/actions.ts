@@ -6,6 +6,9 @@ import { hashPassword, generateTempPassword } from "@/lib/password"
 import { createUserSchema, createShiftSchema, createDocumentSchema } from "@/lib/validations"
 import { z } from "zod"
 import { safeAction } from "@/lib/safe-action"
+import fs from "fs"
+import path from "path"
+import { getOrCreateRhFolder, uploadFileToDrive } from "@/lib/google-drive"
 
 export async function createEmployee(formData: FormData) {
     return safeAction(formData, async (input) => {
@@ -630,4 +633,148 @@ export async function updateEmployeeNet(employeeId: string, netRemuneration: num
         console.error(e)
         return { success: false, message: "Erreur lors de la mise à jour" }
     }
+}
+
+// ─── SYNC & EMAIL ACTIONS ───────────────────────────────────────────────────
+
+const DRIVE_PAIE_ROOT = "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/RESSOURCES_HUMAINES/Paie"
+
+/**
+ * Scanne récursivement le dossier local Google Drive pour trouver les fiches de paie d'un salarié
+ */
+export async function syncEmployeePayslips(userId: string) {
+    return safeAction({ userId }, async (input) => {
+        try {
+            const employee = await prisma.user.findUnique({
+                where: { id: input.userId },
+                include: { documents: { where: { type: 'PAYSLIP' } } }
+            })
+
+            if (!employee) return { error: "Salarié non trouvé" }
+
+            if (!fs.existsSync(DRIVE_PAIE_ROOT)) {
+                return { error: "Dossier Drive local introuvable sur ce poste." }
+            }
+
+            const existingFiles = new Set(employee.documents.map(d => d.name))
+            const foundFiles: { path: string, name: string }[] = []
+
+            // Fonction récursive pour lister les PDF
+            const walk = (dir: string) => {
+                const list = fs.readdirSync(dir)
+                for (const file of list) {
+                    const fullPath = path.join(dir, file)
+                    const stat = fs.statSync(fullPath)
+                    if (stat && stat.isDirectory()) {
+                        walk(fullPath)
+                    } else if (file.toLowerCase().endsWith('.pdf')) {
+                        // Matching logic: Le nom du salarié doit être dans le nom du fichier
+                        const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                        const cleanFile = file.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+
+                        // Séparation des mots pour un match plus robuste
+                        const nameParts = cleanName.split(/\s+/)
+                        const allMatch = nameParts.every(part => cleanFile.includes(part))
+
+                        if (allMatch && !existingFiles.has(file)) {
+                            foundFiles.push({ path: fullPath, name: file })
+                        }
+                    }
+                }
+            }
+
+            walk(DRIVE_PAIE_ROOT)
+
+            let syncCount = 0
+            for (const f of foundFiles) {
+                // Pour chaque nouveau fichier trouvé localement, on l'upload sur le Drive "Cloud" 
+                // pour qu'il soit accessible via l'application (URL publique)
+                const fileBuffer = fs.readFileSync(f.path)
+                const folderId = await getOrCreateRhFolder(employee.name, 'PAYSLIP')
+
+                // Tente d'extraire l'année/mois du nom de fichier (ex: 2024_10_...)
+                const dateMatch = f.name.match(/(\d{4})[_-](\d{2})/)
+                const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
+                const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
+
+                const driveFile = await uploadFileToDrive(fileBuffer, f.name, 'application/pdf', folderId)
+
+                await prisma.employeeDocument.create({
+                    data: {
+                        userId: employee.id,
+                        name: f.name,
+                        url: driveFile.webViewLink,
+                        type: 'PAYSLIP',
+                        category: 'PAIE',
+                        month,
+                        year
+                    }
+                })
+                syncCount++
+            }
+
+            revalidatePath(`/rh/${employee.id}`)
+            return { success: true, message: `${syncCount} nouvelle(s) fiche(s) synchronisée(s).` }
+        } catch (e: any) {
+            console.error("Sync Error:", e)
+            return { error: "Erreur lors de la synchronisation : " + e.message }
+        }
+    })
+}
+
+/**
+ * Envoie un document par email au salarié
+ */
+export async function sendDocumentEmail(docId: string) {
+    return safeAction({ docId }, async (input) => {
+        try {
+            const doc = await prisma.employeeDocument.findUnique({
+                where: { id: input.docId },
+                include: { user: true }
+            })
+
+            if (!doc || !doc.user) return { error: "Document ou salarié introuvable" }
+            if (!doc.user.email) return { error: "Le salarié n'a pas d'adresse email enregistrée" }
+
+            const resendApiKey = process.env.RESEND_API_KEY
+            if (!resendApiKey) return { error: "Configuration email (Resend) manquante" }
+
+            const response = await fetch("https://api.resend.com/emails", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${resendApiKey}`,
+                },
+                body: JSON.stringify({
+                    from: "Restaurant OS <rh@siwa-bleury.fr>", // À adapter selon le domaine validé
+                    to: [doc.user.email],
+                    subject: `Votre document : ${doc.name}`,
+                    html: `
+                        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+                            <h2 style="color: #10b981;">Nouveau document disponible</h2>
+                            <p>Bonjour ${doc.user.name},</p>
+                            <p>Une nouvelle fiche de paie ou un document RH a été ajouté à votre dossier.</p>
+                            <p>Vous pouvez le consulter ou le télécharger en cliquant sur le bouton ci-dessous :</p>
+                            <div style="text-align: center; margin: 30px 0;">
+                                <a href="${doc.url}" style="background-color: #10b981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Consulter le document</a>
+                            </div>
+                            <p style="font-size: 13px; color: #666; margin-top: 40px; border-top: 1px solid #eee; pt: 20px;">
+                                Ceci est un envoi automatique depuis Restaurant OS RH.
+                            </p>
+                        </div>
+                    `,
+                }),
+            })
+
+            if (!response.ok) {
+                const err = await response.json()
+                throw new Error(err.message || "Erreur Resend")
+            }
+
+            return { success: true, message: "Email envoyé avec succès." }
+        } catch (e: any) {
+            console.error("Email Error:", e)
+            return { error: "L'envoi a échoué : " + e.message }
+        }
+    })
 }

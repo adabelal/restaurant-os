@@ -7,12 +7,20 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { updateEmployee, addEmployeeDocument, toggleEmployeeStatus, deleteEmployeeDocument } from "../actions"
+import {
+    updateEmployee,
+    addEmployeeDocument,
+    toggleEmployeeStatus,
+    deleteEmployeeDocument,
+    syncEmployeePayslips,
+    sendDocumentEmail
+} from "../actions"
 import { toast } from "sonner"
 import {
     FileText, Save, ArrowLeft, ExternalLink, Archive, UserCheck,
     Phone, MapPin, Mail, Euro, Calendar,
-    ShieldCheck, Clock, Download, Plus, ChevronLeft, ChevronRight, Trash2, Check
+    ShieldCheck, Clock, Download, Plus, ChevronLeft, ChevronRight, Trash2, Check,
+    FolderOpen, RefreshCw, Send, Loader2
 } from "lucide-react"
 import Link from "next/link"
 import { HistoryChart } from "@/components/rh/HistoryChart"
@@ -21,6 +29,12 @@ import { ShiftManager } from "@/components/rh/ShiftManager"
 import { RateHistoryManager } from "@/components/rh/RateHistoryManager"
 import { ContractManager } from "@/components/rh/ContractManager"
 import { DocumentAssistantCard } from "@/components/rh/DocumentAssistantCard"
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 import { useRouter } from "next/navigation"
 
 interface EmployeeDetailClientProps {
@@ -42,6 +56,8 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
     const [docMonth, setDocMonth] = React.useState("")
     const [docYear, setDocYear] = React.useState("")
     const [isUploading, setIsUploading] = React.useState(false)
+    const [isSyncing, setIsSyncing] = React.useState(false)
+    const [isSendingMail, setIsSendingMail] = React.useState<string | null>(null)
     const [uploadProgress, setUploadProgress] = React.useState(0)
     const fileInputRef = React.useRef<HTMLInputElement>(null)
 
@@ -139,6 +155,29 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
             router.refresh()
         } else {
             toast.error("Erreur lors de la suppression du document.")
+        }
+    }
+
+    const handleSyncDrive = async () => {
+        setIsSyncing(true)
+        const res = await syncEmployeePayslips(employee.id)
+        setIsSyncing(false)
+        if (res.success) {
+            toast.success(res.message || "Synchronisation terminée")
+            router.refresh()
+        } else {
+            toast.error(res.error || "Erreur lors de la synchronisation")
+        }
+    }
+
+    const handleSendEmail = async (docId: string) => {
+        setIsSendingMail(docId)
+        const res = await sendDocumentEmail(docId)
+        setIsSendingMail(null)
+        if (res.success) {
+            toast.success("Fiche de paie envoyée par email !")
+        } else {
+            toast.error(res.error || "Erreur lors de l'envoi")
         }
     }
 
@@ -418,60 +457,151 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                         />
                     </TabsContent>
 
-                    {/* ONGLET 3: DOSSIER JURIDIQUE */}
+                    {/* ONGLET 3: DOSSIER RH & DOCUMENTS */}
                     <TabsContent value="legal" className="space-y-8 animate-in slide-in-from-bottom-2 duration-500">
-                        {/* Redesign sub-tabs content as needed, keeping them functional but ensuring good spacing/mobile-friendliness */}
-                        <div className="space-y-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div>
-                                <h3 className="text-lg font-black tracking-tight mb-2">Assistant RH & Conformité</h3>
-                                <p className="text-sm text-muted-foreground font-medium opacity-80 leading-relaxed">
-                                    Gérez les documents obligatoires. Cliquez sur chaque dossier pour vérifier sa conformité ou déposer un fichier.
+                                <h3 className="text-xl font-black tracking-tight mb-1">Dossier Personnel</h3>
+                                <p className="text-sm text-muted-foreground font-medium opacity-80 leading-relaxed uppercase tracking-wider text-[10px]">
+                                    Gestion des documents et conformité légale
                                 </p>
                             </div>
-
-                            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4">
-                                <DocumentAssistantCard
-                                    employeeId={employee.id}
-                                    employeeName={employee.name}
-                                    documents={employee.documents}
-                                    onDeleteDoc={handleDeleteDocument}
-                                    docType="CONTRACT"
-                                    title="Contrat de Travail"
-                                    shortDesc="CDI, CDD, Extra..."
-                                    assistantHelp={"Le contrat de travail formalise l'embauche. Il doit être signé par les deux parties avant ou le jour de l'embauche.\n\nEn cas d'inspection de l'URSSAF ou du travail, l'original numérique ou papier certifié doit pouvoir être présenté immédiatement sur demande."}
-                                />
-                                <DocumentAssistantCard
-                                    employeeId={employee.id}
-                                    employeeName={employee.name}
-                                    documents={employee.documents}
-                                    onDeleteDoc={handleDeleteDocument}
-                                    docType="ID_CARD"
-                                    title="Identité / Séjour"
-                                    shortDesc="CNI, Passeport, Titre"
-                                    assistantHelp={"Une pièce d'identité en cours de validité (CNI ou Passeport) est obligatoire pour vérifier l'identité du salarié à l'embauche.\n\nS'il est de nationalité étrangère (hors UE), un Titre de Séjour valant autorisation de travail valide est strictement obligatoire."}
-                                />
-                                <DocumentAssistantCard
-                                    employeeId={employee.id}
-                                    employeeName={employee.name}
-                                    documents={employee.documents}
-                                    onDeleteDoc={handleDeleteDocument}
-                                    docType="DPAE"
-                                    title="DPAE"
-                                    shortDesc="Accusé URSSAF"
-                                    assistantHelp={"La Déclaration Préalable À l'Embauche (DPAE) doit être transmise à l'URSSAF AVANT la prise de poste effective du salarié.\n\nL'accusé de réception est l'unique preuve permettant d'éviter l'amende pour travail dissimulé !"}
-                                />
-                                <DocumentAssistantCard
-                                    employeeId={employee.id}
-                                    employeeName={employee.name}
-                                    documents={employee.documents}
-                                    onDeleteDoc={handleDeleteDocument}
-                                    docType="MEDICAL"
-                                    title="Visite Médicale"
-                                    shortDesc="Fiche d'aptitude"
-                                    assistantHelp={"La VIP (Visite d'Information et de Prévention) doit se faire au maximum 3 mois après l'embauche.\n\nLa fiche d'aptitude médicale atteste que le salarié est apte à travailler dans les conditions prévues."}
-                                />
-                            </div>
+                            <Button
+                                variant="outline"
+                                className="gap-2 rounded-xl border-amber-500/20 bg-amber-500/5 text-amber-600 hover:bg-amber-500/10 hover:border-amber-500/40 h-10 font-black uppercase text-[10px] tracking-widest"
+                                onClick={handleSyncDrive}
+                                disabled={isSyncing}
+                            >
+                                {isSyncing ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="h-3.5 w-3.5" />}
+                                Scanner Drive Local
+                            </Button>
                         </div>
+
+                        <Accordion type="multiple" defaultValue={["payslips", "mandatory"]} className="w-full space-y-4">
+                            {/* DOSSIER 1: FICHES DE PAIE */}
+                            <AccordionItem value="payslips" className="border border-border/50 bg-card rounded-2xl overflow-hidden shadow-sm px-4">
+                                <AccordionTrigger className="hover:no-underline py-4 group">
+                                    <div className="flex items-center gap-3">
+                                        <div className="h-10 w-10 bg-emerald-500/10 text-emerald-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                            <FolderOpen className="h-5 w-5" />
+                                        </div>
+                                        <div className="text-left">
+                                            <p className="text-sm font-black uppercase tracking-tight">Fiches de paie</p>
+                                            <p className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">Historique des bulletins</p>
+                                        </div>
+                                    </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="pb-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                                        {employee.documents.filter((d: any) => d.type === "PAYSLIP").length === 0 ? (
+                                            <div className="col-span-full py-10 text-center border-2 border-dashed border-muted rounded-xl">
+                                                <p className="text-xs font-bold text-muted-foreground uppercase">Aucune fiche de paie trouvée</p>
+                                                <Button variant="ghost" className="mt-2 text-[10px] font-black uppercase text-primary" onClick={handleSyncDrive}>Lancer un scan maintenant</Button>
+                                            </div>
+                                        ) : (
+                                            [...employee.documents]
+                                                .filter((d: any) => d.type === "PAYSLIP")
+                                                .sort((a, b) => {
+                                                    if (a.year !== b.year) return (b.year || 0) - (a.year || 0)
+                                                    return (b.month || 0) - (a.month || 0)
+                                                })
+                                                .map((doc: any) => (
+                                                    <div key={doc.id} className="flex items-center justify-between p-4 bg-muted/20 border border-border/40 rounded-xl hover:bg-muted/40 transition-all group">
+                                                        <div className="flex items-center gap-3 overflow-hidden">
+                                                            <div className="h-8 w-8 bg-background text-primary rounded-lg flex items-center justify-center shrink-0 shadow-sm">
+                                                                <FileText className="h-4 w-4" />
+                                                            </div>
+                                                            <div className="min-w-0">
+                                                                <p className="text-xs font-black truncate" title={doc.name}>{doc.name}</p>
+                                                                <p className="text-[9px] font-bold text-muted-foreground uppercase">
+                                                                    {doc.month ? new Date(2000, doc.month - 1).toLocaleDateString('fr-FR', { month: 'long' }) : ''} {doc.year}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex items-center gap-1">
+                                                            <Button
+                                                                size="icon"
+                                                                variant="ghost"
+                                                                className="h-8 w-8 rounded-lg text-indigo-500 hover:bg-indigo-500/10"
+                                                                onClick={() => handleSendEmail(doc.id)}
+                                                                disabled={isSendingMail === doc.id}
+                                                                title="Envoyer par email"
+                                                            >
+                                                                {isSendingMail === doc.id ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Send className="h-3.5 w-3.5" />}
+                                                            </Button>
+                                                            <Button size="icon" variant="ghost" className="h-8 w-8 rounded-lg text-primary hover:bg-primary/10" asChild>
+                                                                <a href={doc.url} target="_blank"><ExternalLink className="h-3.5 w-3.5" /></a>
+                                                            </Button>
+                                                            <Button size="icon" variant="ghost" className="h-8 w-8 rounded-lg text-red-500 hover:bg-red-500/10" onClick={() => handleDeleteDocument(doc.id)}>
+                                                                <Trash2 className="h-3.5 w-3.5" />
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                ))
+                                        )}
+                                    </div>
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            {/* DOSSIER 2: DOCUMENTS OBLIGATOIRES */}
+                            <AccordionItem value="mandatory" className="border border-border/50 bg-card rounded-2xl overflow-hidden shadow-sm px-4">
+                                <AccordionTrigger className="hover:no-underline py-4 group">
+                                    <div className="flex items-center gap-3">
+                                        <div className="h-10 w-10 bg-indigo-500/10 text-indigo-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                            <ShieldCheck className="h-5 w-5" />
+                                        </div>
+                                        <div className="text-left">
+                                            <p className="text-sm font-black uppercase tracking-tight">Documents Obligatoires</p>
+                                            <p className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">Conformité & Juridique</p>
+                                        </div>
+                                    </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="pb-6">
+                                    <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
+                                        <DocumentAssistantCard
+                                            employeeId={employee.id}
+                                            employeeName={employee.name}
+                                            documents={employee.documents}
+                                            onDeleteDoc={handleDeleteDocument}
+                                            docType="CONTRACT"
+                                            title="Contrat"
+                                            shortDesc="CDI, CDD, Extra..."
+                                            assistantHelp={"Le contrat de travail formalise l'embauche. Il doit être signé par les deux parties avant ou le jour de l'embauche."}
+                                        />
+                                        <DocumentAssistantCard
+                                            employeeId={employee.id}
+                                            employeeName={employee.name}
+                                            documents={employee.documents}
+                                            onDeleteDoc={handleDeleteDocument}
+                                            docType="ID_CARD"
+                                            title="Identité"
+                                            shortDesc="CNI, Titre de séjour"
+                                            assistantHelp={"Une pièce d'identité en cours de validité est obligatoire. Pour les ressortissants hors UE, un titre de séjour valide est requis."}
+                                        />
+                                        <DocumentAssistantCard
+                                            employeeId={employee.id}
+                                            employeeName={employee.name}
+                                            documents={employee.documents}
+                                            onDeleteDoc={handleDeleteDocument}
+                                            docType="DPAE"
+                                            title="DPAE"
+                                            shortDesc="Déclaration URSSAF"
+                                            assistantHelp={"La DPAE doit être faite AVANT l'embauche. C'est l'unique preuve contre le travail dissimulé."}
+                                        />
+                                        <DocumentAssistantCard
+                                            employeeId={employee.id}
+                                            employeeName={employee.name}
+                                            documents={employee.documents}
+                                            onDeleteDoc={handleDeleteDocument}
+                                            docType="MEDICAL"
+                                            title="Médical"
+                                            shortDesc="Fiche d'aptitude"
+                                            assistantHelp={"La visite médicale d'information et de prévention (VIP) doit avoir lieu dans les 3 mois suivant l'embauche."}
+                                        />
+                                    </div>
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
                     </TabsContent>
 
                     {/* ONGLET 4: TAUX & CONTRAT */}

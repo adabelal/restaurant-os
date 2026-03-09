@@ -85,15 +85,14 @@ export default async function RHPage() {
             </div>
 
             <div className="p-4 md:p-10 max-w-[1400px] mx-auto w-full space-y-8 md:space-y-10">
-                <Tabs defaultValue="active" className="w-full space-y-6 md:space-y-10">
+                <Tabs defaultValue="summary" className="w-full space-y-6 md:space-y-10">
                     <div className="flex items-center justify-center sm:justify-start">
                         <TabsList className="p-1.5 bg-muted/50 rounded-2xl w-full sm:w-auto flex shadow-inner border border-border/50 backdrop-blur-sm overflow-x-auto whitespace-nowrap">
                             <TabsTrigger
-                                value="active"
-                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
+                                value="summary"
+                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
                             >
-                                <User className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Actifs</span>
-                                <span className="ml-1 text-[10px] bg-primary/10 px-2 py-0.5 rounded-full font-sans">{activeEmployees.length}</span>
+                                <BarChart4 className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Paie</span>
                             </TabsTrigger>
                             <TabsTrigger
                                 value="planning"
@@ -102,10 +101,11 @@ export default async function RHPage() {
                                 <CalendarDays className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Planning</span>
                             </TabsTrigger>
                             <TabsTrigger
-                                value="summary"
-                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
+                                value="active"
+                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
                             >
-                                <BarChart4 className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Paie</span>
+                                <User className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Équipe</span>
+                                <span className="ml-1 text-[10px] bg-primary/10 px-2 py-0.5 rounded-full font-sans">{activeEmployees.length}</span>
                             </TabsTrigger>
                             <TabsTrigger
                                 value="legal"
@@ -123,21 +123,20 @@ export default async function RHPage() {
                         </TabsList>
                     </div>
 
-                    <TabsContent value="active" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
-                        <EmployeeListContent
-                            activeTab="active"
-                            activeEmployees={activeEmployees}
-                            archivedEmployees={archivedEmployees}
-                        />
+                    <TabsContent value="summary" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
+                        <RHSummaryTable employees={activeEmployees} />
                     </TabsContent>
 
                     <TabsContent value="planning" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
                         <GlobalShiftCalendar employees={activeEmployees} />
                     </TabsContent>
 
-                    <TabsContent value="summary" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500 space-y-6">
-                        <PayslipBulkUpload employees={activeEmployees.map((e: any) => ({ id: e.id, name: e.name, isActive: e.isActive }))} />
-                        <RHSummaryTable employees={activeEmployees} />
+                    <TabsContent value="active" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
+                        <EmployeeListContent
+                            activeTab="active"
+                            activeEmployees={activeEmployees}
+                            archivedEmployees={archivedEmployees}
+                        />
                     </TabsContent>
 
                     <TabsContent value="legal" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
