@@ -9,7 +9,8 @@ import { safeAction } from "@/lib/safe-action"
 import fs from "fs"
 import path from "path"
 import { startOfMonth, endOfMonth } from "date-fns"
-import { getOrCreateRhFolder, uploadFileToDrive, listFilesRecursive, findOrCreateFolder as findOrCreateDriveFolder } from "@/lib/google-drive"
+import { getOrCreateRhFolder, uploadFileToDrive, listFilesRecursive, downloadFileFromDrive, findOrCreateFolder as findOrCreateDriveFolder } from "@/lib/google-drive"
+import { GoogleGenerativeAI } from "@google/generative-ai"
 
 export async function createEmployee(formData: FormData) {
     return safeAction(formData, async (input) => {
@@ -824,9 +825,36 @@ export async function getEmployeeSalaryReconciliation(userId: string, month: num
 // ─── SYNC & EMAIL ACTIONS ───────────────────────────────────────────────────
 
 const DRIVE_PAIE_ROOT = "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/RESSOURCES_HUMAINES"
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "")
+
+async function extractRemunerationWithAI(fileBuffer: Buffer) {
+    try {
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
+        const prompt = `Analyse cette fiche de paie et extrait uniquement le montant "Net à payer" ou "Net versé". 
+        Réponds uniquement par le montant numérique (ex: 1540.23). 
+        Ne mets aucune autre fioriture ou texte. Si possible, retourne juste le nombre.`
+
+        const result = await model.generateContent([
+            {
+                inlineData: {
+                    data: fileBuffer.toString("base64"),
+                    mimeType: "application/pdf"
+                }
+            },
+            prompt
+        ])
+
+        const text = result.response.text().trim()
+        const amount = parseFloat(text.replace(/[^\d.,]/g, '').replace(',', '.'))
+        return isNaN(amount) ? null : amount
+    } catch (e) {
+        console.error("AI Extraction Error:", e)
+        return null
+    }
+}
 
 /**
- * Scanne récursivement le dossier local Google Drive pour trouver les fiches de paie d'un salarié
+ * Synchronise les fiches de paie depuis le Drive (Local ou Cloud) vers la DB
  */
 export async function syncEmployeePayslips(userId: string) {
     return safeAction({ userId }, async (input) => {
@@ -884,10 +912,9 @@ export async function syncEmployeePayslips(userId: string) {
                         }
                     })
 
-                    // Extract potential net amount from filename (e.g. _1540.23.pdf)
-                    const netMatch = f.name.match(/(\d{3,5})[.,](\d{2})/)
-                    if (netMatch) {
-                        const netAmount = parseFloat(`${netMatch[1]}.${netMatch[2]}`)
+                    // Extract net amount using AI
+                    const netAmount = await extractRemunerationWithAI(fileBuffer)
+                    if (netAmount) {
                         await (prisma as any).monthlySalary.upsert({
                             where: { userId_month_year: { userId: employee.id, month, year } },
                             update: { netRemuneration: netAmount },
@@ -929,16 +956,21 @@ export async function syncEmployeePayslips(userId: string) {
                             }
                         })
 
-                        // Same net extraction logic for cloud files
-                        const netMatch = f.name.match(/(\d{3,5})[.,](\d{2})/)
-                        if (netMatch) {
-                            const netAmount = parseFloat(`${netMatch[1]}.${netMatch[2]}`)
-                            await (prisma as any).monthlySalary.upsert({
-                                where: { userId_month_year: { userId: employee.id, month, year } },
-                                update: { netRemuneration: netAmount },
-                                create: { userId: employee.id, month, year, netRemuneration: netAmount }
-                            })
+                        // AI Extraction for Cloud files
+                        try {
+                            const fileBuffer = await downloadFileFromDrive(f.id)
+                            const netAmount = await extractRemunerationWithAI(fileBuffer)
+                            if (netAmount) {
+                                await (prisma as any).monthlySalary.upsert({
+                                    where: { userId_month_year: { userId: employee.id, month, year } },
+                                    update: { netRemuneration: netAmount },
+                                    create: { userId: employee.id, month, year, netRemuneration: netAmount }
+                                })
+                            }
+                        } catch (err) {
+                            console.error(`Cloud AI Extract failed for ${f.name}:`, err)
                         }
+
                         syncCount++
                     }
                 }
