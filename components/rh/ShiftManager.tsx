@@ -85,53 +85,55 @@ export function ShiftManager({
     }, 0)
 
     return (
-        <Card className="border-none shadow-sm">
-            <CardHeader className="border-b flex flex-row items-center justify-between">
-                <CardTitle>Historique & Saisie</CardTitle>
-                <div className="flex items-center gap-2">
-                    <Link href={`/rh/${employee.id}?month=${prevMonth}&year=${prevYear}&tab=hours`}>
-                        <Button variant="outline" size="sm" className="gap-2"><ChevronLeft className="h-4 w-4" /> Précédent</Button>
-                    </Link>
-                    <div className="flex flex-col items-center">
-                        <Badge className="px-4 py-1 text-sm bg-primary text-primary-foreground border-none shadow-sm">{monthLabel}</Badge>
-                        <span className="text-xs font-bold text-muted-foreground mt-1">Total: {totalHoursMonth.toFixed(1)}h</span>
+        <Card className="border-border shadow-sm bg-card rounded-2xl overflow-hidden">
+            <CardHeader className="border-b bg-muted/20 px-4 sm:px-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <CardTitle className="text-lg font-bold">Historique & Saisie</CardTitle>
+                    <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
+                        <Link href={`/rh/${employee.id}?month=${prevMonth}&year=${prevYear}&tab=hours`}>
+                            <Button variant="outline" size="icon" className="h-9 w-9 rounded-xl active:scale-95"><ChevronLeft className="h-4 w-4" /></Button>
+                        </Link>
+                        <div className="flex flex-col items-center flex-1 sm:flex-none">
+                            <Badge className="px-4 py-1 text-xs font-black uppercase tracking-wider bg-primary text-white border-none shadow-sm rounded-lg">{monthLabel}</Badge>
+                            <span className="text-[10px] font-black text-muted-foreground mt-1 uppercase tracking-tighter">Total: {totalHoursMonth.toFixed(1)}h</span>
+                        </div>
+                        <Link href={`/rh/${employee.id}?month=${nextMonth}&year=${nextYear}&tab=hours`}>
+                            <Button variant="outline" size="icon" className="h-9 w-9 rounded-xl active:scale-95"><ChevronRight className="h-4 w-4" /></Button>
+                        </Link>
                     </div>
-                    <Link href={`/rh/${employee.id}?month=${nextMonth}&year=${nextYear}&tab=hours`}>
-                        <Button variant="outline" size="sm" className="gap-2">Suivant <ChevronRight className="h-4 w-4" /></Button>
-                    </Link>
                 </div>
             </CardHeader>
             <CardContent className="p-0">
-                <div className={`p-6 bg-muted/30 border-b border-border relative transition-opacity ${!hasActiveContract ? 'opacity-50 pointer-events-none' : ''}`}>
+                <div className={`p-4 sm:p-6 bg-primary/5 border-b border-border/50 relative transition-opacity ${!hasActiveContract ? 'opacity-50 pointer-events-none' : ''}`}>
                     {!hasActiveContract && (
-                        <div className="absolute top-2 right-2 flex items-center gap-1.5 text-[10px] font-bold text-amber-700 bg-amber-50 dark:bg-amber-500/10 px-2 py-1 rounded-md border border-amber-500/20">
+                        <div className="absolute top-2 right-2 flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-amber-700 bg-amber-50 dark:bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20 z-10">
                             <AlertCircle className="h-3 w-3" />
-                            Contrat actif requis
+                            Contrat requis
                         </div>
                     )}
-                    <form action={handleSubmit} className="grid md:grid-cols-5 gap-4 items-end">
+                    <form action={handleSubmit} className="grid grid-cols-2 sm:grid-cols-5 gap-4 items-end">
                         <input type="hidden" name="userId" value={employee.id} />
-                        <div className="space-y-1">
-                            <Label className="text-[10px] uppercase font-bold text-muted-foreground">Date</Label>
-                            <Input type="date" name="date" defaultValue={new Date().toISOString().split('T')[0]} required />
+                        <div className="space-y-1.5 col-span-2 sm:col-span-1">
+                            <Label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground/80">Date</Label>
+                            <Input type="date" name="date" defaultValue={new Date().toISOString().split('T')[0]} className="h-11 bg-background border-border/50 rounded-xl font-bold" required />
                         </div>
-                        <div className="space-y-1">
-                            <Label className="text-[10px] uppercase font-bold text-muted-foreground">Début</Label>
-                            <Input type="time" name="startTime" className="bg-background" required />
+                        <div className="space-y-1.5">
+                            <Label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground/80">Début</Label>
+                            <Input type="time" name="startTime" className="h-11 bg-background border-border/50 rounded-xl font-bold" required />
                         </div>
-                        <div className="space-y-1">
-                            <Label className="text-[10px] uppercase font-bold text-muted-foreground">Fin</Label>
-                            <Input type="time" name="endTime" className="bg-background" required />
+                        <div className="space-y-1.5">
+                            <Label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground/80">Fin</Label>
+                            <Input type="time" name="endTime" className="h-11 bg-background border-border/50 rounded-xl font-bold" required />
                         </div>
-                        <div className="space-y-1">
-                            <Label className="text-[10px] uppercase font-bold text-muted-foreground">Pause (min)</Label>
-                            <Input type="number" name="breakMinutes" defaultValue="30" step={10} min={0} className="bg-background" />
+                        <div className="space-y-1.5">
+                            <Label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground/80">Pause (min)</Label>
+                            <Input type="number" name="breakMinutes" defaultValue="30" step={10} min={0} className="h-11 bg-background border-border/50 rounded-xl font-bold" />
                         </div>
-                        <div className="space-y-1">
-                            <Label className="text-[10px] uppercase font-bold text-muted-foreground">Poste</Label>
+                        <div className="space-y-1.5 col-span-2 sm:col-span-1">
+                            <Label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground/80">Poste</Label>
                             <select
                                 name="position"
-                                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                className="flex h-11 w-full items-center justify-between rounded-xl border border-border/50 bg-background px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
                                 defaultValue=""
                             >
                                 <option value="">-(Optionnel)-</option>
@@ -140,67 +142,63 @@ export function ShiftManager({
                                 ))}
                             </select>
                         </div>
-                        <Button type="submit" disabled={isLoading} className="bg-primary text-primary-foreground hover:bg-primary/90 h-10">
-                            {isLoading ? "Ajout..." : "Ajouter"}
+                        <Button type="submit" disabled={isLoading} className="col-span-2 sm:col-span-5 w-full bg-primary text-white hover:bg-primary/90 h-11 font-black uppercase tracking-wider rounded-xl shadow-lg shadow-primary/20">
+                            {isLoading ? "Enregistrement..." : "Ajouter ce shift"}
                         </Button>
                     </form>
                 </div>
-                <div className="divide-y divide-border overflow-hidden rounded-b-xl">
+
+                <div className="divide-y divide-border/20 overflow-hidden rounded-b-2xl">
                     {shifts.length === 0 ? (
-                        <div className="p-12 text-center text-muted-foreground italic">Aucun shift enregistré sur ce mois ({monthLabel}).</div>
+                        <div className="p-12 text-center text-muted-foreground italic font-medium">Aucun shift enregistré sur ce mois ({monthLabel}).</div>
                     ) : (
-                        shifts.map((s) => {
+                        shifts.map((s, i) => {
                             const diff = s.endTime ? s.endTime.getTime() - s.startTime.getTime() : 0
                             const h = (diff / 1000 / 3600) - (s.breakMinutes / 60)
+                            const isSpecial = employee.name.toLowerCase().includes('adam') || employee.name.toLowerCase().includes('benjamin')
+
                             return (
-                                <div key={s.id} className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors">
+                                <div key={s.id} className={`flex items-center justify-between p-4 sm:p-5 hover:bg-primary/[0.02] transition-colors group ${i % 2 === 0 ? 'bg-card' : 'bg-muted/[0.05]'}`}>
                                     <div className="flex items-center gap-4">
-                                        <div className="h-10 w-10 rounded bg-muted flex flex-col items-center justify-center text-[10px] font-bold border border-border">
-                                            <span className="text-muted-foreground">{s.startTime.toLocaleDateString('fr-FR', { weekday: 'short' }).toUpperCase()}</span>
-                                            <span className="text-foreground text-lg leading-tight">{s.startTime.getDate()}</span>
+                                        <div className="size-12 rounded-2xl bg-muted flex flex-col items-center justify-center text-[10px] font-black border border-border/50 shadow-sm group-hover:bg-primary/5 group-hover:border-primary/20 transition-all">
+                                            <span className="text-muted-foreground opacity-60 leading-none mb-0.5">{s.startTime.toLocaleDateString('fr-FR', { weekday: 'short' }).toUpperCase().replace('.', '')}</span>
+                                            <span className="text-primary text-lg leading-none">{s.startTime.getDate()}</span>
                                         </div>
                                         <div>
-                                            {!(employee.name.toLowerCase().includes('adam') || employee.name.toLowerCase().includes('benjamin')) ? (
-                                                <>
-                                                    <p className="text-sm font-semibold text-foreground flex items-center gap-2">
-                                                        {s.startTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - {s.endTime?.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
-                                                        {s.position && (() => {
-                                                            const pos: any = POSITIONS.find((p: any) => p.id === s.position)
-                                                            if (pos) {
-                                                                const Icon = pos.icon
-                                                                return <span title={pos.label}><Icon className="h-4 w-4 shrink-0 opacity-70" /></span>
-                                                            }
-                                                            return null
-                                                        })()}
-                                                    </p>
-                                                    <p className="text-xs text-muted-foreground">Pause: {s.breakMinutes}m • {h.toFixed(1)}h effectives</p>
-                                                </>
-                                            ) : (
-                                                <p className="text-sm font-semibold text-foreground flex items-center gap-2">
-                                                    Service assuré
-                                                    {s.position && (() => {
-                                                        const pos: any = POSITIONS.find((p: any) => p.id === s.position)
-                                                        if (pos) {
-                                                            const Icon = pos.icon
-                                                            return <span title={pos.label}><Icon className="h-4 w-4 shrink-0 opacity-70" /></span>
-                                                        }
-                                                        return null
-                                                    })()}
+                                            <div className="flex items-center gap-2">
+                                                <p className="text-sm font-black text-foreground">
+                                                    {isSpecial
+                                                        ? "Service assuré"
+                                                        : `${s.startTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - ${s.endTime?.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`
+                                                    }
+                                                </p>
+                                                {s.position && (() => {
+                                                    const pos: any = POSITIONS.find((p: any) => p.id === s.position)
+                                                    if (pos) {
+                                                        const Icon = pos.icon
+                                                        return <Badge variant="outline" className="h-5 px-1.5 border-primary/20 bg-primary/5 text-primary rounded-lg" title={pos.label}><Icon className="h-3 w-3" /></Badge>
+                                                    }
+                                                    return null
+                                                })()}
+                                            </div>
+                                            {!isSpecial && (
+                                                <p className="text-[11px] text-muted-foreground font-bold uppercase tracking-tighter mt-0.5">
+                                                    Pause: {s.breakMinutes}m • <span className="text-primary/70">{h.toFixed(1)}h effectives</span>
                                                 </p>
                                             )}
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="text-right">
-                                            <p className="text-sm font-bold text-foreground">{(h * Number(s.hourlyRate)).toFixed(2)} €</p>
-                                            <p className="text-[10px] text-muted-foreground">{Number(s.hourlyRate).toFixed(2)} €/h</p>
+                                    <div className="flex items-center gap-3 sm:gap-6">
+                                        <div className="text-right hidden xs:block">
+                                            <p className="text-sm font-black text-foreground">{(h * Number(s.hourlyRate)).toFixed(2)} €</p>
+                                            <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-tighter mt-0.5">{Number(s.hourlyRate).toFixed(2)} €/h</p>
                                         </div>
                                         <div className="flex items-center gap-1">
                                             <EditShiftDialog shift={s} userId={employee.id} />
                                             <Button
                                                 size="icon"
                                                 variant="ghost"
-                                                className="h-8 w-8 text-muted-foreground hover:text-red-500"
+                                                className="size-9 rounded-xl text-muted-foreground hover:text-red-500 hover:bg-red-50 transition-all active:scale-90"
                                                 onClick={async () => {
                                                     if (confirm("Supprimer ce shift ?")) {
                                                         const res = await deleteShift(s.id, employee.id) as any

@@ -15,8 +15,8 @@ interface DocumentAssistantCardProps {
     docType: string
     documents: any[]
     title: string
-    shortDesc: string
-    assistantHelp: string
+    shortDesc?: string
+    assistantHelp?: string
     onDeleteDoc: (id: string) => Promise<any>
 }
 
@@ -26,8 +26,8 @@ export function DocumentAssistantCard({
     docType,
     documents,
     title,
-    shortDesc,
-    assistantHelp,
+    shortDesc = "",
+    assistantHelp = "Informations non renseignées.",
     onDeleteDoc
 }: DocumentAssistantCardProps) {
     const router = useRouter()

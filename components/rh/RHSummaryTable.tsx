@@ -187,86 +187,90 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
-            <div className="grid gap-4 md:grid-cols-3">
+            {/* Stats Cards - Responsive Grid */}
+            <div className="grid gap-4 grid-cols-1 xs:grid-cols-2 md:grid-cols-4">
                 <Card className="bg-primary border-none text-primary-foreground shadow-lg overflow-hidden relative">
-                    <div className="absolute top-0 right-0 p-4 opacity-20"><Calculator className="h-12 w-12" /></div>
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-primary-foreground/80 uppercase tracking-wider">Total Brut (avec CP)</CardTitle>
+                    <div className="absolute -top-2 -right-2 p-4 opacity-10"><Calculator className="h-16 w-16" /></div>
+                    <CardHeader className="pb-1 px-4 pt-4">
+                        <CardTitle className="text-[10px] font-black text-primary-foreground/70 uppercase tracking-widest">Total Brut + CP</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black">{grandTotal.gross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €</div>
-                        <p className="text-xs text-primary-foreground/80 mt-1">Total calculé</p>
+                    <CardContent className="px-4 pb-4">
+                        <div className="text-2xl font-black truncate">{grandTotal.gross.toLocaleString('fr-FR', { minimumFractionDigits: 0 })} €</div>
+                        <div className="h-1 w-8 bg-white/20 rounded-full mt-2"></div>
                     </CardContent>
                 </Card>
 
                 <Card className="bg-emerald-600 border-none text-white shadow-lg overflow-hidden relative">
-                    <div className="absolute top-0 right-0 p-4 opacity-20"><Euro className="h-12 w-12" /></div>
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-emerald-100 uppercase tracking-wider">Total Net à Verser</CardTitle>
+                    <div className="absolute -top-2 -right-2 p-4 opacity-10"><Euro className="h-16 w-16" /></div>
+                    <CardHeader className="pb-1 px-4 pt-4">
+                        <CardTitle className="text-[10px] font-black text-emerald-100/70 uppercase tracking-widest">Net Estimé</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black">{grandTotal.net.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €</div>
-                        <p className="text-xs text-emerald-100/80 mt-1">Estimation net à payer</p>
+                    <CardContent className="px-4 pb-4">
+                        <div className="text-2xl font-black truncate">{grandTotal.net.toLocaleString('fr-FR', { minimumFractionDigits: 0 })} €</div>
+                        <div className="h-1 w-8 bg-white/20 rounded-full mt-2"></div>
                     </CardContent>
                 </Card>
 
-                <Card className="border-none shadow-md bg-card text-card-foreground">
-                    <CardHeader className="pb-2 flex flex-row items-center justify-between space-y-0">
-                        <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Heures Effectives</CardTitle>
-                        <Clock className="h-4 w-4 text-blue-500" />
+                <Card className="border-border shadow-sm bg-card text-card-foreground overflow-hidden">
+                    <CardHeader className="pb-1 px-4 pt-4">
+                        <CardTitle className="text-[10px] font-black text-muted-foreground uppercase tracking-widest flex items-center gap-1.5">
+                            <Clock className="h-3 w-3 text-blue-500" /> Heures Équipe
+                        </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{grandTotal.hours.toFixed(1)} h</div>
-                        <p className="text-xs text-muted-foreground mt-1">Cumul de l'équipe</p>
+                    <CardContent className="px-4 pb-4">
+                        <div className="text-2xl font-black">{grandTotal.hours.toFixed(0)}h</div>
+                        <div className="text-[9px] font-bold text-muted-foreground mt-1 uppercase">Effectives</div>
                     </CardContent>
                 </Card>
 
-                <Card className="border-none shadow-md bg-card text-card-foreground">
-                    <CardHeader className="pb-2 flex flex-row items-center justify-between space-y-0">
-                        <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Taux Moyen</CardTitle>
-                        <Euro className="h-4 w-4 text-emerald-500" />
+                <Card className="border-border shadow-sm bg-card text-card-foreground overflow-hidden">
+                    <CardHeader className="pb-1 px-4 pt-4">
+                        <CardTitle className="text-[10px] font-black text-muted-foreground uppercase tracking-widest flex items-center gap-1.5">
+                            <Euro className="h-3 w-3 text-emerald-500" /> Taux Moyen
+                        </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{(grandTotal.gross / (grandTotal.hours || 1)).toFixed(2)} € / h</div>
-                        <p className="text-xs text-muted-foreground mt-1">Coût horaire moyen</p>
+                    <CardContent className="px-4 pb-4">
+                        <div className="text-2xl font-black">{(grandTotal.gross / (grandTotal.hours || 1)).toFixed(2)}€</div>
+                        <div className="text-[9px] font-bold text-muted-foreground mt-1 uppercase">Brut / h</div>
                     </CardContent>
                 </Card>
             </div>
 
-            <Card className="border-border shadow-xl bg-card">
-                <CardHeader className="border-b border-border bg-muted/20">
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <Card className="border-border shadow-xl bg-card rounded-2xl overflow-hidden">
+                <CardHeader className="border-b border-border bg-muted/20 px-4 sm:px-6">
+                    <div className="flex flex-col gap-4">
+                        <div className="flex items-center justify-between">
                             <div>
-                                <CardTitle className="text-xl">Récapitulatif de Paie</CardTitle>
-                                <CardDescription className="capitalize">{currentDateLabel}</CardDescription>
+                                <CardTitle className="text-lg font-black uppercase tracking-tight">Récapitulatif de Paie</CardTitle>
+                                <CardDescription className="text-xs font-bold uppercase text-primary/70">{currentDateLabel}</CardDescription>
                             </div>
-                            <div className="flex justify-center items-center bg-muted rounded-lg p-1 border">
-                                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => changeMonth(-1)}><ChevronLeft className="h-4 w-4" /></Button>
-                                <span className="text-xs font-bold px-3 min-w-[100px] text-center capitalize">{currentDate.toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' })}</span>
-                                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => changeMonth(1)}><ChevronRight className="h-4 w-4" /></Button>
+                            <div className="flex items-center bg-background rounded-xl p-1 border border-border/50 shadow-inner">
+                                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg" onClick={() => changeMonth(-1)}><ChevronLeft className="h-4 w-4" /></Button>
+                                <span className="text-[10px] font-black px-2 min-w-[70px] text-center uppercase">{currentDate.toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' })}</span>
+                                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg" onClick={() => changeMonth(1)}><ChevronRight className="h-4 w-4" /></Button>
                             </div>
                         </div>
                     </div>
                 </CardHeader>
                 <CardContent className="p-0">
-                    <div className="overflow-x-auto">
+                    {/* Desktop Table View */}
+                    <div className="hidden lg:block overflow-x-auto">
                         <Table>
                             <TableHeader>
-                                <TableRow className="bg-muted/50 border-b border-border">
+                                <TableRow className="bg-muted/30 border-b border-border">
                                     <TableHead
-                                        className="font-bold py-4 pl-6 text-muted-foreground cursor-pointer hover:text-primary transition-colors flex items-center gap-1 select-none"
+                                        className="font-black py-4 pl-6 text-[10px] uppercase tracking-widest text-muted-foreground cursor-pointer hover:text-primary transition-colors select-none"
                                         onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
                                     >
                                         Salarié {sortOrder === 'asc' ? '↑' : '↓'}
                                     </TableHead>
-                                    <TableHead className="font-bold text-muted-foreground">Contrat</TableHead>
-                                    <TableHead className="font-bold text-center text-muted-foreground">Total Heures</TableHead>
-                                    <TableHead className="font-bold text-center text-muted-foreground">Taux Horaire</TableHead>
-                                    <TableHead className="font-bold text-right text-muted-foreground">Salaire Base</TableHead>
-                                    <TableHead className="font-bold text-right text-blue-500">+ 10% CP</TableHead>
-                                    <TableHead className="font-bold text-right text-foreground">REM BRUT</TableHead>
-                                    <TableHead className="font-bold text-right pr-6 text-emerald-600">REM NET</TableHead>
+                                    <TableHead className="font-black text-[10px] uppercase tracking-widest text-muted-foreground">Contrat</TableHead>
+                                    <TableHead className="font-black text-[10px] uppercase tracking-widest text-center text-muted-foreground">Appoint</TableHead>
+                                    <TableHead className="font-black text-[10px] uppercase tracking-widest text-center text-muted-foreground">Taux</TableHead>
+                                    <TableHead className="font-black text-[10px] uppercase tracking-widest text-right text-muted-foreground">Base</TableHead>
+                                    <TableHead className="font-black text-[10px] uppercase tracking-widest text-right text-blue-500">+10% CP</TableHead>
+                                    <TableHead className="font-black text-[10px] uppercase tracking-widest text-right text-foreground">BRUT</TableHead>
+                                    <TableHead className="font-black text-[10px] uppercase tracking-widest text-right pr-6 text-emerald-600">REM NET</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -278,13 +282,12 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                     return (
                                         <TableRow
                                             key={emp.id}
-                                            className={`hover:bg-muted/50 transition-colors border-b border-border ${isManager ? 'bg-muted/30 opacity-70' : ''} ${isGrayedOut ? 'grayscale opacity-40' : ''}`}
-                                            title={isGrayedOut ? "Pas de contrat actif pour ce mois" : ""}
+                                            className={`hover:bg-primary/[0.02] transition-colors border-b border-border/50 ${isManager ? 'bg-muted/10 opacity-70' : ''} ${isGrayedOut ? 'grayscale opacity-30 bg-muted/20' : ''}`}
                                         >
                                             <TableCell className="font-bold py-4 pl-6">
                                                 <div className="flex items-center gap-2">
                                                     <Link href={`/rh/${emp.id}?tab=hours&month=${selectedMonth + 1}&year=${selectedYear}`} className="flex items-center gap-2 text-foreground hover:text-blue-500 transition-colors group">
-                                                        <div className={`w-2.5 h-2.5 rounded-full ${isManager ? 'bg-slate-400' : getEmployeeDotColor(emp.id, emp.name)} group-hover:scale-125 transition-transform`}></div>
+                                                        <div className={`w-2 h-2 rounded-full ${isManager ? 'bg-slate-400' : getEmployeeDotColor(emp.id, emp.name)} group-hover:scale-125 transition-transform`}></div>
                                                         {(() => {
                                                             const parts = emp.name.trim().split(/\s+/)
                                                             const last = parts.length > 1 ? parts[parts.length - 1] : ""
@@ -292,38 +295,38 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                                             return (
                                                                 <span className="whitespace-nowrap">
                                                                     <span className="uppercase font-black text-xs mr-1">{last}</span>
-                                                                    <span className="font-semibold text-xs">{first}</span>
+                                                                    <span className="font-semibold text-xs text-muted-foreground">{first}</span>
                                                                 </span>
                                                             )
                                                         })()}
                                                     </Link>
-                                                    {isManager && <Badge variant="outline" className="text-[9px] h-4 uppercase scale-90 -ml-1">Gérant</Badge>}
+                                                    {isManager && <Badge variant="outline" className="text-[8px] h-3.5 px-1 py-0 uppercase tracking-tighter opacity-60">Gérant</Badge>}
                                                 </div>
                                             </TableCell>
                                             <TableCell>
-                                                <div className="flex flex-col gap-1">
-                                                    <Badge variant="secondary" className="w-fit text-[10px] uppercase font-black">{isManager ? 'BÉNÉVOLE' : (emp.contractType || 'CDI')}</Badge>
-                                                    <span className="text-[10px] text-muted-foreground">{isManager ? 'Gérance' : (emp.contractDuration === 'PART_TIME' ? 'Temps Partiel' : 'Temps Plein')}</span>
+                                                <div className="flex flex-col">
+                                                    <span className="text-[10px] font-black uppercase tracking-tighter text-foreground/80">{isManager ? 'BÉNÉVOLE' : (emp.contractType || 'CDI')}</span>
+                                                    <span className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-tighter">{isManager ? 'Gérance' : (emp.contractDuration === 'PART_TIME' ? 'P-TIME' : 'FULL')}</span>
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="text-center font-medium">
-                                                {totalHours.toFixed(1)} h
+                                            <TableCell className="text-center font-black text-xs">
+                                                {totalHours.toFixed(1)}h
                                             </TableCell>
-                                            <TableCell className="text-center text-muted-foreground">
+                                            <TableCell className="text-center text-[10px] font-bold text-muted-foreground uppercase">
                                                 {isManager ? '-' : `${Number(emp.hourlyRate).toFixed(2)}€`}
                                             </TableCell>
-                                            <TableCell className="text-right font-medium text-foreground">
-                                                {isManager ? '-' : `${baseGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
+                                            <TableCell className="text-right font-bold text-xs">
+                                                {isManager ? '-' : `${baseGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })}€`}
                                             </TableCell>
-                                            <TableCell className="text-right text-blue-500 font-medium">
-                                                {isManager ? '-' : `${paidLeaveComplement.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
+                                            <TableCell className="text-right text-blue-500/80 font-bold text-xs">
+                                                {isManager ? '-' : `${paidLeaveComplement.toLocaleString('fr-FR', { minimumFractionDigits: 2 })}€`}
                                             </TableCell>
-                                            <TableCell className="text-right font-black text-foreground">
-                                                {isManager ? '-' : `${totalGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`}
+                                            <TableCell className="text-right font-black text-xs text-foreground">
+                                                {isManager ? '-' : `${totalGross.toLocaleString('fr-FR', { minimumFractionDigits: 2 })}€`}
                                             </TableCell>
-                                            <TableCell className="text-right font-black pr-6 text-emerald-600 min-w-[140px]">
+                                            <TableCell className="text-right font-black pr-6 text-emerald-600 min-w-[130px]">
                                                 {isManager ? (
-                                                    <div className="flex justify-end pr-4 text-muted-foreground">-</div>
+                                                    <div className="flex justify-end pr-4 text-muted-foreground opacity-30">-</div>
                                                 ) : (
                                                     <NetRemunerationInput
                                                         emp={emp}
@@ -338,6 +341,73 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                 })}
                             </TableBody>
                         </Table>
+                    </div>
+
+                    {/* Mobile List View */}
+                    <div className="lg:hidden divide-y divide-border/50">
+                        {sortedEmployees.map((emp) => {
+                            const { totalHours, totalGross, totalNet, hasActiveContract } = calculateStats(emp)
+                            const isManager = emp.role === 'ADMIN'
+                            const isGrayedOut = !isManager && !hasActiveContract
+
+                            return (
+                                <div key={emp.id} className={`p-4 space-y-3 ${isManager ? 'bg-muted/5 opacity-80' : ''} ${isGrayedOut ? 'grayscale opacity-30 bg-muted/20' : ''}`}>
+                                    <div className="flex items-center justify-between">
+                                        <Link href={`/rh/${emp.id}?tab=hours&month=${selectedMonth + 1}&year=${selectedYear}`} className="flex items-center gap-2">
+                                            <div className={`w-2.5 h-2.5 rounded-full ${isManager ? 'bg-slate-400' : getEmployeeDotColor(emp.id, emp.name)}`}></div>
+                                            {(() => {
+                                                const parts = emp.name.trim().split(/\s+/)
+                                                const last = parts.length > 1 ? parts[parts.length - 1] : ""
+                                                const first = parts.length > 1 ? parts.slice(0, -1).join(' ') : emp.name
+                                                return (
+                                                    <span className="flex items-center gap-1">
+                                                        <span className="uppercase font-black text-sm">{last}</span>
+                                                        <span className="font-bold text-xs text-muted-foreground">{first}</span>
+                                                    </span>
+                                                )
+                                            })()}
+                                            {isManager && <Badge variant="outline" className="text-[8px] h-3.5 px-1 py-0 uppercase tracking-tighter">Gérant</Badge>}
+                                        </Link>
+                                        <Badge variant="secondary" className="text-[9px] font-black uppercase tracking-widest h-5 px-2 bg-muted/50 border-border/50">
+                                            {isManager ? 'BÉNÉVOLE' : (emp.contractType || 'CDI')}
+                                        </Badge>
+                                    </div>
+
+                                    <div className="grid grid-cols-3 gap-2 py-2 border-y border-border/30">
+                                        <div className="flex flex-col items-center">
+                                            <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">Heures</span>
+                                            <span className="text-sm font-black text-foreground">{totalHours.toFixed(1)}h</span>
+                                        </div>
+                                        <div className="flex flex-col items-center">
+                                            <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">Rem Brut</span>
+                                            <span className="text-sm font-black text-foreground">{isManager ? '-' : `${totalGross.toFixed(0)}€`}</span>
+                                        </div>
+                                        <div className="flex flex-col items-center">
+                                            <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest">+10% CP</span>
+                                            <span className="text-sm font-black text-blue-600">{isManager ? '-' : `${(totalGross * 0.1).toFixed(0)}€`}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center justify-between pt-1">
+                                        <div className="flex items-center gap-1.5 p-1 px-2.5 bg-emerald-500/5 border border-emerald-500/10 rounded-xl">
+                                            <span className="text-[9px] font-black text-emerald-600 uppercase tracking-widest">Rem Net à verser</span>
+                                        </div>
+                                        <div className="w-28">
+                                            {isManager ? (
+                                                <div className="text-right text-muted-foreground opacity-30 text-xs">-</div>
+                                            ) : (
+                                                <NetRemunerationInput
+                                                    emp={emp}
+                                                    totalNet={totalNet}
+                                                    selectedMonth={selectedMonth}
+                                                    selectedYear={selectedYear}
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
                     </div>
                 </CardContent>
             </Card>

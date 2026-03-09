@@ -33,10 +33,10 @@ export function RateHistoryManager({ userId, currentHistoryJson }: RateHistoryMa
 
     const addRate = async () => {
         if (!newRate || !newDate) return
-        
+
         const updatedRates = [...rates, { rate: parseFloat(newRate), startDate: newDate }]
             .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())
-        
+
         setRates(updatedRates)
         setNewRate('')
         setNewDate('')
@@ -44,78 +44,84 @@ export function RateHistoryManager({ userId, currentHistoryJson }: RateHistoryMa
         const formData = new FormData()
         formData.append('userId', userId)
         formData.append('ratesJson', JSON.stringify(updatedRates))
-        
-        const res = await updateHourlyRateHistory(formData)
-        if (res.success) toast.success("Historique mis à jour")
+
+        const res = await updateHourlyRateHistory(formData) as any
+        if (res && res.success) toast.success("Historique mis à jour")
         else toast.error("Erreur mise à jour")
     }
 
     const removeRate = async (index: number) => {
         const updatedRates = rates.filter((_, i) => i !== index)
         setRates(updatedRates)
-        
+
         const formData = new FormData()
         formData.append('userId', userId)
         formData.append('ratesJson', JSON.stringify(updatedRates))
-        
-        const res = await updateHourlyRateHistory(formData)
-        if (res.success) toast.success("Historique mis à jour")
+
+        const res = await updateHourlyRateHistory(formData) as any
+        if (res && res.success) toast.success("Historique mis à jour")
     }
 
     return (
-        <Card className="border-border shadow-sm bg-card">
-            <CardHeader className="bg-muted/20 border-b border-border">
-                <CardTitle className="text-sm font-bold flex items-center gap-2">
+        <Card className="border-border shadow-sm bg-card rounded-2xl overflow-hidden">
+            <CardHeader className="bg-muted/20 border-b border-border py-4 px-4 sm:px-6">
+                <CardTitle className="text-sm font-black uppercase tracking-widest flex items-center gap-2 text-muted-foreground">
                     <Euro className="h-4 w-4 text-primary" />
-                    Historique des Taux Horaires
+                    Historique des Taux
                 </CardTitle>
             </CardHeader>
-            <CardContent className="pt-6 space-y-6">
-                <div className="grid grid-cols-2 gap-4 items-end bg-muted/30 p-4 rounded-lg border border-border/50 shadow-inner">
-                    <div className="space-y-2">
-                        <Label className="text-[10px] uppercase font-bold text-muted-foreground">Prochain Taux (€)</Label>
-                        <Input 
-                            type="number" 
-                            step="0.01" 
-                            value={newRate} 
-                            onChange={(e) => setNewRate(e.target.value)}
-                            placeholder="12.50"
-                            className="bg-background"
-                        />
+            <CardContent className="pt-6 px-4 sm:px-6 space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end bg-primary/5 p-4 rounded-xl border border-primary/10 shadow-sm transition-all focus-within:shadow-md">
+                    <div className="space-y-1.5">
+                        <Label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground/80">Prochain Taux (€)</Label>
+                        <div className="relative">
+                            <Euro className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                            <Input
+                                type="number"
+                                step="0.01"
+                                value={newRate}
+                                onChange={(e) => setNewRate(e.target.value)}
+                                placeholder="12.50"
+                                className="pl-10 h-11 bg-background border-border/50 rounded-xl font-bold"
+                            />
+                        </div>
                     </div>
-                    <div className="space-y-2">
-                        <Label className="text-[10px] uppercase font-bold text-muted-foreground">Date d'effet</Label>
-                        <Input 
-                            type="date" 
-                            value={newDate} 
-                            onChange={(e) => setNewDate(e.target.value)}
-                            className="bg-background"
-                        />
+                    <div className="space-y-1.5">
+                        <Label className="text-[10px] uppercase font-black tracking-widest text-muted-foreground/80">Date d'effet</Label>
+                        <div className="relative">
+                            <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                            <Input
+                                type="date"
+                                value={newDate}
+                                onChange={(e) => setNewDate(e.target.value)}
+                                className="pl-10 h-11 bg-background border-border/50 rounded-xl font-bold"
+                            />
+                        </div>
                     </div>
-                    <Button onClick={addRate} className="col-span-full gap-2 bg-primary text-primary-foreground">
+                    <Button onClick={addRate} className="col-span-1 sm:col-span-full gap-2 bg-primary text-white h-11 font-black uppercase tracking-wider rounded-xl shadow-lg shadow-primary/20 mt-2">
                         <Plus className="h-4 w-4" /> Planifier ce taux
                     </Button>
                 </div>
 
                 <div className="space-y-3">
                     {rates.length === 0 ? (
-                        <p className="text-center text-xs text-muted-foreground italic py-4">Aucun historique planifié. Le taux de base est utilisé.</p>
+                        <p className="text-center text-xs text-muted-foreground italic py-12 font-medium">Aucun historique planifié. Le taux de base est utilisé.</p>
                     ) : (
                         rates.map((r, i) => (
-                            <div key={i} className="flex items-center justify-between p-3 border border-border rounded-xl bg-background shadow-sm hover:shadow-md transition-all">
+                            <div key={i} className="flex items-center justify-between p-4 border border-border/40 rounded-2xl bg-card shadow-sm hover:shadow-md hover:border-primary/20 transition-all group">
                                 <div className="flex items-center gap-4">
-                                    <div className="h-10 w-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 border border-emerald-500/20">
+                                    <div className="size-11 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 border border-emerald-500/20 group-hover:scale-110 transition-transform">
                                         <Euro className="h-5 w-5" />
                                     </div>
                                     <div>
                                         <p className="text-sm font-black text-foreground">{r.rate.toFixed(2)} € / h</p>
-                                        <div className="flex items-center gap-1 text-[10px] text-muted-foreground font-bold uppercase">
-                                            <Calendar className="h-3 w-3" />
+                                        <div className="flex items-center gap-1 text-[10px] text-muted-foreground font-black uppercase tracking-tight mt-0.5">
+                                            <Calendar className="h-3 w-3 text-primary/50" />
                                             {new Date(r.startDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
                                         </div>
                                     </div>
                                 </div>
-                                <Button variant="ghost" size="icon" onClick={() => removeRate(i)} className="text-muted-foreground hover:text-red-500 h-8 w-8">
+                                <Button variant="ghost" size="icon" onClick={() => removeRate(i)} className="text-muted-foreground hover:text-red-500 hover:bg-red-50 size-9 rounded-xl active:scale-90 transition-all">
                                     <Trash2 className="h-4 w-4" />
                                 </Button>
                             </div>

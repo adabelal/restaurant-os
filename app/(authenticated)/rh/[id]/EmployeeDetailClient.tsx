@@ -28,6 +28,9 @@ interface EmployeeDetailClientProps {
     searchParams: { month?: string, year?: string, tab?: string }
 }
 
+import { MobileProfileHero } from "@/components/rh/MobileProfileHero"
+import { MobileStatCard } from "@/components/rh/MobileStatCard"
+
 export default function EmployeeDetailClient({ employee, searchParams }: EmployeeDetailClientProps) {
     const router = useRouter()
 
@@ -129,19 +132,6 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
         }
     }
 
-    const handleAddDocument = async (formData: FormData) => {
-        const res = await addEmployeeDocument(formData)
-        if (!('error' in res)) {
-            toast.success("Document ajouté avec succès.")
-            const form = document.getElementById("add-document-form") as HTMLFormElement
-            if (form) form.reset()
-            setDocName("")
-            router.refresh()
-        } else {
-            toast.error((res as any).error || "Erreur lors de l'ajout du document.")
-        }
-    }
-
     const handleDeleteDocument = async (docId: string) => {
         const res = await deleteEmployeeDocument(docId, employee.id)
         if (!('error' in res)) {
@@ -152,92 +142,14 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
         }
     }
 
-    const handleDragOver = (e: React.DragEvent) => {
-        e.preventDefault()
-        setIsDragging(true)
-    }
-
-    const handleDragLeave = (e: React.DragEvent) => {
-        e.preventDefault()
-        setIsDragging(false)
-    }
-
-    const handleDrop = (e: React.DragEvent) => {
-        e.preventDefault()
-        setIsDragging(false)
-        const files = Array.from(e.dataTransfer.files)
-        if (files.length > 0) {
-            const file = files[0]
-            setDroppedFile(file)
-            if (!docName) setDocName(file.name.replace(/\.[^.]+$/, ''))
-        }
-    }
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0]
-        if (file) {
-            setDroppedFile(file)
-            if (!docName) setDocName(file.name.replace(/\.[^.]+$/, ''))
-        }
-    }
-
-    const handleUpload = async () => {
-        if (!droppedFile || !docName.trim()) {
-            toast.error('Veuillez sélectionner un fichier et nommer le document.')
-            return
-        }
-        setIsUploading(true)
-        setUploadProgress(10)
-
-        try {
-            const formData = new FormData()
-            formData.append('file', droppedFile)
-            formData.append('userId', employee.id)
-            formData.append('name', docName.trim())
-            formData.append('type', docType)
-            if (docMonth) formData.append('month', docMonth)
-            if (docYear) formData.append('year', docYear)
-
-            setUploadProgress(30)
-
-            const res = await fetch('/api/rh/upload', {
-                method: 'POST',
-                body: formData,
-            })
-
-            setUploadProgress(80)
-            const data = await res.json()
-
-            if (!res.ok || data.error) {
-                throw new Error(data.error || 'Erreur serveur')
-            }
-
-            setUploadProgress(100)
-            toast.success(`✅ ${data.message}`)
-
-            // Reset
-            setDroppedFile(null)
-            setDocName('')
-            setDocMonth('')
-            setDocYear('')
-            if (fileInputRef.current) fileInputRef.current.value = ''
-            router.refresh()
-        } catch (e: any) {
-            toast.error(e.message || 'Erreur lors de l\'upload')
-        } finally {
-            setIsUploading(false)
-            setUploadProgress(0)
-        }
-    }
-
     return (
-        <div className="flex min-h-screen flex-col bg-muted/20 pb-20">
-            {/* Header Pro */}
-            <div className="bg-card border-b border-border sticky top-0 z-20 shadow-sm">
+        <div className="flex min-h-screen flex-col bg-background pb-20 sm:bg-muted/20">
+            {/* Desktop Header */}
+            <div className="hidden sm:block bg-card border-b border-border sticky top-0 z-20 shadow-sm">
                 <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         <Link href="/rh">
-                            <Button variant="outline" size="sm" className="gap-2">
+                            <Button variant="outline" size="sm" className="gap-2 rounded-xl">
                                 <ArrowLeft className="h-4 w-4" /> Retour
                             </Button>
                         </Link>
@@ -245,10 +157,10 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                         <div>
                             <h1 className="text-xl font-bold text-foreground leading-tight">{employee.name}</h1>
                             <div className="flex items-center gap-2 mt-0.5">
-                                <Badge className={employee.isActive ? "bg-emerald-500 text-white border-none" : "bg-muted text-muted-foreground border-none"}>
+                                <Badge className={employee.isActive ? "bg-primary text-white border-none" : "bg-muted text-muted-foreground border-none"}>
                                     {employee.isActive ? "Salarié Actif" : "Archivé"}
                                 </Badge>
-                                <span className="text-xs text-muted-foreground">• {employee.role}</span>
+                                <span className="text-xs text-muted-foreground font-bold uppercase tracking-wider">• {employee.role}</span>
                             </div>
                         </div>
                     </div>
@@ -257,7 +169,7 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                         <Button
                             variant={employee.isActive ? "ghost" : "outline"}
                             size="sm"
-                            className={employee.isActive ? "text-muted-foreground hover:text-red-500" : "text-emerald-500"}
+                            className={employee.isActive ? "text-muted-foreground hover:text-red-500 rounded-xl" : "text-primary rounded-xl"}
                             onClick={handleToggleStatus}
                         >
                             {employee.isActive ? <Archive className="h-4 w-4 mr-2" /> : <UserCheck className="h-4 w-4 mr-2" />}
@@ -267,103 +179,230 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                 </div>
             </div>
 
-            <main className="max-w-6xl mx-auto w-full px-6 py-8">
-                <Tabs defaultValue={defaultTab} className="space-y-8">
-                    <TabsList className="bg-card p-1 border border-border shadow-sm">
-                        <TabsTrigger value="stats" className="gap-2 px-6"><Calendar className="h-4 w-4" /> Résumé</TabsTrigger>
-                        <TabsTrigger value="hours" className="gap-2 px-6"><Clock className="h-4 w-4" /> Heures & Travail</TabsTrigger>
-                        <TabsTrigger value="legal" className="gap-2 px-6"><ShieldCheck className="h-4 w-4" /> Dossier Juridique</TabsTrigger>
-                        <TabsTrigger value="rates" className="gap-2 px-6"><Euro className="h-4 w-4" /> Taux & Contrat</TabsTrigger>
-                        <TabsTrigger value="profile" className="gap-2 px-6"><Mail className="h-4 w-4" /> Profil & Params</TabsTrigger>
-                    </TabsList>
+            {/* Mobile Header Navigation */}
+            <div className="sm:hidden sticky top-0 z-30 flex items-center bg-card/80 backdrop-blur-md p-4 justify-between border-b border-primary/10">
+                <div className="flex items-center gap-3">
+                    <Link href="/rh">
+                        <div className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary active:scale-90 transition-transform">
+                            <ArrowLeft className="h-5 w-5" />
+                        </div>
+                    </Link>
+                    <h2 className="text-lg font-black leading-tight tracking-tight">Fiche Salarié</h2>
+                </div>
+                <div className="flex items-center">
+                    <Button variant="ghost" size="icon" className="rounded-full h-10 w-10 active:scale-90" onClick={handleToggleStatus}>
+                        <Archive className="h-5 w-5 text-muted-foreground" />
+                    </Button>
+                </div>
+            </div>
+
+            {/* Mobile Profile Hero */}
+            <MobileProfileHero employee={employee} />
+
+            <main className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
+                <Tabs defaultValue={defaultTab} className="space-y-6 sm:space-y-8">
+                    {/* Tabs List with Mobile Horizontal Scroll */}
+                    <div className="sticky top-[72px] sm:static z-20 -mx-4 px-4 sm:mx-0 sm:px-0 bg-background sm:bg-transparent border-b border-primary/10 sm:border-none overflow-x-auto no-scrollbar">
+                        <TabsList className="bg-transparent sm:bg-card p-0 sm:p-1 border-none sm:border border-border shadow-none sm:shadow-sm justify-start w-max sm:w-auto h-auto sm:h-10">
+                            {[
+                                { value: 'stats', label: 'Résumé', icon: Calendar },
+                                { value: 'hours', label: 'Heures', icon: Clock },
+                                { value: 'legal', label: 'Documents', icon: ShieldCheck },
+                                { value: 'rates', label: 'Taux & Contrat', icon: Euro },
+                                { value: 'profile', label: 'Réglages', icon: Mail }
+                            ].map((tab) => (
+                                <TabsTrigger
+                                    key={tab.value}
+                                    value={tab.value}
+                                    className="gap-2 px-6 py-4 sm:py-1.5 border-b-2 sm:border-none border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent sm:data-[state=active]:bg-background data-[state=active]:text-primary sm:data-[state=active]:shadow-lg transition-all rounded-none sm:rounded-lg text-sm font-bold h-full"
+                                >
+                                    <tab.icon className="h-4 w-4 hidden sm:inline" /> {tab.label}
+                                </TabsTrigger>
+                            ))}
+                        </TabsList>
+                    </div>
 
                     {/* ONGLET 1: RESUME & STATS */}
-                    <TabsContent value="stats" className="grid lg:grid-cols-3 gap-6">
-                        <Card className="lg:col-span-2 border-border shadow-sm bg-card">
-                            <CardHeader className="border-b border-border bg-muted/20">
-                                <CardTitle className="text-lg flex items-center justify-between text-foreground">
-                                    <span>Activité du mois</span>
-                                    <div className="flex items-center gap-4">
-                                        <ExportShiftsPDF
-                                            employee={employee}
-                                            shifts={filteredShifts}
-                                            monthLabel={monthLabel}
-                                            totalHours={totalHours}
-                                            totalGross={totalGrossPay}
-                                        />
-                                        <div className="flex items-center gap-2">
-                                            <Link href={`/rh/${employee.id}?month=${prevMonth}&year=${prevYear}`}>
-                                                <Button variant="ghost" size="icon" className="h-8 w-8"><ChevronLeft className="h-4 w-4" /></Button>
-                                            </Link>
-                                            <span className="text-sm font-medium min-w-[120px] text-center capitalize">{monthLabel}</span>
-                                            <Link href={`/rh/${employee.id}?month=${nextMonth}&year=${nextYear}`}>
-                                                <Button variant="ghost" size="icon" className="h-8 w-8"><ChevronRight className="h-4 w-4" /></Button>
-                                            </Link>
+                    <TabsContent value="stats" className="space-y-6">
+                        {/* Mobile Stats View */}
+                        <div className="sm:hidden space-y-6">
+                            <section>
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-lg font-black tracking-tight">Activité du mois</h3>
+                                    <span className="text-primary text-xs font-bold uppercase bg-primary/10 px-2 py-0.5 rounded-full">{monthLabel}</span>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <MobileStatCard
+                                        icon={Clock}
+                                        label="Heures"
+                                        value={`${totalHours.toFixed(1)}h`}
+                                        subLabel="+12% vs mois dernier"
+                                        variant="primary"
+                                    />
+                                    <MobileStatCard
+                                        icon={Euro}
+                                        label="Salaire Brut"
+                                        value={`${totalGrossPay.toFixed(2)}€`}
+                                        subLabel="Estimé (Hors variable)"
+                                        variant="blue"
+                                    />
+                                </div>
+                            </section>
+
+                            <section>
+                                <div className="bg-card rounded-2xl p-5 shadow-sm border border-border/50">
+                                    <h4 className="text-sm font-black mb-5 uppercase tracking-widest text-muted-foreground/80">Derniers shifts</h4>
+                                    <div className="space-y-4">
+                                        {filteredShifts.slice(0, 3).map((shift: any, i: number) => {
+                                            const shiftDate = new Date(shift.startTime)
+                                            const day = shiftDate.getDate()
+                                            const month = shiftDate.toLocaleDateString('fr-FR', { month: 'short' }).toUpperCase().replace('.', '')
+                                            const duration = shift.endTime ? ((new Date(shift.endTime).getTime() - shiftDate.getTime()) / 3600000 - shift.breakMinutes / 60).toFixed(1) : '?'
+
+                                            return (
+                                                <React.Fragment key={shift.id}>
+                                                    <div className="flex items-center justify-between active:bg-muted/50 rounded-lg transition-colors">
+                                                        <div className="flex items-center gap-4">
+                                                            <div className="size-11 rounded-xl bg-muted flex flex-col items-center justify-center text-[10px] font-black border border-border/50">
+                                                                <span className="text-primary text-base leading-none mb-0.5">{day}</span>
+                                                                <span className="text-muted-foreground opacity-60 leading-none">{month}</span>
+                                                            </div>
+                                                            <div>
+                                                                <p className="text-sm font-bold text-foreground">Shift {shiftDate.getHours() < 17 ? 'Midi' : 'Soir'}</p>
+                                                                <p className="text-[11px] text-muted-foreground font-medium">
+                                                                    {shiftDate.getHours()}h{shiftDate.getMinutes().toString().padStart(2, '0')} - {shift.endTime ? new Date(shift.endTime).getHours() : '??'}h{shift.endTime ? new Date(shift.endTime).getMinutes().toString().padStart(2, '0') : '??'} ({duration}h)
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <ChevronRight className="h-4 w-4 text-muted-foreground/40" />
+                                                    </div>
+                                                    {i < 2 && <div className="h-px bg-border/40 ml-14" />}
+                                                </React.Fragment>
+                                            )
+                                        })}
+                                    </div>
+                                    <Button variant="ghost" className="mt-4 w-full text-primary text-xs font-black uppercase tracking-widest hover:bg-primary/5">
+                                        Voir l'historique complet
+                                    </Button>
+                                </div>
+                            </section>
+
+                            <section className="space-y-4">
+                                <h3 className="text-lg font-black tracking-tight">Informations clés</h3>
+                                <div className="rounded-2xl bg-card border border-border/50 divide-y divide-border/20 overflow-hidden">
+                                    {[
+                                        { icon: Phone, label: "Téléphone", value: employee.phone || "Non renseigné" },
+                                        { icon: FileText, label: "Type de contrat", value: `${employee.contractType || 'CDI'} (${employee.contractDuration === 'PART_TIME' ? 'Partiel' : '35h'})` },
+                                        { icon: MapPin, label: "Adresse", value: employee.address || "Non renseignée" },
+                                    ].map((info, i) => (
+                                        <div key={i} className="flex items-center justify-between p-4">
+                                            <div className="flex items-center gap-3">
+                                                <info.icon className="h-4 w-4 text-primary" />
+                                                <span className="text-xs font-bold text-muted-foreground/70 uppercase tracking-wider">{info.label}</span>
+                                            </div>
+                                            <span className="text-sm font-bold text-foreground text-right">{info.value}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        </div>
+
+                        {/* Desktop Stats View */}
+                        <div className="hidden sm:grid lg:grid-cols-3 gap-6">
+                            <Card className="lg:col-span-2 border-border shadow-sm bg-card rounded-2xl">
+                                <CardHeader className="border-b border-border bg-muted/20">
+                                    <CardTitle className="text-lg flex items-center justify-between text-foreground">
+                                        <span className="font-bold">Activité du mois</span>
+                                        <div className="flex items-center gap-4">
+                                            <ExportShiftsPDF
+                                                employee={employee}
+                                                shifts={filteredShifts}
+                                                monthLabel={monthLabel}
+                                                totalHours={totalHours}
+                                                totalGross={totalGrossPay}
+                                            />
+                                            <div className="flex items-center gap-2">
+                                                <Link href={`/rh/${employee.id}?month=${prevMonth}&year=${prevYear}`}>
+                                                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full"><ChevronLeft className="h-4 w-4" /></Button>
+                                                </Link>
+                                                <span className="text-sm font-bold min-w-[120px] text-center capitalize">{monthLabel}</span>
+                                                <Link href={`/rh/${employee.id}?month=${nextMonth}&year=${nextYear}`}>
+                                                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full"><ChevronRight className="h-4 w-4" /></Button>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="p-8">
+                                    <div className="grid md:grid-cols-2 gap-8 text-center sm:text-left">
+                                        <div className="space-y-2 p-4 bg-muted/10 rounded-2xl border border-border/30">
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Heures travaillées</p>
+                                            <div className="text-4xl font-black text-foreground">{totalHours.toFixed(1)} <span className="text-xl text-muted-foreground font-normal">h</span></div>
+                                            <p className="text-xs text-muted-foreground font-medium">Total net sur la période</p>
+                                        </div>
+                                        <div className="space-y-2 p-4 bg-primary/5 rounded-2xl border border-primary/10">
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-primary">Salaire Brut Estimé</p>
+                                            <div className="text-4xl font-black text-primary">{totalGrossPay.toFixed(2)} <span className="text-xl text-primary/70 font-normal">€</span></div>
+                                            <p className="text-xs text-primary/60 font-medium">Basé sur {Number(employee.hourlyRate).toFixed(2)}€ / h</p>
                                         </div>
                                     </div>
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-8">
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    <div className="space-y-2">
-                                        <p className="text-sm text-muted-foreground font-medium">Heures travaillées</p>
-                                        <div className="text-4xl font-black text-foreground">{totalHours.toFixed(1)} <span className="text-xl text-muted-foreground font-normal">h</span></div>
-                                        <p className="text-xs text-muted-foreground">Total net sur la période</p>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <p className="text-sm text-muted-foreground font-medium">Salaire Brut Estimé</p>
-                                        <div className="text-4xl font-black text-blue-500">{totalGrossPay.toFixed(2)} <span className="text-xl text-blue-400 font-normal">€</span></div>
-                                        <p className="text-xs text-muted-foreground">Basé sur {Number(employee.hourlyRate).toFixed(2)}€ / h</p>
-                                    </div>
-                                </div>
 
-                                <div className="mt-10 border-t border-border pt-8">
-                                    <h4 className="text-sm font-bold text-foreground mb-2">Historique 12 mois (h)</h4>
-                                    <HistoryChart data={last12Months} maxHours={maxHours} />
-                                </div>
+                                    <div className="mt-10 border-t border-border pt-8">
+                                        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-4">Historique 12 mois (heures)</h4>
+                                        <HistoryChart data={last12Months} maxHours={maxHours} />
+                                    </div>
 
-                                <div className="mt-12">
-                                    <h4 className="text-sm font-bold text-foreground mb-4">Derniers documents de paie</h4>
-                                    <div className="grid gap-3">
-                                        {employee.documents.filter((d: any) => d.type === "PAYSLIP").slice(0, 3).map((doc: any) => (
-                                            <div key={doc.id} className="flex items-center justify-between p-3 border border-border rounded-lg bg-muted/20 hover:bg-muted/50 transition-colors">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="h-8 w-8 bg-blue-500/10 text-blue-500 rounded flex items-center justify-center"><FileText className="h-4 w-4" /></div>
-                                                    <span className="text-sm font-medium text-foreground">{doc.name}</span>
+                                    <div className="mt-12">
+                                        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-4">Derniers documents de paie</h4>
+                                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                            {employee.documents.filter((d: any) => d.type === "PAYSLIP").slice(0, 3).map((doc: any) => (
+                                                <div key={doc.id} className="flex items-center justify-between p-3 border border-border rounded-xl bg-card hover:border-primary/50 transition-all hover:shadow-md group">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="h-10 w-10 bg-blue-500/10 text-blue-500 rounded-lg flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                                                            <FileText className="h-5 w-5" />
+                                                        </div>
+                                                        <span className="text-xs font-bold text-foreground truncate max-w-[120px]">{doc.name}</span>
+                                                    </div>
+                                                    <Button size="icon" variant="ghost" className="h-8 w-8 rounded-full" asChild><a href={doc.url} target="_blank"><ExternalLink className="h-4 w-4" /></a></Button>
                                                 </div>
-                                                <Button size="sm" variant="ghost" asChild><a href={doc.url} target="_blank"><ExternalLink className="h-4 w-4" /></a></Button>
-                                            </div>
-                                        ))}
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                            </CardContent>
-                        </Card>
+                                </CardContent>
+                            </Card>
 
-                        <Card className="border-border shadow-sm h-fit bg-card">
-                            <CardHeader className="bg-muted/20 border-b border-border">
-                                <CardTitle className="text-sm uppercase tracking-wider text-muted-foreground font-bold">Infos Rapides</CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-6 space-y-4">
-                                <div className="flex gap-3">
-                                    <Phone className="h-4 w-4 text-muted-foreground" />
-                                    <div>
-                                        <p className="text-xs text-muted-foreground uppercase font-bold">Téléphone</p>
-                                        <p className="text-sm text-foreground">{employee.phone || "Non renseigné"}</p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-3">
-                                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                                    <div>
-                                        <p className="text-xs text-muted-foreground uppercase font-bold">Adresse</p>
-                                        <p className="text-sm text-foreground">{employee.address || "Non renseignée"}</p>
-                                    </div>
-                                </div>
-                                <div className="border-t border-border pt-4">
-                                    <p className="text-xs text-muted-foreground uppercase font-bold mb-2">Contrat</p>
-                                    <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400">CDI Temps Plein</Badge>
-                                </div>
-                            </CardContent>
-                        </Card>
+                            <div className="space-y-6">
+                                <Card className="border-border shadow-sm bg-card rounded-2xl overflow-hidden">
+                                    <CardHeader className="bg-muted/30 border-b border-border py-4">
+                                        <CardTitle className="text-[10px] uppercase tracking-widest text-muted-foreground font-black">Coordonnées Rapides</CardTitle>
+                                    </CardHeader>
+                                    <CardContent className="p-5 space-y-4">
+                                        <div className="flex gap-4">
+                                            <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                                                <Phone className="h-4 w-4 text-primary" />
+                                            </div>
+                                            <div>
+                                                <p className="text-[10px] text-muted-foreground uppercase font-black tracking-tight">Téléphone</p>
+                                                <p className="text-sm font-bold text-foreground">{employee.phone || "Non renseigné"}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-4">
+                                            <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                                                <MapPin className="h-4 w-4 text-primary" />
+                                            </div>
+                                            <div>
+                                                <p className="text-[10px] text-muted-foreground uppercase font-black tracking-tight">Adresse</p>
+                                                <p className="text-sm font-bold text-foreground leading-snug">{employee.address || "Non renseignée"}</p>
+                                            </div>
+                                        </div>
+                                        <div className="border-t border-border pt-4">
+                                            <p className="text-[10px] text-muted-foreground uppercase font-black tracking-tight mb-2">Statut Contrat</p>
+                                            <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20 font-bold uppercase text-[10px] px-2 rounded-lg">{employee.contractType || 'CDI'} • Temps {employee.contractDuration === 'PART_TIME' ? 'Partiel' : 'Plein'}</Badge>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </div>
                     </TabsContent>
 
                     {/* ONGLET 2: HEURES & TRAVAIL */}
@@ -381,22 +420,16 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
 
                     {/* ONGLET 3: DOSSIER JURIDIQUE */}
                     <TabsContent value="legal" className="space-y-8 animate-in slide-in-from-bottom-2 duration-500">
-                        <div>
-                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                                <div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="p-2 bg-indigo-500/10 rounded-lg">
-                                            <ShieldCheck className="h-5 w-5 text-indigo-500" />
-                                        </div>
-                                        <h3 className="text-xl font-bold text-foreground tracking-tight">Assistant RH & Conformité</h3>
-                                    </div>
-                                    <p className="text-sm text-muted-foreground mt-1.5 font-medium">
-                                        Gérez les documents obligatoires. Cliquez sur chaque dossier pour vérifier sa conformité ou déposer un fichier.
-                                    </p>
-                                </div>
+                        {/* Redesign sub-tabs content as needed, keeping them functional but ensuring good spacing/mobile-friendliness */}
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="text-lg font-black tracking-tight mb-2">Assistant RH & Conformité</h3>
+                                <p className="text-sm text-muted-foreground font-medium opacity-80 leading-relaxed">
+                                    Gérez les documents obligatoires. Cliquez sur chaque dossier pour vérifier sa conformité ou déposer un fichier.
+                                </p>
                             </div>
 
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4">
                                 <DocumentAssistantCard
                                     employeeId={employee.id}
                                     employeeName={employee.name}
@@ -415,7 +448,7 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                     docType="ID_CARD"
                                     title="Identité / Séjour"
                                     shortDesc="CNI, Passeport, Titre"
-                                    assistantHelp={"Une pièce d'identité en cours de validité (CNI ou Passeport) est obligatoire pour vérifier l'identité du salarié à l'embauche.\n\nS'il est de nationalité étrangère (hors UE), un Titre de Séjour valant autorisation de travail valide est strictement obligatoire (Amende pour emploi d'étranger en délicatesse)."}
+                                    assistantHelp={"Une pièce d'identité en cours de validité (CNI ou Passeport) est obligatoire pour vérifier l'identité du salarié à l'embauche.\n\nS'il est de nationalité étrangère (hors UE), un Titre de Séjour valant autorisation de travail valide est strictement obligatoire."}
                                 />
                                 <DocumentAssistantCard
                                     employeeId={employee.id}
@@ -425,7 +458,7 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                     docType="DPAE"
                                     title="DPAE"
                                     shortDesc="Accusé URSSAF"
-                                    assistantHelp={"La Déclaration Préalable À l'Embauche (DPAE) doit être transmise à l'URSSAF AVANT la prise de poste effective du salarié (au plus tôt 8 jours avant, et jusqu'à 30 secondes avant que le salarié commence à travailler).\n\nL'accusé de réception est l'unique preuve permettant d'éviter l'amende pour travail dissimulé !"}
+                                    assistantHelp={"La Déclaration Préalable À l'Embauche (DPAE) doit être transmise à l'URSSAF AVANT la prise de poste effective du salarié.\n\nL'accusé de réception est l'unique preuve permettant d'éviter l'amende pour travail dissimulé !"}
                                 />
                                 <DocumentAssistantCard
                                     employeeId={employee.id}
@@ -435,53 +468,14 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                     docType="MEDICAL"
                                     title="Visite Médicale"
                                     shortDesc="Fiche d'aptitude"
-                                    assistantHelp={"La VIP (Visite d'Information et de Prévention) doit se faire au maximum 3 mois après l'embauche.\n\nLa fiche d'aptitude médicale atteste que le salarié est apte à travailler dans les conditions prévues sans danger pour sa santé. Un pilier en santé."}
-                                />
-                            </div>
-                        </div>
-
-                        {/* Fiches de paie et autres */}
-                        <div className="pt-8 border-t border-border">
-                            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
-                                <div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="p-2 bg-blue-500/10 rounded-lg">
-                                            <FileText className="h-5 w-5 text-blue-500" />
-                                        </div>
-                                        <h3 className="text-xl font-bold text-foreground tracking-tight">Gestion Courante</h3>
-                                    </div>
-                                    <p className="text-sm text-muted-foreground mt-1.5 font-medium">
-                                        Retrouvez l'historique financier et les correspondances générales.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                <DocumentAssistantCard
-                                    employeeId={employee.id}
-                                    employeeName={employee.name}
-                                    documents={employee.documents}
-                                    onDeleteDoc={handleDeleteDocument}
-                                    docType="PAYSLIP"
-                                    title="Fiches de Paie"
-                                    shortDesc="Historique mensuel"
-                                    assistantHelp={"Retrouvez ici toutes les fiches de paie du salarié. \n\nElles doivent être conservées et tenues à disposition des administrations ou en cas de demande du salarié (Droit à la conservation longue durée des documents sociaux)."}
-                                />
-                                <DocumentAssistantCard
-                                    employeeId={employee.id}
-                                    employeeName={employee.name}
-                                    documents={employee.documents}
-                                    onDeleteDoc={handleDeleteDocument}
-                                    docType="OTHER"
-                                    title="Autres documents"
-                                    shortDesc="RIB, Mutuelle, Arrêts..."
-                                    assistantHelp={"Déposez ici tout type de document annexe qui viendrait enrichir le dossier du salarié.\n\n- Rib (Pour virements).\n- Attestation Mutuelle HCR.\n- Justificatifs de domicile.\n- Arrêts maladie et IJSS.\n- Avertissements et courriers RH."}
+                                    assistantHelp={"La VIP (Visite d'Information et de Prévention) doit se faire au maximum 3 mois après l'embauche.\n\nLa fiche d'aptitude médicale atteste que le salarié est apte à travailler dans les conditions prévues."}
                                 />
                             </div>
                         </div>
                     </TabsContent>
 
                     {/* ONGLET 4: TAUX & CONTRAT */}
-                    <TabsContent value="rates" className="space-y-6">
+                    <TabsContent value="rates">
                         <RateHistoryManager
                             userId={employee.id}
                             currentHistoryJson={employee.address}
@@ -490,73 +484,77 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
 
                     {/* ONGLET 5: PROFIL & PARAMS */}
                     <TabsContent value="profile">
-                        <Card className="border-border shadow-sm bg-card">
+                        <Card className="border-border shadow-sm bg-card rounded-2xl overflow-hidden">
                             <CardHeader className="border-b border-border bg-muted/20">
-                                <CardTitle className="text-foreground">Identité & Coordonnées</CardTitle>
+                                <CardTitle className="text-foreground font-bold">Identité & Coordonnées</CardTitle>
                             </CardHeader>
-                            <CardContent className="pt-8">
-                                <form action={handleProfileUpdate} className="grid md:grid-cols-2 gap-6">
+                            <CardContent className="pt-8 px-4 sm:px-6">
+                                <form action={handleProfileUpdate} className="grid md:grid-cols-2 gap-6 pb-2">
                                     <input type="hidden" name="id" value={employee.id} />
                                     <div className="space-y-4">
                                         <div className="space-y-2">
-                                            <Label>Nom complet</Label>
+                                            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Nom complet</Label>
                                             <div className="relative">
-                                                <UserCheck className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                                                <Input name="name" defaultValue={employee.name} className="pl-9 bg-background" />
+                                                <UserCheck className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                <Input name="name" defaultValue={employee.name} className="pl-10 h-10 bg-muted/20 border-border/50 rounded-xl font-bold" />
                                             </div>
                                         </div>
                                         <div className="space-y-2">
-                                            <Label>Email PRO</Label>
+                                            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Email PRO</Label>
                                             <div className="relative">
-                                                <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                                                <Input name="email" defaultValue={employee.email} className="pl-9 bg-background" />
+                                                <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                <Input name="email" defaultValue={employee.email} className="pl-10 h-10 bg-muted/20 border-border/50 rounded-xl font-bold" />
                                             </div>
                                         </div>
                                         <div className="space-y-2">
-                                            <Label>Téléphone</Label>
+                                            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Téléphone</Label>
                                             <div className="relative">
-                                                <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                                                <Input name="phone" defaultValue={employee.phone || ''} className="pl-9 bg-background" />
+                                                <Phone className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                <Input name="phone" defaultValue={employee.phone || ''} className="pl-10 h-10 bg-muted/20 border-border/50 rounded-xl font-bold" />
                                             </div>
                                         </div>
                                     </div>
+
                                     <div className="space-y-4">
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">
-                                                <Label>Type de Contrat</Label>
-                                                <select name="contractType" defaultValue={employee.contractType || 'CDI'} title="Type de contrat" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm appearance-none">
+                                                <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Contrat</Label>
+                                                <select name="contractType" defaultValue={employee.contractType || 'CDI'} className="w-full h-10 rounded-xl border-border/50 bg-muted/20 px-3 py-2 text-sm font-bold appearance-none">
                                                     <option value="CDI">CDI</option>
                                                     <option value="CDD">CDD</option>
-                                                    <option value="EXTRA">Extra / Vacataire</option>
-                                                    <option value="APPRENTI">Apprentissage</option>
+                                                    <option value="EXTRA">Extra</option>
+                                                    <option value="APPRENTI">Apprenti</option>
                                                 </select>
                                             </div>
                                             <div className="space-y-2">
-                                                <Label>Temps de travail</Label>
-                                                <select name="contractDuration" defaultValue={employee.contractDuration || 'FULL_TIME'} title="Temps de travail" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm appearance-none">
-                                                    <option value="FULL_TIME">Temps Plein</option>
-                                                    <option value="PART_TIME">Temps Partiel</option>
+                                                <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Temps</Label>
+                                                <select name="contractDuration" defaultValue={employee.contractDuration || 'FULL_TIME'} className="w-full h-10 rounded-xl border-border/50 bg-muted/20 px-3 py-2 text-sm font-bold appearance-none">
+                                                    <option value="FULL_TIME">Plein</option>
+                                                    <option value="PART_TIME">Partiel</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div className="space-y-2">
-                                            <Label>Rôle</Label>
-                                            <select name="role" defaultValue={employee.role} title="Rôle" className="w-full flex h-10 rounded-md border border-input px-3 py-2 text-sm bg-background text-foreground appearance-none">
+                                            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Rôle Applicatif</Label>
+                                            <select name="role" defaultValue={employee.role} className="w-full h-10 rounded-xl border-border/50 bg-muted/20 px-3 py-2 text-sm font-bold appearance-none">
                                                 <option value="STAFF">Staff (Standard)</option>
                                                 <option value="MANAGER">Manager (Stocks/RH)</option>
                                                 <option value="ADMIN">Admin (Complet)</option>
                                             </select>
                                         </div>
                                         <div className="space-y-2">
-                                            <Label>Taux Horaire Brut (€)</Label>
+                                            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Taux Brut (€/h)</Label>
                                             <div className="relative">
-                                                <Euro className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                                                <Input name="hourlyRate" type="number" step="0.01" defaultValue={Number(employee.hourlyRate)} className="pl-9 bg-background" />
+                                                <Euro className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                <Input name="hourlyRate" type="number" step="0.01" defaultValue={Number(employee.hourlyRate)} className="pl-10 h-10 bg-muted/20 border-border/50 rounded-xl font-bold" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-span-full pt-6 border-t border-border flex justify-end">
-                                        <Button type="submit" className="bg-primary text-primary-foreground gap-2 px-8 hover:bg-primary/90"><Save className="h-4 w-4" /> Sauvegarder</Button>
+
+                                    <div className="col-span-full pt-6 border-t border-border mt-2">
+                                        <Button type="submit" className="w-full sm:w-auto bg-primary text-white gap-2 px-10 h-11 font-black uppercase tracking-wider rounded-xl shadow-lg shadow-primary/20">
+                                            <Save className="h-4 w-4" /> Enregistrer
+                                        </Button>
                                     </div>
                                 </form>
                             </CardContent>

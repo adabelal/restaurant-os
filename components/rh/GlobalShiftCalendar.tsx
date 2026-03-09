@@ -97,6 +97,81 @@ function formatName(fullName: string) {
     return `${shortenedFirst} ${last.charAt(0)}.`
 }
 
+function ShiftItem({ s, isDragging, onDragStart, onEdit, onUpdatePosition }: any) {
+    const startStr = format(new Date(s.startTime), 'HH:mm')
+    const endStr = s.endTime ? format(new Date(s.endTime), 'HH:mm') : '?'
+    const colorClass = getEmployeeColorClass(s.employee.id, s.employee.name)
+
+    return (
+        <div
+            onClick={(e) => {
+                e.stopPropagation()
+                onEdit()
+            }}
+            className={`group relative flex items-center justify-between rounded-lg border transition-all cursor-pointer ${colorClass} ${isDragging ? 'opacity-20 grayscale' : ''} hover:brightness-95 shadow-sm`}
+        >
+            <div
+                draggable
+                onDragStart={(e) => {
+                    e.stopPropagation()
+                    onDragStart(e, s.id)
+                }}
+                className="flex-1 py-1 px-1.5 cursor-move overflow-hidden flex items-center gap-1.5"
+                title={`${s.employee.name}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
+            >
+                <div className={`shrink-0 w-2 h-2 rounded-full ${getEmployeeDotColor(s.employee.id, s.employee.name)}`} />
+                <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-x-1.5">
+                    <div className="text-[10px] font-black truncate leading-tight flex-1">{formatName(s.employee.name)}</div>
+                    <div className="flex items-center gap-1">
+                        {s.position && (() => {
+                            const pos = POSITIONS.find(p => p.id === s.position)
+                            if (pos) {
+                                const Icon = pos.icon
+                                return <span title={pos.label}><Icon className="h-3 w-3 shrink-0 opacity-70" /></span>
+                            }
+                            return null
+                        })()}
+                        {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
+                            <div className="text-[8.5px] font-black opacity-80 shrink-0 leading-tight hidden sm:block font-mono">{startStr}-{endStr}</div>
+                        )}
+                    </div>
+                    {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
+                        <div className="text-[8.5px] font-black opacity-80 shrink-0 leading-tight sm:hidden font-mono mt-0.5">{startStr}-{endStr}</div>
+                    )}
+                </div>
+            </div>
+
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="h-full px-1 py-0 hover:bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <MoreVertical className="h-3.5 w-3.5" />
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-36 rounded-xl border-border shadow-xl">
+                    <DropdownMenuLabel className="text-[10px] uppercase font-black tracking-widest text-muted-foreground/70">Assigner Poste</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {POSITIONS.map(p => {
+                        const Icon = p.icon
+                        return (
+                            <DropdownMenuItem
+                                key={p.id}
+                                className="text-xs font-bold flex items-center gap-2 cursor-pointer focus:bg-primary/10 focus:text-primary rounded-lg mx-1"
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    onUpdatePosition(s.id, p.id)
+                                }}
+                            >
+                                <Icon className="h-3.5 w-3.5" />
+                                {p.label}
+                            </DropdownMenuItem>
+                        )
+                    })}
+                </DropdownMenuContent>
+            </DropdownMenu>
+        </div>
+    )
+}
+
 export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     const [currentDate, setCurrentDate] = useState(new Date())
     const [localShifts, setLocalShifts] = useState<any[]>([])
@@ -515,33 +590,35 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                     </div>
                 </div>
 
-                {/* Calendrier */}
+                {/* Calendrier / Contenu Principal */}
                 <div className="flex-1 min-w-0">
-                    <div className={`grid border-b border-border bg-muted/30 ${isCompactWeek ? 'grid-cols-[repeat(3,0.6fr)_repeat(4,2fr)]' : 'grid-cols-7'} text-[10px] sm:text-xs`}>
+                    {/* Header des Jours (Desktop uniquement) */}
+                    <div className={`hidden md:grid border-b border-border bg-muted/30 ${isCompactWeek ? 'grid-cols-[repeat(3,0.6fr)_repeat(4,2fr)]' : 'grid-cols-7'} text-[10px] sm:text-xs`}>
                         {weekDays.map((day, dIdx) => {
-                            const isHotDay = dIdx >= 3; // Jeudi à Dimanche
+                            const isHotDay = dIdx >= 3;
                             return (
                                 <div
                                     key={day}
                                     className={`
-                                        py-3 text-center font-bold text-muted-foreground uppercase tracking-wider border-r border-border/50 last:border-r-0
+                                        py-3 text-center font-black text-muted-foreground uppercase tracking-widest border-r border-border/50 last:border-r-0
                                         ${isCompactWeek && !isHotDay ? 'bg-muted/5 opacity-50' : 'bg-primary/5 text-primary'}
                                     `}
                                 >
-                                    {isCompactWeek ? day.substring(0, 3) : day}
+                                    {day}
                                 </div>
                             )
                         })}
                     </div>
 
-                    <div className={`grid auto-rows-[minmax(120px,auto)] ${isCompactWeek ? 'grid-cols-[repeat(3,minmax(0,1fr))_repeat(4,minmax(0,2.5fr))]' : 'grid-cols-7'}`}>
+                    {/* Desktop Grid View */}
+                    <div className={`hidden md:grid auto-rows-[minmax(120px,auto)] ${isCompactWeek ? 'grid-cols-[repeat(3,minmax(0,1fr))_repeat(4,minmax(0,2.5fr))]' : 'grid-cols-7'}`}>
                         {days.map((day, idx) => {
                             const dateKey = format(day, 'yyyy-MM-dd')
                             const isCurrentMonth = isSameMonth(day, currentDate)
                             const today = isToday(day)
                             const dayShifts = shiftsByDay[dateKey] || []
                             const dayOfWeekIdx = idx % 7
-                            const isHotDay = dayOfWeekIdx >= 3 // Jeudi à Dimanche
+                            const isHotDay = dayOfWeekIdx >= 3
 
                             return (
                                 <div
@@ -558,110 +635,140 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                     <div className="flex justify-between items-start mb-1">
                                         <div className="flex flex-col gap-1">
                                             <div className="flex items-center gap-1.5">
-                                                <span className={`text-xs sm:text-sm font-bold w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full
-                                                    ${today ? 'bg-primary text-primary-foreground' : 'text-foreground'}`}>
+                                                <span className={`text-sm font-black w-7 h-7 flex items-center justify-center rounded-full
+                                                    ${today ? 'bg-primary text-primary-foreground shadow-lg' : 'text-foreground'}`}>
                                                     {format(day, 'd')}
                                                 </span>
                                                 {viewMode === 'week' && (
-                                                    <span className="text-[10px] font-bold text-muted-foreground uppercase">{format(day, 'EEE', { locale: fr })}</span>
+                                                    <span className="text-[10px] font-black text-muted-foreground uppercase">{format(day, 'EEE', { locale: fr })}</span>
                                                 )}
                                             </div>
-
-                                            {/* Bouton rapide d'ajout de shift via Dialog */}
                                             {isCurrentMonth && (
                                                 <Button
                                                     variant="outline"
                                                     size="icon"
-                                                    className="h-6 w-6 rounded-md opacity-100 sm:opacity-0 group-hover/day:opacity-100 transition-opacity"
+                                                    className="h-6 w-6 rounded-lg opacity-0 group-hover/day:opacity-100 transition-all border-primary/20 hover:bg-primary/5"
                                                     onClick={() => setSelectedDateForShift(day)}
-                                                    title="Ajouter un shift"
                                                 >
-                                                    <Plus className="h-3 w-3" />
+                                                    <Plus className="h-3.5 w-3.5" />
                                                 </Button>
                                             )}
                                         </div>
-
                                         {dayShifts.length > 0 && (
-                                            <span className="text-[9px] font-bold text-muted-foreground bg-muted px-1.5 py-0.5 rounded-sm">
+                                            <Badge variant="secondary" className="text-[9px] font-black h-4 px-1 bg-muted/50">
                                                 {dayShifts.length}
-                                            </span>
+                                            </Badge>
                                         )}
                                     </div>
 
-                                    <div className="flex flex-col gap-1 flex-1 overflow-y-auto max-h-[220px] custom-scrollbar pr-1">
-                                        {dayShifts.map((s, i) => {
-                                            const startStr = format(new Date(s.startTime), 'HH:mm')
-                                            const endStr = s.endTime ? format(new Date(s.endTime), 'HH:mm') : '?'
-                                            const colorClass = getEmployeeColorClass(s.employee.id, s.employee.name)
-
-                                            return (
-                                                <div
-                                                    key={s.id || i}
-                                                    onClick={() => setEditingShift(s)}
-                                                    className={`group relative flex items-center justify-between rounded border transition-all cursor-pointer ${colorClass} ${isDragging === s.id ? 'opacity-20 grayscale' : ''} hover:brightness-95`}
-                                                >
-                                                    <div
-                                                        draggable
-                                                        onDragStart={(e) => {
-                                                            e.stopPropagation()
-                                                            onDragStart(e, s.id)
-                                                        }}
-                                                        className="flex-1 py-1 px-1.5 cursor-move overflow-hidden flex items-center gap-1.5"
-                                                        title={`${s.employee.name}${!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) ? ` : ${startStr} - ${endStr}` : ''}`}
-                                                    >
-                                                        <div className={`shrink-0 w-2 h-2 rounded-full ${getEmployeeDotColor(s.employee.id, s.employee.name)}`} />
-                                                        <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-x-1.5">
-                                                            <div className="text-[10px] font-bold truncate leading-tight flex-1">{formatName(s.employee.name)}</div>
-                                                            <div className="flex items-center gap-1">
-                                                                {s.position && (() => {
-                                                                    const pos = POSITIONS.find(p => p.id === s.position)
-                                                                    if (pos) {
-                                                                        const Icon = pos.icon
-                                                                        return <span title={pos.label}><Icon className="h-3 w-3 shrink-0 opacity-70" /></span>
-                                                                    }
-                                                                    return null
-                                                                })()}
-                                                                {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
-                                                                    <div className="text-[8.5px] opacity-80 shrink-0 leading-tight hidden sm:block font-mono">{startStr}-{endStr}</div>
-                                                                )}
-                                                            </div>
-                                                            {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
-                                                                <div className="text-[8.5px] opacity-80 shrink-0 leading-tight sm:hidden font-mono mt-0.5">{startStr}-{endStr}</div>
-                                                            )}
-                                                        </div>
-                                                    </div>
-
-                                                    <DropdownMenu>
-                                                        <DropdownMenuTrigger asChild>
-                                                            <Button variant="ghost" className="h-full px-1 py-0 hover:bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                                <MoreVertical className="h-3 w-3" />
-                                                            </Button>
-                                                        </DropdownMenuTrigger>
-                                                        <DropdownMenuContent align="end" className="w-36">
-                                                            <DropdownMenuLabel className="text-[10px] uppercase text-muted-foreground">Assigner Poste</DropdownMenuLabel>
-                                                            <DropdownMenuSeparator />
-                                                            {POSITIONS.map(p => {
-                                                                const Icon = p.icon
-                                                                return (
-                                                                    <DropdownMenuItem
-                                                                        key={p.id}
-                                                                        className="text-xs flex items-center gap-2 cursor-pointer"
-                                                                        onClick={() => handleUpdatePosition(s.id, p.id)}
-                                                                    >
-                                                                        <Icon className="h-3 w-3 text-muted-foreground" />
-                                                                        {p.label}
-                                                                    </DropdownMenuItem>
-                                                                )
-                                                            })}
-                                                        </DropdownMenuContent>
-                                                    </DropdownMenu>
-                                                </div>
-                                            )
-                                        })}
+                                    <div className="flex flex-col gap-1 flex-1 overflow-y-auto max-h-[200px] custom-scrollbar pr-1">
+                                        {dayShifts.map((s, i) => (
+                                            <ShiftItem
+                                                key={s.id || i}
+                                                s={s}
+                                                isDragging={isDragging === s.id}
+                                                onDragStart={onDragStart}
+                                                onEdit={() => setEditingShift(s)}
+                                                onUpdatePosition={handleUpdatePosition}
+                                            />
+                                        ))}
                                     </div>
                                 </div>
                             )
                         })}
+                    </div>
+
+                    {/* Mobile List View */}
+                    <div className="md:hidden bg-muted/5 divide-y divide-border/50">
+                        {days.filter(d => viewMode === 'week' || isSameMonth(d, currentDate)).map((day) => {
+                            const dateKey = format(day, 'yyyy-MM-dd')
+                            const dayShifts = shiftsByDay[dateKey] || []
+                            const today = isToday(day)
+
+                            // On affiche tous les jours en mode semaine, mais seulement ceux avec des shifts en mois
+                            if (viewMode === 'month' && dayShifts.length === 0) return null
+
+                            return (
+                                <div key={day.toISOString()} className={`p-4 ${today ? 'bg-primary/[0.03]' : ''}`}>
+                                    <div className="flex items-center justify-between mb-3">
+                                        <div className="flex items-center gap-3">
+                                            <div className={`w-10 h-10 rounded-xl flex flex-col items-center justify-center border shadow-sm
+                                                ${today ? 'bg-primary border-primary text-primary-foreground shadow-primary/20' : 'bg-card border-border'}`}>
+                                                <span className="text-[10px] font-black uppercase opacity-70 leading-none mb-0.5">{format(day, 'EEE', { locale: fr })}</span>
+                                                <span className="text-sm font-black leading-none">{format(day, 'd')}</span>
+                                            </div>
+                                            <div>
+                                                <p className="text-xs font-black uppercase tracking-widest text-foreground">{format(day, 'MMMM yyyy', { locale: fr })}</p>
+                                                <p className="text-[10px] font-bold text-muted-foreground uppercase">{dayShifts.length} Shift{dayShifts.length > 1 ? 's' : ''}</p>
+                                            </div>
+                                        </div>
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            className="h-8 w-8 rounded-xl border-primary/20 text-primary bg-primary/5 active:scale-95 transition-transform"
+                                            onClick={() => setSelectedDateForShift(day)}
+                                        >
+                                            <Plus className="h-4 w-4" />
+                                        </Button>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        {dayShifts.length === 0 ? (
+                                            <p className="text-[10px] font-medium text-muted-foreground italic pl-1.5 opacity-60">Aucun shift planifié</p>
+                                        ) : (
+                                            dayShifts.map((s, i) => (
+                                                <div
+                                                    key={s.id || i}
+                                                    onClick={() => setEditingShift(s)}
+                                                    className={`
+                                                        flex items-center justify-between p-3 rounded-2xl border bg-card shadow-sm active:scale-[0.98] transition-all
+                                                        ${getEmployeeColorClass(s.employee.id, s.employee.name)}
+                                                    `}
+                                                >
+                                                    <div className="flex items-center gap-3">
+                                                        <div className={`w-2 h-8 rounded-full ${getEmployeeDotColor(s.employee.id, s.employee.name)} opacity-50`} />
+                                                        <div>
+                                                            <div className="flex items-center gap-2">
+                                                                <span className="text-xs font-black uppercase">{s.employee.name}</span>
+                                                                {s.position && (() => {
+                                                                    const pos = POSITIONS.find(p => p.id === s.position)
+                                                                    if (pos) {
+                                                                        const Icon = pos.icon
+                                                                        return <Icon className="h-3 w-3 opacity-60" />
+                                                                    }
+                                                                    return null
+                                                                })()}
+                                                            </div>
+                                                            {!(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
+                                                                <div className="flex items-center gap-1.5 mt-0.5 opacity-70">
+                                                                    <Clock className="h-2.5 w-2.5" />
+                                                                    <span className="text-[10px] font-bold font-mono tracking-tighter">
+                                                                        {format(new Date(s.startTime), 'HH:mm')} - {s.endTime ? format(new Date(s.endTime), 'HH:mm') : '?'}
+                                                                    </span>
+                                                                </div>
+                                                            )}
+                                                            {(s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')) && (
+                                                                <Badge variant="outline" className="text-[8px] h-3.5 px-1 uppercase tracking-tighter mt-1 border-current opacity-40">Gérant</Badge>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                    <ChevronRight className="h-4 w-4 opacity-30" />
+                                                </div>
+                                            ))
+                                        )}
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        {viewMode === 'month' && days.filter(d => isSameMonth(d, currentDate) && (shiftsByDay[format(d, 'yyyy-MM-dd')] || []).length > 0).length === 0 && (
+                            <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
+                                <div className="size-16 rounded-full bg-muted/30 flex items-center justify-center mb-4">
+                                    <CalendarIcon className="h-8 w-8 text-muted-foreground/40" />
+                                </div>
+                                <h3 className="text-sm font-black uppercase tracking-widest text-muted-foreground mb-1">Mois vide</h3>
+                                <p className="text-xs text-muted-foreground/60 max-w-[200px]">Aucun shift n'a été planifié pour cette période.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </CardContent>
