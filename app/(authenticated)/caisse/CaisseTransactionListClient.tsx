@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
-import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, HelpCircle, FileText, FilterX, RefreshCw } from 'lucide-react'
+import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, HelpCircle, FileText, FilterX, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import Link from 'next/link'
@@ -60,6 +60,20 @@ export function CaisseTransactionListClient({
     const [pendingCategoryId, setPendingCategoryId] = useState<string | null>(null)
 
     const handleSyncBank = async () => { };
+
+    const handlePrevMonth = () => {
+        const currentIndex = availableMonths.indexOf(monthFilter)
+        if (currentIndex !== -1 && currentIndex < availableMonths.length - 1) {
+            setMonthFilter(availableMonths[currentIndex + 1])
+        }
+    }
+
+    const handleNextMonth = () => {
+        const currentIndex = availableMonths.indexOf(monthFilter)
+        if (currentIndex !== -1 && currentIndex > 0) {
+            setMonthFilter(availableMonths[currentIndex - 1])
+        }
+    }
 
     const handleAssign = async (transactionId: string, categoryId: string, hasExistingCategory: boolean) => {
         setLoadingIds(prev => new Set(prev).add(transactionId))
@@ -218,8 +232,8 @@ export function CaisseTransactionListClient({
                         <span className="text-[10px] uppercase tracking-widest font-black text-muted-foreground">Historique Espèces</span>
                     </div>
 
-                    <Button asChild className="w-full font-bold">
-                        <Link href="/finance/transactions/auto-categorisation">
+                    <Button asChild className="w-full font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg transition-all hover:scale-[1.02]">
+                        <Link href="/finance/categorisation">
                             Catégoriser (Auto)
                         </Link>
                     </Button>
@@ -240,22 +254,44 @@ export function CaisseTransactionListClient({
                         />
                     </div>
                     <div className="flex w-full md:w-auto items-center gap-2 md:gap-3 flex-wrap justify-stretch">
-                        <Select value={monthFilter} onValueChange={setMonthFilter}>
-                            <SelectTrigger className="w-full sm:w-[150px] flex-1 sm:flex-none bg-background capitalize">
-                                <SelectValue placeholder="Mois" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="ALL">Tous les mois</SelectItem>
-                                {availableMonths.map(m => {
-                                    const dateObj = new Date(`${m}-01T12:00:00Z`);
-                                    return (
-                                        <SelectItem key={m} value={m} className="capitalize">
-                                            {format(dateObj, 'MMMM yyyy', { locale: fr })}
-                                        </SelectItem>
-                                    )
-                                })}
-                            </SelectContent>
-                        </Select>
+                        <div className="flex items-center gap-1">
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-10 w-10 bg-background"
+                                onClick={handlePrevMonth}
+                                disabled={monthFilter === 'ALL' || availableMonths.indexOf(monthFilter) === availableMonths.length - 1}
+                                title="Mois précédent"
+                            >
+                                <ChevronLeft className="h-4 w-4" />
+                            </Button>
+                            <Select value={monthFilter} onValueChange={setMonthFilter}>
+                                <SelectTrigger className="w-full sm:w-[150px] flex-1 sm:flex-none bg-background capitalize">
+                                    <SelectValue placeholder="Mois" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="ALL">Tous les mois</SelectItem>
+                                    {availableMonths.map(m => {
+                                        const dateObj = new Date(`${m}-01T12:00:00Z`);
+                                        return (
+                                            <SelectItem key={m} value={m} className="capitalize">
+                                                {format(dateObj, 'MMMM yyyy', { locale: fr })}
+                                            </SelectItem>
+                                        )
+                                    })}
+                                </SelectContent>
+                            </Select>
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-10 w-10 bg-background"
+                                onClick={handleNextMonth}
+                                disabled={monthFilter === 'ALL' || availableMonths.indexOf(monthFilter) === 0}
+                                title="Mois suivant"
+                            >
+                                <ChevronRight className="h-4 w-4" />
+                            </Button>
+                        </div>
 
                         <Select value={typeFilter} onValueChange={setTypeFilter}>
                             <SelectTrigger className="w-full sm:w-[130px] flex-1 sm:flex-none bg-background">

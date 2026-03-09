@@ -81,15 +81,22 @@ export default async function CaissePage() {
                         </p>
                     </div>
 
-                    <div className="flex gap-3 flex-wrap mt-4 md:mt-0">
-                        <Button asChild variant="outline" className="h-14 px-6 rounded-2xl border-2 border-border font-black uppercase tracking-widest text-xs hover:bg-foreground hover:text-background transition-all duration-300 gap-2 shrink-0">
+                    <div className="flex gap-3 flex-wrap mt-4 md:mt-0 items-center">
+                        <Button asChild variant="ghost" className="h-11 px-4 rounded-xl border border-border/50 font-bold text-xs hover:bg-muted transition-all gap-2 shrink-0 shadow-sm">
                             <Link href="/finance/categorisation">
-                                <Tags className="w-4 h-4" />
-                                <span className="hidden sm:inline">Catégorisation</span>
+                                <Tags className="w-4 h-4 text-amber-500" />
+                                <span className="hidden sm:inline">Configuration</span>
+                                <span className="sm:hidden text-[10px]">Config</span>
                             </Link>
                         </Button>
-                        <ImportPopinaButton />
-                        <ExportDialog transactions={transactions} accountantEmail={settings?.accountantEmail} />
+
+                        <div className="h-8 w-[1px] bg-border/60 mx-1 hidden lg:block" />
+
+                        <div className="flex items-center gap-2 bg-muted/30 p-1 rounded-2xl border border-border/40 shadow-inner">
+                            <ImportPopinaButton />
+                            <ExportDialog transactions={transactions} accountantEmail={settings?.accountantEmail} />
+                        </div>
+
                         <AddTransactionDialog categories={categories} />
                     </div>
                 </div>
