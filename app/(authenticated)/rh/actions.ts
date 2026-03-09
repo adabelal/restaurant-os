@@ -700,13 +700,16 @@ export async function getManagerRemunerationFromBank(employeeId: string, month: 
         const firstName = (employee as any).firstName || ""
         const lastName = (employee as any).lastName || ""
 
-        // Smart search terms based on user examples
-        // For Benjamin: match "Benjamin" or the truncated "BENJAM" found in bank sync
+        // Match common bank prefixes (INST, VIR, MR, MME) followed by name parts
+        const nameParts = [firstName, lastName].filter(Boolean).map(p => p.toUpperCase())
+
         const searchTerms = [
-            firstName,
+            firstName.toUpperCase(),
+            lastName.toUpperCase(),
             firstName.substring(0, 6).toUpperCase(), // e.g. "BENJAM"
-            `${lastName} ${firstName}`,
-            `${firstName} ${lastName}`
+            `${lastName} ${firstName}`.toUpperCase(),
+            `${firstName} ${lastName}`.toUpperCase(),
+            ...nameParts
         ].filter(t => t.length >= 3)
 
         const transactions = await prisma.bankTransaction.findMany({
@@ -766,12 +769,15 @@ export async function getEmployeeSalaryReconciliation(userId: string, month: num
         const firstName = (employee as any).firstName || ""
         const lastName = (employee as any).lastName || ""
 
-        // Search terms: Full name, lastName + 1st letter, etc.
+        const nameParts = [firstName, lastName].filter(Boolean)
+
+        // Search terms: Full name, lastName, firstName, and prefixes
         const searchTerms = [
             `${lastName} ${firstName}`,
             `${firstName} ${lastName}`,
             lastName,
-            firstName
+            firstName,
+            ...nameParts
         ].filter(t => t && t.length >= 3)
 
         const bankTxs = await prisma.bankTransaction.findMany({
@@ -780,7 +786,9 @@ export async function getEmployeeSalaryReconciliation(userId: string, month: num
                 amount: { lt: 0 },
                 OR: [
                     ...searchTerms.map(t => ({ description: { contains: t, mode: 'insensitive' as const } })),
-                    ...searchTerms.map(t => ({ thirdPartyName: { contains: t, mode: 'insensitive' as const } }))
+                    ...searchTerms.map(t => ({ thirdPartyName: { contains: t, mode: 'insensitive' as const } })),
+                    // Match "INST NAME" or "VIR INST NAME" formats
+                    ...nameParts.map(p => ({ description: { contains: `INST ${p.toUpperCase()}`, mode: 'insensitive' as const } }))
                 ]
             },
             orderBy: { date: 'desc' }

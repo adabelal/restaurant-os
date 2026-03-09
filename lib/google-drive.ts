@@ -281,3 +281,19 @@ export async function listFilesRecursive(folderId: string): Promise<{ id: string
     return results
 }
 
+/**
+ * Download a file from Drive as a Buffer
+ */
+export async function downloadFileFromDrive(fileId: string): Promise<Buffer> {
+    const token = await getAccessToken()
+    const res = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
+        headers: { Authorization: `Bearer ${token}` }
+    })
+
+    if (!res.ok) {
+        throw new Error(`Failed to download file ${fileId}`)
+    }
+
+    const arrayBuffer = await res.arrayBuffer()
+    return Buffer.from(arrayBuffer)
+}
