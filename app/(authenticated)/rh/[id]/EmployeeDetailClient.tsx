@@ -605,6 +605,19 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                                                         <Button
                                                                             size="icon"
                                                                             variant="ghost"
+                                                                            className="h-8 w-8 rounded-lg text-primary hover:bg-primary/10"
+                                                                            onClick={() => {
+                                                                                setSelectedDocIds([doc.id])
+                                                                                setCustomEmailBody(`Bonjour ${employee.name},\n\nVeuillez trouver ci-joint votre fiche de paie.\n\nCordialement,`)
+                                                                                setIsEmailDialogOpen(true)
+                                                                            }}
+                                                                            title="Envoyer par email"
+                                                                        >
+                                                                            <Mail className="h-4 w-4" />
+                                                                        </Button>
+                                                                        <Button
+                                                                            size="icon"
+                                                                            variant="ghost"
                                                                             className="h-8 w-8 rounded-lg text-emerald-500 hover:bg-emerald-500/10"
                                                                             asChild
                                                                             title="Télécharger"
@@ -647,6 +660,11 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                             employeeName={employee.name}
                                             documents={employee.documents}
                                             onDeleteDoc={handleDeleteDocument}
+                                            onSendEmail={(id, name) => {
+                                                setSelectedDocIds([id])
+                                                setCustomEmailBody(`Bonjour ${employee.name},\n\nVeuillez trouver ci-joint votre document : ${name}.\n\nCordialement,`)
+                                                setIsEmailDialogOpen(true)
+                                            }}
                                             docType="CONTRACT"
                                             title="Contrat"
                                             shortDesc="CDI, CDD, Extra..."
@@ -657,6 +675,11 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                             employeeName={employee.name}
                                             documents={employee.documents}
                                             onDeleteDoc={handleDeleteDocument}
+                                            onSendEmail={(id, name) => {
+                                                setSelectedDocIds([id])
+                                                setCustomEmailBody(`Bonjour ${employee.name},\n\nVeuillez trouver ci-joint votre document : ${name}.\n\nCordialement,`)
+                                                setIsEmailDialogOpen(true)
+                                            }}
                                             docType="ID_CARD"
                                             title="Identité"
                                             shortDesc="CNI, Titre de séjour"
@@ -667,6 +690,11 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                             employeeName={employee.name}
                                             documents={employee.documents}
                                             onDeleteDoc={handleDeleteDocument}
+                                            onSendEmail={(id, name) => {
+                                                setSelectedDocIds([id])
+                                                setCustomEmailBody(`Bonjour ${employee.name},\n\nVeuillez trouver ci-joint votre document : ${name}.\n\nCordialement,`)
+                                                setIsEmailDialogOpen(true)
+                                            }}
                                             docType="DPAE"
                                             title="DPAE"
                                             shortDesc="Déclaration URSSAF"
@@ -696,6 +724,11 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                             employeeName={employee.name}
                                             documents={employee.documents}
                                             onDeleteDoc={handleDeleteDocument}
+                                            onSendEmail={(id, name) => {
+                                                setSelectedDocIds([id])
+                                                setCustomEmailBody(`Bonjour ${employee.name},\n\nVeuillez trouver ci-joint votre document : ${name}.\n\nCordialement,`)
+                                                setIsEmailDialogOpen(true)
+                                            }}
                                             docType="MEDICAL"
                                             title="Fiche d'aptitude"
                                             shortDesc="Visite médicale"

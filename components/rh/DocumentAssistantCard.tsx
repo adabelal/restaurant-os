@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Trash2, ExternalLink, FileText, CheckCircle2, AlertTriangle, UploadCloud, Loader2, X, Download, Info } from 'lucide-react'
+import { Trash2, ExternalLink, FileText, CheckCircle2, AlertTriangle, UploadCloud, Loader2, X, Download, Info, Mail } from 'lucide-react'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { Input } from '@/components/ui/input'
@@ -19,6 +19,7 @@ interface DocumentAssistantCardProps {
     shortDesc?: string
     assistantHelp?: string
     onDeleteDoc: (id: string) => Promise<any>
+    onSendEmail?: (docId: string, docName: string) => void
 }
 
 export function DocumentAssistantCard({
@@ -29,7 +30,8 @@ export function DocumentAssistantCard({
     title,
     shortDesc = "",
     assistantHelp = "Informations non renseignées.",
-    onDeleteDoc
+    onDeleteDoc,
+    onSendEmail
 }: DocumentAssistantCardProps) {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
@@ -219,6 +221,11 @@ export function DocumentAssistantCard({
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-1 shrink-0">
+                                                    {onSendEmail && doc.category !== 'TESE' && (
+                                                        <Button size="icon" variant="ghost" className="h-7 w-7 text-primary hover:bg-primary/5" onClick={() => onSendEmail(doc.id, doc.name)}>
+                                                            <Mail className="h-3.5 w-3.5" />
+                                                        </Button>
+                                                    )}
                                                     <Button size="icon" variant="ghost" className="h-7 w-7 bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 hover:dark:bg-blue-900/40" asChild>
                                                         <a href={doc.url} target="_blank"><Download className="h-3.5 w-3.5" /></a>
                                                     </Button>
