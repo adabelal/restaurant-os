@@ -672,15 +672,34 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                             shortDesc="Déclaration URSSAF"
                                             assistantHelp={"La DPAE doit être faite AVANT l'embauche. C'est l'unique preuve contre le travail dissimulé."}
                                         />
+                                    </div>
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            {/* DOSSIER 3: SUIVI MÉDICAL */}
+                            <AccordionItem value="medical" className="border border-border/50 bg-card rounded-2xl overflow-hidden shadow-sm px-4">
+                                <AccordionTrigger className="hover:no-underline py-4 group">
+                                    <div className="flex items-center gap-3">
+                                        <div className="h-10 w-10 bg-rose-500/10 text-rose-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                            <span className="text-xl">🏥</span>
+                                        </div>
+                                        <div className="text-left">
+                                            <p className="text-sm font-black uppercase tracking-tight">Suivi Médical</p>
+                                            <p className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">Santé au travail</p>
+                                        </div>
+                                    </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="pb-6">
+                                    <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
                                         <DocumentAssistantCard
                                             employeeId={employee.id}
                                             employeeName={employee.name}
                                             documents={employee.documents}
                                             onDeleteDoc={handleDeleteDocument}
                                             docType="MEDICAL"
-                                            title="Médical"
-                                            shortDesc="Fiche d'aptitude"
-                                            assistantHelp={"La visite médicale d'information et de prévention (VIP) doit avoir lieu dans les 3 mois suivant l'embauche."}
+                                            title="Fiche d'aptitude"
+                                            shortDesc="Visite médicale"
+                                            assistantHelp={"La visite médicale d'information et de prévention (VIP) doit avoir lieu dans les 3 mois suivant l'embauche.\n\nIMPORTANT : Pour un salarié en contrat EXTRA, cette visite n'est pas obligatoirement requise par l'établissement si le salarié est déjà suivi par ailleurs."}
                                         />
                                     </div>
                                 </AccordionContent>
