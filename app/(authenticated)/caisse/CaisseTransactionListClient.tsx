@@ -195,78 +195,64 @@ export function CaisseTransactionListClient({
 
     return (
         <div className="space-y-6">
-            {/* KPI Cards (Dynamic) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                <Card className="shadow-sm border-border bg-card">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Transactions (Filtre)</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{filtered.length}</div>
-                    </CardContent>
-                </Card>
-                <Card className="shadow-sm border-indigo-100 dark:border-indigo-900 bg-indigo-50/20 dark:bg-indigo-900/10">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-indigo-700 dark:text-indigo-400">Solde filtré</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className={`text-2xl font-bold ${(totalIncome - totalExpense) >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
-                            {(totalIncome - totalExpense).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className="shadow-sm border-emerald-100 dark:border-emerald-900/50 bg-emerald-50/30 dark:bg-emerald-900/10">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-emerald-700 dark:text-emerald-400">Solde Global (Actuel)</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className={`text-2xl font-bold ${globalBalance >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
-                            {globalBalance.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className="shadow-sm border-border bg-card flex flex-col items-center justify-center p-4 gap-3">
-
-                    <div className="w-full text-center flex-1 flex flex-col items-center justify-center p-4">
-                        <Banknote className="w-8 h-8 text-amber-500 mb-2 opacity-80" />
-                        <span className="text-[10px] uppercase tracking-widest font-black text-muted-foreground">Historique Espèces</span>
+            {/* KPI Cards (Dynamic - Simplified & Clean) */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-white dark:bg-slate-900 px-4 py-3 rounded-xl border border-border/50 shadow-sm">
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">Total Filtré</p>
+                    <div className="text-xl font-black">{filtered.length} <span className="text-[10px] font-medium text-muted-foreground">tx</span></div>
+                </div>
+                <div className="bg-white dark:bg-slate-900 px-4 py-3 rounded-xl border border-border/50 shadow-sm">
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">Solde Filtré</p>
+                    <div className={`text-xl font-black ${(totalIncome - totalExpense) >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
+                        {(totalIncome - totalExpense).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                     </div>
-
-                    <Button asChild className="w-full font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg transition-all hover:scale-[1.02]">
-                        <Link href="/finance/categorisation">
-                            Catégoriser (Auto)
+                </div>
+                <div className="hidden lg:block bg-white dark:bg-slate-900 px-4 py-3 rounded-xl border border-border/50 shadow-sm">
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">Entrées (F)</p>
+                    <div className="text-xl font-black text-emerald-600">
+                        {totalIncome.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                    </div>
+                </div>
+                <div className="bg-amber-500/5 px-4 py-3 rounded-xl border border-amber-500/20 shadow-sm flex items-center justify-between group">
+                    <div>
+                        <p className="text-[10px] font-bold text-amber-600 uppercase tracking-widest mb-1">Auto-Categorisation</p>
+                        <Link href="/finance/categorisation" className="text-sm font-bold text-amber-700 hover:underline flex items-center gap-1">
+                            Lancer l'IA <ArrowUpRight className="w-3 h-3" />
                         </Link>
-                    </Button>
-                </Card>
+                    </div>
+                    <div className="h-8 w-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-600">
+                        <RefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
+                    </div>
+                </div>
             </div>
 
             {/* Main List Box */}
-            <Card className="shadow-sm border-border bg-card overflow-hidden">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-border/50 shadow-sm overflow-hidden">
                 {/* TOOLBAR */}
-                <div className="p-4 border-b border-border bg-muted/20 flex flex-col md:flex-row gap-4 items-center justify-between">
-                    <div className="relative w-full md:w-auto flex-1">
-                        <Search className="absolute left-3 top-2.5 w-4 h-4 text-muted-foreground" />
+                <div className="p-4 border-b border-border/50 bg-slate-50/50 dark:bg-slate-800/20 flex flex-col lg:flex-row gap-4 items-center">
+                    <div className="relative w-full lg:flex-1">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                         <Input
-                            placeholder="Rechercher libellé, tiers, catégorie..."
+                            placeholder="Rechercher une transaction..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="pl-9 bg-background"
+                            className="pl-9 bg-white dark:bg-slate-900 border-border/60 rounded-xl h-11 focus:ring-amber-500/20"
                         />
                     </div>
-                    <div className="flex w-full md:w-auto items-center gap-2 md:gap-3 flex-wrap justify-stretch">
-                        <div className="flex items-center gap-1">
+
+                    <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                        <div className="flex items-center bg-white dark:bg-slate-900 rounded-xl border border-border/60 p-1 shadow-sm h-11">
                             <Button
-                                variant="outline"
+                                variant="ghost"
                                 size="icon"
-                                className="h-10 w-10 bg-background"
+                                className="h-8 w-8 rounded-lg"
                                 onClick={handlePrevMonth}
                                 disabled={monthFilter === 'ALL' || availableMonths.indexOf(monthFilter) === availableMonths.length - 1}
-                                title="Mois précédent"
                             >
                                 <ChevronLeft className="h-4 w-4" />
                             </Button>
                             <Select value={monthFilter} onValueChange={setMonthFilter}>
-                                <SelectTrigger className="w-full sm:w-[150px] flex-1 sm:flex-none bg-background capitalize">
+                                <SelectTrigger className="border-none shadow-none focus:ring-0 w-[130px] h-8 text-xs font-bold capitalize bg-transparent">
                                     <SelectValue placeholder="Mois" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -282,32 +268,29 @@ export function CaisseTransactionListClient({
                                 </SelectContent>
                             </Select>
                             <Button
-                                variant="outline"
+                                variant="ghost"
                                 size="icon"
-                                className="h-10 w-10 bg-background"
+                                className="h-8 w-8 rounded-lg"
                                 onClick={handleNextMonth}
                                 disabled={monthFilter === 'ALL' || availableMonths.indexOf(monthFilter) === 0}
-                                title="Mois suivant"
                             >
                                 <ChevronRight className="h-4 w-4" />
                             </Button>
                         </div>
 
                         <Select value={typeFilter} onValueChange={setTypeFilter}>
-                            <SelectTrigger className="w-full sm:w-[130px] flex-1 sm:flex-none bg-background">
+                            <SelectTrigger className="w-[120px] h-11 bg-white dark:bg-slate-900 border-border/60 rounded-xl text-xs font-bold focus:ring-amber-500/20 shadow-sm">
                                 <SelectValue placeholder="Type" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="ALL">Tous les types</SelectItem>
+                                <SelectItem value="ALL">Tous types</SelectItem>
                                 <SelectItem value="INCOME">Recettes</SelectItem>
                                 <SelectItem value="EXPENSE">Dépenses</SelectItem>
                             </SelectContent>
                         </Select>
 
-
-
                         <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                            <SelectTrigger className="w-full sm:w-[160px] flex-1 sm:flex-none bg-background">
+                            <SelectTrigger className="w-[150px] h-11 bg-white dark:bg-slate-900 border-border/60 rounded-xl text-xs font-bold focus:ring-amber-500/20 shadow-sm">
                                 <SelectValue placeholder="Catégorie" />
                             </SelectTrigger>
                             <SelectContent>
@@ -315,7 +298,7 @@ export function CaisseTransactionListClient({
                                 <SelectItem value="UNCLASSIFIED">Non catégorisé</SelectItem>
                                 {Object.entries(categoriesByType).map(([type, cats]) => (
                                     <div key={type}>
-                                        <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{type}</div>
+                                        <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider bg-muted/30">{type}</div>
                                         {cats.map(cat => (
                                             <SelectItem key={cat.id} value={cat.id} className="text-xs">
                                                 {cat.name}
@@ -326,95 +309,139 @@ export function CaisseTransactionListClient({
                             </SelectContent>
                         </Select>
 
-                        {(search || typeFilter !== 'ALL' || false || categoryFilter !== 'ALL' || monthFilter !== (availableMonths.length > 0 ? availableMonths[0] : 'ALL')) && (
-                            <Button variant="ghost" size="icon" onClick={resetFilters} title="Réinitialiser les filtres">
-                                <FilterX className="w-4 h-4 text-muted-foreground hover:text-rose-500" />
+                        {(search || typeFilter !== 'ALL' || categoryFilter !== 'ALL' || monthFilter !== (availableMonths.length > 0 ? availableMonths[0] : 'ALL')) && (
+                            <Button variant="ghost" size="icon" onClick={resetFilters} className="h-11 w-11 rounded-xl hover:bg-rose-50 hover:text-rose-500">
+                                <FilterX className="w-4 h-4" />
                             </Button>
                         )}
                     </div>
                 </div>
 
-                {/* LIST */}
-                <div className="divide-y divide-border">
+                {/* LIST / TABLE HEADER (Desktop Only) */}
+                <div className="hidden lg:grid grid-cols-12 gap-4 px-6 py-3 bg-slate-50/50 dark:bg-slate-800/10 border-b border-border/50 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                    <div className="col-span-5">Détails de la Transaction</div>
+                    <div className="col-span-2">Méthode & Date</div>
+                    <div className="col-span-3">Catégorie</div>
+                    <div className="col-span-2 text-right">Montant</div>
+                </div>
+
+                {/* LIST CONTENT */}
+                <div className="divide-y divide-border/50">
                     {filtered.length === 0 ? (
-                        <div className="p-12 text-center text-muted-foreground">
-                            Aucune transaction ne correspond à vos filtres.
+                        <div className="p-20 text-center flex flex-col items-center gap-3">
+                            <div className="h-16 w-16 rounded-full bg-slate-50 dark:bg-slate-900 flex items-center justify-center text-slate-300">
+                                <Search className="h-8 w-8" />
+                            </div>
+                            <p className="text-muted-foreground font-medium">Aucune transaction trouvée.</p>
+                            <Button variant="link" onClick={resetFilters} className="text-amber-600">Réinitialiser les filtres</Button>
                         </div>
                     ) : (
                         filtered.map((t) => (
-                            <div key={t.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 hover:bg-muted/50 transition-colors gap-4">
-                                <div className="flex items-start sm:items-center gap-4">
-                                    <div className={`mt-1 sm:mt-0 p-3 rounded-xl shadow-sm ${t.amount >= 0
-                                        ? 'bg-gradient-to-br from-emerald-100 to-emerald-50 text-emerald-600 dark:from-emerald-900/40 dark:to-emerald-900/10 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50'
-                                        : 'bg-gradient-to-br from-slate-100 to-slate-50 text-slate-600 dark:from-slate-800 dark:to-slate-900 dark:text-slate-400 border border-slate-200 dark:border-slate-800'
-                                        }`}>
-                                        {t.amount >= 0 ? <ArrowUpRight className="h-5 w-5" /> : <ArrowDownRight className="h-5 w-5" />}
-                                    </div>
-                                    <div className="space-y-1">
-                                        <p className="font-semibold text-foreground text-sm leading-tight max-w-xl line-clamp-2">
-                                            {t.thirdPartyName ? (
-                                                <span className="text-indigo-600 dark:text-indigo-400 mr-2">{t.thirdPartyName}</span>
-                                            ) : null}
-                                            {t.thirdPartyName ? (
-                                                <span className="font-medium text-muted-foreground text-[11px] border-l border-border pl-2 border-dashed ml-1">{t.description}</span>
-                                            ) : (
-                                                t.description
-                                            )}
-                                        </p>
-                                        <div className="flex flex-wrap items-center gap-2 mt-1">
-                                            <span className="text-xs text-muted-foreground font-medium flex items-center gap-1.5" title={t.paymentMethod || 'Inconnu'}>
-                                                {getMethodIcon(t.paymentMethod)}
-                                                {format(t.date, 'dd MMMM yyyy', { locale: fr })}
-                                            </span>
-
-                                            <Select
-                                                value={t.categoryId || "UNCLASSIFIED"}
-                                                onValueChange={(val) => {
-                                                    if (val !== "UNCLASSIFIED") {
-                                                        handleAssign(t.id, val, !!t.categoryId)
-                                                    }
-                                                }}
-                                                disabled={loadingIds.has(t.id)}
-                                            >
-                                                <SelectTrigger className={`h-6 text-[10px] px-2 font-medium w-[140px] focus:ring-0 ${t.categoryName ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 border-indigo-200/50 dark:border-indigo-900/50' : 'bg-background'}`}>
-                                                    <SelectValue placeholder="+ Catégorie" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    {!t.categoryId && <SelectItem value="UNCLASSIFIED">+ Catégorie</SelectItem>}
-                                                    {Object.entries(categoriesByType).map(([type, cats]) => (
-                                                        <div key={type}>
-                                                            <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">{type}</div>
-                                                            {cats.map(cat => (
-                                                                <SelectItem key={cat.id} value={cat.id} className="text-xs">
-                                                                    {cat.name}
-                                                                </SelectItem>
-                                                            ))}
-                                                        </div>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-
+                            <div key={t.id} className="group hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-all duration-200">
+                                {/* Desktop Row */}
+                                <div className="hidden lg:grid grid-cols-12 gap-4 px-6 py-4 items-center">
+                                    <div className="col-span-5 flex items-center gap-4">
+                                        <div className={`h-10 w-10 rounded-xl flex items-center justify-center border transition-colors ${t.amount >= 0
+                                            ? 'bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-900/20 dark:border-emerald-800/50'
+                                            : 'bg-slate-50 text-slate-600 border-slate-100 dark:bg-slate-800 dark:border-slate-800'
+                                            }`}>
+                                            {t.amount >= 0 ? <ArrowUpRight className="h-5 w-5" /> : <ArrowDownRight className="h-5 w-5" />}
+                                        </div>
+                                        <div className="space-y-0.5">
+                                            <p className="font-bold text-sm text-foreground leading-tight">
+                                                {t.thirdPartyName && (
+                                                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">{t.thirdPartyName}</span>
+                                                )}
+                                                {t.description}
+                                            </p>
                                             {t.reference && (
-                                                <Badge variant="outline" className={`text-[10px] h-5 px-2 font-medium ${t.reference.includes('ENABLE_BANKING') ? 'opacity-40' : 'opacity-80 bg-slate-50'}`}>
-                                                    {t.reference.includes('ENABLE_BANKING') ? 'Auto' : t.reference}
-                                                </Badge>
+                                                <div className="flex items-center gap-1.5 overflow-hidden">
+                                                    <Badge variant="outline" className="text-[9px] px-1.5 h-4 font-medium opacity-60">
+                                                        {t.reference.includes('ENABLE_BANKING') ? 'Auto-Import' : t.reference}
+                                                    </Badge>
+                                                </div>
                                             )}
                                         </div>
                                     </div>
+
+                                    <div className="col-span-2 space-y-1">
+                                        <div className="flex items-center gap-2 text-xs font-semibold text-foreground/80">
+                                            {getMethodIcon(t.paymentMethod)}
+                                            <span className="capitalize">{t.paymentMethod?.toLowerCase() || 'Espèces'}</span>
+                                        </div>
+                                        <p className="text-[10px] text-muted-foreground font-medium">
+                                            {format(t.date, 'dd MMM yyyy', { locale: fr })}
+                                        </p>
+                                    </div>
+
+                                    <div className="col-span-3">
+                                        <Select
+                                            value={t.categoryId || "UNCLASSIFIED"}
+                                            onValueChange={(val) => {
+                                                if (val !== "UNCLASSIFIED") {
+                                                    handleAssign(t.id, val, !!t.categoryId)
+                                                }
+                                            }}
+                                            disabled={loadingIds.has(t.id)}
+                                        >
+                                            <SelectTrigger className={`h-8 text-[11px] px-3 font-bold w-full max-w-[180px] rounded-lg transition-all ${t.categoryId ? 'bg-indigo-50/50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 border-indigo-100/50 dark:border-indigo-800/50' : 'bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-800'}`}>
+                                                <SelectValue placeholder="+ Catégorie" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {!t.categoryId && <SelectItem value="UNCLASSIFIED">+ Catégorie</SelectItem>}
+                                                {Object.entries(categoriesByType).map(([type, cats]) => (
+                                                    <div key={type}>
+                                                        <div className="px-2 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider bg-muted/30">{type}</div>
+                                                        {cats.map(cat => (
+                                                            <SelectItem key={cat.id} value={cat.id} className="text-xs">
+                                                                {cat.name}
+                                                            </SelectItem>
+                                                        ))}
+                                                    </div>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    <div className="col-span-2 text-right">
+                                        <div className={`text-base font-black ${t.amount >= 0 ? 'text-emerald-600' : 'text-foreground'}`}>
+                                            {t.amount > 0 ? '+' : ''}{t.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className={`text-right w-full sm:w-auto flex justify-end`}>
-                                    <div className={`text-base font-bold px-3 py-1 rounded-md ${t.amount >= 0
-                                        ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30'
-                                        : 'text-foreground'
-                                        }`}>
-                                        {t.amount > 0 ? '+' : ''}{t.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+
+                                {/* Mobile Row (Below LG) */}
+                                <div className="lg:hidden p-4 flex items-center justify-between gap-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className={`h-10 w-10 shadow-sm rounded-xl flex items-center justify-center ${t.amount >= 0
+                                            ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20'
+                                            : 'bg-slate-50 text-slate-600 dark:bg-slate-800'
+                                            }`}>
+                                            {t.amount >= 0 ? <ArrowUpRight className="h-5 w-5" /> : <ArrowDownRight className="h-5 w-5" />}
+                                        </div>
+                                        <div>
+                                            <p className="font-bold text-sm text-foreground leading-tight line-clamp-1">
+                                                {t.thirdPartyName || t.description}
+                                            </p>
+                                            <p className="text-[10px] text-muted-foreground mt-0.5">
+                                                {format(t.date, 'dd/MM/yy')} • {t.categoryName || 'Non classé'}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className={`text-sm font-black ${t.amount >= 0 ? 'text-emerald-600' : 'text-foreground'}`}>
+                                            {t.amount > 0 ? '+' : ''}{t.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                        </p>
+                                        <div className="flex items-center justify-end gap-1 mt-1">
+                                            <span className="text-[9px] uppercase font-bold text-muted-foreground/60">{t.paymentMethod || 'Espèces'}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         ))
                     )}
                 </div>
-            </Card>
+            </div>
 
             <BatchAssignModal
                 isOpen={modalOpen}

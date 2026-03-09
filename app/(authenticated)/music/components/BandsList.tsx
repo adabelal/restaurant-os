@@ -43,52 +43,55 @@ export function BandsList({ initialBands }: { initialBands: any[] }) {
     }
 
     return (
-        <div className="flex flex-col gap-3 animate-in fade-in duration-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-in fade-in duration-500">
             {initialBands.map((band) => (
-                <Card key={band.id} className="relative overflow-hidden group hover:shadow-md transition-all border-l-4 border-l-muted-foreground hover:border-l-primary/80">
-                    <div className="flex flex-col md:flex-row items-center p-4 gap-4 pr-12">
-                        <Link href={`/music/bands/${band.id}`} className="flex-shrink-0 hover:opacity-80 transition-opacity">
-                            <div className="h-14 w-14 bg-primary/10 group-hover:bg-primary group-hover:text-primary-foreground transition-colors rounded-xl flex items-center justify-center text-primary font-bold text-2xl font-oswald shadow-inner">
+                <Card key={band.id} className="relative overflow-hidden group hover:shadow-xl transition-all duration-300 border border-border/50 bg-white dark:bg-slate-900 rounded-2xl flex flex-col">
+                    <div className="p-6 flex flex-col items-center text-center flex-1">
+                        <Link href={`/music/bands/${band.id}`} className="mb-4 relative">
+                            <div className="h-20 w-20 bg-slate-100 dark:bg-slate-800 group-hover:bg-primary/10 group-hover:text-primary transition-all duration-300 rounded-3xl flex items-center justify-center text-slate-400 group-hover:scale-110 font-black text-3xl font-oswald shadow-inner relative">
                                 {band.name.charAt(0).toUpperCase()}
+                                <div className="absolute -bottom-1 -right-1 h-6 w-6 bg-white dark:bg-slate-900 rounded-full border-2 border-slate-100 dark:border-slate-800 flex items-center justify-center">
+                                    <div className="h-2 w-2 bg-primary rounded-full" />
+                                </div>
                             </div>
                         </Link>
 
-                        <div className="flex-1 min-w-0">
-                            <Link href={`/music/bands/${band.id}`} className="hover:underline decoration-primary underline-offset-4">
-                                <h3 className="font-bold text-lg md:text-xl truncate group-hover:text-primary transition-colors">{band.name}</h3>
+                        <div className="space-y-1 mb-6">
+                            <Link href={`/music/bands/${band.id}`} className="block group-hover:text-primary transition-colors">
+                                <h3 className="font-black text-xl tracking-tight leading-tight">{band.name}</h3>
                             </Link>
-                            <div className="flex items-center gap-2 mt-1">
-                                <Badge variant="secondary" className="font-normal text-[10px] uppercase tracking-wider">{band.genre || "Divers"}</Badge>
-                                {band.contact || band.email ? (
-                                    <span className="text-xs text-muted-foreground flex items-center gap-1">
-                                        <Mail className="h-3 w-3" /> {band.email || band.contact}
-                                    </span>
-                                ) : null}
+                            <div className="flex flex-wrap justify-center gap-2 pt-1">
+                                <Badge variant="secondary" className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-[9px] uppercase tracking-widest border-none">
+                                    {band.genre || "Divers"}
+                                </Badge>
                             </div>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-4 border-t md:border-t-0 md:border-l border-border/40 pt-3 md:pt-0 pl-0 md:pl-4 mt-2 md:mt-0 w-full md:w-auto">
-                            <div className="flex flex-col items-center justify-center px-4 py-2 bg-muted/30 rounded-lg min-w-[100px]">
-                                <span className="font-black text-2xl text-primary">{band.events?.length || 0}</span>
-                                <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-1">
-                                    <Users className="h-3 w-3" /> Concerts
+                        <div className="w-full grid grid-cols-2 gap-4 pt-6 border-t border-border/40">
+                            <div className="flex flex-col items-center">
+                                <span className="font-black text-lg text-foreground">{band.events?.length || 0}</span>
+                                <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Concerts</span>
+                            </div>
+                            <div className="flex flex-col items-center border-l border-border/40">
+                                <span className="font-black text-lg text-foreground">
+                                    {band.email || band.contact ? (
+                                        <Mail className="h-4 w-4 text-primary" />
+                                    ) : (
+                                        <span className="text-slate-300">-</span>
+                                    )}
                                 </span>
+                                <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Contact</span>
                             </div>
                         </div>
                     </div>
 
-                    <div className="absolute right-2 top-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Link href={`/music/bands/${band.id}`}>
-                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary hover:bg-primary/10">
-                                <ArrowRight className="h-4 w-4" />
-                            </Button>
-                        </Link>
+                    <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
                                 <Button
-                                    variant="ghost"
+                                    variant="secondary"
                                     size="icon"
-                                    className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                                    className="h-8 w-8 rounded-xl bg-white dark:bg-slate-800 shadow-md text-slate-400 hover:text-destructive hover:bg-destructive/10"
                                     disabled={isDeleting === band.id}
                                 >
                                     <Trash2 className="h-4 w-4" />
@@ -96,24 +99,34 @@ export function BandsList({ initialBands }: { initialBands: any[] }) {
                             </AlertDialogTrigger>
                             <AlertDialogContent>
                                 <AlertDialogHeader>
-                                    <AlertDialogTitle>Êtes-vous sûr ?</AlertDialogTitle>
+                                    <AlertDialogTitle>Supprimer l'artiste ?</AlertDialogTitle>
                                     <AlertDialogDescription>
-                                        Cette action est irréversible. Cela supprimera le groupe "{band.name}".
-                                        S'il y a des concerts liés, vous devez d'abord les supprimer.
+                                        Cette action supprimera définitivement "{band.name}".
+                                        S'il y a des concerts programmés, vous devrez d'abord les retirer de l'agenda.
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
-                                    <AlertDialogCancel>Annuler</AlertDialogCancel>
+                                    <AlertDialogCancel className="rounded-xl">Annuler</AlertDialogCancel>
                                     <AlertDialogAction
                                         onClick={() => handleDelete(band.id)}
-                                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-xl"
                                     >
-                                        Supprimer
+                                        Confirmer la suppression
                                     </AlertDialogAction>
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
+
+                        <Link href={`/music/bands/${band.id}`}>
+                            <Button variant="secondary" size="icon" className="h-8 w-8 rounded-xl bg-white dark:bg-slate-800 shadow-md text-slate-400 hover:text-primary hover:bg-primary/10">
+                                <ArrowRight className="h-4 w-4" />
+                            </Button>
+                        </Link>
                     </div>
+
+                    <Link href={`/music/bands/${band.id}`} className="p-3 bg-slate-50 dark:bg-slate-800/50 text-center text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:bg-primary hover:text-white transition-colors border-t border-border/40">
+                        Voir le profil complet
+                    </Link>
                 </Card>
             ))}
         </div>

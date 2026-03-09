@@ -14,15 +14,25 @@ export default async function MusicPage() {
     const events = await getEvents()
 
     return (
-        <div className="flex-1 space-y-4 p-8 pt-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-2 sm:space-y-0">
-                <div>
-                    <h2 className="text-3xl font-bold tracking-tight text-primary font-oswald uppercase">Programmation Musicale</h2>
-                    <p className="text-muted-foreground">
+        <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
+            <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-8">
+                <div className="space-y-1">
+                    <div className="flex items-center gap-2 mb-2">
+                        <div className="h-1.5 w-6 bg-primary rounded-full" />
+                        <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">Live & Shows</span>
+                    </div>
+                    <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight flex items-center gap-3">
+                        Musique & Live
+                        <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-music"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
+                        </div>
+                    </h1>
+                    <p className="text-muted-foreground font-medium text-base mt-2">
                         Planifiez les concerts, suivez les cachets et gérez les factures des artistes.
                     </p>
                 </div>
-                <div className="flex items-center space-x-2">
+
+                <div className="flex gap-2 flex-wrap items-center">
                     <ImportMusicButton csvContent={`SUIVIE GROUPE;;Facture reçu ;;Ordre de paiement à ;Observation;
 ven. 25 avr. 2025;Adrien Marco;TRUE;Vir;Le Triton;;185,41
 sam. 14 juin 2025;Afrokan;TRUE;ESP;;;400
@@ -104,7 +114,7 @@ ven. 4 juil. 2025;Ozam;TRUE;ESP;;;400
 ven. 16 mai 2025;Pma et Lexa pas Tout Seul;TRUE;ESP;;;300
 sam. 10 mai 2025;Raoul Volfony;TRUE;ESP;;;300
 ven. 15 nov. 2024;Raoul Volfony;TRUE;ESP;;;300
-sam. 3 mai 2025;Ratman;TRUE;;;Annulé;
+sam. 33 mai 2025;Ratman;TRUE;;;Annulé;
 sam. 23 nov. 2024;Reggea Blaster;TRUE;VIR;Soley Vybz;;350
 ven. 18 juil. 2025;Sarah ziegler;TRUE;Esp;;;300
 sam. 30 nov. 2024;Shakin Mate;TRUE;ESP;;;375

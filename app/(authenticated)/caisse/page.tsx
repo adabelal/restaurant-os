@@ -65,24 +65,26 @@ export default async function CaissePage() {
         <main className="flex min-h-screen flex-col bg-background transition-colors duration-300 font-sans">
 
             {/* Header Section */}
-            <div className="w-full bg-background md:bg-transparent pt-4 pb-0 md:pt-8 px-4 md:px-8 max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-4">
-                    <div className="space-y-2">
-                        <div className="flex items-center gap-2 mb-1">
-                            <div className="h-2 w-8 bg-amber-500 rounded-full" />
-                            <span className="text-[10px] font-black text-amber-500 uppercase tracking-[0.3em]">Module Caisse</span>
+            <div className="w-full bg-background md:bg-transparent pt-6 pb-2 md:pt-10 px-4 md:px-8 max-w-7xl mx-auto">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+                    <div className="space-y-1">
+                        <div className="flex items-center gap-2 mb-2">
+                            <div className="h-1.5 w-6 bg-amber-500 rounded-full" />
+                            <span className="text-[10px] font-bold text-amber-500 uppercase tracking-[0.2em]">Module Finance</span>
                         </div>
-                        <h1 className="text-5xl font-black text-foreground tracking-tighter flex items-center gap-4">
+                        <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight flex items-center gap-3">
                             Caisse
-                            <Wallet className="h-8 w-8 text-amber-500" />
+                            <div className="h-10 w-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 border border-amber-500/20">
+                                <Wallet className="h-6 w-6" />
+                            </div>
                         </h1>
-                        <p className="text-muted-foreground font-bold text-lg max-w-md leading-tight">
-                            Suivi des entrées et sorties de monnaie physiques.
+                        <p className="text-muted-foreground font-medium text-base mt-2">
+                            Suivi temps réel des entrées et sorties d'espèces.
                         </p>
                     </div>
 
-                    <div className="flex gap-3 flex-wrap mt-4 md:mt-0 items-center">
-                        <Button asChild variant="ghost" className="h-11 px-4 rounded-xl border border-border/50 font-bold text-xs hover:bg-muted transition-all gap-2 shrink-0 shadow-sm">
+                    <div className="flex gap-2 flex-wrap items-center">
+                        <Button asChild variant="outline" className="h-11 px-4 rounded-xl font-bold text-xs border-border/60 hover:bg-muted transition-all gap-2 shrink-0">
                             <Link href="/finance/categorisation">
                                 <Tags className="w-4 h-4 text-amber-500" />
                                 <span className="hidden sm:inline">Configuration</span>
@@ -90,9 +92,9 @@ export default async function CaissePage() {
                             </Link>
                         </Button>
 
-                        <div className="h-8 w-[1px] bg-border/60 mx-1 hidden lg:block" />
+                        <div className="h-8 w-[1px] bg-border/40 mx-2 hidden lg:block" />
 
-                        <div className="flex items-center gap-2 bg-muted/30 p-1 rounded-2xl border border-border/40 shadow-inner">
+                        <div className="flex items-center gap-2 bg-muted/20 p-1 rounded-2xl border border-border/40 shadow-sm">
                             <ImportPopinaButton />
                             <ExportDialog transactions={transactions} accountantEmail={settings?.accountantEmail} />
                         </div>
@@ -100,41 +102,59 @@ export default async function CaissePage() {
                         <AddTransactionDialog categories={categories} />
                     </div>
                 </div>
-            </div>
-
-            <div className="flex-1 px-4 py-8 md:px-8 max-w-7xl mx-auto w-full animate-in fade-in slide-in-from-bottom-4 duration-700">
 
                 {/* Quick Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="border-none ring-1 ring-border shadow-2xl bg-card rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 relative group p-6 flex flex-col gap-2">
-                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-                            <ArrowUpCircle className="h-4 w-4 text-emerald-500" /> Total Entrées
-                        </span>
-                        <span className="text-3xl font-black text-emerald-600 dark:text-emerald-400 relative">+{totalIn.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-border/50 shadow-sm relative overflow-hidden group hover:border-emerald-500/30 transition-all duration-300">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-lg">
+                                <ArrowUpCircle className="h-5 w-5" />
+                            </div>
+                            <span className="text-emerald-500 text-[10px] font-black bg-emerald-50 dark:bg-emerald-900/20 px-2 py-1 rounded-full uppercase tracking-wider border border-emerald-100 dark:border-emerald-800/30">Total Entrées</span>
+                        </div>
+                        <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest">Flux Entrant</p>
+                        <h3 className="text-3xl font-black text-emerald-600 dark:text-emerald-400 mt-1">+{totalIn.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</h3>
+                        <div className="absolute bottom-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+                            <ArrowUpCircle className="h-24 w-24" />
+                        </div>
                     </div>
-                    <div className="border-none ring-1 ring-border shadow-2xl bg-card rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 relative group p-6 flex flex-col gap-2">
-                        <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-                            <ArrowDownCircle className="h-4 w-4 text-rose-500" /> Total Sorties
-                        </span>
-                        <span className="text-3xl font-black text-rose-600 dark:text-rose-400 relative">{totalOut.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</span>
+
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-border/50 shadow-sm relative overflow-hidden group hover:border-rose-500/30 transition-all duration-300">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="p-2 bg-rose-100 dark:bg-rose-900/30 text-rose-600 rounded-lg">
+                                <ArrowDownCircle className="h-5 w-5" />
+                            </div>
+                            <span className="text-rose-500 text-[10px] font-black bg-rose-50 dark:bg-rose-900/20 px-2 py-1 rounded-full uppercase tracking-wider border border-rose-100 dark:border-rose-800/30">Total Sorties</span>
+                        </div>
+                        <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest">Flux Sortant</p>
+                        <h3 className="text-3xl font-black text-rose-600 dark:text-rose-400 mt-1">{totalOut.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</h3>
+                        <div className="absolute bottom-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+                            <ArrowDownCircle className="h-24 w-24" />
+                        </div>
                     </div>
-                    <div className="border-none ring-1 ring-blue-500/20 shadow-2xl bg-blue-50/30 dark:bg-blue-900/10 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 relative group p-6 flex flex-col gap-2">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest flex items-center gap-2 relative">
-                            <Calculator className="h-4 w-4 text-blue-500" /> Solde Théorique
-                        </span>
-                        <span className={`text-3xl font-black relative ${balance >= 0 ? 'text-blue-600 dark:text-blue-400' : 'text-rose-600 dark:text-rose-400'}`}>
+
+                    <div className="bg-indigo-600 p-6 rounded-2xl shadow-xl shadow-indigo-600/20 relative overflow-hidden group transition-all duration-300">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="p-2 bg-white/20 text-white rounded-lg">
+                                <Calculator className="h-5 w-5" />
+                            </div>
+                            <span className="text-white/80 text-[10px] font-black bg-white/10 px-2 py-1 rounded-full uppercase tracking-wider border border-white/10">Solde Actuel</span>
+                        </div>
+                        <p className="text-white/70 text-xs font-bold uppercase tracking-widest">Balance Théorique</p>
+                        <h3 className="text-3xl font-black text-white mt-1">
                             {balance.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                        </span>
+                        </h3>
+                        <div className="absolute bottom-0 right-0 p-4 opacity-10 pointer-events-none">
+                            <Calculator className="h-24 w-24" />
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <CaisseTransactionListClient
-                    initialTransactions={transformedTransactions}
-                    categories={transformedCategories}
-                />
+            <div className="flex-1 px-4 md:px-8 max-w-7xl mx-auto w-full animate-in fade-in slide-in-from-bottom-4 duration-700">     <CaisseTransactionListClient
+                initialTransactions={transformedTransactions}
+                categories={transformedCategories}
+            />
             </div>
         </main>
     )

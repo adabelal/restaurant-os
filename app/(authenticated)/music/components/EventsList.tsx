@@ -137,35 +137,61 @@ export function EventsList({ initialEvents, bands }: { initialEvents: any[], ban
     }
 
     return (
-        <div className="space-y-4">
-            <div className="flex justify-end gap-2 border-b border-border/40 pb-4">
-                <Button
-                    variant={view === 'calendar' ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setView('calendar')}
-                    className={cn("h-9", view === 'calendar' && "shadow-md shadow-primary/20")}
-                >
-                    <Calendar className="w-4 h-4 mr-2" /> Calendrier
-                </Button>
-                <Button
-                    variant={view === 'list' ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setView('list')}
-                    className={cn("h-9", view === 'list' && "shadow-md shadow-primary/20")}
-                >
-                    <List className="w-4 h-4 mr-2" /> Liste
-                </Button>
-                <Button
-                    variant={view === 'grid' ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setView('grid')}
-                    className={cn("h-9", view === 'grid' && "shadow-md shadow-primary/20 hover:text-primary")}
-                >
-                    <LayoutGrid className="w-4 h-4" />
-                </Button>
-            </div>
+        <div className="space-y-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-border/40 pb-6">
+                <div className="bg-slate-100 dark:bg-slate-800 p-1 rounded-xl flex shadow-inner">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setView('calendar')}
+                        className={cn(
+                            "h-9 px-4 rounded-lg text-xs font-bold transition-all",
+                            view === 'calendar' ? "bg-white dark:bg-slate-700 shadow-sm text-primary" : "text-slate-500 hover:text-slate-900 dark:hover:text-white"
+                        )}
+                    >
+                        <Calendar className="w-4 h-4 mr-2" /> Calendrier
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setView('list')}
+                        className={cn(
+                            "h-9 px-4 rounded-lg text-xs font-bold transition-all",
+                            view === 'list' ? "bg-white dark:bg-slate-700 shadow-sm text-primary" : "text-slate-500 hover:text-slate-900 dark:hover:text-white"
+                        )}
+                    >
+                        <List className="w-4 h-4 mr-2" /> Liste
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setView('grid')}
+                        className={cn(
+                            "h-9 px-4 rounded-lg text-xs font-bold transition-all",
+                            view === 'grid' ? "bg-white dark:bg-slate-700 shadow-sm text-primary" : "text-slate-500 hover:text-slate-900 dark:hover:text-white"
+                        )}
+                    >
+                        <LayoutGrid className="w-4 h-4 mr-2" /> Grid
+                    </Button>
+                </div>
 
-            <ColorLegend />
+                <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex items-center gap-4 px-4 py-2 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-border/50">
+                        <div className="flex items-center gap-1.5 border-r border-border/60 pr-4">
+                            <div className="w-1.5 h-3 bg-emerald-500 rounded-full" />
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Payé</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 border-r border-border/60 pr-4">
+                            <div className="w-1.5 h-3 bg-blue-500 rounded-full" />
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Virement</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                            <div className="w-1.5 h-3 bg-orange-500 rounded-full" />
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">TBD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             {view === 'calendar' && <EventsCalendar events={initialEvents} bands={bands} />}
 
