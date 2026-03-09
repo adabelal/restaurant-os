@@ -72,9 +72,10 @@ export async function GET(req: NextRequest) {
         const token = await getAccessToken()
         log("Token obtained.")
 
-        const rootId = await findFolderId(token, 'RESSOURCES_HUMAINES')
+        let rootId = await findFolderId(token, 'RESSOURCES_HUMAINES')
         if (!rootId) {
-            return NextResponse.json({ error: "Dossier 'RESSOURCES_HUMAINES' non trouvé. Veuillez d'abord uploader un document pour le créer." }, { status: 400 })
+            log("Root 'RESSOURCES_HUMAINES' not found. Creating it...")
+            rootId = await createFolder(token, 'RESSOURCES_HUMAINES')
         }
 
         const employees = await prisma.user.findMany({ select: { id: true, name: true } })
