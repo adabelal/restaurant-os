@@ -183,9 +183,9 @@ export function AutoCatClient({
                     </h3>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="flex flex-col gap-4">
                     {transactions.length === 0 ? (
-                        <div className="col-span-full py-20 text-center flex flex-col items-center gap-4 bg-white/50 dark:bg-slate-900/50 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[40px]">
+                        <div className="py-20 text-center flex flex-col items-center gap-4 bg-white/50 dark:bg-slate-900/50 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[40px]">
                             <div className="h-20 w-20 bg-emerald-50 dark:bg-emerald-900/20 rounded-full flex items-center justify-center mb-2">
                                 <CheckCircle2 className="w-10 h-10 text-emerald-500/40" />
                             </div>
@@ -193,41 +193,49 @@ export function AutoCatClient({
                         </div>
                     ) : (
                         transactions.map((t) => (
-                            <Card key={t.id} className="group relative overflow-hidden bg-white dark:bg-slate-900 border-border/50 hover:border-emerald-500/30 rounded-[32px] shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col pt-0">
-                                <CardContent className="p-6 flex flex-col h-full">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className="space-y-1">
-                                            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            <Card key={t.id} className="group relative overflow-hidden bg-white dark:bg-slate-900 border-border/50 hover:border-emerald-500/30 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
+                                <CardContent className="p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 h-full">
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 flex-1 min-w-0 w-full">
+                                        <div className="flex-1 min-w-0 space-y-1">
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-0.5">
                                                 {format(new Date(t.date), 'MMM dd, yyyy', { locale: fr })}
                                             </p>
-                                            <p className="font-black text-lg text-slate-900 dark:text-white leading-tight line-clamp-2 min-h-[3.5rem] group-hover:text-emerald-500 transition-colors">
+                                            <p className="font-bold text-base text-slate-900 dark:text-white leading-tight group-hover:text-emerald-500 transition-colors truncate">
                                                 {t.description}
                                             </p>
+                                            {t.thirdPartyName && (
+                                                <div className="flex items-center gap-2 mt-1">
+                                                    <div className="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-slate-700 shrink-0" />
+                                                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate">
+                                                        {t.thirdPartyName}
+                                                    </p>
+                                                </div>
+                                            )}
                                         </div>
-                                        <div className={`text-xl font-black tracking-tighter ${t.amount > 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
+                                        <div className={`text-xl sm:text-lg sm:text-right font-black tracking-tighter shrink-0 ${t.amount > 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
                                             {t.amount > 0 ? '+' : ''}{t.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                         </div>
                                     </div>
 
-                                    <div className="mt-auto pt-6 space-y-3">
+                                    <div className="w-full sm:w-[280px] shrink-0">
                                         <Select
                                             onValueChange={(val) => handleAssign(t.id, val)}
                                             disabled={loadingIds.has(t.id)}
                                         >
-                                            <SelectTrigger className="w-full h-14 bg-slate-50 dark:bg-slate-950 border-slate-200/60 dark:border-slate-800 rounded-2xl hover:border-emerald-400 transition-all focus:ring-4 focus:ring-emerald-500/10 shadow-inner font-bold text-slate-600 dark:text-slate-300 px-5">
+                                            <SelectTrigger className="w-full h-12 bg-slate-50 dark:bg-slate-950 border-slate-200/60 dark:border-slate-800 rounded-xl hover:border-emerald-400 transition-all focus:ring-4 focus:ring-emerald-500/10 shadow-inner font-bold text-slate-600 dark:text-slate-300 px-4">
                                                 <div className="flex items-center gap-2">
                                                     <Tags className="w-4 h-4 opacity-40" />
                                                     <SelectValue placeholder="Sél. une catégorie" />
                                                 </div>
                                             </SelectTrigger>
-                                            <SelectContent className="rounded-2xl border-slate-200 dark:border-slate-800 shadow-2xl">
+                                            <SelectContent className="rounded-xl border-slate-200 dark:border-slate-800 shadow-xl max-h-[300px]">
                                                 {Object.entries(categoriesByType).map(([type, cats]) => (
                                                     <div key={type} className="mb-2 last:mb-0">
-                                                        <div className="px-4 py-2 text-[9px] uppercase font-black tracking-widest text-slate-400 border-b border-slate-50 dark:border-slate-800/50 mb-1">
+                                                        <div className="px-3 py-1.5 text-[9px] uppercase font-black tracking-widest text-slate-400 border-b border-slate-50 dark:border-slate-800/50 mb-1 sticky top-0 bg-white dark:bg-slate-950 z-10">
                                                             {type}
                                                         </div>
                                                         {cats.map(cat => (
-                                                            <SelectItem key={cat.id} value={cat.id} className="rounded-xl mx-2 my-0.5 focus:bg-emerald-50 dark:focus:bg-emerald-900/40 text-sm font-bold cursor-pointer">
+                                                            <SelectItem key={cat.id} value={cat.id} className="rounded-lg mx-1.5 my-0.5 focus:bg-emerald-50 dark:focus:bg-emerald-900/40 text-sm font-bold cursor-pointer">
                                                                 {cat.name}
                                                             </SelectItem>
                                                         ))}
@@ -235,20 +243,11 @@ export function AutoCatClient({
                                                 ))}
                                             </SelectContent>
                                         </Select>
-
-                                        {t.thirdPartyName && (
-                                            <div className="flex items-center gap-2 px-1">
-                                                <div className="h-1 w-1 rounded-full bg-slate-300 shrink-0" />
-                                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest truncate">
-                                                    {t.thirdPartyName}
-                                                </p>
-                                            </div>
-                                        )}
                                     </div>
                                 </CardContent>
                                 {loadingIds.has(t.id) && (
                                     <div className="absolute inset-0 bg-white/60 dark:bg-slate-900/60 backdrop-blur-[1px] flex items-center justify-center z-20">
-                                        <RefreshCw className="w-8 h-8 text-emerald-500 animate-spin" />
+                                        <RefreshCw className="w-6 h-6 text-emerald-500 animate-spin" />
                                     </div>
                                 )}
                             </Card>
