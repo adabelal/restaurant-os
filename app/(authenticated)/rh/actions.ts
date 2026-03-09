@@ -723,21 +723,34 @@ export async function syncEmployeePayslips(userId: string) {
 }
 
 /**
- * Envoie un document par email au salarié
+ * Envoie un ou plusieurs documents par email au salarié
  */
-export async function sendDocumentEmail(docId: string) {
-    return safeAction({ docId }, async (input) => {
+export async function sendDocumentsEmail(docIds: string[], customBody?: string) {
+    return safeAction({ docIds, customBody }, async (input) => {
         try {
-            const doc = await prisma.employeeDocument.findUnique({
-                where: { id: input.docId },
+            const docs = await prisma.employeeDocument.findMany({
+                where: { id: { in: input.docIds } },
                 include: { user: true }
             })
 
-            if (!doc || !doc.user) return { error: "Document ou salarié introuvable" }
-            if (!doc.user.email) return { error: "Le salarié n'a pas d'adresse email enregistrée" }
+            if (docs.length === 0) return { error: "Aucun document trouvé" }
+            const user = docs[0].user
+            if (!user.email) return { error: "Le salarié n'a pas d'adresse email enregistrée" }
 
             const resendApiKey = process.env.RESEND_API_KEY
             if (!resendApiKey) return { error: "Configuration email (Resend) manquante" }
+
+            // Construction de la liste des liens
+            const linksHtml = docs.map(d => `
+                <div style="margin-bottom: 12px; padding: 10px; border-left: 4px solid #10b981; bg: #f0fdf4;">
+                    <a href="${d.url}" style="color: #10b981; font-weight: bold; text-decoration: none; font-size: 14px;">
+                        ${d.name} ${d.month && d.year ? `(${new Date(2000, d.month - 1).toLocaleDateString('fr-FR', { month: 'long' })} ${d.year})` : ''}
+                    </a>
+                </div>
+            `).join('')
+
+            const defaultBody = `Une nouvelle fiche de paie ou un document RH a été ajouté à votre dossier.\n\nVous pouvez le consulter ou le télécharger via les liens ci-dessous :`
+            const body = input.customBody || defaultBody
 
             const response = await fetch("https://api.resend.com/emails", {
                 method: "POST",
@@ -746,21 +759,24 @@ export async function sendDocumentEmail(docId: string) {
                     "Authorization": `Bearer ${resendApiKey}`,
                 },
                 body: JSON.stringify({
-                    from: "Restaurant OS <rh@siwa-bleury.fr>", // À adapter selon le domaine validé
-                    to: [doc.user.email],
-                    subject: `Votre document : ${doc.name}`,
+                    from: "Restaurant OS <rh@siwa-bleury.fr>",
+                    to: [user.email],
+                    subject: docs.length === 1 ? `Votre document : ${docs[0].name}` : `Vos documents RH (${docs.length} fichiers)`,
                     html: `
-                        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-                            <h2 style="color: #10b981;">Nouveau document disponible</h2>
-                            <p>Bonjour ${doc.user.name},</p>
-                            <p>Une nouvelle fiche de paie ou un document RH a été ajouté à votre dossier.</p>
-                            <p>Vous pouvez le consulter ou le télécharger en cliquant sur le bouton ci-dessous :</p>
-                            <div style="text-align: center; margin: 30px 0;">
-                                <a href="${doc.url}" style="background-color: #10b981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Consulter le document</a>
+                        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
+                            <div style="background-color: #10b981; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+                                <h1 style="color: white; margin: 0; font-size: 20px;">Restaurant OS - Documents RH</h1>
                             </div>
-                            <p style="font-size: 13px; color: #666; margin-top: 40px; border-top: 1px solid #eee; pt: 20px;">
-                                Ceci est un envoi automatique depuis Restaurant OS RH.
-                            </p>
+                            <div style="padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
+                                <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">Bonjour ${user.name},</p>
+                                <p style="white-space: pre-wrap; margin-bottom: 25px;">${body}</p>
+                                <div style="margin: 30px 0;">
+                                    ${linksHtml}
+                                </div>
+                                <p style="font-size: 13px; color: #6b7280; margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 20px;">
+                                    Ceci est un envoi automatique. Veuillez ne pas répondre à cet email.
+                                </p>
+                            </div>
                         </div>
                     `,
                 }),
@@ -771,7 +787,7 @@ export async function sendDocumentEmail(docId: string) {
                 throw new Error(err.message || "Erreur Resend")
             }
 
-            return { success: true, message: "Email envoyé avec succès." }
+            return { success: true, message: docs.length === 1 ? "Email envoyé avec succès." : `${docs.length} documents envoyés avec succès.` }
         } catch (e: any) {
             console.error("Email Error:", e)
             return { error: "L'envoi a échoué : " + e.message }

@@ -13,14 +13,14 @@ import {
     toggleEmployeeStatus,
     deleteEmployeeDocument,
     syncEmployeePayslips,
-    sendDocumentEmail
+    sendDocumentsEmail
 } from "../actions"
 import { toast } from "sonner"
 import {
     FileText, Save, ArrowLeft, ExternalLink, Archive, UserCheck,
     Phone, MapPin, Mail, Euro, Calendar,
     ShieldCheck, Clock, Download, Plus, ChevronLeft, ChevronRight, Trash2, Check,
-    FolderOpen, RefreshCw, Send, Loader2
+    FolderOpen, RefreshCw, Send, Loader2, ListChecks
 } from "lucide-react"
 import Link from "next/link"
 import { HistoryChart } from "@/components/rh/HistoryChart"
@@ -35,6 +35,16 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Textarea } from "@/components/ui/textarea"
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogFooter,
+    DialogDescription
+} from "@/components/ui/dialog"
 import { useRouter } from "next/navigation"
 
 interface EmployeeDetailClientProps {
@@ -57,7 +67,10 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
     const [docYear, setDocYear] = React.useState("")
     const [isUploading, setIsUploading] = React.useState(false)
     const [isSyncing, setIsSyncing] = React.useState(false)
-    const [isSendingMail, setIsSendingMail] = React.useState<string | null>(null)
+    const [isSendingMail, setIsSendingMail] = React.useState(false)
+    const [selectedDocIds, setSelectedDocIds] = React.useState<string[]>([])
+    const [isEmailDialogOpen, setIsEmailDialogOpen] = React.useState(false)
+    const [customEmailBody, setCustomEmailBody] = React.useState("")
     const [uploadProgress, setUploadProgress] = React.useState(0)
     const fileInputRef = React.useRef<HTMLInputElement>(null)
 
@@ -162,24 +175,44 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
         setIsSyncing(true)
         const res = await syncEmployeePayslips(employee.id)
         setIsSyncing(false)
-        if (res.success) {
-            toast.success(res.message || "Synchronisation terminée")
+        if (res && 'success' in res && res.success) {
+            toast.success((res as any).message || "Synchronisation terminée")
             router.refresh()
         } else {
-            toast.error(res.error || "Erreur lors de la synchronisation")
+            toast.error((res as any).error || "Erreur lors de la synchronisation")
         }
     }
 
-    const handleSendEmail = async (docId: string) => {
-        setIsSendingMail(docId)
-        const res = await sendDocumentEmail(docId)
-        setIsSendingMail(null)
-        if (res.success) {
-            toast.success("Fiche de paie envoyée par email !")
+    const handleSendEmail = async () => {
+        setIsSendingMail(true)
+        const res = await sendDocumentsEmail(selectedDocIds, customEmailBody)
+        setIsSendingMail(false)
+        if (res && 'success' in res && res.success) {
+            toast.success((res as any).message || "Email envoyé avec succès !")
+            setIsEmailDialogOpen(false)
+            setSelectedDocIds([])
+            setCustomEmailBody("")
         } else {
-            toast.error(res.error || "Erreur lors de l'envoi")
+            toast.error((res as any).error || "Erreur lors de l'envoi")
         }
     }
+
+    const toggleDocSelection = (docId: string) => {
+        setSelectedDocIds(prev =>
+            prev.includes(docId)
+                ? prev.filter(id => id !== docId)
+                : [...prev, docId]
+        )
+    }
+
+    const payslips = employee.documents.filter((d: any) => d.type === "PAYSLIP")
+    const payslipsByYear = payslips.reduce((acc: Record<number, any[]>, doc: any) => {
+        const year = doc.year || new Date(doc.createdAt).getFullYear()
+        if (!acc[year]) acc[year] = []
+        acc[year].push(doc)
+        return acc
+    }, {})
+    const sortedYears = Object.keys(payslipsByYear).map(Number).sort((a: number, b: number) => b - a)
 
     return (
         <div className="flex min-h-screen flex-col bg-background pb-20 sm:bg-muted/20">
@@ -492,52 +525,103 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                     </div>
                                 </AccordionTrigger>
                                 <AccordionContent className="pb-6">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
-                                        {employee.documents.filter((d: any) => d.type === "PAYSLIP").length === 0 ? (
+                                    <div className="space-y-6 mt-4">
+                                        {selectedDocIds.length > 0 && (
+                                            <div className="sticky top-0 z-10 bg-primary/10 border border-primary/20 p-3 rounded-xl flex items-center justify-between animate-in slide-in-from-top-2">
+                                                <div className="flex items-center gap-2 px-2">
+                                                    <ListChecks className="h-4 w-4 text-primary" />
+                                                    <span className="text-xs font-black uppercase text-primary">{selectedDocIds.length} sélectionné(s)</span>
+                                                </div>
+                                                <Button
+                                                    size="sm"
+                                                    className="bg-primary text-white h-8 font-black uppercase text-[10px] tracking-widest gap-2"
+                                                    onClick={() => {
+                                                        setCustomEmailBody(`Bonjour ${employee.name},\n\nVeuillez trouver ci-joint vos documents RH.\n\nCordialement,`)
+                                                        setIsEmailDialogOpen(true)
+                                                    }}
+                                                >
+                                                    <Send className="h-3 w-3" /> Envoyer la sélection
+                                                </Button>
+                                            </div>
+                                        )}
+
+                                        {sortedYears.length === 0 ? (
                                             <div className="col-span-full py-10 text-center border-2 border-dashed border-muted rounded-xl">
                                                 <p className="text-xs font-bold text-muted-foreground uppercase">Aucune fiche de paie trouvée</p>
                                                 <Button variant="ghost" className="mt-2 text-[10px] font-black uppercase text-primary" onClick={handleSyncDrive}>Lancer un scan maintenant</Button>
                                             </div>
                                         ) : (
-                                            [...employee.documents]
-                                                .filter((d: any) => d.type === "PAYSLIP")
-                                                .sort((a, b) => {
-                                                    if (a.year !== b.year) return (b.year || 0) - (a.year || 0)
-                                                    return (b.month || 0) - (a.month || 0)
-                                                })
-                                                .map((doc: any) => (
-                                                    <div key={doc.id} className="flex items-center justify-between p-4 bg-muted/20 border border-border/40 rounded-xl hover:bg-muted/40 transition-all group">
-                                                        <div className="flex items-center gap-3 overflow-hidden">
-                                                            <div className="h-8 w-8 bg-background text-primary rounded-lg flex items-center justify-center shrink-0 shadow-sm">
-                                                                <FileText className="h-4 w-4" />
-                                                            </div>
-                                                            <div className="min-w-0">
-                                                                <p className="text-xs font-black truncate" title={doc.name}>{doc.name}</p>
-                                                                <p className="text-[9px] font-bold text-muted-foreground uppercase">
-                                                                    {doc.month ? new Date(2000, doc.month - 1).toLocaleDateString('fr-FR', { month: 'long' }) : ''} {doc.year}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="flex items-center gap-1">
-                                                            <Button
-                                                                size="icon"
-                                                                variant="ghost"
-                                                                className="h-8 w-8 rounded-lg text-indigo-500 hover:bg-indigo-500/10"
-                                                                onClick={() => handleSendEmail(doc.id)}
-                                                                disabled={isSendingMail === doc.id}
-                                                                title="Envoyer par email"
-                                                            >
-                                                                {isSendingMail === doc.id ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Send className="h-3.5 w-3.5" />}
-                                                            </Button>
-                                                            <Button size="icon" variant="ghost" className="h-8 w-8 rounded-lg text-primary hover:bg-primary/10" asChild>
-                                                                <a href={doc.url} target="_blank"><ExternalLink className="h-3.5 w-3.5" /></a>
-                                                            </Button>
-                                                            <Button size="icon" variant="ghost" className="h-8 w-8 rounded-lg text-red-500 hover:bg-red-500/10" onClick={() => handleDeleteDocument(doc.id)}>
-                                                                <Trash2 className="h-3.5 w-3.5" />
-                                                            </Button>
-                                                        </div>
+                                            sortedYears.map(year => (
+                                                <div key={year} className="space-y-3">
+                                                    <h4 className="text-[10px] font-black text-muted-foreground/60 uppercase tracking-[0.2em] pl-2 flex items-center gap-3">
+                                                        <span className="w-6 h-[1px] bg-muted-foreground/20"></span>
+                                                        {year}
+                                                        <span className="flex-1 h-[1px] bg-muted-foreground/20"></span>
+                                                    </h4>
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                                        {payslipsByYear[year]
+                                                            .sort((a: any, b: any) => (b.month || 0) - (a.month || 0))
+                                                            .map((doc: any) => (
+                                                                <div
+                                                                    key={doc.id}
+                                                                    className={`flex items-center justify-between p-3 border rounded-xl transition-all group relative ${selectedDocIds.includes(doc.id) ? 'bg-primary/5 border-primary shadow-sm' : 'bg-muted/10 border-border/40 hover:bg-muted/30'}`}
+                                                                >
+                                                                    <div className="flex items-center gap-3 overflow-hidden">
+                                                                        <Checkbox
+                                                                            checked={selectedDocIds.includes(doc.id)}
+                                                                            onCheckedChange={() => toggleDocSelection(doc.id)}
+                                                                            className="h-4 w-4 rounded border-border/60 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                                                                        />
+                                                                        <a
+                                                                            href={doc.url}
+                                                                            target="_blank"
+                                                                            rel="noopener noreferrer"
+                                                                            className="flex items-center gap-3 overflow-hidden group/file"
+                                                                            title="Visualiser le document"
+                                                                        >
+                                                                            <div className="h-9 w-9 bg-background text-primary rounded-lg flex items-center justify-center shrink-0 shadow-sm group-hover/file:scale-105 group-hover/file:bg-primary/5 transition-all">
+                                                                                <FileText className="h-5 w-5" />
+                                                                            </div>
+                                                                            <div className="min-w-0">
+                                                                                <p className="text-xs font-black truncate group-hover/file:text-primary transition-colors" title={doc.name}>{doc.name}</p>
+                                                                                <p className="text-[9px] font-bold text-muted-foreground uppercase">
+                                                                                    {doc.month ? new Date(2000, doc.month - 1).toLocaleDateString('fr-FR', { month: 'long' }) : ''}
+                                                                                </p>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div className="flex items-center gap-1">
+                                                                        <Button
+                                                                            size="icon"
+                                                                            variant="ghost"
+                                                                            className="h-8 w-8 rounded-lg text-primary hover:bg-primary/10"
+                                                                            asChild
+                                                                            title="Ouvrir dans Drive"
+                                                                        >
+                                                                            <a href={doc.url} target="_blank" rel="noopener noreferrer">
+                                                                                <ExternalLink className="h-4 w-4" />
+                                                                            </a>
+                                                                        </Button>
+                                                                        <Button
+                                                                            size="icon"
+                                                                            variant="ghost"
+                                                                            className="h-8 w-8 rounded-lg text-emerald-500 hover:bg-emerald-500/10"
+                                                                            asChild
+                                                                            title="Télécharger"
+                                                                        >
+                                                                            <a href={doc.url?.includes('file/d/') ? `https://drive.google.com/uc?export=download&id=${doc.url.split('file/d/')[1].split('/')[0]}` : doc.url} target="_blank" rel="noopener noreferrer">
+                                                                                <Download className="h-4 w-4" />
+                                                                            </a>
+                                                                        </Button>
+                                                                        <Button size="icon" variant="ghost" className="h-8 w-8 rounded-lg text-red-500 hover:bg-red-500/10" onClick={() => handleDeleteDocument(doc.id)} title="Supprimer">
+                                                                            <Trash2 className="h-4 w-4" />
+                                                                        </Button>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
                                                     </div>
-                                                ))
+                                                </div>
+                                            ))
                                         )}
                                     </div>
                                 </AccordionContent>
@@ -692,6 +776,71 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                     </TabsContent>
                 </Tabs>
             </main>
+
+            {/* DIALOG: EMAIL PREVIEW */}
+            <Dialog open={isEmailDialogOpen} onOpenChange={setIsEmailDialogOpen}>
+                <DialogContent className="sm:max-w-xl rounded-3xl border-none shadow-2xl overflow-hidden p-0">
+                    <DialogHeader className="bg-primary p-6 text-white pb-8">
+                        <DialogTitle className="text-xl font-black uppercase tracking-tight flex items-center gap-3">
+                            <Send className="h-6 w-6" /> Envoyer les documents
+                        </DialogTitle>
+                        <DialogDescription className="text-primary-foreground/80 font-medium">
+                            Prévisualisez et modifiez le message envoyé à <strong>{employee.name}</strong>.
+                        </DialogDescription>
+                    </DialogHeader>
+
+                    <div className="p-6 space-y-6">
+                        <div className="space-y-2">
+                            <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Destinataire</Label>
+                            <div className="bg-muted/30 p-3 rounded-xl border border-border/50 text-sm font-bold text-foreground">
+                                {employee.email || "⚠️ Aucune adresse email renseignée"}
+                            </div>
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Corps du message</Label>
+                            <Textarea
+                                value={customEmailBody}
+                                onChange={e => setCustomEmailBody(e.target.value)}
+                                className="min-h-[150px] bg-muted/20 border-border/50 rounded-2xl resize-none font-medium text-sm p-4 focus:ring-primary/20"
+                                placeholder="Tapez votre message ici..."
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Documents joints ({selectedDocIds.length})</Label>
+                            <div className="max-h-[120px] overflow-y-auto space-y-2 pr-2 custom-scrollbar">
+                                {employee.documents
+                                    .filter((d: any) => selectedDocIds.includes(d.id))
+                                    .map((d: any) => (
+                                        <div key={d.id} className="text-xs font-bold text-primary bg-primary/5 p-2 rounded-lg flex items-center gap-2 border border-primary/10">
+                                            <FileText className="h-3 w-3" /> {d.name}
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <DialogFooter className="bg-muted/30 p-6 flex flex-col sm:flex-row gap-3">
+                        <Button
+                            variant="ghost"
+                            className="flex-1 h-12 rounded-2xl font-black uppercase tracking-widest text-xs"
+                            onClick={() => setIsEmailDialogOpen(false)}
+                        >
+                            Annuler
+                        </Button>
+                        <Button
+                            className="flex-1 h-12 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-xs gap-2 shadow-lg shadow-primary/20"
+                            onClick={handleSendEmail}
+                            disabled={isSendingMail || !employee.email}
+                        >
+                            {isSendingMail ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                            Envoyer maintenant
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }
