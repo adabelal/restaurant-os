@@ -37,25 +37,25 @@ export function UserMenu() {
                 </div>
             </div>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
                 <Link href="/settings" className="flex-1">
                     <Button
                         variant="secondary"
                         size="sm"
-                        className="w-full justify-start text-[10px] uppercase font-black tracking-widest h-9 px-3 rounded-lg shadow-sm border border-border/50 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                        className="w-full h-9 rounded-lg shadow-sm border border-border/50 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                        title="Réglages"
                     >
-                        <Settings2 className="h-3.5 w-3.5 mr-2" />
-                        <span className="xs:inline hidden">Réglages</span>
+                        <Settings2 className="h-4 w-4" />
                     </Button>
                 </Link>
                 <Button
                     variant="ghost"
                     size="sm"
-                    className="text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 h-9 w-9 p-0 rounded-lg shrink-0 transition-all duration-300"
+                    className="h-9 w-9 p-0 rounded-lg shrink-0 text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all duration-300 border border-transparent hover:border-red-100"
                     title="Déconnexion"
                     onClick={() => signOut({ callbackUrl: "/login" })}
                 >
-                    <LogOut className="h-3.5 w-3.5" />
+                    <LogOut className="h-4 w-4" />
                 </Button>
             </div>
         </div>

@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation"
 import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet, Camera, ChevronRight, Music, Mail, Settings2 } from "lucide-react"
 
 import { UserMenu } from "@/components/layout/UserMenu"
-import { ThemeCustomizer } from "@/components/ThemeCustomizer"
 import { cn } from "@/lib/utils"
 
 export function Sidebar() {
@@ -18,6 +17,7 @@ export function Sidebar() {
         { href: "/achats", label: "Achats & Factures", icon: ShoppingCart },
         { href: "/achats/scanner", label: "Scanner Intelligent", icon: Camera },
         {
+            href: "/finance",
             label: "Finances",
             icon: BarChart3,
             subItems: [
@@ -58,19 +58,25 @@ export function Sidebar() {
                                 const isParentActive = pathname?.startsWith("/finance") || pathname?.startsWith("/caisse")
                                 return (
                                     <div key={item.label} className="space-y-1" style={{ animationDelay: `${index * 50}ms` }}>
-                                        <div
+                                        <Link
+                                            href={item.href || "#"}
                                             className={cn(
-                                                "group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-oswald font-medium uppercase tracking-wide transition-all duration-300 relative overflow-hidden cursor-default",
+                                                "group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-oswald font-medium uppercase tracking-wide transition-all duration-300 relative overflow-hidden",
                                                 isParentActive
-                                                    ? "bg-primary/10 text-primary font-bold shadow-sm"
-                                                    : "text-muted-foreground"
+                                                    ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                                                    : "text-muted-foreground hover:text-foreground hover:bg-primary/5 dark:hover:bg-primary/10"
                                             )}
                                         >
-                                            <div className="flex items-center gap-3 relative z-10">
-                                                <Icon className={cn("h-5 w-5", isParentActive ? "text-primary" : "text-muted-foreground")} />
+                                            <div className="flex items-center gap-3 relative z-10 transition-transform group-hover:translate-x-1 duration-300">
+                                                <Icon className={cn("h-5 w-5 transition-colors", isParentActive ? "text-primary-foreground" : "text-muted-foreground group-hover:text-primary")} />
                                                 <span>{item.label}</span>
                                             </div>
-                                        </div>
+                                            {isParentActive && (
+                                                <div className="h-4 w-4 rounded-full bg-white/20 relative z-10 flex flex-col items-center justify-center animate-in zoom-in duration-300">
+                                                    <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                                                </div>
+                                            )}
+                                        </Link>
                                         <div className="pl-12 flex flex-col gap-1 mt-1 animate-in slide-in-from-top-2">
                                             {item.subItems.map((subItem) => {
                                                 const isSubActive = pathname === subItem.href || (subItem.href !== "/finance" && pathname?.startsWith(subItem.href))

@@ -76,11 +76,20 @@ export function CreateEmployeeDialog() {
                         </div>
                     )}
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="name">Nom complet</Label>
-                        <div className="relative">
-                            <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                            <Input id="name" name="name" placeholder="Ex: Jean Dupont" className="pl-9" required />
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="grid gap-2">
+                            <Label htmlFor="lastName">Nom de famille</Label>
+                            <div className="relative">
+                                <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                                <Input id="lastName" name="lastName" placeholder="DUPONT" className="pl-9" required />
+                            </div>
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="firstName">Prénom</Label>
+                            <div className="relative">
+                                <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                                <Input id="firstName" name="firstName" placeholder="Jean" className="pl-9" required />
+                            </div>
                         </div>
                     </div>
 

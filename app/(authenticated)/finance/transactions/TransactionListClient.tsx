@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
-import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, HelpCircle, FileText, FilterX, RefreshCw } from 'lucide-react'
+import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, HelpCircle, FileText, FilterX, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import Link from 'next/link'
@@ -134,6 +134,28 @@ export function TransactionListClient({
         return acc
     }, {} as Record<string, typeof categories>)
 
+    const handlePrevMonth = () => {
+        const currentIndex = availableMonths.indexOf(monthFilter)
+        if (currentIndex === -1) { // Current is 'ALL' or empty
+            if (availableMonths.length > 0) setMonthFilter(availableMonths[0])
+            return
+        }
+        if (currentIndex < availableMonths.length - 1) {
+            setMonthFilter(availableMonths[currentIndex + 1])
+        }
+    }
+
+    const handleNextMonth = () => {
+        const currentIndex = availableMonths.indexOf(monthFilter)
+        if (currentIndex === -1) { // Current is 'ALL' or empty
+            if (availableMonths.length > 0) setMonthFilter(availableMonths[0])
+            return
+        }
+        if (currentIndex > 0) {
+            setMonthFilter(availableMonths[currentIndex - 1])
+        }
+    }
+
     const filtered = useMemo(() => {
         return initialTransactions.filter((tx) => {
             // Search text
@@ -253,22 +275,46 @@ export function TransactionListClient({
                         />
                     </div>
                     <div className="flex w-full md:w-auto items-center gap-2 md:gap-3 flex-wrap justify-stretch">
-                        <Select value={monthFilter} onValueChange={setMonthFilter}>
-                            <SelectTrigger className="w-full sm:w-[150px] flex-1 sm:flex-none bg-background capitalize">
-                                <SelectValue placeholder="Mois" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="ALL">Tous les mois</SelectItem>
-                                {availableMonths.map(m => {
-                                    const dateObj = new Date(`${m}-01T12:00:00Z`);
-                                    return (
-                                        <SelectItem key={m} value={m} className="capitalize">
-                                            {format(dateObj, 'MMMM yyyy', { locale: fr })}
-                                        </SelectItem>
-                                    )
-                                })}
-                            </SelectContent>
-                        </Select>
+                        <div className="flex items-center gap-1">
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-10 w-10 flex-shrink-0"
+                                onClick={handlePrevMonth}
+                                disabled={monthFilter === 'ALL' || availableMonths.indexOf(monthFilter) === availableMonths.length - 1}
+                                title="Mois précédent"
+                            >
+                                <ChevronLeft className="h-4 w-4" />
+                            </Button>
+
+                            <Select value={monthFilter} onValueChange={setMonthFilter}>
+                                <SelectTrigger className="w-[150px] bg-background capitalize">
+                                    <SelectValue placeholder="Mois" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="ALL">Tous les mois</SelectItem>
+                                    {availableMonths.map(m => {
+                                        const dateObj = new Date(`${m}-01T12:00:00Z`);
+                                        return (
+                                            <SelectItem key={m} value={m} className="capitalize">
+                                                {format(dateObj, 'MMMM yyyy', { locale: fr })}
+                                            </SelectItem>
+                                        )
+                                    })}
+                                </SelectContent>
+                            </Select>
+
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-10 w-10 flex-shrink-0"
+                                onClick={handleNextMonth}
+                                disabled={monthFilter === 'ALL' || availableMonths.indexOf(monthFilter) === 0}
+                                title="Mois suivant"
+                            >
+                                <ChevronRight className="h-4 w-4" />
+                            </Button>
+                        </div>
 
                         <Select value={typeFilter} onValueChange={setTypeFilter}>
                             <SelectTrigger className="w-full sm:w-[130px] flex-1 sm:flex-none bg-background">

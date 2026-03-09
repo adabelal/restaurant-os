@@ -762,11 +762,20 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                 <form action={handleProfileUpdate} className="grid md:grid-cols-2 gap-6 pb-2">
                                     <input type="hidden" name="id" value={employee.id} />
                                     <div className="space-y-4">
-                                        <div className="space-y-2">
-                                            <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Nom complet</Label>
-                                            <div className="relative">
-                                                <UserCheck className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                                                <Input name="name" defaultValue={employee.name} className="pl-10 h-10 bg-muted/20 border-border/50 rounded-xl font-bold" />
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="space-y-2">
+                                                <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Nom</Label>
+                                                <div className="relative">
+                                                    <UserCheck className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                    <Input name="lastName" defaultValue={employee.lastName || ''} placeholder="DUPONT" className="pl-10 h-10 bg-muted/20 border-border/50 rounded-xl font-bold" />
+                                                </div>
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label className="text-xs font-black uppercase tracking-widest text-muted-foreground/80">Prénom</Label>
+                                                <div className="relative">
+                                                    <UserCheck className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                    <Input name="firstName" defaultValue={employee.firstName || ''} placeholder="Jean" className="pl-10 h-10 bg-muted/20 border-border/50 rounded-xl font-bold" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="space-y-2">

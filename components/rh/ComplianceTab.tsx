@@ -24,9 +24,10 @@ export function ComplianceTab({ employees }: { employees: any[] }) {
             const role = e.role === "ADMIN" ? "Gérant" : e.role === "MANAGER" ? "Manager" : "Employé"
             const entryDate = new Date(e.createdAt).toLocaleDateString('fr-FR')
             const status = e.isActive ? "Actif" : "Sorti"
+            const fullName = e.lastName && e.firstName ? `${e.lastName.toUpperCase()} ${e.firstName}` : e.name
 
             return [
-                e.name,
+                fullName,
                 "Non renseignée", // Nationalité not tracked yet
                 contractType,
                 role,

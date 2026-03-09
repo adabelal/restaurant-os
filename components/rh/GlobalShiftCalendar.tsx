@@ -88,13 +88,16 @@ function getEmployeeDotColor(id: string, name: string = "") {
     return data.dot
 }
 
-function formatName(fullName: string) {
+function formatName(fullName: string, firstName?: string, lastName?: string) {
+    if (firstName && lastName) {
+        return `${lastName.charAt(0).toUpperCase()}. ${firstName}`;
+    }
     const parts = fullName.trim().split(/\s+/)
     if (parts.length === 1) return parts[0]
-    const first = parts[0]
-    const last = parts[parts.length - 1]
-    const shortenedFirst = first.length > 5 ? first.substring(0, 5) + '.' : first
-    return `${shortenedFirst} ${last.charAt(0)}.`
+    // Par défaut on suppose que le premier mot est le NOM si on a pas firstName/lastName
+    const lastInitial = parts[0].charAt(0).toUpperCase()
+    const firstPart = parts.slice(1).join(' ')
+    return `${lastInitial}. ${firstPart}`
 }
 
 function ShiftItem({ s, isDragging, onDragStart, onEdit, onUpdatePosition }: any) {
@@ -121,7 +124,7 @@ function ShiftItem({ s, isDragging, onDragStart, onEdit, onUpdatePosition }: any
             >
                 <div className={`shrink-0 w-2 h-2 rounded-full ${getEmployeeDotColor(s.employee.id, s.employee.name)}`} />
                 <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-x-1.5">
-                    <div className="text-[10px] font-black truncate leading-tight flex-1">{formatName(s.employee.name)}</div>
+                    <div className="text-[10px] font-black truncate leading-tight flex-1">{formatName(s.employee.name, s.employee.firstName, s.employee.lastName)}</div>
                     <div className="flex items-center gap-1">
                         {s.position && (() => {
                             const pos = POSITIONS.find(p => p.id === s.position)
@@ -245,7 +248,7 @@ function MobileShiftItem({ s, onEdit, onDelete }: any) {
                     <div className={`w-2 h-8 rounded-full ${dotColor} opacity-50`} />
                     <div className="flex flex-col">
                         <div className="flex items-center gap-2">
-                            <span className="text-xs font-black uppercase tracking-tight">{s.employee.name}</span>
+                            <span className="text-xs font-black uppercase tracking-tight">{formatName(s.employee.name, s.employee.firstName, s.employee.lastName)}</span>
                             {s.position && (() => {
                                 const pos = POSITIONS.find(p => p.id === s.position)
                                 if (pos) {
@@ -286,7 +289,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     const [selectedDateForShift, setSelectedDateForShift] = useState<Date | null>(null)
     const [isAddingShift, setIsAddingShift] = useState(false)
     // Navigation et Affichage
-    const [viewMode, setViewMode] = useState<'month' | 'week'>('month')
+    const [viewMode, setViewMode] = useState<'month' | 'week' | 'day'>('month')
     const [selectedUserIdForAdd, setSelectedUserIdForAdd] = useState<string>("")
     const [selectedEmployeeIds, setSelectedEmployeeIds] = useState<Set<string>>(new Set())
     const [isCompactWeek, setIsCompactWeek] = useState(false)
@@ -310,19 +313,29 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
     }, [employees])
 
     const nextPeriod = () => {
-        if (viewMode === 'month') setCurrentDate(addMonths(currentDate, 1))
-        else {
+        if (viewMode === 'month') {
+            setCurrentDate(addMonths(currentDate, 1))
+        } else if (viewMode === 'week') {
             const nextWeek = new Date(currentDate)
             nextWeek.setDate(nextWeek.getDate() + 7)
             setCurrentDate(nextWeek)
+        } else {
+            const nextDay = new Date(currentDate)
+            nextDay.setDate(nextDay.getDate() + 1)
+            setCurrentDate(nextDay)
         }
     }
     const prevPeriod = () => {
-        if (viewMode === 'month') setCurrentDate(subMonths(currentDate, 1))
-        else {
+        if (viewMode === 'month') {
+            setCurrentDate(subMonths(currentDate, 1))
+        } else if (viewMode === 'week') {
             const lastWeek = new Date(currentDate)
             lastWeek.setDate(lastWeek.getDate() - 7)
             setCurrentDate(lastWeek)
+        } else {
+            const lastDay = new Date(currentDate)
+            lastDay.setDate(lastDay.getDate() - 1)
+            setCurrentDate(lastDay)
         }
     }
 
@@ -331,10 +344,12 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
             const start = startOfWeek(startOfMonth(currentDate), { weekStartsOn: 1 })
             const end = endOfWeek(endOfMonth(currentDate), { weekStartsOn: 1 })
             return eachDayOfInterval({ start, end })
-        } else {
+        } else if (viewMode === 'week') {
             const start = startOfWeek(currentDate, { weekStartsOn: 1 })
             const end = endOfWeek(currentDate, { weekStartsOn: 1 })
             return eachDayOfInterval({ start, end })
+        } else {
+            return [currentDate]
         }
     }, [currentDate, viewMode])
 
@@ -610,7 +625,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                         <div>
                             <CardTitle className="text-xl flex items-center gap-2">
                                 <CalendarIcon className="h-5 w-5 text-primary" />
-                                Planning {viewMode === 'month' ? 'Mensuel' : 'Hebdo'}
+                                Planning {viewMode === 'month' ? 'Mensuel' : viewMode === 'week' ? 'Hebdo' : 'Quotidien'}
                             </CardTitle>
                             <CardDescription className="hidden sm:block">Vue globale (Gérants inclus)</CardDescription>
                         </div>
@@ -621,7 +636,9 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             <span className="text-xs sm:text-sm font-bold px-2 sm:px-4 min-w-[120px] sm:min-w-[140px] text-center capitalize">
                                 {viewMode === 'month'
                                     ? format(currentDate, 'MMMM yyyy', { locale: fr })
-                                    : `Sem. ${format(currentDate, 'w')} - ${format(currentDate, 'MMM', { locale: fr })}`
+                                    : viewMode === 'week'
+                                        ? `Sem. ${format(currentDate, 'w')} - ${format(currentDate, 'MMM', { locale: fr })}`
+                                        : format(currentDate, 'EEEE d MMMM', { locale: fr })
                                 }
                             </span>
                             <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={nextPeriod}>
@@ -646,6 +663,14 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 onClick={() => setViewMode('week')}
                             >
                                 Semaine
+                            </Button>
+                            <Button
+                                variant={viewMode === 'day' ? 'secondary' : 'ghost'}
+                                size="sm"
+                                className="flex-1 sm:flex-none rounded-lg h-8 px-4 text-[11px] font-bold uppercase"
+                                onClick={() => setViewMode('day')}
+                            >
+                                Jour
                             </Button>
                         </div>
 
@@ -721,7 +746,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                         >
                                             <div className="flex items-center gap-2 overflow-hidden">
                                                 <div className={`shrink-0 w-3 h-3 rounded-full ${getEmployeeDotColor(emp.id, emp.name)} shadow-sm`} />
-                                                <span className={`text-xs truncate ${isSelected ? 'font-bold' : 'font-semibold'}`} title={emp.name}>{formatName(emp.name)}</span>
+                                                <span className={`text-xs truncate ${isSelected ? 'font-bold' : 'font-semibold'}`} title={emp.name}>{formatName(emp.name, emp.firstName, emp.lastName)}</span>
                                             </div>
                                             <Badge variant={isGerant ? "outline" : (isSelected ? "default" : "secondary")} className={`text-[10px] ${isGerant ? 'font-normal border-primary/20 text-primary' : 'font-bold'}`}>
                                                 {displayHours}
@@ -738,19 +763,130 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                 </div>
 
                 {/* Calendrier / Contenu Principal */}
-                <div className="flex-1 min-w-0 relative">
-                    {/* Toggle Sidebar Button (Desktop only, positioned absolute) */}
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                        className={`hidden xl:flex absolute top-1/2 -left-3 z-30 h-6 w-6 rounded-full bg-background border shadow-md transition-transform duration-300 hover:bg-muted ${!isSidebarOpen ? 'rotate-180' : ''}`}
-                    >
-                        <ChevronLeft className="h-4 w-4" />
-                    </Button>
+                <div className="flex-1 min-w-0 relative bg-background/50">
+                    {viewMode === 'day' && (
+                        <div className="p-4 md:p-8 animate-in fade-in slide-in-from-right-4 duration-500">
+                            <div className="max-w-4xl mx-auto space-y-6">
+                                <div className="flex items-center justify-between mb-8">
+                                    <div className="space-y-1">
+                                        <h2 className="text-3xl font-black uppercase tracking-tight text-foreground">
+                                            {format(currentDate, 'EEEE d MMMM', { locale: fr })}
+                                        </h2>
+                                        <div className="flex items-center gap-2 text-muted-foreground font-bold text-sm uppercase tracking-widest">
+                                            <Badge variant="outline" className="font-black border-primary/20 text-primary">
+                                                {(shiftsByDay[format(currentDate, 'yyyy-MM-dd')] || []).length} Shifst
+                                            </Badge>
+                                            <span>•</span>
+                                            <span>Vue détaillée</span>
+                                        </div>
+                                    </div>
+                                    <Button
+                                        onClick={() => setSelectedDateForShift(currentDate)}
+                                        className="h-12 px-6 rounded-2xl bg-primary text-primary-foreground font-black uppercase tracking-wider shadow-xl shadow-primary/20 hover:scale-105 transition-all"
+                                    >
+                                        <Plus className="mr-2 h-5 w-5" /> Ajouter un shift
+                                    </Button>
+                                </div>
+
+                                <div className="grid gap-4">
+                                    {(shiftsByDay[format(currentDate, 'yyyy-MM-dd')] || []).length === 0 ? (
+                                        <div className="py-20 text-center border-2 border-dashed border-border rounded-3xl bg-muted/5">
+                                            <CalendarIcon className="h-12 w-12 text-muted-foreground/20 mx-auto mb-4" />
+                                            <p className="text-muted-foreground font-bold uppercase tracking-widest">Aucun shift planifié</p>
+                                        </div>
+                                    ) : (
+                                        (shiftsByDay[format(currentDate, 'yyyy-MM-dd')] || []).map((s) => {
+                                            const start = new Date(s.startTime)
+                                            const end = s.endTime ? new Date(s.endTime) : null
+                                            const durationHours = end ? (end.getTime() - start.getTime()) / 1000 / 3600 - (s.breakMinutes || 0) / 60 : 0
+                                            const colorData = getEmployeeColorData(s.employee.id, s.employee.name)
+                                            const isGerant = s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')
+
+                                            const pos = POSITIONS.find(p => p.id === s.position)
+                                            const PosIcon = pos?.icon || ChefHat
+
+                                            return (
+                                                <div
+                                                    key={s.id}
+                                                    className={`group relative bg-card border ${colorData.border} rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all border-l-[6px] flex flex-col md:flex-row md:items-center justify-between gap-6 overflow-hidden`}
+                                                >
+                                                    <div className="flex items-center gap-6 flex-1 min-w-0">
+                                                        <div className={`size-14 rounded-2xl ${colorData.bg} flex items-center justify-center shrink-0 shadow-inner`}>
+                                                            <div className={`size-4 rounded-full ${colorData.dot} shadow-sm animate-pulse`} />
+                                                        </div>
+                                                        <div className="flex-1 min-w-0">
+                                                            <div className="flex items-center gap-2 mb-1">
+                                                                <h3 className="text-xl font-black uppercase tracking-tight text-foreground truncate">
+                                                                    {s.employee.name}
+                                                                </h3>
+                                                                {isGerant && (
+                                                                    <Badge className="bg-primary/10 text-primary border-none font-black text-[10px] uppercase px-2 py-0">Gérant</Badge>
+                                                                )}
+                                                            </div>
+                                                            <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
+                                                                <div className="flex items-center gap-1.5 px-3 py-1 bg-muted/50 rounded-full border border-border/50">
+                                                                    <PosIcon className="h-4 w-4 text-primary" />
+                                                                    <span className="text-xs font-bold uppercase text-foreground/80">{pos?.label || 'Poste non défini'}</span>
+                                                                </div>
+                                                                {!isGerant && (
+                                                                    <>
+                                                                        <div className="flex items-center gap-1.5 px-3 py-1 bg-muted/50 rounded-full border border-border/50">
+                                                                            <Clock className="h-4 w-4 text-primary" />
+                                                                            <span className="text-xs font-bold font-mono text-foreground/80">
+                                                                                {format(start, 'HH:mm')} - {end ? format(end, 'HH:mm') : '?'}
+                                                                            </span>
+                                                                        </div>
+                                                                        {s.breakMinutes > 0 && (
+                                                                            <div className="flex items-center gap-1.5 px-3 py-1 bg-orange-500/5 rounded-full border border-orange-500/10">
+                                                                                <div className="size-1.5 rounded-full bg-orange-500" />
+                                                                                <span className="text-xs font-bold text-orange-700/80">{s.breakMinutes}m pause</span>
+                                                                            </div>
+                                                                        )}
+                                                                    </>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex items-center justify-between md:justify-end gap-6 pt-4 md:pt-0 border-t md:border-none border-border/50">
+                                                        {!isGerant && (
+                                                            <div className="text-right">
+                                                                <p className="text-[10px] font-black uppercase text-muted-foreground tracking-widest mb-0.5">Total net</p>
+                                                                <p className="text-2xl font-black font-mono text-primary leading-none">
+                                                                    {durationHours.toFixed(2)}h
+                                                                </p>
+                                                            </div>
+                                                        )}
+                                                        <div className="flex items-center gap-2">
+                                                            <Button
+                                                                variant="outline"
+                                                                size="icon"
+                                                                className="h-12 w-12 rounded-2xl border-border hover:bg-muted font-bold transition-all"
+                                                                onClick={() => setEditingShift(s)}
+                                                            >
+                                                                <MoreVertical className="h-5 w-5" />
+                                                            </Button>
+                                                            <Button
+                                                                variant="outline"
+                                                                size="icon"
+                                                                className="h-12 w-12 rounded-2xl border-red-100 text-red-500 hover:bg-red-50 hover:border-red-200 transition-all opacity-0 group-hover:opacity-100"
+                                                                onClick={() => setDeletingShiftId(s.id)}
+                                                            >
+                                                                <UtensilsCrossed className="h-5 w-5" />
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                     {/* Header des Jours (Desktop uniquement) */}
-                    <div className={`hidden md:grid border-b border-border bg-muted/30 ${isCompactWeek ? 'grid-cols-[repeat(3,0.6fr)_repeat(4,2fr)]' : 'grid-cols-7'} text-[10px] sm:text-xs`}>
+                    <div className={`${viewMode === 'day' ? 'hidden' : 'hidden md:grid'} border-b border-border bg-muted/30 ${isCompactWeek ? 'grid-cols-[repeat(3,0.6fr)_repeat(4,2fr)]' : 'grid-cols-7'} text-[10px] sm:text-xs`}>
                         {weekDays.map((day, dIdx) => {
                             const isHotDay = dIdx >= 3;
                             return (
@@ -768,7 +904,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                     </div>
 
                     {/* Desktop Grid View */}
-                    <div className={`hidden md:grid auto-rows-[minmax(120px,auto)] ${isCompactWeek ? 'grid-cols-[repeat(3,minmax(0,1fr))_repeat(4,minmax(0,2.5fr))]' : 'grid-cols-7'}`}>
+                    <div className={`${viewMode === 'day' ? 'hidden' : 'hidden md:grid'} auto-rows-[minmax(120px,auto)] ${isCompactWeek ? 'grid-cols-[repeat(3,minmax(0,1fr))_repeat(4,minmax(0,2.5fr))]' : 'grid-cols-7'}`}>
                         {days.map((day, idx) => {
                             const dateKey = format(day, 'yyyy-MM-dd')
                             const isCurrentMonth = isSameMonth(day, currentDate)
@@ -836,7 +972,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                     </div>
 
                     {/* Mobile List View */}
-                    <div className="md:hidden bg-muted/5 divide-y divide-border/50">
+                    <div className={`${viewMode === 'day' ? 'hidden' : 'md:hidden'} bg-muted/5 divide-y divide-border/50`}>
                         {days.filter(d => viewMode === 'week' || isSameMonth(d, currentDate)).map((day) => {
                             const dateKey = format(day, 'yyyy-MM-dd')
                             const dayShifts = shiftsByDay[dateKey] || []

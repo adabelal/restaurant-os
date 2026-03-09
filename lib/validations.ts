@@ -2,7 +2,9 @@ import { z } from "zod"
 
 // --- UTILISATEURS / RH ---
 export const createUserSchema = z.object({
-    name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
+    firstName: z.string().min(2, "Le prénom doit contenir au moins 2 caractères").max(100),
+    lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
+    name: z.string().min(2, "Le nom complet doit contenir au moins 2 caractères").max(200).optional(),
     email: z.string().email("Email invalide"),
     role: z.enum(["ADMIN", "MANAGER", "STAFF"]).default("STAFF"),
     hourlyRate: z.coerce.number().min(0, "Le taux horaire doit être positif").optional(),

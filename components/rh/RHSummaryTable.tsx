@@ -169,12 +169,8 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
     }
 
     const sortedEmployees = [...employees].sort((a, b) => {
-        const getLastName = (name: string) => {
-            const parts = name.trim().split(/\s+/)
-            return parts.length > 1 ? parts[parts.length - 1].toLowerCase() : parts[0].toLowerCase()
-        }
-        const nameA = getLastName(a.name)
-        const nameB = getLastName(b.name)
+        const nameA = a.lastName ? a.lastName.toLowerCase() : a.name.toLowerCase()
+        const nameB = b.lastName ? b.lastName.toLowerCase() : b.name.toLowerCase()
         return sortOrder === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA)
     })
 
@@ -293,17 +289,25 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                                 <div className="flex items-center gap-2">
                                                     <Link href={`/rh/${emp.id}?tab=hours&month=${selectedMonth + 1}&year=${selectedYear}`} className="flex items-center gap-2 text-foreground hover:text-blue-500 transition-colors group">
                                                         <div className={`w-2 h-2 rounded-full ${isManager ? 'bg-slate-400' : getEmployeeDotColor(emp.id, emp.name)} group-hover:scale-125 transition-transform`}></div>
-                                                        {(() => {
-                                                            const parts = emp.name.trim().split(/\s+/)
-                                                            const last = parts.length > 1 ? parts[parts.length - 1] : ""
-                                                            const first = parts.length > 1 ? parts.slice(0, -1).join(' ') : emp.name
-                                                            return (
-                                                                <span className="whitespace-nowrap">
-                                                                    <span className="uppercase font-black text-xs mr-1">{last}</span>
-                                                                    <span className="font-semibold text-xs text-muted-foreground">{first}</span>
-                                                                </span>
-                                                            )
-                                                        })()}
+                                                        {emp.lastName ? (
+                                                            <span className="whitespace-nowrap">
+                                                                <span className="uppercase font-black text-xs mr-1">{emp.lastName}</span>
+                                                                <span className="font-semibold text-xs text-muted-foreground">{emp.firstName}</span>
+                                                            </span>
+                                                        ) : (
+                                                            (() => {
+                                                                const parts = emp.name.trim().split(/\s+/)
+                                                                // Nouveau format: NOM Prenom
+                                                                const last = parts[0]
+                                                                const first = parts.slice(1).join(' ')
+                                                                return (
+                                                                    <span className="whitespace-nowrap">
+                                                                        <span className="uppercase font-black text-xs mr-1">{last}</span>
+                                                                        <span className="font-semibold text-xs text-muted-foreground">{first}</span>
+                                                                    </span>
+                                                                )
+                                                            })()
+                                                        )}
                                                     </Link>
                                                     {isManager && <Badge variant="outline" className="text-[8px] h-3.5 px-1 py-0 uppercase tracking-tighter opacity-60">Gérant</Badge>}
                                                 </div>
@@ -371,17 +375,24 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                     <div className="flex items-center justify-between">
                                         <Link href={`/rh/${emp.id}?tab=hours&month=${selectedMonth + 1}&year=${selectedYear}`} className="flex items-center gap-2">
                                             <div className={`w-2.5 h-2.5 rounded-full ${isManager ? 'bg-slate-400' : getEmployeeDotColor(emp.id, emp.name)}`}></div>
-                                            {(() => {
-                                                const parts = emp.name.trim().split(/\s+/)
-                                                const last = parts.length > 1 ? parts[parts.length - 1] : ""
-                                                const first = parts.length > 1 ? parts.slice(0, -1).join(' ') : emp.name
-                                                return (
-                                                    <span className="flex items-center gap-1">
-                                                        <span className="uppercase font-black text-sm">{last}</span>
-                                                        <span className="font-bold text-xs text-muted-foreground">{first}</span>
-                                                    </span>
-                                                )
-                                            })()}
+                                            {emp.lastName ? (
+                                                <span className="flex items-center gap-1">
+                                                    <span className="uppercase font-black text-sm">{emp.lastName}</span>
+                                                    <span className="font-bold text-xs text-muted-foreground">{emp.firstName}</span>
+                                                </span>
+                                            ) : (
+                                                (() => {
+                                                    const parts = emp.name.trim().split(/\s+/)
+                                                    const last = parts[0]
+                                                    const first = parts.slice(1).join(' ')
+                                                    return (
+                                                        <span className="flex items-center gap-1">
+                                                            <span className="uppercase font-black text-sm">{last}</span>
+                                                            <span className="font-bold text-xs text-muted-foreground">{first}</span>
+                                                        </span>
+                                                    )
+                                                })()
+                                            )}
                                             {isManager && <Badge variant="outline" className="text-[8px] h-3.5 px-1 py-0 uppercase tracking-tighter">Gérant</Badge>}
                                         </Link>
                                         <Badge variant="secondary" className="text-[9px] font-black uppercase tracking-widest h-5 px-2 bg-muted/50 border-border/50">

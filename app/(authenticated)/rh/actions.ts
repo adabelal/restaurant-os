@@ -14,7 +14,8 @@ export async function createEmployee(formData: FormData) {
     return safeAction(formData, async (input) => {
 
         const rawData = {
-            name: formData.get("name"),
+            firstName: formData.get("firstName"),
+            lastName: formData.get("lastName"),
             email: formData.get("email"),
             role: formData.get("role") || "STAFF",
             hourlyRate: formData.get("hourlyRate") || 11.65,
@@ -35,9 +36,14 @@ export async function createEmployee(formData: FormData) {
             const tempPassword = generateTempPassword()
             const hashedPassword = await hashPassword(tempPassword)
 
+            // Format name as LASTNAME Firstname
+            const fullName = `${data.lastName.toUpperCase()} ${data.firstName}`
+
             await prisma.user.create({
                 data: {
-                    name: data.name,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    name: fullName,
                     email: data.email,
                     role: data.role,
                     hourlyRate: data.hourlyRate ?? 11.65,
@@ -81,18 +87,19 @@ export async function deleteEmployee(formData: FormData) {
 
 export async function updateEmployee(formData: FormData) {
     return safeAction(formData, async (input) => {
-        const id = input.get("id") as string
-        const name = input.get("name") as string
-        const email = input.get("email") as string
-        const phone = input.get("phone") as string
-        const address = input.get("address") as string
-        const role = input.get("role") as "ADMIN" | "MANAGER" | "STAFF"
-        const hourlyRateStr = input.get("hourlyRate")
+        const id = formData.get("id") as string
+        const firstName = formData.get("firstName") as string
+        const lastName = formData.get("lastName") as string
+        const email = formData.get("email") as string
+        const phone = formData.get("phone") as string
+        const address = formData.get("address") as string
+        const role = formData.get("role") as "ADMIN" | "MANAGER" | "STAFF"
+        const hourlyRateStr = formData.get("hourlyRate")
         const hourlyRate = hourlyRateStr ? parseFloat(hourlyRateStr as string) : 11.65
-        const contractType = input.get("contractType") as string
-        const contractDuration = input.get("contractDuration") as string
+        const contractType = formData.get("contractType") as string
+        const contractDuration = formData.get("contractDuration") as string
 
-        if (!id || !name || !email) {
+        if (!id || !firstName || !lastName || !email) {
             return { error: "Données manquantes." }
         }
 
@@ -102,8 +109,11 @@ export async function updateEmployee(formData: FormData) {
         }
 
         try {
+            const fullName = `${lastName.trim().toUpperCase()} ${firstName.trim()}`
             const updateData: any = {
-                name: name.trim(),
+                firstName: firstName.trim(),
+                lastName: lastName.trim(),
+                name: fullName,
                 email: email.trim().toLowerCase(),
                 phone: phone?.trim() || null,
                 role,
