@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Plus, Trash2, Edit2, Check, X, Tags, RefreshCw, Settings, ArrowUpRight, ArrowDownRight } from 'lucide-react'
+import { Plus, Trash2, Edit2, Check, X, Tags, RefreshCw, Settings, ArrowUpRight, ArrowDownRight, ChevronDown, ChevronUp } from 'lucide-react'
 import { createFinanceCategory, updateFinanceCategory, deleteFinanceCategory } from '../actions'
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
@@ -50,6 +50,11 @@ export function CategoryListClient({
     const [editName, setEditName] = useState('')
     const [editType, setEditType] = useState<string>('')
     const [isLoading, setIsLoading] = useState(false)
+    const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({})
+
+    const toggleGroup = (type: string) => {
+        setCollapsedGroups(prev => ({ ...prev, [type]: !prev[type] }))
+    }
 
     const handleCreate = async () => {
         if (!newName.trim()) return toast.error("Le nom est requis.")
@@ -152,18 +157,6 @@ export function CategoryListClient({
                 </div>
             </div>
 
-            {/* Sub-navigation tabs style - inspired by the screenshot's Overview, Income... */}
-            <div className="flex items-center gap-8 border-b border-slate-200 dark:border-slate-800 pb-1">
-                {['Vue d\'ensemble', 'Revenus', 'Dépenses', 'Actifs', 'Passifs', 'Archives'].map((tab, i) => (
-                    <button key={tab} className={cn(
-                        "pb-4 text-sm font-bold transition-all border-b-2 px-1",
-                        i === 0 ? "border-emerald-500 text-emerald-600" : "border-transparent text-slate-400 hover:text-slate-600"
-                    )}>
-                        {tab}
-                    </button>
-                ))}
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {Object.entries(grouped).map(([type, cats]) => {
                     const config = GROUP_CONFIG[type] || { label: type, icon: Tags, color: 'text-slate-500' }
@@ -172,77 +165,87 @@ export function CategoryListClient({
                     return (
                         <Card key={type} className="overflow-hidden border-none shadow-sm bg-white dark:bg-slate-900 rounded-[32px] flex flex-col h-full hover:shadow-xl transition-all duration-500">
                             <CardContent className="p-0">
-                                <div className="p-6 pb-2 flex items-center justify-between">
+                                <div
+                                    className="p-6 pb-2 flex items-center justify-between cursor-pointer select-none hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                                    onClick={() => toggleGroup(type)}
+                                >
                                     <h3 className="font-black text-lg tracking-tight flex items-center gap-3">
                                         <div className={cn("p-2 rounded-xl bg-slate-50 dark:bg-slate-800 shadow-inner", config.color)}>
                                             <Icon className="w-5 h-5" />
                                         </div>
                                         {config.label}
                                     </h3>
-                                    <Badge className="bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 border-none font-bold text-[10px] uppercase tracking-widest px-2.5 py-1">
-                                        {cats.length} Art.
-                                    </Badge>
+                                    <div className="flex items-center gap-3">
+                                        <Badge className="bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 border-none font-bold text-[10px] uppercase tracking-widest px-2.5 py-1">
+                                            {cats.length} Art.
+                                        </Badge>
+                                        <div className="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 transition-colors">
+                                            {collapsedGroups[type] ? <ChevronDown className="w-5 h-5" /> : <ChevronUp className="w-5 h-5" />}
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div className="px-6 py-2">
-                                    <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-50 dark:border-slate-800/50 pb-2 mb-2">
-                                        <span>Nom de catégorie</span>
-                                        <span>Transactions</span>
-                                    </div>
+                                {!collapsedGroups[type] && (
+                                    <div className="px-6 py-2 animate-in slide-in-from-top-2 duration-300">
+                                        <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-50 dark:border-slate-800/50 pb-2 mb-2">
+                                            <span>Nom de catégorie</span>
+                                            <span>Transactions</span>
+                                        </div>
 
-                                    <div className="space-y-1">
-                                        {cats.map(cat => (
-                                            <div key={cat.id} className="group flex items-center justify-between py-2 transition-all">
-                                                {editingId === cat.id ? (
-                                                    <div className="flex items-center gap-2 w-full animate-in fade-in duration-300">
-                                                        <Input
-                                                            value={editName}
-                                                            onChange={e => setEditName(e.target.value)}
-                                                            className="h-9 border-slate-200 dark:border-slate-800 font-bold text-sm bg-slate-50 dark:bg-slate-950 rounded-xl"
-                                                            autoFocus
-                                                        />
-                                                        <div className="flex gap-1 shrink-0">
-                                                            <Button size="icon" variant="ghost" className="h-9 w-9 text-emerald-500 hover:bg-emerald-50 rounded-xl" onClick={handleUpdate}>
-                                                                <Check className="h-4 w-4" />
-                                                            </Button>
-                                                            <Button size="icon" variant="ghost" className="h-9 w-9 text-slate-400" onClick={() => setEditingId(null)}>
-                                                                <X className="h-4 w-4" />
-                                                            </Button>
-                                                        </div>
-                                                    </div>
-                                                ) : (
-                                                    <>
-                                                        <div className="flex-1 min-w-0 pr-4">
-                                                            <div className="flex items-center gap-2">
-                                                                <p className="font-bold text-slate-800 dark:text-slate-200 text-sm truncate">
-                                                                    {cat.name}
-                                                                </p>
-                                                                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
-                                                                    <button onClick={() => startEdit(cat)} className="text-slate-400 hover:text-emerald-500">
-                                                                        <Edit2 className="h-3 w-3" />
-                                                                    </button>
-                                                                    <button
-                                                                        onClick={() => handleDelete(cat.id, cat.transactionCount)}
-                                                                        disabled={cat.transactionCount > 0}
-                                                                        className="text-slate-400 hover:text-rose-500 disabled:opacity-0"
-                                                                    >
-                                                                        <Trash2 className="h-3 w-3" />
-                                                                    </button>
-                                                                </div>
+                                        <div className="space-y-1">
+                                            {cats.map(cat => (
+                                                <div key={cat.id} className="group flex items-center justify-between py-2 transition-all">
+                                                    {editingId === cat.id ? (
+                                                        <div className="flex items-center gap-2 w-full animate-in fade-in duration-300">
+                                                            <Input
+                                                                value={editName}
+                                                                onChange={e => setEditName(e.target.value)}
+                                                                className="h-9 border-slate-200 dark:border-slate-800 font-bold text-sm bg-slate-50 dark:bg-slate-950 rounded-xl"
+                                                                autoFocus
+                                                            />
+                                                            <div className="flex gap-1 shrink-0">
+                                                                <Button size="icon" variant="ghost" className="h-9 w-9 text-emerald-500 hover:bg-emerald-50 rounded-xl" onClick={handleUpdate}>
+                                                                    <Check className="h-4 w-4" />
+                                                                </Button>
+                                                                <Button size="icon" variant="ghost" className="h-9 w-9 text-slate-400" onClick={() => setEditingId(null)}>
+                                                                    <X className="h-4 w-4" />
+                                                                </Button>
                                                             </div>
-                                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                                                                Account #{cat.id.slice(0, 4)}
-                                                            </p>
                                                         </div>
-                                                        <span className="font-bold text-slate-600 dark:text-slate-400 text-sm">
-                                                            {cat.transactionCount || 0}
-                                                        </span>
-                                                    </>
-                                                )}
-                                            </div>
-                                        ))}
+                                                    ) : (
+                                                        <>
+                                                            <div className="flex-1 min-w-0 pr-4">
+                                                                <div className="flex items-center gap-2">
+                                                                    <p className="font-bold text-slate-800 dark:text-slate-200 text-sm truncate">
+                                                                        {cat.name}
+                                                                    </p>
+                                                                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                                                                        <button onClick={() => startEdit(cat)} className="text-slate-400 hover:text-emerald-500">
+                                                                            <Edit2 className="h-3 w-3" />
+                                                                        </button>
+                                                                        <button
+                                                                            onClick={() => handleDelete(cat.id, cat.transactionCount)}
+                                                                            disabled={cat.transactionCount > 0}
+                                                                            className="text-slate-400 hover:text-rose-500 disabled:opacity-0"
+                                                                        >
+                                                                            <Trash2 className="h-3 w-3" />
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                                                                    Account #{cat.id.slice(0, 4)}
+                                                                </p>
+                                                            </div>
+                                                            <span className="font-bold text-slate-600 dark:text-slate-400 text-sm">
+                                                                {cat.transactionCount || 0}
+                                                            </span>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </CardContent>
                         </Card>
                     )
