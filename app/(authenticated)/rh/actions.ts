@@ -746,6 +746,73 @@ export async function getManagerRemunerationFromBank(employeeId: string, month: 
     }
 }
 
+export async function getEmployeeSalaryReconciliation(userId: string, month: number, year: number) {
+    try {
+        const salary = await (prisma as any).monthlySalary.findUnique({
+            where: { userId_month_year: { userId, month, year } }
+        })
+
+        // Find bank transactions
+        const employee = await prisma.user.findUnique({
+            where: { id: userId },
+            select: { firstName: true, lastName: true, name: true } as any
+        })
+
+        if (!employee) return null
+
+        const startDate = startOfMonth(new Date(year, month - 1, 1))
+        const endDate = endOfMonth(new Date(year, month - 1, 1))
+
+        const firstName = (employee as any).firstName || ""
+        const lastName = (employee as any).lastName || ""
+
+        // Search terms: Full name, lastName + 1st letter, etc.
+        const searchTerms = [
+            `${lastName} ${firstName}`,
+            `${firstName} ${lastName}`,
+            lastName,
+            firstName
+        ].filter(t => t && t.length >= 3)
+
+        const bankTxs = await prisma.bankTransaction.findMany({
+            where: {
+                date: { gte: startDate, lte: endDate },
+                amount: { lt: 0 },
+                OR: [
+                    ...searchTerms.map(t => ({ description: { contains: t, mode: 'insensitive' as const } })),
+                    ...searchTerms.map(t => ({ thirdPartyName: { contains: t, mode: 'insensitive' as const } }))
+                ]
+            },
+            orderBy: { date: 'desc' }
+        })
+
+        // Refine filtering to avoid generic last names if possible, but usually for employees it's fine
+        const filteredTxs = bankTxs.filter(tx => {
+            const content = (tx.description + (tx.thirdPartyName || '')).toUpperCase()
+            // It must contain the first name OR a very strong match for the full name
+            return content.includes(firstName.toUpperCase()) || (content.includes(lastName.toUpperCase()) && lastName.length > 4)
+        })
+
+        const totalPaid = filteredTxs.reduce((sum, tx) => sum + Math.abs(Number(tx.amount)), 0)
+
+        // If the bankPaid in DB is different from what we found, we might want to update it or just show the drift
+        return {
+            expected: salary?.netRemuneration ? Number(salary.netRemuneration) : 0,
+            actual: totalPaid,
+            transactions: filteredTxs.map(tx => ({
+                id: tx.id,
+                date: tx.date,
+                amount: Math.abs(Number(tx.amount)),
+                description: tx.description
+            })),
+            status: salary?.status || 'PENDING'
+        }
+    } catch (e) {
+        console.error(e)
+        return null
+    }
+}
+
 // ─── SYNC & EMAIL ACTIONS ───────────────────────────────────────────────────
 
 const DRIVE_PAIE_ROOT = "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/RESSOURCES_HUMAINES"
@@ -808,6 +875,18 @@ export async function syncEmployeePayslips(userId: string) {
                             year
                         }
                     })
+
+                    // Extract potential net amount from filename (e.g. _1540.23.pdf)
+                    const netMatch = f.name.match(/(\d{3,5})[.,](\d{2})/)
+                    if (netMatch) {
+                        const netAmount = parseFloat(`${netMatch[1]}.${netMatch[2]}`)
+                        await (prisma as any).monthlySalary.upsert({
+                            where: { userId_month_year: { userId: employee.id, month, year } },
+                            update: { netRemuneration: netAmount },
+                            create: { userId: employee.id, month, year, netRemuneration: netAmount }
+                        })
+                    }
+
                     syncCount++
                 }
             }
@@ -841,6 +920,17 @@ export async function syncEmployeePayslips(userId: string) {
                                 year
                             }
                         })
+
+                        // Same net extraction logic for cloud files
+                        const netMatch = f.name.match(/(\d{3,5})[.,](\d{2})/)
+                        if (netMatch) {
+                            const netAmount = parseFloat(`${netMatch[1]}.${netMatch[2]}`)
+                            await (prisma as any).monthlySalary.upsert({
+                                where: { userId_month_year: { userId: employee.id, month, year } },
+                                update: { netRemuneration: netAmount },
+                                create: { userId: employee.id, month, year, netRemuneration: netAmount }
+                            })
+                        }
                         syncCount++
                     }
                 }

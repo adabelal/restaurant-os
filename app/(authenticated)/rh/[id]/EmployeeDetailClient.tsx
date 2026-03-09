@@ -29,6 +29,7 @@ import { ShiftManager } from "@/components/rh/ShiftManager"
 import { RateHistoryManager } from "@/components/rh/RateHistoryManager"
 import { ContractManager } from "@/components/rh/ContractManager"
 import { DocumentAssistantCard } from "@/components/rh/DocumentAssistantCard"
+import { SalaryReconciliation } from "@/components/rh/SalaryReconciliation"
 import { getApplicableRate } from "@/lib/rh-utils"
 import {
     Accordion,
@@ -423,7 +424,16 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                         </div>
                                     </div>
 
-                                    <div className="mt-10 border-t border-border pt-8">
+                                    <div className="mt-8">
+                                        <SalaryReconciliation
+                                            employeeId={employee.id}
+                                            month={selectedMonth + 1}
+                                            year={selectedYear}
+                                            employeeName={employee.name}
+                                        />
+                                    </div>
+
+                                    <div className="mt-12 border-t border-border pt-8">
                                         <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-4">Historique 12 mois (heures)</h4>
                                         <HistoryChart data={last12Months} maxHours={maxHours} />
                                     </div>
