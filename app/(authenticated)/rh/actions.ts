@@ -971,8 +971,10 @@ export async function syncEmployeePayslips(userId: string) {
                             else if (file.toLowerCase().endsWith('.pdf')) {
                                 const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
                                 const cleanFile = file.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
-                                const nameParts = cleanName.split(/\s+/).filter(p => p.length > 1)
-                                const matches = nameParts.length > 0 && nameParts.every(part => cleanFile.includes(part))
+                                const nameParts = cleanName.split(/\s+/).filter((p: string) => p.length > 2)
+
+                                const matchedParts = nameParts.filter((part: string) => cleanFile.includes(part))
+                                const matches = nameParts.length > 0 && (matchedParts.length === nameParts.length || matchedParts.length >= 2)
 
                                 if (matches) {
                                     // Extract potential date from name
@@ -1047,9 +1049,12 @@ export async function syncEmployeePayslips(userId: string) {
 
                     const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
                     const cleanFile = f.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
-                    const nameParts = cleanName.split(/\s+/).filter((p: string) => p.length > 1)
+                    const nameParts = cleanName.split(/\s+/).filter((p: string) => p.length > 2)
 
-                    if (nameParts.length > 0 && nameParts.every((part: string) => cleanFile.includes(part))) {
+                    const matchedParts = nameParts.filter((part: string) => cleanFile.includes(part))
+                    const matches = nameParts.length > 0 && (matchedParts.length === nameParts.length || matchedParts.length >= 2)
+
+                    if (matches) {
                         const dateMatch = f.name.match(/(\d{4})[_-]?(\d{2})/)
                         const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
                         const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
