@@ -1,8 +1,9 @@
 const { Client } = require('pg');
+require('dotenv').config();
 
 async function main() {
     const client = new Client({
-        connectionString: "postgres://postgres:c733daf583bb5665a0fe@46.224.148.12:5432/restaurant-os?sslmode=disable"
+        connectionString: process.env.DATABASE_URL
     });
 
     await client.connect();
