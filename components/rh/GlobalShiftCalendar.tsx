@@ -194,9 +194,9 @@ function MobileShiftItem({ s, onEdit, onDelete }: any) {
 
     const handleTouchEnd = () => {
         setIsSwiping(false)
-        if (offsetX > 70) {
+        if (offsetX > 80) {
             onEdit()
-        } else if (offsetX < -70) {
+        } else if (offsetX < -80) {
             onDelete()
         }
         setOffsetX(0)
@@ -664,13 +664,13 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
 
             <CardContent className="p-0 flex flex-col xl:flex-row">
                 {/* Sidebar des Heures */}
-                <div className={`
-                    shrink-0 border-b xl:border-b-0 xl:border-r border-border bg-muted/10 transition-all duration-300 overflow-hidden
-                    ${isSidebarOpen ? 'w-full xl:w-64 opacity-100 max-h-[1000px]' : 'w-full xl:w-0 opacity-0 max-h-0 xl:max-h-none xl:p-0'}
-                `}>
+                <div className="shrink-0 border-b xl:border-b-0 xl:border-r border-border bg-muted/10">
                     <div className="p-4 min-w-[240px]">
-                        <div className="flex items-center justify-between gap-2 mb-4">
-                            <div className="flex items-center gap-2 text-muted-foreground">
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                            <div
+                                className="flex items-center gap-2 text-muted-foreground cursor-pointer"
+                                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                            >
                                 <Clock className="h-4 w-4" />
                                 <h3 className="font-bold text-xs uppercase tracking-wider">Heures du mois</h3>
                             </div>
@@ -696,41 +696,43 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-2 max-h-[300px] xl:max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
-                            {employeeHours.map(emp => {
-                                const isGerant = emp.name.toLowerCase().includes('adam') || emp.name.toLowerCase().includes('benjamin')
-                                const displayHours = isGerant ? "Gérant" : `${emp.totalHours.toFixed(1)}h`
-                                const isSelected = selectedEmployeeIds.has(emp.id)
+                        <div className={`transition-all duration-300 overflow-hidden ${isSidebarOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                            <div className="flex flex-col gap-2 max-h-[300px] xl:max-h-[600px] overflow-y-auto custom-scrollbar pr-2 mt-2">
+                                {employeeHours.map(emp => {
+                                    const isGerant = emp.name.toLowerCase().includes('adam') || emp.name.toLowerCase().includes('benjamin')
+                                    const displayHours = isGerant ? "Gérant" : `${emp.totalHours.toFixed(1)}h`
+                                    const isSelected = selectedEmployeeIds.has(emp.id)
 
-                                const toggleFilter = () => {
-                                    const newSet = new Set(selectedEmployeeIds)
-                                    if (newSet.has(emp.id)) newSet.delete(emp.id)
-                                    else newSet.add(emp.id)
-                                    setSelectedEmployeeIds(newSet)
-                                }
+                                    const toggleFilter = () => {
+                                        const newSet = new Set(selectedEmployeeIds)
+                                        if (newSet.has(emp.id)) newSet.delete(emp.id)
+                                        else newSet.add(emp.id)
+                                        setSelectedEmployeeIds(newSet)
+                                    }
 
-                                return (
-                                    <div
-                                        key={emp.id}
-                                        onClick={toggleFilter}
-                                        className={`
+                                    return (
+                                        <div
+                                            key={emp.id}
+                                            onClick={toggleFilter}
+                                            className={`
                                             flex items-center justify-between p-2 rounded-lg cursor-pointer border transition-all shadow-sm
                                             ${isSelected ? 'bg-primary/10 border-primary ring-1 ring-primary/20' : 'bg-card border-border hover:border-primary/30'}
                                         `}
-                                    >
-                                        <div className="flex items-center gap-2 overflow-hidden">
-                                            <div className={`shrink-0 w-3 h-3 rounded-full ${getEmployeeDotColor(emp.id, emp.name)} shadow-sm`} />
-                                            <span className={`text-xs truncate ${isSelected ? 'font-bold' : 'font-semibold'}`} title={emp.name}>{formatName(emp.name)}</span>
+                                        >
+                                            <div className="flex items-center gap-2 overflow-hidden">
+                                                <div className={`shrink-0 w-3 h-3 rounded-full ${getEmployeeDotColor(emp.id, emp.name)} shadow-sm`} />
+                                                <span className={`text-xs truncate ${isSelected ? 'font-bold' : 'font-semibold'}`} title={emp.name}>{formatName(emp.name)}</span>
+                                            </div>
+                                            <Badge variant={isGerant ? "outline" : (isSelected ? "default" : "secondary")} className={`text-[10px] ${isGerant ? 'font-normal border-primary/20 text-primary' : 'font-bold'}`}>
+                                                {displayHours}
+                                            </Badge>
                                         </div>
-                                        <Badge variant={isGerant ? "outline" : (isSelected ? "default" : "secondary")} className={`text-[10px] ${isGerant ? 'font-normal border-primary/20 text-primary' : 'font-bold'}`}>
-                                            {displayHours}
-                                        </Badge>
-                                    </div>
-                                )
-                            })}
-                            {employeeHours.length === 0 && (
-                                <p className="text-xs text-muted-foreground italic text-center py-4">Aucune heure enregistrée ce mois-ci.</p>
-                            )}
+                                    )
+                                })}
+                                {employeeHours.length === 0 && (
+                                    <p className="text-xs text-muted-foreground italic text-center py-4">Aucune heure enregistrée ce mois-ci.</p>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -974,39 +976,69 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
 
             {/* Dialog d'édition rapide */}
             <Dialog open={!!editingShift} onOpenChange={(open) => !open && setEditingShift(null)}>
-                <DialogContent className="w-[95vw] sm:max-w-[425px] p-4 sm:p-6 rounded-xl max-h-[90vh] overflow-y-auto">
-                    <DialogHeader>
-                        <DialogTitle>Modifier le shift</DialogTitle>
-                        <CardDescription>
-                            {editingShift?.employee?.name} - {editingShift && format(new Date(editingShift.startTime), 'EEEE d MMMM yyyy', { locale: fr })}
-                        </CardDescription>
-                    </DialogHeader>
+                <DialogContent className="w-[95vw] sm:max-w-[425px] p-0 overflow-hidden rounded-3xl border-none shadow-2xl">
+                    <div className="bg-primary/5 p-6 border-b border-primary/10">
+                        <DialogHeader>
+                            <DialogTitle className="text-xl font-black uppercase tracking-tight">Modifier le shift</DialogTitle>
+                            <CardDescription className="text-primary font-bold">
+                                {editingShift?.employee?.name} • {editingShift && format(new Date(editingShift.startTime), 'EEEE d MMMM', { locale: fr })}
+                            </CardDescription>
+                        </DialogHeader>
+                    </div>
 
-                    <form onSubmit={handleEditShiftSubmit} className="grid gap-4 py-4">
-                        {/* Masquer les horaires si Gérant */}
+                    <form onSubmit={handleEditShiftSubmit} className="p-6 space-y-6 bg-card">
                         {editingShift && !(editingShift.employee.name.toLowerCase().includes('adam') || editingShift.employee.name.toLowerCase().includes('benjamin')) ? (
                             <>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="editStartTime">Début</Label>
-                                        <Input type="time" id="editStartTime" name="startTime" defaultValue={format(new Date(editingShift.startTime), 'HH:mm')} step={900} required />
+                                <div className="grid grid-cols-2 gap-6 pb-2 border-b border-border/50">
+                                    <div className="space-y-3">
+                                        <Label htmlFor="editStartTime" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2">
+                                            <Clock className="w-3 h-3" /> Arrivée
+                                        </Label>
+                                        <Input
+                                            type="time"
+                                            id="editStartTime"
+                                            name="startTime"
+                                            className="h-12 text-lg font-black bg-muted/30 border-none shadow-inner"
+                                            defaultValue={format(new Date(editingShift.startTime), 'HH:mm')}
+                                            step={900}
+                                            required
+                                        />
                                     </div>
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="editEndTime">Fin</Label>
-                                        <Input type="time" id="editEndTime" name="endTime" defaultValue={editingShift.endTime ? format(new Date(editingShift.endTime), 'HH:mm') : '23:30'} step={900} required />
+                                    <div className="space-y-3">
+                                        <Label htmlFor="editEndTime" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2">
+                                            <Clock className="w-3 h-3" /> Départ
+                                        </Label>
+                                        <Input
+                                            type="time"
+                                            id="editEndTime"
+                                            name="endTime"
+                                            className="h-12 text-lg font-black bg-muted/30 border-none shadow-inner"
+                                            defaultValue={editingShift.endTime ? format(new Date(editingShift.endTime), 'HH:mm') : '23:30'}
+                                            step={900}
+                                            required
+                                        />
                                     </div>
                                 </div>
 
-                                <div className="grid gap-2">
-                                    <Label htmlFor="editBreakMinutes">Temps de pause (en minutes) - non payé</Label>
-                                    <Input type="number" id="editBreakMinutes" name="breakMinutes" defaultValue={editingShift.breakMinutes || 0} step={10} min={0} />
+                                <div className="space-y-3">
+                                    <Label htmlFor="editBreakMinutes" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Pause (min)</Label>
+                                    <Input
+                                        type="number"
+                                        id="editBreakMinutes"
+                                        name="breakMinutes"
+                                        className="h-11 font-bold bg-muted/20"
+                                        defaultValue={editingShift.breakMinutes || 0}
+                                        step={10}
+                                        min={0}
+                                    />
                                 </div>
-                                <div className="grid gap-2">
-                                    <Label htmlFor="editPosition">Poste (optionnel)</Label>
+
+                                <div className="space-y-3">
+                                    <Label htmlFor="editPosition" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Poste de travail</Label>
                                     <select
                                         id="editPosition"
                                         name="position"
-                                        className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        className="flex h-12 w-full items-center justify-between rounded-xl border border-input bg-muted/20 px-4 py-2 text-sm font-bold ring-offset-background transition-all focus:ring-2 focus:ring-primary/20 outline-none"
                                         defaultValue={editingShift.position || ""}
                                     >
                                         <option value="">-- Sans poste spécifique --</option>
@@ -1017,20 +1049,82 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 </div>
                             </>
                         ) : (
-                            <p className="text-sm text-center text-muted-foreground my-4">Les options horaires sont masquées pour les gérants.</p>
+                            <div className="py-8 text-center space-y-2">
+                                <ShieldCheck className="w-12 h-12 text-primary/20 mx-auto" />
+                                <p className="text-sm font-bold text-muted-foreground">Les options horaires sont masquées pour les gérants.</p>
+                            </div>
                         )}
 
-                        <DialogFooter className="mt-4">
-                            <Button type="button" variant="outline" onClick={() => setEditingShift(null)}>
+                        <div className="flex gap-3 pt-2">
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                onClick={() => setEditingShift(null)}
+                                className="flex-1 h-12 font-bold uppercase text-[11px] tracking-wider rounded-xl"
+                            >
                                 Annuler
                             </Button>
                             {editingShift && !(editingShift.employee.name.toLowerCase().includes('adam') || editingShift.employee.name.toLowerCase().includes('benjamin')) && (
-                                <Button type="submit" disabled={isEditingShift}>
+                                <Button
+                                    type="submit"
+                                    disabled={isEditingShift}
+                                    className="flex-1 h-12 font-black uppercase text-[11px] tracking-wider rounded-xl shadow-lg shadow-primary/20"
+                                >
                                     {isEditingShift ? "Modification..." : "Enregistrer"}
                                 </Button>
                             )}
-                        </DialogFooter>
+                        </div>
                     </form>
+                </DialogContent>
+            </Dialog>
+
+            {/* Missing Delete Confirmation Dialog */}
+            <Dialog open={!!deletingShiftId} onOpenChange={(open) => !open && setDeletingShiftId(null)}>
+                <DialogContent className="w-[90vw] sm:max-w-[400px] p-0 overflow-hidden rounded-3xl border-none shadow-2xl">
+                    <div className="bg-red-500/10 p-6 text-center">
+                        <div className="size-16 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-4">
+                            <UtensilsCrossed className="h-8 w-8 text-red-600" />
+                        </div>
+                        <DialogTitle className="text-xl font-black uppercase tracking-tight text-red-900">Supprimer le shift ?</DialogTitle>
+                        <p className="text-sm text-red-600 font-bold mt-1">Cette action est irréversible.</p>
+                    </div>
+
+                    <div className="p-6 bg-card space-y-4">
+                        {(() => {
+                            const s = localShifts.find(ls => ls.id === deletingShiftId)
+                            if (!s) return null
+                            return (
+                                <div className="p-4 rounded-2xl border border-red-100 bg-red-50/30 flex items-center justify-between">
+                                    <div>
+                                        <p className="text-xs font-black uppercase text-red-900 opacity-60">Employé</p>
+                                        <p className="font-black text-red-900">{s.employee.name}</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-xs font-black uppercase text-red-900 opacity-60">Date</p>
+                                        <p className="font-bold text-red-900">{format(new Date(s.startTime), 'dd/MM/yyyy')}</p>
+                                    </div>
+                                </div>
+                            )
+                        })()}
+
+                        <div className="flex gap-3 pt-2">
+                            <Button
+                                variant="ghost"
+                                className="flex-1 h-12 font-bold uppercase text-[11px] tracking-wider rounded-xl"
+                                onClick={() => setDeletingShiftId(null)}
+                            >
+                                Annuler
+                            </Button>
+                            <Button
+                                variant="destructive"
+                                className="flex-1 h-12 font-black uppercase text-[11px] tracking-wider rounded-xl shadow-lg shadow-red-200"
+                                onClick={handleDeleteShift}
+                                disabled={isDeletingShift}
+                            >
+                                {isDeletingShift ? "Suppression..." : "Supprimer"}
+                            </Button>
+                        </div>
+                    </div>
                 </DialogContent>
             </Dialog>
         </Card >
