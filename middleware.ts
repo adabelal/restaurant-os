@@ -6,23 +6,17 @@ import type { NextRequest } from "next/server"
 const publicRoutes = ["/login", "/forgot-password", "/reset-password", "/privacy", "/terms"]
 
 // Routes API publiques
-const publicApiRoutes = ["/api/auth", "/api/public-test-bank", "/api/public-debug", "/api/debug-tx", "/api/emergency-reset"]
+const publicApiRoutes = ["/api/auth", "/api/public-test-bank", "/api/public-debug", "/api/debug-tx"]
 
 export async function middleware(req: NextRequest) {
     const { nextUrl } = req
-
-    // Bypass de sécurité TOTAL pour l'accès d'urgence
-    if (nextUrl.pathname.includes("emergency-reset") || nextUrl.pathname.includes("public-debug")) {
-        return NextResponse.next()
-    }
-
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
     const isLoggedIn = !!token
 
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
     const isPublicApiRoute = publicApiRoutes.some((route) =>
         nextUrl.pathname.startsWith(route)
-    ) || nextUrl.pathname.includes("emergency-reset")
+    )
 
     const isApiRoute = nextUrl.pathname.startsWith("/api")
 
