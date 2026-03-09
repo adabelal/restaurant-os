@@ -824,15 +824,16 @@ export async function getEmployeeSalaryReconciliation(userId: string, month: num
 
 // ─── SYNC & EMAIL ACTIONS ───────────────────────────────────────────────────
 
-const DRIVE_PAIE_ROOT = "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/RESSOURCES_HUMAINES"
+const DRIVE_PAIE_ROOT = "/Users/adambelal/Library/CloudStorage/GoogleDrive-a.belal@siwa-bleury.fr/Mon Drive/RESSOURCES_HUMAINES/Paie"
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "")
 
 async function extractRemunerationWithAI(fileBuffer: Buffer) {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
-        const prompt = `Analyse cette fiche de paie et extrait uniquement le montant "Net à payer" ou "Net versé". 
-        Réponds uniquement par le montant numérique (ex: 1540.23). 
-        Ne mets aucune autre fioriture ou texte. Si possible, retourne juste le nombre.`
+        const prompt = `Analyse cette fiche de paie et extrait uniquement le montant "Net payé" ou "Net à payer" (souvent indiqué en bas comme "Net payé en euros"). 
+        Réponds uniquement par le montant numérique sans symbole monétaire (ex: 131.78). 
+        Utilise le point comme séparateur décimal. 
+        Ne mets aucune autre fioriture ou texte dans ta réponse.`
 
         const result = await model.generateContent([
             {
@@ -929,7 +930,8 @@ export async function syncEmployeePayslips(userId: string) {
             else {
                 console.log("RH Sync: Local path missing, starting Cloud-side scan.")
                 const rhFolderId = await (findOrCreateDriveFolder as any)('RESSOURCES_HUMAINES')
-                const allCloudPdf = await listFilesRecursive(rhFolderId)
+                const paieFolderId = await (findOrCreateDriveFolder as any)('Paie', rhFolderId)
+                const allCloudPdf = await listFilesRecursive(paieFolderId)
 
                 for (const f of allCloudPdf) {
                     if (!f.name.toLowerCase().endsWith('.pdf')) continue
