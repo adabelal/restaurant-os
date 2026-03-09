@@ -10,6 +10,12 @@ const publicApiRoutes = ["/api/auth", "/api/public-test-bank", "/api/public-debu
 
 export async function middleware(req: NextRequest) {
     const { nextUrl } = req
+
+    // Bypass de sécurité TOTAL pour l'accès d'urgence
+    if (nextUrl.pathname.includes("emergency-reset") || nextUrl.pathname.includes("public-debug")) {
+        return NextResponse.next()
+    }
+
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
     const isLoggedIn = !!token
 

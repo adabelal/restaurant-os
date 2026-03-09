@@ -30,6 +30,7 @@ export async function GET() {
 
         return NextResponse.json({
             success: true,
+            version: "V4",
             message: `Mot de passe réinitialisé pour ${results.join(", ")}`,
             tips: "Connectez-vous avec un de ces emails et le mot de passe 'admin'"
         })
