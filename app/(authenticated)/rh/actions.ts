@@ -8,6 +8,7 @@ import { z } from "zod"
 import { safeAction } from "@/lib/safe-action"
 import fs from "fs"
 import path from "path"
+import { startOfMonth, endOfMonth } from "date-fns"
 import { getOrCreateRhFolder, uploadFileToDrive, listFilesRecursive, findOrCreateFolder as findOrCreateDriveFolder } from "@/lib/google-drive"
 
 export async function createEmployee(formData: FormData) {
@@ -22,6 +23,12 @@ export async function createEmployee(formData: FormData) {
             netRemuneration: formData.get("netRemuneration") ? parseFloat(formData.get("netRemuneration") as string) : null,
             contractType: formData.get("contractType") || "CDI",
             contractDuration: formData.get("contractDuration") || "FULL_TIME",
+        }
+
+        if (rawData.role === 'ADMIN') {
+            rawData.contractType = 'GÉRANT'
+            rawData.contractDuration = 'FULL_TIME'
+            rawData.hourlyRate = 0
         }
 
         // Validation avec Zod
@@ -99,6 +106,17 @@ export async function updateEmployee(formData: FormData) {
         const contractType = formData.get("contractType") as string
         const contractDuration = formData.get("contractDuration") as string
 
+        const finalRole = role
+        let finalContractType = contractType
+        let finalContractDuration = contractDuration
+        let finalHourlyRate = hourlyRate
+
+        if (finalRole === 'ADMIN') {
+            finalContractType = 'GÉRANT'
+            finalContractDuration = 'FULL_TIME'
+            finalHourlyRate = 0
+        }
+
         if (!id || !firstName || !lastName || !email) {
             return { error: "Données manquantes." }
         }
@@ -116,10 +134,10 @@ export async function updateEmployee(formData: FormData) {
                 name: fullName,
                 email: email.trim().toLowerCase(),
                 phone: phone?.trim() || null,
-                role,
-                hourlyRate,
-                contractType,
-                contractDuration
+                role: finalRole,
+                hourlyRate: finalHourlyRate,
+                contractType: finalContractType,
+                contractDuration: finalContractDuration
             }
 
             // Important: On n'écrase address que si la valeur est présente dans le formulaire
@@ -660,11 +678,44 @@ export async function updateEmployeeNet(employeeId: string, netRemuneration: num
                 netRemuneration
             }
         })
-        revalidatePath("/rh")
         return { success: true }
     } catch (e) {
         console.error(e)
         return { success: false, message: "Erreur lors de la mise à jour" }
+    }
+}
+
+export async function getManagerRemunerationFromBank(employeeId: string, month: number, year: number) {
+    try {
+        const employee = await prisma.user.findUnique({
+            where: { id: employeeId },
+            select: { name: true, role: true }
+        })
+
+        if (!employee || employee.role !== 'ADMIN') return 0
+
+        const startDate = startOfMonth(new Date(year, month - 1, 1))
+        const endDate = endOfMonth(new Date(year, month - 1, 1))
+
+        const nameParts = employee.name.split(/\s+/)
+
+        const transactions = await prisma.bankTransaction.findMany({
+            where: {
+                date: {
+                    gte: startDate,
+                    lte: endDate
+                },
+                amount: { lt: 0 },
+                OR: nameParts.map(part => ({
+                    description: { contains: part, mode: 'insensitive' }
+                }))
+            }
+        })
+
+        return transactions.reduce((sum, tx) => sum + Math.abs(Number(tx.amount)), 0)
+    } catch (e) {
+        console.error("Error fetching manager remuneration:", e)
+        return 0
     }
 }
 

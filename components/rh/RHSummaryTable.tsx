@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Calculator, Euro, Clock, ChevronLeft, ChevronRight, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
-import { updateEmployeeNet } from "@/app/(authenticated)/rh/actions"
+import { updateEmployeeNet, getManagerRemunerationFromBank } from "@/app/(authenticated)/rh/actions"
 import { toast } from "sonner"
 import { getApplicableRate } from "@/lib/rh-utils"
 import { Info } from "lucide-react"
@@ -48,6 +48,32 @@ function getEmployeeColorData(id: string, name: string = "") {
 function getEmployeeDotColor(id: string, name: string = "") {
     const data = getEmployeeColorData(id, name)
     return data.dot
+}
+
+function ManagerBankRemuneration({ employeeId, month, year, initialValue }: { employeeId: string, month: number, year: number, initialValue: number | null }) {
+    const [bankAmount, setBankAmount] = React.useState<number | null>(null)
+    const [loading, setLoading] = React.useState(false)
+
+    React.useEffect(() => {
+        const fetchBankData = async () => {
+            setLoading(true)
+            const amount = await getManagerRemunerationFromBank(employeeId, month, year)
+            setBankAmount(amount)
+            setLoading(false)
+        }
+        fetchBankData()
+    }, [employeeId, month, year])
+
+    const displayAmount = (initialValue !== null && initialValue > 0) ? initialValue : (bankAmount || 0)
+
+    return (
+        <div className="flex flex-col items-end pr-4">
+            <span className="text-xs font-black text-emerald-600">
+                {loading ? <Loader2 className="h-3 w-3 animate-spin opacity-30" /> : `${displayAmount.toLocaleString('fr-FR', { minimumFractionDigits: 2 })}€`}
+            </span>
+            <span className="text-[8px] font-bold text-muted-foreground uppercase tracking-widest leading-none">Virements Banque</span>
+        </div>
+    )
 }
 
 function NetRemunerationInput({ emp, totalNet, selectedMonth, selectedYear }: any) {
@@ -175,12 +201,13 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
     })
 
     const grandTotal = sortedEmployees
-        .filter(emp => emp.role !== 'ADMIN') // Les gérants ne comptent pas dans la paie effective
         .reduce((acc, emp) => {
             const stats = calculateStats(emp)
+            // For managers, gross is 0, but we should count their net if manually set or from bank?
+            // User says "we don't have hours", so gross is indeed 0.
             return {
-                hours: acc.hours + stats.totalHours,
-                gross: acc.gross + stats.totalGross,
+                hours: acc.hours + (emp.role === 'ADMIN' ? 0 : stats.totalHours),
+                gross: acc.gross + (emp.role === 'ADMIN' ? 0 : stats.totalGross),
                 net: stats.totalNet !== null ? acc.net + stats.totalNet : acc.net
             }
         }, { hours: 0, gross: 0, net: 0 })
@@ -314,8 +341,8 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                             </TableCell>
                                             <TableCell>
                                                 <div className="flex flex-col">
-                                                    <span className="text-[10px] font-black uppercase tracking-tighter text-foreground/80">{isManager ? 'BÉNÉVOLE' : (emp.contractType || 'CDI')}</span>
-                                                    <span className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-tighter">{isManager ? 'Gérance' : (emp.contractDuration === 'PART_TIME' ? 'P-TIME' : 'FULL')}</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-tighter text-foreground/80">{isManager ? 'GÉRANT' : (emp.contractType || 'CDI')}</span>
+                                                    <span className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-tighter">{isManager ? 'SANS CONTRAT' : (emp.contractDuration === 'PART_TIME' ? 'P-TIME' : 'FULL')}</span>
                                                 </div>
                                             </TableCell>
                                             <TableCell className="text-center font-black text-xs">
@@ -346,7 +373,12 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                             </TableCell>
                                             <TableCell className="text-right font-black pr-6 text-emerald-600 min-w-[130px]">
                                                 {isManager ? (
-                                                    <div className="flex justify-end pr-4 text-muted-foreground opacity-30">-</div>
+                                                    <ManagerBankRemuneration
+                                                        employeeId={emp.id}
+                                                        month={selectedMonth + 1}
+                                                        year={selectedYear}
+                                                        initialValue={totalNet}
+                                                    />
                                                 ) : (
                                                     <NetRemunerationInput
                                                         emp={emp}

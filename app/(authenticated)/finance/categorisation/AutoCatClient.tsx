@@ -4,11 +4,12 @@ import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Brain, ArrowUpRight, ArrowDownRight, RefreshCw, CheckCircle2, Sparkles } from 'lucide-react'
+import { Brain, ArrowUpRight, ArrowDownRight, RefreshCw, CheckCircle2, Sparkles, Tags } from 'lucide-react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import { syncFinanceIntelligence, assignTransactionCategory, findSimilarTransactions, applyCategoryToMultipleTx } from '../actions'
 import { toast } from 'sonner'
+import { Badge } from '@/components/ui/badge'
 import { BatchAssignModal, BatchTx } from '../components/BatchAssignModal'
 
 type AutoCatTx = {
