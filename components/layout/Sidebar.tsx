@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet, Camera, ChevronRight, Music, Mail } from "lucide-react"
-import { ModeToggle } from "@/components/ModeToggle"
+import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet, Camera, ChevronRight, Music, Mail, Settings2 } from "lucide-react"
+
 import { UserMenu } from "@/components/layout/UserMenu"
 import { ThemeCustomizer } from "@/components/ThemeCustomizer"
 import { cn } from "@/lib/utils"
@@ -28,6 +28,7 @@ export function Sidebar() {
         },
         { href: "/mails", label: "Emails Traités", icon: Mail },
         { href: "/music", label: "Musique & Live", icon: Music },
+        { href: "/settings", label: "Réglages", icon: Settings2 },
     ]
 
     return (
