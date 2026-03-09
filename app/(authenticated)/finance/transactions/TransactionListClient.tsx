@@ -6,13 +6,21 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
-import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, HelpCircle, FileText, FilterX, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react'
+import {
+    ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote,
+    HelpCircle, FileText, FilterX, RefreshCw, ChevronLeft, ChevronRight,
+    Pencil, Trash2, Plus
+} from 'lucide-react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import Link from 'next/link'
-import { syncBankTransactions, assignTransactionCategory, findSimilarTransactions, applyCategoryToMultipleTx } from '../actions'
+import {
+    syncBankTransactions, assignTransactionCategory, findSimilarTransactions,
+    applyCategoryToMultipleTx, deleteBankTransaction
+} from '../actions'
 import { toast } from 'sonner'
 import { BatchAssignModal, BatchTx } from '../components/BatchAssignModal'
+import { ManualTransactionDialog } from '../components/ManualTransactionDialog'
 
 export type TransformedTx = {
     id: string
@@ -58,6 +66,10 @@ export function TransactionListClient({
     const [modalOpen, setModalOpen] = useState(false)
     const [modalTxs, setModalTxs] = useState<BatchTx[]>([])
     const [pendingCategoryId, setPendingCategoryId] = useState<string | null>(null)
+
+    // Manual CRUD State
+    const [isManualDialogOpen, setIsManualDialogOpen] = useState(false)
+    const [editingTransaction, setEditingTransaction] = useState<TransformedTx | null>(null)
 
     const handleSyncBank = async () => {
         setIsSyncing(true)
@@ -116,7 +128,7 @@ export function TransactionListClient({
         setIsSyncing(true) // we reuse it to show a loading state on the button
         try {
             const res = await applyCategoryToMultipleTx(selectedTx.map(t => ({ id: t.id, isCash: t.isCash })), pendingCategoryId)
-            if (res && 'data' in res && res.data && 'success' in (res.data as any)) {
+            if (res && 'success' in res && res.success) {
                 toast.success(`Catégorie appliquée à ${selectedTx.length} transaction(s).`)
                 setModalOpen(false)
             } else if (res && 'error' in res) {
@@ -126,6 +138,18 @@ export function TransactionListClient({
             toast.error("Erreur réseau.")
         }
         setIsSyncing(false)
+    }
+
+    const handleDelete = async (id: string) => {
+        if (!confirm("Supprimer définitivement cette transaction ?")) return
+
+        try {
+            const res = await deleteBankTransaction(id)
+            if (res.error) toast.error(res.error)
+            else toast.success("Transaction supprimée")
+        } catch (e) {
+            toast.error("Erreur lors de la suppression")
+        }
     }
 
     const categoriesByType = categories.reduce((acc, cat) => {
@@ -269,14 +293,16 @@ export function TransactionListClient({
                 </Card>
 
                 <div className="flex flex-col gap-3">
+                    <Button onClick={() => {
+                        setEditingTransaction(null)
+                        setIsManualDialogOpen(true)
+                    }} className="h-full bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-[20px] shadow-lg shadow-emerald-100 transition-all active:scale-95 gap-2">
+                        <Plus className="h-4 w-4" />
+                        Nouv. Transaction
+                    </Button>
                     <Button onClick={handleSyncBank} disabled={isSyncing} className="h-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-[20px] shadow-lg shadow-indigo-200 transition-all active:scale-95 gap-2">
                         {isSyncing ? <RefreshCw className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
                         Sync Banque
-                    </Button>
-                    <Button asChild variant="outline" className="h-full border-slate-200 bg-white hover:bg-slate-50 font-bold rounded-[20px] text-slate-600 shadow-sm transition-all active:scale-95">
-                        <Link href="/finance/transactions/auto-categorisation">
-                            Catégoriser (Auto)
-                        </Link>
                     </Button>
                 </div>
             </div>
@@ -463,12 +489,40 @@ export function TransactionListClient({
                                     <div className={`text-[19px] font-black tracking-tight ${t.amount >= 0 ? 'text-emerald-600' : 'text-[#0F172A]'}`}>
                                         {t.amount > 0 ? '+' : ''}{t.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
                                     </div>
+                                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            onClick={() => {
+                                                setEditingTransaction(t)
+                                                setIsManualDialogOpen(true)
+                                            }}
+                                            className="h-8 w-8 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-indigo-50"
+                                        >
+                                            <Pencil className="h-3.5 w-3.5" />
+                                        </Button>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            onClick={() => handleDelete(t.id)}
+                                            className="h-8 w-8 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50"
+                                        >
+                                            <Trash2 className="h-3.5 w-3.5" />
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         ))
                     )}
                 </div>
             </Card>
+
+            <ManualTransactionDialog
+                isOpen={isManualDialogOpen}
+                onOpenChange={setIsManualDialogOpen}
+                transaction={editingTransaction}
+                categories={categories}
+            />
 
             <BatchAssignModal
                 isOpen={modalOpen}

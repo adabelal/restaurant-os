@@ -334,6 +334,88 @@ export const getBankTransactions = cache(async (params?: {
     }
 })
 
+export async function createBankTransaction(data: {
+    date: Date,
+    amount: number,
+    description: string,
+    categoryId?: string,
+    paymentMethod?: string,
+    thirdPartyName?: string,
+    reference?: string
+}) {
+    return safeAction(data, async (input) => {
+        try {
+            const tx = await prisma.bankTransaction.create({
+                data: {
+                    date: input.date,
+                    amount: input.amount,
+                    description: input.description,
+                    categoryId: input.categoryId,
+                    paymentMethod: input.paymentMethod || 'OTHER',
+                    thirdPartyName: input.thirdPartyName,
+                    reference: input.reference || 'MANUAL',
+                    status: 'COMPLETED'
+                }
+            })
+            revalidatePath('/finance')
+            revalidatePath('/finance/transactions')
+            return { success: true, data: tx }
+        } catch (error) {
+            console.error("Error creating bank transaction:", error)
+            return { error: "Erreur lors de la création." }
+        }
+    })
+}
+
+export async function updateBankTransaction(id: string, data: {
+    date?: Date,
+    amount?: number,
+    description?: string,
+    categoryId?: string,
+    paymentMethod?: string,
+    thirdPartyName?: string,
+    reference?: string
+}) {
+    return safeAction({ id, data }, async (input) => {
+        try {
+            const tx = await prisma.bankTransaction.update({
+                where: { id: input.id },
+                data: {
+                    date: input.data.date,
+                    amount: input.data.amount,
+                    description: input.data.description,
+                    categoryId: input.data.categoryId,
+                    paymentMethod: input.data.paymentMethod,
+                    thirdPartyName: input.data.thirdPartyName,
+                    reference: input.data.reference
+                }
+            })
+            revalidatePath('/finance')
+            revalidatePath('/finance/transactions')
+            return { success: true, data: tx }
+        } catch (error) {
+            console.error("Error updating bank transaction:", error)
+            return { error: "Erreur lors de la mise à jour." }
+        }
+    })
+}
+
+export async function deleteBankTransaction(id: string) {
+    return safeAction(id, async (input) => {
+        try {
+            await prisma.bankTransaction.delete({
+                where: { id: input }
+            })
+            revalidatePath('/finance')
+            revalidatePath('/finance/transactions')
+            return { success: true }
+        } catch (error) {
+            console.error("Error deleting bank transaction:", error)
+            return { error: "Erreur lors de la suppression." }
+        }
+    })
+}
+
 export const getBalanceChartData = cache(async () => {
     try {
         const [bankTxs, cashTxs] = await Promise.all([

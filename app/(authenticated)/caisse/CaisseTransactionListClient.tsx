@@ -6,13 +6,22 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
-import { ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote, HelpCircle, FileText, FilterX, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react'
+import {
+    ArrowUpRight, ArrowDownRight, CreditCard, Search, Building2, Banknote,
+    HelpCircle, FileText, FilterX, RefreshCw, ChevronLeft, ChevronRight,
+    Pencil, Trash2, Plus
+} from 'lucide-react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import Link from 'next/link'
-import { assignTransactionCategory, findSimilarTransactions, applyCategoryToMultipleTx } from '../finance/actions'
+import {
+    assignTransactionCategory, findSimilarTransactions,
+    applyCategoryToMultipleTx
+} from '../finance/actions'
+import { deleteCashTransaction } from './actions'
 import { toast } from 'sonner'
 import { BatchAssignModal, BatchTx } from '../finance/components/BatchAssignModal'
+import { ManualCashTransactionDialog } from './components/ManualCashTransactionDialog'
 
 export type TransformedTx = {
     id: string
@@ -58,6 +67,10 @@ export function CaisseTransactionListClient({
     const [modalOpen, setModalOpen] = useState(false)
     const [modalTxs, setModalTxs] = useState<BatchTx[]>([])
     const [pendingCategoryId, setPendingCategoryId] = useState<string | null>(null)
+
+    // Manual CRUD State
+    const [isManualDialogOpen, setIsManualDialogOpen] = useState(false)
+    const [editingTransaction, setEditingTransaction] = useState<TransformedTx | null>(null)
 
     const handleSyncBank = async () => { };
 
@@ -115,7 +128,7 @@ export function CaisseTransactionListClient({
         setIsSyncing(true) // we reuse it to show a loading state on the button
         try {
             const res = await applyCategoryToMultipleTx(selectedTx.map(t => ({ id: t.id, isCash: true })), pendingCategoryId)
-            if (res && 'data' in res && res.data && 'success' in (res.data as any)) {
+            if (res && 'success' in res && res.success) {
                 toast.success(`Catégorie appliquée à ${selectedTx.length} transaction(s).`)
                 setModalOpen(false)
             } else if (res && 'error' in res) {
@@ -125,6 +138,18 @@ export function CaisseTransactionListClient({
             toast.error("Erreur réseau.")
         }
         setIsSyncing(false)
+    }
+
+    const handleDelete = async (id: string) => {
+        if (!confirm("Supprimer définitivement cette opération ?")) return
+
+        try {
+            const res = await deleteCashTransaction(id)
+            if (res.error) toast.error(res.error)
+            else toast.success("Opération supprimée")
+        } catch (e) {
+            toast.error("Erreur lors de la suppression")
+        }
     }
 
     const categoriesByType = categories.reduce((acc, cat) => {
@@ -233,17 +258,20 @@ export function CaisseTransactionListClient({
                     </CardContent>
                 </Card>
 
-                <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-indigo-600 text-white rounded-[24px] overflow-hidden relative pt-1 group hover:shadow-indigo-200 transition-all cursor-pointer">
+                <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-emerald-600 text-white rounded-[24px] overflow-hidden relative pt-1 group hover:shadow-emerald-200 transition-all cursor-pointer">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 px-6">
-                        <CardTitle className="text-[12px] font-semibold text-white/70 uppercase tracking-wider">Auto-Categorisation</CardTitle>
-                        <RefreshCw className="w-4 h-4 text-white/50 group-hover:rotate-180 transition-transform duration-700" />
+                        <CardTitle className="text-[12px] font-semibold text-white/70 uppercase tracking-wider">Nouvelle Opération</CardTitle>
+                        <Plus className="w-4 h-4 text-white/50 group-hover:scale-125 transition-transform" />
                     </CardHeader>
                     <CardContent className="px-6 pb-6 pt-2">
-                        <Link href="/finance/categorisation" className="flex items-center gap-2">
+                        <div onClick={() => {
+                            setEditingTransaction(null)
+                            setIsManualDialogOpen(true)
+                        }} className="flex items-center gap-2">
                             <div className="text-[22px] font-black tracking-tight flex items-center gap-1.5">
-                                Lancer l'IA <ArrowUpRight className="h-5 w-5" />
+                                Ajouter <ArrowUpRight className="h-5 w-5" />
                             </div>
-                        </Link>
+                        </div>
                     </CardContent>
                 </Card>
             </div>
@@ -418,9 +446,30 @@ export function CaisseTransactionListClient({
                                     </Select>
                                 </div>
 
-                                <div className="sm:col-span-2 text-right w-full">
+                                <div className="sm:col-span-2 text-right w-full flex items-center justify-end gap-6">
                                     <div className={`text-[19px] font-black tracking-tight ${t.amount >= 0 ? 'text-emerald-600' : 'text-[#0F172A]'}`}>
                                         {t.amount > 0 ? '+' : ''}{t.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                    </div>
+                                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            onClick={() => {
+                                                setEditingTransaction(t)
+                                                setIsManualDialogOpen(true)
+                                            }}
+                                            className="h-8 w-8 rounded-lg text-slate-400 hover:text-emerald-600 hover:bg-emerald-50"
+                                        >
+                                            <Pencil className="h-3.5 w-3.5" />
+                                        </Button>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            onClick={() => handleDelete(t.id)}
+                                            className="h-8 w-8 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50"
+                                        >
+                                            <Trash2 className="h-3.5 w-3.5" />
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
@@ -428,6 +477,13 @@ export function CaisseTransactionListClient({
                     )}
                 </div>
             </Card>
+
+            <ManualCashTransactionDialog
+                isOpen={isManualDialogOpen}
+                onOpenChange={setIsManualDialogOpen}
+                transaction={editingTransaction}
+                categories={categories}
+            />
 
             <BatchAssignModal
                 isOpen={modalOpen}

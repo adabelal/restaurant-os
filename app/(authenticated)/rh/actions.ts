@@ -8,7 +8,7 @@ import { z } from "zod"
 import { safeAction } from "@/lib/safe-action"
 import fs from "fs"
 import path from "path"
-import { getOrCreateRhFolder, uploadFileToDrive } from "@/lib/google-drive"
+import { getOrCreateRhFolder, uploadFileToDrive, listFilesRecursive, findOrCreateFolder as findOrCreateDriveFolder } from "@/lib/google-drive"
 
 export async function createEmployee(formData: FormData) {
     return safeAction(formData, async (input) => {
@@ -685,65 +685,87 @@ export async function syncEmployeePayslips(userId: string) {
 
             if (!employee) return { error: "Salarié non trouvé" }
 
-            if (!fs.existsSync(DRIVE_PAIE_ROOT)) {
-                return { error: "Dossier Drive local introuvable sur ce poste." }
-            }
-
             const existingFiles = new Set(employee.documents.map(d => d.name))
-            const foundFiles: { path: string, name: string }[] = []
+            let syncCount = 0
 
-            // Fonction récursive pour lister les PDF
-            const walk = (dir: string) => {
-                const list = fs.readdirSync(dir)
-                for (const file of list) {
-                    const fullPath = path.join(dir, file)
-                    const stat = fs.statSync(fullPath)
-                    if (stat && stat.isDirectory()) {
-                        walk(fullPath)
-                    } else if (file.toLowerCase().endsWith('.pdf')) {
-                        // Matching logic: Le nom du salarié doit être dans le nom du fichier
-                        const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                        const cleanFile = file.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            // 1. Essai de scan local (Mac Adam)
+            if (fs.existsSync(DRIVE_PAIE_ROOT)) {
+                console.log("RH Sync: Using local DRIVE_PAIE_ROOT path.")
+                const foundFiles: { path: string, name: string }[] = []
 
-                        // Séparation des mots pour un match plus robuste
-                        const nameParts = cleanName.split(/\s+/)
-                        const allMatch = nameParts.every(part => cleanFile.includes(part))
-
-                        if (allMatch && !existingFiles.has(file)) {
-                            foundFiles.push({ path: fullPath, name: file })
+                const walkLocal = (dir: string) => {
+                    const list = fs.readdirSync(dir)
+                    for (const file of list) {
+                        const fullPath = path.join(dir, file)
+                        const stat = fs.statSync(fullPath)
+                        if (stat && stat.isDirectory()) walkLocal(fullPath)
+                        else if (file.toLowerCase().endsWith('.pdf')) {
+                            const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                            const cleanFile = file.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                            const nameParts = cleanName.split(/\s+/)
+                            if (nameParts.every(part => cleanFile.includes(part)) && !existingFiles.has(file)) {
+                                foundFiles.push({ path: fullPath, name: file })
+                            }
                         }
                     }
                 }
+                walkLocal(DRIVE_PAIE_ROOT)
+
+                for (const f of foundFiles) {
+                    const fileBuffer = fs.readFileSync(f.path)
+                    const folderId = await getOrCreateRhFolder(employee.name, 'PAYSLIP')
+                    const dateMatch = f.name.match(/(\d{4})[_-](\d{2})/)
+                    const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
+                    const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
+                    const driveFile = await uploadFileToDrive(fileBuffer, f.name, 'application/pdf', folderId)
+
+                    await prisma.employeeDocument.create({
+                        data: {
+                            userId: employee.id,
+                            name: f.name,
+                            url: driveFile.webViewLink,
+                            type: 'PAYSLIP',
+                            category: 'PAIE',
+                            month,
+                            year
+                        }
+                    })
+                    syncCount++
+                }
             }
+            // 2. Scan CLOUD (Serveur) si local absent ou si besoin
+            else {
+                console.log("RH Sync: Local path missing, starting Cloud-side scan.")
+                const rhFolderId = await (findOrCreateDriveFolder as any)('RESSOURCES_HUMAINES')
+                const allCloudPdf = await listFilesRecursive(rhFolderId)
 
-            walk(DRIVE_PAIE_ROOT)
+                for (const f of allCloudPdf) {
+                    if (!f.name.toLowerCase().endsWith('.pdf')) continue
+                    if (existingFiles.has(f.name)) continue
 
-            let syncCount = 0
-            for (const f of foundFiles) {
-                // Pour chaque nouveau fichier trouvé localement, on l'upload sur le Drive "Cloud" 
-                // pour qu'il soit accessible via l'application (URL publique)
-                const fileBuffer = fs.readFileSync(f.path)
-                const folderId = await getOrCreateRhFolder(employee.name, 'PAYSLIP')
+                    const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    const cleanFile = f.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    const nameParts = cleanName.split(/\s+/)
 
-                // Tente d'extraire l'année/mois du nom de fichier (ex: 2024_10_...)
-                const dateMatch = f.name.match(/(\d{4})[_-](\d{2})/)
-                const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
-                const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
+                    if (nameParts.every(part => cleanFile.includes(part))) {
+                        const dateMatch = f.name.match(/(\d{4})[_-](\d{2})/)
+                        const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
+                        const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
 
-                const driveFile = await uploadFileToDrive(fileBuffer, f.name, 'application/pdf', folderId)
-
-                await prisma.employeeDocument.create({
-                    data: {
-                        userId: employee.id,
-                        name: f.name,
-                        url: driveFile.webViewLink,
-                        type: 'PAYSLIP',
-                        category: 'PAIE',
-                        month,
-                        year
+                        await prisma.employeeDocument.create({
+                            data: {
+                                userId: employee.id,
+                                name: f.name,
+                                url: f.webViewLink,
+                                type: 'PAYSLIP',
+                                category: 'PAIE',
+                                month,
+                                year
+                            }
+                        })
+                        syncCount++
                     }
-                })
-                syncCount++
+                }
             }
 
             revalidatePath(`/rh/${employee.id}`)

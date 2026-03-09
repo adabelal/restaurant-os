@@ -102,7 +102,7 @@ async function getAccessToken(): Promise<string> {
 
 // ─── Drive Folder Management ─────────────────────────────────────────────────
 
-async function findOrCreateFolder(name: string, parentId?: string): Promise<string> {
+export async function findOrCreateFolder(name: string, parentId?: string): Promise<string> {
     const token = await getAccessToken()
 
     // Search for existing folder
@@ -246,3 +246,38 @@ export async function moveFileToFolder(fileId: string, newFolderId: string): Pro
         throw new Error(`Failed to move file ${fileId}: ${err}`)
     }
 }
+
+/**
+ * List all files in a folder and its subfolders (recursive)
+ */
+export async function listFilesRecursive(folderId: string): Promise<{ id: string, name: string, webViewLink: string }[]> {
+    const token = await getAccessToken()
+    let results: { id: string, name: string, webViewLink: string }[] = []
+
+    async function scan(fId: string) {
+        const query = `'${fId}' in parents and trashed=false`
+        const res = await fetch(
+            `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name,mimeType,webViewLink)&pageSize=1000`,
+            { headers: { Authorization: `Bearer ${token}` } }
+        )
+        const data = await res.json()
+
+        if (data.files) {
+            for (const file of data.files) {
+                if (file.mimeType === 'application/vnd.google-apps.folder') {
+                    await scan(file.id)
+                } else {
+                    results.push({
+                        id: file.id,
+                        name: file.name,
+                        webViewLink: file.webViewLink
+                    })
+                }
+            }
+        }
+    }
+
+    await scan(folderId)
+    return results
+}
+
