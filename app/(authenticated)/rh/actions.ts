@@ -194,6 +194,29 @@ export async function addEmployeeDocument(formData: FormData) {
     })
 }
 
+export async function markDpaeAsTese(userId: string) {
+    return safeAction({ userId }, async (input) => {
+        try {
+            await prisma.employeeDocument.create({
+                data: {
+                    userId: input.userId,
+                    name: "[TESE] Déclaration URSSAF (Géré par TESE)",
+                    url: "https://www.letese.urssaf.fr",
+                    type: "DPAE",
+                    category: "TESE",
+                    month: new Date().getMonth() + 1,
+                    year: new Date().getFullYear()
+                }
+            })
+            revalidatePath(`/rh/${input.userId}`)
+            return { success: true, message: "Validé via TESE" }
+        } catch (e) {
+            console.error(e)
+            return { error: "Erreur sauvegarde TESE" }
+        }
+    })
+}
+
 export async function addShift(formData: FormData) {
     return safeAction(formData, async (input) => {
         const rawData = {

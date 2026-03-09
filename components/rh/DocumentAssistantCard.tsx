@@ -8,6 +8,7 @@ import { Trash2, ExternalLink, FileText, CheckCircle2, AlertTriangle, UploadClou
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { Input } from '@/components/ui/input'
+import { markDpaeAsTese } from '@/app/(authenticated)/rh/actions'
 
 interface DocumentAssistantCardProps {
     employeeId: string
@@ -36,6 +37,7 @@ export function DocumentAssistantCard({
     const [droppedFile, setDroppedFile] = useState<File | null>(null)
     const [docName, setDocName] = useState("")
     const [isUploading, setIsUploading] = useState(false)
+    const [isMarkingTese, setIsMarkingTese] = useState(false)
     const fileInputRef = useRef<HTMLInputElement>(null)
 
     // Identify if the document is likely present
@@ -109,6 +111,23 @@ export function DocumentAssistantCard({
         }
     }
 
+    const handleMarkTese = async () => {
+        setIsMarkingTese(true)
+        try {
+            const res = await markDpaeAsTese(employeeId)
+            if (res && 'success' in res && res.success) {
+                toast.success("DPAE validée via TESE")
+                router.refresh()
+            } else {
+                toast.error((res as any)?.error || "Erreur")
+            }
+        } catch (e) {
+            toast.error("Une erreur est survenue")
+        } finally {
+            setIsMarkingTese(false)
+        }
+    }
+
     const handleDelete = async (id: string) => {
         const sure = window.confirm("Supprimer ce document ?")
         if (!sure) return
@@ -140,7 +159,9 @@ export function DocumentAssistantCard({
 
                     <div className="text-center space-y-1">
                         <span className={`text-sm font-bold block ${isLikelyPresent ? 'text-foreground' : 'text-amber-700 dark:text-amber-400'}`}>{title}</span>
-                        <span className="text-[10px] text-muted-foreground line-clamp-2 leading-tight">{shortDesc}</span>
+                        <span className="text-[10px] text-muted-foreground line-clamp-2 leading-tight">
+                            {relevantDocs.some(d => d.category === 'TESE') ? 'Géré par TESE' : shortDesc}
+                        </span>
                     </div>
 
                     {!isLikelyPresent && (
@@ -211,6 +232,28 @@ export function DocumentAssistantCard({
                                 </div>
                             )}
                         </div>
+
+                        {docType === 'DPAE' && relevantDocs.filter(d => d.category === 'TESE').length === 0 && (
+                            <div className="mt-4 p-4 bg-amber-500/5 border border-amber-500/20 rounded-xl space-y-3">
+                                <div className="flex items-start gap-3">
+                                    <Info className="h-4 w-4 text-amber-600 mt-0.5" />
+                                    <div className="space-y-1">
+                                        <p className="text-xs font-bold text-amber-800">Géré par le TESE ?</p>
+                                        <p className="text-[10px] text-amber-700/80 leading-relaxed">Si vous passez par le TESE, ils s'occupent de la DPAE pour vous. Vous pouvez valider cette étape ici sans document.</p>
+                                    </div>
+                                </div>
+                                <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="w-full h-8 text-[10px] font-black uppercase tracking-widest border-amber-500/30 text-amber-700 hover:bg-amber-500/10"
+                                    onClick={handleMarkTese}
+                                    disabled={isUploading || isMarkingTese}
+                                >
+                                    {isMarkingTese ? <Loader2 className="h-3 w-3 animate-spin mr-2" /> : <CheckCircle2 className="h-3 w-3 mr-2" />}
+                                    Valider via TESE
+                                </Button>
+                            </div>
+                        )}
                     </div>
 
                     {/* Colonne de droite: Zone de Drop */}
