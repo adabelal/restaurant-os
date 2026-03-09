@@ -147,6 +147,7 @@ export function CreateEmployeeDialog() {
                                 <option value="CDD">CDD</option>
                                 <option value="EXTRA">Extra / Vacataire</option>
                                 <option value="APPRENTI">Apprentissage</option>
+                                <option value="GÉRANT">Gérant (Sans Heures)</option>
                             </select>
                         </div>
 

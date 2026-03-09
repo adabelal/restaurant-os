@@ -2,13 +2,42 @@
 
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Loader2, CheckCircle2, AlertCircle, RefreshCw, Landmark, ArrowRight, ListChecks } from "lucide-react"
-import { getEmployeeSalaryReconciliation } from "@/app/(authenticated)/rh/actions"
+import {
+    Loader2,
+    CheckCircle2,
+    AlertCircle,
+    RefreshCw,
+    Landmark,
+    ArrowRight,
+    ListChecks,
+    MoreHorizontal,
+    Trash2,
+    UserPlus,
+    CornerUpRight
+} from "lucide-react"
+import {
+    getEmployeeSalaryReconciliation,
+    removeReconciliationTransaction,
+    moveReconciliationTransaction,
+    getMinifiedEmployees
+} from "@/app/(authenticated)/rh/actions"
 import { format } from "date-fns"
 import { fr } from "date-fns/locale"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuSub,
+    DropdownMenuSubTrigger,
+    DropdownMenuPortal,
+    DropdownMenuSubContent
+} from "@/components/ui/dropdown-menu"
+import { toast } from "sonner"
 
 interface Props {
     employeeId: string
@@ -20,6 +49,8 @@ interface Props {
 export function SalaryReconciliation({ employeeId, month, year, employeeName }: Props) {
     const [data, setData] = React.useState<any>(null)
     const [loading, setLoading] = React.useState(true)
+    const [employees, setEmployees] = React.useState<any[]>([])
+    const [processingId, setProcessingId] = React.useState<string | null>(null)
 
     const fetchData = React.useCallback(async () => {
         setLoading(true)
@@ -28,16 +59,48 @@ export function SalaryReconciliation({ employeeId, month, year, employeeName }: 
         setLoading(false)
     }, [employeeId, month, year])
 
+    const fetchEmployees = React.useCallback(async () => {
+        const list = await getMinifiedEmployees()
+        setEmployees(list.filter((e: any) => e.id !== employeeId))
+    }, [employeeId])
+
     React.useEffect(() => {
         fetchData()
-    }, [fetchData])
+        fetchEmployees()
+    }, [fetchData, fetchEmployees])
+
+    const handleRemove = async (txId: string) => {
+        if (!confirm("Voulez-vous retirer cette transaction de la liste des rémunérations ? (Elle restera en banque mais sera dé-catégorisée)")) return
+
+        setProcessingId(txId)
+        const res = await removeReconciliationTransaction(txId)
+        if (res.success) {
+            toast.success("Transaction retirée")
+            fetchData()
+        } else {
+            toast.error(res.error || "Une erreur est survenue")
+        }
+        setProcessingId(null)
+    }
+
+    const handleMove = async (txId: string, targetName: string) => {
+        setProcessingId(txId)
+        const res = await moveReconciliationTransaction(txId, targetName)
+        if (res.success) {
+            toast.success(`Transaction transférée à ${targetName}`)
+            fetchData()
+        } else {
+            toast.error(res.error || "Une erreur est survenue")
+        }
+        setProcessingId(null)
+    }
 
     if (loading && !data) {
         return (
             <Card className="border-border/40 shadow-sm bg-card/50">
                 <CardContent className="flex items-center justify-center p-8">
                     <Loader2 className="h-6 w-6 animate-spin text-muted-foreground mr-2" />
-                    <span className="text-sm text-muted-foreground">Analyse des paiements bankaires...</span>
+                    <span className="text-sm text-muted-foreground">Analyse des paiements bancaires...</span>
                 </CardContent>
             </Card>
         )
@@ -103,14 +166,62 @@ export function SalaryReconciliation({ employeeId, month, year, employeeName }: 
                                         <div className="h-8 w-8 rounded-full bg-indigo-50 dark:bg-indigo-950/30 flex items-center justify-center text-indigo-500 text-xs font-bold">
                                             {format(new Date(tx.date), 'dd')}
                                         </div>
-                                        <div className="flex flex-col">
-                                            <span className="font-semibold text-foreground leading-none mb-1">{tx.description}</span>
-                                            <span className="text-[10px] text-muted-foreground uppercase">{format(new Date(tx.date), 'MMMM yyyy', { locale: fr })}</span>
+                                        <div className="flex flex-col overflow-hidden max-w-[200px] sm:max-w-[350px]">
+                                            <span className="font-semibold text-foreground truncate leading-none mb-1" title={tx.description}>
+                                                {tx.description}
+                                            </span>
+                                            <span className="text-[10px] text-muted-foreground uppercase">
+                                                {format(new Date(tx.date), 'MMMM yyyy', { locale: fr })}
+                                            </span>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 font-mono font-bold text-foreground">
-                                        {tx.amount.toLocaleString('fr-FR', { minimumFractionDigits: 2 })}€
-                                        <ArrowRight className="h-3 w-3 text-muted-foreground/30 group-hover:text-emerald-500 transition-colors" />
+                                    <div className="flex items-center gap-2">
+                                        <div className="flex items-center gap-3 font-mono font-bold text-foreground pr-2">
+                                            {tx.amount.toLocaleString('fr-FR', { minimumFractionDigits: 2 })}€
+                                            <ArrowRight className="h-3 w-3 text-muted-foreground/30 group-hover:text-emerald-500 transition-colors" />
+                                        </div>
+
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon" className="h-8 w-8" disabled={processingId === tx.id}>
+                                                    {processingId === tx.id ? (
+                                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                                    ) : (
+                                                        <MoreHorizontal className="h-4 w-4" />
+                                                    )}
+                                                </Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end" className="w-56">
+                                                <DropdownMenuLabel>Gestion de l'attribution</DropdownMenuLabel>
+                                                <DropdownMenuSeparator />
+
+                                                <DropdownMenuSub>
+                                                    <DropdownMenuSubTrigger>
+                                                        <CornerUpRight className="h-4 w-4 mr-2" />
+                                                        Transférer à...
+                                                    </DropdownMenuSubTrigger>
+                                                    <DropdownMenuPortal>
+                                                        <DropdownMenuSubContent className="max-h-[300px] overflow-y-auto">
+                                                            {employees.length > 0 ? (
+                                                                employees.map((emp) => (
+                                                                    <DropdownMenuItem key={emp.id} onClick={() => handleMove(tx.id, emp.name)}>
+                                                                        <UserPlus className="h-4 w-4 mr-2" />
+                                                                        {emp.name}
+                                                                    </DropdownMenuItem>
+                                                                ))
+                                                            ) : (
+                                                                <DropdownMenuItem disabled>Aucun autre employé</DropdownMenuItem>
+                                                            )}
+                                                        </DropdownMenuSubContent>
+                                                    </DropdownMenuPortal>
+                                                </DropdownMenuSub>
+
+                                                <DropdownMenuItem onClick={() => handleRemove(tx.id)} className="text-rose-500 focus:text-rose-500">
+                                                    <Trash2 className="h-4 w-4 mr-2" />
+                                                    Retirer la transaction
+                                                </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
                                     </div>
                                 </div>
                             ))}

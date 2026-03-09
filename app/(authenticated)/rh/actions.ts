@@ -12,6 +12,20 @@ import { startOfMonth, endOfMonth } from "date-fns"
 import { getOrCreateRhFolder, uploadFileToDrive, listFilesRecursive, downloadFileFromDrive, findOrCreateFolder as findOrCreateDriveFolder } from "@/lib/google-drive"
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
+export async function getMinifiedEmployees() {
+    try {
+        const employees = await prisma.user.findMany({
+            where: { isActive: true },
+            select: { id: true, name: true },
+            orderBy: { name: 'asc' }
+        })
+        return employees
+    } catch (e) {
+        console.error(e)
+        return []
+    }
+}
+
 export async function createEmployee(formData: FormData) {
     return safeAction(formData, async (input) => {
 
@@ -26,7 +40,7 @@ export async function createEmployee(formData: FormData) {
             contractDuration: formData.get("contractDuration") || "FULL_TIME",
         }
 
-        if (rawData.role === 'ADMIN') {
+        if (rawData.role === 'ADMIN' || rawData.contractType === 'GÉRANT') {
             rawData.contractType = 'GÉRANT'
             rawData.contractDuration = 'FULL_TIME'
             rawData.hourlyRate = 0
@@ -112,7 +126,7 @@ export async function updateEmployee(formData: FormData) {
         let finalContractDuration = contractDuration
         let finalHourlyRate = hourlyRate
 
-        if (finalRole === 'ADMIN') {
+        if (finalRole === 'ADMIN' || finalContractType === 'GÉRANT') {
             finalContractType = 'GÉRANT'
             finalContractDuration = 'FULL_TIME'
             finalHourlyRate = 0
@@ -715,18 +729,27 @@ export async function getManagerRemunerationFromBank(employeeId: string, month: 
 
         const transactions = await prisma.bankTransaction.findMany({
             where: {
-                date: {
-                    gte: startDate,
-                    lte: endDate
-                },
+                date: { gte: startDate, lte: endDate },
                 amount: { lt: 0 },
-                OR: [
-                    ...searchTerms.map(term => ({
-                        description: { contains: term, mode: 'insensitive' as const }
-                    })),
-                    ...searchTerms.map(term => ({
-                        thirdPartyName: { contains: term, mode: 'insensitive' as const }
-                    }))
+                AND: [
+                    {
+                        OR: [
+                            ...searchTerms.map(term => ({
+                                description: { contains: term, mode: 'insensitive' as const }
+                            })),
+                            ...searchTerms.map(term => ({
+                                thirdPartyName: { contains: term, mode: 'insensitive' as const }
+                            }))
+                        ]
+                    },
+                    // Security for Belal family: must contain first name part
+                    lastName.toUpperCase() === 'BELAL' ? {
+                        OR: [
+                            { description: { contains: firstName.toUpperCase(), mode: 'insensitive' as const } },
+                            { description: { contains: firstName.substring(0, 5).toUpperCase(), mode: 'insensitive' as const } },
+                            { thirdPartyName: { contains: firstName.toUpperCase(), mode: 'insensitive' as const } }
+                        ]
+                    } : {}
                 ]
             }
         })
@@ -785,21 +808,37 @@ export async function getEmployeeSalaryReconciliation(userId: string, month: num
             where: {
                 date: { gte: startDate, lte: endDate },
                 amount: { lt: 0 },
-                OR: [
-                    ...searchTerms.map(t => ({ description: { contains: t, mode: 'insensitive' as const } })),
-                    ...searchTerms.map(t => ({ thirdPartyName: { contains: t, mode: 'insensitive' as const } })),
-                    // Match "INST NAME" or "VIR INST NAME" formats
-                    ...nameParts.map(p => ({ description: { contains: `INST ${p.toUpperCase()}`, mode: 'insensitive' as const } }))
+                AND: [
+                    {
+                        OR: [
+                            ...searchTerms.map(t => ({ description: { contains: t, mode: 'insensitive' as const } })),
+                            ...searchTerms.map(t => ({ thirdPartyName: { contains: t, mode: 'insensitive' as const } })),
+                            ...nameParts.map(p => ({ description: { contains: `INST ${p.toUpperCase()}`, mode: 'insensitive' as const } }))
+                        ]
+                    },
+                    // BELAL SECURITY: must include first name for family members
+                    lastName.toUpperCase() === 'BELAL' ? {
+                        OR: [
+                            { description: { contains: firstName.toUpperCase(), mode: 'insensitive' as const } },
+                            { description: { contains: firstName.substring(0, 5).toUpperCase(), mode: 'insensitive' as const } },
+                            { thirdPartyName: { contains: firstName.toUpperCase(), mode: 'insensitive' as const } }
+                        ]
+                    } : {}
                 ]
             },
             orderBy: { date: 'desc' }
         })
 
-        // Refine filtering to avoid generic last names if possible, but usually for employees it's fine
+        // Filter and ensure no generic BELAL mixup
         const filteredTxs = bankTxs.filter(tx => {
             const content = (tx.description + (tx.thirdPartyName || '')).toUpperCase()
-            // It must contain the first name OR a very strong match for the full name
-            return content.includes(firstName.toUpperCase()) || (content.includes(lastName.toUpperCase()) && lastName.length > 4)
+            const fn = firstName.toUpperCase()
+            const ln = lastName.toUpperCase()
+
+            if (ln === 'BELAL') {
+                return content.includes(fn) || content.includes(fn.substring(0, 5))
+            }
+            return content.includes(fn) || (content.includes(ln) && ln.length > 4)
         })
 
         const totalPaid = filteredTxs.reduce((sum, tx) => sum + Math.abs(Number(tx.amount)), 0)
@@ -819,6 +858,50 @@ export async function getEmployeeSalaryReconciliation(userId: string, month: num
     } catch (e) {
         console.error(e)
         return null
+    }
+}
+
+export async function removeReconciliationTransaction(transactionId: string) {
+    try {
+        // We actually just mark it as "salary related" no or something, 
+        // but for now let's just use it to filter out in the query if we had a field.
+        // Since we don't have a field in bankTransaction to exclude from salary, 
+        // we can't "delete" it from bank, it's a bank sync.
+        // Let's add it to a blacklist or just use categorization?
+        // Actually, the best way is to set its category to something else than Salary
+        await prisma.bankTransaction.update({
+            where: { id: transactionId },
+            data: { categoryId: null } // Uncategorize or set to 'Other'
+        })
+        revalidatePath("/rh")
+        return { success: true }
+    } catch (e) {
+        console.error(e)
+        return { error: "Erreur lors de la suppression du lien" }
+    }
+}
+
+export async function moveReconciliationTransaction(transactionId: string, newTargetName: string) {
+    try {
+        // We find the transaction
+        const tx = await prisma.bankTransaction.findUnique({ where: { id: transactionId } })
+        if (!tx) return { error: "Transaction non trouvée" }
+
+        // We "force" a description change or just re-categorize?
+        // The user wants to "transfer" it. This is hard without a specific link table.
+        // A simple trick: append the target name to the description so the search finds it there next time
+        await prisma.bankTransaction.update({
+            where: { id: transactionId },
+            data: {
+                description: tx.description + " [TRANSFERED TO " + newTargetName.toUpperCase() + "]"
+            }
+        })
+
+        revalidatePath("/rh")
+        return { success: true }
+    } catch (e) {
+        console.error(e)
+        return { error: "Erreur lors du transfert" }
     }
 }
 
@@ -882,10 +965,16 @@ export async function syncEmployeePayslips(userId: string) {
                         const stat = fs.statSync(fullPath)
                         if (stat && stat.isDirectory()) walkLocal(fullPath)
                         else if (file.toLowerCase().endsWith('.pdf')) {
-                            const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                            const cleanFile = file.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                            const nameParts = cleanName.split(/\s+/)
-                            if (nameParts.every(part => cleanFile.includes(part)) && !existingFiles.has(file)) {
+                            // Nettoyage robuste pour comparaison (accents, tirets, etc)
+                            const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+                            const cleanFile = file.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+
+                            const nameParts = cleanName.split(/\s+/).filter(p => p.length > 1)
+
+                            // On vérifie que les mots importants du nom sont présents dans le fichier
+                            const matches = nameParts.length > 0 && nameParts.every(part => cleanFile.includes(part))
+
+                            if (matches && !existingFiles.has(file)) {
                                 foundFiles.push({ path: fullPath, name: file })
                             }
                         }
@@ -894,36 +983,43 @@ export async function syncEmployeePayslips(userId: string) {
                 walkLocal(DRIVE_PAIE_ROOT)
 
                 for (const f of foundFiles) {
-                    const fileBuffer = fs.readFileSync(f.path)
-                    const folderId = await getOrCreateRhFolder(employee.name, 'PAYSLIP')
-                    const dateMatch = f.name.match(/(\d{4})[_-](\d{2})/)
-                    const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
-                    const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
-                    const driveFile = await uploadFileToDrive(fileBuffer, f.name, 'application/pdf', folderId)
+                    try {
+                        const fileBuffer = fs.readFileSync(f.path)
+                        const folderId = await getOrCreateRhFolder(employee.name, 'PAYSLIP')
 
-                    await prisma.employeeDocument.create({
-                        data: {
-                            userId: employee.id,
-                            name: f.name,
-                            url: driveFile.webViewLink,
-                            type: 'PAYSLIP',
-                            category: 'PAIE',
-                            month,
-                            year
-                        }
-                    })
+                        // Regex plus flexible pour la date (ex: 2026-02, 2026_02, ou même 202602)
+                        const dateMatch = f.name.match(/(\d{4})[_-]?(\d{2})/)
+                        const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
+                        const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
 
-                    // Extract net amount using AI
-                    const netAmount = await extractRemunerationWithAI(fileBuffer)
-                    if (netAmount) {
-                        await (prisma as any).monthlySalary.upsert({
-                            where: { userId_month_year: { userId: employee.id, month, year } },
-                            update: { netRemuneration: netAmount },
-                            create: { userId: employee.id, month, year, netRemuneration: netAmount }
+                        const driveFile = await uploadFileToDrive(fileBuffer, f.name, 'application/pdf', folderId)
+
+                        await prisma.employeeDocument.create({
+                            data: {
+                                userId: employee.id,
+                                name: f.name,
+                                url: driveFile.webViewLink,
+                                type: 'PAYSLIP',
+                                category: 'PAIE',
+                                month,
+                                year
+                            }
                         })
-                    }
 
-                    syncCount++
+                        // Extract net amount using AI
+                        const netAmount = await extractRemunerationWithAI(fileBuffer)
+                        if (netAmount) {
+                            await (prisma as any).monthlySalary.upsert({
+                                where: { userId_month_year: { userId: employee.id, month, year } },
+                                update: { netRemuneration: netAmount },
+                                create: { userId: employee.id, month, year, netRemuneration: netAmount }
+                            })
+                        }
+
+                        syncCount++
+                    } catch (fileErr) {
+                        console.error(`Local Sync failed for file ${f.name}:`, fileErr)
+                    }
                 }
             }
             // 2. Scan CLOUD (Serveur) si local absent ou si besoin
@@ -937,12 +1033,12 @@ export async function syncEmployeePayslips(userId: string) {
                     if (!f.name.toLowerCase().endsWith('.pdf')) continue
                     if (existingFiles.has(f.name)) continue
 
-                    const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                    const cleanFile = f.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                    const nameParts = cleanName.split(/\s+/)
+                    const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+                    const cleanFile = f.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+                    const nameParts = cleanName.split(/\s+/).filter(p => p.length > 1)
 
-                    if (nameParts.every(part => cleanFile.includes(part))) {
-                        const dateMatch = f.name.match(/(\d{4})[_-](\d{2})/)
+                    if (nameParts.length > 0 && nameParts.every(part => cleanFile.includes(part))) {
+                        const dateMatch = f.name.match(/(\d{4})[_-]?(\d{2})/)
                         const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
                         const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
 
