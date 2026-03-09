@@ -5,10 +5,11 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Plus, Trash2, Edit2, Check, X, Tags, RefreshCw } from 'lucide-react'
+import { Plus, Trash2, Edit2, Check, X, Tags, RefreshCw, Settings, ArrowUpRight, ArrowDownRight } from 'lucide-react'
 import { createFinanceCategory, updateFinanceCategory, deleteFinanceCategory } from '../actions'
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
 
 type Category = {
     id: string
@@ -121,131 +122,185 @@ export function CategoryListClient({
         return acc
     }, {} as Record<string, typeof categories>)
 
+    // Map group labels and icons
+    const GROUP_CONFIG: Record<string, { label: string, icon: any, color: string }> = {
+        FIXED_COST: { label: 'Charges Fixes', icon: Settings, color: 'text-indigo-500' },
+        VARIABLE_COST: { label: 'Charges Variables', icon: RefreshCw, color: 'text-emerald-500' },
+        REVENUE: { label: 'Recettes (CA)', icon: ArrowUpRight, color: 'text-blue-500' },
+        TAX: { label: 'Taxes & Impôts', icon: Tags, color: 'text-amber-500' },
+        SALARY: { label: 'Masse Salariale', icon: Plus, color: 'text-rose-500' },
+        TRANSIT: { label: 'Tips & Transit', icon: ArrowDownRight, color: 'text-cyan-500' },
+        FINANCIAL: { label: 'Frais Bancaires', icon: Settings, color: 'text-slate-500' },
+        INVESTMENT: { label: 'Investissements', icon: Plus, color: 'text-purple-500' },
+    }
+
     return (
-        <div className="space-y-8">
-            <Card className="relative overflow-hidden border-0 shadow-lg bg-gradient-to-br from-violet-500 via-violet-600 to-fuchsia-700 dark:from-violet-600 dark:via-violet-800 dark:to-fuchsia-900">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="space-y-12 animate-in fade-in duration-700">
+            {/* Header info - inspired by "Manage and organize your financial categories" */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
+                <div className="space-y-1">
+                    <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Plan Comptable</h2>
+                    <p className="text-slate-500 dark:text-slate-400 font-medium">Gérez et organisez vos catégories financières et sous-comptes efficacement.</p>
+                </div>
+                <div className="flex items-center gap-3">
+                    <Button variant="outline" className="rounded-2xl font-bold h-11 px-6 shadow-sm border-slate-200">
+                        Vue Détaillée
+                    </Button>
+                    <Button variant="outline" className="rounded-2xl font-bold h-11 px-6 shadow-sm border-slate-200">
+                        Exporter CSV
+                    </Button>
+                </div>
+            </div>
 
-                <CardContent className="p-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="space-y-3 text-center md:text-left text-white">
-                        <h2 className="text-2xl font-bold flex items-center justify-center md:justify-start gap-3 drop-shadow-sm">
-                            <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm shadow-inner">
-                                <Tags className="w-6 h-6 text-white" />
+            {/* Sub-navigation tabs style - inspired by the screenshot's Overview, Income... */}
+            <div className="flex items-center gap-8 border-b border-slate-200 dark:border-slate-800 pb-1">
+                {['Vue d\'ensemble', 'Revenus', 'Dépenses', 'Actifs', 'Passifs', 'Archives'].map((tab, i) => (
+                    <button key={tab} className={cn(
+                        "pb-4 text-sm font-bold transition-all border-b-2 px-1",
+                        i === 0 ? "border-emerald-500 text-emerald-600" : "border-transparent text-slate-400 hover:text-slate-600"
+                    )}>
+                        {tab}
+                    </button>
+                ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {Object.entries(grouped).map(([type, cats]) => {
+                    const config = GROUP_CONFIG[type] || { label: type, icon: Tags, color: 'text-slate-500' }
+                    const Icon = config.icon
+
+                    return (
+                        <Card key={type} className="overflow-hidden border-none shadow-sm bg-white dark:bg-slate-900 rounded-[32px] flex flex-col h-full hover:shadow-xl transition-all duration-500">
+                            <CardContent className="p-0">
+                                <div className="p-6 pb-2 flex items-center justify-between">
+                                    <h3 className="font-black text-lg tracking-tight flex items-center gap-3">
+                                        <div className={cn("p-2 rounded-xl bg-slate-50 dark:bg-slate-800 shadow-inner", config.color)}>
+                                            <Icon className="w-5 h-5" />
+                                        </div>
+                                        {config.label}
+                                    </h3>
+                                    <Badge className="bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 border-none font-bold text-[10px] uppercase tracking-widest px-2.5 py-1">
+                                        {cats.length} Art.
+                                    </Badge>
+                                </div>
+
+                                <div className="px-6 py-2">
+                                    <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-50 dark:border-slate-800/50 pb-2 mb-2">
+                                        <span>Nom de catégorie</span>
+                                        <span>Transactions</span>
+                                    </div>
+
+                                    <div className="space-y-1">
+                                        {cats.map(cat => (
+                                            <div key={cat.id} className="group flex items-center justify-between py-2 transition-all">
+                                                {editingId === cat.id ? (
+                                                    <div className="flex items-center gap-2 w-full animate-in fade-in duration-300">
+                                                        <Input
+                                                            value={editName}
+                                                            onChange={e => setEditName(e.target.value)}
+                                                            className="h-9 border-slate-200 dark:border-slate-800 font-bold text-sm bg-slate-50 dark:bg-slate-950 rounded-xl"
+                                                            autoFocus
+                                                        />
+                                                        <div className="flex gap-1 shrink-0">
+                                                            <Button size="icon" variant="ghost" className="h-9 w-9 text-emerald-500 hover:bg-emerald-50 rounded-xl" onClick={handleUpdate}>
+                                                                <Check className="h-4 w-4" />
+                                                            </Button>
+                                                            <Button size="icon" variant="ghost" className="h-9 w-9 text-slate-400" onClick={() => setEditingId(null)}>
+                                                                <X className="h-4 w-4" />
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <>
+                                                        <div className="flex-1 min-w-0 pr-4">
+                                                            <div className="flex items-center gap-2">
+                                                                <p className="font-bold text-slate-800 dark:text-slate-200 text-sm truncate">
+                                                                    {cat.name}
+                                                                </p>
+                                                                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                                                                    <button onClick={() => startEdit(cat)} className="text-slate-400 hover:text-emerald-500">
+                                                                        <Edit2 className="h-3 w-3" />
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={() => handleDelete(cat.id, cat.transactionCount)}
+                                                                        disabled={cat.transactionCount > 0}
+                                                                        className="text-slate-400 hover:text-rose-500 disabled:opacity-0"
+                                                                    >
+                                                                        <Trash2 className="h-3 w-3" />
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                                                                Account #{cat.id.slice(0, 4)}
+                                                            </p>
+                                                        </div>
+                                                        <span className="font-bold text-slate-600 dark:text-slate-400 text-sm">
+                                                            {cat.transactionCount || 0}
+                                                        </span>
+                                                    </>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    )
+                })}
+
+                {/* Add New Category Card */}
+                {isCreating ? (
+                    <Card className="overflow-hidden border-2 border-emerald-500/20 shadow-xl bg-white dark:bg-slate-900 rounded-[32px] p-6 animate-in zoom-in-95 duration-300">
+                        <div className="space-y-4">
+                            <h3 className="font-black text-lg tracking-tight flex items-center gap-3">
+                                <div className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-900/40 text-emerald-500 shadow-inner">
+                                    <Plus className="w-5 h-5" />
+                                </div>
+                                Nouvelle Catégorie
+                            </h3>
+                            <div className="space-y-3">
+                                <Input
+                                    placeholder="Nom (Ex: Matières Premières)"
+                                    value={newName}
+                                    onChange={e => setNewName(e.target.value)}
+                                    className="h-12 border-slate-200 dark:border-slate-800 rounded-2xl font-bold bg-slate-50 dark:bg-slate-950"
+                                    autoFocus
+                                />
+                                <Select value={newType} onValueChange={setNewType}>
+                                    <SelectTrigger className="h-12 border-slate-200 dark:border-slate-800 rounded-2xl font-bold bg-slate-50 dark:bg-slate-950">
+                                        <SelectValue placeholder="Type de flux" />
+                                    </SelectTrigger>
+                                    <SelectContent className="rounded-2xl">
+                                        {categoryTypes.map(t => (
+                                            <SelectItem key={t} value={t} className="rounded-xl font-bold">
+                                                {TYPE_LABELS[t] || t}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
-                            Plan Comptable
-                        </h2>
-                        <p className="text-violet-100 max-w-xl text-lg opacity-90 font-medium">
-                            Structurez l'architecture financière du restaurant. Vos catégories alimenteront de façon dynamique les rapports et les graphiques de résultat.
-                        </p>
-                    </div>
-
-                    {!isCreating ? (
-                        <Button
-                            onClick={() => setIsCreating(true)}
-                            size="lg"
-                            className="rounded-xl text-base font-bold bg-white text-violet-600 hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all shadow-xl w-full md:w-auto px-8 py-6"
-                        >
-                            <Plus className="mr-3 h-5 w-5" /> Nouvelle Catégorie
-                        </Button>
-                    ) : (
-                        <div className="flex flex-col sm:flex-row items-center gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-md shadow-xl w-full md:w-auto border border-white/20">
-                            <Input
-                                placeholder="Nom de la catégorie"
-                                value={newName}
-                                onChange={e => setNewName(e.target.value)}
-                                className="h-12 border-0 bg-white dark:bg-slate-900 focus-visible:ring-2 focus-visible:ring-violet-400 text-slate-800 dark:text-slate-200 w-full sm:w-56 font-bold rounded-xl placeholder:text-slate-400"
-                                autoFocus
-                            />
-                            <Select value={newType} onValueChange={setNewType}>
-                                <SelectTrigger className="h-12 border-0 bg-white dark:bg-slate-900 ring-0 focus:ring-2 focus:ring-violet-400 w-full sm:w-[200px] rounded-xl font-semibold text-slate-700 dark:text-slate-200">
-                                    <SelectValue placeholder="Type de flux" />
-                                </SelectTrigger>
-                                <SelectContent className="max-h-[350px] rounded-xl border-slate-200 dark:border-slate-800 shadow-xl">
-                                    {categoryTypes.map(t => (
-                                        <SelectItem key={t} value={t} className="rounded-lg mx-1 my-0.5 focus:bg-violet-50 dark:focus:bg-violet-900/40 font-medium cursor-pointer">
-                                            {TYPE_LABELS[t] || t}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                            <div className="flex items-center gap-2 mt-2 sm:mt-0 px-1">
-                                <Button size="icon" onClick={handleCreate} disabled={isLoading} className="h-12 w-12 rounded-xl bg-violet-500 hover:bg-violet-400 text-white shadow-md border border-violet-400 cursor-pointer transition-transform hover:scale-105 active:scale-95">
-                                    {isLoading ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Check className="w-6 h-6" />}
+                            <div className="flex gap-2 pt-2">
+                                <Button className="flex-1 h-12 rounded-2xl bg-emerald-500 hover:bg-emerald-400 font-bold" onClick={handleCreate}>
+                                    Créer la catégorie
                                 </Button>
-                                <Button size="icon" onClick={() => setIsCreating(false)} className="h-12 w-12 rounded-xl bg-white/20 hover:bg-white/30 text-white cursor-pointer transition-all border border-white/10 hover:border-white/30">
+                                <Button variant="ghost" size="icon" className="h-12 w-12 rounded-2xl" onClick={() => setIsCreating(false)}>
                                     <X className="w-6 h-6" />
                                 </Button>
                             </div>
                         </div>
-                    )}
-                </CardContent>
-            </Card>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8">
-                {Object.entries(grouped).map(([type, cats]) => (
-                    <div key={type} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-sm flex flex-col h-full hover:shadow-md hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300">
-                        <div className="bg-slate-50 dark:bg-slate-800/50 p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                            <h3 className="font-extrabold text-slate-800 dark:text-slate-200 uppercase tracking-widest text-xs flex items-center gap-2">
-                                <div className="h-2 w-2 rounded-full bg-violet-500 shadow-sm" />
-                                {TYPE_LABELS[type] || type}
-                            </h3>
-                            <Badge className="bg-violet-100/80 text-violet-700 hover:bg-violet-200 dark:bg-violet-900/40 dark:text-violet-300 font-bold border-0 px-2 py-0.5 shadow-inner">
-                                {cats.length}
-                            </Badge>
+                    </Card>
+                ) : (
+                    <div
+                        onClick={() => setIsCreating(true)}
+                        className="group flex flex-col items-center justify-center p-8 bg-white/40 dark:bg-slate-900/40 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[40px] cursor-pointer hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all duration-500 min-h-[300px]"
+                    >
+                        <div className="h-16 w-16 bg-white dark:bg-slate-800 rounded-[20px] shadow-sm flex items-center justify-center text-slate-300 group-hover:text-emerald-500 group-hover:scale-110 transition-all mb-6">
+                            <Plus className="w-8 h-8" />
                         </div>
-
-                        <div className="p-3 space-y-1.5 flex-1">
-                            {cats.map(cat => (
-                                <div key={cat.id} className="group relative p-3 flex items-center justify-between bg-white dark:bg-slate-900 rounded-2xl hover:bg-violet-50/50 dark:hover:bg-violet-900/10 border border-transparent hover:border-violet-200 dark:hover:border-violet-800 transition-all">
-                                    {editingId === cat.id ? (
-                                        <div className="flex items-center gap-2 w-full animate-in fade-in duration-300">
-                                            <Input
-                                                value={editName}
-                                                onChange={e => setEditName(e.target.value)}
-                                                className="h-10 border-slate-200 dark:border-slate-700 focus-visible:ring-violet-400 font-semibold"
-                                                autoFocus
-                                            />
-                                            <Button size="icon" variant="ghost" className="h-10 w-10 text-emerald-500 hover:bg-emerald-50 hover:text-emerald-600 rounded-xl" onClick={handleUpdate} disabled={isLoading}>
-                                                <Check className="h-5 w-5" />
-                                            </Button>
-                                            <Button size="icon" variant="ghost" className="h-10 w-10 text-slate-400 hover:bg-slate-100 hover:text-slate-600 rounded-xl" onClick={() => setEditingId(null)}>
-                                                <X className="h-5 w-5" />
-                                            </Button>
-                                        </div>
-                                    ) : (
-                                        <>
-                                            <div className="flex-1 min-w-0 pr-4 flex flex-col gap-0.5">
-                                                <p className="font-bold text-slate-900 dark:text-slate-100 text-[15px] truncate">
-                                                    {cat.name}
-                                                </p>
-                                                {cat.transactionCount > 0 && (
-                                                    <p className="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                                        <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600" />
-                                                        {cat.transactionCount} transaction{cat.transactionCount > 1 ? 's' : ''}
-                                                    </p>
-                                                )}
-                                            </div>
-                                            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
-                                                <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-400 hover:text-violet-600 hover:bg-violet-100 dark:hover:bg-violet-900/50 rounded-lg transition-colors" onClick={() => startEdit(cat)}>
-                                                    <Edit2 className="h-4 w-4" />
-                                                </Button>
-                                                <Button
-                                                    size="icon"
-                                                    variant="ghost"
-                                                    className="h-8 w-8 text-slate-400 hover:text-rose-600 hover:bg-rose-100 dark:hover:bg-rose-900/50 disabled:opacity-0 disabled:hover:bg-transparent rounded-lg transition-colors"
-                                                    disabled={cat.transactionCount > 0 || cat.fixedCostCount > 0 || isLoading}
-                                                    onClick={() => handleDelete(cat.id, cat.transactionCount + cat.fixedCostCount)}
-                                                >
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
-                                            </div>
-                                        </>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+                        <h3 className="font-black text-xl text-slate-800 dark:text-slate-200">Ajouter Catégorie</h3>
+                        <p className="text-slate-400 font-bold text-xs uppercase tracking-widest mt-2">Mieux organiser vos comptes</p>
                     </div>
-                ))}
+                )}
             </div>
         </div>
     )

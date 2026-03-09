@@ -5,11 +5,12 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Plus, Trash2, Check, X, BookKey } from 'lucide-react'
+import { Plus, Trash2, Check, X, BookKey, Tags } from 'lucide-react'
 import { createCategorizationRule, deleteCategorizationRule, findRuleMatchingTransactions, applyCategoryToMultipleTx } from '../actions'
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { BatchAssignModal, BatchTx } from '../components/BatchAssignModal'
+import { cn } from '@/lib/utils'
 
 type Rule = {
     id: string
@@ -125,59 +126,105 @@ export function RuleListClient({
     }, {} as Record<string, typeof categories>)
 
     return (
-        <div className="space-y-8">
-            <Card className="relative overflow-hidden border-0 shadow-lg bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 dark:from-emerald-600 dark:via-emerald-800 dark:to-teal-900">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-
-                <CardContent className="p-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="space-y-3 text-center md:text-left text-white">
-                        <h2 className="text-2xl font-bold flex items-center justify-center md:justify-start gap-3 drop-shadow-sm">
-                            <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm shadow-inner">
-                                <BookKey className="w-6 h-6 text-white" />
-                            </div>
-                            Règles de Catégorisation
-                        </h2>
-                        <p className="text-emerald-100 max-w-xl text-lg opacity-90 font-medium">
-                            Créez des règles basées sur des mots-clés pour classer automatiquement vos transactions récurrentes sans aucun effort.
-                        </p>
+        <div className="space-y-12 animate-in fade-in duration-700">
+            {/* Header section inspired by screenshot */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
+                <div className="space-y-2">
+                    <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Gérer les Auto-Règles</h2>
+                    <p className="text-slate-500 dark:text-slate-400 font-medium">Configurez des mots-clés pour classer automatiquement vos flux entrants.</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-3">
+                    <div className="relative group">
+                        <Input
+                            placeholder="Rechercher une règle..."
+                            className="h-11 pl-10 w-full sm:w-64 rounded-2xl bg-white border-slate-200 group-hover:border-emerald-300 transition-all font-medium"
+                        />
+                        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+                        </div>
                     </div>
+                    <Button
+                        onClick={() => setIsCreating(true)}
+                        className="rounded-2xl font-black h-11 px-6 bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/20"
+                    >
+                        <Plus className="mr-2 h-5 w-5 stroke-[3]" /> Nouvelle Règle
+                    </Button>
+                </div>
+            </div>
 
-                    {!isCreating ? (
-                        <Button
-                            onClick={() => setIsCreating(true)}
-                            size="lg"
-                            className="rounded-xl text-base font-bold bg-white text-emerald-600 hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all shadow-xl w-full md:w-auto px-8 py-6"
-                        >
-                            <Plus className="mr-3 h-5 w-5" /> Nouvelle Règle
-                        </Button>
-                    ) : (
-                        <div className="flex flex-col sm:flex-row items-center gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-md shadow-xl w-full md:w-auto border border-white/20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {rules.map(rule => (
+                    <Card key={rule.id} className="group relative overflow-hidden bg-white dark:bg-slate-900 border-none shadow-sm rounded-[32px] hover:shadow-2xl transition-all duration-500 flex flex-col pt-0">
+                        <CardContent className="p-8 pb-6 flex flex-col h-full">
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="h-14 w-14 bg-emerald-50 dark:bg-emerald-900/40 rounded-2xl flex items-center justify-center text-emerald-500 shadow-inner group-hover:scale-110 transition-transform duration-500">
+                                    <BookKey className="w-7 h-7" />
+                                </div>
+                                <Badge className="bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 border-none font-black text-[9px] uppercase tracking-widest px-2.5 py-1">
+                                    INCLUS
+                                </Badge>
+                            </div>
+
+                            <div className="space-y-4 mb-8">
+                                <div className="space-y-1">
+                                    <h4 className="text-xl font-black text-slate-900 dark:text-white leading-tight truncate px-0.5">
+                                        {rule.keyword}
+                                    </h4>
+                                    <p className="text-[11px] font-black uppercase tracking-widest text-slate-400 flex items-center gap-1.5 min-h-[1.5rem]">
+                                        <Tags className="w-3 h-3 opacity-40 shrink-0" />
+                                        <span className="truncate">{rule.categoryName}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="mt-auto pt-6 border-t border-slate-50 dark:border-slate-800/60 flex items-center justify-between">
+                                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                                    {rule.matchType === 'CONTAINS' ? 'Mot clé' : 'Exact'}
+                                </p>
+                                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                                    <Button size="icon" variant="ghost" className="h-9 w-9 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-xl" onClick={() => handleDelete(rule.id)}>
+                                        <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                    <Button size="icon" variant="ghost" className="h-9 w-9 text-slate-400">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path d="m15 5 4 4" /></svg>
+                                    </Button>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                ))}
+
+                {/* Create card - inspired by empty slot in screenshot */}
+                {isCreating ? (
+                    <Card className="overflow-hidden border-2 border-emerald-500-20 shadow-2xl bg-white dark:bg-slate-900 rounded-[32px] p-8 animate-in zoom-in-95 duration-300 flex flex-col gap-5">
+                        <h3 className="font-black text-lg tracking-tight">Nouvelle Règle</h3>
+                        <div className="space-y-3">
                             <Input
                                 placeholder="Mot-clé (Ex: URSSAF)"
                                 value={newKeyword}
                                 onChange={e => setNewKeyword(e.target.value)}
-                                className="h-12 border-0 bg-white dark:bg-slate-900 focus-visible:ring-2 focus-visible:ring-emerald-400 text-slate-800 dark:text-slate-200 w-full sm:w-48 uppercase rounded-xl font-bold placeholder:text-slate-400"
+                                className="h-12 border-slate-200 rounded-2xl font-bold bg-slate-50 text-slate-900 px-4"
                                 autoFocus
                             />
                             <Select value={newMatch} onValueChange={setNewMatch}>
-                                <SelectTrigger className="h-12 border-0 bg-white dark:bg-slate-900 ring-0 focus:ring-2 focus:ring-emerald-400 w-full sm:w-[140px] rounded-xl font-semibold text-slate-700 dark:text-slate-200">
+                                <SelectTrigger className="h-12 border-slate-200 rounded-2xl font-bold bg-slate-50">
                                     <SelectValue placeholder="Match" />
                                 </SelectTrigger>
-                                <SelectContent className="rounded-xl border-slate-200 dark:border-slate-800 shadow-xl">
-                                    <SelectItem value="CONTAINS" className="rounded-lg mx-1 focus:bg-emerald-50 dark:focus:bg-emerald-900/40">Contient</SelectItem>
-                                    <SelectItem value="EXACT" className="rounded-lg mx-1 focus:bg-emerald-50 dark:focus:bg-emerald-900/40">Mot Exact</SelectItem>
+                                <SelectContent className="rounded-2xl">
+                                    <SelectItem value="CONTAINS" className="rounded-xl font-bold">Contient</SelectItem>
+                                    <SelectItem value="EXACT" className="rounded-xl font-bold">Mot Exact</SelectItem>
                                 </SelectContent>
                             </Select>
                             <Select value={newCatId} onValueChange={setNewCatId}>
-                                <SelectTrigger className="h-12 border-0 bg-white dark:bg-slate-900 ring-0 focus:ring-2 focus:ring-emerald-400 w-full sm:w-[220px] rounded-xl font-medium text-slate-700 dark:text-slate-200">
-                                    <SelectValue placeholder="Catégorie d'affectation..." />
+                                <SelectTrigger className="h-12 border-slate-200 rounded-2xl font-medium bg-slate-50">
+                                    <SelectValue placeholder="Catégorie..." />
                                 </SelectTrigger>
-                                <SelectContent className="max-h-[350px] rounded-xl border-slate-200 dark:border-slate-800 shadow-xl">
+                                <SelectContent className="max-h-[350px] rounded-2xl">
                                     {Object.entries(categoriesByType).map(([type, cats]) => (
                                         <div key={type} className="mb-2 last:mb-0">
-                                            <div className="px-3 py-2 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider bg-slate-50 dark:bg-slate-900 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800">{type}</div>
+                                            <div className="px-4 py-2 text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-50 mb-1">{type}</div>
                                             {cats.map(cat => (
-                                                <SelectItem key={cat.id} value={cat.id} className="rounded-lg mx-1 my-0.5 focus:bg-emerald-50 dark:focus:bg-emerald-900/40 text-sm font-medium cursor-pointer">
+                                                <SelectItem key={cat.id} value={cat.id} className="rounded-xl font-bold">
                                                     {cat.name}
                                                 </SelectItem>
                                             ))}
@@ -185,67 +232,26 @@ export function RuleListClient({
                                     ))}
                                 </SelectContent>
                             </Select>
-                            <div className="flex items-center gap-2 mt-2 sm:mt-0 px-1">
-                                <Button size="icon" onClick={handleCreate} disabled={isLoading} className="h-12 w-12 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white shadow-md border border-emerald-400 cursor-pointer transition-transform hover:scale-105 active:scale-95">
-                                    <Check className="w-6 h-6" />
-                                </Button>
-                                <Button size="icon" onClick={() => setIsCreating(false)} className="h-12 w-12 rounded-xl bg-white/20 hover:bg-white/30 text-white cursor-pointer transition-all border border-white/10 hover:border-white/30">
-                                    <X className="w-6 h-6" />
-                                </Button>
-                            </div>
                         </div>
-                    )}
-                </CardContent>
-            </Card>
-
-            <div className="mt-8">
-                {rules.length === 0 ? (
-                    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-16 text-center flex flex-col items-center gap-4 shadow-sm animate-in fade-in zoom-in-95 duration-500">
-                        <div className="h-24 w-24 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-2 shadow-inner">
-                            <BookKey className="w-12 h-12 text-slate-400" />
+                        <div className="flex gap-2">
+                            <Button className="flex-1 h-12 rounded-2xl bg-emerald-500 hover:bg-emerald-400 font-bold" onClick={handleCreate}>
+                                Ajouter
+                            </Button>
+                            <Button variant="ghost" size="icon" className="h-12 w-12 rounded-2xl" onClick={() => setIsCreating(false)}>
+                                <X className="w-6 h-6" />
+                            </Button>
                         </div>
-                        <h4 className="text-2xl font-bold text-slate-800 dark:text-slate-200">Aucune règle définie</h4>
-                        <p className="text-slate-500 dark:text-slate-400 max-w-sm text-lg">
-                            Gagnez du temps en créant des règles pour catégoriser automatiquement vos dépenses récurrentes.
-                        </p>
-                    </div>
+                    </Card>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {rules.map(rule => (
-                            <div key={rule.id} className="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[20px] p-6 shadow-sm hover:shadow-md hover:border-emerald-300 dark:hover:border-emerald-700 transition-all duration-300">
-                                <Button
-                                    size="icon"
-                                    variant="ghost"
-                                    className="absolute top-4 right-4 text-rose-500 opacity-0 group-hover:opacity-100 transition-all shadow-sm bg-rose-50 dark:bg-rose-900/30 hover:bg-rose-100 hover:text-rose-600 rounded-full h-9 w-9"
-                                    onClick={() => handleDelete(rule.id)}
-                                    disabled={isLoading}
-                                >
-                                    <Trash2 className="h-4 w-4" />
-                                </Button>
-                                <div className="space-y-5">
-                                    <div className="flex items-center gap-4 pr-8">
-                                        <div className="h-14 w-14 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/10 border border-emerald-100 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center shrink-0 shadow-inner">
-                                            <BookKey className="h-6 w-6" />
-                                        </div>
-                                        <div>
-                                            <h4 className="font-extrabold text-slate-900 dark:text-slate-100 text-lg tracking-wide uppercase line-clamp-1" title={rule.keyword}>
-                                                "{rule.keyword}"
-                                            </h4>
-                                            <Badge variant="outline" className="mt-1.5 text-[10px] font-bold tracking-wider text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
-                                                {rule.matchType === 'CONTAINS' ? 'INCLUS' : 'MOT EXACT'}
-                                            </Badge>
-                                        </div>
-                                    </div>
-
-                                    <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border border-slate-100 dark:border-slate-800">
-                                        <span className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">Affectation Auto</span>
-                                        <span className="text-sm font-bold text-emerald-700 dark:text-emerald-400 px-3 py-1.5 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg text-center sm:text-left line-clamp-1 border border-emerald-200/50 dark:border-emerald-800/50">
-                                            {rule.categoryName}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                    <div
+                        onClick={() => setIsCreating(true)}
+                        className="group flex flex-col items-center justify-center p-8 bg-white/40 dark:bg-slate-900/40 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[40px] cursor-pointer hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all duration-500 min-h-[300px]"
+                    >
+                        <div className="h-16 w-16 bg-white dark:bg-slate-800 rounded-[24px] shadow-sm flex items-center justify-center text-slate-300 group-hover:text-emerald-500 group-hover:scale-110 transition-all mb-6">
+                            <Plus className="w-8 h-8" />
+                        </div>
+                        <h3 className="font-black text-xl text-slate-800 dark:text-slate-200">Ajouter Règle</h3>
+                        <p className="text-slate-400 font-bold text-xs uppercase tracking-widest mt-2">Gagner du temps</p>
                     </div>
                 )}
             </div>

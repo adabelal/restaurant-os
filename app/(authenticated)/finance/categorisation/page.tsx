@@ -97,49 +97,48 @@ export default async function FinanceCategorisationHubPage() {
     ]
 
     return (
-        <div className="relative min-h-[calc(100vh-4rem)] bg-slate-50/50 dark:bg-slate-950/50 font-sans pb-12">
-            {/* Background elements */}
-            <div className="absolute top-0 left-0 right-0 h-[300px] bg-gradient-to-b from-indigo-100/60 via-purple-50/30 to-transparent dark:from-indigo-950/40 dark:via-purple-900/10 pointer-events-none" />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-300/20 dark:bg-indigo-800/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="relative min-h-[calc(100vh-4rem)] bg-slate-50/50 dark:bg-slate-950 font-sans pb-12 overflow-hidden">
+            {/* Background decorative elements */}
+            <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-indigo-50 dark:from-indigo-950/20 to-transparent pointer-events-none" />
+            <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-emerald-100/40 dark:bg-emerald-900/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-indigo-100/40 dark:bg-indigo-900/10 rounded-full blur-[100px] pointer-events-none" />
 
-            <div className="flex flex-col gap-8 max-w-7xl mx-auto p-4 md:p-8 relative z-10 w-full">
-                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-                    <div className="space-y-3">
-                        <div className="inline-flex items-center justify-center p-3 bg-white dark:bg-indigo-900/50 shadow-sm ring-1 ring-slate-200 dark:ring-indigo-900/20 rounded-2xl mb-2 text-indigo-600 dark:text-indigo-400">
-                            <Settings className="h-6 w-6" />
+            <div className="flex flex-col gap-10 max-w-7xl mx-auto p-6 md:p-10 relative z-10 w-full animate-in fade-in slide-in-from-top-4 duration-700">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 group">
+                    <div className="space-y-4">
+                        <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800 rounded-2xl mb-2 text-indigo-600 dark:text-indigo-400 font-black text-[10px] uppercase tracking-widest transition-transform group-hover:scale-105">
+                            <Settings className="h-4 w-4" />
+                            <span>Configuration Système</span>
                         </div>
-                        <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
-                            Centre de Catégorisation
+                        <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-slate-900 dark:text-white leading-none">
+                            Centre de <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-indigo-600">Catégorisation</span>
                         </h1>
-                        <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
-                            Gérez finement vos catégories récurrentes, affinez vos règles d'affection et lancez l'auto-catégorisation intelligente de vos flux.
+                        <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl font-medium leading-relaxed">
+                            Automatisez l'affectation de vos flux financiers avec l'IA et gérez votre plan comptable en temps réel.
                         </p>
                     </div>
-                    <Button variant="outline" asChild className="group rounded-xl h-11 px-6 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/50 hover:border-indigo-200 hover:bg-white dark:border-slate-800 dark:hover:border-indigo-900 dark:hover:bg-slate-950 transition-all shadow-sm w-full lg:w-auto">
+                    <Button variant="outline" asChild className="group rounded-[20px] h-14 px-8 bg-white border-2 border-slate-100 hover:border-indigo-500/20 hover:bg-slate-50 transition-all shadow-sm w-full lg:w-auto font-bold text-slate-600">
                         <Link href="/finance/transactions">
-                            <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                            Retour aux finances
+                            <ArrowLeft className="mr-3 h-5 w-5 transition-transform group-hover:-translate-x-1" />
+                            Retour aux Transactions
                         </Link>
                     </Button>
                 </div>
 
-                <Tabs defaultValue="auto" className="w-full mt-4">
-                    <div className="flex justify-start mb-8 overflow-x-auto pb-2 scrollbar-hide">
-                        <TabsList className="inline-flex h-auto p-1.5 bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl backdrop-blur-xl shadow-sm">
-                            <TabsTrigger value="auto" className="rounded-xl px-5 sm:px-8 py-3 text-sm font-semibold transition-all data-[state=active]:bg-white data-[state=active]:text-indigo-600 dark:data-[state=active]:bg-slate-950 dark:data-[state=active]:text-indigo-400 data-[state=active]:shadow-md flex items-center gap-2.5">
-                                <Sparkles className="h-4 w-4" />
-                                <span className="hidden sm:inline">Analyse de l'IA</span>
-                                <span className="sm:hidden">IA</span>
+                <Tabs defaultValue="auto" className="w-full">
+                    <div className="flex justify-start mb-12">
+                        <TabsList className="h-16 p-2 bg-slate-100/50 dark:bg-slate-900/50 border border-slate-200/50 dark:border-slate-800/50 rounded-[28px] backdrop-blur-3xl shadow-lg ring-1 ring-white/20">
+                            <TabsTrigger value="auto" className="rounded-[22px] px-8 sm:px-12 py-3 text-sm font-black transition-all data-[state=active]:bg-white data-[state=active]:text-emerald-500 dark:data-[state=active]:bg-slate-950 dark:data-[state=active]:text-emerald-400 data-[state=active]:shadow-xl flex items-center gap-3">
+                                <Sparkles className="h-5 w-5" />
+                                <span>Analyse IA</span>
                             </TabsTrigger>
-                            <TabsTrigger value="rules" className="rounded-xl px-5 sm:px-8 py-3 text-sm font-semibold transition-all data-[state=active]:bg-white data-[state=active]:text-emerald-600 dark:data-[state=active]:bg-slate-950 dark:data-[state=active]:text-emerald-400 data-[state=active]:shadow-md flex items-center gap-2.5">
-                                <BookKey className="h-4 w-4" />
-                                <span className="hidden sm:inline">Mots-clés & Règles</span>
-                                <span className="sm:hidden">Règles</span>
+                            <TabsTrigger value="rules" className="rounded-[22px] px-8 sm:px-12 py-3 text-sm font-black transition-all data-[state=active]:bg-white data-[state=active]:text-indigo-600 dark:data-[state=active]:bg-slate-950 dark:data-[state=active]:text-indigo-400 data-[state=active]:shadow-xl flex items-center gap-3">
+                                <BookKey className="h-5 w-5" />
+                                <span>Auto-Règles</span>
                             </TabsTrigger>
-                            <TabsTrigger value="categories" className="rounded-xl px-5 sm:px-8 py-3 text-sm font-semibold transition-all data-[state=active]:bg-white data-[state=active]:text-violet-600 dark:data-[state=active]:bg-slate-950 dark:data-[state=active]:text-violet-400 data-[state=active]:shadow-md flex items-center gap-2.5">
-                                <Tags className="h-4 w-4" />
-                                <span className="hidden sm:inline">Plan Comptable</span>
-                                <span className="sm:hidden">Catégories</span>
+                            <TabsTrigger value="categories" className="rounded-[22px] px-8 sm:px-12 py-3 text-sm font-black transition-all data-[state=active]:bg-white data-[state=active]:text-violet-600 dark:data-[state=active]:bg-slate-950 dark:data-[state=active]:text-violet-400 data-[state=active]:shadow-xl flex items-center gap-3">
+                                <Tags className="h-5 w-5" />
+                                <span>Plan Comptable</span>
                             </TabsTrigger>
                         </TabsList>
                     </div>

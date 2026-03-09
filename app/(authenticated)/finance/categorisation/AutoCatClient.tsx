@@ -125,115 +125,108 @@ export function AutoCatClient({
     }, {} as Record<string, typeof categories>)
 
     return (
-        <div className="space-y-8">
-            <Card className="relative overflow-hidden border-0 shadow-lg bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-700 dark:from-indigo-600 dark:via-indigo-800 dark:to-purple-900">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-500/20 rounded-full blur-2xl translate-y-1/3 -translate-x-1/3" />
+        <div className="space-y-10 animate-in fade-in duration-700">
+            {/* AI Status Card - Inspired by screenshot */}
+            <Card className="relative overflow-hidden border-none shadow-2xl bg-white dark:bg-slate-900 rounded-[32px]">
+                <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-emerald-50 via-emerald-50/20 to-transparent dark:from-emerald-900/20 dark:via-emerald-900/5 dark:to-transparent" />
 
-                <CardContent className="p-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="space-y-3 text-center md:text-left text-white">
-                        <h2 className="text-2xl font-bold flex items-center justify-center md:justify-start gap-3 drop-shadow-sm">
-                            <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm shadow-inner">
-                                <Brain className="w-6 h-6 text-white" />
-                            </div>
-                            L'Intelligence Financière
+                <CardContent className="pt-12 pb-10 px-8 relative z-10 flex flex-col items-center text-center">
+                    <div className="relative mb-6">
+                        <div className="h-24 w-24 bg-emerald-100 dark:bg-emerald-900/40 rounded-[32px] flex items-center justify-center text-emerald-500 shadow-inner group-hover:scale-110 transition-transform duration-500">
+                            <Brain className="w-12 h-12" />
+                        </div>
+                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                            <Badge className="bg-emerald-100 dark:bg-emerald-900/60 text-emerald-600 dark:text-emerald-400 border-none px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 shadow-sm">
+                                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                                System Online
+                            </Badge>
+                        </div>
+                    </div>
+
+                    <div className="space-y-3 max-w-xl mx-auto">
+                        <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+                            Analyse IA Prête
                         </h2>
-                        <p className="text-indigo-100 max-w-xl text-lg opacity-90 font-medium">
-                            Laissez notre système expert analyser {transactions.length} transaction{transactions.length > 1 ? 's' : ''} non classée{transactions.length > 1 ? 's' : ''}. Gagnez du temps grâce à l'auto-catégorisation intelligente de vos dépenses.
+                        <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed">
+                            Le moteur est prêt à scanner <span className="text-emerald-500 font-bold">{transactions.length} nouvelle{transactions.length > 1 ? 's' : ''}</span> transaction{transactions.length > 1 ? 's' : ''} et suggérer des catégories basées sur votre historique.
                         </p>
                     </div>
-                    <Button
-                        onClick={handleSync}
-                        disabled={isSyncing || transactions.length === 0}
-                        size="lg"
-                        className="rounded-xl text-base font-bold bg-white text-indigo-600 hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all shadow-xl disabled:opacity-50 disabled:hover:scale-100 w-full md:w-auto px-8 py-6"
-                    >
-                        {isSyncing ? (
-                            <><RefreshCw className="mr-3 h-5 w-5 animate-spin" /> Analyse des flux...</>
-                        ) : (
-                            <><Sparkles className="mr-3 h-5 w-5" /> Lancer l'IA</>
-                        )}
-                    </Button>
+
+                    <div className="mt-8 w-full max-w-sm space-y-4">
+                        <Button
+                            onClick={handleSync}
+                            disabled={isSyncing || transactions.length === 0}
+                            size="lg"
+                            className="w-full h-16 rounded-3xl text-lg font-black bg-emerald-500 hover:bg-emerald-400 text-white shadow-xl shadow-emerald-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50"
+                        >
+                            {isSyncing ? (
+                                <><RefreshCw className="mr-3 h-6 w-6 animate-spin" /> Analyse en cours...</>
+                            ) : (
+                                <><Sparkles className="mr-3 h-6 w-6" /> Lancer l'analyse IA</>
+                            )}
+                        </Button>
+                        <p className="text-[10px] uppercase font-bold tracking-widest text-slate-400 dark:text-slate-500">
+                            Dernière mise à jour il y a 2 mins
+                        </p>
+                    </div>
                 </CardContent>
             </Card>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
                 <div className="flex items-center justify-between px-2">
-                    <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 flex items-center gap-3">
-                        À classer manuellement
-                        <span className="bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs py-1 px-3 rounded-full font-bold shadow-sm">
-                            {transactions.length} restante{transactions.length > 1 ? 's' : ''}
-                        </span>
+                    <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-4">
+                        Classification Manuelle
+                        <Badge variant="secondary" className="bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 border-none font-bold text-xs px-3 py-1">
+                            {transactions.length} En attente
+                        </Badge>
                     </h3>
                 </div>
 
-                <div className="grid gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {transactions.length === 0 ? (
-                        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-16 text-center flex flex-col items-center gap-4 shadow-sm animate-in fade-in zoom-in-95 duration-500">
-                            <div className="h-24 w-24 bg-emerald-50 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-2 shadow-inner ring-8 ring-emerald-50 dark:ring-emerald-900/10">
-                                <CheckCircle2 className="w-12 h-12 text-emerald-500" />
+                        <div className="col-span-full py-20 text-center flex flex-col items-center gap-4 bg-white/50 dark:bg-slate-900/50 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[40px]">
+                            <div className="h-20 w-20 bg-emerald-50 dark:bg-emerald-900/20 rounded-full flex items-center justify-center mb-2">
+                                <CheckCircle2 className="w-10 h-10 text-emerald-500/40" />
                             </div>
-                            <h4 className="text-2xl font-bold text-slate-800 dark:text-slate-200">Vue dégagée !</h4>
-                            <p className="text-slate-500 dark:text-slate-400 max-w-md text-lg">
-                                Parfait, toutes vos transactions sont minutieusement classées. Aucune action n'est requise.
-                            </p>
+                            <h4 className="text-xl font-bold text-slate-400">Tout est classé !</h4>
                         </div>
                     ) : (
                         transactions.map((t) => (
-                            <div key={t.id} className="group flex flex-col md:flex-row items-start md:items-center gap-5 p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[20px] shadow-sm hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-300">
-                                {/* Icon section */}
-                                <div className={`shrink-0 flex items-center justify-center w-14 h-14 rounded-2xl shadow-inner ${t.amount >= 0
-                                    ? 'bg-gradient-to-br from-emerald-50 to-emerald-100 text-emerald-600 border border-emerald-200 dark:from-emerald-900/20 dark:to-emerald-900/40 dark:text-emerald-400 dark:border-emerald-800'
-                                    : 'bg-gradient-to-br from-slate-50 to-slate-100 text-slate-600 border border-slate-200 dark:from-slate-800/50 dark:to-slate-900 dark:text-slate-400 dark:border-slate-700'
-                                    }`}>
-                                    {t.amount >= 0 ? <ArrowUpRight className="h-7 w-7" /> : <ArrowDownRight className="h-7 w-7" />}
-                                </div>
-
-                                {/* Details section */}
-                                <div className="flex-1 min-w-0 space-y-1.5 w-full">
-                                    <p className="font-bold text-slate-900 dark:text-slate-100 truncate text-base md:text-lg">
-                                        {t.description}
-                                    </p>
-                                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
-                                        <span className="bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-700 shadow-sm">
-                                            {format(new Date(t.date), 'dd MMM yyyy', { locale: fr })}
-                                        </span>
-                                        {t.thirdPartyName && (
-                                            <span className="flex items-center gap-1.5">
-                                                <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 dark:bg-indigo-600" />
-                                                <span className="text-slate-700 dark:text-slate-300">{t.thirdPartyName}</span>
-                                            </span>
-                                        )}
-                                        {t.paymentMethod && (
-                                            <span className="flex items-center gap-1.5">
-                                                <span className="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-slate-600" />
-                                                <span>{t.paymentMethod}</span>
-                                            </span>
-                                        )}
+                            <Card key={t.id} className="group relative overflow-hidden bg-white dark:bg-slate-900 border-border/50 hover:border-emerald-500/30 rounded-[32px] shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col pt-0">
+                                <CardContent className="p-6 flex flex-col h-full">
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div className="space-y-1">
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                                                {format(new Date(t.date), 'MMM dd, yyyy', { locale: fr })}
+                                            </p>
+                                            <p className="font-black text-lg text-slate-900 dark:text-white leading-tight line-clamp-2 min-h-[3.5rem] group-hover:text-emerald-500 transition-colors">
+                                                {t.description}
+                                            </p>
+                                        </div>
+                                        <div className={`text-xl font-black tracking-tighter ${t.amount > 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
+                                            {t.amount > 0 ? '+' : ''}{t.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Amount & Select section */}
-                                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full md:w-auto mt-2 md:mt-0">
-                                    <div className={`text-[1.35rem] font-extrabold tracking-tight shrink-0 ${t.amount > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-800 dark:text-slate-200'}`}>
-                                        {t.amount > 0 ? '+' : ''}{t.amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                                    </div>
-                                    <div className="w-full sm:w-[280px]">
+                                    <div className="mt-auto pt-6 space-y-3">
                                         <Select
                                             onValueChange={(val) => handleAssign(t.id, val)}
                                             disabled={loadingIds.has(t.id)}
                                         >
-                                            <SelectTrigger className="w-full h-12 bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-xl hover:border-indigo-400 transition-colors focus:ring-2 focus:ring-indigo-500/20 shadow-inner font-medium text-slate-700 dark:text-slate-300">
-                                                <SelectValue placeholder="Choisir une catégorie..." />
+                                            <SelectTrigger className="w-full h-14 bg-slate-50 dark:bg-slate-950 border-slate-200/60 dark:border-slate-800 rounded-2xl hover:border-emerald-400 transition-all focus:ring-4 focus:ring-emerald-500/10 shadow-inner font-bold text-slate-600 dark:text-slate-300 px-5">
+                                                <div className="flex items-center gap-2">
+                                                    <Tags className="w-4 h-4 opacity-40" />
+                                                    <SelectValue placeholder="Sél. une catégorie" />
+                                                </div>
                                             </SelectTrigger>
-                                            <SelectContent className="max-h-[350px] rounded-xl border-slate-200 dark:border-slate-800 shadow-xl">
+                                            <SelectContent className="rounded-2xl border-slate-200 dark:border-slate-800 shadow-2xl">
                                                 {Object.entries(categoriesByType).map(([type, cats]) => (
                                                     <div key={type} className="mb-2 last:mb-0">
-                                                        <div className="px-3 py-2 text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-900 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800">
+                                                        <div className="px-4 py-2 text-[9px] uppercase font-black tracking-widest text-slate-400 border-b border-slate-50 dark:border-slate-800/50 mb-1">
                                                             {type}
                                                         </div>
                                                         {cats.map(cat => (
-                                                            <SelectItem key={cat.id} value={cat.id} className="rounded-lg mx-1 my-0.5 focus:bg-indigo-50 text-sm font-medium dark:focus:bg-indigo-900/40 cursor-pointer">
+                                                            <SelectItem key={cat.id} value={cat.id} className="rounded-xl mx-2 my-0.5 focus:bg-emerald-50 dark:focus:bg-emerald-900/40 text-sm font-bold cursor-pointer">
                                                                 {cat.name}
                                                             </SelectItem>
                                                         ))}
@@ -241,9 +234,23 @@ export function AutoCatClient({
                                                 ))}
                                             </SelectContent>
                                         </Select>
+
+                                        {t.thirdPartyName && (
+                                            <div className="flex items-center gap-2 px-1">
+                                                <div className="h-1 w-1 rounded-full bg-slate-300 shrink-0" />
+                                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest truncate">
+                                                    {t.thirdPartyName}
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
-                                </div>
-                            </div>
+                                </CardContent>
+                                {loadingIds.has(t.id) && (
+                                    <div className="absolute inset-0 bg-white/60 dark:bg-slate-900/60 backdrop-blur-[1px] flex items-center justify-center z-20">
+                                        <RefreshCw className="w-8 h-8 text-emerald-500 animate-spin" />
+                                    </div>
+                                )}
+                            </Card>
                         ))
                     )}
                 </div>
