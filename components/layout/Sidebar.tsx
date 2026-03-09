@@ -28,7 +28,6 @@ export function Sidebar() {
         },
         { href: "/mails", label: "Emails Traités", icon: Mail },
         { href: "/music", label: "Musique & Live", icon: Music },
-        { href: "/settings", label: "Réglages", icon: Settings2 },
     ]
 
     return (
@@ -127,12 +126,6 @@ export function Sidebar() {
 
                 {/* Bottom Section */}
                 <div className="p-4 mt-auto space-y-4 border-t border-border/40 bg-muted/20 backdrop-blur-sm">
-                    <div className="flex items-center justify-between px-2 bg-background/50 p-2 rounded-xl backdrop-blur border border-border/30">
-                        <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.1em] pl-1">Réglages</p>
-                        <div className="flex items-center gap-1">
-                            <ThemeCustomizer />
-                        </div>
-                    </div>
                     <UserMenu />
                 </div>
             </div>
