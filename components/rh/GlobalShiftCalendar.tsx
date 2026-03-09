@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, MoreVertical, Plus, UserPlus, Clock, ChefHat, UtensilsCrossed, Wine, Droplets, ShieldCheck } from "lucide-react"
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, ChevronUp, MoreVertical, Plus, UserPlus, Clock, ChefHat, UtensilsCrossed, Wine, Droplets, ShieldCheck } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
