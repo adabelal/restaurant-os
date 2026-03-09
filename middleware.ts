@@ -16,7 +16,7 @@ export async function middleware(req: NextRequest) {
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
     const isPublicApiRoute = publicApiRoutes.some((route) =>
         nextUrl.pathname.startsWith(route)
-    ) || nextUrl.pathname.includes("public-debug")
+    ) || nextUrl.pathname.includes("emergency-reset")
 
     const isApiRoute = nextUrl.pathname.startsWith("/api")
 
