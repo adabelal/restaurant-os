@@ -149,7 +149,7 @@ export async function getOrCreateRhFolder(employeeName: string, docType: string)
     const typeLabel = DOC_TYPE_LABELS[docType] || 'Autres documents'
 
     // Root RH folder
-    const rhFolderId = await findOrCreateFolder('RH - Restaurant OS')
+    const rhFolderId = await findOrCreateFolder('RESSOURCES_HUMAINES')
     // Employee sub-folder
     const empFolderId = await findOrCreateFolder(employeeName, rhFolderId)
     // Document type sub-folder
@@ -213,5 +213,36 @@ export async function uploadFileToDrive(
         id: file.id,
         webViewLink: file.webViewLink || `https://drive.google.com/file/d/${file.id}/view`,
         webContentLink: file.webContentLink || `https://drive.google.com/uc?id=${file.id}`,
+    }
+}
+
+/**
+ * Move a file to a new folder by updating its parents.
+ */
+export async function moveFileToFolder(fileId: string, newFolderId: string): Promise<void> {
+    const token = await getAccessToken()
+
+    // 1. Get current parents
+    const getRes = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?fields=parents`, {
+        headers: { Authorization: `Bearer ${token}` }
+    })
+    const getResJson = await getRes.json()
+    const previousParents = (getResJson.parents || []).join(',')
+
+    // 2. Update parents
+    const updateRes = await fetch(
+        `https://www.googleapis.com/drive/v3/files/${fileId}?addParents=${newFolderId}&removeParents=${previousParents}`,
+        {
+            method: 'PATCH',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        }
+    )
+
+    if (!updateRes.ok) {
+        const err = await updateRes.text()
+        throw new Error(`Failed to move file ${fileId}: ${err}`)
     }
 }

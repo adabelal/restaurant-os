@@ -264,10 +264,10 @@ export function ContractManager({
                         onDrop={handleDrop}
                         onClick={() => fileInputRef.current?.click()}
                         className={`border-2 border-dashed rounded-xl p-5 flex flex-col items-center justify-center text-center cursor-pointer transition-all select-none ${droppedFile
-                                ? 'border-emerald-500 bg-emerald-500/8'
-                                : isDragging
-                                    ? 'border-indigo-500 bg-indigo-500/10 scale-[1.01]'
-                                    : 'border-indigo-500/20 bg-background/50 hover:bg-background/80 hover:border-indigo-500/40'
+                            ? 'border-emerald-500 bg-emerald-500/8'
+                            : isDragging
+                                ? 'border-indigo-500 bg-indigo-500/10 scale-[1.01]'
+                                : 'border-indigo-500/20 bg-background/50 hover:bg-background/80 hover:border-indigo-500/40'
                             }`}
                     >
                         <input
@@ -377,8 +377,8 @@ export function ContractManager({
                                         key={s}
                                         onClick={() => setFormStatus(s)}
                                         className={`flex-1 h-7 text-[10px] font-bold border rounded transition-all ${formStatus === s
-                                                ? 'bg-primary text-primary-foreground border-primary'
-                                                : 'bg-background border-border text-muted-foreground hover:border-primary/50'
+                                            ? 'bg-primary text-primary-foreground border-primary'
+                                            : 'bg-background border-border text-muted-foreground hover:border-primary/50'
                                             }`}
                                     >
                                         {s}
@@ -388,7 +388,7 @@ export function ContractManager({
 
                             {/* Résumé rangement */}
                             <p className="text-[9px] text-muted-foreground text-center">
-                                📂 Drive → <strong>RH - Restaurant OS</strong> / <strong>{employeeName}</strong> / <strong>Contrats</strong>
+                                📂 Drive → <strong>RESSOURCES_HUMAINES</strong> / <strong>{employeeName}</strong> / <strong>Contrats</strong>
                             </p>
                         </div>
                     )}
