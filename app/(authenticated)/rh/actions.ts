@@ -697,7 +697,17 @@ export async function getManagerRemunerationFromBank(employeeId: string, month: 
         const startDate = startOfMonth(new Date(year, month - 1, 1))
         const endDate = endOfMonth(new Date(year, month - 1, 1))
 
-        const nameParts = employee.name.split(/\s+/)
+        const firstName = (employee as any).firstName || ""
+        const lastName = (employee as any).lastName || ""
+
+        // Smart search terms based on user examples
+        // For Benjamin: match "Benjamin" or the truncated "BENJAM" found in bank sync
+        const searchTerms = [
+            firstName,
+            firstName.substring(0, 6).toUpperCase(), // e.g. "BENJAM"
+            `${lastName} ${firstName}`,
+            `${firstName} ${lastName}`
+        ].filter(t => t.length >= 3)
 
         const transactions = await prisma.bankTransaction.findMany({
             where: {
@@ -706,13 +716,30 @@ export async function getManagerRemunerationFromBank(employeeId: string, month: 
                     lte: endDate
                 },
                 amount: { lt: 0 },
-                OR: nameParts.map(part => ({
-                    description: { contains: part, mode: 'insensitive' }
-                }))
+                OR: [
+                    ...searchTerms.map(term => ({
+                        description: { contains: term, mode: 'insensitive' as const }
+                    })),
+                    ...searchTerms.map(term => ({
+                        thirdPartyName: { contains: term, mode: 'insensitive' as const }
+                    }))
+                ]
             }
         })
 
-        return transactions.reduce((sum, tx) => sum + Math.abs(Number(tx.amount)), 0)
+        // Final filter to avoid false positives (like common last names among family members)
+        // If we have "Belal Benjamin", we verify that individual "Benjamin" or "BENJAM" is specifically present
+        // and not just the common "Belal"
+        const filteredTx = transactions.filter(tx => {
+            const desc = (tx.description + (tx.thirdPartyName || '')).toUpperCase()
+            const fn = firstName.toUpperCase()
+            const fnTrunc = fn.substring(0, 6)
+
+            // Check if the specific manager's identification is present
+            return desc.includes(fn) || desc.includes(fnTrunc)
+        })
+
+        return filteredTx.reduce((sum, tx) => sum + Math.abs(Number(tx.amount)), 0)
     } catch (e) {
         console.error("Error fetching manager remuneration:", e)
         return 0
