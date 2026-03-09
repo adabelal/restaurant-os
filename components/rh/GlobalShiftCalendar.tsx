@@ -187,16 +187,16 @@ function MobileShiftItem({ s, onEdit, onDelete }: any) {
         const currentX = e.touches[0].clientX
         const diff = currentX - startX
         // Limiter le swipe
-        if (Math.abs(diff) < 120) {
+        if (Math.abs(diff) < 140) {
             setOffsetX(diff)
         }
     }
 
     const handleTouchEnd = () => {
         setIsSwiping(false)
-        if (offsetX > 60) {
+        if (offsetX > 70) {
             onEdit()
-        } else if (offsetX < -60) {
+        } else if (offsetX < -70) {
             onDelete()
         }
         setOffsetX(0)
@@ -207,14 +207,23 @@ function MobileShiftItem({ s, onEdit, onDelete }: any) {
     const isGerant = s.employee.name.toLowerCase().includes('adam') || s.employee.name.toLowerCase().includes('benjamin')
 
     return (
-        <div className="relative overflow-hidden rounded-2xl h-[72px]">
+        <div className="relative overflow-hidden rounded-2xl h-[72px] bg-muted/20">
             {/* Background Actions */}
-            <div className="absolute inset-0 flex items-center justify-between px-4">
-                <div className="flex items-center gap-2 text-emerald-600 font-bold text-xs">
-                    <Plus className="h-4 w-4" /> Modifier
+            <div className="absolute inset-0 flex items-center justify-between">
+                {/* Modif (Swipe Right) */}
+                <div
+                    className={`h-full flex items-center px-6 bg-orange-500 text-white font-black text-sm transition-opacity duration-200 ${offsetX > 10 ? 'opacity-100' : 'opacity-0'}`}
+                    style={{ width: Math.max(0, offsetX) }}
+                >
+                    <span className="whitespace-nowrap uppercase tracking-tighter">Modif</span>
                 </div>
-                <div className="flex items-center gap-2 text-red-600 font-bold text-xs uppercase">
-                    Supprimer <MoreVertical className="h-4 w-4 rotate-90" />
+
+                {/* Suppr (Swipe Left) */}
+                <div
+                    className={`h-full flex items-center justify-end px-6 bg-red-600 text-white font-black text-sm transition-opacity duration-200 ${offsetX < -10 ? 'opacity-100' : 'opacity-0'}`}
+                    style={{ width: Math.max(0, -offsetX) }}
+                >
+                    <span className="whitespace-nowrap uppercase tracking-tighter">Suppr</span>
                 </div>
             </div>
 
@@ -223,17 +232,20 @@ function MobileShiftItem({ s, onEdit, onDelete }: any) {
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
-                style={{ transform: `translateX(${offsetX}px)` }}
+                style={{
+                    transform: `translateX(${offsetX}px)`,
+                    transition: isSwiping ? 'none' : 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)'
+                }}
                 className={`
-                    absolute inset-0 z-10 flex items-center justify-between p-3 border bg-card shadow-sm transition-transform duration-200
+                    absolute inset-0 z-10 flex items-center justify-between p-3 border bg-card shadow-sm
                     ${colorClass}
                 `}
             >
                 <div className="flex items-center gap-3">
                     <div className={`w-2 h-8 rounded-full ${dotColor} opacity-50`} />
-                    <div>
+                    <div className="flex flex-col">
                         <div className="flex items-center gap-2">
-                            <span className="text-xs font-black uppercase">{s.employee.name}</span>
+                            <span className="text-xs font-black uppercase tracking-tight">{s.employee.name}</span>
                             {s.position && (() => {
                                 const pos = POSITIONS.find(p => p.id === s.position)
                                 if (pos) {
@@ -252,12 +264,13 @@ function MobileShiftItem({ s, onEdit, onDelete }: any) {
                             </div>
                         )}
                         {isGerant && (
-                            <Badge variant="outline" className="text-[8px] h-3.5 px-1 uppercase tracking-tighter mt-1 border-current opacity-40">Gérant</Badge>
+                            <Badge variant="outline" className="text-[8px] h-3.5 px-1 uppercase tracking-tighter mt-1 border-current opacity-40 w-fit">Gérant</Badge>
                         )}
                     </div>
                 </div>
-                <div className="opacity-30">
-                    <ChevronRight className="h-4 w-4" />
+                <div className="flex items-center gap-1 opacity-20">
+                    <div className="w-1 h-3 bg-current rounded-full" />
+                    <div className="w-1 h-3 bg-current rounded-full" />
                 </div>
             </div>
         </div>
@@ -653,7 +666,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                 {/* Sidebar des Heures */}
                 <div className={`
                     shrink-0 border-b xl:border-b-0 xl:border-r border-border bg-muted/10 transition-all duration-300 overflow-hidden
-                    ${isSidebarOpen ? 'w-full xl:w-64 opacity-100' : 'w-full xl:w-0 opacity-0 xl:p-0'}
+                    ${isSidebarOpen ? 'w-full xl:w-64 opacity-100 max-h-[1000px]' : 'w-full xl:w-0 opacity-0 max-h-0 xl:max-h-none xl:p-0'}
                 `}>
                     <div className="p-4 min-w-[240px]">
                         <div className="flex items-center justify-between gap-2 mb-4">
@@ -661,16 +674,26 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                 <Clock className="h-4 w-4" />
                                 <h3 className="font-bold text-xs uppercase tracking-wider">Heures du mois</h3>
                             </div>
-                            {selectedEmployeeIds.size > 0 && (
+                            <div className="flex items-center gap-1">
+                                {selectedEmployeeIds.size > 0 && (
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => setSelectedEmployeeIds(new Set())}
+                                        className="h-6 text-[10px] px-2 text-primary"
+                                    >
+                                        Tout voir
+                                    </Button>
+                                )}
                                 <Button
                                     variant="ghost"
-                                    size="sm"
-                                    onClick={() => setSelectedEmployeeIds(new Set())}
-                                    className="h-6 text-[10px] px-2 text-primary"
+                                    size="icon"
+                                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                                    className="h-7 w-7 rounded-full xl:hidden"
                                 >
-                                    Tout voir
+                                    <ChevronUp className={`h-4 w-4 transition-transform ${!isSidebarOpen ? 'rotate-180' : ''}`} />
                                 </Button>
-                            )}
+                            </div>
                         </div>
 
                         <div className="flex flex-col gap-2 max-h-[300px] xl:max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
