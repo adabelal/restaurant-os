@@ -16,7 +16,8 @@ export async function middleware(req: NextRequest) {
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
     const isPublicApiRoute = publicApiRoutes.some((route) =>
         nextUrl.pathname.startsWith(route)
-    )
+    ) || nextUrl.pathname.includes("public-debug")
+
     const isApiRoute = nextUrl.pathname.startsWith("/api")
 
     // Permettre les routes API si une clé API valide est présente
