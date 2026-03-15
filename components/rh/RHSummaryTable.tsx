@@ -10,7 +10,7 @@ import { Calculator, Euro, Clock, ChevronLeft, ChevronRight, Loader2 } from "luc
 import { Input } from "@/components/ui/input"
 import { updateEmployeeNet, getManagerRemunerationFromBank } from "@/app/(authenticated)/rh/actions"
 import { toast } from "sonner"
-import { getApplicableRate } from "@/lib/rh-utils"
+import { getApplicableRate, formatDecimalHours } from "@/lib/rh-utils"
 import { Info } from "lucide-react"
 
 const EMPLOYEE_COLORS_MAP = [
@@ -197,7 +197,7 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
     const sortedEmployees = [...employees].sort((a, b) => {
         const nameA = a.lastName ? a.lastName.toLowerCase() : a.name.toLowerCase()
         const nameB = b.lastName ? b.lastName.toLowerCase() : b.name.toLowerCase()
-        return sortOrder === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA)
+        return sortOrder === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(a.name)
     })
 
     const grandTotal = sortedEmployees
@@ -346,7 +346,7 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                                 </div>
                                             </TableCell>
                                             <TableCell className="text-center font-black text-xs">
-                                                {totalHours.toFixed(1)}h
+                                                {formatDecimalHours(totalHours)}
                                             </TableCell>
                                             <TableCell className="text-center text-[10px] font-bold text-muted-foreground uppercase">
                                                 {isManager ? '-' : (
@@ -435,7 +435,7 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                     <div className="grid grid-cols-3 gap-2 py-2 border-y border-border/30">
                                         <div className="flex flex-col items-center">
                                             <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">Heures</span>
-                                            <span className="text-sm font-black text-foreground">{totalHours.toFixed(1)}h</span>
+                                            <span className="text-sm font-black text-foreground">{formatDecimalHours(totalHours)}</span>
                                         </div>
                                         <div className="flex flex-col items-center">
                                             <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">Rem Brut</span>

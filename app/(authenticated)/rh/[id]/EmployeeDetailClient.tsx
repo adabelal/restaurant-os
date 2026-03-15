@@ -30,7 +30,7 @@ import { RateHistoryManager } from "@/components/rh/RateHistoryManager"
 import { ContractManager } from "@/components/rh/ContractManager"
 import { DocumentAssistantCard } from "@/components/rh/DocumentAssistantCard"
 import { SalaryReconciliation } from "@/components/rh/SalaryReconciliation"
-import { getApplicableRate } from "@/lib/rh-utils"
+import { getApplicableRate, formatDecimalHours } from "@/lib/rh-utils"
 import {
     Accordion,
     AccordionContent,
@@ -312,7 +312,7 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                     <MobileStatCard
                                         icon={Clock}
                                         label="Heures"
-                                        value={`${totalHours.toFixed(1)}h`}
+                                        value={formatDecimalHours(totalHours)}
                                         subLabel="+12% vs mois dernier"
                                         variant="primary"
                                     />
@@ -334,7 +334,8 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                             const shiftDate = new Date(shift.startTime)
                                             const day = shiftDate.getDate()
                                             const month = shiftDate.toLocaleDateString('fr-FR', { month: 'short' }).toUpperCase().replace('.', '')
-                                            const duration = shift.endTime ? ((new Date(shift.endTime).getTime() - shiftDate.getTime()) / 3600000 - shift.breakMinutes / 60).toFixed(1) : '?'
+                                            const durationDecimal = shift.endTime ? ((new Date(shift.endTime).getTime() - shiftDate.getTime()) / 3600000 - shift.breakMinutes / 60) : 0
+                                            const durationLabel = shift.endTime ? formatDecimalHours(durationDecimal) : '?'
 
                                             return (
                                                 <React.Fragment key={shift.id}>
@@ -347,7 +348,7 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                                             <div>
                                                                 <p className="text-sm font-bold text-foreground">Shift {shiftDate.getHours() < 17 ? 'Midi' : 'Soir'}</p>
                                                                 <p className="text-[11px] text-muted-foreground font-medium">
-                                                                    {shiftDate.getHours()}h{shiftDate.getMinutes().toString().padStart(2, '0')} - {shift.endTime ? new Date(shift.endTime).getHours() : '??'}h{shift.endTime ? new Date(shift.endTime).getMinutes().toString().padStart(2, '0') : '??'} ({duration}h)
+                                                                    {shiftDate.getHours()}h{shiftDate.getMinutes().toString().padStart(2, '0')} - {shift.endTime ? new Date(shift.endTime).getHours() : '??'}h{shift.endTime ? new Date(shift.endTime).getMinutes().toString().padStart(2, '0') : '??'} ({durationLabel})
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -414,7 +415,7 @@ export default function EmployeeDetailClient({ employee, searchParams }: Employe
                                     <div className="grid md:grid-cols-2 gap-8 text-center sm:text-left">
                                         <div className="space-y-2 p-4 bg-muted/10 rounded-2xl border border-border/30">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Heures travaillées</p>
-                                            <div className="text-4xl font-black text-foreground">{totalHours.toFixed(1)} <span className="text-xl text-muted-foreground font-normal">h</span></div>
+                                            <div className="text-4xl font-black text-foreground">{formatDecimalHours(totalHours)}</div>
                                             <p className="text-xs text-muted-foreground font-medium">Total net sur la période</p>
                                         </div>
                                         <div className="space-y-2 p-4 bg-primary/5 rounded-2xl border border-primary/10">

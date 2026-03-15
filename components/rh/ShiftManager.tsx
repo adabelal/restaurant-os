@@ -194,7 +194,7 @@ export function ShiftManager({
                                             <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-tighter mt-0.5">{Number(s.hourlyRate).toFixed(2)} €/h</p>
                                         </div>
                                         <div className="flex items-center gap-1">
-                                            <EditShiftDialog shift={s} userId={employee.id} />
+                                            <EditShiftDialog shift={s} userId={employee.id} isManager={isSpecial} />
                                             <Button
                                                 size="icon"
                                                 variant="ghost"

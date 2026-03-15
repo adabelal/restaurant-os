@@ -32,6 +32,7 @@ import { fr } from 'date-fns/locale'
 
 import { toast } from "sonner"
 import { moveShift, updateShiftPosition, autoFillManagerShifts, addShift } from "@/app/(authenticated)/rh/actions"
+import { formatDecimalHours } from "@/lib/rh-utils"
 
 interface GlobalShiftCalendarProps {
     employees: any[]
@@ -90,14 +91,25 @@ function getEmployeeDotColor(id: string, name: string = "") {
 
 function formatName(fullName: string, firstName?: string, lastName?: string) {
     if (firstName && lastName) {
-        return `${lastName.charAt(0).toUpperCase()}. ${firstName}`;
+        return `${firstName.charAt(0).toUpperCase()}. ${lastName}`;
     }
     const parts = fullName.trim().split(/\s+/)
     if (parts.length === 1) return parts[0]
-    // Par défaut on suppose que le premier mot est le NOM si on a pas firstName/lastName
-    const lastInitial = parts[0].charAt(0).toUpperCase()
-    const firstPart = parts.slice(1).join(' ')
-    return `${lastInitial}. ${firstPart}`
+    
+    // If the name is already in "X. Name" format
+    if (parts[0].length === 2 && parts[0].endsWith('.')) {
+        return fullName;
+    }
+    
+    // If it's something like "B. Benjamin" or "A. BELAL" without the dot
+    if (parts[0].length === 1) {
+        return `${parts[0].toUpperCase()}. ${parts.slice(1).join(' ')}`;
+    }
+
+    // Default: Assume first part is first name, second part is last name
+    const firstInitial = parts[0].charAt(0).toUpperCase()
+    const lastPart = parts.slice(1).join(' ')
+    return `${firstInitial}. ${lastPart}`
 }
 
 function ShiftItem({ s, isDragging, onDragStart, onEdit, onUpdatePosition }: any) {
@@ -529,9 +541,9 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
         if (!editingShift) return
 
         const formData = new FormData(e.currentTarget)
-        const startTimeStr = formData.get("startTime") as string
-        const endTimeStr = formData.get("endTime") as string
-        const breakMinutes = parseInt(formData.get("breakMinutes") as string) || 0
+        const startTimeStr = formData.get("startTime") as string || format(new Date(editingShift.startTime), 'HH:mm')
+        const endTimeStr = formData.get("endTime") as string || (editingShift.endTime ? format(new Date(editingShift.endTime), 'HH:mm') : '23:30')
+        const breakMinutes = formData.get("breakMinutes") ? parseInt(formData.get("breakMinutes") as string) : (editingShift.breakMinutes || 0)
 
         setIsEditingShift(true)
 
@@ -725,7 +737,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             <div className="flex flex-col gap-2 max-h-[300px] xl:max-h-[600px] overflow-y-auto custom-scrollbar pr-2 mt-2">
                                 {employeeHours.map(emp => {
                                     const isGerant = emp.name.toLowerCase().includes('adam') || emp.name.toLowerCase().includes('benjamin')
-                                    const displayHours = isGerant ? "Gérant" : `${emp.totalHours.toFixed(1)}h`
+                                    const displayHours = isGerant ? "Gérant" : formatDecimalHours(emp.totalHours)
                                     const isSelected = selectedEmployeeIds.has(emp.id)
 
                                     const toggleFilter = () => {
@@ -1168,26 +1180,28 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                         min={0}
                                     />
                                 </div>
-
-                                <div className="space-y-3">
-                                    <Label htmlFor="editPosition" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Poste de travail</Label>
-                                    <select
-                                        id="editPosition"
-                                        name="position"
-                                        className="flex h-12 w-full items-center justify-between rounded-xl border border-input bg-muted/20 px-4 py-2 text-sm font-bold ring-offset-background transition-all focus:ring-2 focus:ring-primary/20 outline-none"
-                                        defaultValue={editingShift.position || ""}
-                                    >
-                                        <option value="">-- Sans poste spécifique --</option>
-                                        {POSITIONS.map(p => (
-                                            <option key={p.id} value={p.id}>{p.label}</option>
-                                        ))}
-                                    </select>
-                                </div>
                             </>
                         ) : (
-                            <div className="py-8 text-center space-y-2">
-                                <ShieldCheck className="w-12 h-12 text-primary/20 mx-auto" />
+                            <div className="py-2 text-center space-y-2">
+                                <ShieldCheck className="w-10 h-10 text-primary/20 mx-auto" />
                                 <p className="text-sm font-bold text-muted-foreground">Les options horaires sont masquées pour les gérants.</p>
+                            </div>
+                        )}
+
+                        {editingShift && (
+                            <div className="space-y-3">
+                                <Label htmlFor="editPosition" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Poste de travail</Label>
+                                <select
+                                    id="editPosition"
+                                    name="position"
+                                    className="flex h-12 w-full items-center justify-between rounded-xl border border-input bg-muted/20 px-4 py-2 text-sm font-bold ring-offset-background transition-all focus:ring-2 focus:ring-primary/20 outline-none"
+                                    defaultValue={editingShift.position || ""}
+                                >
+                                    <option value="">-- Sans poste spécifique --</option>
+                                    {POSITIONS.map(p => (
+                                        <option key={p.id} value={p.id}>{p.label}</option>
+                                    ))}
+                                </select>
                             </div>
                         )}
 
@@ -1200,7 +1214,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             >
                                 Annuler
                             </Button>
-                            {editingShift && !(editingShift.employee.name.toLowerCase().includes('adam') || editingShift.employee.name.toLowerCase().includes('benjamin')) && (
+                            {editingShift && (
                                 <Button
                                     type="submit"
                                     disabled={isEditingShift}

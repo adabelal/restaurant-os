@@ -61,3 +61,14 @@ export const SMIC_HISTORY = [
     { rate: 11.88, startDate: '2025-01-01', label: 'SMIC Janvier 2025' },
     { rate: 12.02, startDate: '2025-11-01', label: 'SMIC Actuel' }, // Ajusté selon la demande
 ]
+
+/**
+ * Formats decimal hours into a human-readable string (e.g., 3.5 -> 3h30)
+ */
+export function formatDecimalHours(decimalHours: number): string {
+    const isNegative = decimalHours < 0;
+    const absHours = Math.abs(decimalHours);
+    const h = Math.floor(absHours);
+    const m = Math.round((absHours - h) * 60);
+    return `${isNegative ? '-' : ''}${h}h${m.toString().padStart(2, '0')}`;
+}

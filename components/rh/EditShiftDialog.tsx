@@ -9,6 +9,7 @@ import { Pencil } from "lucide-react"
 import { updateShift } from "@/app/rh/actions"
 import { toast } from "sonner"
 import { POSITIONS } from "./GlobalShiftCalendar"
+import { ShieldCheck } from "lucide-react"
 
 interface EditShiftDialogProps {
     shift: {
@@ -19,9 +20,10 @@ interface EditShiftDialogProps {
         position?: string | null
     }
     userId: string
+    isManager?: boolean
 }
 
-export function EditShiftDialog({ shift, userId }: EditShiftDialogProps) {
+export function EditShiftDialog({ shift, userId, isManager = false }: EditShiftDialogProps) {
     const [open, setOpen] = useState(false)
 
     // Format date and times for input defaults
@@ -32,9 +34,9 @@ export function EditShiftDialog({ shift, userId }: EditShiftDialogProps) {
         : ""
 
     async function handleSubmit(formData: FormData) {
-        const dateStrForm = formData.get("date") as string
-        const startTimeStrForm = formData.get("startTime") as string
-        const endTimeStrForm = formData.get("endTime") as string
+        const dateStrForm = formData.get("date") as string || dateStr
+        const startTimeStrForm = formData.get("startTime") as string || startTimeStr
+        const endTimeStrForm = formData.get("endTime") as string || (endTimeStr || "23:30")
 
         if (dateStrForm && startTimeStrForm && endTimeStrForm) {
             let start = new Date(`${dateStrForm}T${startTimeStrForm}:00`)
@@ -69,26 +71,35 @@ export function EditShiftDialog({ shift, userId }: EditShiftDialogProps) {
                     <input type="hidden" name="shiftId" value={shift.id} />
                     <input type="hidden" name="userId" value={userId} />
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="date">Date</Label>
-                        <Input id="date" name="date" type="date" defaultValue={dateStr} required />
-                    </div>
+                    {!isManager ? (
+                        <>
+                            <div className="grid gap-2">
+                                <Label htmlFor="date">Date</Label>
+                                <Input id="date" name="date" type="date" defaultValue={dateStr} required />
+                            </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="grid gap-2">
-                            <Label htmlFor="startTime">Début</Label>
-                            <Input id="startTime" name="startTime" type="time" defaultValue={startTimeStr} required />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="endTime">Fin</Label>
-                            <Input id="endTime" name="endTime" type="time" defaultValue={endTimeStr} required />
-                        </div>
-                    </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="grid gap-2">
+                                    <Label htmlFor="startTime">Début</Label>
+                                    <Input id="startTime" name="startTime" type="time" defaultValue={startTimeStr} required />
+                                </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="endTime">Fin</Label>
+                                    <Input id="endTime" name="endTime" type="time" defaultValue={endTimeStr} required />
+                                </div>
+                            </div>
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="breakMinutes">Pause (minutes)</Label>
-                        <Input id="breakMinutes" name="breakMinutes" type="number" defaultValue={shift.breakMinutes} step={10} min={0} className="bg-background" />
-                    </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="breakMinutes">Pause (minutes)</Label>
+                                <Input id="breakMinutes" name="breakMinutes" type="number" defaultValue={shift.breakMinutes} step={10} min={0} className="bg-background" />
+                            </div>
+                        </>
+                    ) : (
+                        <div className="py-2 text-center space-y-2">
+                            <ShieldCheck className="w-10 h-10 text-primary/20 mx-auto" />
+                            <p className="text-sm font-bold text-muted-foreground">Les options horaires sont masquées pour les gérants.</p>
+                        </div>
+                    )}
 
                     <div className="grid gap-2">
                         <Label htmlFor="position">Poste (optionnel)</Label>
