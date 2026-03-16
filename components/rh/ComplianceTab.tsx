@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { ShieldCheck, Download, AlertTriangle, FileText, FileSearch, CheckCircle2 } from "lucide-react"
 import jsPDF from "jspdf"
 import "jspdf-autotable"
+import { MissingDocumentsAlert } from "./MissingDocumentsAlert"
 
 export function ComplianceTab({ employees }: { employees: any[] }) {
 
@@ -49,6 +50,8 @@ export function ComplianceTab({ employees }: { employees: any[] }) {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
+            <MissingDocumentsAlert employees={employees} />
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Card className="border-border shadow-sm bg-card rounded-2xl overflow-hidden">
                     <CardHeader className="border-b border-border bg-muted/20 pb-4 px-4 sm:px-6">
