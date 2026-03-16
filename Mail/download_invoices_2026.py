@@ -205,7 +205,13 @@ def analyze_music_proposal_with_ai(text_content, sender_info, subject_info):
             contents=prompt
         )
         cleaned_text = response.text.replace('```json', '').replace('```', '').strip()
-        return json.loads(cleaned_text)
+        data = json.loads(cleaned_text)
+        if isinstance(data, list):
+            if len(data) > 0:
+                data = data[0]
+            else:
+                return None
+        return data
     except Exception as e:
         print(f"⚠️ Erreur AI Musique: {e}")
         return None
