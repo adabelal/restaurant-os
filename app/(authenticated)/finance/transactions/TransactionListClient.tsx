@@ -73,19 +73,28 @@ export function TransactionListClient({
 
     const handleSyncBank = async () => {
         setIsSyncing(true)
-        const promise = syncBankTransactions()
-
-        toast.promise(promise, {
-            loading: "Synchronisation bancaire en cours...",
-            success: (res) => {
-                if (res?.error) throw new Error(res.error)
-                return "Banques synchronisées avec succès."
-            },
-            error: (e) => `Erreur : ${e.message}`
-        })
-
-        await promise
-        setIsSyncing(false)
+        const toastId = toast.loading("Synchronisation bancaire en cours...")
+        try {
+            const res = await syncBankTransactions()
+            if (res && 'needsReconnect' in res && res.needsReconnect) {
+                toast.error("L'accès bancaire a expiré ou a été révosqué.", {
+                    id: toastId,
+                    action: {
+                        label: 'Se reconnecter',
+                        onClick: () => window.location.href = '/api/finance/bank/connect'
+                    },
+                    duration: 15000
+                })
+            } else if (res && 'error' in res && res.error) {
+                toast.error(res.error, { id: toastId })
+            } else {
+                toast.success("Banques synchronisées avec succès.", { id: toastId })
+            }
+        } catch (e: any) {
+            toast.error(`Erreur : ${e.message}`, { id: toastId })
+        } finally {
+            setIsSyncing(false)
+        }
     }
 
     const handleAssign = async (transactionId: string, categoryId: string, hasExistingCategory: boolean) => {

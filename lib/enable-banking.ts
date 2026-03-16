@@ -133,7 +133,7 @@ export async function fetchTransactions(accountUid: string, sessionId: string) {
     if (!response.ok) {
         const err = await response.text();
         console.error('Enable Banking Transactions Error:', err);
-        throw new Error('Failed to fetch transactions');
+        throw new Error(`Failed to fetch transactions: ${err}`);
     }
 
     return await response.json();
@@ -152,7 +152,7 @@ export async function fetchBalances(accountUid: string, sessionId: string) {
     if (!response.ok) {
         const err = await response.text();
         console.error('Enable Banking Balances Error:', err);
-        throw new Error('Failed to fetch balances');
+        throw new Error(`Failed to fetch balances: ${err}`);
     }
 
     return await response.json();

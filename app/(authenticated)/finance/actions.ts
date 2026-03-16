@@ -1089,9 +1089,9 @@ export async function syncBankTransactionsInternal() {
         return { success: true, imported: totalNew, duplicates: totalDup }
     } catch (error: any) {
         console.error("Sync Bank Error:", error)
-        // If session expired, we might need to tell the user to reconnect
-        if (error.message?.includes('session')) {
-            return { success: false, error: "Session bancaire expirée. Veuillez vous reconnecter.", needsReconnect: true }
+        // If session expired or bank rejected access, tell the user to reconnect
+        if (error.message?.includes('session') || error.message?.includes('ASPSP_ERROR')) {
+            return { success: false, error: "Session bancaire expirée ou accès refusé par la banque (SCA 90 jours). Veuillez vous reconnecter.", needsReconnect: true }
         }
         return { success: false, error: String(error) }
     }
