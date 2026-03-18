@@ -68,6 +68,7 @@ export async function GET() {
             newCalculatedBalance: calcSum + diff
         });
     } catch (e: any) {
-        return NextResponse.json({ ok: false, error: e.message, stack: e.stack });
+        console.error("Public debug error:", e);
+        return NextResponse.json({ ok: false, error: 'Internal Server Error' }, { status: 500 });
     }
 }
