@@ -136,7 +136,7 @@ export async function processInvoiceDocument(
               ${inv.paymentReference !== 'NON_IDENTIFIE' ? inv.paymentReference : null},
               ${confidence},
               ${lineItemsJson}::jsonb,
-              ${vectorString}::vector,
+              ${vectorString}::jsonb,
               NOW()
             )
           `;
