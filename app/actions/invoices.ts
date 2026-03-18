@@ -7,6 +7,10 @@ import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
 import { exec } from 'child_process';
 import { revalidatePath } from 'next/cache';
+import { Resend } from 'resend';
+import { downloadFileFromDrive } from '@/lib/google-drive';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ─── Types ──────────────────────────────────────────────────────────────────────
 export type ProcessInvoiceState = {
@@ -222,6 +226,84 @@ export async function deleteInvoiceAction(formData: FormData): Promise<void> {
   await prisma.$executeRaw`DELETE FROM "Invoice" WHERE "id" = ${id}`;
   
   revalidatePath('/factures');
+}
+
+// ─── Send to Accountant ────────────────────────────────────────────────────────
+export async function sendInvoicesToAccountant(invoiceIds: string[], recipientEmail: string): Promise<{ success: boolean; message: string }> {
+  const session = await getServerSession();
+  if (!session?.user) return { success: false, message: "Non autorisé" };
+
+  if (!process.env.RESEND_API_KEY) {
+    return { success: false, message: "Clé API Resend manquante" };
+  }
+
+  try {
+    // 1. Fetch invoices
+    const invoices = await (prisma as any).invoice.findMany({
+      where: { id: { in: invoiceIds } },
+      select: { id: true, supplierName: true, amount: true, date: true, driveFileId: true, originalFileName: true }
+    }) as any[];
+
+    if (invoices.length === 0) return { success: false, message: "Aucune facture trouvée" };
+
+    // 2. Download files from Drive
+    const attachments = await Promise.all(
+      invoices.map(async (inv) => {
+        if (!inv.driveFileId) return null;
+        try {
+          const content = await downloadFileFromDrive(inv.driveFileId);
+          return {
+            filename: inv.originalFileName || `${inv.supplierName}_${inv.id.substring(0, 5)}.pdf`,
+            content: content
+          };
+        } catch (e) {
+          console.error(`Failed to download ${inv.driveFileId}`, e);
+          return null;
+        }
+      })
+    );
+
+    const validAttachments = attachments.filter((a): a is { filename: string; content: Buffer } => a !== null);
+
+    if (validAttachments.length === 0) {
+      return { success: false, message: "Impossible de récupérer les fichiers sur Google Drive" };
+    }
+
+    // 3. Send email via Resend
+    const { data, error } = await resend.emails.send({
+      from: 'Restaurant OS <invoices@resend.dev>', // Replace with your domain if configured
+      to: [recipientEmail],
+      subject: `[Comptabilité] Transmission de ${invoices.length} factures - Restaurant OS`,
+      html: `
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+          <h2 style="color: #0F172A;">Transmission de factures</h2>
+          <p>Bonjour,</p>
+          <p>Veuillez trouver ci-joint <strong>${invoices.length} factures</strong> pour un montant total de <strong>${invoices.reduce((acc: number, curr: any) => acc + Number(curr.amount), 0).toFixed(2)}€</strong>.</p>
+          <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p style="font-size: 12px; color: #64748B;">Envoyé automatiquement depuis Restaurant OS.</p>
+        </div>
+      `,
+      attachments: validAttachments
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return { success: false, message: `Erreur d'envoi : ${error.message}` };
+    }
+
+    // 4. Update status in DB
+    await (prisma as any).invoice.updateMany({
+      where: { id: { in: invoiceIds } },
+      data: { isSentToAccountant: true }
+    });
+
+    revalidatePath('/factures');
+    return { success: true, message: `${invoices.length} factures envoyées avec succès.` };
+
+  } catch (error) {
+    console.error("Critical error in sendInvoicesToAccountant:", error);
+    return { success: false, message: "Une erreur inattendue est survenue." };
+  }
 }
 
 // ─── Sync Historical from Drive ─────────────────────────────────────────────────

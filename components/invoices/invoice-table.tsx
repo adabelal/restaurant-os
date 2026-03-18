@@ -6,6 +6,7 @@ import { fr } from "date-fns/locale";
 import { ExternalLink, CheckCircle2, AlertCircle, Clock, AlertTriangle, Trash2, Send, Sparkles, FileText, X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import InvoiceEditModal from "./invoice-edit-modal";
+import InvoiceSendModal from "./invoice-send-modal";
 import { deleteInvoiceAction } from "@/app/actions/invoices";
 
 export type Invoice = {
@@ -84,13 +85,10 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
         </div>
 
         {selectedInvoices.length > 0 && (
-          <button 
-            onClick={() => {/* TODO: Open Send Modal */}}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-1.5 rounded-lg text-sm font-semibold transition-all shadow-sm"
-          >
-            <Send className="w-4 h-4" />
-            Envoyer {selectedInvoices.length} factures à la compta
-          </button>
+          <InvoiceSendModal 
+            selectedIds={selectedInvoices} 
+            onSuccess={() => setSelectedInvoices([])}
+          />
         )}
       </div>
 
@@ -193,7 +191,7 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
                     <InvoiceEditModal invoice={{
                       id: inv.id,
                       supplierName: inv.supplierName,
-                      date: inv.date.toISOString(),
+                      date: inv.date,
                       amount: inv.amount,
                       invoiceNumber: inv.invoiceNumber,
                       amountHT: inv.amountHT,
