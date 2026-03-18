@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet, Camera, ChevronRight, Music, Mail, Settings2 } from "lucide-react"
+import { Users, ShoppingCart, ChefHat, BarChart3, Package, Wallet, Camera, ChevronRight, Music, Mail, Settings2, FileText } from "lucide-react"
 
 import { UserMenu } from "@/components/layout/UserMenu"
 import { cn } from "@/lib/utils"
@@ -12,6 +12,7 @@ export function Sidebar() {
 
     const navItems = [
         { href: "/", label: "Tableau de Bord", icon: BarChart3 },
+        { href: "/factures", label: "Répertoire Factures V2", icon: FileText },
         { href: "/rh", label: "RH & Équipe", icon: Users },
         { href: "/stock", label: "Stock & Ingrédients", icon: Package },
         { href: "/achats", label: "Achats & Factures", icon: ShoppingCart },
