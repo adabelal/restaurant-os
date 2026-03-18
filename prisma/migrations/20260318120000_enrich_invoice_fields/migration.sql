@@ -12,7 +12,8 @@ ADD COLUMN     "paymentReference" TEXT,
 ADD COLUMN     "supplierAddress" TEXT,
 ADD COLUMN     "supplierSiret" TEXT,
 ADD COLUMN     "vatAmount" DECIMAL(10,2),
-ADD COLUMN     "vatRate" DECIMAL(5,2);
+ADD COLUMN     "vatRate" DECIMAL(5,2),
+ADD COLUMN     "embedding" JSONB;
 
 -- CreateIndex
 CREATE INDEX "Invoice_supplierName_idx" ON "Invoice"("supplierName");

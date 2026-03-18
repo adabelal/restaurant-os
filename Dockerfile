@@ -58,6 +58,4 @@ ENV PORT 3000
 ENV HOSTNAME 0.0.0.0
 
 # Lancement de la migration et du serveur
-# On utilise migrate deploy car on a des fichiers de migration.
-# On permet au serveur de démarrer même si la DB met du temps, ou on laisse Docker redémarrer le conteneur.
-CMD npx prisma migrate deploy && node server.js
+CMD npx prisma@5.22.0 migrate deploy && node server.js
