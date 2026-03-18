@@ -1043,13 +1043,20 @@ export async function syncAllEmployeePayslips() {
 
             console.log("RH Global Sync: Starting Cloud-side scan.")
             const rhFolderId = await (findOrCreateDriveFolder as any)('RESSOURCES_HUMAINES')
+            console.log("rhFolderId:", rhFolderId)
             const paieFolderId = await (findOrCreateDriveFolder as any)('Paie', rhFolderId)
+            console.log("paieFolderId:", paieFolderId)
             const allCloudPdf = await listFilesRecursive(paieFolderId)
+            console.log(`Found ${allCloudPdf.length} PDFs in Paie folder.`)
+            if (allCloudPdf.length > 0) {
+                console.log("Sample files:", allCloudPdf.slice(0, 5).map(f => f.name))
+            }
 
             let totalSyncCount = 0
 
             for (const f of allCloudPdf) {
                 if (!f.name.toLowerCase().endsWith('.pdf')) continue
+                console.log(`Processing file: ${f.name}`)
 
                 const dateMatch = f.name.match(/(\d{4})[_-]?(\d{2})/)
                 const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
@@ -1064,11 +1071,19 @@ export async function syncAllEmployeePayslips() {
                     const matches = nameParts.length > 0 && (matchedParts.length === nameParts.length || matchedParts.length >= 2)
 
                     if (matches) {
+                        console.log(`Matched ${f.name} with employee: ${employee.name}`)
                         const existingFiles = new Set((employee.documents || []).map((d: any) => d.name))
                         const docExists = existingFiles.has(f.name)
                         const salaryExists = (employee.monthlySalaries || []).some((s: any) => s.month === month && s.year === year && s.netRemuneration)
 
-                        if (docExists && salaryExists) break // already synced, go to next file
+                        console.log(`-> docExists: ${docExists}, salaryExists: ${salaryExists}`)
+
+                        if (docExists && salaryExists) {
+                            console.log(`Skipping ${f.name} (already 100% synced).`)
+                            break // already synced, go to next file
+                        }
+
+                        console.log(`Starting download/AI extraction for ${f.name}...`)
 
                         try {
                             const fileBuffer = await downloadFileFromDrive(f.id)
