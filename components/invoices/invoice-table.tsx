@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { ExternalLink, CheckCircle2, AlertCircle, Clock, AlertTriangle, Trash2 } from "lucide-react";
@@ -89,9 +89,9 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
             {sorted.map((inv) => (
-              <tr
-                key={inv.id}
-                className={`hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors ${
+              <Fragment key={inv.id}>
+                <tr
+                  className={`hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors ${
                   inv.status === 'TO_VALIDATE' ? 'bg-amber-50/50 dark:bg-amber-900/10' : ''
                 } ${inv.status === 'ERROR' ? 'bg-red-50/50 dark:bg-red-900/10' : ''}`}
               >
