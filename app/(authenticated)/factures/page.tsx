@@ -15,7 +15,7 @@ export default async function FacturesPage() {
   }
 
   const invoices = await prisma.$queryRaw`
-    SELECT "id", "date", "supplierName", "amount", "driveWebViewUrl", "status", 
+    SELECT "id", "date", "supplierName", "amount", "driveWebViewUrl", "driveFileId", "status", 
            "isSentToAccountant", "invoiceNumber", "amountHT", "vatRate", "vatAmount",
            "paymentMethod", "confidence", "errorMessage", "createdAt", "resume", "lineItems"
     FROM "Invoice"
@@ -30,6 +30,7 @@ export default async function FacturesPage() {
     supplierName: inv.supplierName,
     amount: Number(inv.amount),
     driveWebViewUrl: inv.driveWebViewUrl,
+    driveFileId: inv.driveFileId,
     status: inv.status as "PENDING" | "PROCESSED" | "TO_VALIDATE" | "ERROR",
     isSentToAccountant: inv.isSentToAccountant,
     invoiceNumber: inv.invoiceNumber || null,
@@ -66,45 +67,64 @@ export default async function FacturesPage() {
         </form>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5 px-1">
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
-           <FileText className="h-4 w-4 text-muted-foreground" />
-           <p className="text-2xl font-bold">{totalCount}</p>
-           <p className="text-xs text-muted-foreground">Factures traitées</p>
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+        {/* Colonne de statistiques à gauche */}
+        <div className="md:col-span-4 space-y-3">
+          <div className="bg-white dark:bg-gray-950 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm flex items-center justify-between">
+             <div className="flex items-center gap-3">
+               <div className="p-2 bg-gray-100 dark:bg-gray-900 rounded-lg"><FileText className="h-4 w-4 text-gray-500" /></div>
+               <span className="text-sm font-medium">Total traitées</span>
+             </div>
+             <p className="text-lg font-bold">{totalCount}</p>
+          </div>
+
+          <div className="bg-white dark:bg-gray-950 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm flex items-center justify-between">
+             <div className="flex items-center gap-3">
+               <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg"><Sparkles className="h-4 w-4 text-green-600" /></div>
+               <span className="text-sm font-medium">Validées (OK)</span>
+             </div>
+             <p className="text-lg font-bold text-green-600">{processedCount}</p>
+          </div>
+
+          <div className="bg-white dark:bg-gray-950 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm flex items-center justify-between">
+             <div className="flex items-center gap-3">
+               <div className="p-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg"><AlertTriangle className="h-4 w-4 text-amber-500" /></div>
+               <span className="text-sm font-medium">À vérifier</span>
+             </div>
+             <p className="text-lg font-bold text-amber-600">{toValidateCount}</p>
+          </div>
+
+          <div className="bg-white dark:bg-gray-950 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm flex items-center justify-between">
+             <div className="flex items-center gap-3">
+               <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg"><Database className="h-4 w-4 text-blue-500" /></div>
+               <span className="text-sm font-medium">Vectorisées</span>
+             </div>
+             <p className="text-lg font-bold text-blue-600">{processedCount}</p>
+          </div>
+
+          <div className="bg-white dark:bg-gray-950 p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm flex items-center justify-between">
+             <div className="flex items-center gap-3">
+               <div className="p-2 bg-gray-100 dark:bg-gray-900 rounded-lg"><Send className="h-4 w-4 text-gray-500" /></div>
+               <span className="text-sm font-medium">Env. comptable</span>
+             </div>
+             <p className="text-lg font-bold">{sentCount}</p>
+          </div>
         </div>
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
-           <Sparkles className="h-4 w-4 text-primary" />
-           <p className="text-2xl font-bold text-green-600">{processedCount}</p>
-           <p className="text-xs text-muted-foreground">Validées (OK)</p>
-        </div>
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
-           <AlertTriangle className="h-4 w-4 text-amber-500" />
-           <p className="text-2xl font-bold text-amber-600">{toValidateCount}</p>
-           <p className="text-xs text-muted-foreground">À vérifier</p>
-        </div>
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
-           <Database className="h-4 w-4 text-muted-foreground" />
-           <p className="text-2xl font-bold">{processedCount}</p>
-           <p className="text-xs text-muted-foreground">Vectorisées</p>
-        </div>
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
-           <Send className="h-4 w-4 text-muted-foreground" />
-           <p className="text-2xl font-bold">{sentCount}</p>
-           <p className="text-xs text-muted-foreground">Env. comptable</p>
+
+        {/* Dropzone à droite */}
+        <div className="md:col-span-8 bg-white dark:bg-gray-950 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm h-full flex flex-col justify-center">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold flex items-center gap-2">
+              <Upload className="w-5 h-5 text-primary" /> Scanner Intelligent
+            </h3>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full">IA Powered</span>
+          </div>
+          <InvoiceUploadZone />
+          <p className="text-[10px] text-center text-gray-400 mt-4 leading-relaxed">
+            Format PDF ou Images supportés. Découpage automatique des lots multi-pages.
+          </p>
         </div>
       </div>
-
-      <div className="space-y-6">
-        {/* Dropzone à la une */}
-        <div className="bg-white dark:bg-gray-950 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
-          <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-            <Upload className="w-5 h-5 text-primary" /> Dropzone Factures
-          </h3>
-          <p className="text-sm text-gray-500 mb-6 font-medium">
-            Déposez vos PDF ou images ici. L'IA s'occupe de l'extraction et du classement automatiquement.
-          </p>
-          <InvoiceUploadZone />
-        </div>
 
         {/* Historique pleine largeur */}
         <div className="bg-white dark:bg-gray-950 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
@@ -115,7 +135,6 @@ export default async function FacturesPage() {
             </p>
           </div>
           <InvoiceTable invoices={mappedInvoices} />
-        </div>
       </div>
     </div>
   );

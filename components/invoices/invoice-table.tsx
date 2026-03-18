@@ -15,6 +15,7 @@ export type Invoice = {
   supplierName: string;
   amount: number;
   driveWebViewUrl: string | null;
+  driveFileId: string | null;
   status: "PENDING" | "PROCESSED" | "TO_VALIDATE" | "ERROR";
   isSentToAccountant: boolean;
   invoiceNumber: string | null;
@@ -112,6 +113,7 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
               <th className="px-4 py-3 text-right w-24">TTC</th>
               <th className="px-4 py-3 w-32">Extraction</th>
               <th className="px-4 py-3 w-24">Statut</th>
+              <th className="px-4 py-3 w-32">Compta</th>
               <th className="px-4 py-3 text-center w-32">Actions</th>
             </tr>
           </thead>
@@ -167,6 +169,17 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
                   ) : (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
                       <Clock className="w-2.5 h-2.5" /> ATTENTE
+                    </span>
+                  )}
+                </td>
+                <td className="px-4 py-3">
+                  {inv.isSentToAccountant ? (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+                      <Send className="w-2.5 h-2.5" /> TRANSMIS
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-500">
+                      <Clock className="w-2.5 h-2.5" /> À ENVOYER
                     </span>
                   )}
                 </td>
@@ -328,14 +341,27 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
               Aperçu du document
               <Dialog.Close className="text-gray-400 hover:text-gray-600 transition-colors">✕</Dialog.Close>
             </Dialog.Title>
-            <div className="w-full h-full bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden relative">
+            <div className="w-full h-full bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden relative shadow-inner group">
               {previewUrl && (
                 <iframe 
-                  src={previewUrl.replace(/\/view\?usp=drivesdk$/, '/preview').replace(/\/view$/, '/preview')} 
+                  src={previewUrl.includes('drive.google.com') 
+                    ? `https://drive.google.com/file/d/${detailsInvoice?.driveFileId}/preview` 
+                    : previewUrl} 
                   className="absolute inset-0 w-full h-full border-0" 
                   allow="autoplay" 
                 />
               )}
+              {/* Fallback overlay if iframe is blocked */}
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                <a 
+                  href={detailsInvoice?.driveWebViewUrl || '#'} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-white/90 dark:bg-black/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-bold shadow-xl border dark:border-gray-800 flex items-center gap-2 hover:bg-primary hover:text-white transition-all text-gray-900 dark:text-gray-100"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" /> Ouvrir dans Drive
+                </a>
+              </div>
             </div>
           </Dialog.Content>
         </Dialog.Portal>

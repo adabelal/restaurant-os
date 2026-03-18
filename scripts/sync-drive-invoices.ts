@@ -134,6 +134,17 @@ async function main() {
           const dueDateStr = inv.dueDate && inv.dueDate !== 'NON_IDENTIFIE' ? inv.dueDate : null;
           const lineItemsJson = JSON.stringify(inv.lineItems || []);
 
+          // Rendre le fichier public pour l'aperçu
+          try {
+            await drive.permissions.create({
+              fileId: file.id,
+              requestBody: { role: 'reader', type: 'anyone' },
+              supportsAllDrives: true
+            });
+          } catch (pErr) {
+            console.warn(`      ⚠️ Impossible de partager le fichier ${file.id}:`, (pErr as any).message);
+          }
+
           await prisma.$executeRaw`
             INSERT INTO "Invoice" (
               "id", "date", "supplierName", "amount", "driveFileId", "driveWebViewUrl", 
