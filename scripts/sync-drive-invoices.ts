@@ -4,7 +4,7 @@ import path from 'path';
 config({ path: path.resolve(process.cwd(), '.env') });
 config({ path: path.resolve(process.cwd(), '.env.local') });
 
-import { getGoogleDriveClient } from '../lib/google-drive';
+import { getGoogleDriveOAuthClient } from '../lib/google-drive';
 import { extractInvoicesFromPdf, generateInvoiceEmbedding, buildEmbeddingText } from '../lib/gemini-service';
 import { prisma } from '../lib/prisma';
 
@@ -12,9 +12,8 @@ const FOLDER_ID = '1Tc1uRVOx-hZsuwUCmuxlEZzQOgAvTRqj';
 
 async function main() {
   console.log('🚀 Démarrage de la synchronisation V2 (extraction enrichie) depuis Google Drive...');
-  console.log('📧 Compte de service : ' + process.env.GOOGLE_CLIENT_EMAIL);
   
-  const drive = await getGoogleDriveClient();
+  const drive = await getGoogleDriveOAuthClient();
 
   console.log(`📂 Recherche récursive des documents (PDF/Images) dans les sous-dossiers de : ${FOLDER_ID}...`);
   
