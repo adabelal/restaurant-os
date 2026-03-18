@@ -32,7 +32,8 @@ export async function getGoogleDriveClient() {
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
   if (!email || !privateKey) {
-    throw new Error("Google Drive credentials missing in environment variables.");
+    const missing = !email ? "GOOGLE_CLIENT_EMAIL" : "GOOGLE_PRIVATE_KEY";
+    throw new Error(`Google Drive credential missing: ${missing} is not defined in environment variables.`);
   }
 
   const auth = new google.auth.GoogleAuth({
