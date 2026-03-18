@@ -28,23 +28,21 @@ export const DOC_TYPE_LABELS: Record<string, string> = {
 
 export async function getGoogleDriveClient() {
   const email = process.env.GOOGLE_CLIENT_EMAIL;
-  const rawKey = process.env.GOOGLE_PRIVATE_KEY || "";
-  
-  // High-resilience parsing for various environment variable managers (Easypanel, Docker, etc.)
-  let privateKey = rawKey.trim();
-  
-  // 1. Remove optional surrounding quotes
-  if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
-    privateKey = privateKey.substring(1, privateKey.length - 1);
-  }
-  
   // 2. Handle both actual newlines and literal \n sequences
   privateKey = privateKey.split('\\n').join('\n'); 
   
-  // 3. Ensure the key is not truncated and has proper PKCS#8 or PKCS#1 format
-  if (!privateKey.includes('-----BEGIN') || !privateKey.includes('-----END')) {
-    console.error(`[Google Drive] Invalid key format. Length: ${privateKey.length}. Start: ${privateKey.substring(0, 20)}`);
-    throw new Error("GOOGLE_PRIVATE_KEY format is invalid (missing BEGIN/END markers or truncated).");
+  // 3. SECURE EXTRACTION: Isolate only the content between BEGIN and END markers
+  // This removes accidental prefixes (like GOOGLE_PRIVATE_KEY=) or trailing trash (\ or comments)
+  const beginMarker = '-----BEGIN PRIVATE KEY-----';
+  const endMarker = '-----END PRIVATE KEY-----';
+  const startIdx = privateKey.indexOf(beginMarker);
+  const endIdx = privateKey.indexOf(endMarker);
+  
+  if (startIdx !== -1 && endIdx !== -1) {
+    privateKey = privateKey.substring(startIdx, endIdx + endMarker.length);
+  } else {
+    console.error(`[Google Drive] PEM markers not found. Length: ${privateKey.length}. Content: ${privateKey.substring(0, 30)}...`);
+    throw new Error("GOOGLE_PRIVATE_KEY format is invalid: Missing BEGIN or END markers.");
   }
 
   if (!email) {
