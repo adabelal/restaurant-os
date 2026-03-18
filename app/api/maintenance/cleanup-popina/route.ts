@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
+import { requireAuth } from "@/lib/auth-utils"
 
 export async function GET(req: Request) {
-    const { searchParams } = new URL(req.url)
-    const secret = searchParams.get("secret")
-    
-    if (secret !== process.env.RESTAURANT_OS_API_KEY) {
+    try {
+        await requireAuth()
+    } catch (e) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
