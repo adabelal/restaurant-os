@@ -203,6 +203,18 @@ export function CategoryListClient({
                                                                 className="h-9 border-slate-200 dark:border-slate-800 font-bold text-sm bg-slate-50 dark:bg-slate-950 rounded-xl"
                                                                 autoFocus
                                                             />
+                                                            <Select value={editType} onValueChange={setEditType}>
+                                                                <SelectTrigger className="h-9 w-[180px] border-slate-200 dark:border-slate-800 rounded-xl font-bold bg-slate-50 dark:bg-slate-950 text-xs">
+                                                                    <SelectValue placeholder="Type de flux" />
+                                                                </SelectTrigger>
+                                                                <SelectContent className="rounded-xl">
+                                                                    {categoryTypes.map(t => (
+                                                                        <SelectItem key={t} value={t} className="rounded-lg font-bold text-xs">
+                                                                            {TYPE_LABELS[t] || t}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
                                                             <div className="flex gap-1 shrink-0">
                                                                 <Button size="icon" variant="ghost" className="h-9 w-9 text-emerald-500 hover:bg-emerald-50 rounded-xl" onClick={handleUpdate}>
                                                                     <Check className="h-4 w-4" />

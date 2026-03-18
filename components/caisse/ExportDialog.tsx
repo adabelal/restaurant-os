@@ -54,12 +54,21 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
             'Type': t.type === 'IN' ? 'Entrée' : 'Sortie',
             'Description': t.description,
             'Catégorie': t.category?.name || 'Sans catégorie',
-            'Montant (€)': Number(t.amount).toFixed(2),
-            'Saisi le': format(new Date(t.createdAt), 'dd/MM/yyyy HH:mm')
+            'Montant (€)': Number(t.amount).toFixed(2)
         }))
 
         const workbook = XLSX.utils.book_new()
         const worksheet = XLSX.utils.json_to_sheet(worksheetData)
+        
+        // Ajustement des largeurs de colonnes pour une meilleure lisibilité
+        worksheet['!cols'] = [
+            { wch: 14 }, // Date
+            { wch: 12 }, // Type
+            { wch: 45 }, // Description
+            { wch: 25 }, // Catégorie
+            { wch: 16 }  // Montant (€)
+        ]
+
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Transactions')
         return XLSX.write(workbook, { bookType: 'xlsx', type: 'array' })
     }
@@ -110,6 +119,10 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
             startY: 25,
             head: [['Date', 'Type', 'Description', 'Catégorie', 'Montant']],
             body: tableBody,
+            theme: 'grid',
+            headStyles: { fillColor: [99, 102, 241], fontStyle: 'bold' },
+            alternateRowStyles: { fillColor: [249, 250, 251] },
+            styles: { fontSize: 10, cellPadding: 5 },
         })
 
         const finalY = (doc as any).lastAutoTable.finalY || 30
