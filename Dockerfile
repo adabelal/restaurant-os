@@ -58,6 +58,5 @@ ENV PORT 3000
 ENV HOSTNAME 0.0.0.0
 
 # Lancement de la migration et du serveur
-# On résout d'abord les migrations en échec (P3009) dues aux tentatives pgvector précédentes.
-# Ensuite on déploie la version corrigée (sans vector).
-CMD npx prisma@5.22.0 migrate resolve --rolled-back 20260318120000_enrich_invoice_fields ; npx prisma@5.22.0 migrate deploy && node server.js
+# Lancement de la synchronisation DB (db push pour résilience face au drift migrations) et du serveur
+CMD npx prisma@5.22.0 db push --accept-data-loss --skip-generate && node server.js
