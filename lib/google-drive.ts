@@ -272,10 +272,15 @@ export async function listFilesRecursive(folderId: string): Promise<{ id: string
 
     async function scan(fId: string) {
         const query = `'${fId}' in parents and trashed=false`;
-        const res = await fetch(
-            `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name,mimeType,webViewLink)&pageSize=1000&includeItemsFromAllDrives=true&supportsAllDrives=true`,
-            { headers: { Authorization: `Bearer ${token}` } }
-        );
+        const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name,mimeType,webViewLink)&pageSize=1000&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true`;
+        const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+        
+        if (!res.ok) {
+            const err = await res.text();
+            console.error(`Drive API error in listFilesRecursive for ${fId}:`, err);
+            return;
+        }
+        
         const data = (await res.json()) as any;
 
         if (data.files) {
