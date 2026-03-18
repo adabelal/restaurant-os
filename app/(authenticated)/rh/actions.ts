@@ -1027,6 +1027,95 @@ export async function syncEmployeePayslips(userId: string) {
     })
 }
 
+/**
+ * Synchronise les fiches de paie pour TOUS les employés actifs en scannant le dossier Paie.
+ */
+export async function syncAllEmployeePayslips() {
+    return safeAction({}, async () => {
+        try {
+            const employees = await (prisma as any).user.findMany({
+                where: { isActive: true },
+                include: {
+                    documents: { where: { type: 'PAYSLIP' } },
+                    monthlySalaries: true
+                }
+            })
+
+            console.log("RH Global Sync: Starting Cloud-side scan.")
+            const rhFolderId = await (findOrCreateDriveFolder as any)('RESSOURCES_HUMAINES')
+            const paieFolderId = await (findOrCreateDriveFolder as any)('Paie', rhFolderId)
+            const allCloudPdf = await listFilesRecursive(paieFolderId)
+
+            let totalSyncCount = 0
+
+            for (const f of allCloudPdf) {
+                if (!f.name.toLowerCase().endsWith('.pdf')) continue
+
+                const dateMatch = f.name.match(/(\d{4})[_-]?(\d{2})/)
+                const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
+                const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
+
+                const cleanFile = f.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+
+                for (const employee of employees) {
+                    const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+                    const nameParts = cleanName.split(/\s+/).filter((p: string) => p.length > 2)
+                    const matchedParts = nameParts.filter((part: string) => cleanFile.includes(part))
+                    const matches = nameParts.length > 0 && (matchedParts.length === nameParts.length || matchedParts.length >= 2)
+
+                    if (matches) {
+                        const existingFiles = new Set((employee.documents || []).map((d: any) => d.name))
+                        const docExists = existingFiles.has(f.name)
+                        const salaryExists = (employee.monthlySalaries || []).some((s: any) => s.month === month && s.year === year && s.netRemuneration)
+
+                        if (docExists && salaryExists) break // already synced, go to next file
+
+                        try {
+                            const fileBuffer = await downloadFileFromDrive(f.id)
+
+                            if (!docExists) {
+                                await prisma.employeeDocument.create({
+                                    data: {
+                                        userId: employee.id,
+                                        name: f.name,
+                                        url: f.webViewLink,
+                                        type: 'PAYSLIP',
+                                        category: 'PAIE',
+                                        month,
+                                        year
+                                    }
+                                })
+                                totalSyncCount++
+                            }
+
+                            if (!salaryExists) {
+                                const netAmount = await extractRemunerationWithAI(fileBuffer)
+                                if (netAmount) {
+                                    await (prisma as any).monthlySalary.upsert({
+                                        where: { userId_month_year: { userId: employee.id, month, year } },
+                                        update: { netRemuneration: netAmount },
+                                        create: { userId: employee.id, month, year, netRemuneration: netAmount }
+                                    })
+                                    if (docExists) totalSyncCount++
+                                }
+                            }
+                        } catch (err) {
+                            console.error(`Global Cloud Sync failed for ${f.name}:`, err)
+                        }
+                        break // document was matched to an employee, no need to check others
+                    }
+                }
+            }
+
+            revalidatePath(`/rh`)
+            return { success: true, message: `${totalSyncCount} nouvelle(s) fiche(s) synchronisée(s).` }
+        } catch (e: any) {
+            console.error("Global Sync Error:", e)
+            return { error: "Erreur lors de la synchronisation globale : " + e.message }
+        }
+    })
+}
+
 
 /**
  * Envoie un ou plusieurs documents par email au salarié

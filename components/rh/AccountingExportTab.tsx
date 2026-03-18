@@ -9,8 +9,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { toast } from "sonner"
-import { sendDocumentsToEmail } from "@/app/(authenticated)/rh/actions"
-import { FileText, Send, Mail, Loader2, Calendar } from "lucide-react"
+import { sendDocumentsToEmail, syncAllEmployeePayslips } from "@/app/(authenticated)/rh/actions"
+import { FileText, Send, Mail, Loader2, Calendar, HardDriveDownload } from "lucide-react"
 
 interface AccountingExportTabProps {
     employees: any[]
@@ -49,6 +49,7 @@ export function AccountingExportTab({ employees }: AccountingExportTabProps) {
 
     const [selectedDocIds, setSelectedDocIds] = useState<string[]>([])
     const [isSending, setIsSending] = useState(false)
+    const [isScanning, setIsScanning] = useState(false)
 
     // Load defaults from local storage
     useEffect(() => {
@@ -131,6 +132,17 @@ export function AccountingExportTab({ employees }: AccountingExportTabProps) {
         }
     }
 
+    const handleGlobalScan = async () => {
+        setIsScanning(true)
+        const result = await syncAllEmployeePayslips()
+        setIsScanning(false)
+        if (result && 'success' in result && result.success) {
+            toast.success(result.message || "Scan terminé avec succès")
+        } else {
+            toast.error((result as any)?.error || "Erreur lors du scan")
+        }
+    }
+
     const years = Array.from({ length: 5 }, (_, i) => currentYear - i)
 
     return (
@@ -140,8 +152,20 @@ export function AccountingExportTab({ employees }: AccountingExportTabProps) {
                     <CardHeader className="bg-muted/10 border-b pb-4">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div>
-                                <CardTitle className="text-xl">Fiches de Paie</CardTitle>
-                                <CardDescription>Sélectionnez la période à exporter</CardDescription>
+                                <CardTitle className="text-xl flex items-center gap-3">
+                                    Fiches de Paie
+                                    <Button 
+                                        variant="outline" 
+                                        size="sm" 
+                                        onClick={handleGlobalScan} 
+                                        disabled={isScanning}
+                                        className="h-8 rounded-full border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 text-xs shadow-sm font-bold"
+                                    >
+                                        {isScanning ? <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" /> : <HardDriveDownload className="w-3.5 h-3.5 mr-1.5" />}
+                                        {isScanning ? "Scan en cours..." : "Scanner Drive"}
+                                    </Button>
+                                </CardTitle>
+                                <CardDescription className="mt-1">Sélectionnez la période à exporter</CardDescription>
                             </div>
                             <div className="flex items-center gap-3">
                                 <Select value={selectedMonth.toString()} onValueChange={(v) => setSelectedMonth(parseInt(v))}>
