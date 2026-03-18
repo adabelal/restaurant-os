@@ -418,11 +418,11 @@ export async function importPopinaExcel(formData: FormData) {
                 }
 
                 const existingOut = await prisma.cashTransaction.findFirst({
-                    where: { date: date, amount: amount, description: descOut }
+                    where: { date: date, amount: -amount, description: descOut }
                 })
                 if (!existingOut) {
                     await prisma.cashTransaction.create({
-                        data: { date: date, amount: amount, type: "OUT", description: descOut, categoryId: catSocial.id }
+                        data: { date: date, amount: -amount, type: "OUT", description: descOut, categoryId: catSocial.id }
                     })
                     transactionsCreated++
                 }
@@ -433,11 +433,11 @@ export async function importPopinaExcel(formData: FormData) {
                 const amount = Number(row[ccIdx])
                 const desc = `Popina: Pourboire Carte (Sortie)`
                 const existing = await prisma.cashTransaction.findFirst({
-                    where: { date: date, amount: amount, description: desc }
+                    where: { date: date, amount: -amount, description: desc }
                 })
                 if (!existing) {
                     await prisma.cashTransaction.create({
-                        data: { date: date, amount: amount, type: "OUT", description: desc, categoryId: catSocial.id }
+                        data: { date: date, amount: -amount, type: "OUT", description: desc, categoryId: catSocial.id }
                     })
                     transactionsCreated++
                 }
@@ -448,11 +448,11 @@ export async function importPopinaExcel(formData: FormData) {
                 const amount = Number(row[chequeIdx])
                 const desc = `Popina: Pourboire Chèque (Sortie)`
                 const existing = await prisma.cashTransaction.findFirst({
-                    where: { date: date, amount: amount, description: desc }
+                    where: { date: date, amount: -amount, description: desc }
                 })
                 if (!existing) {
                     await prisma.cashTransaction.create({
-                        data: { date: date, amount: amount, type: "OUT", description: desc, categoryId: catSocial.id }
+                        data: { date: date, amount: -amount, type: "OUT", description: desc, categoryId: catSocial.id }
                     })
                     transactionsCreated++
                 }
