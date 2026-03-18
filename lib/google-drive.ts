@@ -26,6 +26,8 @@ export const DOC_TYPE_LABELS: Record<string, string> = {
 
 // ─── Section 1: Service Account (Invoices V2) ────────────────────────────────
 
+export async function getGoogleDriveClient() {
+  const email = process.env.GOOGLE_CLIENT_EMAIL;
   const rawKey = process.env.GOOGLE_PRIVATE_KEY || "";
   let privateKey = rawKey.trim();
   
@@ -33,7 +35,6 @@ export const DOC_TYPE_LABELS: Record<string, string> = {
   privateKey = privateKey.split('\\n').join('\n'); 
   
   // 3. SECURE EXTRACTION: Isolate only the content between BEGIN and END markers
-  // This removes accidental prefixes (like GOOGLE_PRIVATE_KEY=) or trailing trash (\ or comments)
   const beginMarker = '-----BEGIN PRIVATE KEY-----';
   const endMarker = '-----END PRIVATE KEY-----';
   const startIdx = privateKey.indexOf(beginMarker);
@@ -42,7 +43,7 @@ export const DOC_TYPE_LABELS: Record<string, string> = {
   if (startIdx !== -1 && endIdx !== -1) {
     privateKey = privateKey.substring(startIdx, endIdx + endMarker.length);
   } else {
-    console.error(`[Google Drive] PEM markers not found. Length: ${privateKey.length}. Content: ${privateKey.substring(0, 30)}...`);
+    console.error(`[Google Drive] PEM markers not found. Length: ${privateKey.length}.`);
     throw new Error("GOOGLE_PRIVATE_KEY format is invalid: Missing BEGIN or END markers.");
   }
 
