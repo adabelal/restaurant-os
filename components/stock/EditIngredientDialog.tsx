@@ -45,7 +45,7 @@ export function EditIngredientDialog({ ingredient }: EditIngredientDialogProps) 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-300 hover:text-blue-600">
+                <Button size="icon" variant="ghost" aria-label="Modifier l'ingrédient" className="h-8 w-8 text-slate-300 hover:text-blue-600">
                     <Pencil className="h-4 w-4" />
                 </Button>
             </DialogTrigger>

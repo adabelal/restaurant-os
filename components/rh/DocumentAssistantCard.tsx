@@ -222,14 +222,14 @@ export function DocumentAssistantCard({
                                                 </div>
                                                 <div className="flex items-center gap-1 shrink-0">
                                                     {onSendEmail && doc.category !== 'TESE' && (
-                                                        <Button size="icon" variant="ghost" className="h-7 w-7 text-primary hover:bg-primary/5" onClick={() => onSendEmail(doc.id, doc.name)}>
+                                                        <Button size="icon" variant="ghost" aria-label="Envoyer par email" className="h-7 w-7 text-primary hover:bg-primary/5" onClick={() => onSendEmail(doc.id, doc.name)}>
                                                             <Mail className="h-3.5 w-3.5" />
                                                         </Button>
                                                     )}
-                                                    <Button size="icon" variant="ghost" className="h-7 w-7 bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 hover:dark:bg-blue-900/40" asChild>
+                                                    <Button size="icon" variant="ghost" aria-label="Télécharger le document" className="h-7 w-7 bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 hover:dark:bg-blue-900/40" asChild>
                                                         <a href={doc.url} target="_blank"><Download className="h-3.5 w-3.5" /></a>
                                                     </Button>
-                                                    <Button size="icon" variant="ghost" className="h-7 w-7 text-red-500 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/20 transition-colors" onClick={() => handleDelete(doc.id)}>
+                                                    <Button size="icon" variant="ghost" aria-label="Supprimer le document" className="h-7 w-7 text-red-500 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/20 transition-colors" onClick={() => handleDelete(doc.id)}>
                                                         <Trash2 className="h-3.5 w-3.5" />
                                                     </Button>
                                                 </div>

@@ -91,14 +91,14 @@ export function ShiftManager({
                     <CardTitle className="text-lg font-bold">Historique & Saisie</CardTitle>
                     <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
                         <Link href={`/rh/${employee.id}?month=${prevMonth}&year=${prevYear}&tab=hours`}>
-                            <Button variant="outline" size="icon" className="h-9 w-9 rounded-xl active:scale-95"><ChevronLeft className="h-4 w-4" /></Button>
+                            <Button variant="outline" size="icon" aria-label="Mois précédent" className="h-9 w-9 rounded-xl active:scale-95"><ChevronLeft className="h-4 w-4" /></Button>
                         </Link>
                         <div className="flex flex-col items-center flex-1 sm:flex-none">
                             <Badge className="px-4 py-1 text-xs font-black uppercase tracking-wider bg-primary text-white border-none shadow-sm rounded-lg">{monthLabel}</Badge>
                             <span className="text-[10px] font-black text-muted-foreground mt-1 uppercase tracking-tighter">Total: {totalHoursMonth.toFixed(1)}h</span>
                         </div>
                         <Link href={`/rh/${employee.id}?month=${nextMonth}&year=${nextYear}&tab=hours`}>
-                            <Button variant="outline" size="icon" className="h-9 w-9 rounded-xl active:scale-95"><ChevronRight className="h-4 w-4" /></Button>
+                            <Button variant="outline" size="icon" aria-label="Mois suivant" className="h-9 w-9 rounded-xl active:scale-95"><ChevronRight className="h-4 w-4" /></Button>
                         </Link>
                     </div>
                 </div>

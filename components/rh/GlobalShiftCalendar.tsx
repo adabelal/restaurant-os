@@ -642,7 +642,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                             <CardDescription className="hidden sm:block">Vue globale (Gérants inclus)</CardDescription>
                         </div>
                         <div className="flex items-center justify-between sm:justify-center bg-muted rounded-lg p-1 border">
-                            <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={prevPeriod}>
+                            <Button variant="ghost" size="icon" aria-label="Période précédente" className="h-8 w-8 hover:bg-background" onClick={prevPeriod}>
                                 <ChevronLeft className="h-4 w-4" />
                             </Button>
                             <span className="text-xs sm:text-sm font-bold px-2 sm:px-4 min-w-[120px] sm:min-w-[140px] text-center capitalize">
@@ -653,7 +653,7 @@ export function GlobalShiftCalendar({ employees }: GlobalShiftCalendarProps) {
                                         : format(currentDate, 'EEEE d MMMM', { locale: fr })
                                 }
                             </span>
-                            <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-background" onClick={nextPeriod}>
+                            <Button variant="ghost" size="icon" aria-label="Période suivante" className="h-8 w-8 hover:bg-background" onClick={nextPeriod}>
                                 <ChevronRight className="h-4 w-4" />
                             </Button>
                         </div>

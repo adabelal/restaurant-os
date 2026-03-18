@@ -103,7 +103,7 @@ export function TransactionTable({ initialTransactions }: TransactionTableProps)
                                                 }
                                             }
                                         }}>
-                                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-rose-500 hover:bg-rose-500/10">
+                                            <Button variant="ghost" size="icon" aria-label="Supprimer la transaction" className="text-muted-foreground hover:text-rose-500 hover:bg-rose-500/10">
                                                 <Trash2 className="h-4 w-4" />
                                             </Button>
                                         </form>
