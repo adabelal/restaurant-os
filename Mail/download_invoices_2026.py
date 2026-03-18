@@ -596,7 +596,7 @@ def download_and_upload_invoices():
                     uploaded_count += 1
                     sync_data = {
                         "supplierName": tier,
-                        "date": invoice_date.replace("_", "-"),
+                        "date": dt.isoformat(),
                         "totalAmount": float(amount),
                         "scannedUrl": f"https://drive.google.com/file/d/{file_id}/view",
                         "fileName": new_filename,

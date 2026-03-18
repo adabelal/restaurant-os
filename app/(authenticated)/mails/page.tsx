@@ -57,7 +57,7 @@ export default async function MailsPage() {
     const allProcessed: any[] = [
         ...explicitMails.map((m: any) => ({
             id: m.id,
-            date: m.date,
+            date: m.date instanceof Date ? m.date : new Date(m.date),
             type: (m.type === 'INVOICE' ? 'Facture' : (m.type === 'POPINA_REPORT' ? 'Rapport Popina' : 'Document')) as any,
             source: m.sender,
             amount: Number(m.amount || 0),
@@ -68,7 +68,7 @@ export default async function MailsPage() {
         })),
         ...invoices.filter((inv: any) => !processedIds.has(inv.id)).map((inv: any) => ({
             id: inv.id,
-            date: inv.date,
+            date: inv.date instanceof Date ? inv.date : new Date(inv.date),
             type: 'Facture' as const,
             source: inv.supplier?.name || "Fournisseur inconnu",
             amount: Number(inv.totalAmount),
