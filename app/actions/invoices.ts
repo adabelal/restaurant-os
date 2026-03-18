@@ -113,7 +113,7 @@ export async function processInvoiceDocument(
               "originalFileName", "status", "isSentToAccountant",
               "invoiceNumber", "dueDate", "supplierSiret", "supplierAddress",
               "amountHT", "vatRate", "vatAmount", "paymentMethod", "paymentReference",
-              "confidence", "lineItems",
+              "confidence", "resume", "lineItems",
               "embedding", "updatedAt"
             ) VALUES (
               gen_random_uuid()::text, 
@@ -135,6 +135,7 @@ export async function processInvoiceDocument(
               ${inv.paymentMethod !== 'NON_IDENTIFIE' ? inv.paymentMethod : null},
               ${inv.paymentReference !== 'NON_IDENTIFIE' ? inv.paymentReference : null},
               ${confidence},
+              ${inv.Resume || null},
               ${lineItemsJson}::jsonb,
               ${vectorString}::jsonb,
               NOW()

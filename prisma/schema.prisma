@@ -452,6 +452,7 @@ model Invoice {
   paymentMethod      String?
   paymentReference   String?
   confidence         Decimal?  @db.Decimal(3, 2)
+  resume             String?
   lineItems          Json?
 
   // Vector Embeddings (768 dimensions pour Gemini 2.0)

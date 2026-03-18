@@ -17,7 +17,7 @@ export default async function FacturesPage() {
   const invoices = await prisma.$queryRaw`
     SELECT "id", "date", "supplierName", "amount", "driveWebViewUrl", "status", 
            "isSentToAccountant", "invoiceNumber", "amountHT", "vatRate", "vatAmount",
-           "paymentMethod", "confidence", "errorMessage", "createdAt"
+           "paymentMethod", "confidence", "errorMessage", "createdAt", "resume", "lineItems"
     FROM "Invoice"
     ORDER BY "createdAt" DESC
     LIMIT 100
@@ -39,6 +39,8 @@ export default async function FacturesPage() {
     paymentMethod: inv.paymentMethod || null,
     confidence: inv.confidence != null ? Number(inv.confidence) : null,
     errorMessage: inv.errorMessage || null,
+    resume: inv.resume || null,
+    lineItems: inv.lineItems || [],
     createdAt: inv.createdAt,
   }));
 

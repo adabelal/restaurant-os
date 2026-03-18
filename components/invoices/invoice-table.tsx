@@ -23,6 +23,8 @@ export type Invoice = {
   paymentMethod: string | null;
   confidence: number | null;
   errorMessage: string | null;
+  resume: string | null;
+  lineItems: any[];
   createdAt: Date;
 };
 
@@ -101,7 +103,12 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
                     {inv.supplierName.replace(/_/g, ' ')}
                   </div>
                   {inv.invoiceNumber && (
-                    <div className="text-xs text-gray-400 mt-0.5">N° {inv.invoiceNumber}</div>
+                    <div className="text-xs text-gray-400 mt-0.5 font-mono">N° {inv.invoiceNumber}</div>
+                  )}
+                  {inv.resume && (
+                    <div className="text-[10px] text-gray-500 mt-1 italic leading-tight max-w-[200px]">
+                      {inv.resume}
+                    </div>
                   )}
                 </td>
                 <td className="px-4 py-3 font-mono text-right text-xs text-gray-500">
@@ -183,8 +190,23 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
                   </div>
                 </td>
               </tr>
-            ))}
-          </tbody>
+              {/* Row for line items if present */}
+              {inv.lineItems && Array.isArray(inv.lineItems) && inv.lineItems.length > 0 && (
+                <tr className="bg-gray-50/30 dark:bg-gray-900/10">
+                  <td colSpan={8} className="px-4 py-2">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-gray-400">Articles :</span>
+                      {inv.lineItems.map((item: any, idx: number) => (
+                        <span key={idx} className="text-[10px] bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 px-1.5 py-0.5 rounded shadow-sm">
+                          <span className="font-semibold text-primary">{item.quantity}x</span> {item.description} <span className="text-gray-400">({item.unitPrice}€)</span>
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </>
+          ))}
         </table>
       </div>
 
@@ -199,7 +221,11 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
             </Dialog.Title>
             <div className="w-full h-full bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden relative">
               {selectedInvoiceUrl && (
-                <iframe src={selectedInvoiceUrl} className="absolute inset-0 w-full h-full" allow="autoplay" />
+                <iframe 
+                  src={selectedInvoiceUrl.replace(/\/view\?usp=drivesdk$/, '/preview').replace(/\/view$/, '/preview')} 
+                  className="absolute inset-0 w-full h-full border-0" 
+                  allow="autoplay" 
+                />
               )}
             </div>
           </Dialog.Content>
