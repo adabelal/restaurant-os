@@ -27,15 +27,27 @@ export const DOC_TYPE_LABELS: Record<string, string> = {
 // ─── Section 1: Service Account (Invoices V2) ────────────────────────────────
 
 export async function getGoogleDriveClient() {
-  const email = process.env.GOOGLE_CLIENT_EMAIL;
-  // Handle newlines and potential extra quotes from environment variable managers
   const rawKey = process.env.GOOGLE_PRIVATE_KEY || "";
-  const privateKey = rawKey.replace(/\\n/g, '\n').replace(/^"(.*)"$/, '$1'); 
+  
+  // High-resilience parsing for various environment variable managers (Easypanel, Docker, etc.)
+  let privateKey = rawKey.trim();
+  
+  // 1. Remove optional surrounding quotes
+  if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
+    privateKey = privateKey.substring(1, privateKey.length - 1);
+  }
+  
+  // 2. Handle both actual newlines and literal \n sequences
+  privateKey = privateKey.split('\\n').join('\n'); 
+  
+  // 3. Ensure the key is not truncated and has proper PKCS#8 or PKCS#1 format
+  if (!privateKey.includes('-----BEGIN') || !privateKey.includes('-----END')) {
+    console.error(`[Google Drive] Invalid key format. Length: ${privateKey.length}. Start: ${privateKey.substring(0, 20)}`);
+    throw new Error("GOOGLE_PRIVATE_KEY format is invalid (missing BEGIN/END markers or truncated).");
+  }
 
-
-  if (!email || !privateKey) {
-    const missing = !email ? "GOOGLE_CLIENT_EMAIL" : "GOOGLE_PRIVATE_KEY";
-    throw new Error(`Google Drive credential missing: ${missing} is not defined in environment variables.`);
+  if (!email) {
+    throw new Error("GOOGLE_CLIENT_EMAIL is missing in environment variables.");
   }
 
   const auth = new google.auth.GoogleAuth({
