@@ -40,7 +40,9 @@ export default function InvoiceUploadZone() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'application/pdf': ['.pdf']
+      'application/pdf': ['.pdf'],
+      'image/jpeg': ['.jpg', '.jpeg'],
+      'image/png': ['.png']
     },
     maxFiles: 1,
     disabled: isPending
@@ -50,10 +52,10 @@ export default function InvoiceUploadZone() {
     <div className="w-full">
       <div 
         {...getRootProps()} 
-        className={\`relative flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-xl transition-all duration-200 ease-in-out cursor-pointer overflow-hidden
-          \${isDragActive ? 'border-primary bg-primary/10 scale-105' : 'border-gray-300 hover:border-primary/50 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800'}
-          \${isPending ? 'opacity-70 cursor-not-allowed' : ''}
-        \`}
+        className={`relative flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-xl transition-all duration-200 ease-in-out cursor-pointer overflow-hidden
+          ${isDragActive ? 'border-primary bg-primary/10 scale-105' : 'border-gray-300 hover:border-primary/50 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800'}
+          ${isPending ? 'opacity-70 cursor-not-allowed' : ''}
+        `}
       >
         <input {...getInputProps()} />
         
