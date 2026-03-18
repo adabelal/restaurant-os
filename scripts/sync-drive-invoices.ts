@@ -79,7 +79,6 @@ async function main() {
       console.log("⚠️ Assurez-vous d'être dans un environnement conteneurisé (Docker/Easypanel) ou changez DATABASE_URL vers localhost.");
       return;
     }
-
     try {
       // Download file from Drive
       const fileResponse = await drive.files.get(
@@ -88,8 +87,25 @@ async function main() {
       );
       
       const fileBytes = new Uint8Array(fileResponse.data as ArrayBuffer);
-      const mimeType = file.mimeType || 'application/pdf';
+      let mimeType = file.mimeType || 'application/pdf';
+      let pdfBytesToUpload = fileBytes;
+
       console.log(`   ➡️ Téléchargé (${fileBytes.byteLength} bytes). Extraction Gemini V2...`);
+
+      // If it's an image, convert to PDF for uniformity (optional but requested)
+      if (mimeType.startsWith('image/')) {
+        try {
+          const { jsPDF } = await import('jspdf');
+          const doc = new jsPDF();
+          const imgData = Buffer.from(fileBytes).toString('base64');
+          const pageWidth = doc.internal.pageSize.getWidth();
+          const pageHeight = doc.internal.pageSize.getHeight();
+          doc.addImage(`data:${mimeType};base64,${imgData}`, 'JPEG', 0, 0, pageWidth, pageHeight);
+          pdfBytesToUpload = new Uint8Array(doc.output('arraybuffer'));
+        } catch (convErr) {
+          console.warn(`      ⚠️ Échec conversion PDF pour ${file.name}, utilisation de l'image brute.`);
+        }
+      }
 
       // Extract with Gemini (supports PDF + images)
       const extractionResult = await extractInvoicesFromPdf(fileBytes, mimeType);

@@ -44,18 +44,33 @@ export async function processInvoiceDocument(
        return { success: false, message: "No invoices found in the document." };
     }
 
-    // 2. Load the original PDF to slice it
+    // 2. Load or convert to PDF
+    let pdfBytesToUpload = pdfBytes;
     let pdfDoc: PDFDocument | null = null;
-    if (file.type === 'application/pdf') {
+
+    if (file.type.startsWith('image/')) {
+      // Convert image to PDF using jsPDF
+      const { jsPDF } = await import('jspdf');
+      const doc = new jsPDF();
+      const imgData = Buffer.from(pdfBytes).toString('base64');
+      
+      // Basic heuristic: fill the page
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      doc.addImage(`data:${file.type};base64,${imgData}`, 'JPEG', 0, 0, pageWidth, pageHeight);
+      
+      const pdfArrayBuffer = doc.output('arraybuffer');
+      pdfBytesToUpload = new Uint8Array(pdfArrayBuffer);
+    } else if (file.type === 'application/pdf') {
        pdfDoc = await PDFDocument.load(pdfBytes);
     }
 
     const processedInvoices = await Promise.all(
       invoices.map(async (inv, index) => {
         try {
-          let slicedPdfBytes: Uint8Array = pdfBytes;
+          let slicedPdfBytes = pdfBytesToUpload;
 
-          // Slice PDF if applicable
+          // Slice PDF if applicable (only if it was originally a PDF)
           if (pdfDoc && inv.Start_Page && inv.End_Page && inv.Start_Page <= inv.End_Page) {
             try {
               const newPdf = await PDFDocument.create();
