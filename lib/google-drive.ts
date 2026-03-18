@@ -28,8 +28,10 @@ export const DOC_TYPE_LABELS: Record<string, string> = {
 
 export async function getGoogleDriveClient() {
   const email = process.env.GOOGLE_CLIENT_EMAIL;
-  // Handle newlines in private key correctly
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+  // Handle newlines and potential extra quotes from environment variable managers
+  const rawKey = process.env.GOOGLE_PRIVATE_KEY || "";
+  const privateKey = rawKey.replace(/\\n/g, '\n').replace(/^"(.*)"$/, '$1'); 
+
 
   if (!email || !privateKey) {
     const missing = !email ? "GOOGLE_CLIENT_EMAIL" : "GOOGLE_PRIVATE_KEY";
