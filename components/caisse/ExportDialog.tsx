@@ -48,34 +48,79 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
         }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     }
 
-    const generateExcelBuffer = (data: any[]) => {
-        const worksheetData = data.map(t => ({
-            'Date': format(new Date(t.date), 'dd/MM/yyyy'),
-            'Type': t.type === 'IN' ? 'Entrée' : 'Sortie',
-            'Description': t.description,
-            'Catégorie': t.category?.name || 'Sans catégorie',
-            'Montant (€)': Number(t.amount).toFixed(2)
-        }))
-
-        const workbook = XLSX.utils.book_new()
-        const worksheet = XLSX.utils.json_to_sheet(worksheetData)
+    const generateExcelBuffer = async (data: any[]) => {
+        const ExcelJS = (await import('exceljs')).default;
+        const workbook = new ExcelJS.Workbook();
+        workbook.creator = 'Restaurant OS';
+        workbook.created = new Date();
         
-        // Ajustement des largeurs de colonnes pour une meilleure lisibilité
-        worksheet['!cols'] = [
-            { wch: 14 }, // Date
-            { wch: 12 }, // Type
-            { wch: 45 }, // Description
-            { wch: 25 }, // Catégorie
-            { wch: 16 }  // Montant (€)
-        ]
+        const worksheet = workbook.addWorksheet('Transactions', {
+            views: [{ state: 'frozen', ySplit: 1 }]
+        });
 
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Transactions')
-        return XLSX.write(workbook, { bookType: 'xlsx', type: 'array' })
+        let groupedByDate: Record<string, { in: number, out: number }> = {};
+        data.forEach(t => {
+            const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
+            if (!groupedByDate[dateStr]) groupedByDate[dateStr] = { in: 0, out: 0 };
+            if (t.type === 'IN') groupedByDate[dateStr].in += Number(t.amount);
+            else groupedByDate[dateStr].out += Number(t.amount);
+        });
+
+        worksheet.columns = [
+            { header: 'Date', key: 'date', width: 14 },
+            { header: 'Type', key: 'type', width: 12 },
+            { header: 'Description', key: 'description', width: 45 },
+            { header: 'Catégorie', key: 'category', width: 25 },
+            { header: 'Montant', key: 'amount', width: 15, style: { numFmt: '#,##0.00 €' } },
+            { header: 'Total Journée', key: 'dailyTotal', width: 18, style: { numFmt: '#,##0.00 €' } }
+        ];
+
+        worksheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
+        worksheet.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF4F46E5' } };
+        worksheet.getRow(1).alignment = { horizontal: 'center' };
+
+        data.forEach((t, index) => {
+            const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
+            const isLastOfDay = index === data.length - 1 || format(new Date(data[index + 1].date), 'dd/MM/yyyy') !== dateStr;
+            
+            let dailyTotalVal = null;
+            if (isLastOfDay) {
+                 dailyTotalVal = groupedByDate[dateStr].in - groupedByDate[dateStr].out;
+            }
+
+            const isEntree = t.type === 'IN';
+            const amountVal = isEntree ? Number(t.amount) : -Number(t.amount);
+
+            const row = worksheet.addRow({
+                date: dateStr,
+                type: isEntree ? 'Entrée' : 'Sortie',
+                description: t.description,
+                category: t.category?.name || 'Sans catégorie',
+                amount: amountVal,
+                dailyTotal: dailyTotalVal
+            });
+
+            if (index % 2 === 0) {
+                row.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF9FAFB' } };
+            }
+
+            const amountCell = row.getCell('amount');
+            amountCell.font = { color: { argb: isEntree ? 'FF16A34A' : 'FFDC2626' } };
+
+            if (dailyTotalVal !== null) {
+                const totalCell = row.getCell('dailyTotal');
+                totalCell.font = { bold: true, color: { argb: dailyTotalVal >= 0 ? 'FF16A34A' : 'FFDC2626' } };
+                totalCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF3F4F6' } }; // Light gray bg for total cell
+            }
+        });
+
+        const buffer = await workbook.xlsx.writeBuffer();
+        return buffer;
     }
 
-    const exportToExcel = (data: any[]) => {
-        const buffer = generateExcelBuffer(data)
-        const blob = new Blob([buffer], { type: 'application/octet-stream' })
+    const exportToExcel = async (data: any[]) => {
+        const buffer = await generateExcelBuffer(data)
+        const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
         const fileName = `Export_Caisse_${startDate}_au_${endDate}.xlsx`
         const link = document.createElement("a")
         link.href = URL.createObjectURL(blob)
@@ -84,13 +129,30 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
     }
 
     const exportToCSV = (data: any[]) => {
-        const worksheetData = data.map(t => ({
-            'Date': format(new Date(t.date), 'dd/MM/yyyy'),
-            'Type': t.type === 'IN' ? 'Entrée' : 'Sortie',
-            'Description': t.description,
-            'Catégorie': t.category?.name || 'Sans catégorie',
-            'Montant': Number(t.amount).toFixed(2)
-        }))
+        let groupedByDate: Record<string, { in: number, out: number }> = {};
+        data.forEach(t => {
+            const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
+            if (!groupedByDate[dateStr]) groupedByDate[dateStr] = { in: 0, out: 0 };
+            if (t.type === 'IN') groupedByDate[dateStr].in += Number(t.amount);
+            else groupedByDate[dateStr].out += Number(t.amount);
+        });
+
+        const worksheetData = data.map((t, index) => {
+            const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
+            const isLastOfDay = index === data.length - 1 || format(new Date(data[index + 1].date), 'dd/MM/yyyy') !== dateStr;
+            let dailyTotalVal = '';
+            if (isLastOfDay) {
+                 dailyTotalVal = (groupedByDate[dateStr].in - groupedByDate[dateStr].out).toFixed(2);
+            }
+            return {
+                'Date': dateStr,
+                'Type': t.type === 'IN' ? 'Entrée' : 'Sortie',
+                'Description': t.description,
+                'Catégorie': t.category?.name || 'Sans catégorie',
+                'Montant': t.type === 'IN' ? Number(t.amount).toFixed(2) : `-${Number(t.amount).toFixed(2)}`,
+                'Total Journée': dailyTotalVal
+            }
+        })
         const worksheet = XLSX.utils.json_to_sheet(worksheetData)
         const csv = XLSX.utils.sheet_to_csv(worksheet)
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
@@ -104,25 +166,43 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
         const doc = new jsPDF() as any
         doc.text(`Export Caisse - Période du ${format(new Date(startDate), 'dd/MM/yyyy')} au ${format(new Date(endDate), 'dd/MM/yyyy')}`, 14, 15)
 
-        const tableBody = data.map(t => [
-            format(new Date(t.date), 'dd/MM/yyyy'),
-            t.type === 'IN' ? 'Entrée' : 'Sortie',
-            t.description,
-            t.category?.name || '-',
-            `${Number(t.amount).toFixed(2)} €`
-        ])
+        let groupedByDate: Record<string, { in: number, out: number }> = {};
+        data.forEach(t => {
+            const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
+            if (!groupedByDate[dateStr]) groupedByDate[dateStr] = { in: 0, out: 0 };
+            if (t.type === 'IN') groupedByDate[dateStr].in += Number(t.amount);
+            else groupedByDate[dateStr].out += Number(t.amount);
+        });
+
+        const tableBody = data.map((t, index) => {
+            const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
+            const isLastOfDay = index === data.length - 1 || format(new Date(data[index + 1].date), 'dd/MM/yyyy') !== dateStr;
+            let dailyTotalVal = '';
+            if (isLastOfDay) {
+                 dailyTotalVal = `${(groupedByDate[dateStr].in - groupedByDate[dateStr].out).toFixed(2)} €`;
+            }
+
+            return [
+                dateStr,
+                t.type === 'IN' ? 'Entrée' : 'Sortie',
+                t.description,
+                t.category?.name || '-',
+                t.type === 'IN' ? `${Number(t.amount).toFixed(2)} €` : `-${Number(t.amount).toFixed(2)} €`,
+                dailyTotalVal
+            ]
+        })
 
         const totalIn = data.filter(t => t.type === 'IN').reduce((acc, t) => acc + Number(t.amount), 0)
         const totalOut = data.filter(t => t.type === 'OUT').reduce((acc, t) => acc + Number(t.amount), 0)
 
         doc.autoTable({
             startY: 25,
-            head: [['Date', 'Type', 'Description', 'Catégorie', 'Montant']],
+            head: [['Date', 'Type', 'Description', 'Catégorie', 'Montant', 'Total Journée']],
             body: tableBody,
             theme: 'grid',
             headStyles: { fillColor: [99, 102, 241], fontStyle: 'bold' },
             alternateRowStyles: { fillColor: [249, 250, 251] },
-            styles: { fontSize: 10, cellPadding: 5 },
+            styles: { fontSize: 9, cellPadding: 4 }, // smaller font to fit 6 columns easily
         })
 
         const finalY = (doc as any).lastAutoTable.finalY || 30
@@ -133,14 +213,14 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
         doc.save(`Export_Caisse_${startDate}_au_${endDate}.pdf`)
     }
 
-    const handleExport = () => {
+    const handleExport = async () => {
         const data = getFilteredData()
         if (data.length === 0) {
             toast.error("Aucune transaction sur cette période.")
             return
         }
 
-        if (formatType === 'xlsx') exportToExcel(data)
+        if (formatType === 'xlsx') await exportToExcel(data)
         else if (formatType === 'csv') exportToCSV(data)
         else if (formatType === 'pdf') exportToPDF(data)
 
@@ -161,8 +241,8 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
 
         setIsExporting(true)
         try {
-            const excelBuffer = generateExcelBuffer(data);
-            const binaryString = Array.prototype.map.call(new Uint8Array(excelBuffer), function (ch) {
+            const excelBuffer = await generateExcelBuffer(data);
+            const binaryString = Array.prototype.map.call(new Uint8Array(excelBuffer as ArrayBuffer), function (ch) {
                 return String.fromCharCode(ch);
             }).join('');
             const base64Content = btoa(binaryString);
