@@ -205,8 +205,9 @@ export default function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
                   </td>
                 </tr>
               )}
-            </>
+            </Fragment>
           ))}
+          </tbody>
         </table>
       </div>
 
