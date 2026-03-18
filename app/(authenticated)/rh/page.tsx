@@ -5,15 +5,15 @@ import { prisma } from "@/lib/prisma"
 import { Button } from "@/components/ui/button"
 import { CreateEmployeeDialog } from "@/components/rh/CreateEmployeeDialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { User, Archive, BarChart4, Users, Database, ShieldCheck, CalendarDays } from "lucide-react"
+import { User, Archive, BarChart4, Users, Database, ShieldCheck, CalendarDays, Send } from "lucide-react"
 import { EmployeeListContent } from "@/components/rh/EmployeeListContent"
 import { RHSummaryTable } from "@/components/rh/RHSummaryTable"
 import { PayslipBulkUpload } from "@/components/rh/PayslipBulkUpload"
 import { ComplianceTab } from "@/components/rh/ComplianceTab"
 import { GlobalShiftCalendar } from "@/components/rh/GlobalShiftCalendar"
-
+import { AccountingExportTab } from "@/components/rh/AccountingExportTab"
 export default async function RHPage() {
-    const employees = await prisma.user.findMany({
+    const employees = await (prisma as any).user.findMany({
         orderBy: { createdAt: 'desc' },
         include: {
             _count: { select: { documents: true } },
@@ -95,6 +95,12 @@ export default async function RHPage() {
                                 <BarChart4 className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Paie</span>
                             </TabsTrigger>
                             <TabsTrigger
+                                value="compta"
+                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-rose-500 data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
+                            >
+                                <Send className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Compta</span>
+                            </TabsTrigger>
+                            <TabsTrigger
                                 value="planning"
                                 className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-indigo-500 data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
                             >
@@ -125,6 +131,10 @@ export default async function RHPage() {
 
                     <TabsContent value="summary" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
                         <RHSummaryTable employees={activeEmployees} />
+                    </TabsContent>
+
+                    <TabsContent value="compta" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
+                        <AccountingExportTab employees={employees} />
                     </TabsContent>
 
                     <TabsContent value="planning" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">

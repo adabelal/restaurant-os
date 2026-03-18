@@ -956,148 +956,64 @@ export async function syncEmployeePayslips(userId: string) {
             const existingFiles = new Set((employee.documents || []).map((d: any) => d.name))
             let syncCount = 0
 
-            // 1. Essai de scan local (Mac Adam)
-            if (fs.existsSync(DRIVE_PAIE_ROOT)) {
-                console.log("RH Sync: Using local DRIVE_PAIE_ROOT path.")
-                const foundFiles: { path: string, name: string, month: number, year: number, docExists: boolean, salaryExists: boolean }[] = []
+            console.log("RH Sync: Starting Cloud-side scan.")
+            const rhFolderId = await (findOrCreateDriveFolder as any)('RESSOURCES_HUMAINES')
+            const paieFolderId = await (findOrCreateDriveFolder as any)('Paie', rhFolderId)
+            const allCloudPdf = await listFilesRecursive(paieFolderId)
 
-                const walkLocal = (dir: string) => {
-                    const list = fs.readdirSync(dir)
-                    for (const file of list) {
-                        const fullPath = path.join(dir, file)
-                        try {
-                            const stat = fs.statSync(fullPath)
-                            if (stat && stat.isDirectory()) walkLocal(fullPath)
-                            else if (file.toLowerCase().endsWith('.pdf')) {
-                                const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
-                                const cleanFile = file.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
-                                const nameParts = cleanName.split(/\s+/).filter((p: string) => p.length > 2)
+            for (const f of allCloudPdf) {
+                if (!f.name.toLowerCase().endsWith('.pdf')) continue
 
-                                const matchedParts = nameParts.filter((part: string) => cleanFile.includes(part))
-                                const matches = nameParts.length > 0 && (matchedParts.length === nameParts.length || matchedParts.length >= 2)
+                const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+                const cleanFile = f.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
+                const nameParts = cleanName.split(/\s+/).filter((p: string) => p.length > 2)
 
-                                if (matches) {
-                                    // Extract potential date from name
-                                    const dateMatch = file.match(/(\d{4})[_-]?(\d{2})/)
-                                    const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
-                                    const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
+                const matchedParts = nameParts.filter((part: string) => cleanFile.includes(part))
+                const matches = nameParts.length > 0 && (matchedParts.length === nameParts.length || matchedParts.length >= 2)
 
-                                    // Check if we need to sync file or just catch up on salary
-                                    const docExists = existingFiles.has(file)
-                                    const salaryExists = (employee.monthlySalaries || []).some((s: any) => s.month === month && s.year === year && s.netRemuneration)
+                if (matches) {
+                    const dateMatch = f.name.match(/(\d{4})[_-]?(\d{2})/)
+                    const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
+                    const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
 
-                                    if (!docExists || !salaryExists) {
-                                        foundFiles.push({ path: fullPath, name: file, month, year, docExists, salaryExists })
-                                    }
-                                }
-                            }
-                        } catch (err) { /* ignore individual file errors */ }
-                    }
-                }
-                walkLocal(DRIVE_PAIE_ROOT)
+                    const docExists = existingFiles.has(f.name)
+                    const salaryExists = (employee.monthlySalaries || []).some((s: any) => s.month === month && s.year === year && s.netRemuneration)
 
-                for (const f of foundFiles) {
+                    if (docExists && salaryExists) continue
+
                     try {
-                        const fileBuffer = fs.readFileSync(f.path)
+                        const fileBuffer = await downloadFileFromDrive(f.id)
 
                         // 1. Sync File if missing
-                        if (!f.docExists) {
-                            const folderId = await getOrCreateRhFolder(employee.name, 'PAYSLIP')
-                            const driveFile = await uploadFileToDrive(fileBuffer, f.name, 'application/pdf', folderId)
-
+                        if (!docExists) {
                             await prisma.employeeDocument.create({
                                 data: {
                                     userId: employee.id,
                                     name: f.name,
-                                    url: driveFile.webViewLink,
+                                    url: f.webViewLink,
                                     type: 'PAYSLIP',
                                     category: 'PAIE',
-                                    month: f.month,
-                                    year: f.year
+                                    month,
+                                    year
                                 }
                             })
                             syncCount++
                         }
 
                         // 2. Sync Salary if missing
-                        if (!f.salaryExists) {
+                        if (!salaryExists) {
                             const netAmount = await extractRemunerationWithAI(fileBuffer)
                             if (netAmount) {
                                 await (prisma as any).monthlySalary.upsert({
-                                    where: { userId_month_year: { userId: employee.id, month: f.month, year: f.year } },
+                                    where: { userId_month_year: { userId: employee.id, month, year } },
                                     update: { netRemuneration: netAmount },
-                                    create: { userId: employee.id, month: f.month, year: f.year, netRemuneration: netAmount }
+                                    create: { userId: employee.id, month, year, netRemuneration: netAmount }
                                 })
-                                // If we only synced salary, it's still a success action
-                                if (f.docExists) syncCount++
+                                if (docExists) syncCount++
                             }
                         }
-                    } catch (fileErr) {
-                        console.error(`Local Sync failed for file ${f.name}:`, fileErr)
-                    }
-                }
-            }
-            // 2. Scan CLOUD (Serveur) si local absent ou si besoin
-            else {
-                console.log("RH Sync: Local path missing, starting Cloud-side scan.")
-                const rhFolderId = await (findOrCreateDriveFolder as any)('RESSOURCES_HUMAINES')
-                const paieFolderId = await (findOrCreateDriveFolder as any)('Paie', rhFolderId)
-                const allCloudPdf = await listFilesRecursive(paieFolderId)
-
-                for (const f of allCloudPdf) {
-                    if (!f.name.toLowerCase().endsWith('.pdf')) continue
-
-                    const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
-                    const cleanFile = f.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
-                    const nameParts = cleanName.split(/\s+/).filter((p: string) => p.length > 2)
-
-                    const matchedParts = nameParts.filter((part: string) => cleanFile.includes(part))
-                    const matches = nameParts.length > 0 && (matchedParts.length === nameParts.length || matchedParts.length >= 2)
-
-                    if (matches) {
-                        const dateMatch = f.name.match(/(\d{4})[_-]?(\d{2})/)
-                        const year = dateMatch ? parseInt(dateMatch[1]) : new Date().getFullYear()
-                        const month = dateMatch ? parseInt(dateMatch[2]) : new Date().getMonth() + 1
-
-                        const docExists = existingFiles.has(f.name)
-                        const salaryExists = (employee.monthlySalaries || []).some((s: any) => s.month === month && s.year === year && s.netRemuneration)
-
-                        if (docExists && salaryExists) continue
-
-                        try {
-                            const fileBuffer = await downloadFileFromDrive(f.id)
-
-                            // 1. Sync File if missing
-                            if (!docExists) {
-                                await prisma.employeeDocument.create({
-                                    data: {
-                                        userId: employee.id,
-                                        name: f.name,
-                                        url: f.webViewLink,
-                                        type: 'PAYSLIP',
-                                        category: 'PAIE',
-                                        month,
-                                        year
-                                    }
-                                })
-                                syncCount++
-                            }
-
-                            // 2. Sync Salary if missing
-                            if (!salaryExists) {
-                                const netAmount = await extractRemunerationWithAI(fileBuffer)
-                                if (netAmount) {
-                                    await (prisma as any).monthlySalary.upsert({
-                                        where: { userId_month_year: { userId: employee.id, month, year } },
-                                        update: { netRemuneration: netAmount },
-                                        create: { userId: employee.id, month, year, netRemuneration: netAmount }
-                                    })
-                                    if (docExists) syncCount++
-                                }
-                            }
-                        } catch (err) {
-                            console.error(`Cloud Sync failed for ${f.name}:`, err)
-                        }
+                    } catch (err) {
+                        console.error(`Cloud Sync failed for ${f.name}:`, err)
                     }
                 }
             }
@@ -1110,6 +1026,7 @@ export async function syncEmployeePayslips(userId: string) {
         }
     })
 }
+
 
 /**
  * Envoie un ou plusieurs documents par email au salarié
@@ -1175,10 +1092,100 @@ export async function sendDocumentsEmail(docIds: string[], customBody?: string) 
                 const err = await response.json()
                 throw new Error(err.message || "Erreur Resend")
             }
-
             return { success: true, message: docs.length === 1 ? "Email envoyé avec succès." : `${docs.length} documents envoyés avec succès.` }
         } catch (e: any) {
             console.error("Email Error:", e)
+            return { error: "L'envoi a échoué : " + e.message }
+        }
+    })
+}
+
+/**
+ * Envoie un ou plusieurs documents par email à une adresse cible (ex: comptable)
+ */
+export async function sendDocumentsToEmail(docIds: string[], targetEmail: string, subject: string, customBody: string) {
+    return safeAction({ docIds, targetEmail, subject, customBody }, async (input) => {
+        try {
+            const docs = await prisma.employeeDocument.findMany({
+                where: { id: { in: input.docIds } },
+                include: { user: true }
+            })
+
+            if (docs.length === 0) return { error: "Aucun document trouvé" }
+            if (!input.targetEmail) return { error: "L'adresse email de destination est requise" }
+
+            const resendApiKey = process.env.RESEND_API_KEY
+            if (!resendApiKey) return { error: "Configuration email (Resend) manquante" }
+
+            // Group documents by employee name to make it cleaner
+            const groupedDocs = docs.reduce((acc: any, doc) => {
+                const empName = doc.user.name || 'Employé inconnu';
+                if (!acc[empName]) acc[empName] = [];
+                acc[empName].push(doc);
+                return acc;
+            }, {});
+
+            let linksHtml = '';
+            for (const [empName, empDocs] of Object.entries(groupedDocs)) {
+                linksHtml += `
+                <div style="margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 10px; color: #374151; font-size: 16px;">${empName}</h3>
+                    <div style="padding-left: 15px; border-left: 3px solid #10b981;">
+                `;
+                (empDocs as any[]).forEach(d => {
+                    const docMonthName = d.month ? new Date(2000, d.month - 1).toLocaleDateString('fr-FR', { month: 'long' }) : '';
+                    const dateSuffix = d.month && d.year ? `(${docMonthName} ${d.year})` : '';
+                    linksHtml += `
+                        <div style="margin-bottom: 8px;">
+                            <a href="${d.url}" style="color: #10b981; font-weight: 500; text-decoration: none; font-size: 14px;">
+                                📄 ${d.name} ${dateSuffix}
+                            </a>
+                        </div>
+                    `;
+                });
+                linksHtml += `</div></div>`;
+            }
+
+            const messageBody = input.customBody ? `<p style="white-space: pre-wrap; margin-bottom: 25px;">${input.customBody}</p>` : '';
+
+            const response = await fetch("https://api.resend.com/emails", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${resendApiKey}`,
+                },
+                body: JSON.stringify({
+                    from: "Restaurant OS <rh@siwa-bleury.fr>",
+                    to: [input.targetEmail],
+                    subject: input.subject || `Fiches de paie (${docs.length} fichiers)`,
+                    html: `
+                        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 650px; margin: 0 auto; color: #333; line-height: 1.6;">
+                            <div style="background-color: #10b981; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+                                <h1 style="color: white; margin: 0; font-size: 20px;">Envoi Documents RH</h1>
+                            </div>
+                            <div style="padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
+                                ${messageBody}
+                                <div style="margin: 30px 0; padding: 20px; background-color: #f9fafb; border-radius: 8px; border: 1px solid #f3f4f6;">
+                                    <h2 style="margin-top: 0; margin-bottom: 20px; font-size: 16px; color: #111827;">Documents joints (${docs.length}) :</h2>
+                                    ${linksHtml}
+                                </div>
+                                <p style="font-size: 13px; color: #6b7280; margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 20px; text-align: center;">
+                                    Ceci est un envoi automatique généré par Restaurant OS.
+                                </p>
+                            </div>
+                        </div>
+                    `,
+                }),
+            })
+
+            if (!response.ok) {
+                const err = await response.json()
+                throw new Error(err.message || "Erreur lors de l'envoi Resend")
+            }
+
+            return { success: true, message: "Email comptable envoyé avec succès." }
+        } catch (e: any) {
+            console.error("Accounting Email Error:", e)
             return { error: "L'envoi a échoué : " + e.message }
         }
     })
