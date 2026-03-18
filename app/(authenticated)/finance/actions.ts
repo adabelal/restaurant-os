@@ -23,14 +23,34 @@ export const getFinanceStats = cache(async () => {
     const today = new Date()
     const currentDay = today.getDate()
 
-    // 1. Calculate Current Balance from Bank Transactions (SQL Optimization)
-    const resultBank = await prisma.bankTransaction.aggregate({
-        _sum: { amount: true }
-    })
-    const currentBalance = Number(resultBank._sum.amount || 0)
+    // Fetch multiple independent queries concurrently
+    const [
+        resultBank,
+        fixedCosts,
+        resultUnpaid,
+        unpaidPOs,
+        recentTransactions,
+        chartData
+    ] = await Promise.all([
+        prisma.bankTransaction.aggregate({ _sum: { amount: true } }),
+        prisma.fixedCost.findMany(),
+        prisma.purchaseOrder.aggregate({
+            where: { bankTransactions: { none: {} } },
+            _sum: { totalAmount: true }
+        }),
+        prisma.purchaseOrder.findMany({
+            where: { bankTransactions: { none: {} } },
+            select: { id: true, totalAmount: true }
+        }),
+        prisma.bankTransaction.findMany({
+            take: 5,
+            orderBy: { date: 'desc' },
+            include: { category: true }
+        }),
+        getBalanceChartData()
+    ]);
 
-    // 2. Fixed Costs
-    const fixedCosts = await prisma.fixedCost.findMany()
+    const currentBalance = Number(resultBank._sum.amount || 0)
 
     // Total monthly lissés
     const monthlyFixedCost = fixedCosts.reduce((sum: number, cost) => {
@@ -48,32 +68,10 @@ export const getFinanceStats = cache(async () => {
         .filter((cost) => cost.frequency === 'MONTHLY' && cost.dayOfMonth > currentDay && cost.isActive)
         .reduce((sum, cost) => sum + Number(cost.amount || 0), 0)
 
-    // 3. Unpaid Purchase Orders (SQL Optimization)
-    const resultUnpaid = await prisma.purchaseOrder.aggregate({
-        where: { bankTransactions: { none: {} } },
-        _sum: { totalAmount: true }
-    })
     const totalUnpaidPOs = Number(resultUnpaid._sum.totalAmount || 0)
 
-    const unpaidPOs = await prisma.purchaseOrder.findMany({
-        where: { bankTransactions: { none: {} } },
-        select: { id: true, totalAmount: true }
-    })
-
-
-
-    // 4. Projection Fin de Mois
+    // Projection Fin de Mois
     const eomForecast = currentBalance - remainingFixedCosts - totalUnpaidPOs
-
-    // 5. Last 5 Transactions for preview
-    const recentTransactions = await prisma.bankTransaction.findMany({
-        take: 5,
-        orderBy: { date: 'desc' },
-        include: { category: true }
-    })
-
-    // 6. Chart Data
-    const chartData = await getBalanceChartData()
 
     return {
         currentBalance,
