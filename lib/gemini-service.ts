@@ -1,13 +1,14 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { InvoicesResponseSchema, InvoicesResponse } from "./validations/invoice";
 
-// Verify API Key
-const apiKey = process.env.GEMINI_API_KEY;
-if (!apiKey) {
-  throw new Error("GEMINI_API_KEY is not configured in environment variables.");
+function getGenAI() {
+  // Verify API Key
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    throw new Error("GEMINI_API_KEY is not configured in environment variables.");
+  }
+  return new GoogleGenerativeAI(apiKey);
 }
-
-const genAI = new GoogleGenerativeAI(apiKey);
 
 const SYSTEM_INSTRUCTION = `Tu es un expert-comptable spécialisé dans l'analyse de factures pour la SARL SIWA, un restaurant.
 Ton rôle est d'analyser chaque document (PDF ou image) fourni, d'identifier toutes les factures distinctes qu'il contient, et d'en extraire le MAXIMUM d'informations avec une précision absolue.
@@ -22,6 +23,7 @@ RÈGLES IMPORTANTES :
 - Le score de confiance (confidence) doit refléter honnêtement la lisibilité du document.`;
 
 export async function extractInvoicesFromPdf(pdfBytes: Uint8Array, mimeType = "application/pdf"): Promise<InvoicesResponse> {
+  const genAI = getGenAI();
   const model = genAI.getGenerativeModel({
     model: "gemini-2.0-flash",
     systemInstruction: SYSTEM_INSTRUCTION,
@@ -146,6 +148,7 @@ Réponds uniquement en JSON structuré.`;
 }
 
 export async function generateInvoiceEmbedding(text: string): Promise<number[]> {
+  const genAI = getGenAI();
   const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
   const result = await model.embedContent(text);
   const embedding = result.embedding;
