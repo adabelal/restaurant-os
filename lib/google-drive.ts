@@ -62,9 +62,14 @@ export async function getGoogleDriveClient() {
   return google.drive({ version: 'v3', auth });
 }
 
+export async function getGoogleDriveOAuthClient() {
+  const token = await getAccessToken();
+  const oauth2Client = new google.auth.OAuth2();
+  oauth2Client.setCredentials({ access_token: token });
+  return google.drive({ version: 'v3', auth: oauth2Client });
+}
+
 export async function uploadPdfToDrive(fileName: string, pdfBytes: Uint8Array, specificFolderId?: string) {
-  const drive = await getGoogleDriveClient();
-  
   // Use specific folder if provided, else use environment variable
   const folderId = specificFolderId || process.env.GOOGLE_DRIVE_FOLDER_ID;
   
@@ -72,32 +77,10 @@ export async function uploadPdfToDrive(fileName: string, pdfBytes: Uint8Array, s
     throw new Error("GOOGLE_DRIVE_FOLDER_ID is not configured and no specific folder provided.");
   }
 
-  const buffer = Buffer.from(pdfBytes);
-  const stream = new Readable();
-  stream.push(buffer);
-  stream.push(null);
-
-  const fileMetadata = {
-    name: fileName,
-    parents: [folderId],
-  };
-
-  const media = {
-    mimeType: 'application/pdf',
-    body: stream,
-  };
-
-  const response = await drive.files.create({
-    requestBody: fileMetadata,
-    media: media,
-    fields: 'id, webViewLink, webContentLink',
-  });
-
-  return {
-    id: response.data.id,
-    webViewLink: response.data.webViewLink,
-    webContentLink: response.data.webContentLink
-  };
+  // Use OAuth (User Account) instead of Service Account to avoid quota issues
+  const result = await uploadFileToDrive(Buffer.from(pdfBytes), fileName, 'application/pdf', folderId);
+  
+  return result;
 }
 
 // ─── Section 2: User OAuth (RH - Legacy Support) ─────────────────────────────
@@ -110,21 +93,34 @@ async function getAccessToken(): Promise<string> {
         return cachedToken.access_token;
     }
 
-    if (!fs.existsSync(TOKEN_PATH) || !fs.existsSync(CREDENTIALS_PATH)) {
-        throw new Error("RH Google Drive credentials (token.json/credentials.json) missing.");
+    // Try Environment Variables first (for Easypanel/Docker)
+    let clientId = process.env.GOOGLE_DRIVE_CLIENT_ID;
+    let clientSecret = process.env.GOOGLE_DRIVE_CLIENT_SECRET;
+    let refreshToken = process.env.GOOGLE_DRIVE_REFRESH_TOKEN;
+
+    // Fallback to local files if Env vars are missing (for Local Dev)
+    if (!clientId || !clientSecret || !refreshToken) {
+        if (fs.existsSync(TOKEN_PATH) && fs.existsSync(CREDENTIALS_PATH)) {
+            const tokenData = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf-8'));
+            const credData = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf-8'));
+            const creds = credData.installed || credData.web;
+            clientId = clientId || creds.client_id;
+            clientSecret = clientSecret || creds.client_secret;
+            refreshToken = refreshToken || tokenData.refresh_token;
+        }
     }
 
-    const tokenData = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf-8'));
-    const credData = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf-8'));
-    const creds = credData.installed || credData.web;
+    if (!clientId || !clientSecret || !refreshToken) {
+        throw new Error("Google Drive OAuth credentials missing (Env vars or token.json).");
+    }
 
     const res = await fetch('https://oauth2.googleapis.com/token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
-            client_id: creds.client_id,
-            client_secret: creds.client_secret,
-            refresh_token: tokenData.refresh_token,
+            client_id: clientId,
+            client_secret: clientSecret,
+            refresh_token: refreshToken,
             grant_type: 'refresh_token',
         }),
     });
