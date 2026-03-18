@@ -5,8 +5,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge"
 import { Trash2, Calendar, CreditCard, PieChart } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { startOfMonth, endOfMonth, format } from "date-fns";
 
-export default async function FinanceChargesPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ChargesPage() {
     const charges = await getFixedCosts()
     const categories = await getFinanceCategories()
 

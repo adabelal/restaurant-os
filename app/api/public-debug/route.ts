@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { fetchBalances } from '@/lib/enable-banking';
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
     try {
         const accounts = await prisma.bankAccount.findMany();

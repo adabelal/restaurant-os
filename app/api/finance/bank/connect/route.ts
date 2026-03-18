@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server';
 import { getAuthUrl } from '@/lib/enable-banking';
 import { requireAuth } from '@/lib/auth-utils';
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
     try {
         await requireAuth();
