@@ -26,8 +26,9 @@ export const DOC_TYPE_LABELS: Record<string, string> = {
 
 // ─── Section 1: Service Account (Invoices V2) ────────────────────────────────
 
-export async function getGoogleDriveClient() {
-  const email = process.env.GOOGLE_CLIENT_EMAIL;
+  const rawKey = process.env.GOOGLE_PRIVATE_KEY || "";
+  let privateKey = rawKey.trim();
+  
   // 2. Handle both actual newlines and literal \n sequences
   privateKey = privateKey.split('\\n').join('\n'); 
   
