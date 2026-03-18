@@ -23,6 +23,7 @@ Vérifiez que les fichiers suivants sont présents dans votre dossier `/Mail` :
     Ajoutez les variables suivantes dans l'onglet **Environment Variables** de votre service sur Easypanel :
     *   `RESTAURANT_OS_API_URL` : `https://[VOTRE_DOMAINE_NEXTJS]/api/webhooks/invoices`
     *   `RESTAURANT_OS_API_KEY` : La valeur de `N8N_API_KEY` définie dans le fichier `.env` de votre application principale Restaurant-OS.
+    *   `DATABASE_URL` : L'URL de connexion PostgreSQL (format `postgres://...`). Si présente, le worker écrit directement en DB.
     *   `GEMINI_API_KEY` : Votre clé API Google Gemini (déjà présente dans votre .env local).
 
 3.  **Encodage des Secrets (Important)** :

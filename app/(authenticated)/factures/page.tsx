@@ -3,7 +3,7 @@ import InvoiceUploadZone from "@/components/invoices/invoice-upload";
 import InvoiceTable from "@/components/invoices/invoice-table";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { FileText, Database, Send, Sparkles, AlertTriangle } from "lucide-react";
+import { FileText, Database, Send, Sparkles, AlertTriangle, Upload } from "lucide-react";
 import { syncHistoricalInvoicesAction } from "@/app/actions/invoices";
 
 export const dynamic = "force-dynamic";
@@ -94,50 +94,29 @@ export default async function FacturesPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-1 space-y-6">
-          <div className="bg-white dark:bg-gray-950 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <UploadIcon className="w-5 h-5 text-primary" /> Dropzone Factures
-            </h3>
-            <p className="text-sm text-gray-500 mb-6 font-medium">
-              PDF ou images (JPG, PNG). L'IA extrait HT, TVA, TTC, fournisseur, articles et mode de règlement.
-            </p>
-            <InvoiceUploadZone />
-          </div>
+      <div className="space-y-6">
+        {/* Dropzone à la une */}
+        <div className="bg-white dark:bg-gray-950 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+          <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+            <Upload className="w-5 h-5 text-primary" /> Dropzone Factures
+          </h3>
+          <p className="text-sm text-gray-500 mb-6 font-medium">
+            Déposez vos PDF ou images ici. L'IA s'occupe de l'extraction et du classement automatiquement.
+          </p>
+          <InvoiceUploadZone />
         </div>
-        
-        <div className="lg:col-span-2 space-y-6">
-           <div className="flex flex-col gap-4">
-              <h3 className="text-xl font-semibold flex flex-col gap-1">
-                 Historique des Factures
-                 <span className="text-sm font-medium text-gray-400">Cliquez sur ✏️ pour corriger les données extraites par l'IA.</span>
-              </h3>
-              <InvoiceTable invoices={mappedInvoices} />
-           </div>
+
+        {/* Historique pleine largeur */}
+        <div className="bg-white dark:bg-gray-950 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+          <div className="flex flex-col gap-1 mb-6">
+            <h3 className="text-xl font-semibold">Historique des Factures</h3>
+            <p className="text-sm font-medium text-gray-500">
+              Gérez vos justificatifs et suivez l'état des transmissions comptables.
+            </p>
+          </div>
+          <InvoiceTable invoices={mappedInvoices} />
         </div>
       </div>
     </div>
-  );
-}
-
-function UploadIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="17 8 12 3 7 8" />
-      <line x1="12" x2="12" y1="3" y2="15" />
-    </svg>
   );
 }

@@ -11,6 +11,8 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
 import requests
 from dotenv import load_dotenv
+import psycopg2
+from psycopg2.extras import RealDictCursor
 
 # Charger les variables d'environnement
 local_env = os.path.join(os.path.dirname(__file__), '.env')
@@ -268,8 +270,82 @@ def upload_to_drive(drive_service, folder_id, filename, data):
     file = drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
     return file.get('id')
 
+def get_db_connection():
+    """Crée une connexion à PostgreSQL si DATABASE_URL est présent."""
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        return None
+    try:
+        # psycopg2 accepte directement l'URL (format postgres://...)
+        conn = psycopg2.connect(db_url)
+        return conn
+    except Exception as e:
+        print(f"⚠️ Erreur de connexion DB: {e}")
+        return None
+
 def sync_to_restaurant_os(data):
-    """Envoie les données au webhook Interne de Restaurant-OS"""
+    """Envoie les données au webhook Interne OU écrit directement en DB"""
+    # 1. Tentative de Synchro Directe en Base de Données (Priorité "Tout sur serveur")
+    conn = get_db_connection()
+    if conn:
+        try:
+            cur = conn.cursor()
+            
+            # Upsert Fournisseur (Supplier)
+            supplier_name = data.get("supplierName")
+            cur.execute('INSERT INTO "Supplier" (id, name) VALUES (gen_random_uuid()::text, %s) ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name RETURNING id', (supplier_name,))
+            supplier_id = cur.fetchone()[0]
+            
+            # Créer PurchaseOrder
+            cur.execute('''
+                INSERT INTO "PurchaseOrder" (
+                    id, "supplierId", date, "invoiceNo", "totalAmount", status, "scannedUrl", "paymentMethod", "createdAt", "updatedAt"
+                ) VALUES (
+                    gen_random_uuid()::text, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW()
+                ) RETURNING id
+            ''', (
+                supplier_id, 
+                data.get("date"), 
+                None, # invoiceNo non extrait par le script simple
+                data.get("totalAmount"), 
+                'VALIDATED' if data.get("isFinancial") else 'DRAFT',
+                data.get("scannedUrl"),
+                None # paymentMethod
+            ))
+            purchase_order_id = cur.fetchone()[0]
+            
+            # Enregistrer dans ProcessedMail
+            metadata = data.get("emailMetadata", {})
+            cur.execute('''
+                INSERT INTO "ProcessedMail" (
+                    id, "messageId", subject, sender, date, type, status, amount, "targetId", "fileUrl", "fileName"
+                ) VALUES (
+                    gen_random_uuid()::text, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+                ) ON CONFLICT ("messageId") DO UPDATE SET status = EXCLUDED.status, amount = EXCLUDED.amount
+            ''', (
+                metadata.get("messageId"),
+                metadata.get("subject", "Sans objet"),
+                metadata.get("sender", "Inconnu"),
+                data.get("date"),
+                "INVOICE" if data.get("isFinancial") else "DOCUMENT",
+                "SUCCESS",
+                data.get("totalAmount"),
+                purchase_order_id,
+                data.get("scannedUrl"),
+                data.get("fileName")
+            ))
+            
+            conn.commit()
+            cur.close()
+            conn.close()
+            print(f"🚀 Synchro DB OK (Facture)")
+            return True
+        except Exception as e:
+            print(f"❌ Erreur DB Facture: {e}")
+            if conn: conn.rollback()
+            # On laisse le code continuer vers le webhook en cas d'erreur DB
+    
+    # 2. Fallback Webhook (Si DB indisponible ou erreur)
     api_url = os.getenv("RESTAURANT_OS_API_URL")
     api_key = os.getenv("RESTAURANT_OS_API_KEY")
     
@@ -295,7 +371,40 @@ def sync_to_restaurant_os(data):
         return False
 
 def sync_music_proposal_to_restaurant_os(data):
-    """Envoie une proposition de groupe au webhook dédié."""
+    """Envoie une proposition de groupe au webhook OU écrit directement en DB"""
+    # 1. Tentative Directe en DB
+    conn = get_db_connection()
+    if conn:
+        try:
+            cur = conn.cursor()
+            cur.execute('''
+                INSERT INTO "MusicBandProposal" (
+                    id, "bandName", style, "contactName", "contactEmail", "contactPhone", "fullDescription", "emailDate", "messageId", status, "createdAt", "updatedAt", "videoLinks"
+                ) VALUES (
+                    gen_random_uuid()::text, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW(), %s
+                ) ON CONFLICT ("messageId") DO NOTHING
+            ''', (
+                data.get("bandName"),
+                data.get("style"),
+                data.get("contactName"),
+                data.get("contactEmail"),
+                data.get("contactPhone"),
+                data.get("fullDescription"),
+                data.get("emailDate"),
+                data.get("messageId"),
+                "PENDING",
+                data.get("videoLinks", [])
+            ))
+            conn.commit()
+            cur.close()
+            conn.close()
+            print(f"🎸 Synchro DB OK (Musique)")
+            return True
+        except Exception as e:
+            print(f"❌ Erreur DB Musique: {e}")
+            if conn: conn.rollback()
+    
+    # 2. Fallback Webhook
     raw_api_url = os.getenv("RESTAURANT_OS_API_URL")
     if not raw_api_url:
         return False
