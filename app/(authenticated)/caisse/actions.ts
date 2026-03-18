@@ -315,7 +315,7 @@ export async function importPopinaExcel(formData: FormData) {
             const str = String(h).toLowerCase()
             return str.includes("début") || str.includes("debut") || str.includes("date")
         })
-        const totalNetIdx = mainHeader.findIndex(h => String(h).toLowerCase().includes("total net"))
+        const paymentModesStartIdx = mainHeader.findIndex(h => String(h).toLowerCase().includes("modes de paiement"))
         const pourboireStartIdx = mainHeader.findIndex(h => String(h).toLowerCase().includes("pourboire"))
 
         if (dateIdx === -1) {
@@ -324,13 +324,28 @@ export async function importPopinaExcel(formData: FormData) {
 
         const subHeader = dataRows[0]
         const tipMapping: Record<string, number> = {}
+        let cashModeIdx = -1
 
-        for (let i = pourboireStartIdx; i < subHeader.length; i++) {
-            const h = String(subHeader[i]).toLowerCase()
-            if (h.includes("espèces")) tipMapping["ESPECES"] = i
-            if (h.includes("carte") || h.includes("cb")) tipMapping["CC"] = i
-            if (h.includes("chèque") || h.includes("cheque")) tipMapping["CHEQUE"] = i
-            if (h.includes("total pourboire")) break
+        // 1. Trouver 'Espèces' dans "Modes de paiement"
+        if (paymentModesStartIdx !== -1) {
+            const endIdx = pourboireStartIdx !== -1 ? pourboireStartIdx : subHeader.length
+            for (let i = paymentModesStartIdx; i < endIdx; i++) {
+                if (String(subHeader[i]).toLowerCase().includes("espèces") || String(subHeader[i]).toLowerCase().includes("especes")) {
+                    cashModeIdx = i
+                    break
+                }
+            }
+        }
+
+        // 2. Trouver les pourboires
+        if (pourboireStartIdx !== -1) {
+            for (let i = pourboireStartIdx; i < subHeader.length; i++) {
+                const h = String(subHeader[i]).toLowerCase()
+                if (h.includes("espèces") || h.includes("especes")) tipMapping["ESPECES"] = i
+                if (h.includes("carte") || h.includes("cb")) tipMapping["CC"] = i
+                if (h.includes("chèque") || h.includes("cheque")) tipMapping["CHEQUE"] = i
+                if (h.includes("total pourboire")) break // On arrête
+            }
         }
 
         let catRecettes = await prisma.financeCategory.findUnique({ where: { name: "Recettes" } })
@@ -369,18 +384,29 @@ export async function importPopinaExcel(formData: FormData) {
 
             if (isNaN(date.getTime())) continue
 
-            // A. Recette Principale
-            if (totalNetIdx !== -1) {
-                const amount = Number(row[totalNetIdx])
-                if (amount > 0) {
-                    const desc = "Recette Popina (Total Net)"
+            // A. Pourboires (Setup calculations)
+            let cashTipAmount = 0
+            const especeIdx = tipMapping["ESPECES"]
+            if (especeIdx !== undefined && Number(row[especeIdx]) > 0) {
+                cashTipAmount = Number(row[especeIdx])
+            }
+
+            // B. Recette Principale (CA Espèces UNIQUEMENT)
+            if (cashModeIdx !== -1) {
+                // Montant total encaissé en espèces
+                const totalCashCollected = Number(row[cashModeIdx])
+                // La recette est le total en espèces MOINS le pourboire espèce (car on l'enregistre à part)
+                const caEspeces = totalCashCollected - cashTipAmount
+
+                if (caEspeces > 0) {
+                    const desc = "Recette Popina (CA Espèces)"
                     const existing = await prisma.cashTransaction.findFirst({
                         where: {
                             date: {
                                 gte: new Date(new Date(date).setHours(0, 0, 0, 0)),
                                 lte: new Date(new Date(date).setHours(23, 59, 59, 999))
                             },
-                            amount: amount,
+                            amount: caEspeces,
                             description: desc
                         }
                     })
@@ -389,7 +415,7 @@ export async function importPopinaExcel(formData: FormData) {
                         await prisma.cashTransaction.create({
                             data: {
                                 date: date,
-                                amount: amount,
+                                amount: caEspeces,
                                 type: "IN",
                                 description: desc,
                                 categoryId: catRecettes.id
@@ -400,29 +426,27 @@ export async function importPopinaExcel(formData: FormData) {
                 }
             }
 
-            // B. Pourboires
-            const especeIdx = tipMapping["ESPECES"]
-            if (especeIdx !== undefined && Number(row[especeIdx]) > 0) {
-                const amount = Number(row[especeIdx])
+            // C. Création des Pourboires
+            if (cashTipAmount > 0) {
                 const descIn = `Popina: Pourboire Espèces (Entrée)`
                 const descOut = `Popina: Pourboire Espèces (Sortie)`
 
                 const existingIn = await prisma.cashTransaction.findFirst({
-                    where: { date: date, amount: amount, description: descIn }
+                    where: { date: date, amount: cashTipAmount, description: descIn }
                 })
                 if (!existingIn) {
                     await prisma.cashTransaction.create({
-                        data: { date: date, amount: amount, type: "IN", description: descIn, categoryId: catSocial.id }
+                        data: { date: date, amount: cashTipAmount, type: "IN", description: descIn, categoryId: catSocial.id }
                     })
                     transactionsCreated++
                 }
 
                 const existingOut = await prisma.cashTransaction.findFirst({
-                    where: { date: date, amount: -amount, description: descOut }
+                    where: { date: date, amount: -cashTipAmount, description: descOut }
                 })
                 if (!existingOut) {
                     await prisma.cashTransaction.create({
-                        data: { date: date, amount: -amount, type: "OUT", description: descOut, categoryId: catSocial.id }
+                        data: { date: date, amount: -cashTipAmount, type: "OUT", description: descOut, categoryId: catSocial.id }
                     })
                     transactionsCreated++
                 }
