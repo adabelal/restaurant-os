@@ -280,8 +280,191 @@ export async function clearCaisseData() {
 }
 
 export async function importPopinaExcel(formData: FormData) {
-    'use server'
-    return { success: false, error: "Fonction obsolète, utiliser la page Fusion" }
+    await requireAuth()
+
+    try {
+        const file = formData.get('file') as File
+        if (!file) {
+            return { success: false, error: "Aucun fichier fourni" }
+        }
+
+        const validTypes = [
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'application/vnd.ms-excel'
+        ]
+        if (!validTypes.includes(file.type) && !file.name.match(/\.(xlsx|xls)$/i)) {
+            return { success: false, error: "Format de fichier invalide (Excel requis)" }
+        }
+
+        const buffer = await file.arrayBuffer()
+        const workbook = XLSX.read(buffer, { type: 'array' })
+        const sheetName = workbook.SheetNames[0]
+        const sheet = workbook.Sheets[sheetName]
+        
+        // On récupère tout sous forme de tableau de tableaux (header: 1)
+        const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 }) as any[][]
+
+        if (rows.length < 2) {
+            return { success: false, error: "Fichier Excel vide ou invalide" }
+        }
+
+        const mainHeader = rows[0]
+        const dataRows = rows.slice(1)
+
+        const dateIdx = mainHeader.findIndex(h => {
+            const str = String(h).toLowerCase()
+            return str.includes("début") || str.includes("debut") || str.includes("date")
+        })
+        const totalNetIdx = mainHeader.findIndex(h => String(h).toLowerCase().includes("total net"))
+        const pourboireStartIdx = mainHeader.findIndex(h => String(h).toLowerCase().includes("pourboire"))
+
+        if (dateIdx === -1) {
+            return { success: false, error: "Colonne 'Début' ou 'Date' introuvable dans l'Excel" }
+        }
+
+        const subHeader = dataRows[0]
+        const tipMapping: Record<string, number> = {}
+
+        for (let i = pourboireStartIdx; i < subHeader.length; i++) {
+            const h = String(subHeader[i]).toLowerCase()
+            if (h.includes("espèces")) tipMapping["ESPECES"] = i
+            if (h.includes("carte") || h.includes("cb")) tipMapping["CC"] = i
+            if (h.includes("chèque") || h.includes("cheque")) tipMapping["CHEQUE"] = i
+            if (h.includes("total pourboire")) break
+        }
+
+        let catRecettes = await prisma.financeCategory.findUnique({ where: { name: "Recettes" } })
+        if (!catRecettes) {
+            catRecettes = await prisma.financeCategory.create({ data: { name: "Recettes", type: "REVENUE", color: "emerald" } })
+        }
+
+        let catSocial = await prisma.financeCategory.findUnique({ where: { name: "Social" } })
+        if (!catSocial) {
+            catSocial = await prisma.financeCategory.create({ data: { name: "Social", type: "SALARY", color: "blue" } })
+        }
+
+        let transactionsCreated = 0
+
+        for (let i = 1; i < dataRows.length; i++) {
+            const row = dataRows[i]
+            let dateVal = row[dateIdx]
+            if (!dateVal) continue
+
+            let date: Date
+            if (typeof dateVal === 'number') {
+                date = new Date((dateVal - 25569) * 86400 * 1000)
+            } else {
+                const parts = String(dateVal).split(/[\s/:]+/)
+                if (parts.length >= 3) {
+                    const day = parseInt(parts[0], 10)
+                    const month = parseInt(parts[1], 10) - 1
+                    const year = parseInt(parts[2], 10)
+                    const hours = parts[3] ? parseInt(parts[3], 10) : 0
+                    const mins = parts[4] ? parseInt(parts[4], 10) : 0
+                    date = new Date(year, month, day, hours, mins)
+                } else {
+                    date = new Date(dateVal)
+                }
+            }
+
+            if (isNaN(date.getTime())) continue
+
+            // A. Recette Principale
+            if (totalNetIdx !== -1) {
+                const amount = Number(row[totalNetIdx])
+                if (amount > 0) {
+                    const desc = "Recette Popina (Total Net)"
+                    const existing = await prisma.cashTransaction.findFirst({
+                        where: {
+                            date: {
+                                gte: new Date(new Date(date).setHours(0, 0, 0, 0)),
+                                lte: new Date(new Date(date).setHours(23, 59, 59, 999))
+                            },
+                            amount: amount,
+                            description: desc
+                        }
+                    })
+
+                    if (!existing) {
+                        await prisma.cashTransaction.create({
+                            data: {
+                                date: date,
+                                amount: amount,
+                                type: "IN",
+                                description: desc,
+                                categoryId: catRecettes.id
+                            }
+                        })
+                        transactionsCreated++
+                    }
+                }
+            }
+
+            // B. Pourboires
+            const especeIdx = tipMapping["ESPECES"]
+            if (especeIdx !== undefined && Number(row[especeIdx]) > 0) {
+                const amount = Number(row[especeIdx])
+                const descIn = `Popina: Pourboire Espèces (Entrée)`
+                const descOut = `Popina: Pourboire Espèces (Sortie)`
+
+                const existingIn = await prisma.cashTransaction.findFirst({
+                    where: { date: date, amount: amount, description: descIn }
+                })
+                if (!existingIn) {
+                    await prisma.cashTransaction.create({
+                        data: { date: date, amount: amount, type: "IN", description: descIn, categoryId: catSocial.id }
+                    })
+                    transactionsCreated++
+                }
+
+                const existingOut = await prisma.cashTransaction.findFirst({
+                    where: { date: date, amount: amount, description: descOut }
+                })
+                if (!existingOut) {
+                    await prisma.cashTransaction.create({
+                        data: { date: date, amount: amount, type: "OUT", description: descOut, categoryId: catSocial.id }
+                    })
+                    transactionsCreated++
+                }
+            }
+
+            const ccIdx = tipMapping["CC"]
+            if (ccIdx !== undefined && Number(row[ccIdx]) > 0) {
+                const amount = Number(row[ccIdx])
+                const desc = `Popina: Pourboire Carte (Sortie)`
+                const existing = await prisma.cashTransaction.findFirst({
+                    where: { date: date, amount: amount, description: desc }
+                })
+                if (!existing) {
+                    await prisma.cashTransaction.create({
+                        data: { date: date, amount: amount, type: "OUT", description: desc, categoryId: catSocial.id }
+                    })
+                    transactionsCreated++
+                }
+            }
+
+            const chequeIdx = tipMapping["CHEQUE"]
+            if (chequeIdx !== undefined && Number(row[chequeIdx]) > 0) {
+                const amount = Number(row[chequeIdx])
+                const desc = `Popina: Pourboire Chèque (Sortie)`
+                const existing = await prisma.cashTransaction.findFirst({
+                    where: { date: date, amount: amount, description: desc }
+                })
+                if (!existing) {
+                    await prisma.cashTransaction.create({
+                        data: { date: date, amount: amount, type: "OUT", description: desc, categoryId: catSocial.id }
+                    })
+                    transactionsCreated++
+                }
+            }
+        }
+
+        revalidatePath('/caisse')
+        return { success: true, count: transactionsCreated }
+    } catch (error: any) {
+        console.error("Popina Import Error:", error)
+        return { success: false, error: "Erreur lors de l'import: " + error.message }
+    }
 }
 
 export async function importCaisseFromExcel(formData: FormData) {
@@ -353,7 +536,7 @@ export async function importCaisseFromExcel(formData: FormData) {
             let category = "Autre"
             for (const [key, val] of Object.entries(catMapStrings)) {
                 if (String(libelle).toLowerCase().includes(key.toLowerCase())) {
-                    category = val
+                    category = String(val)
                     break
                 }
             }
@@ -387,7 +570,7 @@ export async function importCaisseFromExcel(formData: FormData) {
                 let category = "Autre"
                 for (const [key, val] of Object.entries(catMapStrings)) {
                     if (String(libelle).toLowerCase().includes(key.toLowerCase())) {
-                        category = val
+                        category = String(val)
                         break
                     }
                 }
