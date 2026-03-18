@@ -180,8 +180,9 @@ export async function findOrCreateFolder(name: string, parentId?: string): Promi
 
 export async function getOrCreateRhFolder(employeeName: string, docType: string): Promise<string> {
     const typeLabel = DOC_TYPE_LABELS[docType] || 'Autres documents';
-    const rhFolderId = await findOrCreateFolder('RH - Restaurant OS');
-    const empFolderId = await findOrCreateFolder(employeeName, rhFolderId);
+    const rhFolderId = '1z_4FBWP-R_m4mszINkAzOPyquYvbmq5P'; // Forcer l'utilisation du VRAI dossier RH
+    const legalFolderId = await findOrCreateFolder('Documents Legaux', rhFolderId);
+    const empFolderId = await findOrCreateFolder(employeeName, legalFolderId);
     const typeFolderId = await findOrCreateFolder(typeLabel, empFolderId);
     return typeFolderId;
 }

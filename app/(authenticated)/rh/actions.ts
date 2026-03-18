@@ -957,7 +957,7 @@ export async function syncEmployeePayslips(userId: string) {
             let syncCount = 0
 
             console.log("RH Sync: Starting Cloud-side scan.")
-            const rhFolderId = await (findOrCreateDriveFolder as any)('RESSOURCES_HUMAINES')
+            const rhFolderId = '1z_4FBWP-R_m4mszINkAzOPyquYvbmq5P'; // Vrai dossier RH
             const paieFolderId = await (findOrCreateDriveFolder as any)('Paie', rhFolderId)
             const allCloudPdf = await listFilesRecursive(paieFolderId)
 
@@ -1042,7 +1042,7 @@ export async function syncAllEmployeePayslips() {
             })
 
             console.log("RH Global Sync: Starting Cloud-side scan.")
-            const rhFolderId = await (findOrCreateDriveFolder as any)('RESSOURCES_HUMAINES')
+            const rhFolderId = '1z_4FBWP-R_m4mszINkAzOPyquYvbmq5P'; // Vrai dossier RH
             console.log("rhFolderId:", rhFolderId)
             const paieFolderId = await (findOrCreateDriveFolder as any)('Paie', rhFolderId)
             console.log("paieFolderId:", paieFolderId)
