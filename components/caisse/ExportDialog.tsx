@@ -58,21 +58,12 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
             views: [{ state: 'frozen', ySplit: 1 }]
         });
 
-        let groupedByDate: Record<string, { in: number, out: number }> = {};
-        data.forEach(t => {
-            const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
-            if (!groupedByDate[dateStr]) groupedByDate[dateStr] = { in: 0, out: 0 };
-            if (t.type === 'IN') groupedByDate[dateStr].in += Number(t.amount);
-            else groupedByDate[dateStr].out += Number(t.amount);
-        });
-
         worksheet.columns = [
             { header: 'Date', key: 'date', width: 14 },
             { header: 'Type', key: 'type', width: 12 },
             { header: 'Description', key: 'description', width: 45 },
             { header: 'Catégorie', key: 'category', width: 25 },
-            { header: 'Montant', key: 'amount', width: 15, style: { numFmt: '#,##0.00 €' } },
-            { header: 'Total Journée', key: 'dailyTotal', width: 18, style: { numFmt: '#,##0.00 €' } }
+            { header: 'Montant', key: 'amount', width: 15, style: { numFmt: '#,##0.00 €' } }
         ];
 
         worksheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
@@ -81,13 +72,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
 
         data.forEach((t, index) => {
             const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
-            const isLastOfDay = index === data.length - 1 || format(new Date(data[index + 1].date), 'dd/MM/yyyy') !== dateStr;
             
-            let dailyTotalVal = null;
-            if (isLastOfDay) {
-                 dailyTotalVal = groupedByDate[dateStr].in - groupedByDate[dateStr].out;
-            }
-
             const isEntree = t.type === 'IN';
             const amountVal = isEntree ? Number(t.amount) : -Number(t.amount);
 
@@ -96,8 +81,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
                 type: isEntree ? 'Entrée' : 'Sortie',
                 description: t.description,
                 category: t.category?.name || 'Sans catégorie',
-                amount: amountVal,
-                dailyTotal: dailyTotalVal
+                amount: amountVal
             });
 
             if (index % 2 === 0) {
@@ -106,12 +90,6 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
 
             const amountCell = row.getCell('amount');
             amountCell.font = { color: { argb: isEntree ? 'FF16A34A' : 'FFDC2626' } };
-
-            if (dailyTotalVal !== null) {
-                const totalCell = row.getCell('dailyTotal');
-                totalCell.font = { bold: true, color: { argb: dailyTotalVal >= 0 ? 'FF16A34A' : 'FFDC2626' } };
-                totalCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF3F4F6' } }; // Light gray bg for total cell
-            }
         });
 
         const buffer = await workbook.xlsx.writeBuffer();
@@ -129,28 +107,14 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
     }
 
     const exportToCSV = (data: any[]) => {
-        let groupedByDate: Record<string, { in: number, out: number }> = {};
-        data.forEach(t => {
+        const worksheetData = data.map((t) => {
             const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
-            if (!groupedByDate[dateStr]) groupedByDate[dateStr] = { in: 0, out: 0 };
-            if (t.type === 'IN') groupedByDate[dateStr].in += Number(t.amount);
-            else groupedByDate[dateStr].out += Number(t.amount);
-        });
-
-        const worksheetData = data.map((t, index) => {
-            const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
-            const isLastOfDay = index === data.length - 1 || format(new Date(data[index + 1].date), 'dd/MM/yyyy') !== dateStr;
-            let dailyTotalVal = '';
-            if (isLastOfDay) {
-                 dailyTotalVal = (groupedByDate[dateStr].in - groupedByDate[dateStr].out).toFixed(2);
-            }
             return {
                 'Date': dateStr,
                 'Type': t.type === 'IN' ? 'Entrée' : 'Sortie',
                 'Description': t.description,
                 'Catégorie': t.category?.name || 'Sans catégorie',
-                'Montant': t.type === 'IN' ? Number(t.amount).toFixed(2) : `-${Number(t.amount).toFixed(2)}`,
-                'Total Journée': dailyTotalVal
+                'Montant': t.type === 'IN' ? Number(t.amount).toFixed(2) : `-${Number(t.amount).toFixed(2)}`
             }
         })
         const worksheet = XLSX.utils.json_to_sheet(worksheetData)
@@ -166,29 +130,15 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
         const doc = new jsPDF() as any
         doc.text(`Export Caisse - Période du ${format(new Date(startDate), 'dd/MM/yyyy')} au ${format(new Date(endDate), 'dd/MM/yyyy')}`, 14, 15)
 
-        let groupedByDate: Record<string, { in: number, out: number }> = {};
-        data.forEach(t => {
+        const tableBody = data.map((t) => {
             const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
-            if (!groupedByDate[dateStr]) groupedByDate[dateStr] = { in: 0, out: 0 };
-            if (t.type === 'IN') groupedByDate[dateStr].in += Number(t.amount);
-            else groupedByDate[dateStr].out += Number(t.amount);
-        });
-
-        const tableBody = data.map((t, index) => {
-            const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
-            const isLastOfDay = index === data.length - 1 || format(new Date(data[index + 1].date), 'dd/MM/yyyy') !== dateStr;
-            let dailyTotalVal = '';
-            if (isLastOfDay) {
-                 dailyTotalVal = `${(groupedByDate[dateStr].in - groupedByDate[dateStr].out).toFixed(2)} €`;
-            }
 
             return [
                 dateStr,
                 t.type === 'IN' ? 'Entrée' : 'Sortie',
                 t.description,
                 t.category?.name || '-',
-                t.type === 'IN' ? `${Number(t.amount).toFixed(2)} €` : `-${Number(t.amount).toFixed(2)} €`,
-                dailyTotalVal
+                t.type === 'IN' ? `${Number(t.amount).toFixed(2)} €` : `-${Number(t.amount).toFixed(2)} €`
             ]
         })
 
@@ -197,12 +147,12 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
 
         doc.autoTable({
             startY: 25,
-            head: [['Date', 'Type', 'Description', 'Catégorie', 'Montant', 'Total Journée']],
+            head: [['Date', 'Type', 'Description', 'Catégorie', 'Montant']],
             body: tableBody,
             theme: 'grid',
             headStyles: { fillColor: [99, 102, 241], fontStyle: 'bold' },
             alternateRowStyles: { fillColor: [249, 250, 251] },
-            styles: { fontSize: 9, cellPadding: 4 }, // smaller font to fit 6 columns easily
+            styles: { fontSize: 10, cellPadding: 5 },
         })
 
         const finalY = (doc as any).lastAutoTable.finalY || 30
