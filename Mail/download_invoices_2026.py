@@ -279,8 +279,17 @@ def get_db_connection():
         # psycopg2 accepte directement l'URL (format postgres://...)
         conn = psycopg2.connect(db_url)
         return conn
+    except psycopg2.OperationalError as e:
+        err_str = str(e)
+        if "password authentication failed" in err_str:
+            print(f"⚠️ Erreur de connexion DB: ÉCHEC D'AUTHENTIFICATION (Mot de passe incorrect pour l'utilisateur '{db_url.split('://')[1].split(':')[0]}')")
+        elif "could not translate host name" in err_str:
+            print(f"⚠️ Erreur de connexion DB: HÔTE INTROUVABLE ({db_url.split('@')[-1].split(':')[0]})")
+        else:
+            print(f"⚠️ Erreur de connexion DB: {err_str.strip()}")
+        return None
     except Exception as e:
-        print(f"⚠️ Erreur de connexion DB: {e}")
+        print(f"⚠️ Erreur de connexion DB imprévue: {e}")
         return None
 
 def sync_to_restaurant_os(data):
@@ -350,8 +359,12 @@ def sync_to_restaurant_os(data):
     api_key = os.getenv("RESTAURANT_OS_API_KEY")
     
     if not api_url:
-        print("⚠️  URL API manquante (RESTAURANT_OS_API_URL). Sync ignorée.")
+        print("⚠️ URL API manquante (RESTAURANT_OS_API_URL). Sync ignorée.")
         return False
+
+    if "localhost" in api_url:
+        print(f"ℹ️ Note: L'URL de synchro utilise 'localhost' ({api_url}).")
+        print("   Si vous êtes sur le serveur, vérifiez vos variables d'environnement (Easypanel).")
 
     headers = {
         "Content-Type": "application/json",
@@ -367,7 +380,10 @@ def sync_to_restaurant_os(data):
             print(f"❌ Erreur synchro: [{response.status_code}] {response.text}")
             return False
     except Exception as e:
-        print(f"❌ Erreur réseau synchro: {e}")
+        if "localhost" in api_url:
+            print(f"❌ Erreur réseau synchro (Probablement liée à 'localhost'): {e}")
+        else:
+            print(f"❌ Erreur réseau synchro: {e}")
         return False
 
 def sync_music_proposal_to_restaurant_os(data):
@@ -407,6 +423,7 @@ def sync_music_proposal_to_restaurant_os(data):
     # 2. Fallback Webhook
     raw_api_url = os.getenv("RESTAURANT_OS_API_URL")
     if not raw_api_url:
+        print("⚠️ URL API manquante (RESTAURANT_OS_API_URL) pour Musique. Sync ignorée.")
         return False
 
     import urllib.parse
@@ -414,8 +431,10 @@ def sync_music_proposal_to_restaurant_os(data):
     base_url = f"{parsed.scheme}://{parsed.netloc}"
     api_url = f"{base_url}/api/webhooks/music-proposals"
     
-    api_key = os.getenv("RESTAURANT_OS_API_KEY")
+    if "localhost" in api_url:
+        print(f"ℹ️ Note: L'URL Musique utilise 'localhost' ({api_url}). Vérifiez vos variables d'environnement.")
 
+    api_key = os.getenv("RESTAURANT_OS_API_KEY")
     headers = {
         "Content-Type": "application/json",
         "authorization": f"Bearer {api_key or ''}"
@@ -427,21 +446,31 @@ def sync_music_proposal_to_restaurant_os(data):
             print(f"🎸 Synchro Musique OK")
             return True
         else:
-            print(f"❌ Erreur synchro Musique: {response.text}")
+            print(f"❌ Erreur synchro Musique: [{response.status_code}] {response.text}")
             return False
     except Exception as e:
-        print(f"❌ Erreur réseau Musique: {e}")
+        if "localhost" in api_url:
+            print(f"❌ Erreur réseau Musique (Probablement liée à 'localhost'): {e}")
+        else:
+            print(f"❌ Erreur réseau Musique: {e}")
         return False
 
 def sync_popina_to_restaurant_os(data):
     """Envoie les données de caisse Popina au webhook dédié"""
     raw_api_url = os.getenv("RESTAURANT_OS_API_URL")
+    if not raw_api_url:
+        print("⚠️ URL API manquante (RESTAURANT_OS_API_URL) pour Popina. Sync ignorée.")
+        return False
+
     import urllib.parse
     parsed = urllib.parse.urlparse(raw_api_url)
     base_url = f"{parsed.scheme}://{parsed.netloc}"
     api_url = os.getenv("RESTAURANT_OS_POPINA_URL") or f"{base_url}/api/webhooks/popina"
-    api_key = os.getenv("RESTAURANT_OS_API_KEY")
     
+    if "localhost" in api_url:
+        print(f"ℹ️ Note: L'URL Popina utilise 'localhost' ({api_url}).")
+
+    api_key = os.getenv("RESTAURANT_OS_API_KEY")
     headers = {
         "Content-Type": "application/json",
         "x-api-key": f"{api_key or ''}"
@@ -453,7 +482,7 @@ def sync_popina_to_restaurant_os(data):
             print(f"🚀 Synchro Popina OK")
             return True
         else:
-            print(f"❌ Erreur synchro Popina: {response.text}")
+            print(f"❌ Erreur synchro Popina: [{response.status_code}] {response.text}")
             return False
     except Exception as e:
         print(f"❌ Erreur réseau Popina: {e}")
