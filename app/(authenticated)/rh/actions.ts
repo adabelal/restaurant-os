@@ -958,7 +958,7 @@ export async function syncEmployeePayslips(userId: string) {
 
             console.log("RH Sync: Starting Cloud-side scan.")
             const rhFolderId = '1z_4FBWP-R_m4mszINkAzOPyquYvbmq5P'; // Vrai dossier RH
-            const paieFolderId = await (findOrCreateDriveFolder as any)('Paie', rhFolderId)
+            const paieFolderId = '1M5JPG3Sgl0jNKscqmi03MKp28BwmVnWw'; // Vrai dossier Paie
             const allCloudPdf = await listFilesRecursive(paieFolderId)
 
             for (const f of allCloudPdf) {
@@ -1044,7 +1044,7 @@ export async function syncAllEmployeePayslips() {
             console.log("RH Global Sync: Starting Cloud-side scan.")
             const rhFolderId = '1z_4FBWP-R_m4mszINkAzOPyquYvbmq5P'; // Vrai dossier RH
             console.log("rhFolderId:", rhFolderId)
-            const paieFolderId = await (findOrCreateDriveFolder as any)('Paie', rhFolderId)
+            const paieFolderId = '1M5JPG3Sgl0jNKscqmi03MKp28BwmVnWw'; // Vrai dossier Paie
             console.log("paieFolderId:", paieFolderId)
             const allCloudPdf = await listFilesRecursive(paieFolderId)
             console.log(`Found ${allCloudPdf.length} PDFs in Paie folder.`)
