@@ -147,10 +147,12 @@ export async function findOrCreateFolder(name: string, parentId?: string): Promi
         ? `name='${escapedName}' and mimeType='application/vnd.google-apps.folder' and '${parentId}' in parents and trashed=false`
         : `name='${escapedName}' and mimeType='application/vnd.google-apps.folder' and trashed=false`;
 
-    const searchRes = await fetch(
-        `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name)`,
-        { headers: { Authorization: `Bearer ${token}` } }
-    );
+    const searchUrl = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name)&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true`;
+    console.log(`findOrCreateFolder url: ${searchUrl}`)
+    
+    const searchRes = await fetch(searchUrl, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
     const { files } = (await searchRes.json()) as any;
 
     if (files && files.length > 0) {
@@ -270,7 +272,7 @@ export async function listFilesRecursive(folderId: string): Promise<{ id: string
     async function scan(fId: string) {
         const query = `'${fId}' in parents and trashed=false`;
         const res = await fetch(
-            `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name,mimeType,webViewLink)&pageSize=1000`,
+            `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name,mimeType,webViewLink)&pageSize=1000&includeItemsFromAllDrives=true&supportsAllDrives=true`,
             { headers: { Authorization: `Bearer ${token}` } }
         );
         const data = (await res.json()) as any;
