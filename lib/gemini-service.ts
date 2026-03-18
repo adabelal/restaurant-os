@@ -149,7 +149,7 @@ Réponds uniquement en JSON structuré.`;
 
 export async function generateInvoiceEmbedding(text: string): Promise<number[]> {
   const genAI = getGenAI();
-  const model = genAI.getGenerativeModel({ model: "embedding-001" });
+  const model = genAI.getGenerativeModel({ model: "gemini-embedding-2-preview" });
   const result = await model.embedContent(text);
   const embedding = result.embedding;
   return embedding.values;
