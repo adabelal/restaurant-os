@@ -93,6 +93,7 @@ export async function acceptProposal(id: string) {
 export async function triggerHistoricalScan() {
     // 1. Définir les URLs à tester (interne Easypanel)
     const internalHostnames = [
+        "restaurant-os_mail-automation",
         "mail-automation",
         "restaurant-os-bot",
         "restaurant-os-mail-bot",
