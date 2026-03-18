@@ -1,299 +1,58 @@
-/**
- * Google Drive Helper - Pure fetch, no googleapis lib needed
- * Uses OAuth2 refresh_token from Mail/token.json
- */
+import { google } from 'googleapis';
+import { Readable } from 'stream';
 
-import fs from 'fs'
-import path from 'path'
+const SCOPES = ['https://www.googleapis.com/auth/drive'];
 
-const TOKEN_PATH = path.join(process.cwd(), 'Mail', 'token.json')
-const CREDENTIALS_PATH = path.join(process.cwd(), 'Mail', 'credentials.json')
+export async function getGoogleDriveClient() {
+  const email = process.env.GOOGLE_CLIENT_EMAIL;
+  // Handle newlines in private key correctly
+  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
-// Type labels for Drive folder naming
-export const DOC_TYPE_LABELS: Record<string, string> = {
-    CONTRACT: 'Contrats',
-    PAYSLIP: 'Fiches de paie',
-    ID_CARD: 'Identité & Titre Séjour',
-    RESIDENCE_PERMIT: 'Identité & Titre Séjour',
-    INSURANCE: 'Mutuelle & RIB',
-    DPAE: 'DPAE & Affiliations',
-    MEDICAL: 'Visite Médicale',
-    OTHER: 'Autres documents',
+  if (!email || !privateKey) {
+    throw new Error("Google Drive credentials missing in environment variables.");
+  }
+
+  const auth = new google.auth.GoogleAuth({
+    credentials: {
+      client_email: email,
+      private_key: privateKey,
+    },
+    scopes: SCOPES,
+  });
+
+  return google.drive({ version: 'v3', auth });
 }
 
-// ─── OAuth2 Token Management ────────────────────────────────────────────────
+export async function uploadPdfToDrive(fileName: string, pdfBytes: Uint8Array, specificFolderId?: string) {
+  const drive = await getGoogleDriveClient();
+  
+  // Use specific folder if provided, else use environment variable, else use hardcoded fallback
+  const folderId = specificFolderId || process.env.GOOGLE_DRIVE_FOLDER_ID || '1Tc1uRVOx-hZsuwUCmuxlEZzQOgAvTRqj';
+  
+  const buffer = Buffer.from(pdfBytes);
+  const stream = new Readable();
+  stream.push(buffer);
+  stream.push(null);
 
-let cachedToken: { access_token: string; expiry: number } | null = null
+  const fileMetadata = {
+    name: fileName,
+    parents: [folderId],
+  };
 
-async function getAccessToken(): Promise<string> {
-    // Return cached token if still valid (with 60s margin)
-    if (cachedToken && Date.now() < cachedToken.expiry - 60_000) {
-        return cachedToken.access_token
-    }
+  const media = {
+    mimeType: 'application/pdf',
+    body: stream,
+  };
 
-    let clientId = process.env.GOOGLE_DRIVE_CLIENT_ID
-    let clientSecret = process.env.GOOGLE_DRIVE_CLIENT_SECRET
-    let refreshToken = process.env.GOOGLE_DRIVE_REFRESH_TOKEN
+  const response = await drive.files.create({
+    requestBody: fileMetadata,
+    media: media,
+    fields: 'id, webViewLink, webContentLink',
+  });
 
-    let tokenFileExists = false
-
-    // Fallback aux fichiers locaux si variables d'environnement manquantes
-    if (!clientId || !clientSecret || !refreshToken) {
-        try {
-            if (fs.existsSync(TOKEN_PATH) && fs.existsSync(CREDENTIALS_PATH)) {
-                const tokenData = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf-8'))
-                const credData = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf-8'))
-                const creds = credData.installed || credData.web
-
-                clientId = clientId || creds.client_id
-                clientSecret = clientSecret || creds.client_secret
-                refreshToken = refreshToken || tokenData.refresh_token
-                tokenFileExists = true
-            } else {
-                throw new Error("Missing Mail/ files and env vars")
-            }
-        } catch (e) {
-            console.error("Erreur de lecture des credentials Google Drive :", e)
-            throw new Error("Identifiants Google Drive introuvables. Configurez les variables d'environnement.")
-        }
-    }
-
-    if (!clientId || !clientSecret || !refreshToken) {
-        throw new Error("Missing Google Drive OAuth credentials")
-    }
-
-    const res = await fetch('https://oauth2.googleapis.com/token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-            client_id: clientId,
-            client_secret: clientSecret,
-            refresh_token: refreshToken,
-            grant_type: 'refresh_token',
-        }),
-    })
-
-    if (!res.ok) {
-        const err = await res.text()
-        throw new Error(`Failed to refresh token: ${err}`)
-    }
-
-    const { access_token, expires_in } = await res.json()
-
-    // Persist new access token en mémoire
-    cachedToken = {
-        access_token,
-        expiry: Date.now() + expires_in * 1000,
-    }
-
-    // Update file UNIQUEMENT si le fichier existait déjà (local dev)
-    if (tokenFileExists) {
-        try {
-            const tokenData = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf-8'))
-            const updated = { ...tokenData, token: access_token, expiry: new Date(cachedToken.expiry).toISOString() }
-            fs.writeFileSync(TOKEN_PATH, JSON.stringify(updated))
-        } catch (e) {
-            console.warn("Impossible d'écrire dans token.json, mais le token est en mémoire.", e)
-        }
-    }
-
-    return access_token
-}
-
-// ─── Drive Folder Management ─────────────────────────────────────────────────
-
-export async function findOrCreateFolder(name: string, parentId?: string): Promise<string> {
-    const token = await getAccessToken()
-
-    // Search for existing folder
-    const escapedName = name.replace(/'/g, "\\'")
-    const query = parentId
-        ? `name='${escapedName}' and mimeType='application/vnd.google-apps.folder' and '${parentId}' in parents and trashed=false`
-        : `name='${escapedName}' and mimeType='application/vnd.google-apps.folder' and trashed=false`
-
-    const searchRes = await fetch(
-        `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name)`,
-        { headers: { Authorization: `Bearer ${token}` } }
-    )
-    const { files } = await searchRes.json()
-
-    if (files && files.length > 0) {
-        return files[0].id
-    }
-
-    // Create new folder
-    const body: any = {
-        name,
-        mimeType: 'application/vnd.google-apps.folder',
-    }
-    if (parentId) body.parents = [parentId]
-
-    const createRes = await fetch('https://www.googleapis.com/drive/v3/files', {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    })
-
-    const folder = await createRes.json()
-    return folder.id
-}
-
-/**
- * Get or build the folder hierarchy: RH > {employeeName} > {docTypeLabel}
- * Returns the folder ID where the file should be uploaded
- */
-export async function getOrCreateRhFolder(employeeName: string, docType: string): Promise<string> {
-    const typeLabel = DOC_TYPE_LABELS[docType] || 'Autres documents'
-
-    // Root RH folder
-    const rhFolderId = await findOrCreateFolder('RESSOURCES_HUMAINES')
-    // Employee sub-folder
-    const empFolderId = await findOrCreateFolder(employeeName, rhFolderId)
-    // Document type sub-folder
-    const typeFolderId = await findOrCreateFolder(typeLabel, empFolderId)
-
-    return typeFolderId
-}
-
-// ─── File Upload ─────────────────────────────────────────────────────────────
-
-export async function uploadFileToDrive(
-    fileBuffer: Buffer,
-    fileName: string,
-    mimeType: string,
-    folderId: string
-): Promise<{ id: string; webViewLink: string; webContentLink: string }> {
-    const token = await getAccessToken()
-
-    // Use multipart upload
-    const boundary = `boundary_${Date.now()}`
-    const metadata = JSON.stringify({ name: fileName, parents: [folderId] })
-
-    const multipartBody = Buffer.concat([
-        Buffer.from(`--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${metadata}\r\n`),
-        Buffer.from(`--${boundary}\r\nContent-Type: ${mimeType}\r\n\r\n`),
-        fileBuffer,
-        Buffer.from(`\r\n--${boundary}--`),
-    ])
-
-    const uploadRes = await fetch(
-        'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,webViewLink,webContentLink',
-        {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': `multipart/related; boundary=${boundary}`,
-                'Content-Length': multipartBody.length.toString(),
-            },
-            body: multipartBody,
-        }
-    )
-
-    if (!uploadRes.ok) {
-        const err = await uploadRes.text()
-        throw new Error(`Drive upload failed: ${err}`)
-    }
-
-    const file = await uploadRes.json()
-
-    // Make the file publicly readable so we can use the URL directly
-    await fetch(`https://www.googleapis.com/drive/v3/files/${file.id}/permissions`, {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ role: 'reader', type: 'anyone' }),
-    })
-
-    return {
-        id: file.id,
-        webViewLink: file.webViewLink || `https://drive.google.com/file/d/${file.id}/view`,
-        webContentLink: file.webContentLink || `https://drive.google.com/uc?id=${file.id}`,
-    }
-}
-
-/**
- * Move a file to a new folder by updating its parents.
- */
-export async function moveFileToFolder(fileId: string, newFolderId: string): Promise<void> {
-    const token = await getAccessToken()
-
-    // 1. Get current parents
-    const getRes = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?fields=parents`, {
-        headers: { Authorization: `Bearer ${token}` }
-    })
-    const getResJson = await getRes.json()
-    const previousParents = (getResJson.parents || []).join(',')
-
-    // 2. Update parents
-    const updateRes = await fetch(
-        `https://www.googleapis.com/drive/v3/files/${fileId}?addParents=${newFolderId}&removeParents=${previousParents}`,
-        {
-            method: 'PATCH',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        }
-    )
-
-    if (!updateRes.ok) {
-        const err = await updateRes.text()
-        throw new Error(`Failed to move file ${fileId}: ${err}`)
-    }
-}
-
-/**
- * List all files in a folder and its subfolders (recursive)
- */
-export async function listFilesRecursive(folderId: string): Promise<{ id: string, name: string, webViewLink: string }[]> {
-    const token = await getAccessToken()
-    let results: { id: string, name: string, webViewLink: string }[] = []
-
-    async function scan(fId: string) {
-        const query = `'${fId}' in parents and trashed=false`
-        const res = await fetch(
-            `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name,mimeType,webViewLink)&pageSize=1000`,
-            { headers: { Authorization: `Bearer ${token}` } }
-        )
-        const data = await res.json()
-
-        if (data.files) {
-            for (const file of data.files) {
-                if (file.mimeType === 'application/vnd.google-apps.folder') {
-                    await scan(file.id)
-                } else {
-                    results.push({
-                        id: file.id,
-                        name: file.name,
-                        webViewLink: file.webViewLink
-                    })
-                }
-            }
-        }
-    }
-
-    await scan(folderId)
-    return results
-}
-
-/**
- * Download a file from Drive as a Buffer
- */
-export async function downloadFileFromDrive(fileId: string): Promise<Buffer> {
-    const token = await getAccessToken()
-    const res = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
-        headers: { Authorization: `Bearer ${token}` }
-    })
-
-    if (!res.ok) {
-        throw new Error(`Failed to download file ${fileId}`)
-    }
-
-    const arrayBuffer = await res.arrayBuffer()
-    return Buffer.from(arrayBuffer)
+  return {
+    id: response.data.id,
+    webViewLink: response.data.webViewLink,
+    webContentLink: response.data.webContentLink
+  };
 }
