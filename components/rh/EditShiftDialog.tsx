@@ -59,7 +59,7 @@ export function EditShiftDialog({ shift, userId, isManager = false }: EditShiftD
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button size="icon" variant="ghost" className="h-8 w-8 text-muted-foreground hover:text-primary">
+                <Button size="icon" variant="ghost" aria-label="Modifier le shift" className="h-8 w-8 text-muted-foreground hover:text-primary">
                     <Pencil className="h-4 w-4" />
                 </Button>
             </DialogTrigger>

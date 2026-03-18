@@ -125,7 +125,7 @@ export function SalaryReconciliation({ employeeId, month, year, employeeName }: 
                             Vérification du versement bancaire par rapport à la fiche de paie
                         </CardDescription>
                     </div>
-                    <Button variant="ghost" size="icon" onClick={fetchData} disabled={loading} className="h-8 w-8">
+                    <Button variant="ghost" size="icon" aria-label="Actualiser" onClick={fetchData} disabled={loading} className="h-8 w-8">
                         <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
                     </Button>
                 </div>
@@ -183,7 +183,7 @@ export function SalaryReconciliation({ employeeId, month, year, employeeName }: 
 
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
-                                                <Button variant="ghost" size="icon" className="h-8 w-8" disabled={processingId === tx.id}>
+                                                <Button variant="ghost" size="icon" aria-label="Options de la transaction" className="h-8 w-8" disabled={processingId === tx.id}>
                                                     {processingId === tx.id ? (
                                                         <Loader2 className="h-4 w-4 animate-spin" />
                                                     ) : (

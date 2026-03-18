@@ -90,7 +90,7 @@ export function InvoiceList({ invoices }: InvoiceListProps) {
                                     {getStatusBadge(invoice.status)}
                                 </TableCell>
                                 <TableCell className="text-right">
-                                    <Button variant="ghost" size="icon" className="h-8 w-8 text-indigo-600 hover:bg-indigo-50">
+                                    <Button variant="ghost" size="icon" aria-label="Voir la facture" className="h-8 w-8 text-indigo-600 hover:bg-indigo-50">
                                         <Eye className="h-4 w-4" />
                                     </Button>
                                 </TableCell>

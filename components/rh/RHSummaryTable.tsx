@@ -272,9 +272,9 @@ export function RHSummaryTable({ employees }: RHSummaryTableProps) {
                                 <CardDescription className="text-xs font-bold uppercase text-primary/70">{currentDateLabel}</CardDescription>
                             </div>
                             <div className="flex items-center bg-background rounded-xl p-1 border border-border/50 shadow-inner">
-                                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg" onClick={() => changeMonth(-1)}><ChevronLeft className="h-4 w-4" /></Button>
+                                <Button variant="ghost" size="icon" aria-label="Mois précédent" className="h-8 w-8 rounded-lg" onClick={() => changeMonth(-1)}><ChevronLeft className="h-4 w-4" /></Button>
                                 <span className="text-[10px] font-black px-2 min-w-[70px] text-center uppercase">{currentDate.toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' })}</span>
-                                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg" onClick={() => changeMonth(1)}><ChevronRight className="h-4 w-4" /></Button>
+                                <Button variant="ghost" size="icon" aria-label="Mois suivant" className="h-8 w-8 rounded-lg" onClick={() => changeMonth(1)}><ChevronRight className="h-4 w-4" /></Button>
                             </div>
                         </div>
                     </div>

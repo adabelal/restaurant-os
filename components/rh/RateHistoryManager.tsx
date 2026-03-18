@@ -156,7 +156,7 @@ export function RateHistoryManager({ userId, currentHistoryJson, selectedMonth =
                                             </div>
                                         </div>
                                     </div>
-                                    <Button variant="ghost" size="icon" onClick={() => removeRate(i)} className="text-muted-foreground hover:text-red-500 hover:bg-red-50 size-9 rounded-xl active:scale-90 transition-all">
+                                    <Button variant="ghost" size="icon" aria-label="Supprimer le taux" onClick={() => removeRate(i)} className="text-muted-foreground hover:text-red-500 hover:bg-red-50 size-9 rounded-xl active:scale-90 transition-all">
                                         <Trash2 className="h-4 w-4" />
                                     </Button>
                                 </div>
