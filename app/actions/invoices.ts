@@ -1,10 +1,14 @@
+'use server';
+
 import { PDFDocument } from 'pdf-lib';
-import { extractInvoicesFromPdf, generateInvoiceEmbedding } from '@/lib/gemini-service';
+import { extractInvoicesFromPdf, generateInvoiceEmbedding, buildEmbeddingText } from '@/lib/gemini-service';
 import { uploadPdfToDrive } from '@/lib/google-drive';
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
 import { exec } from 'child_process';
-// Define the response that will be sent back to the client
+import { revalidatePath } from 'next/cache';
+
+// ─── Types ──────────────────────────────────────────────────────────────────────
 export type ProcessInvoiceState = {
   success: boolean;
   message: string;
@@ -12,6 +16,7 @@ export type ProcessInvoiceState = {
   processedCount?: number;
 };
 
+// ─── Process New Invoice Upload ─────────────────────────────────────────────────
 export async function processInvoiceDocument(
   prevState: ProcessInvoiceState | null,
   formData: FormData
@@ -31,7 +36,7 @@ export async function processInvoiceDocument(
     const arrayBuffer = await file.arrayBuffer();
     const pdfBytes = new Uint8Array(arrayBuffer);
 
-    // 1. Send to Gemini for intelligent extraction
+    // 1. Send to Gemini for intelligent extraction (V2 enriched)
     const extractionResult = await extractInvoicesFromPdf(pdfBytes, file.type);
     const invoices = extractionResult.invoices;
 
@@ -46,80 +51,92 @@ export async function processInvoiceDocument(
     }
 
     const processedInvoices = await Promise.all(
-      invoices.map(async (invoiceData, index) => {
+      invoices.map(async (inv, index) => {
         try {
-          let slicedPdfBytes = pdfBytes; // fallback to full if not PDF or slicing fails
-          let isSliced = false;
+          let slicedPdfBytes: Uint8Array = pdfBytes;
 
-          // Slice PDF if it's a PDF and pages are specified properly
-          if (pdfDoc && invoiceData.Start_Page && invoiceData.End_Page && invoiceData.Start_Page <= invoiceData.End_Page) {
+          // Slice PDF if applicable
+          if (pdfDoc && inv.Start_Page && inv.End_Page && inv.Start_Page <= inv.End_Page) {
             try {
               const newPdf = await PDFDocument.create();
-              const startIdx = invoiceData.Start_Page - 1;
-              const endIdx = invoiceData.End_Page - 1;
+              const startIdx = inv.Start_Page - 1;
+              const endIdx = inv.End_Page - 1;
               const indices = Array.from({ length: endIdx - startIdx + 1 }, (_, i) => startIdx + i);
-              
               const copiedPages = await newPdf.copyPages(pdfDoc, indices);
               copiedPages.forEach(p => newPdf.addPage(p));
               const pdfResult = await newPdf.save();
               slicedPdfBytes = new Uint8Array(pdfResult);
-              isSliced = true;
             } catch (err) {
               console.warn("Could not slice PDF for invoice, uploading full.", err);
             }
           }
 
           // Generate file name
-          const dateStr = invoiceData.Date || new Date().toISOString().split('T')[0];
-          const fileName = `${dateStr}_${invoiceData.Tiers}_${invoiceData.Montant}.pdf`;
+          const dateStr = inv.Date || new Date().toISOString().split('T')[0];
+          const fileName = `${dateStr}_${inv.Tiers}_${inv.Montant}.pdf`;
 
-          // 3. Upload sliced PDF to Google Drive
-          // It will use the environment folder ID or the one hardcoded if missing
+          // 3. Upload to Google Drive
           const driveResult = await uploadPdfToDrive(fileName, slicedPdfBytes);
 
-          // 4. Generate Semantic Embedding
-          const textToEmbed = `Date: ${invoiceData.Date}. Fournisseur: ${invoiceData.Tiers}. Montant TTC: ${invoiceData.Montant}€. Résumé: ${invoiceData.Resume}`;
+          // 4. Generate Semantic Embedding (enriched V2)
+          const textToEmbed = buildEmbeddingText(inv);
           const embeddingVector = await generateInvoiceEmbedding(textToEmbed);
           const vectorString = `[${embeddingVector.join(',')}]`;
 
-          // 5. Store in Prisma Database
-          // Using executeRaw because Prisma doesn't officially support direct vector insertion in standard create without extensions typed this way in older versions.
-          // In Prisma 5.2x with preview feature postgresqlExtensions, typical syntax: embedding: embeddingVector
-          
+          // 5. Determine status
+          const confidence = inv.confidence || 0;
+          const ttc = parseFloat(inv.Montant) || 0;
+          const status = (confidence < 0.7 || ttc === 0) ? 'TO_VALIDATE' : 'PROCESSED';
+
+          const dueDateStr = inv.dueDate && inv.dueDate !== 'NON_IDENTIFIE' ? inv.dueDate : null;
+          const lineItemsJson = JSON.stringify(inv.lineItems || []);
+
+          // 6. Store in PostgreSQL with all enriched fields
           await prisma.$executeRaw`
-             INSERT INTO "Invoice" ("id", "date", "supplierName", "amount", "driveFileId", "driveWebViewUrl", "originalFileName", "status", "embedding", "updatedAt") 
-             VALUES (
-               gen_random_uuid()::text, 
-               ${new Date(invoiceData.Date)}::timestamp, 
-               ${invoiceData.Tiers}, 
-               ${parseFloat(invoiceData.Montant)}, 
-               ${driveResult.id}, 
-               ${driveResult.webViewLink}, 
-               ${file.name}, 
-               'PROCESSED'::"InvoiceProcessingStatus",
-               ${vectorString}::vector,
-               NOW()
-             )
+            INSERT INTO "Invoice" (
+              "id", "date", "supplierName", "amount", "driveFileId", "driveWebViewUrl", 
+              "originalFileName", "status", "isSentToAccountant",
+              "invoiceNumber", "dueDate", "supplierSiret", "supplierAddress",
+              "amountHT", "vatRate", "vatAmount", "paymentMethod", "paymentReference",
+              "confidence", "lineItems",
+              "embedding", "updatedAt"
+            ) VALUES (
+              gen_random_uuid()::text, 
+              ${new Date(dateStr)}::timestamp, 
+              ${inv.Tiers}, 
+              ${ttc}, 
+              ${driveResult.id}, 
+              ${driveResult.webViewLink}, 
+              ${file.name}, 
+              ${status}::"InvoiceProcessingStatus",
+              false,
+              ${inv.invoiceNumber !== 'NON_IDENTIFIE' ? inv.invoiceNumber : null},
+              ${dueDateStr ? new Date(dueDateStr) : null}::timestamp,
+              ${inv.supplierSiret !== 'NON_IDENTIFIE' ? inv.supplierSiret : null},
+              ${inv.supplierAddress !== 'NON_IDENTIFIE' ? inv.supplierAddress : null},
+              ${parseFloat(inv.amountHT) || null},
+              ${parseFloat(inv.vatRate) || null},
+              ${parseFloat(inv.vatAmount) || null},
+              ${inv.paymentMethod !== 'NON_IDENTIFIE' ? inv.paymentMethod : null},
+              ${inv.paymentReference !== 'NON_IDENTIFIE' ? inv.paymentReference : null},
+              ${confidence},
+              ${lineItemsJson}::jsonb,
+              ${vectorString}::vector,
+              NOW()
+            )
           `;
 
-          return { success: true, data: invoiceData };
+          return { success: true, data: inv };
         } catch (error) {
-          console.error(`Failed processing invoice ${index} (${invoiceData.Tiers}):`, error);
+          console.error(`Failed processing invoice ${index} (${inv.Tiers}):`, error);
           
-          // Log failed attempt in DB if possible
           try {
-             await prisma.invoice.create({
-               data: {
-                 date: new Date(),
-                 supplierName: invoiceData.Tiers || "UNKNOWN",
-                 amount: parseFloat(invoiceData.Montant) || 0,
-                 status: "ERROR",
-                 originalFileName: file.name,
-                 errorMessage: error instanceof Error ? error.message : "Unknown processing error"
-               }
-             });
+            await prisma.$executeRaw`
+              INSERT INTO "Invoice" ("id", "date", "supplierName", "amount", "status", "originalFileName", "errorMessage", "updatedAt")
+              VALUES (gen_random_uuid()::text, NOW(), ${inv.Tiers || 'UNKNOWN'}, ${parseFloat(inv.Montant) || 0}, 'ERROR'::"InvoiceProcessingStatus", ${file.name}, ${error instanceof Error ? error.message : 'Unknown error'}, NOW())
+            `;
           } catch (e) {
-             console.error("Could not write error to DB", e);
+            console.error("Could not write error to DB", e);
           }
 
           return { success: false, error: String(error) };
@@ -129,6 +146,8 @@ export async function processInvoiceDocument(
 
     const successful = processedInvoices.filter(i => i.success).length;
 
+    revalidatePath('/factures');
+    
     return { 
       success: true, 
       message: `Traitement terminé avec succès. ${successful} facture(s) traitée(s).`,
@@ -141,8 +160,57 @@ export async function processInvoiceDocument(
   }
 }
 
+// ─── Update Invoice (Manual Edit) ───────────────────────────────────────────────
+export async function updateInvoiceAction(formData: FormData): Promise<void> {
+  const session = await getServerSession();
+  if (!session?.user) return;
+
+  const id = formData.get('id') as string;
+  const supplierName = formData.get('supplierName') as string;
+  const date = formData.get('date') as string;
+  const invoiceNumber = formData.get('invoiceNumber') as string | null;
+  const amountHT = formData.get('amountHT') as string | null;
+  const vatRate = formData.get('vatRate') as string | null;
+  const vatAmount = formData.get('vatAmount') as string | null;
+  const amount = formData.get('amount') as string;
+  const paymentMethod = formData.get('paymentMethod') as string | null;
+
+  if (!id || !supplierName || !date || !amount) return;
+
+  await prisma.$executeRaw`
+    UPDATE "Invoice" SET
+      "supplierName" = ${supplierName},
+      "date" = ${new Date(date)}::timestamp,
+      "invoiceNumber" = ${invoiceNumber || null},
+      "amountHT" = ${amountHT ? parseFloat(amountHT) : null},
+      "vatRate" = ${vatRate ? parseFloat(vatRate) : null},
+      "vatAmount" = ${vatAmount ? parseFloat(vatAmount) : null},
+      "amount" = ${parseFloat(amount)},
+      "paymentMethod" = ${paymentMethod || null},
+      "status" = 'PROCESSED'::"InvoiceProcessingStatus",
+      "updatedAt" = NOW()
+    WHERE "id" = ${id}
+  `;
+
+  revalidatePath('/factures');
+}
+
+// ─── Delete Invoice ─────────────────────────────────────────────────────────────
+export async function deleteInvoiceAction(formData: FormData): Promise<void> {
+  const session = await getServerSession();
+  if (!session?.user) return;
+
+  const id = formData.get('id') as string;
+  if (!id) return;
+
+  await prisma.$executeRaw`DELETE FROM "Invoice" WHERE "id" = ${id}`;
+  
+  revalidatePath('/factures');
+}
+
+// ─── Sync Historical from Drive ─────────────────────────────────────────────────
 export async function syncHistoricalInvoicesAction(formData: FormData): Promise<void> {
-  console.log("🚀 Lancement asynchrone du script de synchronisation d'historique...");
+  console.log("🚀 Lancement asynchrone du script de synchronisation V2...");
   
   exec('npx tsx scripts/sync-drive-invoices.ts', (error, stdout, stderr) => {
     if (error) {
@@ -150,9 +218,9 @@ export async function syncHistoricalInvoicesAction(formData: FormData): Promise<
       return;
     }
     if (stderr) {
-      console.error(`Stderr de synchronisation Drive: ${stderr}`);
+      console.error(`Stderr: ${stderr}`);
       return;
     }
-    console.log(`Stdout de synchronisation Drive: ${stdout}`);
+    console.log(`Stdout: ${stdout}`);
   });
 }

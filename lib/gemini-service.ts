@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { InvoiceResultSchema, InvoicesResponseSchema, InvoicesResponse } from "./validations/invoice";
+import { InvoicesResponseSchema, InvoicesResponse } from "./validations/invoice";
 
 // Verify API Key
 const apiKey = process.env.GEMINI_API_KEY;
@@ -9,40 +9,71 @@ if (!apiKey) {
 
 const genAI = new GoogleGenerativeAI(apiKey);
 
+const SYSTEM_INSTRUCTION = `Tu es un expert-comptable spécialisé dans l'analyse de factures pour la SARL SIWA, un restaurant.
+Ton rôle est d'analyser chaque document (PDF ou image) fourni, d'identifier toutes les factures distinctes qu'il contient, et d'en extraire le MAXIMUM d'informations avec une précision absolue.
+
+RÈGLES IMPORTANTES :
+- La SARL SIWA est TOUJOURS l'ACHETEUR. Le fournisseur est l'autre entité sur la facture.
+- Extrais le montant HT (Hors Taxes), le taux de TVA, le montant de TVA, ET le montant TTC séparément.
+- Identifie le mode de règlement : CB, VIREMENT, PRELEVEMENT, CHEQUE, ESPECES. Si non visible, utilise "NON_IDENTIFIE".
+- Extrais TOUTES les lignes d'articles avec description, quantité, prix unitaire et total.
+- Pour le résumé (Resume), sois EXTRÊMEMENT détaillé : liste TOUS les produits avec leurs quantités et prix. Ce texte sera utilisé pour de la recherche sémantique.
+- Utilise "NON_IDENTIFIE" pour tout champ textuel non trouvé et "0.00" pour tout montant non trouvé.
+- Le score de confiance (confidence) doit refléter honnêtement la lisibilité du document.`;
+
 export async function extractInvoicesFromPdf(pdfBytes: Uint8Array, mimeType = "application/pdf"): Promise<InvoicesResponse> {
   const model = genAI.getGenerativeModel({
     model: "gemini-2.0-flash",
-    systemInstruction: "Tu es un expert en comptabilité d'entreprise. Ton rôle est d'analyser le document fourni, d'identifier s'il contient une seule ou plusieurs factures, et d'en extraire les informations de façon stricte.",
+    systemInstruction: SYSTEM_INSTRUCTION,
   });
 
-  const prompt = `
-Voici un document (PDF ou Image) qui peut contenir une ou plusieurs factures.
-Analyse le document dans son intégralité. Trouve toutes les factures distinctes.
-S'il s'agit d'un document multipage et qu'il y a plusieurs factures collées, délimite les factures par page.
+  const prompt = `Analyse ce document (facture fournisseur adressée à la SARL SIWA).
+Trouve TOUTES les factures distinctes. S'il y a plusieurs factures collées dans un document multipage, délimite-les par page.
 
-Pour chaque facture, extrais les informations suivantes:
-- Date: exactemenent au format YYYY-MM-DD
-- Tiers: le fournisseur en MAJUSCULES_AVEC_UNDERSCORES (ex: METRO, GRAND_FRAIS_CHOLET)
-- Montant: le TTC exact avec décimales (ex: 231.50)
-- Start_Page: la page de début de la facture 
-- End_Page: la page de fin de la facture
-- Resume: un texte très descriptif et riche d'un paragraphe résumant la facture (achats, produits, contexte).
+Pour chaque facture, extrais :
 
-Réponds uniquement en suivant la structure JSON définie.
-`;
+1. IDENTIFICATION :
+   - invoiceNumber : le numéro de facture tel qu'imprimé (ex: "FA-2024-0142")
+   - Date : format YYYY-MM-DD strict
+   - dueDate : date d'échéance si visible
 
-  // Provide the document inline as Base64 format
+2. FOURNISSEUR (le vendeur, PAS la SARL SIWA) :
+   - Tiers : nom en MAJUSCULES_AVEC_UNDERSCORES (ex: METRO, PROMOCASH)
+   - supplierSiret : SIRET ou SIREN du fournisseur
+   - supplierAddress : adresse complète du fournisseur
+
+3. MONTANTS (extraire séparément) :
+   - amountHT : total Hors Taxes
+   - vatRate : taux de TVA principal (si plusieurs taux, prendre le principal)
+   - vatAmount : montant total de TVA
+   - Montant : total TTC (la somme finale à payer)
+
+4. REGLEMENT :
+   - paymentMethod : CB | VIREMENT | PRELEVEMENT | CHEQUE | ESPECES | NON_IDENTIFIE
+   - paymentReference : référence bancaire ou de paiement
+
+5. LIGNES D'ARTICLES (TOUTES, c'est CRUCIAL) :
+   - Pour chaque produit/service : description, quantité, prix unitaire, total ligne
+   - Inclure les mentions de poids/conditionnement dans la description (ex: "Citron jaune colis 4.5kg")
+
+6. METADONNEES IA :
+   - confidence : score de 0.0 à 1.0 (1.0 = parfaitement lisible, 0.5 = partiellement lisible, < 0.3 = très incertain)
+   - Resume : paragraphe TRES détaillé listant TOUS les produits avec quantités et prix. Exemple : "Facture METRO du 15/03/2024 pour 232.50€ TTC. Achats : 2 colis citrons jaunes 4.5kg à 12.50€, 5kg tomates grappe à 3.80€/kg, 3 cartons lait demi-écrémé 6x1L à 8.90€..."
+   - Start_Page / End_Page : pages de début et fin
+
+Réponds uniquement en JSON structuré.`;
+
   const base64Data = Buffer.from(pdfBytes).toString("base64");
-  
+
   const result = await model.generateContent({
     contents: [{
       role: 'user',
       parts: [
         { text: prompt },
-        { 
+        {
           inlineData: {
-             data: base64Data,
-             mimeType: mimeType
+            data: base64Data,
+            mimeType: mimeType
           }
         }
       ]
@@ -50,9 +81,6 @@ Réponds uniquement en suivant la structure JSON définie.
     generationConfig: {
       temperature: 0.1,
       responseMimeType: "application/json",
-      // Enforce output using Zod JSON Schema conversion provided by Gemini Server helpers
-      // If zodResponseFormat isn't working as intended in this SDK version, we fallback to just JSON mimeType.
-      // But let's use the object structure mapping.
       responseSchema: {
         type: "object",
         properties: {
@@ -61,14 +89,42 @@ Réponds uniquement en suivant la structure JSON définie.
             items: {
               type: "object",
               properties: {
+                invoiceNumber: { type: "string" },
                 Date: { type: "string" },
+                dueDate: { type: "string" },
                 Tiers: { type: "string" },
+                supplierSiret: { type: "string" },
+                supplierAddress: { type: "string" },
+                amountHT: { type: "string" },
+                vatRate: { type: "string" },
+                vatAmount: { type: "string" },
                 Montant: { type: "string" },
+                paymentMethod: { type: "string" },
+                paymentReference: { type: "string" },
+                lineItems: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      description: { type: "string" },
+                      quantity: { type: "string" },
+                      unitPrice: { type: "string" },
+                      totalPrice: { type: "string" }
+                    },
+                    required: ["description", "quantity", "unitPrice", "totalPrice"]
+                  }
+                },
+                confidence: { type: "number" },
+                Resume: { type: "string" },
                 Start_Page: { type: "integer" },
-                End_Page: { type: "integer" },
-                Resume: { type: "string" }
+                End_Page: { type: "integer" }
               },
-              required: ["Date", "Tiers", "Montant", "Start_Page", "End_Page", "Resume"]
+              required: [
+                "invoiceNumber", "Date", "dueDate", "Tiers", "supplierSiret", "supplierAddress",
+                "amountHT", "vatRate", "vatAmount", "Montant",
+                "paymentMethod", "paymentReference", "lineItems",
+                "confidence", "Resume", "Start_Page", "End_Page"
+              ]
             }
           }
         },
@@ -78,7 +134,7 @@ Réponds uniquement en suivant la structure JSON définie.
   });
 
   const responseText = result.response.text();
-  
+
   try {
     const jsonParsed = JSON.parse(responseText);
     const validated = InvoicesResponseSchema.parse(jsonParsed);
@@ -94,4 +150,28 @@ export async function generateInvoiceEmbedding(text: string): Promise<number[]> 
   const result = await model.embedContent(text);
   const embedding = result.embedding;
   return embedding.values;
+}
+
+/**
+ * Build a rich text for embedding that maximizes semantic search quality.
+ */
+export function buildEmbeddingText(invoiceData: any): string {
+  const parts: string[] = [];
+  
+  parts.push(`Date: ${invoiceData.Date}.`);
+  parts.push(`Fournisseur: ${invoiceData.Tiers}.`);
+  parts.push(`N° Facture: ${invoiceData.invoiceNumber}.`);
+  parts.push(`Montant HT: ${invoiceData.amountHT}€. TVA ${invoiceData.vatRate}%: ${invoiceData.vatAmount}€. TTC: ${invoiceData.Montant}€.`);
+  parts.push(`Règlement: ${invoiceData.paymentMethod}.`);
+  
+  if (invoiceData.lineItems && invoiceData.lineItems.length > 0) {
+    const itemsText = invoiceData.lineItems
+      .map((item: any) => `${item.description} (x${item.quantity}) à ${item.unitPrice}€ = ${item.totalPrice}€`)
+      .join('; ');
+    parts.push(`Articles: ${itemsText}.`);
+  }
+  
+  parts.push(`Résumé: ${invoiceData.Resume}`);
+  
+  return parts.join(' ');
 }

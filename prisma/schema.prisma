@@ -427,6 +427,7 @@ enum FinanceCategoryType {
 enum InvoiceProcessingStatus {
   PENDING
   PROCESSED
+  TO_VALIDATE
   ERROR
 }
 
@@ -441,12 +442,27 @@ model Invoice {
   status             InvoiceProcessingStatus @default(PROCESSED)
   originalFileName   String?
   errorMessage       String?
-  
+
+  // Champs enrichis V2
+  invoiceNumber      String?
+  dueDate            DateTime?
+  supplierSiret      String?
+  supplierAddress    String?
+  amountHT           Decimal?  @db.Decimal(10, 2)
+  vatRate            Decimal?  @db.Decimal(5, 2)
+  vatAmount          Decimal?  @db.Decimal(10, 2)
+  paymentMethod      String?
+  paymentReference   String?
+  confidence         Decimal?  @db.Decimal(3, 2)
+  lineItems          Json?
+
   // Vector Embeddings (768 dimensions pour Gemini 2.0)
   embedding          Unsupported("vector(768)")?
-  
+
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
-  
+
   @@index([date])
+  @@index([supplierName])
+  @@index([status])
 }

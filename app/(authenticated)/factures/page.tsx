@@ -3,7 +3,7 @@ import InvoiceUploadZone from "@/components/invoices/invoice-upload";
 import InvoiceTable from "@/components/invoices/invoice-table";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { FileText, Database, Send, Sparkles } from "lucide-react";
+import { FileText, Database, Send, Sparkles, AlertTriangle } from "lucide-react";
 import { syncHistoricalInvoicesAction } from "@/app/actions/invoices";
 
 export const dynamic = "force-dynamic";
@@ -14,21 +14,38 @@ export default async function FacturesPage() {
     redirect("/login");
   }
 
-  const invoices = await prisma.invoice.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 50,
-  });
+  const invoices = await prisma.$queryRaw`
+    SELECT "id", "date", "supplierName", "amount", "driveWebViewUrl", "status", 
+           "isSentToAccountant", "invoiceNumber", "amountHT", "vatRate", "vatAmount",
+           "paymentMethod", "confidence", "errorMessage", "createdAt"
+    FROM "Invoice"
+    ORDER BY "createdAt" DESC
+    LIMIT 100
+  ` as any[];
 
-  // Safe mapping to match UI expectations
+  // Safe mapping
   const mappedInvoices = invoices.map((inv: any) => ({
     id: inv.id,
     date: inv.date,
     supplierName: inv.supplierName,
-    amount: Number(inv.amount), // Convert Decimal to normal number
+    amount: Number(inv.amount),
     driveWebViewUrl: inv.driveWebViewUrl,
-    status: inv.status as "PENDING" | "PROCESSED" | "ERROR",
+    status: inv.status as "PENDING" | "PROCESSED" | "TO_VALIDATE" | "ERROR",
     isSentToAccountant: inv.isSentToAccountant,
+    invoiceNumber: inv.invoiceNumber || null,
+    amountHT: inv.amountHT != null ? Number(inv.amountHT) : null,
+    vatRate: inv.vatRate != null ? Number(inv.vatRate) : null,
+    vatAmount: inv.vatAmount != null ? Number(inv.vatAmount) : null,
+    paymentMethod: inv.paymentMethod || null,
+    confidence: inv.confidence != null ? Number(inv.confidence) : null,
+    errorMessage: inv.errorMessage || null,
+    createdAt: inv.createdAt,
   }));
+
+  const totalCount = mappedInvoices.length;
+  const processedCount = mappedInvoices.filter((i: any) => i.status === 'PROCESSED').length;
+  const toValidateCount = mappedInvoices.filter((i: any) => i.status === 'TO_VALIDATE').length;
+  const sentCount = mappedInvoices.filter((i: any) => i.isSentToAccountant).length;
 
   return (
     <div className="flex-1 space-y-8 p-8 pt-6">
@@ -36,37 +53,42 @@ export default async function FacturesPage() {
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Factures & IA</h2>
           <p className="text-muted-foreground mt-1">
-            Gérez vos factures intelligemment. Glissez-les, l'IA les découpe et les analyse.
+            Extraction enrichie V2 — HT, TVA, TTC, règlement, articles, confiance IA.
           </p>
         </div>
         <form action={syncHistoricalInvoicesAction}>
            <button type="submit" className="bg-primary hover:bg-primary/90 shadow-sm text-primary-foreground px-4 py-2 rounded-md font-medium text-sm transition-colors flex items-center gap-2">
              <Database className="w-4 h-4" />
-             Lancer la synchro Drive (Arrière-plan)
+             Lancer la synchro Drive
            </button>
         </form>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 px-1">
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-6 flex flex-col gap-2">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5 px-1">
+        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
            <FileText className="h-4 w-4 text-muted-foreground" />
-           <p className="text-2xl font-bold">{invoices.length}</p>
-           <p className="text-xs text-muted-foreground">Factures traîtées au total</p>
+           <p className="text-2xl font-bold">{totalCount}</p>
+           <p className="text-xs text-muted-foreground">Factures traitées</p>
         </div>
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-6 flex flex-col gap-2">
+        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
            <Sparkles className="h-4 w-4 text-primary" />
-           <p className="text-2xl font-bold text-primary">Gemini 2.0</p>
-           <p className="text-xs text-muted-foreground">Modèle d'extraction actif</p>
+           <p className="text-2xl font-bold text-green-600">{processedCount}</p>
+           <p className="text-xs text-muted-foreground">Validées (OK)</p>
         </div>
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-6 flex flex-col gap-2">
+        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
+           <AlertTriangle className="h-4 w-4 text-amber-500" />
+           <p className="text-2xl font-bold text-amber-600">{toValidateCount}</p>
+           <p className="text-xs text-muted-foreground">À vérifier</p>
+        </div>
+        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
            <Database className="h-4 w-4 text-muted-foreground" />
-           <p className="text-2xl font-bold">{mappedInvoices.filter((i: any) => i.status === 'PROCESSED').length}</p>
-           <p className="text-xs text-muted-foreground">Vectorisées & Stockées</p>
+           <p className="text-2xl font-bold">{processedCount}</p>
+           <p className="text-xs text-muted-foreground">Vectorisées</p>
         </div>
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-6 flex flex-col gap-2">
+        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 flex flex-col gap-1.5">
            <Send className="h-4 w-4 text-muted-foreground" />
-           <p className="text-2xl font-bold">{mappedInvoices.filter((i: any) => i.isSentToAccountant).length}</p>
-           <p className="text-xs text-muted-foreground">Envoyées à la comptable</p>
+           <p className="text-2xl font-bold">{sentCount}</p>
+           <p className="text-xs text-muted-foreground">Env. comptable</p>
         </div>
       </div>
 
@@ -77,7 +99,7 @@ export default async function FacturesPage() {
               <UploadIcon className="w-5 h-5 text-primary" /> Dropzone Factures
             </h3>
             <p className="text-sm text-gray-500 mb-6 font-medium">
-              Importez un ou plusieurs PDF contenant des dizaines de factures. L'IA s'occupe de les découper par page et de trouver le fournisseur.
+              PDF ou images (JPG, PNG). L'IA extrait HT, TVA, TTC, fournisseur, articles et mode de règlement.
             </p>
             <InvoiceUploadZone />
           </div>
@@ -86,8 +108,8 @@ export default async function FacturesPage() {
         <div className="lg:col-span-2 space-y-6">
            <div className="flex flex-col gap-4">
               <h3 className="text-xl font-semibold flex flex-col gap-1">
-                 Historique Récent 
-                 <span className="text-sm font-medium text-gray-400">Recherche sémantique bientôt disponible.</span>
+                 Historique des Factures
+                 <span className="text-sm font-medium text-gray-400">Cliquez sur ✏️ pour corriger les données extraites par l'IA.</span>
               </h3>
               <InvoiceTable invoices={mappedInvoices} />
            </div>
