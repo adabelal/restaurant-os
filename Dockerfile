@@ -26,8 +26,8 @@ COPY . .
 # Construire l'application Next.js
 # On skip le type checking pour accélérer le build en prod
 ENV NEXT_TELEMETRY_DISABLED=1
-# Recherche du point d'équilibre RAM parfait pour un serveur 4Go déjà chargé par Postgres (700Mo de limite V8 stricte)
-ENV NODE_OPTIONS="--max-old-space-size=700"
+# Taille de la Heap Node.js remontée (1,5 Go) en prévision de l'activation du Swap
+ENV NODE_OPTIONS="--max-old-space-size=1536"
 RUN npm run build
 
 # --- Étape de Production ---
