@@ -25,15 +25,17 @@ COPY . .
 
 # Construire l'application Next.js
 # On skip le type checking pour accélérer le build en prod
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=1
+# Limitation stricte de la RAM pour éviter un OOM Kill (SIGKILL) sur Easypanel
+ENV NODE_OPTIONS="--max-old-space-size=350"
 RUN npm run build
 
 # --- Étape de Production ---
 FROM node:20-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # Installer openssl aussi pour le runner
 RUN apk add --no-cache openssl
@@ -54,8 +56,8 @@ COPY --from=base --chown=nextjs:nodejs /app/prisma ./prisma
 USER nextjs
 
 EXPOSE 3000
-ENV PORT 3000
-ENV HOSTNAME 0.0.0.0
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
 # Lancement de la migration et du serveur
 # Lancement de la synchronisation DB (db push pour résilience face au drift migrations) et du serveur
