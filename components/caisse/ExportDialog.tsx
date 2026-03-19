@@ -86,7 +86,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
             const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
             
             const isEntree = t.type === 'IN';
-            const amountVal = isEntree ? Number(t.amount) : -Number(t.amount);
+            const amountVal = Number(t.amount);
             
             runningBalance += amountVal;
 
@@ -129,7 +129,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
         const worksheetData = data.map((t) => {
             const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
             const isEntree = t.type === 'IN';
-            const amountVal = isEntree ? Number(t.amount) : -Number(t.amount);
+            const amountVal = Number(t.amount);
             runningBalance += amountVal;
 
             return {
@@ -137,7 +137,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
                 'Type': isEntree ? 'Entrée' : 'Sortie',
                 'Description': t.description,
                 'Catégorie': t.category?.name || 'Sans catégorie',
-                'Montant': isEntree ? `${Number(t.amount).toFixed(2)} €` : `-${Number(t.amount).toFixed(2)} €`,
+                'Montant': `${amountVal.toFixed(2)} €`,
                 'Solde théorique': `${runningBalance.toFixed(2)} €`
             }
         })
@@ -158,7 +158,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
         const tableBody = data.map((t) => {
             const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
             const isEntree = t.type === 'IN';
-            const amountVal = isEntree ? Number(t.amount) : -Number(t.amount);
+            const amountVal = Number(t.amount);
             runningBalance += amountVal;
 
             return [
@@ -166,7 +166,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
                 isEntree ? 'Entrée' : 'Sortie',
                 t.description,
                 t.category?.name || '-',
-                isEntree ? `${Number(t.amount).toFixed(2)} €` : `-${Number(t.amount).toFixed(2)} €`,
+                `${amountVal.toFixed(2)} €`,
                 `${runningBalance.toFixed(2)} €`
             ]
         })
