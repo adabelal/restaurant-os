@@ -72,25 +72,31 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
             { header: 'Type', key: 'type', width: 12 },
             { header: 'Description', key: 'description', width: 45 },
             { header: 'Catégorie', key: 'category', width: 25 },
-            { header: 'Montant', key: 'amount', width: 15, style: { numFmt: '#,##0.00 €' } }
+            { header: 'Montant', key: 'amount', width: 15, style: { numFmt: '#,##0.00" €"' } },
+            { header: 'Solde théorique', key: 'balance', width: 20, style: { numFmt: '#,##0.00" €"' } }
         ];
 
         worksheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
         worksheet.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF4F46E5' } };
         worksheet.getRow(1).alignment = { horizontal: 'center' };
 
+        let runningBalance = 0;
+
         data.forEach((t, index) => {
             const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
             
             const isEntree = t.type === 'IN';
             const amountVal = isEntree ? Number(t.amount) : -Number(t.amount);
+            
+            runningBalance += amountVal;
 
             const row = worksheet.addRow({
                 date: dateStr,
                 type: isEntree ? 'Entrée' : 'Sortie',
                 description: t.description,
                 category: t.category?.name || 'Sans catégorie',
-                amount: amountVal
+                amount: amountVal,
+                balance: runningBalance
             });
 
             if (index % 2 === 0) {
@@ -99,6 +105,9 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
 
             const amountCell = row.getCell('amount');
             amountCell.font = { color: { argb: isEntree ? 'FF16A34A' : 'FFDC2626' } };
+
+            const balanceCell = row.getCell('balance');
+            balanceCell.font = { bold: true, color: { argb: runningBalance >= 0 ? 'FF16A34A' : 'FFDC2626' } };
         });
 
         const buffer = await workbook.xlsx.writeBuffer();
@@ -116,14 +125,20 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
     }
 
     const exportToCSV = (data: any[]) => {
+        let runningBalance = 0;
         const worksheetData = data.map((t) => {
             const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
+            const isEntree = t.type === 'IN';
+            const amountVal = isEntree ? Number(t.amount) : -Number(t.amount);
+            runningBalance += amountVal;
+
             return {
                 'Date': dateStr,
-                'Type': t.type === 'IN' ? 'Entrée' : 'Sortie',
+                'Type': isEntree ? 'Entrée' : 'Sortie',
                 'Description': t.description,
                 'Catégorie': t.category?.name || 'Sans catégorie',
-                'Montant': t.type === 'IN' ? Number(t.amount).toFixed(2) : `-${Number(t.amount).toFixed(2)}`
+                'Montant': isEntree ? `${Number(t.amount).toFixed(2)} €` : `-${Number(t.amount).toFixed(2)} €`,
+                'Solde théorique': `${runningBalance.toFixed(2)} €`
             }
         })
         const worksheet = XLSX.utils.json_to_sheet(worksheetData)
@@ -139,15 +154,20 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
         const doc = new jsPDF() as any
         doc.text(`Export Caisse - Période du ${format(new Date(startDate), 'dd/MM/yyyy')} au ${format(new Date(endDate), 'dd/MM/yyyy')}`, 14, 15)
 
+        let runningBalance = 0;
         const tableBody = data.map((t) => {
             const dateStr = format(new Date(t.date), 'dd/MM/yyyy');
+            const isEntree = t.type === 'IN';
+            const amountVal = isEntree ? Number(t.amount) : -Number(t.amount);
+            runningBalance += amountVal;
 
             return [
                 dateStr,
-                t.type === 'IN' ? 'Entrée' : 'Sortie',
+                isEntree ? 'Entrée' : 'Sortie',
                 t.description,
                 t.category?.name || '-',
-                t.type === 'IN' ? `${Number(t.amount).toFixed(2)} €` : `-${Number(t.amount).toFixed(2)} €`
+                isEntree ? `${Number(t.amount).toFixed(2)} €` : `-${Number(t.amount).toFixed(2)} €`,
+                `${runningBalance.toFixed(2)} €`
             ]
         })
 
@@ -156,18 +176,18 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
 
         doc.autoTable({
             startY: 25,
-            head: [['Date', 'Type', 'Description', 'Catégorie', 'Montant']],
+            head: [['Date', 'Type', 'Description', 'Catégorie', 'Montant', 'Solde théorique']],
             body: tableBody,
             theme: 'grid',
             headStyles: { fillColor: [99, 102, 241], fontStyle: 'bold' },
             alternateRowStyles: { fillColor: [249, 250, 251] },
-            styles: { fontSize: 10, cellPadding: 5 },
+            styles: { fontSize: 9, cellPadding: 4 }, // reduced font size slightly to fit extra column reliably
         })
 
         const finalY = (doc as any).lastAutoTable.finalY || 30
         doc.text(`Total Entrées: ${totalIn.toFixed(2)} €`, 14, finalY + 10)
         doc.text(`Total Sorties: ${totalOut.toFixed(2)} €`, 14, finalY + 17)
-        doc.text(`Solde: ${(totalIn - totalOut).toFixed(2)} €`, 14, finalY + 24)
+        doc.text(`Solde de la période: ${(totalIn - totalOut).toFixed(2)} €`, 14, finalY + 24)
 
         doc.save(`Export_Caisse_${startDate}_au_${endDate}.pdf`)
     }
