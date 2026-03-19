@@ -1064,6 +1064,7 @@ export async function syncAllEmployeePayslips() {
 
                 const cleanFile = f.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
 
+                let matchedEmployee = false
                 for (const employee of employees) {
                     const cleanName = employee.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ' ')
                     const nameParts = cleanName.split(/\s+/).filter((p: string) => p.length > 2)
@@ -1071,6 +1072,7 @@ export async function syncAllEmployeePayslips() {
                     const matches = nameParts.length > 0 && (matchedParts.length === nameParts.length || matchedParts.length >= 2)
 
                     if (matches) {
+                        matchedEmployee = true
                         console.log(`Matched ${f.name} with employee: ${employee.name}`)
                         const existingFiles = new Set((employee.documents || []).map((d: any) => d.name))
                         const docExists = existingFiles.has(f.name)
@@ -1118,6 +1120,31 @@ export async function syncAllEmployeePayslips() {
                             console.error(`Global Cloud Sync failed for ${f.name}:`, err)
                         }
                         break // document was matched to an employee, no need to check others
+                    }
+                }
+
+                if (!matchedEmployee) {
+                    // Document n'appartenant à aucun salarié connu (Intermittent, GUSO, etc.)
+                    try {
+                        await (prisma as any).externalDocument.upsert({
+                            where: { driveFileId: f.id },
+                            update: {
+                                fileName: f.name,
+                                driveWebViewUrl: f.webViewLink,
+                                month,
+                                year
+                            },
+                            create: {
+                                fileName: f.name,
+                                driveFileId: f.id,
+                                driveWebViewUrl: f.webViewLink,
+                                month,
+                                year
+                            }
+                        })
+                        console.log(`Saved as ExternalDocument: ${f.name}`)
+                    } catch (err) {
+                        console.error(`Failed to save ExternalDocument ${f.name}:`, err)
                     }
                 }
             }

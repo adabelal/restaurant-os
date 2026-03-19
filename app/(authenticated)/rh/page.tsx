@@ -12,6 +12,8 @@ import { PayslipBulkUpload } from "@/components/rh/PayslipBulkUpload"
 import { ComplianceTab } from "@/components/rh/ComplianceTab"
 import { GlobalShiftCalendar } from "@/components/rh/GlobalShiftCalendar"
 import { AccountingExportTab } from "@/components/rh/AccountingExportTab"
+import { ExternalDocumentsTab } from "@/components/rh/ExternalDocumentsTab"
+
 export default async function RHPage() {
     const employees = await (prisma as any).user.findMany({
         orderBy: { createdAt: 'desc' },
@@ -24,6 +26,11 @@ export default async function RHPage() {
             monthlySalaries: true
         }
     })
+
+    const externalDocs = await (prisma as any).externalDocument.findMany({
+        orderBy: { createdAt: 'desc' }
+    })
+
 
     const now = new Date()
     const sortedEmployees = [...employees].sort((a: any, b: any) => {
@@ -114,6 +121,13 @@ export default async function RHPage() {
                                 <span className="ml-1 text-[10px] bg-primary/10 px-2 py-0.5 rounded-full font-sans">{activeEmployees.length}</span>
                             </TabsTrigger>
                             <TabsTrigger
+                                value="intermittents"
+                                className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-purple-500 data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
+                            >
+                                <Database className="h-4 w-4 shrink-0" /> <span className="hidden xs:inline">Intermittents / Autres</span>
+                                <span className="ml-1 text-[10px] bg-purple-500/10 px-2 py-0.5 rounded-full font-sans">{externalDocs.length}</span>
+                            </TabsTrigger>
+                            <TabsTrigger
                                 value="legal"
                                 className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 gap-2.5 rounded-xl data-[state=active]:bg-background data-[state=active]:text-emerald-500 data-[state=active]:shadow-lg transition-all font-oswald font-bold uppercase tracking-wide"
                             >
@@ -140,6 +154,11 @@ export default async function RHPage() {
                     <TabsContent value="planning" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
                         <GlobalShiftCalendar employees={activeEmployees} />
                     </TabsContent>
+
+                    <TabsContent value="intermittents" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
+                        <ExternalDocumentsTab documents={externalDocs} />
+                    </TabsContent>
+
 
                     <TabsContent value="active" className="mt-0 outline-none animate-in slide-in-from-bottom-2 duration-500">
                         <EmployeeListContent
