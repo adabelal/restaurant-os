@@ -5,10 +5,10 @@ import { extractInvoicesFromPdf, generateInvoiceEmbedding, buildEmbeddingText } 
 import { uploadPdfToDrive } from '@/lib/google-drive';
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
-import { exec } from 'child_process';
 import { revalidatePath } from 'next/cache';
 import { Resend } from 'resend';
 import { downloadFileFromDrive } from '@/lib/google-drive';
+import { runSyncDriveInvoices } from '@/scripts/sync-drive-invoices';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -308,17 +308,10 @@ export async function sendInvoicesToAccountant(invoiceIds: string[], recipientEm
 
 // ─── Sync Historical from Drive ─────────────────────────────────────────────────
 export async function syncHistoricalInvoicesAction(formData: FormData): Promise<void> {
-  console.log("🚀 Lancement asynchrone du script de synchronisation V2...");
+  console.log("🚀 Lancement de la synchronisation V2 en tâche de fond...");
   
-  exec('npx tsx scripts/sync-drive-invoices.ts', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Erreur de synchronisation Drive: ${error instanceof Error ? error.message : error}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`Stderr: ${stderr}`);
-      return;
-    }
-    console.log(`Stdout: ${stdout}`);
+  // Exécution native asynchrone pour compatibilité Docker locale/prod
+  runSyncDriveInvoices().catch((error) => {
+    console.error(`❌ Erreur lors de la synchronisation Drive:`, error);
   });
 }

@@ -10,7 +10,7 @@ import { prisma } from '../lib/prisma';
 
 const FOLDER_ID = '1Tc1uRVOx-hZsuwUCmuxlEZzQOgAvTRqj';
 
-async function main() {
+export async function runSyncDriveInvoices() {
   console.log('🚀 Démarrage de la synchronisation V2 (extraction enrichie) depuis Google Drive...');
   
   const drive = await getGoogleDriveOAuthClient();
@@ -209,4 +209,7 @@ async function main() {
   console.log(`   ❌ ${failCount} erreurs`);
 }
 
-main().catch(console.error);
+// Keep CLI support for local direct execution
+if (typeof process !== 'undefined' && process.argv[1] && process.argv[1].includes('sync-drive-invoices')) {
+  runSyncDriveInvoices().catch(console.error);
+}
