@@ -46,7 +46,7 @@ export async function POST(req: Request) {
                     "Authorization": `Bearer ${resendApiKey}`,
                 },
                 body: JSON.stringify({
-                    from: "Siwa-OS <onboarding@resend.dev>", // Adapter selon le domaine vérifié
+                    from: "Siwa-OS <noreply@siwa-bleury.fr>",
                     to: [email],
                     subject: "Réinitialisation de votre mot de passe",
                     html: `

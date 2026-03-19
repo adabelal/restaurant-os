@@ -207,7 +207,7 @@ export async function sendExportEmail(to: string, subject: string, fileName: str
         try {
             const resend = getResendClient()
             const { data, error } = await resend.emails.send({
-                from: 'Caisse Siwa-OS <onboarding@resend.dev>',
+                from: 'Caisse Siwa-OS <caisse@siwa-bleury.fr>',
                 to: [input.to],
                 subject: input.subject.substring(0, 255), // Limiter la longueur du sujet
                 text: input.customBody || `Veuillez trouver ci-joint l'export de la caisse : ${input.fileName}`,

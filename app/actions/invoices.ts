@@ -271,7 +271,7 @@ export async function sendInvoicesToAccountant(invoiceIds: string[], recipientEm
 
     // 3. Send email via Resend
     const { data, error } = await resend.emails.send({
-      from: 'Siwa-OS <invoices@resend.dev>', // Replace with your domain if configured
+      from: 'Siwa-OS <compta@siwa-bleury.fr>',
       to: [recipientEmail],
       subject: `[Comptabilité] Transmission de ${invoices.length} factures - Siwa-OS`,
       html: `
