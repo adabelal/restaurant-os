@@ -307,15 +307,15 @@ export async function listFilesRecursive(folderId: string): Promise<{ id: string
 }
 
 export async function downloadFileFromDrive(fileId: string): Promise<Buffer> {
-    const token = await getAccessToken();
-    const res = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
-        headers: { Authorization: `Bearer ${token}` }
-    });
-
-    if (!res.ok) {
+    const drive = await getGoogleDriveClient();
+    try {
+        const response = await drive.files.get(
+            { fileId: fileId, alt: 'media' },
+            { responseType: 'arraybuffer' }
+        );
+        return Buffer.from(response.data as ArrayBuffer);
+    } catch (error: any) {
+        console.error(`Failed to download file ${fileId} with Service Account:`, error.message || error);
         throw new Error(`Failed to download file ${fileId}`);
     }
-
-    const arrayBuffer = await res.arrayBuffer();
-    return Buffer.from(arrayBuffer);
 }
