@@ -26,8 +26,8 @@ COPY . .
 # Construire l'application Next.js
 # On skip le type checking pour accélérer le build en prod
 ENV NEXT_TELEMETRY_DISABLED=1
-# Limitation stricte de la RAM pour éviter un OOM Kill (SIGKILL) sur Easypanel
-ENV NODE_OPTIONS="--max-old-space-size=350"
+# Renforcement de la mémoire (1,5 Go) pour permettre à Webpack de compiler sans crasher
+ENV NODE_OPTIONS="--max-old-space-size=1536"
 RUN npm run build
 
 # --- Étape de Production ---
