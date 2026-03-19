@@ -267,34 +267,38 @@ export async function moveFileToFolder(fileId: string, newFolderId: string): Pro
 }
 
 export async function listFilesRecursive(folderId: string): Promise<{ id: string, name: string, webViewLink: string }[]> {
-    const token = await getAccessToken();
+    const drive = await getGoogleDriveClient();
     let results: { id: string, name: string, webViewLink: string }[] = [];
 
     async function scan(fId: string) {
         const query = `'${fId}' in parents and trashed=false`;
-        const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name,mimeType,webViewLink)&pageSize=1000&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true`;
-        const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
         
-        if (!res.ok) {
-            const err = await res.text();
-            console.error(`Drive API error in listFilesRecursive for ${fId}:`, err);
-            return;
-        }
-        
-        const data = (await res.json()) as any;
-
-        if (data.files) {
-            for (const file of data.files) {
-                if (file.mimeType === 'application/vnd.google-apps.folder') {
-                    await scan(file.id);
-                } else {
-                    results.push({
-                        id: file.id,
-                        name: file.name,
-                        webViewLink: file.webViewLink
-                    });
+        try {
+            const res = await drive.files.list({
+                q: query,
+                fields: 'files(id,name,mimeType,webViewLink)',
+                pageSize: 1000,
+                corpora: 'allDrives',
+                includeItemsFromAllDrives: true,
+                supportsAllDrives: true
+            });
+            
+            const files = res.data.files;
+            if (files) {
+                for (const file of files) {
+                    if (file.mimeType === 'application/vnd.google-apps.folder') {
+                        await scan(file.id!);
+                    } else {
+                        results.push({
+                            id: file.id!,
+                            name: file.name!,
+                            webViewLink: file.webViewLink || ''
+                        });
+                    }
                 }
             }
+        } catch (err: any) {
+            console.error(`Drive API error in listFilesRecursive for ${fId}:`, err.message || err);
         }
     }
 
