@@ -7,7 +7,7 @@ export default function TermsPage() {
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold">1. Objet</h2>
                 <p>
-                    Les présentes Conditions Générales d'Utilisation (CGU) ont pour objet d'encadrer l'accès et l'utilisation de la plateforme <strong>Restaurant-OS</strong>,
+                    Les présentes Conditions Générales d'Utilisation (CGU) ont pour objet d'encadrer l'accès et l'utilisation de la plateforme <strong>Siwa-OS</strong>,
                     conçue pour la gestion interne des établissements de restauration.
                 </p>
             </section>
@@ -19,7 +19,7 @@ export default function TermsPage() {
                     Cette fonctionnalité est fournie via l'infrastructure technique d'<strong>Enable Banking</strong>.
                 </p>
                 <p>
-                    En utilisant ce service, l'utilisateur accepte que Restaurant-OS accède aux données de transaction en temps réel pour faciliter la gestion de l'entreprise.
+                    En utilisant ce service, l'utilisateur accepte que Siwa-OS accède aux données de transaction en temps réel pour faciliter la gestion de l'entreprise.
                     L'accès est fourni conformément aux réglementations sur les services de paiement (DSP2).
                 </p>
             </section>
@@ -27,15 +27,15 @@ export default function TermsPage() {
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold">3. Responsabilité</h2>
                 <p>
-                    Restaurant-OS s'engage à fournir un service sécurisé. Toutefois, l'utilisateur est responsable de la conservation de ses accès personnels (identifiants, mots de passe).
-                    En aucun cas Restaurant-OS ne pourra être tenu responsable des pertes liées à une mauvaise utilisation des accès de l'utilisateur.
+                    Siwa-OS s'engage à fournir un service sécurisé. Toutefois, l'utilisateur est responsable de la conservation de ses accès personnels (identifiants, mots de passe).
+                    En aucun cas Siwa-OS ne pourra être tenu responsable des pertes liées à une mauvaise utilisation des accès de l'utilisateur.
                 </p>
             </section>
 
             <section className="space-y-4">
                 <h2 className="text-2xl font-semibold">4. Propriété intellectuelle</h2>
                 <p>
-                    L'ensemble des éléments constituant l'application Restaurant-OS est la propriété exclusive de son éditeur.
+                    L'ensemble des éléments constituant l'application Siwa-OS est la propriété exclusive de son éditeur.
                     Toute reproduction non autorisée est strictement interdite.
                 </p>
             </section>

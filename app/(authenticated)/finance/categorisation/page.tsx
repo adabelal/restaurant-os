@@ -9,7 +9,7 @@ import { RuleListClient } from './RuleListClient';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export const metadata: Metadata = {
-    title: 'Configuration: Catégorisation | Restaurant-OS',
+    title: 'Configuration: Catégorisation | Siwa-OS',
     description: 'Catégorisation automatique et manuelle des transactions',
 };
 
