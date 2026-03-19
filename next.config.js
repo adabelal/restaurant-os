@@ -9,6 +9,13 @@ const nextConfig = {
     // TODO: Activer ESLint en production
     ignoreDuringBuilds: true,
   },
+  // Optimisation extrême de la RAM pour serveurs peu performants/sans Swap
+  experimental: {
+    // Forcer 1 seul worker pour diviser la conso RAM par N coeurs CPU
+    cpus: 1,
+    workerThreads: false,
+    memoryBasedWorkersCount: true,
+  },
   // Headers de sécurité
   async headers() {
     return [
