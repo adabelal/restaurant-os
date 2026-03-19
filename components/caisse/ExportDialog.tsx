@@ -72,8 +72,8 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
             { header: 'Type', key: 'type', width: 12 },
             { header: 'Description', key: 'description', width: 45 },
             { header: 'Catégorie', key: 'category', width: 25 },
-            { header: 'Montant', key: 'amount', width: 15, style: { numFmt: '#,##0.00" €"' } },
-            { header: 'Solde théorique', key: 'balance', width: 20, style: { numFmt: '#,##0.00" €"' } }
+            { header: 'Montant', key: 'amount', width: 15, style: { numFmt: '#,##0.00" €";-#,##0.00" €"' } },
+            { header: 'Solde théorique', key: 'balance', width: 20, style: { numFmt: '#,##0.00" €";-#,##0.00" €"' } }
         ];
 
         worksheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
@@ -172,7 +172,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
         })
 
         const totalIn = data.filter(t => t.type === 'IN').reduce((acc, t) => acc + Number(t.amount), 0)
-        const totalOut = data.filter(t => t.type === 'OUT').reduce((acc, t) => acc + Number(t.amount), 0)
+        const totalOut = data.filter(t => t.type === 'OUT').reduce((acc, t) => acc + Math.abs(Number(t.amount)), 0)
 
         doc.autoTable({
             startY: 25,
