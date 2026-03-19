@@ -271,16 +271,16 @@ export async function sendInvoicesToAccountant(invoiceIds: string[], recipientEm
 
     // 3. Send email via Resend
     const { data, error } = await resend.emails.send({
-      from: 'Restaurant OS <invoices@resend.dev>', // Replace with your domain if configured
+      from: 'Siwa-OS <invoices@resend.dev>', // Replace with your domain if configured
       to: [recipientEmail],
-      subject: `[Comptabilité] Transmission de ${invoices.length} factures - Restaurant OS`,
+      subject: `[Comptabilité] Transmission de ${invoices.length} factures - Siwa-OS`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
           <h2 style="color: #0F172A;">Transmission de factures</h2>
           <p>Bonjour,</p>
           <p>Veuillez trouver ci-joint <strong>${invoices.length} factures</strong> pour un montant total de <strong>${invoices.reduce((acc: number, curr: any) => acc + Number(curr.amount), 0).toFixed(2)}€</strong>.</p>
           <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
-          <p style="font-size: 12px; color: #64748B;">Envoyé automatiquement depuis Restaurant OS.</p>
+          <p style="font-size: 12px; color: #64748B;">Envoyé automatiquement depuis Siwa-OS.</p>
         </div>
       `,
       attachments: validAttachments

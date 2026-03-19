@@ -1196,13 +1196,13 @@ export async function sendDocumentsEmail(docIds: string[], customBody?: string) 
                     "Authorization": `Bearer ${resendApiKey}`,
                 },
                 body: JSON.stringify({
-                    from: "Restaurant OS <rh@siwa-bleury.fr>",
+                    from: "Siwa-OS <rh@siwa-bleury.fr>",
                     to: [user.email],
                     subject: docs.length === 1 ? `Votre document : ${docs[0].name}` : `Vos documents RH (${docs.length} fichiers)`,
                     html: `
                         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
                             <div style="background-color: #10b981; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
-                                <h1 style="color: white; margin: 0; font-size: 20px;">Restaurant OS - Documents RH</h1>
+                                <h1 style="color: white; margin: 0; font-size: 20px;">Siwa-OS - Documents RH</h1>
                             </div>
                             <div style="padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
                                 <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">Bonjour ${user.name},</p>
@@ -1286,7 +1286,7 @@ export async function sendDocumentsToEmail(docIds: string[], targetEmail: string
                     "Authorization": `Bearer ${resendApiKey}`,
                 },
                 body: JSON.stringify({
-                    from: "Restaurant OS <rh@siwa-bleury.fr>",
+                    from: "Siwa-OS <rh@siwa-bleury.fr>",
                     to: [input.targetEmail],
                     subject: input.subject || `Fiches de paie (${docs.length} fichiers)`,
                     html: `
@@ -1301,7 +1301,7 @@ export async function sendDocumentsToEmail(docIds: string[], targetEmail: string
                                     ${linksHtml}
                                 </div>
                                 <p style="font-size: 13px; color: #6b7280; margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 20px; text-align: center;">
-                                    Ceci est un envoi automatique généré par Restaurant OS.
+                                    Ceci est un envoi automatique généré par Siwa-OS.
                                 </p>
                             </div>
                         </div>

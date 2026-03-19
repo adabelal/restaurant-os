@@ -186,8 +186,8 @@ export async function updateAppSettings(data: { accountantEmail?: string }) {
     })
 }
 
-export async function sendExportEmail(to: string, subject: string, fileName: string, base64Content: string) {
-    return safeAction({ to, subject, fileName, base64Content }, async (input) => {
+export async function sendExportEmail(to: string, subject: string, fileName: string, base64Content: string, customBody?: string) {
+    return safeAction({ to, subject, fileName, base64Content, customBody }, async (input) => {
         // Validation email
         const emailSchema = z.string().email()
         if (!emailSchema.safeParse(input.to).success) {
@@ -207,10 +207,10 @@ export async function sendExportEmail(to: string, subject: string, fileName: str
         try {
             const resend = getResendClient()
             const { data, error } = await resend.emails.send({
-                from: 'Caisse Restaurant <onboarding@resend.dev>',
+                from: 'Caisse Siwa-OS <onboarding@resend.dev>',
                 to: [input.to],
                 subject: input.subject.substring(0, 255), // Limiter la longueur du sujet
-                text: `Veuillez trouver ci-joint l'export de la caisse : ${input.fileName}`,
+                text: input.customBody || `Veuillez trouver ci-joint l'export de la caisse : ${input.fileName}`,
                 attachments: [
                     {
                         filename: input.fileName,

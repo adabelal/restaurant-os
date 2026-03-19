@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -10,6 +10,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import {
     Select,
@@ -36,6 +37,14 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
     const [endDate, setEndDate] = useState(format(endOfMonth(new Date()), 'yyyy-MM-dd'))
     const [formatType, setFormatType] = useState('xlsx')
     const [isExporting, setIsExporting] = useState(false)
+    const [emailDestinataire, setEmailDestinataire] = useState(accountantEmail || '')
+    const [emailBody, setEmailBody] = useState(`Bonjour,\n\nVeuillez trouver ci-joint l'export de la caisse.\n\nCordialement,`)
+
+    useEffect(() => {
+        if (accountantEmail) {
+            setEmailDestinataire(accountantEmail)
+        }
+    }, [accountantEmail])
 
     const getFilteredData = () => {
         const start = new Date(startDate)
@@ -51,7 +60,7 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
     const generateExcelBuffer = async (data: any[]) => {
         const ExcelJS = (await import('exceljs')).default;
         const workbook = new ExcelJS.Workbook();
-        workbook.creator = 'Restaurant OS';
+        workbook.creator = 'Siwa-OS';
         workbook.created = new Date();
         
         const worksheet = workbook.addWorksheet('Transactions', {
@@ -178,8 +187,8 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
     }
 
     const handleEmail = async () => {
-        if (!accountantEmail) {
-            toast.error("Veuillez configurer l'email de la comptabilité dans l'onglet Config.")
+        if (!emailDestinataire) {
+            toast.error("Veuillez saisir un email destinataire.")
             return
         }
 
@@ -199,12 +208,12 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
             const fileName = `Export_Caisse_${startDate}_au_${endDate}.xlsx`;
             const subject = `Export Caisse du ${format(new Date(startDate), 'dd/MM/yyyy')} au ${format(new Date(endDate), 'dd/MM/yyyy')}`;
 
-            const res = await sendExportEmail(accountantEmail, subject, fileName, base64Content)
+            const res = await sendExportEmail(emailDestinataire, subject, fileName, base64Content, emailBody)
 
-            if (res.success) {
-                toast.success(`Export envoyé à ${accountantEmail}.`)
-            } else {
+            if (res.error) {
                 toast.error(res.error || "Erreur lors de l'envoi de l'export.")
+            } else {
+                toast.success(`Export envoyé à ${emailDestinataire}.`)
             }
         } catch (error: any) {
             console.error("Error sending email:", error)
@@ -261,20 +270,34 @@ export function ExportDialog({ transactions, accountantEmail }: ExportDialogProp
                             <div className="absolute inset-0 flex items-center"><span className="w-full border-t"></span></div>
                             <div className="relative flex justify-center text-xs uppercase"><span className="bg-background px-2 text-muted-foreground">Ou envoyer par mail</span></div>
                         </div>
+                        <div className="space-y-1.5 pt-1">
+                            <Label className="text-xs text-muted-foreground hidden">Email destinataire</Label>
+                            <Input 
+                                type="email" 
+                                value={emailDestinataire} 
+                                onChange={(e) => setEmailDestinataire(e.target.value)}
+                                placeholder="Email de la comptabilité"
+                                className="h-9 text-xs"
+                            />
+                        </div>
+                        <div className="space-y-1.5 pt-1">
+                            <Label className="text-xs text-muted-foreground hidden">Corps du mail</Label>
+                            <Textarea 
+                                value={emailBody}
+                                onChange={(e) => setEmailBody(e.target.value)}
+                                placeholder="Votre message..."
+                                className="min-h-[80px] text-xs resize-none"
+                            />
+                        </div>
                         <Button
                             variant="secondary"
                             onClick={handleEmail}
-                            disabled={isExporting}
+                            disabled={isExporting || !emailDestinataire}
                             className="w-full gap-2 border-primary/20 hover:bg-primary/5 text-primary font-bold"
                         >
                             {isExporting ? <span className="animate-spin">🌀</span> : <Send className="h-4 w-4" />}
                             Envoyer à la comptabilité
                         </Button>
-                        {accountantEmail ? (
-                            <p className="text-[10px] text-center text-muted-foreground">Destinataire : {accountantEmail}</p>
-                        ) : (
-                            <p className="text-[10px] text-center text-rose-500 font-medium">⚠️ Aucun email configuré pour la compta.</p>
-                        )}
                     </div>
                 </div>
             </DialogContent>

@@ -11,7 +11,7 @@ const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-open-sans" })
 const permanentMarker = Permanent_Marker({ weight: "400", subsets: ["latin"], variable: "--font-permanent-marker" });
 
 export const metadata: Metadata = {
-    title: "Le Siwa | Restaurant OS",
+    title: "Le Siwa | Siwa-OS",
     description: "Système de gestion complet pour Le Siwa",
 };
 

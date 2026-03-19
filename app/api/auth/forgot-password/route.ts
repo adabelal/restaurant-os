@@ -46,17 +46,17 @@ export async function POST(req: Request) {
                     "Authorization": `Bearer ${resendApiKey}`,
                 },
                 body: JSON.stringify({
-                    from: "Restaurant OS <onboarding@resend.dev>", // Adapter selon le domaine vérifié
+                    from: "Siwa-OS <onboarding@resend.dev>", // Adapter selon le domaine vérifié
                     to: [email],
                     subject: "Réinitialisation de votre mot de passe",
                     html: `
                         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
                             <h2>Réinitialisation de mot de passe</h2>
                             <p>Bonjour ${user.name},</p>
-                            <p>Vous avez demandé à réinitialiser votre mot de passe pour Restaurant OS.</p>
-                            <p>Cliquez sur le bouton ci-dessous pour choisir un nouveau mot de passe :</p>
-                            <a href="${resetUrl}" style="background-color: #10b981; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Réinitialiser mon mot de passe</a>
-                            <p style="margin-top: 20px; font-size: 12px; color: #666;">Ce lien est valide pendant 1 heure.</p>
+                            <p>Vous avez demandé à réinitialiser votre mot de passe pour Siwa-OS.</p>
+                            <p>Cliquez sur le lien ci-dessous, ou copiez-le dans votre navigateur :</p>
+                            <a href="${resetUrl}">${resetUrl}</a>
+                            <p>Ce lien expirera dans 1 heure.</p>
                             <p style="font-size: 12px; color: #666;">Si vous n'avez pas demandé cette réinitialisation, ignorez simplement cet email.</p>
                         </div>
                     `,

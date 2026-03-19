@@ -53,7 +53,7 @@ function LoginForm() {
                     <UtensilsCrossed className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <div>
-                    <CardTitle className="text-2xl font-bold">Restaurant OS</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Siwa-OS</CardTitle>
                     <CardDescription className="mt-2">
                         Connectez-vous pour accéder au système
                     </CardDescription>
@@ -129,7 +129,7 @@ function LoginFormFallback() {
                     <UtensilsCrossed className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <div>
-                    <CardTitle className="text-2xl font-bold">Restaurant OS</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Siwa-OS</CardTitle>
                     <CardDescription className="mt-2">
                         Chargement...
                     </CardDescription>

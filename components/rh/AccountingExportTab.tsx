@@ -54,7 +54,7 @@ export function AccountingExportTab({ employees }: AccountingExportTabProps) {
     // Load defaults from local storage
     useEffect(() => {
         const savedEmail = localStorage.getItem('compta_email') || ""
-        const savedSubject = localStorage.getItem('compta_subject') || "Fiches de paie [Mois Année] - Restaurant OS"
+        const savedSubject = localStorage.getItem('compta_subject') || "Fiches de paie [Mois Année] - Siwa-OS"
         const savedBody = localStorage.getItem('compta_body') || "Bonjour,\n\nVeuillez trouver ci-joint les fiches de paie pour la période écoulée.\n\nCordialement,"
 
         setTargetEmail(savedEmail)
@@ -65,9 +65,9 @@ export function AccountingExportTab({ employees }: AccountingExportTabProps) {
     // Update subject dynamic part when month/year changes
     useEffect(() => {
         if (emailSubject) {
-            const regex = /Fiches de paie .* - Restaurant OS/i;
+            const regex = /Fiches de paie .* - (Restaurant OS|Siwa-OS)/i;
             if (regex.test(emailSubject)) {
-                setEmailSubject(`Fiches de paie ${MONTHS.find(m => m.value === selectedMonth)?.label} ${selectedYear} - Restaurant OS`)
+                setEmailSubject(`Fiches de paie ${MONTHS.find(m => m.value === selectedMonth)?.label} ${selectedYear} - Siwa-OS`)
             }
         }
     }, [selectedMonth, selectedYear])
